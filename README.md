@@ -1,16 +1,30 @@
-## Hi there 👋
+# Big Quams Educational Hub 🌍
 
-<!--
-**big-quams-educational-hub/big-quams-educational-hub** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+A professional educational consultancy website for **Big Quams Educational Hub** — providing expert student advisory, admissions guidance, and global education services.
 
-Here are some ideas to get you started:
+## 🚀 Live Website
+Once published with GitHub Pages, your site will be live here:  
+[https://YOUR-USERNAME.github.io/big-quams-educational-hub/](https://YOUR-USERNAME.github.io/big-quams-educational-hub/)
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## 📚 About
+Big Quams Educational Hub is dedicated to guiding students toward their academic dreams.  
+We provide:
+- University admissions guidance
+- Visa and travel support
+- Career counseling
+- Scholarship application assistance
+
+## 🛠️ Technologies Used
+- **HTML5**
+- **CSS3**
+- **Responsive Design**
+- **SEO-friendly structure**
+
+## 📬 Contact
+- **Email:** bigquamsmedia024@gmail.com  
+- **Phone:** +234 904 987 1643  
+- **Website:** *(Live link will be added after deployment)*  
+
+---
+
+© 2025 Big Quams Educational Hub. All rights reserved.
