@@ -1,172 +1,161 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Big Quams Educational Hub - Your trusted guide for smarter academic choices in Nigeria.">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Big Quams Educational Hub</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
             background-color: white;
             color: #333;
-            line-height: 1.6;
         }
         header {
             background-color: #007BFF;
             color: white;
-            padding: 1rem 0;
-            text-align: center;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         header img {
-            max-width: 120px;
-            display: block;
-            margin: 0 auto 10px;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background: #0056b3;
+            height: 50px;
         }
         nav a {
             color: white;
-            padding: 14px 20px;
+            margin-left: 15px;
             text-decoration: none;
             font-weight: bold;
         }
         nav a:hover {
-            background-color: #ff9800;
+            text-decoration: underline;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #007BFF, #FF6600, #28A745);
             color: white;
         }
-        section {
-            padding: 20px;
+        .container {
             max-width: 1100px;
             margin: auto;
+            padding: 2rem;
         }
-        h1, h2 {
+        h2 {
             color: #007BFF;
         }
-        .services, .testimonials {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .service-card, .testimonial-card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 20px;
+        .contact-section {
             background: #f9f9f9;
-        }
-        .service-card:hover {
-            border-color: #007BFF;
-        }
-        footer {
-            background-color: #007BFF;
-            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
             text-align: center;
-            padding: 10px 0;
+        }
+        .contact-buttons a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+        .whatsapp-btn {
+            background-color: #25D366;
+        }
+        .email-btn {
+            background-color: #FF6600;
+        }
+        .group-btn {
+            background-color: #007BFF;
+        }
+        .contact-buttons a:hover {
+            opacity: 0.8;
+        }
+        form {
             margin-top: 20px;
         }
-        a.button {
-            display: inline-block;
-            background: #ff9800;
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #28A745;
             color: white;
             padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
         }
-        a.button:hover {
-            background: #e68900;
+        button:hover {
+            opacity: 0.85;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="https://raw.githubusercontent.com/big-quams-educational-hub/big-quams-educational-hub.github.io/refs/heads/main/assets/Big%20Quams%20(1)%20(1).png" alt="Big Quams Logo">
-    <h1>Big Quams Educational Hub</h1>
-    <p>Your trusted guide for smarter academic choices</p>
+    <img src="https://raw.githubusercontent.com/big-quams-educational-hub/big-quams-educational-hub.github.io/main/assets/Big%20Quams%20(1)%20(1).png" alt="Big Quams Logo" />
+    <nav>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
 </header>
 
-<nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-    <a href="#blog">Blog</a>
-</nav>
-
-<section id="home">
-    <h2>Welcome to Big Quams Educational Hub</h2>
-    <p>We’re here to simplify your journey from admission to graduation. Whether you're preparing for JAMB, seeking admission into a tertiary institution, or just need real-time education updates, we provide reliable support every step of the way.</p>
+<section class="hero">
+    <h1>Welcome to Big Quams Educational Hub</h1>
+    <p>Empowering students through learning, creativity, and growth.</p>
 </section>
 
-<section id="about">
+<div class="container" id="about">
     <h2>About Us</h2>
-    <p>At Big Quams Educational Hub, we are passionate about helping Nigerian students make informed decisions about their education. From application tips to choosing the right course or school, we offer hands-on support backed by experience and real-time information. Our mission is simple: <strong>to bridge the gap between confusion and clarity in the academic world.</strong></p>
-</section>
+    <p>At Big Quams Educational Hub, we are dedicated to nurturing young minds and fostering creativity. 
+       Our programs are designed to provide students with the tools they need to excel academically and personally.</p>
+</div>
 
-<section id="services">
+<div class="container" id="services">
     <h2>Our Services</h2>
-    <div class="services">
-        <div class="service-card">
-            <h3>JAMB & UTME Advisory</h3>
-            <p>Get help with registration, subject combination, syllabus breakdown, and smart preparation strategies.</p>
-        </div>
-        <div class="service-card">
-            <h3>Admission Support</h3>
-            <p>From Post-UTME to school updates, we’ll walk you through it all.</p>
-        </div>
-        <div class="service-card">
-            <h3>School & Course Matching</h3>
-            <p>We match you with the right institution and course based on your strengths and goals.</p>
-        </div>
-        <div class="service-card">
-            <h3>Academic Coaching</h3>
-            <p>Personalized study tips, time management, and exam preparation plans.</p>
-        </div>
-        <div class="service-card">
-            <h3>Scholarship & News Alerts</h3>
-            <p>Stay informed on funding opportunities and educational updates.</p>
-        </div>
-    </div>
-</section>
-
-<section id="testimonials">
-    <h2>Testimonials</h2>
-    <div class="testimonials">
-        <div class="testimonial-card">
-            <p>“I was totally lost before I found Big Quams. They helped me sort my Post-UTME and I got admitted into LASU!” – Aisha, Lagos</p>
-        </div>
-        <div class="testimonial-card">
-            <p>“I passed my JAMB at once after following their guide. You won’t regret working with them!” – Dare, Osun</p>
-        </div>
-    </div>
-</section>
-
-<section id="contact">
-    <h2>Contact Us</h2>
-    <p>Need help or have a question? We’re just a message away.</p>
-    <p>Email: <a href="mailto:bigquamsmedia024@gmail.com">bigquamsmedia024@gmail.com</a></p>
-    <p>WhatsApp: <a href="https://wa.me/2349049871643">+234 904 987 1643</a></p>
-    <p>Support WhatsApp Group (Brainy Buddies): <a href="https://chat.whatsapp.com/Bvi1BVHGAC8A9pTBTFNEXh">Join Here</a></p>
-</section>
-
-<section id="blog">
-    <h2>Blog Suggestions</h2>
     <ul>
-        <li>How to Choose the Right University Course in Nigeria</li>
-        <li>5 Mistakes to Avoid During JAMB Registration</li>
-        <li>Best Study Habits for Students Who Struggle to Focus</li>
-        <li>What to Do After Gaining Admission: A Step-by-Step Guide</li>
+        <li>Educational Tutoring</li>
+        <li>Graphic Design for Students</li>
+        <li>Content Creation & Brand Promotion</li>
+        <li>Student Networking & Support</li>
     </ul>
-</section>
+</div>
+
+<div class="container contact-section" id="contact">
+    <h2>Contact & Feedback</h2>
+    <p>We’d love to hear from you! You can reach us via WhatsApp, email, or join our student support group.</p>
+    <div class="contact-buttons">
+        <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-btn" target="_blank" rel="noopener">📱 Chat on WhatsApp</a>
+        <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn">📧 Send Email</a>
+        <a href="https://chat.whatsapp.com/Bvi1BVHGAC8A9pTBTFNEXh" class="group-btn" target="_blank" rel="noopener">👥 Join Brainy Buddies</a>
+    </div>
+    
+    <form action="mailto:bigquamsmedia024@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Feedback" required></textarea>
+        <button type="submit">Send Feedback</button>
+    </form>
+</div>
 
 <footer>
-    <p>&copy; 2025 Big Quams Educational Hub. All Rights Reserved.</p>
+    <p>© 2025 Big Quams Educational Hub. All Rights Reserved.</p>
 </footer>
 
 </body>
