@@ -1,0 +1,31 @@
+How to use:
+Create a file named news.json on your computer or directly on GitHub.
+
+Copy and paste the above content into that file.
+
+Upload this file to the same GitHub repository where your website HTML lives.
+
+Make sure the URL in your HTML's fetch script points exactly to the raw version of this news.json file on GitHub.
+
+[
+  {
+    "title": "JAMB Registration Opens",
+    "date": "2025-08-01",
+    "description": "JAMB registration for the 2025 academic year has officially started. Register early to avoid last-minute rush."
+  },
+  {
+    "title": "Scholarship Deadline Approaching",
+    "date": "2025-08-05",
+    "description": "Don't miss the deadline for the XYZ scholarship program. Submit your applications by August 15th."
+  },
+  {
+    "title": "Post-UTME Screening Dates Announced",
+    "date": "2025-08-07",
+    "description": "Various Nigerian universities have announced their Post-UTME screening dates. Check your chosen institution's website for details."
+  },
+  {
+    "title": "New Study Tips Released",
+    "date": "2025-08-09",
+    "description": "Big Quams Educational Hub shares effective study techniques to boost your exam performance."
+  }
+]
