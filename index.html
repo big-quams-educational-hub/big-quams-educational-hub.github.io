@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Big Quams Educational Hub</title>
+  <title>BIG QUAMS EDUCATIONAL HUB</title>
   <meta name="description" content="Big Quams Educational Hub — your trusted guide for smarter academic choices in Nigeria. JAMB, Admissions, Coaching, Scholarships." />
   <style>
     :root {
@@ -13,7 +13,7 @@
       --muted: #64748b;
       --bg: #ffffff;
       --card: #ffffff;
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
     * {
       box-sizing: border-box;
@@ -22,7 +22,7 @@
       margin: 0;
       background: var(--bg);
       color: #0f172a;
-      line-height: 1.6;
+      line-height: 1.5;
     }
     header {
       background: var(--accent-blue);
@@ -50,7 +50,10 @@
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid white;
-      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
     }
     .logo img {
       width: 100%;
@@ -58,347 +61,267 @@
       object-fit: cover;
       display: block;
     }
-    .brand-text strong {
+    .brand-text {
+      text-transform: uppercase;
+      font-weight: 700;
       font-size: 1.25rem;
-      line-height: 1.2;
+      letter-spacing: 0.05em;
     }
-    .brand-text small {
+    .brand-subtext {
       color: #dbeafe;
-      font-size: 0.85rem;
-      line-height: 1.1;
+      font-size: 0.875rem;
+      line-height: 1;
     }
     .navlinks {
       display: flex;
       gap: 16px;
       flex-wrap: wrap;
+      margin-top: 8px;
     }
     a {
       color: inherit;
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s ease;
     }
-    a:hover, a:focus {
+    a:hover,
+    a:focus {
       color: var(--accent-orange);
       outline: none;
     }
     .btn {
       background: var(--accent-orange);
       color: white;
-      padding: 10px 16px;
+      padding: 10px 14px;
       border-radius: 8px;
       display: inline-block;
       font-weight: 700;
-      white-space: nowrap;
+      transition: background 0.3s ease;
     }
+    .btn:hover,
+    .btn:focus {
+      background: #dc6803;
+      outline: none;
+    }
+
+    /* Hero Section */
     .hero {
-      text-align: center;
       padding: 48px 24px;
-      background: #f9fafb;
-      border-radius: 12px;
-      margin: 32px 0;
+      text-align: center;
     }
     .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
+      margin: 0 0 16px;
+      font-size: 2rem;
       color: var(--accent-blue);
     }
     .hero p {
-      font-size: 1.125rem;
-      color: var(--muted);
-      max-width: 600px;
       margin: 0 auto;
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
+
+    /* Sections */
     section {
-      padding: 48px 0 24px;
+      padding: 40px 24px;
+      max-width: 900px;
+      margin: 0 auto 40px auto;
     }
     h2 {
-      color: var(--accent-blue);
       margin-bottom: 16px;
-      font-weight: 700;
-      font-size: 1.8rem;
-      border-bottom: 3px solid var(--accent-orange);
-      display: inline-block;
-      padding-bottom: 6px;
-    }
-    h3 {
       color: var(--accent-blue);
-      margin-top: 24px;
       font-weight: 700;
-    }
-    p, ul {
-      font-size: 1rem;
-      max-width: 700px;
-      margin-bottom: 1rem;
+      font-size: 1.75rem;
+      border-bottom: 3px solid var(--accent-orange);
+      padding-bottom: 6px;
+      max-width: fit-content;
     }
     ul {
       padding-left: 20px;
-      list-style-type: disc;
+      color: #334155;
+      font-size: 1rem;
+      line-height: 1.5;
     }
-    .services ul {
-      list-style-type: circle;
+    ul li {
+      margin-bottom: 10px;
     }
-    .testimonials blockquote {
+    blockquote {
       background: #f1f5f9;
-      padding: 20px;
+      padding: 16px 20px;
       border-left: 6px solid var(--accent-orange);
       border-radius: 8px;
-      margin-bottom: 24px;
+      margin: 20px 0;
       font-style: italic;
-      color: #334155;
+      color: #475569;
       max-width: 700px;
-      box-shadow: 1px 2px 6px rgba(0,0,0,0.08);
+      margin-left: auto;
+      margin-right: auto;
     }
-    .testimonials blockquote footer {
+
+    /* Blog */
+    .blog-post {
+      margin-bottom: 24px;
+    }
+    .blog-post h3 {
+      margin: 0 0 6px 0;
+      color: var(--accent-green);
       font-weight: 700;
-      margin-top: 12px;
-      color: var(--accent-blue);
-      font-style: normal;
+      font-size: 1.25rem;
     }
+    .blog-post a {
+      font-weight: 600;
+      color: var(--accent-blue);
+      text-decoration: underline;
+    }
+    .blog-post a:hover,
+    .blog-post a:focus {
+      color: var(--accent-orange);
+      outline: none;
+    }
+
+    /* Contact Section */
     .contact-links {
       display: flex;
-      gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 32px;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 24px;
     }
     .contact-links a {
-      flex: 1 1 200px;
-      background: var(--accent-blue);
-      color: white;
-      padding: 14px 24px;
-      border-radius: 40px;
-      text-align: center;
-      font-weight: 700;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-      transition: background-color 0.3s ease;
-      display: inline-block;
-    }
-    .contact-links a.email {
-      background: var(--accent-orange);
-    }
-    .contact-links a.whatsapp-group {
       background: var(--accent-green);
-    }
-    .contact-links a:hover, .contact-links a:focus {
-      background-color: #0a2463;
-      outline: none;
-    }
-    form {
-      max-width: 600px;
-      margin: 0 auto 64px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    input, textarea {
-      padding: 12px 16px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      font-family: inherit;
-      resize: vertical;
-    }
-    button {
-      background-color: var(--accent-green);
       color: white;
-      padding: 14px 20px;
-      border: none;
-      border-radius: 8px;
+      padding: 12px 24px;
+      border-radius: 24px;
       font-weight: 700;
+      box-shadow: 0 4px 10px rgba(22,163,74,0.4);
+      transition: background 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
     }
-    button:hover, button:focus {
-      background-color: #0f6c29;
+    .contact-links a:hover,
+    .contact-links a:focus {
+      background: #138039;
       outline: none;
     }
-    .blog-posts {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 24px;
-      margin-top: 24px;
-    }
-    .blog-post {
-      background: #f9fafb;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      transition: box-shadow 0.3s ease;
-    }
-    .blog-post:hover {
-      box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-    }
-    .blog-post h4 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      color: var(--accent-blue);
-    }
-    .faq {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .faq dt {
-      font-weight: 700;
-      margin-top: 16px;
-      cursor: pointer;
-      color: var(--accent-blue);
-    }
-    .faq dd {
-      margin-left: 16px;
-      margin-bottom: 12px;
-      color: #475569;
-    }
+
+    /* Footer */
     footer {
       text-align: center;
-      padding: 24px 12px;
-      border-top: 2px solid var(--accent-green);
-      color: var(--muted);
       font-size: 0.9rem;
-      margin-top: 48px;
+      padding: 20px 24px;
+      border-top: 3px solid var(--accent-green);
+      color: var(--muted);
     }
-    @media (max-width: 600px) {
+
+    /* Responsive */
+    @media (max-width: 720px) {
       nav {
         flex-direction: column;
-        gap: 16px;
+        align-items: flex-start;
       }
       .navlinks {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .contact-links {
-        flex-direction: column;
-      }
-      .contact-links a {
-        flex: none;
+        margin-top: 12px;
+        gap: 12px;
       }
       .hero h1 {
         font-size: 1.6rem;
+      }
+      section {
+        padding: 32px 16px;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <nav>
-        <div class="brand">
-          <div class="logo">
-            <img src="https://i.imgur.com/UckiJ55.png" alt="Big Quams Logo" />
-          </div>
-          <div class="brand-text">
-            <strong>Big Quams</strong><br />
-            <small>Educational Hub</small>
-          </div>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="brand">
+        <div class="logo">
+          <img src="https://i.imgur.com/UckiJ55.png" alt="Big Quams Logo" />
         </div>
-        <div class="navlinks">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#testimonials">Testimonials</a>
-          <a href="#blog">Blog</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contact" class="btn">Contact</a>
+        <div>
+          <div class="brand-text">BIG QUAMS</div>
+          <div class="brand-subtext">Educational Hub</div>
         </div>
-      </nav>
-    </div>
-  </header>
+      </div>
+      <div class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact" class="btn">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
-  <section id="home" class="hero">
-    <h1>Welcome to Big Quams Educational Hub</h1>
-    <p>Your trusted guide for smarter academic choices. From JAMB to admission, coaching to scholarships, we simplify your academic journey.</p>
-  </section>
+<section id="home" class="hero">
+  <h1>Welcome to Big Quams Educational Hub</h1>
+  <p>Your trusted guide for smarter academic choices. From admission advice, JAMB coaching, to scholarship alerts — we support Nigerian students every step of the way.</p>
+</section>
 
-  <section id="about" class="container">
-    <h2>About Us</h2>
-    <p>At <strong>Big Quams Educational Hub</strong>, we are passionate about helping Nigerian students make informed decisions about their education. From application tips to choosing the right course or school, we offer hands-on support backed by experience and real-time information.</p>
-    <p>Our mission is simple: <em>to bridge the gap between confusion and clarity in the academic world.</em></p>
-    <h3>Our Vision</h3>
-    <p>To be Nigeria's most trusted educational consulting platform, empowering every student to achieve their dreams through knowledge, guidance, and support.</p>
-  </section>
+<section id="about">
+  <h2>About Us</h2>
+  <p>At Big Quams Educational Hub, we help Nigerian students navigate the academic landscape with confidence. Whether you need help registering for JAMB, selecting the right course, or understanding admission processes, we're here to simplify your journey.</p>
+</section>
 
-  <section id="services" class="container services">
-    <h2>Our Services</h2>
-    <ul>
-      <li><strong>JAMB & UTME Advisory:</strong> Registration, subject combination advice, syllabus breakdown, and smart preparation strategies.</li>
-      <li><strong>Admission Support:</strong> Guidance through Post-UTME, school selection, and admission processes.</li>
-      <li><strong>School & Course Matching:</strong> Helping you find the right institution and course based on your strengths and career goals.</li>
-      <li><strong>Academic Coaching:</strong> Personalized study plans, time management tips, and exam strategies to help you excel.</li>
-      <li><strong>Scholarship & News Alerts:</strong> Stay updated on scholarship opportunities and latest educational news.</li>
-      <li><strong>Career Counseling:</strong> Helping students identify suitable career paths and necessary qualifications.</li>
-    </ul>
-  </section>
+<section id="services">
+  <h2>Our Services</h2>
+  <ul>
+    <li><strong>JAMB & UTME Advisory</strong> – Registration, subject combinations, syllabus breakdown, and preparation strategies.</li>
+    <li><strong>Admission Support</strong> – Guidance from Post-UTME to final admission updates.</li>
+    <li><strong>School & Course Matching</strong> – Personalized advice on choosing the right institution and course.</li>
+    <li><strong>Academic Coaching</strong> – Study tips, time management, and exam preparation plans.</li>
+    <li><strong>Scholarship & News Alerts</strong> – Timely updates on scholarships and educational opportunities.</li>
+  </ul>
+</section>
 
-  <section id="testimonials" class="container testimonials">
-    <h2>Testimonials</h2>
-    <blockquote>
-      “I was totally lost before I found Big Quams. They helped me sort my Post-UTME and I got admitted into LASU!”
-      <footer>- Aisha, Lagos</footer>
-    </blockquote>
-    <blockquote>
-      “I passed my JAMB at once after following their guide. You won’t regret working with them!”
-      <footer>- Dare, Osun</footer>
-    </blockquote>
-    <blockquote>
-      "The personalized coaching helped me improve my grades and confidence. Highly recommended!"
-      <footer>- Funmi, Abuja</footer>
-    </blockquote>
-  </section>
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <blockquote>“I was totally lost before I found Big Quams. They helped me sort my Post-UTME and I got admitted into LASU!” – Aisha, Lagos</blockquote>
+  <blockquote>“I passed my JAMB at once after following their guide. You won’t regret working with them!” – Dare, Osun</blockquote>
+</section>
 
-  <section id="blog" class="container">
-    <h2>Latest Blog Posts</h2>
-    <div class="blog-posts">
-      <article class="blog-post">
-        <h4>How to Choose the Right Course for You</h4>
-        <p>Choosing the right course is crucial. Learn how to assess your interests and career goals to make the best decision.</p>
-        <a href="#" aria-label="Read more about choosing the right course">Read More &raquo;</a>
-      </article>
-      <article class="blog-post">
-        <h4>Top Scholarship Opportunities in Nigeria</h4>
-        <p>Explore the latest scholarship programs you can apply for to fund your education.</p>
-        <a href="#" aria-label="Read more about scholarship opportunities">Read More &raquo;</a>
-      </article>
-      <article class="blog-post">
-        <h4>JAMB Registration: Step by Step Guide</h4>
-        <p>Step-by-step instructions to register successfully for JAMB and avoid common mistakes.</p>
-        <a href="#" aria-label="Read more about JAMB registration">Read More &raquo;</a>
-      </article>
-    </div>
-  </section>
+<section id="blog">
+  <h2>Blog Suggestions</h2>
+  <article class="blog-post">
+    <h3>How to Choose the Right University Course in Nigeria</h3>
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer">Read more</a>
+  </article>
+  <article class="blog-post">
+    <h3>5 Mistakes to Avoid During JAMB Registration</h3>
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer">Read more</a>
+  </article>
+  <article class="blog-post">
+    <h3>Best Study Habits for Students Who Struggle to Focus</h3>
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer">Read more</a>
+  </article>
+  <article class="blog-post">
+    <h3>What to Do After Gaining Admission: A Step-by-Step Guide</h3>
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer">Read more</a>
+  </article>
+</section>
 
-  <section id="faq" class="container">
-    <h2>Frequently Asked Questions</h2>
-    <dl class="faq">
-      <dt>How do I register for JAMB?</dt>
-      <dd>You can register online via the official JAMB website or visit accredited CBT centers for assistance.</dd>
-      <dt>What documents do I need for Post-UTME screening?</dt>
-      <dd>Usually your JAMB result slip, birth certificate, and academic transcripts. Check with your chosen institution for specifics.</dd>
-      <dt>How can I apply for scholarships?</dt>
-      <dd>Keep track of announcements on our site and apply early. We also provide personalized scholarship alerts.</dd>
-      <dt>Can Big Quams help with course selection?</dt>
-      <dd>Yes! We offer personalized counseling to help match your skills and interests with suitable courses.</dd>
-    </dl>
-  </section>
+<section id="contact">
+  <h2>Contact & Feedback</h2>
+  <p>Have questions or want to work with us? Reach out via WhatsApp, email, or join our student group below.</p>
+  <div class="contact-links">
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">📱 WhatsApp Chat</a>
+    <a href="mailto:bigquamsmedia024@gmail.com" aria-label="Send Email">📧 Email Us</a>
+    <a href="https://chat.whatsapp.com/Bvi1BVHGAC8A9pTBTFNEXh" target="_blank" rel="noopener noreferrer" aria-label="Join Brainy Buddies WhatsApp group">👥 Join Brainy Buddies</a>
+  </div>
+</section>
 
-  <section id="contact" class="container">
-    <h2>Contact & Feedback</h2>
-    <p>Have questions or want to get started? Reach out via WhatsApp, email, or join our student group.</p>
-    <div class="contact-links">
-      <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="whatsapp">📱 WhatsApp Chat</a>
-      <a href="mailto:bigquamsmedia024@gmail.com" class="email">📧 Email Us</a>
-      <a href="https://chat.whatsapp.com/Bvi1BVHGAC8A9pTBTFNEXh" target="_blank" class="whatsapp-group">👥 Join Brainy Buddies Group</a>
-    </div>
+<footer>
+  <p>© 2025 Big Quams Educational Hub. All rights reserved.</p>
+</footer>
 
-    <form action="mailto:bigquamsmedia024@gmail.com" method="post" enctype="text/plain">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" rows="5" placeholder="Your Feedback or Questions" required></textarea>
-      <button type="submit">Send Feedback</button>
-    </form>
-  </section>
-
-  <footer>
-    © 2025 Big Quams Educational Hub. All rights reserved.
-  </footer>
 </body>
-</html>
+  </html>
+  
