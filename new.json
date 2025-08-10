@@ -1,12 +1,3 @@
-How to use:
-Create a file named news.json on your computer or directly on GitHub.
-
-Copy and paste the above content into that file.
-
-Upload this file to the same GitHub repository where your website HTML lives.
-
-Make sure the URL in your HTML's fetch script points exactly to the raw version of this news.json file on GitHub.
-
 [
   {
     "title": "JAMB Registration Opens",
