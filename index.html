@@ -6,7 +6,6 @@
   <title>BIG QUAMS EDUCATIONAL HUB</title>
   <meta name="description" content="Big Quams Educational Hub — your trusted guide for smarter academic choices in Nigeria. JAMB, Admissions, Coaching, Scholarships." />
   <style>
-    /* Your existing CSS here ... */
     :root {
       --accent-blue: #1e40af;
       --accent-orange: #f97316;
@@ -16,7 +15,275 @@
       --card: #ffffff;
       font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
-    /* ... rest of your existing styles ... */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #0f172a;
+      line-height: 1.5;
+    }
+    header {
+      background: var(--accent-blue);
+      color: white;
+      padding: 16px 24px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid white;
+      flex-shrink: 0;
+    }
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .brand-text {
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+    .brand-subtext {
+      color: #dbeafe;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      user-select: none;
+    }
+    .navlinks {
+      display: flex;
+      gap: 18px;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    a:hover,
+    a:focus {
+      color: var(--accent-orange);
+      outline: none;
+    }
+    .btn {
+      background: var(--accent-orange);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+    .btn:hover,
+    .btn:focus {
+      background: #dc6803;
+      outline: none;
+    }
+    .hero {
+      padding: 60px 24px 48px;
+      text-align: center;
+      background-color: #f0f5ff;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      color: var(--accent-blue);
+      margin-bottom: 12px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    .cta-whatsapp {
+      display: inline-block;
+      background-color: #25d366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 700;
+      text-decoration: none;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .cta-whatsapp:hover {
+      background-color: #128c4a;
+    }
+    section {
+      padding-bottom: 36px;
+    }
+    h2 {
+      color: var(--accent-blue);
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      border-bottom: 3px solid var(--accent-orange);
+      display: inline-block;
+      padding-bottom: 6px;
+    }
+    p, ul {
+      font-size: 1rem;
+      color: #334155;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    ul li {
+      margin-bottom: 8px;
+    }
+    .services-list {
+      list-style-type: disc;
+    }
+    .testimonial {
+      background: #f1f5f9;
+      padding: 20px 24px;
+      margin: 16px 0;
+      border-left: 5px solid var(--accent-orange);
+      border-radius: 8px;
+      font-style: italic;
+      color: #475569;
+      max-width: 800px;
+    }
+    .testimonial strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-blue);
+      font-style: normal;
+    }
+    .contact-section {
+      background: #f9fafb;
+      padding: 32px 24px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: 0 auto 60px;
+      box-shadow: 0 8px 24px rgb(0 0 0 / 0.05);
+    }
+    .contact-section h2 {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .contact-buttons a {
+      flex: 1 1 180px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .whatsapp-btn {
+      background-color: #25d366;
+    }
+    .whatsapp-btn:hover {
+      background-color: #128c4a;
+    }
+    .email-btn {
+      background-color: #f97316;
+    }
+    .email-btn:hover {
+      background-color: #d96211;
+    }
+    .group-btn {
+      background-color: var(--accent-blue);
+    }
+    .group-btn:hover {
+      background-color: #1b37a6;
+    }
+    .portfolio-btn {
+      background-color: #6f42c1;
+    }
+    .portfolio-btn:hover {
+      background-color: #5829a6;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      resize: vertical;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 5px var(--accent-blue);
+    }
+    button {
+      background-color: var(--accent-green);
+      color: white;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    button:hover, button:focus {
+      background-color: #138f3f;
+      outline: none;
+    }
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 3px solid var(--accent-green);
+      user-select: none;
+    }
+    footer a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    footer a:hover,
+    footer a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
 
     /* Floating WhatsApp Button */
     #whatsapp-float {
@@ -42,6 +309,7 @@
       background-color: #128c4a;
     }
 
+    /* Responsive */
     @media (max-width: 800px) {
       nav {
         flex-direction: column;
@@ -138,14 +406,10 @@
     </ul>
   </section>
 
-  <!-- New News Updates Section -->
   <section class="container" id="news">
     <h2>News Updates</h2>
-    <ul class="services-list">
-      <li><strong>Aug 10, 2025:</strong> JAMB announces new registration dates for 2026.</li>
-      <li><strong>Aug 5, 2025:</strong> Scholarship opportunities announced for Nigerian students.</li>
-      <li><strong>Jul 28, 2025:</strong> Universities release Post-UTME schedules.</li>
-      <li><strong>Jul 15, 2025:</strong> Tips for effective exam preparation from top educators.</li>
+    <ul class="services-list" id="news-list">
+      <!-- News items will load here dynamically -->
     </ul>
   </section>
 
@@ -178,7 +442,7 @@
   <!-- Floating WhatsApp Button -->
   <a id="whatsapp-float" href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" aria-label="Chat with Big Quams on WhatsApp">
     <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <path d="M20.52 3.48a11.65 11.65 0 00-16.49 0 11.65 11.65 0 00-3.46 8.26c0 2.1.63 4.13 1.83 5.83L2 22l4.58-1.5a11.65 11.65 0 005.9 1.52 11.65 11.65 0 008.26-3.46 11.65 11.65 0 000-16.49zm-8.3 15.15a9.34 9.34 0 01-5-1.47l-.35-.21-3 1 1-3.03-.22-.36a9.37 9.37 0 1112.6-12.6 9.34 9.34 0 01-3.99 16.67zm5.28-7.14c-.29-.15-1.71-.84-1.97-.94-.26-.1-.45-.15-.64.15-.19.3-.73.94-.9 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.73-1.6-2.02-.17-.29-.02-.44.13-.59.14-.15.29-.34.44-.51.15-.17.2-.29.3-.49.1-.19.05-.36-.02-.51-.07-.15-.64-1.55-.88-2.13-.23-.56-.47-.49-.64-.5-.16-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-1 2.44s1.03 2.83 1.18 3.03c.15.2 2.05 3.12 4.96 4.37.69.3 1.22.48 1.64.62.69.23 1.32.2 1.82.12.56-.1 1.71-.7 1.95-1.38.24-.67.24-1.25.17-1.38-.07-.13-.26-.2-.55-.35z"/>
+      <path d="M20.52 3.48a11.65 11.65 0 00-16.49 0 11.65 11.65 0 00-3.46 8.26c0 2.1.63 4.13 1.83 5.83L2 22l4.58-1.5a11.65 11.65 0 005.9 1.52 11.65 11.65 0 008.26-3.46 11.65 11.65 0 000-16.49zm-8.3 15.15a9.34 9.34 0 01-5-1.47l-.35-.21-3 1 1-3.03-.22-.36a9.37 9.37 0 1112.6-12.6 9.34 9.34 0 01-3.99 16.67zm5.28-7.14c-.29-.15-1.71-.84-1.97-.94-.26-.1-.45-.15-.64.15-.19.3-.73.94-.9 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.73-1.6-2.02-.17-.29-.02-.44.13-.59.14-.15.29-.34.44-.51.15-.17.2-.29.3-.49.1-.19.05-.36-.02-.51-.07-.15-.64-1.55-.88-2.13-.23-.56-.47-.49-.64-.5-.16-.01-.36-.01-.55-.01-.19 0-.5.07-.76.36-.26.29-1 1-1 2.44s1.03 2.83 1.18 3.03c.15.2 2.05 3.12 4.96 4.37.69.3 1.22.48 1.64.62.69.23 1.32.2 1.82.12.56-.1 1.71-.7 1.95-1.38.24-.67.24-1.25.17-1.38-.07-.13-.26-.19-.55-.34z"/>
     </svg>
   </a>
 
@@ -186,5 +450,33 @@
     <p>© 2025 Big Quams Educational Hub. All Rights Reserved.</p>
     <p><a href="https://bigquamsmedia-one.vercel.app/" target="_blank" rel="noopener noreferrer">Visit My Portfolio</a></p>
   </footer>
+
+  <script>
+    // URL of the JSON file containing news updates
+    const newsUrl = 'https://raw.githubusercontent.com/yourusername/yourrepo/main/news.json'; // Replace with your actual GitHub URL
+
+    async function loadNews() {
+      try {
+        const response = await fetch(newsUrl);
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const newsData = await response.json();
+        const newsList = document.getElementById('news-list');
+        newsList.innerHTML = '';
+
+        newsData.forEach(item => {
+          const li = document.createElement('li');
+          const date = new Date(item.date).toLocaleDateString();
+          li.innerHTML = `<strong>${item.title}</strong> <em>(${date})</em><br>${item.description}`;
+          newsList.appendChild(li);
+        });
+      } catch (error) {
+        document.getElementById('news-list').innerHTML = '<li>Unable to load news updates at this time.</li>';
+        console.error('Error loading news:', error);
+      }
+    }
+
+    loadNews();
+  </script>
 </body>
 </html>
