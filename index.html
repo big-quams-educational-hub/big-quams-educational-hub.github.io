@@ -1,162 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Big Quams Educational Hub</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: white;
-            color: #333;
-        }
-        header {
-            background-color: #007BFF;
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        header img {
-            height: 50px;
-        }
-        nav a {
-            color: white;
-            margin-left: 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .hero {
-            text-align: center;
-            padding: 3rem 1rem;
-            background: linear-gradient(135deg, #007BFF, #FF6600, #28A745);
-            color: white;
-        }
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 2rem;
-        }
-        h2 {
-            color: #007BFF;
-        }
-        .contact-section {
-            background: #f9f9f9;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            text-align: center;
-        }
-        .contact-buttons a {
-            display: inline-block;
-            margin: 10px;
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-            text-decoration: none;
-            color: white;
-            transition: 0.3s;
-        }
-        .whatsapp-btn {
-            background-color: #25D366;
-        }
-        .email-btn {
-            background-color: #FF6600;
-        }
-        .group-btn {
-            background-color: #007BFF;
-        }
-        .contact-buttons a:hover {
-            opacity: 0.8;
-        }
-        form {
-            margin-top: 20px;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background-color: #28A745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        button:hover {
-            opacity: 0.85;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Big Quams Educational Hub</title>
+  <style>
+    :root {
+      --blue: #1e40af;
+      --orange: #f97316;
+      --green: #16a34a;
+      --gray: #64748b;
+      --light-bg: #f9fafb;
+      --card-bg: #ffffff;
+    }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      margin: 0;
+      background-color: var(--light-bg);
+      color: #0f172a;
+      scroll-behavior: smooth;
+    }
+    header {
+      background-color: var(--blue);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    header img {
+      height: 60px;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding: 6px 0;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: var(--orange);
+    }
+    nav a.active {
+      color: var(--orange);
+      font-weight: 700;
+      border-bottom: 3px solid var(--orange);
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: linear-gradient(135deg, var(--blue), var(--orange), var(--green));
+      color: white;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      max-width: 600px;
+      margin: auto;
+      font-size: 1.1rem;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    h2 {
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+    .content-img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      margin-top: 1rem;
+    }
+    ul {
+      line-height: 1.6;
+    }
+    .contact-section {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .contact-buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+    }
+    .whatsapp-btn { background-color: #25D366; }
+    .email-btn { background-color: var(--orange); }
+    .group-btn { background-color: var(--blue); }
+    .portfolio-btn { background-color: #6f42c1; }
+    .contact-buttons a:hover {
+      opacity: 0.85;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: var(--green);
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.85;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: #ddd;
+      text-decoration: underline;
+    }
+
+    /* Animation styles */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
 
 <header>
-    <img src="https://raw.githubusercontent.com/big-quams-educational-hub/big-quams-educational-hub.github.io/main/assets/Big%20Quams%20(1)%20(1).png" alt="Big Quams Logo" />
-    <nav>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
+  <img src="https://i.imgur.com/t1GodxZ.png" alt="Big Quams Logo" />
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    <a href="https://bigquamsmedia-one.vercel.app/" target="_blank">Portfolio</a>
+  </nav>
 </header>
 
-<section class="hero">
-    <h1>Welcome to Big Quams Educational Hub</h1>
-    <p>Empowering students through learning, creativity, and growth.</p>
+<section class="hero fade-in">
+  <h1>Welcome to Big Quams Educational Hub</h1>
+  <p>Empowering students through learning, creativity, and growth.</p>
 </section>
 
-<div class="container" id="about">
-    <h2>About Us</h2>
-    <p>At Big Quams Educational Hub, we are dedicated to nurturing young minds and fostering creativity. 
-       Our programs are designed to provide students with the tools they need to excel academically and personally.</p>
+<div class="container fade-in" id="about">
+  <h2>About Us</h2>
+  <p>
+    At <strong>Big Quams Educational Hub</strong>, we believe education is the key to unlocking potential and transforming lives...
+  </p>
+  <img src="https://i.imgur.com/wnieIFT.png" alt="Educational Hub" class="content-img" />
 </div>
 
-<div class="container" id="services">
-    <h2>Our Services</h2>
-    <ul>
-        <li>Educational Tutoring</li>
-        <li>Graphic Design for Students</li>
-        <li>Content Creation & Brand Promotion</li>
-        <li>Student Networking & Support</li>
-    </ul>
+<div class="container fade-in" id="services">
+  <h2>Our Services</h2>
+  <ul>
+    <li>Educational Tutoring</li>
+    <li>Graphic Design for Students</li>
+    <li>Content Creation & Brand Promotion</li>
+    <li>Student Networking & Support</li>
+  </ul>
 </div>
 
-<div class="container contact-section" id="contact">
-    <h2>Contact & Feedback</h2>
-    <p>We’d love to hear from you! You can reach us via WhatsApp, email, or join our student support group.</p>
-    <div class="contact-buttons">
-        <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-btn" target="_blank" rel="noopener">📱 Chat on WhatsApp</a>
-        <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn">📧 Send Email</a>
-        <a href="https://chat.whatsapp.com/Bvi1BVHGAC8A9pTBTFNEXh" class="group-btn" target="_blank" rel="noopener">👥 Join Brainy Buddies</a>
-    </div>
-    
-    <form action="mailto:bigquamsmedia024@gmail.com" method="post" enctype="text/plain">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <textarea name="message" rows="5" placeholder="Your Feedback" required></textarea>
-        <button type="submit">Send Feedback</button>
-    </form>
+<div class="container contact-section fade-in" id="contact">
+  <h2>Contact & Feedback</h2>
+  <div class="contact-buttons">
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-btn" target="_blank">📱 WhatsApp</a>
+    <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn">📧 Email</a>
+    <a href="https://chat.whatsapp.com/Bvi1BVHGAC8A9pTBTFNEXh" class="group-btn" target="_blank">👥 Brainy Buddies</a>
+    <a href="https://bigquamsmedia-one.vercel.app/" class="portfolio-btn" target="_blank">🌐 Portfolio</a>
+  </div>
+  <form>
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" rows="5" placeholder="Your Feedback" required></textarea>
+    <button type="submit">Send Feedback</button>
+  </form>
 </div>
 
 <footer>
-    <p>© 2025 Big Quams Educational Hub. All Rights Reserved.</p>
+  <p>© 2025 Big Quams Educational Hub. All Rights Reserved.</p>
+  <p><a href="https://bigquamsmedia-one.vercel.app/" target="_blank">Visit My Portfolio</a></p>
 </footer>
+
+<script>
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section, .container');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 80;
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // Fade-in animation
+  const faders = document.querySelectorAll('.fade-in');
+  const appearOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px"
+  };
+  const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+  });
+</script>
 
 </body>
 </html>
