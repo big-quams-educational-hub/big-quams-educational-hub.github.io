@@ -1,177 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Big Quams Educational Hub</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-    }
-    header {
-      background: #1a237e;
-      color: white;
-      padding: 1em;
-      text-align: center;
-    }
-    nav {
-      background: #3949ab;
-      padding: 0.5em;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-    }
-    .section {
-      padding: 20px;
-      max-width: 1000px;
-      margin: auto;
-      background: white;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #1a237e;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 5px;
-    }
-    /* Library & Ebook */
-    .ebook-card {
-      padding: 15px;
-      border: 1px solid #ddd;
-      margin: 10px 0;
-      border-radius: 5px;
-      background: #fafafa;
-    }
-    .ebook-card a {
-      color: #3949ab;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    /* News Section */
-    #news-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 15px;
-      margin-top: 15px;
-    }
-    .news-card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 15px;
-      background: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .news-card h4 {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-    .news-card a {
-      color: #3949ab;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .whatsapp-btn {
-      display: inline-block;
-      padding: 10px 15px;
-      background: #25d366;
-      color: white;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-    .whatsapp-btn:hover {
-      background: #1ebe5b;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Quams Educational Hub</title>
+    <link rel="stylesheet" href="style.css"> <!-- keep your existing CSS -->
 </head>
 <body>
 
-  <header>
-    <h1>Big Quams Educational Hub</h1>
-    <p>Your gateway to learning resources and opportunities</p>
-  </header>
+    <!-- Header with Logo -->
+    <header>
+        <div class="logo">
+            <img src="your-logo.png" alt="Big Quams Logo" style="height:60px;">
+            <h1>Big Quams Educational Hub</h1>
+        </div>
+    </header>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#library">Library</a>
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#library">Library</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-  <!-- Library Section -->
-  <section id="library" class="section">
-    <h2>Library & Ebooks</h2>
+    <!-- Existing content -->
+    <section id="home">
+        <h2>Welcome to Big Quams Educational Hub</h2>
+        <p>Your one-stop hub for students' academic and personal growth resources.</p>
+    </section>
 
-    <div class="ebook-card">
-      <h3>The Invisible Struggle</h3>
-      <p>An inspiring story of perseverance and growth.</p>
-      <a href="ebook/the-invisible-struggle.pdf" download>📥 Download PDF</a>
-    </div>
+    <!-- Library Section -->
+    <section id="library">
+        <h2>Library</h2>
+        <div class="library-item">
+            <h3>THE INVISIBLE STRUGGLE</h3>
+            <p>A motivational and inspiring novel for students.</p>
+            <a href="https://drive.google.com/uc?export=download&id=1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG" 
+               class="download-btn" target="_blank">📥 Download PDF</a>
+        </div>
+    </section>
 
-    <div class="ebook-card">
-      <h3>Scholarship Success Guide</h3>
-      <p>Learn how to apply and secure scholarships successfully.</p>
-      <a href="ebook/scholarship-success-guide.pdf" download>📥 Download PDF</a>
-    </div>
+    <!-- News Section -->
+    <section id="news">
+        <h2>Latest Education & Scholarship News</h2>
+        <div id="news-container">Loading news...</div>
+    </section>
 
-    <a class="whatsapp-btn" href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank">
-      📲 Chat with Us on WhatsApp
-    </a>
-  </section>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Big Quams Educational Hub</p>
+    </footer>
 
-  <!-- News Section -->
-  <section id="news" class="section">
-    <h2>Latest Education & Scholarship News</h2>
-    <div id="news-container">
-      <p>Loading news...</p>
-    </div>
-  </section>
+    <!-- News Script -->
+    <script>
+        const apiKey = '3ab411793f704118ba852fe0de5a51a8';
+        const url = `https://newsapi.org/v2/everything?q=education%20OR%20scholarship&language=en&sortBy=publishedAt&pageSize=5&apiKey=${apiKey}`;
 
-  <!-- Contact Section -->
-  <section id="contact" class="section">
-    <h2>Contact Us</h2>
-    <p>Email: info@bigquamseducationalhub.com</p>
-    <p>Phone: +234 904 987 164</p>
-  </section>
-
-  <script>
-    const apiKey = '3ab411793f704118ba852fe0de5a51a8';
-    const url = `https://newsapi.org/v2/everything?q=education%20OR%20scholarship&language=en&sortBy=publishedAt&pageSize=5&apiKey=${apiKey}`;
-
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const newsContainer = document.getElementById('news-container');
-        newsContainer.innerHTML = "";
-
-        if (!data.articles || data.articles.length === 0) {
-          newsContainer.innerHTML = "<p>No news available at the moment.</p>";
-          return;
-        }
-
-        data.articles.forEach(article => {
-          const div = document.createElement('div');
-          div.className = 'news-card';
-          div.innerHTML = `
-            <h4>${article.title}</h4>
-            <p><a href="${article.url}" target="_blank">Read full story</a></p>
-          `;
-          newsContainer.appendChild(div);
-        });
-      })
-      .catch(error => {
-        document.getElementById('news-container').innerHTML = '<p>Failed to load news.</p>';
-        console.error('Error:', error);
-      });
-  </script>
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const newsContainer = document.getElementById('news-container');
+                newsContainer.innerHTML = '';
+                data.articles.forEach(article => {
+                    const div = document.createElement('div');
+                    div.className = 'news-card';
+                    div.innerHTML = `
+                        <h4>${article.title}</h4>
+                        <p><a href="${article.url}" target="_blank">Read full story</a></p>
+                    `;
+                    newsContainer.appendChild(div);
+                });
+            })
+            .catch(error => {
+                document.getElementById('news-container').innerText = 'Failed to load news.';
+                console.error('Error:', error);
+            });
+    </script>
 
 </body>
 </html>
