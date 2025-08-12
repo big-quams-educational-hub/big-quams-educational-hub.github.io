@@ -1,156 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BIG QUAMS Educational Hub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BIG QUAMS EDUCATIONAL HUB</title>
+  <meta name="description" content="Big Quams Educational Hub — your trusted guide for smarter academic choices in Nigeria. JAMB, Admissions, Coaching, Scholarships." />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f8fb;
-      margin: 0;
-      padding: 0;
+    /* Existing theme colors and styles */
+    :root {
+      --accent-blue: #1e40af;
+      --accent-orange: #f97316;
+      --accent-green: #16a34a;
+      --muted: #64748b;
+      --bg: #ffffff;
+      --card: #ffffff;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     }
-    header {
-      background-color: #004080;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    h1 {
-      margin: 0;
-    }
-    section {
-      padding: 20px;
-    }
-    /* News Section */
-    .news-section {
-      background-color: #ffffff;
-      padding: 20px;
+    body { margin: 0; background: var(--bg); color: #0f172a; line-height: 1.5; }
+    header { background: var(--accent-blue); color: white; padding: 16px 24px; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+    nav { display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: flex; align-items: center; gap: 16px; }
+    .logo { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; border: 2px solid white; }
+    .logo img { width: 100%; height: 100%; object-fit: cover; }
+    .brand-text { font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; }
+    .brand-subtext { color: #dbeafe; font-size: 0.85rem; }
+    .navlinks { display: flex; gap: 18px; }
+    a { color: inherit; text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
+    a:hover { color: var(--accent-orange); }
+    .btn { background: var(--accent-orange); color: white; padding: 10px 16px; border-radius: 8px; font-weight: 700; text-decoration: none; }
+    .hero { padding: 60px 24px 48px; text-align: center; background-color: #f0f5ff; border-radius: 12px; margin-bottom: 40px; }
+    .hero h1 { font-size: 2.4rem; color: var(--accent-blue); }
+    .hero p { color: var(--muted); font-size: 1.1rem; max-width: 650px; margin: 0 auto 24px; line-height: 1.6; }
+    .cta-whatsapp { display: inline-block; background-color: #25d366; color: white; padding: 12px 20px; border-radius: 25px; font-weight: 700; text-decoration: none; }
+    section { padding-bottom: 36px; }
+    h2 { color: var(--accent-blue); font-size: 1.8rem; margin-bottom: 14px; border-bottom: 3px solid var(--accent-orange); display: inline-block; padding-bottom: 6px; }
+    p, ul { font-size: 1rem; color: #334155; line-height: 1.6; }
+    ul { padding-left: 20px; }
+    .services-list { list-style-type: disc; }
+    /* New News Section Styles */
+    .news-card {
+      background: var(--card);
+      padding: 16px;
       border-radius: 8px;
-      margin-top: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-bottom: 16px;
     }
-    .news-section h2 {
-      color: #004080;
-      margin-bottom: 15px;
-    }
-    .news-item {
-      border-bottom: 1px solid #ddd;
-      padding: 10px 0;
-    }
-    .news-item:last-child {
-      border-bottom: none;
-    }
-    .news-item h4 {
-      margin: 0 0 5px;
-      color: #333;
-    }
-    .news-item p {
-      margin: 0 0 10px;
-      font-size: 14px;
-      color: #555;
-    }
+    .news-card h3 { margin: 0 0 8px; color: var(--accent-blue); }
+    .news-card p { margin: 0 0 12px; color: var(--muted); font-size: 0.95rem; }
     .read-more {
-      display: inline-block;
-      padding: 6px 12px;
-      background-color: #004080;
-      color: white;
+      background-color: var(--accent-orange);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.85rem;
       text-decoration: none;
-      border-radius: 4px;
-      font-size: 13px;
     }
-    .read-more:hover {
-      background-color: #002850;
-    }
+    .read-more:hover { background-color: #dc6803; }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>BIG QUAMS Educational Hub</h1>
-    <p>Empowering Students with Knowledge</p>
-  </header>
+<header>
+  <div class="container">
+    <nav>
+      <div class="brand">
+        <div class="logo">
+          <img src="https://i.imgur.com/UckiJ55.png" alt="Big Quams Logo" />
+        </div>
+        <div>
+          <div class="brand-text">BIG QUAMS</div>
+          <div class="brand-subtext">Educational Hub</div>
+        </div>
+      </div>
+      <div class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#news-updates">News</a>
+        <a href="#contact" class="btn">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
-  <section>
-    <h2>Welcome to Our Platform</h2>
-    <p>Here we share resources, news, and educational opportunities for students.</p>
+<section class="hero" id="home">
+  <h1>Welcome to Big Quams Educational Hub</h1>
+  <p>Your trusted guide for smarter academic choices in Nigeria.</p>
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="cta-whatsapp">📱 Get Free Tips on WhatsApp</a>
+</section>
 
-    <!-- Modern News Section -->
-    <div class="news-section">
-      <h2>Latest Education News</h2>
-      <div id="news-container">Loading latest news...</div>
-    </div>
-  </section>
+<section class="container" id="news-updates">
+  <h2>📚 Latest Educational & Scholarship News</h2>
+  <div id="news-container">Loading news...</div>
+</section>
 
-  <script>
-    const apiKey = '3ab411793f704118ba852fe0de5a51a8';
-    const url = `https://newsapi.org/v2/everything?q=education%20OR%20scholarship&language=en&sortBy=publishedAt&pageSize=5&apiKey=${apiKey}`;
+<section class="container" id="about">
+  <h2>About Us</h2>
+  <p>At Big Quams Educational Hub, we guide students towards academic success...</p>
+</section>
 
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const newsContainer = document.getElementById('news-container');
-        newsContainer.innerHTML = '';
+<section class="container" id="services">
+  <h2>Our Services</h2>
+  <ul class="services-list">
+    <li>JAMB & UTME Advisory</li>
+    <li>Admission Support</li>
+    <li>School & Course Matching</li>
+    <li>Academic Coaching</li>
+    <li>Scholarship Alerts</li>
+  </ul>
+</section>
 
-        if (data.articles && data.articles.length > 0) {
-          data.articles.forEach(article => {
-            const div = document.createElement('div');
-            div.className = 'news-item';
-            div.innerHTML = `
-              <h4>${article.title}</h4>
-              <p>${article.description || ''}</p>
-              <a class="read-more" href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB%2C%20I'm%20interested%20in%20receiving%20education%20news%20updates%20from%20you.%20Kindly%20save%20my%20contact%20as%20……" target="_blank">Read More</a>
-            `;
-            newsContainer.appendChild(div);
-          });
-        } else {
-          loadFallbackNews();
-        }
-      })
-      .catch(error => {
-        console.error('Error loading news:', error);
-        loadFallbackNews();
-      });
+<section class="container" id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: bigquamsmedia024@gmail.com</p>
+</section>
 
-    function loadFallbackNews() {
-      const fallbackNews = [
-        {
-          title: "Federal Government Announces New Scholarship Scheme",
-          description: "Eligible students across Nigeria can now apply for the 2025 scholarship program to study locally and internationally."
-        },
-        {
-          title: "WAEC Releases 2025 Examination Timetable",
-          description: "The West African Examination Council has officially published the timetable for the upcoming WAEC examinations."
-        },
-        {
-          title: "Nigerian Universities to Resume Academic Activities",
-          description: "Most public universities are set to resume academic activities from September following the recent ASUU agreement."
-        },
-        {
-          title: "Applications Open for National Essay Competition",
-          description: "Secondary school students nationwide are invited to participate in the annual national essay competition."
-        },
-        {
-          title: "Education Minister Advocates for Digital Learning",
-          description: "The Federal Ministry of Education is pushing for more technology-based learning in Nigerian schools."
-        }
-      ];
+<script>
+  const apiKey = '3ab411793f704118ba852fe0de5a51a8';
+  const url = `https://newsapi.org/v2/everything?q=education%20OR%20scholarship&language=en&sortBy=publishedAt&pageSize=5&apiKey=${apiKey}`;
+  const newsContainer = document.getElementById('news-container');
 
-      const newsContainer = document.getElementById('news-container');
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
       newsContainer.innerHTML = '';
-      fallbackNews.forEach(news => {
-        const div = document.createElement('div');
-        div.className = 'news-item';
-        div.innerHTML = `
-          <h4>${news.title}</h4>
-          <p>${news.description}</p>
-          <a class="read-more" href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB%2C%20I'm%20interested%20in%20receiving%20education%20news%20updates%20from%20you.%20Kindly%20save%20my%20contact%20as%20……" target="_blank">Read More</a>
-        `;
-        newsContainer.appendChild(div);
-      });
-    }
-  </script>
+      if (data.articles && data.articles.length > 0) {
+        data.articles.forEach(article => {
+          const div = document.createElement('div');
+          div.className = 'news-card';
+          div.innerHTML = `
+            <h3>${article.title}</h3>
+            <p>${article.description || ''}</p>
+            <a class="read-more" href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB%2C%20I'm%20interested%20in%20${encodeURIComponent(article.title)}" target="_blank">Read More</a>
+          `;
+          newsContainer.appendChild(div);
+        });
+      } else {
+        loadFallbackNews();
+      }
+    })
+    .catch(() => loadFallbackNews());
+
+  function loadFallbackNews() {
+    const fallbackNews = [
+      { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students across Nigeria can now apply for the 2025 scholarship program." },
+      { title: "WAEC Releases 2025 Examination Timetable", description: "Official timetable for the upcoming WAEC examinations is now available." },
+      { title: "Nigerian Universities to Resume Academic Activities", description: "Public universities will resume in September after ASUU agreement." },
+      { title: "Applications Open for National Essay Competition", description: "Secondary school students nationwide invited to participate." },
+      { title: "Education Minister Advocates for Digital Learning", description: "Push for more technology-based learning in Nigerian schools." }
+    ];
+    newsContainer.innerHTML = '';
+    fallbackNews.forEach(news => {
+      const div = document.createElement('div');
+      div.className = 'news-card';
+      div.innerHTML = `
+        <h3>${news.title}</h3>
+        <p>${news.description}</p>
+        <a class="read-more" href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB%2C%20I'm%20interested%20in%20${encodeURIComponent(news.title)}" target="_blank">Read More</a>
+      `;
+      newsContainer.appendChild(div);
+    });
+  }
+</script>
 
 </body>
 </html>
