@@ -1,133 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Big Quams Educational Hub</title>
-  <link rel="stylesheet" href="style.css"/>
-  <style>
-    /* News Section Styling to Match Site */
-    #news-section {
-      background: #1e3a5f; /* Matches your dark theme */
-      color: white;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 8px;
-    }
-    #news-section h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: #ffd700; /* gold highlight for title */
-    }
-    .news-card {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      padding: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    }
-    .news-card h4 {
-      margin: 0 0 5px;
-      font-size: 18px;
-      color: #fff;
-    }
-    .news-card p {
-      font-size: 14px;
-      color: #ddd;
-    }
-    .read-more-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 12px;
-      background: #ffd700;
-      color: #1e3a5f;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .read-more-btn:hover {
-      background: #e6c200;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIG QUAMS EDUCATIONAL HUB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1a237e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        header img {
+            height: 60px;
+        }
+        .section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 900px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #1a237e;
+            border-bottom: 3px solid #fbc02d;
+            padding-bottom: 5px;
+        }
+        /* News Section */
+        .news-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .news-item h4 {
+            margin: 0;
+            color: #333;
+        }
+        .news-item p {
+            color: #555;
+            margin: 5px 0;
+        }
+        .read-more {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #fbc02d;
+            color: black;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .read-more:hover {
+            background-color: #ffa000;
+        }
+        /* Library Section */
+        .library-item {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .library-item h3 {
+            color: #1a237e;
+        }
+        .download-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: #fbc02d;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .download-btn:hover {
+            background: #ffa000;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <img src="logo.png" alt="Big Quams Educational Hub Logo" class="logo"/>
-    <h1>Big Quams Educational Hub</h1>
-  </header>
+<header>
+    <img src="your-logo.png" alt="BIG QUAMS Logo">
+    <h1>BIG QUAMS EDUCATIONAL HUB</h1>
+</header>
 
-  <!-- Navigation -->
-  <nav>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#library">Library</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="home">
-    <h2>Welcome to Big Quams Educational Hub</h2>
-    <p>Your number one source for educational resources and updates.</p>
-  </section>
-
-  <!-- News Section -->
-  <section id="news-section">
+<!-- NEWS SECTION -->
+<div class="section" id="news-section">
     <h2>Latest Education News</h2>
-    <div id="news-container">
-      <p>Loading news...</p>
+    <div id="news-container">Loading news...</div>
+</div>
+
+<!-- LIBRARY SECTION -->
+<div class="section" id="library-section">
+    <h2>Library & Ebooks</h2>
+    <div class="library-item">
+        <h3>THE INVISIBLE STRUGGLE</h3>
+        <p>A novel for students — inspiring perseverance and courage.</p>
+        <a class="download-btn" href="https://drive.google.com/uc?export=download&id=1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG" target="_blank">📥 Download PDF</a>
     </div>
-  </section>
+</div>
 
-  <!-- Library Section -->
-  <section id="library">
-    <h2>Library & eBooks</h2>
-    <div class="ebook-card">
-      <h3>THE INVISIBLE STRUGGLE</h3>
-      <a href="https://drive.google.com/file/d/1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG/view?usp=drivesdk" target="_blank" class="download-btn">Download PDF</a>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>For inquiries, reach us on WhatsApp: 
-      <a href="https://wa.me/2349049871643">Click Here</a>
-    </p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Big Quams Educational Hub. All rights reserved.</p>
-  </footer>
-
-  <script>
+<script>
     const apiKey = '3ab411793f704118ba852fe0de5a51a8';
     const url = `https://newsapi.org/v2/everything?q=education%20OR%20scholarship&language=en&sortBy=publishedAt&pageSize=5&apiKey=${apiKey}`;
 
     fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        const newsContainer = document.getElementById('news-container');
-        newsContainer.innerHTML = '';
+        .then(response => response.json())
+        .then(data => {
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = '';
 
-        data.articles.forEach(article => {
-          const div = document.createElement('div');
-          div.className = 'news-card';
-          div.innerHTML = `
-            <h4>${article.title}</h4>
-            <p>${article.description || ''}</p>
-            <a href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB%2C%20I'm%20interested%20in%20receiving%20education%20news%20updates%20from%20you.%20Kindly%20save%20my%20contact%20as%20……" target="_blank" class="read-more-btn">Read more</a>
-          `;
-          newsContainer.appendChild(div);
+            data.articles.forEach(article => {
+                const div = document.createElement('div');
+                div.className = 'news-item';
+                div.innerHTML = `
+                    <h4>${article.title}</h4>
+                    <p>${article.description || ''}</p>
+                    <a class="read-more" href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB%2C%20I'm%20interested%20in%20receiving%20education%20news%20updates%20from%20you.%20Kindly%20save%20my%20contact%20as%20……" target="_blank">Read More</a>
+                `;
+                newsContainer.appendChild(div);
+            });
+        })
+        .catch(error => {
+            document.getElementById('news-container').innerText = 'Failed to load news.';
+            console.error('Error:', error);
         });
-      })
-      .catch(error => {
-        document.getElementById('news-container').innerText = 'Failed to load news.';
-        console.error('Error:', error);
-      });
-  </script>
+</script>
 
 </body>
 </html>
