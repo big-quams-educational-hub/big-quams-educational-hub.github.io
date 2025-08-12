@@ -1,157 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big Quams Educational Hub</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            background-color: #f4f6f9;
-            font-family: Arial, sans-serif;
-        }
-        header {
-            background-color: #004aad;
-            padding: 20px;
-            color: white;
-            text-align: center;
-        }
-        h2 {
-            color: #004aad;
-            margin-top: 30px;
-        }
-        .section {
-            padding: 20px;
-            background: white;
-            margin: 20px auto;
-            border-radius: 8px;
-            max-width: 900px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        /* News ticker */
-        #news-ticker {
-            background: #eef2f7;
-            padding: 10px;
-            border-radius: 6px;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-        }
-        #news-ticker .ticker-content {
-            display: inline-block;
-            animation: scroll-left 25s linear infinite;
-        }
-        #news-ticker a {
-            color: #004aad;
-            margin: 0 30px;
-            text-decoration: none;
-        }
-        #news-ticker a:hover {
-            text-decoration: underline;
-        }
-        @keyframes scroll-left {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* Ebook styles */
-        .ebook-card {
-            padding: 15px;
-            background-color: #eaf4ff;
-            border-radius: 6px;
-            text-align: center;
-        }
-        .ebook-card h3 {
-            margin-bottom: 10px;
-        }
-        .download-btn {
-            background-color: #004aad;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 4px;
-            text-decoration: none;
-        }
-        .download-btn:hover {
-            background-color: #003580;
-        }
-
-        /* Floating WhatsApp button */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25D366;
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
-        }
-        .whatsapp-float i {
-            margin-top: 15px;
-        }
-    </style>
-    <!-- Font Awesome for WhatsApp icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Big Quams Educational Hub</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* News Section Styling to Match Site */
+    #news-section {
+      background: #1e3a5f; /* Matches your dark theme */
+      color: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+    #news-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ffd700; /* gold highlight for title */
+    }
+    .news-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .news-card h4 {
+      margin: 0 0 5px;
+      font-size: 18px;
+      color: #fff;
+    }
+    .news-card p {
+      font-size: 14px;
+      color: #ddd;
+    }
+    .read-more-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: #ffd700;
+      color: #1e3a5f;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .read-more-btn:hover {
+      background: #e6c200;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Big Quams Educational Hub" height="60">
-        <h1>Big Quams Educational Hub</h1>
-    </header>
 
-    <!-- NEWS UPDATES -->
-    <div class="section">
-        <h2>Latest Educational News</h2>
-        <div id="news-ticker">
-            <div class="ticker-content" id="news-container">Fetching educational updates...</div>
-        </div>
+  <!-- Header -->
+  <header>
+    <img src="logo.png" alt="Big Quams Educational Hub Logo" class="logo"/>
+    <h1>Big Quams Educational Hub</h1>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#library">Library</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home">
+    <h2>Welcome to Big Quams Educational Hub</h2>
+    <p>Your number one source for educational resources and updates.</p>
+  </section>
+
+  <!-- News Section -->
+  <section id="news-section">
+    <h2>Latest Education News</h2>
+    <div id="news-container">
+      <p>Loading news...</p>
     </div>
+  </section>
 
-    <!-- LIBRARY / EBOOK SECTION -->
-    <div class="section">
-        <h2>Library & Ebooks</h2>
-        <div class="ebook-card">
-            <h3>📚 THE INVISIBLE STRUGGLE</h3>
-            <p>An inspiring novel for students.</p>
-            <a class="download-btn" href="https://drive.google.com/uc?export=download&id=1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG" target="_blank">Download PDF</a>
-        </div>
+  <!-- Library Section -->
+  <section id="library">
+    <h2>Library & eBooks</h2>
+    <div class="ebook-card">
+      <h3>THE INVISIBLE STRUGGLE</h3>
+      <a href="https://drive.google.com/file/d/1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG/view?usp=drivesdk" target="_blank" class="download-btn">Download PDF</a>
     </div>
+  </section>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>For inquiries, reach us on WhatsApp: 
+      <a href="https://wa.me/2349049871643">Click Here</a>
+    </p>
+  </section>
 
-    <script>
-        const apiKey = '3ab411793f704118ba852fe0de5a51a8';
-        const url = `https://newsapi.org/v2/everything?q=education%20OR%20scholarship&language=en&sortBy=publishedAt&pageSize=5&apiKey=${apiKey}`;
+  <footer>
+    <p>&copy; 2025 Big Quams Educational Hub. All rights reserved.</p>
+  </footer>
 
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                const newsContainer = document.getElementById('news-container');
-                newsContainer.innerHTML = "";
-                if (data.articles) {
-                    data.articles.forEach((article, index) => {
-                        const link = document.createElement('a');
-                        link.href = article.url;
-                        link.target = "_blank";
-                        link.textContent = article.title;
-                        newsContainer.appendChild(link);
-                    });
-                } else {
-                    newsContainer.innerText = 'No news available right now.';
-                }
-            })
-            .catch(error => {
-                document.getElementById('news-container').innerText = 'Failed to load news.';
-                console.error('Error:', error);
-            });
-    </script>
+  <script>
+    const apiKey = '3ab411793f704118ba852fe0de5a51a8';
+    const url = `https://newsapi.org/v2/everything?q=education%20OR%20scholarship&language=en&sortBy=publishedAt&pageSize=5&apiKey=${apiKey}`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const newsContainer = document.getElementById('news-container');
+        newsContainer.innerHTML = '';
+
+        data.articles.forEach(article => {
+          const div = document.createElement('div');
+          div.className = 'news-card';
+          div.innerHTML = `
+            <h4>${article.title}</h4>
+            <p>${article.description || ''}</p>
+            <a href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB%2C%20I'm%20interested%20in%20receiving%20education%20news%20updates%20from%20you.%20Kindly%20save%20my%20contact%20as%20……" target="_blank" class="read-more-btn">Read more</a>
+          `;
+          newsContainer.appendChild(div);
+        });
+      })
+      .catch(error => {
+        document.getElementById('news-container').innerText = 'Failed to load news.';
+        console.error('Error:', error);
+      });
+  </script>
+
 </body>
 </html>
