@@ -1,138 +1,662 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIG QUAMS EDUCATIONAL HUB</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #1a237e;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-        header img {
-            height: 60px;
-        }
-        .section {
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 900px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: #1a237e;
-            border-bottom: 3px solid #fbc02d;
-            padding-bottom: 5px;
-        }
-        /* News Section */
-        .news-item {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-        }
-        .news-item h4 {
-            margin: 0;
-            color: #333;
-        }
-        .news-item p {
-            color: #555;
-            margin: 5px 0;
-        }
-        .read-more {
-            display: inline-block;
-            padding: 6px 12px;
-            background-color: #fbc02d;
-            color: black;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        .read-more:hover {
-            background-color: #ffa000;
-        }
-        /* Library Section */
-        .library-item {
-            background: #fff3cd;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .library-item h3 {
-            color: #1a237e;
-        }
-        .download-btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 15px;
-            background: #fbc02d;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-        .download-btn:hover {
-            background: #ffa000;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BIG QUAMS EDUCATIONAL HUB</title>
+  <meta name="description" content="Big Quams Educational Hub — your trusted guide for smarter academic choices in Nigeria. JAMB, Admissions, Coaching, Scholarships." />
+  <style>
+    :root {
+      --accent-blue: #1e40af;
+      --accent-orange: #f97316;
+      --accent-green: #16a34a;
+      --muted: #64748b;
+      --bg: #ffffff;
+      --card: #ffffff;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: #0f172a;
+      line-height: 1.5;
+    }
+    header {
+      background: var(--accent-blue);
+      color: white;
+      padding: 16px 24px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid white;
+      flex-shrink: 0;
+    }
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .brand-text {
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+    .brand-subtext {
+      color: #dbeafe;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      user-select: none;
+    }
+    .navlinks {
+      display: flex;
+      gap: 18px;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    a:hover,
+    a:focus {
+      color: var(--accent-orange);
+      outline: none;
+    }
+    .btn {
+      background: var(--accent-orange);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+    .btn:hover,
+    .btn:focus {
+      background: #dc6803;
+      outline: none;
+    }
+    .hero {
+      padding: 60px 24px 48px;
+      text-align: center;
+      background-color: #f0f5ff;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      color: var(--accent-blue);
+      margin-bottom: 12px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    .cta-whatsapp {
+      display: inline-block;
+      background-color: #25d366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 700;
+      text-decoration: none;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .cta-whatsapp:hover {
+      background-color: #128c4a;
+    }
+    section {
+      padding-bottom: 36px;
+    }
+    h2 {
+      color: var(--accent-blue);
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      border-bottom: 3px solid var(--accent-orange);
+      display: inline-block;
+      padding-bottom: 6px;
+    }
+    p, ul {
+      font-size: 1rem;
+      color: #334155;
+      max-width: 800px;
+      line-height: 1.6;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    ul li {
+      margin-bottom: 8px;
+    }
+    .services-list {
+      list-style-type: disc;
+    }
+    .testimonial {
+      background: #f1f5f9;
+      padding: 20px 24px;
+      margin: 16px 0;
+      border-left: 5px solid var(--accent-orange);
+      border-radius: 8px;
+      font-style: italic;
+      color: #475569;
+      max-width: 800px;
+    }
+    .testimonial strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-blue);
+      font-style: normal;
+    }
+    .contact-section {
+      background: #f9fafb;
+      padding: 32px 24px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: 0 auto 60px;
+      box-shadow: 0 8px 24px rgb(0 0 0 / 0.05);
+    }
+    .contact-section h2 {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .contact-buttons a {
+      flex: 1 1 180px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .whatsapp-btn {
+      background-color: #25d366;
+    }
+    .whatsapp-btn:hover {
+      background-color: #128c4a;
+    }
+    .email-btn {
+      background-color: #f97316;
+    }
+    .email-btn:hover {
+      background-color: #d96211;
+    }
+    .group-btn {
+      background-color: var(--accent-blue);
+    }
+    .group-btn:hover {
+      background-color: #1b37a6;
+    }
+    .portfolio-btn {
+      background-color: #6f42c1;
+    }
+    .portfolio-btn:hover {
+      background-color: #5829a6;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      resize: vertical;
+      font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 5px var(--accent-blue);
+    }
+    button {
+      background-color: var(--accent-green);
+      color: white;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    button:hover, button:focus {
+      background-color: #138f3f;
+      outline: none;
+    }
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 3px solid var(--accent-green);
+      user-select: none;
+    }
+    footer a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    footer a:hover,
+    footer a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    /* Floating WhatsApp Button */
+    #whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 30px;
+      right: 30px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      z-index: 1000;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+    #whatsapp-float:hover {
+      background-color: #128c4a;
+    }
+
+    /* Library & eBooks styles (updated to match news theme) */
+    #library {
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+    .ebook-card {
+      background: linear-gradient(180deg, var(--card), #fcfff7);
+      border-left: 6px solid var(--accent-orange);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 6px 18px rgba(30,64,175,0.04);
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .ebook-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 18px;
+      color: var(--accent-blue);
+    }
+    .ebook-card .download-btn {
+      background-color: var(--accent-orange);
+      color: #fff;
+      padding: 12px 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+      display: inline-block;
+    }
+    .ebook-card .download-btn:hover,
+    .ebook-card .download-btn:focus {
+      background-color: #dc6803;
+    }
+
+    /* News cards - matches your site theme */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .news-card {
+      background: var(--card);
+      border: 1px solid #e6eefc;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 6px 18px rgba(30,64,175,0.04);
+    }
+    .news-card h3 {
+      margin: 0 0 8px;
+      color: var(--accent-blue);
+      font-size: 1.02rem;
+      line-height: 1.2;
+    }
+    .news-card p {
+      margin: 0;
+      color: #334155;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .news-meta {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .news-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .read-more-btn {
+      background: var(--accent-orange);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .read-more-btn:hover {
+      background: #dc6803;
+    }
+    .source-link {
+      color: var(--accent-blue);
+      background: transparent;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid #e6eefc;
+    }
+    .source-link:hover {
+      background: #f0f7ff;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      nav {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .navlinks {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+      .contact-buttons a {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<header>
-    <img src="your-logo.png" alt="BIG QUAMS Logo">
-    <h1>BIG QUAMS EDUCATIONAL HUB</h1>
-</header>
-
-<!-- NEWS SECTION -->
-<div class="section" id="news-section">
-    <h2>Latest Education News</h2>
-    <div id="news-container">Loading news...</div>
-</div>
-
-<!-- LIBRARY SECTION -->
-<div class="section" id="library-section">
-    <h2>Library & Ebooks</h2>
-    <div class="library-item">
-        <h3>THE INVISIBLE STRUGGLE</h3>
-        <p>A novel for students — inspiring perseverance and courage.</p>
-        <a class="download-btn" href="https://drive.google.com/uc?export=download&id=1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG" target="_blank">📥 Download PDF</a>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo">
+            <img src="https://i.imgur.com/UckiJ55.png" alt="Big Quams Logo" />
+          </div>
+          <div>
+            <div class="brand-text">BIG QUAMS</div>
+            <div class="brand-subtext">Educational Hub</div>
+          </div>
+        </div>
+        <div class="navlinks">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#news-updates">News Updates</a>
+          <a href="#library">Library</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact" class="btn">Contact</a>
+        </div>
+      </nav>
     </div>
-</div>
+  </header>
 
-<script>
-    const apiKey = '3ab411793f704118ba852fe0de5a51a8';
-    const url = `https://newsapi.org/v2/everything?q=education%20OR%20scholarship&language=en&sortBy=publishedAt&pageSize=5&apiKey=${apiKey}`;
+  <section class="hero" id="home">
+    <h1>Welcome to Big Quams Educational Hub</h1>
+    <p>Your trusted guide for smarter academic choices in Nigeria. Whether preparing for JAMB, seeking admission, or staying updated, we simplify your educational journey.</p>
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="cta-whatsapp" aria-label="Chat with Big Quams on WhatsApp">
+      📱 Get Free Tips on WhatsApp
+    </a>
+  </section>
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const newsContainer = document.getElementById('news-container');
-            newsContainer.innerHTML = '';
+  <section class="container" id="about">
+    <h2>About Us</h2>
+    <p>
+      At Big Quams Educational Hub, we passionately assist Nigerian students to navigate the academic world confidently and clearly. Our mission is to bridge the gap between confusion and clarity, providing expert guidance on admissions, course choices, scholarships, and more.
+    </p>
+    <p>
+      From the moment you start your journey until graduation, we are by your side with real-time information, personalized advice, and unwavering support.
+    </p>
+  </section>
 
-            data.articles.forEach(article => {
-                const div = document.createElement('div');
-                div.className = 'news-item';
-                div.innerHTML = `
-                    <h4>${article.title}</h4>
-                    <p>${article.description || ''}</p>
-                    <a class="read-more" href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB%2C%20I'm%20interested%20in%20receiving%20education%20news%20updates%20from%20you.%20Kindly%20save%20my%20contact%20as%20……" target="_blank">Read More</a>
-                `;
-                newsContainer.appendChild(div);
-            });
-        })
-        .catch(error => {
-            document.getElementById('news-container').innerText = 'Failed to load news.';
-            console.error('Error:', error);
+  <section class="container" id="services">
+    <h2>Our Services</h2>
+    <p>Here’s how we help students succeed academically and beyond:</p>
+    <ul class="services-list">
+      <li><strong>JAMB & UTME Advisory:</strong> Registration help, syllabus breakdown, and smart study tips.</li>
+      <li><strong>Admission Support:</strong> Post-UTME guidance, school updates, and application assistance.</li>
+      <li><strong>School & Course Matching:</strong> Tailored recommendations to fit your strengths and goals.</li>
+      <li><strong>Academic Coaching:</strong> Study planning, time management, and exam preparation.</li>
+      <li><strong>Scholarship & News Alerts:</strong> Timely updates on funding and educational opportunities.</li>
+    </ul>
+  </section>
+
+  <!-- ====== News Updates (inserted here, just above Library) ====== -->
+  <section class="container" id="news-updates" aria-labelledby="news-updates-heading">
+    <h2 id="news-updates-heading">News Updates</h2>
+
+    <!-- news container -->
+    <div id="news-container" class="news-grid" aria-live="polite">
+      <p>Loading news updates...</p>
+    </div>
+  </section>
+
+  <!-- ====== Library & eBooks (existing, styled to match) ====== -->
+  <section class="container" id="library">
+    <h2>Library & eBooks</h2>
+    <div class="ebook-card">
+      <h3>THE INVISIBLE STRUGGLE</h3>
+      <a class="download-btn" href="https://drive.google.com/uc?export=download&id=1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG" target="_blank" rel="noopener noreferrer" aria-label="Download The Invisible Struggle PDF">
+        📥 Download PDF
+      </a>
+    </div>
+  </section>
+
+  <section class="container" id="testimonials">
+    <h2>Testimonials</h2>
+    <div class="testimonial">
+      <strong>Aisha, Lagos</strong><br />
+      “I was totally lost before I found Big Quams. They helped me sort my Post-UTME and I got admitted into LASU!”
+    </div>
+    <div class="testimonial">
+      <strong>Dare, Osun</strong><br />
+      “I passed my JAMB at once after following their guide. You won’t regret working with them!”
+    </div>
+  </section>
+
+  <section class="container" id="blog">
+    <h2>Blog Suggestions</h2>
+    <ul class="services-list">
+      <li>How to Choose the Right University Course in Nigeria</li>
+      <li>5 Mistakes to Avoid During JAMB Registration</li>
+      <li>Best Study Habits for Students Who Struggle to Focus</li>
+      <li>What to Do After Gaining Admission: A Step-by-Step Guide</li>
+      <li>Understanding Scholarship Applications and Deadlines</li>
+      <li>Effective Time Management for Academic Success</li>
+    </ul>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <h2>Contact & Feedback</h2>
+    <p>We’d love to hear from you! Reach us quickly via WhatsApp, email, or join our student group.</p>
+    <div class="contact-buttons">
+      <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+        📱 Chat on WhatsApp Now
+      </a>
+      <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn" aria-label="Send Email">
+        📧 Send Email
+      </a>
+      <a href="https://chat.whatsapp.com/Bvi1BVHGAC8A9pTBTFNEXh" target="_blank" rel="noopener noreferrer" class="group-btn" aria-label="Join WhatsApp Group">
+        👥 Join Brainy Buddies Group
+      </a>
+      <a href="https://bigquamsmedia-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="Visit Portfolio">
+        🌐 Visit Portfolio
+      </a>
+    </div>
+
+    <form action="mailto:bigquamsmedia024@gmail.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Feedback" required></textarea>
+      <button type="submit">Send Feedback</button>
+    </form>
+  </section>
+
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" id="whatsapp-float" aria-label="Chat with Big Quams on WhatsApp" title="Chat with us on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">
+      <path d="M20.52 3.48A11.81 11.81 0 0012 0C5.37 0 0 5.37 0 12c0 2.12.56 4.11 1.53 5.84L0 24l6.38-1.65A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.25-6.19-3.48-8.52zm-3.3 12.3c-.26.74-1.43 1.41-2 1.49-.51.07-1.14.1-2.22-.48-2.94-1.57-4.85-4.49-5.11-4.9-.26-.4-2.17-3.54-2.17-6.78 0-2.24 1.22-3.31 1.66-3.77.42-.44 1-.57 1.49-.57.48 0 .75.03 1.08.04.34.02.75-.14 1.17.91.41 1.06 1.39 3.67 1.51 3.94.13.26.21.59.03.95-.18.36-.27.58-.52.87-.26.27-.57.61-.81.84-.27.26-.56.35-.95.12-.35-.2-1.49-.55-2.84-1.76-.42-.36-.71-.1-.83.08-.17.24-.72.83-1.09 1.24-.18.22-.37.47-.37.78-.02.3.07.51.15.65.2.3.89 1.47 2.04 2.38 1.44 1.17 2.63 1.32 3.09 1.47.47.14.74.12 1.01-.07.27-.18 1.09-1.28 1.39-1.73.3-.45.6-.38.99-.23.37.14 2.36 1.1 2.77 1.3.42.21.7.3.81.47.11.17.11 1.01-.15 1.74z"/>
+    </svg>
+  </a>
+
+  <footer>
+    &copy; 2025 Big Quams Educational Hub. All Rights Reserved.
+    <p><a href="https://bigquamsmedia-one.vercel.app/" target="_blank" rel="noopener noreferrer">Visit My Portfolio</a></p>
+  </footer>
+
+  <script>
+    // NEWS LOADER: try NewsAPI first, fallback to GitHub new.json
+    (function () {
+      const NEWSAPI_KEY = '3ab411793f704118ba852fe0de5a51a8';
+      const NEWSAPI_URL = `https://newsapi.org/v2/everything?q=education%20OR%20scholarship&language=en&sortBy=publishedAt&pageSize=5&apiKey=${NEWSAPI_KEY}`;
+      const FALLBACK_JSON = 'https://raw.githubusercontent.com/big-quams-educational-hub/big-quams-educational-hub.github.io/main/new.json';
+      const WA_BASE = 'https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB%2C%20I%27m%20interested%20in%20receiving%20education%20news%20updates%20from%20you.%20Kindly%20save%20my%20contact%20as%20...';
+
+      const container = document.getElementById('news-container');
+
+      function safeText(s) {
+        if (!s) return '';
+        return String(s);
+      }
+
+      function truncate(s, n = 200) {
+        if (!s) return '';
+        return s.length > n ? s.slice(0, n).trim() + '…' : s;
+      }
+
+      function renderArticles(list) {
+        container.innerHTML = '';
+        if (!list || list.length === 0) {
+          container.innerHTML = '<p>No news available at the moment.</p>';
+          return;
+        }
+        list.forEach(item => {
+          const card = document.createElement('article');
+          card.className = 'news-card';
+
+          const title = safeText(item.title || item.headline || 'Untitled');
+          const desc = safeText(item.description || item.content || '');
+          const source = (item.source && item.source.name) || item.source || '';
+          const published = item.publishedAt ? new Date(item.publishedAt).toLocaleString() : '';
+
+          // build HTML
+          card.innerHTML = `
+            <h3 class="news-title">${title}</h3>
+            <p class="news-desc">${truncate(desc, 220)}</p>
+            <div class="news-meta">${source ? `<small>${source}</small>` : ''} ${published ? `<small> • ${published}</small>` : ''}</div>
+            <div class="news-actions">
+              <a class="read-more-btn" href="${WA_BASE}" target="_blank" rel="noopener noreferrer">Read more</a>
+              ${item.url ? `<a class="source-link" href="${item.url}" target="_blank" rel="noopener noreferrer">Open source</a>` : ''}
+            </div>
+          `;
+          container.appendChild(card);
         });
-</script>
+      }
 
+      async function fetchJSON(url) {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Network response not ok for ' + url);
+        return res.json();
+      }
+
+      async function loadNews() {
+        container.innerHTML = '<p>Loading latest news...</p>';
+        // Try NewsAPI first
+        try {
+          const data = await fetchJSON(NEWSAPI_URL);
+          if (data && Array.isArray(data.articles) && data.articles.length > 0) {
+            renderArticles(data.articles);
+            return;
+          } else {
+            // fallback to GitHub JSON
+            console.warn('NewsAPI returned no articles; falling back');
+          }
+        } catch (e) {
+          console.warn('NewsAPI failed:', e);
+        }
+
+        // Fallback to site's new.json (if present)
+        try {
+          const fallback = await fetchJSON(FALLBACK_JSON);
+          // expecting an array of items with { title, description, url, ... }
+          if (Array.isArray(fallback) && fallback.length > 0) {
+            // normalize to similar shape
+            const normalized = fallback.slice(0,5).map(i => ({
+              title: i.title || i.headline || '',
+              description: i.description || i.summary || '',
+              url: i.url || i.link || ''
+            }));
+            renderArticles(normalized);
+            return;
+          } else {
+            container.innerHTML = '<p>No news available at the moment.</p>';
+          }
+        } catch (e2) {
+          console.error('Fallback fetch failed:', e2);
+          container.innerHTML = '<p>Unable to load news updates at the moment.</p>';
+        }
+      }
+
+      // Load on DOM ready
+      document.addEventListener('DOMContentLoaded', loadNews);
+    })();
+  </script>
 </body>
 </html>
