@@ -6,24 +6,15 @@
   <title>BIG QUAMS EDUCATIONAL HUB</title>
   <meta name="description" content="Big Quams Educational Hub — your trusted guide for smarter academic choices in Nigeria. JAMB, Admissions, Coaching, Scholarships." />
   <style>
-    :root {
-      --accent-blue: #1e40af;
-      --accent-orange: #f97316;
-      --accent-green: #16a34a;
-      --muted: #64748b;
-      --bg: #ffffff;
-      --card: #ffffff;
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }
-    * { box-sizing: border-box; }
     body {
+      font-family: Arial, sans-serif;
       margin: 0;
-      background: var(--bg);
+      background: #ffffff;
       color: #0f172a;
       line-height: 1.5;
     }
     header {
-      background: var(--accent-blue);
+      background: #1e40af;
       color: white;
       padding: 16px 24px;
     }
@@ -36,26 +27,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .logo {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid white;
-      flex-shrink: 0;
-    }
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
     }
     .brand-text {
       font-weight: 700;
@@ -71,7 +42,6 @@
     .navlinks {
       display: flex;
       gap: 18px;
-      flex-wrap: wrap;
     }
     a {
       color: inherit;
@@ -79,16 +49,19 @@
       font-weight: 600;
       transition: color 0.3s ease;
     }
-    a:hover { color: var(--accent-orange); }
+    a:hover {
+      color: #f97316;
+    }
     .btn {
-      background: var(--accent-orange);
+      background: #f97316;
       color: white;
       padding: 10px 16px;
       border-radius: 8px;
       font-weight: 700;
-      cursor: pointer;
     }
-    .btn:hover { background: #dc6803; }
+    .btn:hover {
+      background: #dc6803;
+    }
     .hero {
       padding: 60px 24px 48px;
       text-align: center;
@@ -98,16 +71,16 @@
     }
     .hero h1 {
       font-size: 2.4rem;
-      color: var(--accent-blue);
-      margin-bottom: 12px;
+      color: #1e40af;
     }
     .hero p {
-      color: var(--muted);
+      color: #64748b;
       font-size: 1.1rem;
       max-width: 650px;
       margin: 0 auto 24px;
     }
     .cta-whatsapp {
+      display: inline-block;
       background-color: #25d366;
       color: white;
       padding: 12px 20px;
@@ -115,23 +88,32 @@
       font-weight: 700;
       text-decoration: none;
     }
-    .cta-whatsapp:hover { background-color: #128c4a; }
+    section {
+      padding-bottom: 36px;
+    }
     h2 {
-      color: var(--accent-blue);
+      color: #1e40af;
       font-size: 1.8rem;
       margin-bottom: 14px;
-      border-bottom: 3px solid var(--accent-orange);
+      border-bottom: 3px solid #f97316;
       display: inline-block;
       padding-bottom: 6px;
     }
-    p, ul { font-size: 1rem; color: #334155; max-width: 800px; }
-    ul { padding-left: 20px; }
-    ul li { margin-bottom: 8px; }
+    p, ul {
+      font-size: 1rem;
+      color: #334155;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    ul li {
+      margin-bottom: 8px;
+    }
     .testimonial {
       background: #f1f5f9;
       padding: 20px 24px;
       margin: 16px 0;
-      border-left: 5px solid var(--accent-orange);
+      border-left: 5px solid #f97316;
       border-radius: 8px;
       font-style: italic;
       color: #475569;
@@ -139,64 +121,46 @@
     .testimonial strong {
       display: block;
       margin-bottom: 6px;
-      color: var(--accent-blue);
+      color: #1e40af;
       font-style: normal;
     }
-    /* Modern News Cards */
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .news-card {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
-    }
-    .news-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .news-card-content {
-      padding: 15px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .news-card-content h3 {
-      margin: 0 0 10px;
-      font-size: 1.1rem;
-      color: var(--accent-blue);
-    }
-    .news-card-content p {
-      flex-grow: 1;
-      font-size: 0.95rem;
-      color: #555;
-    }
-    .read-more {
-      margin-top: 10px;
-      display: inline-block;
-      background-color: var(--accent-orange);
-      color: white;
-      padding: 8px 14px;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      text-align: center;
-    }
-    .read-more:hover { background-color: #d96211; }
-    /* Contact */
     .contact-section {
       background: #f9fafb;
       padding: 32px 24px;
       border-radius: 12px;
       max-width: 700px;
       margin: 0 auto 60px;
+      box-shadow: 0 8px 24px rgb(0 0 0 / 0.05);
     }
-    form { display: flex; flex-direction: column; gap: 16px; }
+    .contact-section h2 {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .contact-buttons a {
+      flex: 1 1 180px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+    }
+    .whatsapp-btn { background-color: #25d366; }
+    .email-btn { background-color: #f97316; }
+    .group-btn { background-color: #1e40af; }
+    .portfolio-btn { background-color: #6f42c1; }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
     input, textarea {
       width: 100%;
       padding: 12px 14px;
@@ -205,180 +169,142 @@
       font-size: 1rem;
     }
     button {
-      background-color: var(--accent-green);
+      background-color: #16a34a;
       color: white;
       font-weight: 700;
       border: none;
       border-radius: 8px;
       padding: 12px 20px;
     }
-    button:hover { background-color: #138f3f; }
     footer {
       text-align: center;
       padding: 24px 16px;
       font-size: 0.9rem;
-      color: var(--muted);
-      border-top: 3px solid var(--accent-green);
-    }
-    /* Responsive */
-    @media (max-width: 800px) {
-      .navlinks { justify-content: center; gap: 12px; }
+      color: #64748b;
+      border-top: 3px solid #16a34a;
     }
   </style>
 </head>
 <body>
-<header>
-  <div class="container">
-    <nav>
-      <div class="brand">
-        <div class="logo">
-          <img src="https://i.imgur.com/UckiJ55.png" alt="Big Quams Logo" />
-        </div>
+  <header>
+    <div class="container">
+      <nav>
         <div>
           <div class="brand-text">BIG QUAMS</div>
           <div class="brand-subtext">Educational Hub</div>
         </div>
-      </div>
-      <div class="navlinks">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#news-updates">News Updates</a>
-        <a href="#library">Library</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact" class="btn">Contact</a>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<section class="hero" id="home">
-  <h1>Welcome to Big Quams Educational Hub</h1>
-  <p>Your trusted guide for smarter academic choices in Nigeria.</p>
-  <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="cta-whatsapp">📱 Get Free Tips on WhatsApp</a>
-</section>
-
-<section class="container" id="about">
-  <h2>About Us</h2>
-  <p>At Big Quams Educational Hub, we assist Nigerian students in navigating academic challenges with expert guidance and real-time updates.</p>
-</section>
-
-<section class="container" id="services">
-  <h2>Our Services</h2>
-  <ul>
-    <li>JAMB & UTME Advisory</li>
-    <li>Admission Support</li>
-    <li>School & Course Matching</li>
-    <li>Academic Coaching</li>
-    <li>Scholarship & News Alerts</li>
-  </ul>
-</section>
-
-<section class="container" id="news-updates">
-  <h2>Latest Educational News</h2>
-  <div class="news-grid" id="news-container">
-    <p>Loading latest news...</p>
-  </div>
-</section>
-
-<section class="container" id="library">
-  <h2>Library & eBooks</h2>
-  <div>
-    <h3>THE INVISIBLE STRUGGLE</h3>
-    <a href="#" class="btn">📥 Download PDF</a>
-  </div>
-</section>
-
-<section class="container" id="testimonials">
-  <h2>Testimonials</h2>
-  <div class="testimonial">
-    <strong>Aisha, Lagos</strong>
-    “I was lost before I found Big Quams. They helped me gain admission into LASU!”
-  </div>
-  <div class="testimonial">
-    <strong>Dare, Osun</strong>
-    “I passed my JAMB at once after following their guide.”
-  </div>
-</section>
-
-<section class="container" id="blog">
-  <h2>Blog Suggestions</h2>
-  <ul>
-    <li>How to Choose the Right University Course in Nigeria</li>
-    <li>5 Mistakes to Avoid During JAMB Registration</li>
-  </ul>
-</section>
-
-<section class="contact-section" id="contact">
-  <h2>Contact & Feedback</h2>
-  <form action="mailto:bigquamsmedia024@gmail.com" method="post" enctype="text/plain">
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="email" name="email" placeholder="Your Email" required />
-    <textarea name="message" rows="5" placeholder="Your Feedback" required></textarea>
-    <button type="submit">Send Feedback</button>
-  </form>
-</section>
-
-<footer>
-  &copy; 2025 Big Quams Educational Hub. All rights reserved.
-</footer>
-
-<script>
-  const apiKey = "3ab411793f704118ba852fe0de5a51a8";
-  const newsContainer = document.getElementById("news-container");
-
-  async function fetchNews() {
-    try {
-      const url = `https://newsapi.org/v2/everything?q=education+scholarship&language=en&sortBy=publishedAt&pageSize=6&apiKey=${apiKey}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      newsContainer.innerHTML = "";
-
-      const articles = data.articles && data.articles.length > 0 ? data.articles : [];
-      if (articles.length === 0) return loadFallbackNews();
-
-      articles.forEach(article => {
-        const imgSrc = article.urlToImage || "https://via.placeholder.com/400x200?text=Education+News";
-        const card = document.createElement("div");
-        card.className = "news-card";
-        card.innerHTML = `
-          <img src="${imgSrc}" alt="${article.title}">
-          <div class="news-card-content">
-            <h3>${article.title}</h3>
-            <p>${article.description || ""}</p>
-            <a class="read-more" href="${article.url}" target="_blank">Read More</a>
-          </div>
-        `;
-        newsContainer.appendChild(card);
-      });
-    } catch (error) {
-      loadFallbackNews();
-    }
-  }
-
-  function loadFallbackNews() {
-    const fallbackNews = [
-      { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students can now apply...", image: "https://via.placeholder.com/400x200?text=Scholarship" },
-      { title: "WAEC Releases 2025 Examination Timetable", description: "WAEC has officially published the timetable...", image: "https://via.placeholder.com/400x200?text=WAEC+News" }
-    ];
-    newsContainer.innerHTML = "";
-    fallbackNews.forEach(news => {
-      const card = document.createElement("div");
-      card.className = "news-card";
-      card.innerHTML = `
-        <img src="${news.image}" alt="${news.title}">
-        <div class="news-card-content">
-          <h3>${news.title}</h3>
-          <p>${news.description}</p>
-          <a class="read-more" href="https://wa.me/2349049871643" target="_blank">Read More</a>
+        <div class="navlinks">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#news-updates">News Updates</a>
+          <a href="#library">Library</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact" class="btn">Contact</a>
         </div>
-      `;
-      newsContainer.appendChild(card);
-    });
-  }
+      </nav>
+    </div>
+  </header>
 
-  fetchNews();
-</script>
+  <section class="hero" id="home">
+    <h1>Welcome to Big Quams Educational Hub</h1>
+    <p>Your trusted guide for smarter academic choices in Nigeria. Whether preparing for JAMB, seeking admission, or staying updated, we simplify your educational journey.</p>
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="cta-whatsapp">📱 Get Free Tips on WhatsApp</a>
+  </section>
+
+  <section class="container" id="about">
+    <h2>About Us</h2>
+    <p>At Big Quams Educational Hub, we assist Nigerian students in navigating academics confidently. From admissions, course choices, to scholarships, we are with you every step of the way.</p>
+  </section>
+
+  <section class="container" id="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>JAMB & UTME Advisory</li>
+      <li>Admission Support</li>
+      <li>School & Course Matching</li>
+      <li>Academic Coaching</li>
+      <li>Scholarship & News Alerts</li>
+    </ul>
+  </section>
+
+  <section id="news-updates" style="background-color: #f5f8fa; padding: 20px;">
+    <h2 style="text-align:center; font-size: 28px; margin-bottom: 15px;">📚 Latest Educational & Scholarship News</h2>
+    <div id="news-container" style="display: grid; gap: 15px;">Loading latest news...</div>
+  </section>
+
+  <section class="container" id="library">
+    <h2>Library & eBooks</h2>
+    <p><strong>THE INVISIBLE STRUGGLE</strong> - <a href="https://drive.google.com/uc?export=download&id=1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG">📥 Download PDF</a></p>
+  </section>
+
+  <section class="container" id="testimonials">
+    <h2>Testimonials</h2>
+    <div class="testimonial"><strong>Aisha, Lagos</strong>“I got admitted into LASU thanks to Big Quams!”</div>
+    <div class="testimonial"><strong>Dare, Osun</strong>“I passed JAMB at once after following their guide.”</div>
+  </section>
+
+  <section class="container" id="blog">
+    <h2>Blog Suggestions</h2>
+    <ul>
+      <li>How to Choose the Right University Course</li>
+      <li>5 Mistakes to Avoid During JAMB Registration</li>
+      <li>Best Study Habits for Students</li>
+    </ul>
+  </section>
+
+  <section class="contact-section" id="contact">
+    <h2>Contact & Feedback</h2>
+    <div class="contact-buttons">
+      <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-btn">📱 Chat on WhatsApp Now</a>
+      <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn">📧 Send Email</a>
+      <a href="https://chat.whatsapp.com/Bvi1BVHGAC8A9pTBTFNEXh" class="group-btn">👥 Join Brainy Buddies Group</a>
+      <a href="https://bigquamsmedia-one.vercel.app/" class="portfolio-btn">🌐 Visit Portfolio</a>
+    </div>
+    <form action="mailto:bigquamsmedia024@gmail.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Your Feedback" required></textarea>
+      <button type="submit">Send Feedback</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 Big Quams Educational Hub. All rights reserved.
+  </footer>
+
+  <script>
+    const apiKey = "3ab411793f704118ba852fe0de5a51a8";
+    const newsContainer = document.getElementById("news-container");
+    async function fetchNews() {
+      try {
+        const url = `https://newsapi.org/v2/everything?q=education+scholarship&language=en&sortBy=publishedAt&pageSize=6&apiKey=${apiKey}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        newsContainer.innerHTML = "";
+        if (data.articles.length === 0) {
+          newsContainer.innerHTML = "<p>No news available at the moment.</p>";
+          return;
+        }
+        data.articles.forEach(article => {
+          const articleElement = document.createElement("div");
+          articleElement.style.background = "#fff";
+          articleElement.style.padding = "15px";
+          articleElement.style.borderRadius = "8px";
+          articleElement.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+          articleElement.innerHTML = `
+            <h3 style="margin-bottom:8px;"><a href="${article.url}" target="_blank" style="color:#007BFF; text-decoration:none;">${article.title}</a></h3>
+            <p style="font-size:14px; color:#555;">${article.description || "No description available."}</p>
+            <small style="color:#888;">${new Date(article.publishedAt).toLocaleString()}</small>
+          `;
+          newsContainer.appendChild(articleElement);
+        });
+      } catch (error) {
+        newsContainer.innerHTML = "<p>Error loading news.</p>";
+      }
+    }
+    fetchNews();
+  </script>
 </body>
 </html>
