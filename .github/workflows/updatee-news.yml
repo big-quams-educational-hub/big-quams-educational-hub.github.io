@@ -1,29 +1,9 @@
-name: Update News JSON from NewsAPI
-
-on:
-  schedule:
-    - cron: '0 7 * * *'  # Runs daily at 7am UTC
-  workflow_dispatch:      # Allows manual run
-
-jobs:
-  update-news:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Fetch news from NewsAPI
-        env:
-          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
-        run: |
-          curl -s "https://newsapi.org/v2/top-headlines?country=ng&apiKey=$NEWSAPI_KEY" > news.json
-          jq '[.articles[] | {title: .title}]' news.json > new.json
-
-      - name: Commit and push updated new.json
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add new.json
-          git commit -m "Automated update from NewsAPI" || echo "No changes to commit"
-          git push
+yaml
+    - name: Commit and push changes
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add new.json
+        git commit -m "Automated update of news JSON" || echo "No changes to commit"
+        git pull --rebase origin main
+        git push origin main
