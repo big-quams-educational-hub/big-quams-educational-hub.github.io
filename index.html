@@ -217,16 +217,17 @@
 
 
 <section id="news">
-  <h2>Latest News</h2>
-  <div class="news-list">
-    {% for article in site.news %}
-      <div class="news-card">
-        <h3>{{ article.title }}</h3>
-        <p><em>{{ article.date | date: "%B %d, %Y" }}</em></p>
-        <p>{{ article.description }}</p>
-        <a href="{{ article.url }}">Read more</a>
-      </div>
-    {% endfor %}
+  <div class="container">
+    <h2>Latest News Updates</h2>
+    <div class="news-grid">
+      {% for post in collections.news reversed %}
+        <div class="news-card">
+          <h3>{{ post.data.title }}</h3>
+          <p>{{ post.date | date: "%B %d, %Y" }}</p>
+          <p>{{ post.content | truncate: 150 }}</p>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </section>
   
