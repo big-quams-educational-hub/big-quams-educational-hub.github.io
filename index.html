@@ -217,21 +217,20 @@
 
 
 
-<section style="padding: 30px; font-family: Arial, sans-serif;">
-  <h2 style="color: royalblue; font-size: 28px; margin-bottom: 20px;">Latest News Updates</h2>
-  
-  <div style="border-left: 4px solid #007BFF; padding-left: 15px; margin-bottom: 20px;">
-    <h3 style="margin: 0; font-size: 20px;">KWASU Reopens DE Application Portal</h3>
-    <p style="margin: 5px 0;">The Kwara State University has reopened its application portal for Direct Entry (DE) candidates only. UTME applicants are advised not to register at this time.</p>
-    <small style="color: gray;">Posted on October 3, 2025</small>
-  </div>
-
-  <div style="border-left: 4px solid #28A745; padding-left: 15px; margin-bottom: 20px;">
-    <h3 style="margin: 0; font-size: 20px;">KWASU MBBS & MLS Admission List Incoming</h3>
-    <p style="margin: 5px 0;">KWASU is set to release the MBBS and MLS admission list for the 2025/2026 academic session. Stay updated.</p>
-    <small style="color: gray;">Posted on October 3, 2025</small>
-  </div>
-</section>
+<section id="news" style="background:#fff; padding: 2rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.05); margin-top: 2rem;">
+  <h2 style="color:#FF7F50; border-bottom: 2px solid #32CD32; padding-bottom: 0.5rem;">Latest News</h2>
+  <ul style="list-style: none; padding: 0;">
+    {% for post in site.news %}
+      <li style="margin-bottom: 1.5rem;">
+        <h3 style="color:#1E90FF; margin-bottom: 0.2rem;">{{ post.title }}</h3>
+        <small style="color:#32CD32;">{{ post.date | date: "%B %d, %Y" }}</small>
+        <div style="margin-top: 0.5rem;">{{ post.body | markdownify }}</div>
+      </li>
+    {% else %}
+      <li>No news available yet.</li>
+    {% endfor %}
+  </ul>
+</section>  
   
   <section class="container" id="library" data-aos="fade-up">
     <h2>Library & eBooks</h2>
