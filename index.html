@@ -216,21 +216,21 @@
   </section>
 
 
-
-<section id="news" style="background:#fff; padding: 2rem; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.05); margin-top: 2rem;">
-  <h2 style="color:#FF7F50; border-bottom: 2px solid #32CD32; padding-bottom: 0.5rem;">Latest News</h2>
-  <ul style="list-style: none; padding: 0;">
-    {% for post in site.news %}
-      <li style="margin-bottom: 1.5rem;">
-        <h3 style="color:#1E90FF; margin-bottom: 0.2rem;">{{ post.title }}</h3>
-        <small style="color:#32CD32;">{{ post.date | date: "%B %d, %Y" }}</small>
-        <div style="margin-top: 0.5rem;">{{ post.body | markdownify }}</div>
-      </li>
+<section class="news-section" style="padding: 30px; background: #f5faff;">
+  <h2 style="color:#0a2e5c; font-family: Arial, sans-serif; margin-bottom: 20px;">Latest News Updates</h2>
+  <div class="news-container" style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+    {% for post in site.news limit:5 %}
+      <div class="news-card" style="background: #fff; border-left: 4px solid #00b894; padding: 15px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+        <h3 style="color: #0a2e5c; margin: 0 0 10px; font-family: Arial, sans-serif;">{{ post.title }}</h3>
+        <p style="color: #333; margin: 0 0 5px; font-family: Arial, sans-serif;">{{ post.description }}</p>
+        <p style="font-size: 0.9em; color: #666; font-family: Arial, sans-serif; margin: 0;">{{ post.date | date: "%B %d, %Y" }}</p>
+      </div>
     {% else %}
-      <li>No news available yet.</li>
+      <p style="font-family: Arial, sans-serif; color: #888;">No news updates available at the moment.</p>
     {% endfor %}
-  </ul>
+  </div>
 </section>  
+
   
   <section class="container" id="library" data-aos="fade-up">
     <h2>Library & eBooks</h2>
