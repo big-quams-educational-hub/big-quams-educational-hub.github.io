@@ -1,4 +1,3 @@
-yaml
 backend:
   name: git-gateway
   branch: main  # change if your default branch is different
