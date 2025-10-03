@@ -215,14 +215,45 @@
     </ul>
   </section>
 
-  <!-- UPDATED NEWS SECTION (kept your container, heading style, and design) -->
-  <section class="container" id="news-updates" data-aos="fade-up">
-    <h2>News Updates</h2>
-    <div id="news-container" class="news-grid" aria-live="polite">
-      <div class="news-card"><p>Loading latest news…</p></div>
-    </div>
-  </section>
 
+<section id="news" style="padding: 2rem; font-family: 'Segoe UI', sans-serif; background-color: #fff; color: #111;">
+  <h2 style="text-align: center; color: #111; border-bottom: 3px solid #f39c12; display: inline-block; padding-bottom: 0.3rem;">
+    📰 Latest News Updates
+  </h2>
+  <div id="news-list" style="max-width: 850px; margin: 2rem auto;"></div>
+</section>
+
+<script>
+  fetch('news')
+    .then(res => res.text())
+    .then(text => {
+      const parser = new DOMParser();
+      const html = parser.parseFromString(text, 'text/html');
+      const files = Array.from(html.querySelectorAll('a')).filter(a => a.href.endsWith('.md'));
+      const newsList = document.getElementById('news-list');
+
+      files.forEach(file => {
+        fetch('news/' + file.textContent)
+          .then(r => r.text())
+          .then(md => {
+            const title = md.match(/title:\s*(.+)/i)?.[1] || 'Untitled';
+            const date = md.match(/date:\s*(.+)/i)?.[1] || '';
+const body = md.split('---')[2] || '';
+            const preview = body.trim().slice(0, 300) + '...';
+
+            const post = document.createElement('div');
+            post.style = 'border-left: 5px solid #f39c12; background: #f9f9f9; padding: 1rem 1.5rem; margin-bottom: 2rem; border-radius: 5px;';
+            post.innerHTML = `
+              <h3 style="color: #2c3e50; margin-bottom: 0.2rem;">title</h3>
+              <small style="color: #777;">{date}</small>
+              <p style="line-height: 1.6; margin-top: 0.7rem;">${preview}</p>
+            `;
+            newsList.appendChild(post);
+          });
+      });
+    });
+</script>
+  
   <section class="container" id="library" data-aos="fade-up">
     <h2>Library & eBooks</h2>
     <div class="ebook-card" data-aos="zoom-in">
