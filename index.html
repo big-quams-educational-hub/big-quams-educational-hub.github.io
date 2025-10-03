@@ -216,21 +216,20 @@
   </section>
 
 
-<section class="news-section" style="padding: 30px; background: #f5faff;">
-  <h2 style="color:#0a2e5c; font-family: Arial, sans-serif; margin-bottom: 20px;">Latest News Updates</h2>
-  <div class="news-container" style="display: grid; grid-template-columns: 1fr; gap: 20px;">
-    {% for post in site.news limit:5 %}
-      <div class="news-card" style="background: #fff; border-left: 4px solid #00b894; padding: 15px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        <h3 style="color: #0a2e5c; margin: 0 0 10px; font-family: Arial, sans-serif;">{{ post.title }}</h3>
-        <p style="color: #333; margin: 0 0 5px; font-family: Arial, sans-serif;">{{ post.description }}</p>
-        <p style="font-size: 0.9em; color: #666; font-family: Arial, sans-serif; margin: 0;">{{ post.date | date: "%B %d, %Y" }}</p>
+<section id="news">
+  <h2>Latest News</h2>
+  <div class="news-list">
+    {% for article in site.news %}
+      <div class="news-card">
+        <h3>{{ article.title }}</h3>
+        <p><em>{{ article.date | date: "%B %d, %Y" }}</em></p>
+        <p>{{ article.description }}</p>
+        <a href="{{ article.url }}">Read more</a>
       </div>
-    {% else %}
-      <p style="font-family: Arial, sans-serif; color: #888;">No news updates available at the moment.</p>
     {% endfor %}
   </div>
-</section>  
-
+</section>
+  
   
   <section class="container" id="library" data-aos="fade-up">
     <h2>Library & eBooks</h2>
