@@ -241,19 +241,10 @@
 
 
 <section id="news">
-  <div class="container">
-    <h2>Latest News Updates</h2>
-    <div class="news-grid">
-      {% for post in collections.news reversed %}
-        <div class="news-card">
-          <h3>{{ post.data.title }}</h3>
-          <p>{{ post.date | date: "%B %d, %Y" }}</p>
-          <p>{{ post.content | truncate: 150 }}</p>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
+  <h2>Latest News Updates</h2>
+  <div id="news-container"></div>
 </section>
+
   
   
   <section class="container" id="library" data-aos="fade-up">
