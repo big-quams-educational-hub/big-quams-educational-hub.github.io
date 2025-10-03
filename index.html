@@ -412,6 +412,33 @@
   margin: 0;
   color: #333;
 }
+
+
+  
+const newsContainer = document.getElementById('news-container');
+const apiURL = 'https://sheetdb.io/api/v1/87gi3xnxyfj5w';
+
+fetch(apiURL)
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'news-card';
+
+      card.innerHTML = `
+        <h3>item.title</h3>
+        <small>{new Date(item.date).toLocaleDateString()}</small>
+        <p>${item.description}</p>
+      `;
+
+      newsContainer.appendChild(card);
+    });
+  })
+  .catch(error => {
+    newsContainer.innerHTML = '<p>Failed to load news.</p>';
+    console.error('Error loading news:', error);
+  });
+  
 </script>
 </body>
 </html>
