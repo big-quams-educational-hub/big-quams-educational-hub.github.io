@@ -3,52 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Big Quams Media Hub</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+  <title>BIG QUAMS MEDIA HUB – Admin Panel</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background-color: #ffffff;
-      color: #00274D;
+      color: #1a1a1a;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
+      height: 100vh;
       text-align: center;
     }
 
-    img.logo {
+    .container {
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    .logo img {
       width: 120px;
       height: auto;
       margin-bottom: 20px;
     }
 
     h1 {
-      color: #00274D;
-      font-size: 24px;
+      color: #003366; /* Deep Blue */
+      font-size: 28px;
       margin-bottom: 10px;
     }
 
-    p {
+    p.subtitle {
       font-size: 16px;
+      color: #444;
       margin-bottom: 30px;
-      color: #333;
     }
 
-    a.button {
+    .btn {
       display: inline-block;
-      background-color: #FF6F00; /* Orange */
-      color: white;
+      background-color: #ff6600; /* Orange */
+      color: #fff;
       padding: 12px 24px;
-      border-radius: 5px;
-      text-decoration: none;
       font-weight: bold;
-      transition: background 0.3s ease;
+      font-size: 16px;
+      text-decoration: none;
+border-radius: 5px;
+      transition: background-color 0.3s ease;
     }
-a.button:hover {
+
+    .btn:hover {
       background-color: #e65c00;
     }
 
@@ -57,31 +62,25 @@ a.button:hover {
       font-size: 14px;
       color: #555;
     }
+
+    footer span {
+      color: #003366;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
-  <img src="https://ik.imagekit.io/bigquamsmedia/Logopit_1745061158082.jpg?updatedAt=1755644355596" alt="Big Quams Media Logo" class="logo" />
-  <h1>BIG QUAMS MEDIA HUB</h1>
-  <p>Your go-to for all campus info — Admin Panel</p>
-  <a href="#" class="button" onclick="netlifyIdentity.open()">Go to Admin Dashboard</a>
+  <div class="container">
+    <div class="logo">
+      <img src="https://ik.imagekit.io/bigquamsmedia/Logopit_1745061158082.jpg?updatedAt=1755644355596" alt="Big Quams Logo" />
+    </div>
+    <h1>BIG QUAMS MEDIA HUB</h1>
+    <p class="subtitle">Your go-to for all campus info — Admin Panel</p>
+    <a href="/admin/" class="btn">Go to Admin Dashboard</a>
 
-  <footer>
-    Created by <strong>BIG QUAMS MEDIA</strong> | Powered by Netlify CMS
-  </footer>
-
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <script>
-    netlifyIdentity.on('init', user => {
-      if (user) {
-        window.location.href = "/admin/";
-      }
-    });
-
-    netlifyIdentity.on('login', user => {
-      window.location.href = "/admin/";
-    });
-
-    netlifyIdentity.init();
-  </script>
+    <footer>
+      <p>Created by <span>BIG QUAMS MEDIA</span> | Powered by Netlify CMS</p>
+    </footer>
+  </div>
 </body>
 </html>
