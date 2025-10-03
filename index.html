@@ -216,43 +216,22 @@
   </section>
 
 
-<section id="news" style="padding: 2rem; font-family: 'Segoe UI', sans-serif; background-color: #fff; color: #111;">
-  <h2 style="text-align: center; color: #111; border-bottom: 3px solid #f39c12; display: inline-block; padding-bottom: 0.3rem;">
-    📰 Latest News Updates
-  </h2>
-  <div id="news-list" style="max-width: 850px; margin: 2rem auto;"></div>
+
+<section style="padding: 30px; font-family: Arial, sans-serif;">
+  <h2 style="color: royalblue; font-size: 28px; margin-bottom: 20px;">Latest News Updates</h2>
+  
+  <div style="border-left: 4px solid #007BFF; padding-left: 15px; margin-bottom: 20px;">
+    <h3 style="margin: 0; font-size: 20px;">KWASU Reopens DE Application Portal</h3>
+    <p style="margin: 5px 0;">The Kwara State University has reopened its application portal for Direct Entry (DE) candidates only. UTME applicants are advised not to register at this time.</p>
+    <small style="color: gray;">Posted on October 3, 2025</small>
+  </div>
+
+  <div style="border-left: 4px solid #28A745; padding-left: 15px; margin-bottom: 20px;">
+    <h3 style="margin: 0; font-size: 20px;">KWASU MBBS & MLS Admission List Incoming</h3>
+    <p style="margin: 5px 0;">KWASU is set to release the MBBS and MLS admission list for the 2025/2026 academic session. Stay updated.</p>
+    <small style="color: gray;">Posted on October 3, 2025</small>
+  </div>
 </section>
-
-<script>
-  fetch('news')
-    .then(res => res.text())
-    .then(text => {
-      const parser = new DOMParser();
-      const html = parser.parseFromString(text, 'text/html');
-      const files = Array.from(html.querySelectorAll('a')).filter(a => a.href.endsWith('.md'));
-      const newsList = document.getElementById('news-list');
-
-      files.forEach(file => {
-        fetch('news/' + file.textContent)
-          .then(r => r.text())
-          .then(md => {
-            const title = md.match(/title:\s*(.+)/i)?.[1] || 'Untitled';
-            const date = md.match(/date:\s*(.+)/i)?.[1] || '';
-const body = md.split('---')[2] || '';
-            const preview = body.trim().slice(0, 300) + '...';
-
-            const post = document.createElement('div');
-            post.style = 'border-left: 5px solid #f39c12; background: #f9f9f9; padding: 1rem 1.5rem; margin-bottom: 2rem; border-radius: 5px;';
-            post.innerHTML = `
-              <h3 style="color: #2c3e50; margin-bottom: 0.2rem;">title</h3>
-              <small style="color: #777;">{date}</small>
-              <p style="line-height: 1.6; margin-top: 0.7rem;">${preview}</p>
-            `;
-            newsList.appendChild(post);
-          });
-      });
-    });
-</script>
   
   <section class="container" id="library" data-aos="fade-up">
     <h2>Library & eBooks</h2>
