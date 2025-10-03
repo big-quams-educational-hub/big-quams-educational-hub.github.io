@@ -2,29 +2,41 @@
 <html lang="en">
 <head>
   <style>
-  #news {
-    padding: 2rem 1rem;
-    background-color: #f8f9fa;
-  }
-
-  .news-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-
-  .news-card {
-    background-color: #fff;
-    border-left: 4px solid #007BFF;
-    padding: 1rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    transition: 0.3s ease;
-  }
-
-  .news-card:hover {
-    transform: translateY(-3px);
-  }
-  </style>
+   #news-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.news-card {
+  background: #e6f2ff;
+  padding: 15px;
+  border-left: 6px solid #007acc;
+  border-radius: 5px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+}
+.news-card h3 {
+  margin: 0 0 5px 0;
+  color: #007acc;
+}
+.news-meta {
+  font-size: 0.85rem;
+  color: #4caf50;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+.news-card p {
+  margin: 0 0 10px 0;
+}
+.read-more {
+  color: #ff6600;
+  font-weight: bold;
+  text-decoration: none;
+}
+.read-more:hover {
+  text-decoration: underline;
+}
+ </style>
 <meta property="og:image" content="https://big-quams-educational-hub-github-io.vercel.app//IMG-20250818-WA0020.jpg">
   <!-- Social Media Preview Meta Tags -->
   <meta property="og:type" content="website" />
@@ -179,6 +191,61 @@
 
 </head>
 <body>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const newsContainer = document.getElementById('news-container');
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr);
+    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+
+  function renderArticles(articles) {
+    newsContainer.innerHTML = '';
+    articles.forEach(a => {
+      const card = document.createElement('div');
+      card.className = 'news-card';
+      card.innerHTML = `
+        <h3>a.title || 'Untitled News'</h3>{a.date ? `<div class="news-meta">formatDate(a.date)</div>` : ”
+        <p>{a.description || 'No description available.'}</p>
+        <a class="read-more" target="_blank"
+href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB,%20I'm%20interested%20in%20${encodeURIComponent(a.title || 'this news')}">
+           Read More
+        </a>
+      `;
+      newsContainer.appendChild(card);
+    });
+  }
+
+  function loadFallback() {
+    const fallback = [
+      { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students across Nigeria can now apply for the 2025 scholarship program to study locally and internationally.", date: "2025-01-01" },
+      { title: "WAEC Releases 2025 Examination Timetable", description: "The West African Examination Council has officially published the timetable for the upcoming WAEC examinations.", date: "2025-02-15" },
+      { title: "Nigerian Universities to Resume Academic Activities", description: "Most public universities are set to resume academic activities from September following the recent ASUU agreement.", date: "2025-03-10" }
+    ];
+    renderArticles(fallback);
+  }
+
+  fetch("https://sheetdb.io/api/v1/87gi3xnxyfj5w")
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.length > 0) {
+        const articles = data.map(item => ({
+          title: item.title,
+          date: item.date,
+description: item.description || item.body
+        }));
+        renderArticles(articles);
+      } else {
+        loadFallback();
+      }
+    })
+    .catch(() => loadFallback());
+});
+</script>
+
   <header data-aos="fade-down">
     <div class="container">
       <nav>
@@ -349,60 +416,4 @@
           card.setAttribute('data-aos','fade-up'); // animate each news card
           card.innerHTML = `
             <h3>${a.title || 'Untitled News'}</h3>
-            ${a.publishedAt ? `<div class="news-meta">${dateFmt(a.publishedAt)}</div>` : ''}
-            <p>${a.description || 'No description available.'}</p>
-            <a class="read-more" target="_blank"
-               href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB%2C%20I'm%20interested%20in%20${encodeURIComponent(a.title || 'this news')}">
-               Read More
-            </a>
-          `;
-          newsContainer.appendChild(card);
-        });
-        // Refresh AOS for dynamically added elements
-        if (window.AOS) { AOS.refresh(); }
-      }
-
-      function loadFallback() {
-        const fallback = [
-          { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students across Nigeria can now apply for the 2025 scholarship program to study locally and internationally." },
-          { title: "WAEC Releases 2025 Examination Timetable", description: "The West African Examination Council has officially published the timetable for the upcoming WAEC examinations." },
-          { title: "Nigerian Universities to Resume Academic Activities", description: "Most public universities are set to resume academic activities from September following the recent ASUU agreement." },
-          { title: "Applications Open for National Essay Competition", description: "Secondary school students nationwide are invited to participate in the annual national essay competition." },
-          { title: "Education Minister Advocates for Digital Learning", description: "The Federal Ministry of Education is pushing for more technology-based learning in Nigerian schools." }
-        ];
-        renderArticles(fallback);
-      }
-
-      fetch(url)
-        .then(r => r.ok ? r.json() : Promise.reject(new Error('Network error')))
-        .then(data => (data && data.articles && data.articles.length) ? renderArticles(data.articles) : loadFallback())
-        .catch(() => loadFallback());
-    });
-  </script>
-<a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="whatsapp-float" title="Chat with us on WhatsApp">
-  💬
-</a>
-<script>
-  const newsContainer = document.getElementById("news-container");
-
-  fetch("https://sheetdb.io/api/v1/87gi3xnxyfj5w")
-    .then(response => response.json())
-    .then(data => {
-      data.forEach(news => {
-        const card = document.createElement("div");
-        card.className = "news-card";
-        card.innerHTML = `
-          <h3>news.title</h3>
-          <small>{news.date}</small>
-          <p>${news.description}</p>
-        `;
-        newsContainer.appendChild(card);
-      });
-    })
-    .catch(error => {
-      newsContainer.innerHTML = "<p>Unable to load news updates right now.</p>";
-      console.error(error);
-    });
-</script>
-</body>
-</html>
+            ${a.publishedAt ? `<div class="news-meta">${dateFmt(a.publishe
