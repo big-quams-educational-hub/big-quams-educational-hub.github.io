@@ -1,0 +1,111 @@
+/* Big Quams Media – Custom CMS Admin Styles */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header and top bar */
+.nc-app-header {
+  background-color: #007BFF; /* Blue */
+  color: #FFFFFF;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+.nc-app-header h1 {
+  font-size: 1.5rem;
+}
+
+/* Sidebar menu */
+.nc-sidebar {
+  background-color: #FFFFFF;
+  border-right: 1px solid #e5e5e5;
+}
+
+.nc-sidebar-nav-link {
+  color: #333;
+  padding: 10px;
+  transition: background 0.3s ease;
+}
+
+.nc-sidebar-nav-link:hover {
+  background-color: #f0f0f0;
+}
+
+.nc-sidebar-nav-link-active {
+  background-color: #007BFF;
+  color: #FFF;
+}
+
+/* Buttons */
+button,
+.nc-toolbarButton {
+  background-color: #28A745; /* Green */
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover,
+.nc-toolbarButton:hover {
+  background-color: #218838;
+}
+
+/* Primary buttons */
+.nc-button-primary {
+  background-color: #FFA500; /* Orange */
+  border-color: #FFA500;
+  color: #fff;
+}
+
+.nc-button-primary:hover {
+  background-color: #e69500;
+}
+
+/* Forms and inputs */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+textarea,
+select {
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* Content preview styling */
+.nc-previewPane-root {
+  background-color: #ffffff;
+  border-left: 1px solid #e5e5e5;
+  padding: 1rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .nc-app-header h1 {
+    font-size: 1.2rem;
+  }
+
+  button,
+  .nc-toolbarButton {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Custom Footer (if any) */
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
