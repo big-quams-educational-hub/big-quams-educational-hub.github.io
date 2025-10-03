@@ -1,26 +1,30 @@
 backend:
   name: git-gateway
-  branch: main  # change if your default branch is different
+  branch: main
 
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
+site_url: https://bigquamseducationalhub.netlify.app
+logo_url: https://ik.imagekit.io/bigquamsmedia/Logopit_1745061158082.jpg?updatedAt=1755644355596
+display_url: https://bigquamseducationalhub.netlify.app
+
+locale: 'en'
+show_preview_links: true
+editor:
+  preview: true
+  stylesheets: ["/admin/cms.css"]
+
 collections:
   - name: "news"
-    label: "News"
+    label: "News Updates"
     folder: "news"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - label: "Title"
-        name: "title"
-        widget: "string"
-      - label: "Publish Date"
-        name: "date"
-        widget: "datetime"
-      - label: "Body"
-        name: "body"
-        widget: "markdown"
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "pages"
     label: "Pages"
@@ -29,9 +33,5 @@ collections:
         label: "Home Page"
         name: "home"
         fields:
-          - label: "Title"
-            name: "title"
-            widget: "string"
-          - label: "Body"
-            name: "body"
-            widget: "markdown"
+          - { label: "Title", name: "title", widget: "string" }
+- { label: "Body", name: "body", widget: "markdown" }
