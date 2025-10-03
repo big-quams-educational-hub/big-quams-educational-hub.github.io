@@ -391,7 +391,28 @@
 <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="whatsapp-float" title="Chat with us on WhatsApp">
   💬
 </a>
+<script>
+  const newsContainer = document.getElementById("news-container");
 
+  fetch("https://sheetdb.io/api/v1/87gi3xnxyfj5w")
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(news => {
+        const card = document.createElement("div");
+        card.className = "news-card";
+        card.innerHTML = `
+          <h3>news.title</h3>
+          <small>{news.date}</small>
+          <p>${news.description}</p>
+        `;
+        newsContainer.appendChild(card);
+      });
+    })
+    .catch(error => {
+      newsContainer.innerHTML = "<p>Unable to load news updates right now.</p>";
+      console.error(error);
+    });
+</script>
 </body>
 </html>
 
