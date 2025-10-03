@@ -2,142 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BIG QUAMS MEDIA CMS Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BIG QUAMS MEDIA HUB - Admin Panel</title>
+  <link rel="icon" href="https://ik.imagekit.io/bigquamsmedia/Logopit_1745061158082.jpg?updatedAt=1755644355596" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-    /* Reset */
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
-      background-color: #ffffff; /* white background */
-      font-family: 'Montserrat', sans-serif;
-      color: #004aad; /* blue text */
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #003366;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      justify-content: center;
       align-items: center;
-      padding: 20px;
-    }
-    header {
-      background-color: #004aad; /* blue */
-      width: 100%;
-      max-width: 400px;
-      padding: 20px;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
-      font-weight: 700;
-      font-size: 1.8rem;
-      color: white;
-      border-radius: 12px 12px 0 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      letter-spacing: 2px;
-      user-select: none;
     }
-    .logo-container {
-      background-color: #ffffff; /* white */
-border: 5px solid #f58220; /* orange border */
-      border-radius: 14px;
-      padding: 15px;
-      margin: 30px 0;
-      width: 220px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .logo-container img {
-      max-width: 100%;
+
+    header img {
+      width: 100px;
       height: auto;
-      display: block;
+      margin-bottom: 20px;
     }
-    form {
-      background-color: #f58220; /* orange */
-      width: 100%;
-      max-width: 400px;
-      padding: 30px 25px;
-      border-radius: 0 0 12px 12px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+
+    h1 {
+      color: #003366;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
     }
-    input[type="email"],
-    input[type="password"] {
-      padding: 15px 20px;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 10px;
-      outline: none;
-      color: #004aad;
-      font-weight: 600;
-      transition: box-shadow 0.3s ease;
+
+    p {
+      color: #222;
+      margin-bottom: 40px;
     }
-    input::placeholder {
-      color: #004aad;
-      font-weight: 400;
-    }
-    input:focus {
-      box-shadow: 0 0 0 3px #3f9c35; /* green focus ring */
-    }
-    button {
-      background-color: #3f9c35; /* green */
-      border: none;
-      padding: 16px 0;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: white;
-      cursor: pointer;
-transition: background-color 0.25s ease;
-      user-select: none;
-    }
-    button:hover {
-      background-color: #2c6b24;
-    }
+
     footer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #777;
-      max-width: 400px;
-      text-align: center;
-      user-select: none;
+position: absolute;
+      bottom: 10px;
+      font-size: 0.8rem;
+      color: #888;
     }
-    footer a {
-      color: #f58220;
+
+    .btn {
+      background-color: #ff6600;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
       text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
     }
-    footer a:hover {
-      color: #3f9c35;
-    }
-    @media (max-width: 420px) {
-      header, form, footer {
-        max-width: 100%;
-      }
-      .logo-container {
-        width: 180px;
-        padding: 10px;
-        margin: 20px 0;
-      }
+
+    .btn:hover {
+      background-color: #e65c00;
     }
   </style>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <header>BIG QUAMS MEDIA CMS Admin Panel</header>
-  <div class="logo-container">
-    <img src="https://ik.imagekit.io/bigquamsmedia/Logopit_1745061158082.jpg?updatedAt=1755644355596" alt="Big Quams Media Logo" />
-  </div>
-  <form>
-    <input type="email" placeholder="Email" required />
-    <input type="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-  </form>
+  <header>
+    <img src="https://ik.imagekit.io/bigquamsmedia/Logopit_1745061158082.jpg?updatedAt=1755644355596" alt="Big Quams Media Logo">
+    <h1>BIG QUAMS MEDIA HUB</h1>
+    <p>Your go-to for all campus info — Admin Panel</p>
+    <a href="/admin/" class="btn">Go to Admin Dashboard</a>
+  </header>
+
   <footer>
-    &copy; 2025 Big Quams Media. Crafted with care by <a href="https://bigquamsmedia.com" target="_blank" rel="noopener noreferrer">Big Quams Media Team</a>.
+    Created by BIG QUAMS MEDIA | Powered by Netlify CMS
   </footer>
+
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
