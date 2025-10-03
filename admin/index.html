@@ -3,83 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BIG QUAMS MEDIA - Admin Panel</title>
+  <title>BIG QUAMS MEDIA CMS Admin Panel</title>
   <style>
-    /* Reset */
-    * {
-      box-sizing: border-box;
+    body {
       margin: 0;
-      padding: 0;
+      background: linear-gradient(135deg, #004aad, #00a651, #f58220, #ffffff);
+      font-family: Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
     }
-
-    body, html {
-      height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #000000;
-      color: #fff;
-    }
-
     header {
-      background-color: #d72631; /* Brand red */
-      padding: 20px 0;
+      background-color: #d42f2f; /* brand red */
+      width: 100%;
+      padding: 15px 20px;
+      font-weight: bold;
+      font-size: 1.4em;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(215, 38, 49, 0.6);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      margin-bottom: 30px;
+      color: white;
+      border-radius: 8px;
     }
-
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #fff;
-      text-transform: uppercase;
-      user-select: none;
+    .logo-container {
+      width: 200px;
+      margin-bottom: 20px;
     }
-
-    #nc-root {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 0 20px 40px;
-      background-color: #121212;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(215, 38, 49, 0.7);
-      min-height: 75vh;
+    .logo-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
     }
-
-    footer {
-      text-align: center;
-      padding: 15px 0;
-      background-color: #1b1b1b;
-font-size: 0.9rem;
-      color: #888;
-      user-select: none;
+    form {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 30px 25px;
+border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 350px;
+      box-sizing: border-box;
     }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.8rem;
-      }
-      #nc-root {
-        margin: 20px 10px;
-        padding: 15px;
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 14px 15px;
+      margin: 10px 0 20px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      outline: none;
+      box-sizing: border-box;
+    }
+    input[type="email"]::placeholder, input[type="password"]::placeholder {
+      color: #ddd;
+    }
+    button {
+      background-color: #f58220; /* orange */
+      border: none;
+      padding: 14px 0;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 1em;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #e67500;
+    }
+    @media (max-width: 400px) {
+      form {
+        padding: 20px 15px;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>BIG QUAMS MEDIA CMS</h1>
-  </header>
-
-  <main>
-    <div id="nc-root"></div>
-  </main>
-
-  <footer>
-    © 2025 BIG QUAMS MEDIA. Bringing Campus to Your Fingertips.
-  </footer>
-
-  <!-- Netlify CMS -->
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <header>BIG QUAMS MEDIA CMS Admin Panel</header>
+  <div class="logo-container">
+    <img src="https://ik.imagekit.io/bigquamsmedia/Logopit_1745061158082.jpg?updatedAt=1755644355596" alt="Big Quams Media Logo" />
+  </div>
+  <form>
+    <input type="email" placeholder="Email" required />
+<input type="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
 </body>
 </html>
