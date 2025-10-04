@@ -1,62 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-   #news-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-.news-card {
-  background: #e6f2ff;
-  padding: 15px;
-  border-left: 6px solid #007acc;
-  border-radius: 5px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-}
-.news-card h3 {
-  margin: 0 0 5px 0;
-  color: #007acc;
-}
-.news-meta {
-  font-size: 0.85rem;
-  color: #4caf50;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-.news-card p {
-  margin: 0 0 10px 0;
-}
-.read-more {
-  color: #ff6600;
-  font-weight: bold;
-  text-decoration: none;
-}
-.read-more:hover {
-  text-decoration: underline;
-}
- </style>
-<meta property="og:image" content="https://big-quams-educational-hub-github-io.vercel.app//IMG-20250818-WA0020.jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BIG QUAMS EDUCATIONAL HUB</title>
+  <meta name="description" content="Big Quams Educational Hub — your trusted guide for smarter academic choices in Nigeria. JAMB, Admissions, Coaching, Scholarships." />
+
   <!-- Social Media Preview Meta Tags -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bigquamseducationalhub.vercel.app/">
   <meta property="og:title" content="BIG QUAMS EDUCATIONAL HUB" />
   <meta property="og:description" content="Your trusted hub for academic updates, admission guides, campus gist & more!" />
-  
+  <meta property="og:image" content="https://i.imgur.com/UckiJ55.png">
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://bigquamseducationalhub.vercel.app/" />
   <meta name="twitter:title" content="BIG QUAMS EDUCATIONAL HUB" />
   <meta name="twitter:description" content="Your trusted hub for academic updates, admission guides, campus gist & more!" />
-  <meta name="twitter:image" content="https://big-quams-educational-hub-github-io.vercel.app//IMG-20250818-WA0020.jpg">
+  <meta name="twitter:image" content="https://i.imgur.com/UckiJ55.png">
 
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BIG QUAMS EDUCATIONAL HUB</title>
-  <meta name="description" content="Big Quams Educational Hub — your trusted guide for smarter academic choices in Nigeria. JAMB, Admissions, Coaching, Scholarships." />
-</head>
+  <!-- AOS Library CSS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <style>
     :root {
@@ -124,13 +88,14 @@
     footer a:hover, footer a:focus { text-decoration: underline; outline: none; }
 
     /* Floating WhatsApp Button */
-    #whatsapp-float {
+    .whatsapp-float {
       position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
       background-color: #25d366; color: white; border-radius: 50%; text-align: center; font-size: 30px;
       box-shadow: 2px 2px 5px rgba(0,0,0,0.3); z-index: 1000; cursor: pointer; display: flex; align-items: center; justify-content: center;
       transition: background-color 0.3s ease, transform 0.2s ease;
+      text-decoration: none; /* Ensure it's not underlined */
     }
-    #whatsapp-float:hover { background-color: #128c4a; transform: translateY(-2px); }
+    .whatsapp-float:hover { background-color: #128c4a; transform: translateY(-2px); }
 
     /* Library & eBooks styles */
     #library { max-width: 700px; margin: 0 auto 60px; }
@@ -140,13 +105,44 @@
     .ebook-card .btn:hover, .ebook-card .btn:focus { background-color: #138f3f; }
 
     /* News cards */
-    .news-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-    .news-card { background: var(--card); border: 1px solid #cbd5e1; border-radius: 12px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    .news-card h3 { margin: 0 0 8px; color: var(--accent-blue); font-size: 1.05rem; }
-    .news-card p { margin: 0 0 12px; color: #475569; font-size: 0.95rem; }
-    .news-meta { font-size: 0.8rem; color: #64748b; margin-bottom: 8px; }
-    .news-card .read-more { display: inline-block; background: var(--accent-orange); color: #fff; padding: 8px 12px; border-radius: 8px; font-weight: 700; text-decoration: none; }
-    .news-card .read-more:hover { background: #dc6803; }
+    #news-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .news-card {
+      background: var(--card);
+      border: 1px solid #cbd5e1;
+      border-left: 6px solid #007acc; /* Kept your specific border-left from the original style block */
+      border-radius: 5px; /* Kept your specific border-radius */
+      padding: 15px; /* Kept your specific padding */
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1); /* Kept your specific box-shadow */
+    }
+    .news-card h3 {
+      margin: 0 0 5px 0; /* Kept your specific margin */
+      color: #007acc; /* Kept your specific color */
+      font-size: 1.05rem; /* from existing news-card h3 in this stylesheet */
+    }
+    .news-meta {
+      font-size: 0.85rem; /* Kept your specific font-size */
+      color: #4caf50; /* Kept your specific color */
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    .news-card p {
+      margin: 0 0 10px 0; /* Kept your specific margin */
+      color: #475569; /* from existing news-card p in this stylesheet */
+      font-size: 0.95rem; /* from existing news-card p in this stylesheet */
+    }
+    .read-more {
+      color: #ff6600; /* Kept your specific color */
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .read-more:hover {
+      text-decoration: underline;
+    }
 
     /* Responsive */
     @media (max-width: 800px) {
@@ -155,119 +151,13 @@
       .contact-buttons a { flex: 1 1 100%; }
     }
     @media (min-width: 700px) {
-      .news-grid { grid-template-columns: 1fr 1fr; }
+      /* Re-enable if you want a grid layout for news on larger screens */
+      /* .news-grid { grid-template-columns: 1fr 1fr; } */
     }
   </style>
-<meta property="og:title" content="Big Quams Educational Hub" />
-<meta property="og:description" content="Your trusted guide for smarter academic choices in Nigeria — JAMB, Admissions, Coaching, Scholarships." />
-<meta property="og:image" content="https://i.imgur.com/UckiJ55.png" />
-<meta property="og:url" content="https://bigquamseducationalhub.vercel.app/" />
-<meta name="twitter:card" content="summary_large_image" />
-
-<style>
-  /* Floating WhatsApp Button */
-  .whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: #fff;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-  }
-  .whatsapp-float:hover {
-    background-color: #1ebc57;
-  }
-</style>
 
 </head>
 <body>
-
-<script>
-  const newsContainer = document.getElementById("news-container");
-
-  fetch("https://sheetdb.io/api/v1/87gi3xnxyfj5w")
-    .then(response => response.json())
-    .then(data => {
-      newsContainer.innerHTML = ''; // clear if needed
-      data.forEach(news => {
-        const card = document.createElement("div");
-        card.className = "news-card";
-        card.innerHTML = `
-          <h3>news.title || 'Untitled News'</h3>{news.publishedAt ? `<small>news.publishedAt</small>` : ”
-          <p>{news.description || 'No description available.'}</p>
-        `;
-        newsContainer.appendChild(card);
-      });
-    })
-    .catch(error => {
-      console.error('Failed to load news:', error);
-      newsContainer.innerHTML = `<p>Failed to load news updates.</p>`;
-    });
-</script>
-  <div id="news-container"></div>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const newsContainer = document.getElementById('news-container');
-
-  function formatDate(dateStr) {
-    if (!dateStr) return '';
-    const d = new Date(dateStr);
-    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
-  }
-
-  function renderArticles(articles) {
-    newsContainer.innerHTML = '';
-    articles.forEach(a => {
-      const card = document.createElement('div');
-      card.className = 'news-card';
-      card.innerHTML = `
-        <h3>a.title || 'Untitled News'</h3>{a.date ? `<div class="news-meta">formatDate(a.date)</div>` : ”
-        <p>{a.description || 'No description available.'}</p>
-        <a class="read-more" target="_blank"
-href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB,%20I'm%20interested%20in%20${encodeURIComponent(a.title || 'this news')}">
-           Read More
-        </a>
-      `;
-      newsContainer.appendChild(card);
-    });
-  }
-
-  function loadFallback() {
-    const fallback = [
-      { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students across Nigeria can now apply for the 2025 scholarship program to study locally and internationally.", date: "2025-01-01" },
-      { title: "WAEC Releases 2025 Examination Timetable", description: "The West African Examination Council has officially published the timetable for the upcoming WAEC examinations.", date: "2025-02-15" },
-      { title: "Nigerian Universities to Resume Academic Activities", description: "Most public universities are set to resume academic activities from September following the recent ASUU agreement.", date: "2025-03-10" }
-    ];
-    renderArticles(fallback);
-  }
-
-  fetch("https://sheetdb.io/api/v1/87gi3xnxyfj5w")
-    .then(response => response.json())
-    .then(data => {
-      if (data && data.length > 0) {
-        const articles = data.map(item => ({
-          title: item.title,
-          date: item.date,
-description: item.description || item.body
-        }));
-        renderArticles(articles);
-      } else {
-        loadFallback();
-      }
-    })
-    .catch(() => loadFallback());
-});
-</script>
 
   <header data-aos="fade-down">
     <div class="container">
@@ -329,14 +219,14 @@ description: item.description || item.body
     </ul>
   </section>
 
-
-<section id="news">
+<section class="container" id="news-updates" data-aos="fade-up">
   <h2>Latest News Updates</h2>
-  <div id="news-container"></div>
+  <div id="news-container">
+    <!-- News articles will be loaded here by JavaScript -->
+    <p>Loading news updates...</p>
+  </div>
 </section>
 
-  
-  
   <section class="container" id="library" data-aos="fade-up">
     <h2>Library & eBooks</h2>
     <div class="ebook-card" data-aos="zoom-in">
@@ -405,14 +295,18 @@ description: item.description || item.body
     </form>
   </section>
 
-
-
-
   <footer>
-    &copy; 2025 Big Quams Educational Hub. All rights reserved. 
+    &copy; 2025 Big Quams Educational Hub. All rights reserved.
     <br />
     Built with ❤️ by <a href="https://bigquamsmedia-one.vercel.app/" target="_blank" rel="noopener noreferrer">Big Quams Media</a>.
   </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with Big Quams on WhatsApp">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.52 3.44 1.48 4.9l-1.01 3.7c-.15.58.33 1.15.92 1.01l3.5-.95c1.42.79 3.02 1.25 4.92 1.25 5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm.04 1.62c4.61 0 8.36 3.75 8.36 8.36 0 4.61-3.75 8.36-8.36 8.36-.61 0-1.22-.09-1.79-.26l-3.32.9 1.05-3.08c-.85-1.1-1.34-2.4-1.34-3.88 0-4.61 3.75-8.36 8.36-8.36zm-2.3 4.25c-.2.0-.4-.01-.59.04-.19.06-.35.15-.5.25-.15.1-.28.23-.4.36l-.08.08c-.14.16-.27.35-.37.56-.1.21-.16.44-.16.69 0 .28.08.55.24.78l1.37 1.67c.07.09.13.19.18.28.1.18.21.36.33.53.13.17.26.33.4.47.16.15.34.28.53.39.2.1.42.16.65.16.22 0 .43-.05.62-.15.19-.1.35-.23.49-.38.14-.15.25-.32.33-.51.08-.19.1-.4.06-.61-.03-.2-.1-.38-.2-.54l-.27-.4-.2-.23c-.1-.13-.23-.26-.38-.37-.15-.12-.32-.2-.51-.25-.18-.05-.37-.04-.54.02zm.69 1.63c.12-.02.24-.01.35.03.11.04.22.1.31.17.09.08.18.17.25.28l.05.08.06.1c.07.12.11.26.11.4 0 .14-.04.27-.11.4-.07.13-.17.25-.29.35l-1.37-1.67zm-.83-.14c-.05-.07-.11-.13-.18-.18-.07-.06-.15-.1-.23-.13-.08-.03-.17-.04-.26-.01-.09.03-.17.07-.24.13l-.06.06c-.05.05-.1.11-.13.17-.03.07-.04.14-.04.22s.01.16.04.23c.03.07.08.13.13.18l.27.4.2.23c.08.09.17.17.27.24.1.07.2.12.31.15.1.03.2.04.3.01.1-.02.2-.07.28-.13.09-.06.16-.13.22-.22.06-.09.11-.19.13-.3.03-.11.04-.23.01-.34-.02-.12-.07-.22-.13-.3l-.08-.13c-.06-.1-.13-.19-.22-.26-.09-.07-.19-.13-.3-.15z"/>
+    </svg>
+  </a>
 
   <!-- AOS Script -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -421,22 +315,64 @@ description: item.description || item.body
   </script>
 
   <script>
-    // API-powered news with graceful fallback. Kept your styles/structure intact.
     document.addEventListener('DOMContentLoaded', () => {
-      const apiKey = '3ab411793f704118ba852fe0de5a51a8'; // Your NewsAPI key
-      const url = `https://newsapi.org/v2/everything?q=education+scholarship&language=en&sortBy=publishedAt&pageSize=6&apiKey=${apiKey}`;
       const newsContainer = document.getElementById('news-container');
 
-      function dateFmt(s) {
-        try { return new Date(s).toLocaleString(); } catch { return ''; }
+      function formatDate(dateStr) {
+        if (!dateStr) return '';
+        const d = new Date(dateStr);
+        return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
       }
 
       function renderArticles(articles) {
-        newsContainer.innerHTML = '';
+        newsContainer.innerHTML = ''; // Clear existing content
+        if (articles.length === 0) {
+          newsContainer.innerHTML = `<p>No news updates available at the moment. Please check back later.</p>`;
+          return;
+        }
+
         articles.forEach(a => {
           const card = document.createElement('div');
           card.className = 'news-card';
-          card.setAttribute('data-aos','fade-up'); // animate each news card
           card.innerHTML = `
             <h3>${a.title || 'Untitled News'}</h3>
-            ${a.publishedAt ? `<div class="news-meta">${dateFmt(a.publishe
+            ${a.date ? `<div class="news-meta">${formatDate(a.date)}</div>` : ''}
+            <p>${a.description || 'No description available.'}</p>
+            <a class="read-more" target="_blank"
+            href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB,%20I'm%20interested%20in%20${encodeURIComponent(a.title || 'this news')}" rel="noopener noreferrer">
+              Read More
+            </a>
+          `;
+          newsContainer.appendChild(card);
+        });
+      }
+
+      function loadFallback() {
+        const fallback = [
+          { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students across Nigeria can now apply for the 2025 scholarship program to study locally and internationally.", date: "2025-01-01" },
+          { title: "WAEC Releases 2025 Examination Timetable", description: "The West African Examination Council has officially published the timetable for the upcoming WAEC examinations.", date: "2025-02-15" },
+          { title: "Nigerian Universities to Resume Academic Activities", description: "Most public universities are set to resume academic activities from September following the recent ASUU agreement.", date: "2025-03-10" }
+        ];
+        renderArticles(fallback);
+      }
+
+      fetch("https://sheetdb.io/api/v1/87gi3xnxyfj5w")
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.length > 0) {
+            const articles = data.map(item => ({
+              title: item.title,
+              date: item.date,
+              description: item.description || item.body
+            }));
+            renderArticles(articles);
+          } else {
+            loadFallback();
+          }
+        })
+        .catch(() => loadFallback()); // Load fallback on any fetch error
+    });
+  </script>
+
+</body>
+</html>
