@@ -315,63 +315,85 @@
   </script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const newsContainer = document.getElementById('news-container');
+    <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const newsContainer = document.getElementById('news-container');
 
-      function formatDate(dateStr) {
-        if (!dateStr) return '';
-        const d = new Date(dateStr);
-        return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    function formatDate(dateStr) {
+      if (!dateStr) return 'N/A';
+      const d = new Date(dateStr);
+      return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    // --- NEW FUNCTION: To create a URL-friendly slug from the title ---
+    function createSlug(title) {
+      if (!title) return '';
+      return title
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '') // Remove non-word chars
+        .replace(/[\s_-]+/g, '-') // Replace spaces/underscores with single dash
+        .replace(/^-+|-+$/g, ''); // Trim dashes from start/end
+    }
+    // ------------------------------------------------------------------
+
+    function renderArticles(articles) {
+      newsContainer.innerHTML = ''; // Clear existing content
+      if (articles.length === 0) {
+        newsContainer.innerHTML = `<p>No news updates available at the moment. Please check back later.</p>`;
+        return;
       }
 
-      function renderArticles(articles) {
-        newsContainer.innerHTML = ''; // Clear existing content
-        if (articles.length === 0) {
-          newsContainer.innerHTML = `<p>No news updates available at the moment. Please check back later.</p>`;
-          return;
+      articles.forEach(a => {
+        const card = document.createElement('div');
+        card.className = 'news-card';
+        // --- MODIFIED LINK TO POINT TO news-detail.html with slug ---
+        const articleSlug = createSlug(a.title); // Generate slug for the link
+        card.innerHTML = `
+          <h3>${a.title || 'Untitled News'}</h3>
+          ${a.date ? `<div class="news-meta">Published: ${formatDate(a.date)}</div>` : ''}
+          <p>${a.description || 'No description available.'}</p>
+          <a class="read-more" href="/news-detail.html?slug=${articleSlug}" rel="noopener noreferrer">
+             Read More
+          </a>
+        `;
+        // -------------------------------------------------------------
+        newsContainer.appendChild(card);
+      });
+    }
+
+    function loadFallback() {
+      const fallback = [
+        { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students across Nigeria can now apply for the 2025 scholarship program to study locally and internationally.", date: "2025-01-01", body: "Detailed information about the new federal scholarship scheme, including eligibility criteria and application deadlines, has been released. The scheme aims to support academic excellence across various fields of study, both within Nigeria and abroad. Students are encouraged to visit the official government portal for more information.", image_url: "https://i.imgur.com/UckiJ55.png" },
+        { title: "WAEC Releases 2025 Examination Timetable", description: "The West African Examination Council has officially published the timetable for the upcoming WAEC examinations.", date: "2025-02-15", body: "The West African Examination Council (WAEC) has released the much-anticipated timetable for the 2025 May/June Senior School Certificate Examination (SSCE). Candidates are advised to download the full timetable from the WAEC official website and prepare accordingly. Strict adherence to exam guidelines will be enforced.", image_url: "https://i.imgur.com/UckiJ55.png" },
+        { title: "Nigerian Universities to Resume Academic Activities", description: "Most public universities are set to resume academic activities from September following the recent ASUU agreement.", date: "2025-03-10", body: "Following a breakthrough in negotiations between the Academic Staff Union of Universities (ASUU) and the Federal Government, a consensus has been reached for public universities to resume full academic activities by September. Students are advised to contact their respective institutions for specific resumption dates and revised academic calendars.", image_url: "https://i.imgur.com/UckiJ55.png" }
+      ];
+      renderArticles(fallback.map(item => ({
+        ...item,
+        // Ensure 'body' is passed to fallback items for consistent display
+        body: item.body || item.description,
+        image_url: item.image_url || 'https://i.imgur.com/UckiJ55.png' // Ensure fallback images are defined
+      })));
+    }
+
+    fetch("https://sheetdb.io/api/v1/87gi3xnxyfj5w")
+      .then(response => response.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          const articles = data.map(item => ({
+            title: item.title,
+            date: item.date,
+            description: item.description,
+            body: item.body || item.description, // Use body if available, otherwise description
+            image_url: item.image_url // Pass image_url if it exists
+          }));
+          renderArticles(articles);
+        } else {
+          loadFallback();
         }
-
-        articles.forEach(a => {
-          const card = document.createElement('div');
-          card.className = 'news-card';
-          card.innerHTML = `
-            <h3>${a.title || 'Untitled News'}</h3>
-            ${a.date ? `<div class="news-meta">${formatDate(a.date)}</div>` : ''}
-            <p>${a.description || 'No description available.'}</p>
-            <a class="read-more" target="_blank"
-            href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB,%20I'm%20interested%20in%20${encodeURIComponent(a.title || 'this news')}" rel="noopener noreferrer">
-              Read More
-            </a>
-          `;
-          newsContainer.appendChild(card);
-        });
-      }
-
-      function loadFallback() {
-        const fallback = [
-          { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students across Nigeria can now apply for the 2025 scholarship program to study locally and internationally.", date: "2025-01-01" },
-          { title: "WAEC Releases 2025 Examination Timetable", description: "The West African Examination Council has officially published the timetable for the upcoming WAEC examinations.", date: "2025-02-15" },
-          { title: "Nigerian Universities to Resume Academic Activities", description: "Most public universities are set to resume academic activities from September following the recent ASUU agreement.", date: "2025-03-10" }
-        ];
-        renderArticles(fallback);
-      }
-
-      fetch("https://sheetdb.io/api/v1/87gi3xnxyfj5w")
-        .then(response => response.json())
-        .then(data => {
-          if (data && data.length > 0) {
-            const articles = data.map(item => ({
-              title: item.title,
-              date: item.date,
-              description: item.description || item.body
-            }));
-            renderArticles(articles);
-          } else {
-            loadFallback();
-          }
-        })
-        .catch(() => loadFallback()); // Load fallback on any fetch error
-    });
+      })
+      .catch(() => loadFallback()); // Load fallback on any fetch error
+  });
+</script>
   </script>
 
 </body>
