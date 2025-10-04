@@ -193,6 +193,29 @@
 <body>
 
 <script>
+  const newsContainer = document.getElementById("news-container");
+
+  fetch("https://sheetdb.io/api/v1/87gi3xnxyfj5w")
+    .then(response => response.json())
+    .then(data => {
+      newsContainer.innerHTML = ''; // clear if needed
+      data.forEach(news => {
+        const card = document.createElement("div");
+        card.className = "news-card";
+        card.innerHTML = `
+          <h3>news.title || 'Untitled News'</h3>{news.publishedAt ? `<small>news.publishedAt</small>` : ”
+          <p>{news.description || 'No description available.'}</p>
+        `;
+        newsContainer.appendChild(card);
+      });
+    })
+    .catch(error => {
+      console.error('Failed to load news:', error);
+      newsContainer.innerHTML = `<p>Failed to load news updates.</p>`;
+    });
+</script>
+  <div id="news-container"></div>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
   const newsContainer = document.getElementById('news-container');
 
