@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News Article - BIG QUAMS EDUCATIONAL HUB</title>
+  <meta name="description" content="Read the latest updates from Big Quams Educational Hub." />
+
+  <!-- Default Open Graph Tags (will be updated by JS, but crawlers might see these defaults) -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://bigquamseducationalhub.vercel.app/news-detail.html"> <!-- Placeholder - will be updated by JS -->
+  <meta property="og:title" content="Loading News - BIG QUAMS EDUCATIONAL HUB" />
+  <meta property="og:description" content="Loading article content..." />
+  <meta property="og:image" content="https://i.imgur.com/UckiJ55.png"> <!-- Default image -->
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://bigquamseducationalhub.vercel.app/news-detail.html" /> <!-- Placeholder - will be updated by JS -->
+  <meta name="twitter:title" content="Loading News - BIG QUAMS EDUCATIONAL HUB" />
+  <meta name="twitter:description" content="Loading article content..." />
+  <meta name="twitter:image" content="https://i.imgur.com/UckiJ55.png"> <!-- Default image -->
+
+  <!-- AOS Library CSS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <!-- Link to your main stylesheet. Assumes style.css is in the same root directory. -->
+  <link rel="stylesheet" href="style.css"> 
+  
+  <style>
+    /* Specific styles for this news detail page if needed, or global styles from style.css */
+    .article-header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .article-header h1 {
+      color: var(--accent-blue);
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .article-meta {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .article-body {
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #334155;
+    }
+    .article-body img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1.5rem auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .share-buttons {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #eee;
+        text-align: center;
+    }
+    .share-buttons h3 {
+        color: var(--accent-blue);
+        margin-bottom: 1rem;
+    }
+    .share-buttons a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 15px;
+        margin: 0 5px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+    .share-buttons .whatsapp { background-color: #25d366; }
+    .share-buttons .whatsapp:hover { background-color: #128c4a; }
+    .share-buttons .facebook { background-color: #1877f2; }
+    .share-buttons .facebook:hover { background-color: #166fe5; }
+    .share-buttons .twitter { background-color: #1da1f2; }
+    .share-buttons .twitter:hover { background-color: #1991db; }
+    .share-buttons .linkedin { background-color: #0a66c2; }
+    .share-buttons .linkedin:hover { background-color: #095fb8; }
+
+    @media (max-width: 600px) {
+        .article-header h1 { font-size: 1.8rem; }
+        .article-body { font-size: 1rem; }
+        .share-buttons a {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+    }
+  </style>
+
+</head>
+<body>
+
+  <header data-aos="fade-down">
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo">
+            <img src="https://i.imgur.com/UckiJ55.png" alt="Big Quams Logo" />
+          </div>
+          <div>
+            <div class="brand-text">BIG QUAMS</div>
+            <div class="brand-subtext">Educational Hub</div>
+          </div>
+        </div>
+        <div class="navlinks">
+          <a href="/index.html#home">Home</a>
+          <a href="/index.html#about">About</a>
+          <a href="/index.html#services">Services</a>
+          <a href="/index.html#news-updates">News Updates</a>
+          <a href="/index.html#library">Library</a>
+          <a href="/index.html#testimonials">Testimonials</a>
+          <a href="/index.html#blog">Blog</a>
+          <a href="/index.html#contact" class="btn">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="news-article-section" data-aos="fade-up">
+      <div id="article-content">
+        <!-- News article content will be dynamically loaded here -->
+        <p>Loading news article...</p>
+      </div>
+      <div class="share-buttons">
+          <h3>Share This Article:</h3>
+          <a id="share-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="whatsapp">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.52 3.44 1.48 4.9l-1.01 3.7c-.15.58.33 1.15.92 1.01l3.5-.95c1.42.79 3.02 1.25 4.92 1.25 5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm.04 1.62c4.61 0 8.36 3.75 8.36 8.36 0 4.61-3.75 8.36-8.36 8.36-.61 0-1.22-.09-1.79-.26l-3.32.9 1.05-3.08c-.85-1.1-1.34-2.4-1.34-3.88 0-4.61 3.75-8.36 8.36-8.36zm-2.3 4.25c-.2.0-.4-.01-.59.04-.19.06-.35.15-.5.25-.15.1-.28.23-.4.36l-.08.08c-.14.16-.27.35-.37.56-.1.21-.16.44-.16.69 0 .28.08.55.24.78l1.37 1.67c.07.09.13.19.18.28.1.18.21.36.33.53.13.17.26.33.4.47.16.15.34.28.53.39.2.1.42.16.65.16.22 0 .43-.05.62-.15.19-.1.35-.23.49-.38.14-.15.25-.32.33-.51.08-.19.1-.4.06-.61-.03-.2-.1-.38-.2-.54l-.27-.4-.2-.23c-.1-.13-.23-.26-.38-.37-.15-.12-.32-.2-.51-.25-.18-.05-.37-.04-.54.02zm.69 1.63c.12-.02.24-.01.35.03.11.04.22.1.31.17.09.08.18.17.25.28l.05.08.06.1c.07.12.11.26.11.4 0 .14-.04.27-.11.4-.07.13-.17.25-.29.35l-1.37-1.67zm-.83-.14c-.05-.07-.11-.13-.18-.18-.07-.06-.15-.1-.23-.13-.08-.03-.17-.04-.26-.01-.09.03-.17.07-.24.13l-.06.06c-.05.05-.1.11-.13.17-.03.07-.04.14-.04.22s.01.16.04.23c.03.07.08.13.13.18l.27.4.2.23c.08.09.17.17.27.24.1.07.2.12.31.15.1.03.2.04.3.01.1-.02.2-.07.28-.13.09-.06.16-.13.22-.22.06-.09.11-.19.13-.3.03-.11.04-.23.01-.34-.02-.12-.07-.22-.13-.3l-.08-.13c-.06-.1-.13-.19-.22-.26-.09-.07-.19-.13-.3-.15z"/></svg>
+            WhatsApp
+          </a>
+          <a id="share-facebook" href="#" target="_blank" rel="noopener noreferrer" class="facebook">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M14 13.5h2.5L17 9.8h-2.5V7.4c0-1 .3-1.8 1.8-1.8h.7V3.2c-.3 0-1.2-.1-2.3-.1-2.5 0-4.2 1.5-4.2 4.3v2.8H8v3.7h2.5V22h5V13.5z"/></svg>
+            Facebook
+          </a>
+          <a id="share-twitter" href="#" target="_blank" rel="noopener noreferrer" class="twitter">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.37-.83.5-1.75.85-2.73 1.05C18.17 4.18 17.1.6 14.54.6c-2.37 0-4.31 1.94-4.31 4.31 0 .34.04.67.11.98-3.58-.18-6.75-1.89-8.88-4.48-.37.64-.58 1.39-.58 2.18 0 1.49.76 2.81 1.92 3.59-.7-.02-1.37-.22-1.95-.5v.06c0 2.1 1.49 3.84 3.47 4.23-.36.1-.73.15-1.12.15-.27 0-.53-.02-.79-.08.55 1.72 2.14 2.98 4.02 3.02-1.48 1.16-3.34 1.85-5.38 1.85-.35 0-.7-.02-1.05-.06 1.92 1.23 4.2 1.94 6.64 1.94 8 0 12.38-6.63 12.38-12.38 0-.2-.01-.4-.02-.6.85-.61 1.58-1.37 2.16-2.24z"/></svg>
+            Twitter
+          </a>
+          <a id="share-linkedin" href="#" target="_blank" rel="noopener noreferrer" class="linkedin">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M20.447 20.452h-3.554v-5.629c0-1.32-.497-2.221-1.652-2.221-1.047 0-1.666.794-1.94 1.564-.099.274-.125.65-.125 1.026v5.26H9.624s.046-9.986 0-11.02h3.554v1.517c-.015.025-.034.05-.054.075h.054c.487-.758 1.35-1.875 3.197-1.875 2.336 0 4.08 1.539 4.08 4.84V20.45zm-15.34-11.411a2.126 2.126 0 0 1-2.13-2.124A2.126 2.126 0 0 1 5.107 4.79c1.17 0 2.124.954 2.13 2.126 0 1.17-.954 2.124-2.13 2.124zM3.442 20.452H6.99V9.431H3.442v11.02z"/></svg>
+            LinkedIn
+          </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Big Quams Educational Hub. All rights reserved. 
+    <br />
+    Built with ❤️ by <a href="https://bigquamsmedia-one.vercel.app/" target="_blank" rel="noopener noreferrer">Big Quams Media</a>.
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with Big Quams on WhatsApp">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="white">
+      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.52 3.44 1.48 4.9l-1.01 3.7c-.15.58.33 1.15.92 1.01l3.5-.95c1.42.79 3.02 1.25 4.92 1.25 5.46 0 9.91-4.45 9.91-9.91s-4.45-9.91-9.91-9.91zm.04 1.62c4.61 0 8.36 3.75 8.36 8.36 0 4.61-3.75 8.36-8.36 8.36-.61 0-1.22-.09-1.79-.26l-3.32.9 1.05-3.08c-.85-1.1-1.34-2.4-1.34-3.88 0-4.61 3.75-8.36 8.36-8.36zm-2.3 4.25c-.2.0-.4-.01-.59.04-.19.06-.35.15-.5.25-.15.1-.28.23-.4.36l-.08.08c-.14.16-.27.35-.37.56-.1.21-.16.44-.16.69 0 .28.08.55.24.78l1.37 1.67c.07.09.13.19.18.28.1.18.21.36.33.53.13.17.26.33.4.47.16.15.34.28.53.39.2.1.42.16.65.16.22 0 .43-.05.62-.15.19-.1.35-.23.49-.38.14-.15.25-.32.33-.51.08-.19.1-.4.06-.61-.03-.2-.1-.38-.2-.54l-.27-.4-.2-.23c-.1-.13-.23-.26-.38-.37-.15-.12-.32-.2-.51-.25-.18-.05-.37-.04-.54.02zm.69 1.63c.12-.02.24-.01.35.03.11.04.22.1.31.17.09.08.18.17.25.28l.05.08.06.1c.07.12.11.26.11.4 0 .14-.04.27-.11.4-.07.13-.17.25-.29.35l-1.37-1.67zm-.83-.14c-.05-.07-.11-.13-.18-.18-.07-.06-.15-.1-.23-.13-.08-.03-.17-.04-.26-.01-.09.03-.17.07-.24.13l-.06.06c-.05.05-.1.11-.13.17-.03.07-.04.14-.04.22s.01.16.04.23c.03.07.08.13.13.18l.27.4.2.23c.08.09.17.17.27.24.1.07.2.12.31.15.1.03.2.04.3.01.1-.02.2-.07.28-.13.09-.06.16-.13.22-.22.06-.09.11-.19.13-.3.03-.11.04-.23.01-.34-.02-.12-.07-.22-.13-.3l-.08-.13c-.06-.1-.13-.19-.22-.26-.09-.07-.19-.13-.3-.15z"/>
+    </svg>
+  </a>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, once: true, offset: 80 });
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const articleContentDiv = document.getElementById('article-content');
+      const shareWhatsapp = document.getElementById('share-whatsapp');
+      const shareFacebook = document.getElementById('share-facebook');
+      const shareTwitter = document.getElementById('share-twitter');
+      const shareLinkedIn = document.getElementById('share-linkedin');
+
+      function formatDate(dateStr) {
+        if (!dateStr) return 'N/A';
+        const d = new Date(dateStr);
+        return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+      }
+
+      function createSlug(title) {
+        if (!title) return '';
+        return title
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '') // Remove non-word chars
+          .replace(/[\s_-]+/g, '-') // Replace spaces/underscores with single dash
+          .replace(/^-+|-+$/g, ''); // Trim dashes from start/end
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const requestedSlug = params.get('slug');
+
+      if (!requestedSlug) {
+        articleContentDiv.innerHTML = `
+          <div class="article-header">
+            <h1>Error: No News Article Specified</h1>
+            <p class="article-meta">Please navigate from the <a href="/index.html#news-updates">News Updates</a> section.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Display a loading state initially
+      articleContentDiv.innerHTML = `
+        <div class="article-header">
+          <h1>Loading Article...</h1>
+          <p class="article-meta">Please wait.</p>
+        </div>
+      `;
+
+
+      fetch("https://sheetdb.io/api/v1/87gi3xnxyfj5w")
+        .then(response => response.json())
+        .then(data => {
+          const article = data.find(item => createSlug(item.title) === requestedSlug);
+
+          if (article) {
+            const articleTitle = article.title || 'Untitled News';
+            const articleDate = article.date ? formatDate(article.date) : 'Date not available';
+            const articleDescription = article.description || 'No description available.';
+            const articleBody = article.body || articleDescription; // Use body if available, else description
+            const articleImage = article.image_url || 'https://i.imgur.com/UckiJ55.png'; // Use image_url from sheet or default
+
+            // Update page content
+            document.title = `${articleTitle} - BIG QUAMS EDUCATIONAL HUB`;
+            articleContentDiv.innerHTML = `
+              <div class="article-header">
+                <h1>${articleTitle}</h1>
+                <p class="article-meta">Published: ${articleDate}</p>
+              </div>
+              ${articleImage ? `<img src="${articleImage}" alt="${articleTitle}" data-aos="zoom-in" />` : ''}
+              <div class="article-body">
+                <p>${articleBody}</p>
+              </div>
+            `;
+
+            // Attempt to update Open Graph meta tags (CRITICAL NOTE: Crawlers may NOT execute this JS)
+            const currentUrl = window.location.href;
+            document.querySelector('meta[property="og:title"]').setAttribute('content', articleTitle);
+            document.querySelector('meta[property="og:description"]').setAttribute('content', articleDescription);
+            document.querySelector('meta[property="og:image"]').setAttribute('content', articleImage);
+            document.querySelector('meta[property="og:url"]').setAttribute('content', currentUrl);
+            document.querySelector('meta[name="twitter:title"]').setAttribute('content', articleTitle);
+            document.querySelector('meta[name="twitter:description"]').setAttribute('content', articleDescription);
+            document.querySelector('meta[name="twitter:image"]').setAttribute('content', articleImage);
+            document.querySelector('meta[name="twitter:url"]').setAttribute('content', currentUrl);
+
+
+            // Setup share buttons
+            const shareText = encodeURIComponent(articleTitle + ' - Read more on Big Quams Educational Hub');
+            const shareUrl = encodeURIComponent(currentUrl);
+
+            shareWhatsapp.href = `https://wa.me/?text=${shareText}%0A${shareUrl}`;
+            shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+            shareTwitter.href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+            shareLinkedIn.href = `https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${encodeURIComponent(articleTitle)}&summary=${encodeURIComponent(articleDescription)}`;
+
+
+          } else {
+            articleContentDiv.innerHTML = `
+              <div class="article-header">
+                <h1>Article Not Found</h1>
+                <p class="article-meta">The news article you are looking for could not be found. Please go back to <a href="/index.html#news-updates">News Updates</a>.</p>
+              </div>
+            `;
+          }
+        })
+        .catch(error => {
+          console.error('Failed to load news article:', error);
+          articleContentDiv.innerHTML = `
+            <div class="article-header">
+              <h1>Error Loading Article</h1>
+              <p class="article-meta">Failed to load news article. Please try again later or check your internet connection.</p>
+            </div>
+          `;
+        });
+    });
+  </script>
+
+</body>
+</html>
