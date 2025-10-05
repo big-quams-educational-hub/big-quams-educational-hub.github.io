@@ -64,41 +64,46 @@
     .testimonial { background: #f1f5f9; padding: 20px 24px; margin: 16px 0; border-left: 5px solid var(--accent-orange); border-radius: 8px; font-style: italic; color: #475569; max-width: 800px; }
     .testimonial strong { display: block; margin-bottom: 6px; color: var(--accent-blue); font-style: normal; }
 
+    /* Updated Campus Network Section */
     .campus-network-section {
-      background: linear-gradient(135deg, var(--accent-blue) 0%, #3b82f6 100%);
-      color: white;
-      padding: 40px 24px;
-      border-radius: 12px;
+      background: var(--card); /* Changed to card background */
+      border: 1px solid #cbd5e1; /* Added border */
+      border-radius: 8px; /* Slightly rounded corners */
+      padding: 24px; /* Reduced padding for a more compact card */
       margin-bottom: 40px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1); /* Lighter shadow */
+      max-width: 600px; /* Constrain width */
+      margin-left: auto;
+      margin-right: auto;
     }
     .campus-network-section h2 {
-      color: white;
+      color: var(--accent-blue); /* Changed text color */
       border-bottom: 3px solid var(--accent-orange);
       margin-bottom: 16px;
       display: inline-block;
-      padding-bottom: 8px;
+      padding-bottom: 6px;
     }
     .campus-network-section p {
-      color: #e0e7ff;
-      font-size: 1.1rem;
-      max-width: 700px;
-      margin: 0 auto 24px;
-      line-height: 1.6;
+      color: #475569; /* Darker text for readability on light background */
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto 20px;
+      line-height: 1.5;
     }
     .campus-network-section .btn {
-      background-color: var(--accent-orange);
+      background-color: var(--accent-blue); /* Changed button color to blue */
       color: white;
-      padding: 12px 25px;
-      font-size: 1rem;
-      border-radius: 25px;
-      font-weight: 700;
+      padding: 10px 20px; /* Adjusted button padding */
+      font-size: 0.95rem; /* Adjusted font size */
+      border-radius: 8px; /* Slightly rounded button */
+      font-weight: 600; /* Adjusted font weight */
       transition: background-color 0.3s ease;
     }
     .campus-network-section .btn:hover {
-      background-color: #d96211;
+      background-color: #1b37a6;
     }
+
 
     .contact-section { background: #f9fafb; padding: 32px 24px; border-radius: 12px; max-width: 700px; margin: 0 auto 60px; box-shadow: 0 8px 24px rgb(0 0 0 / 0.05); }
     .contact-section h2 { text-align: center; margin-bottom: 24px; }
@@ -359,75 +364,4 @@
     AOS.init({ duration: 700, once: true, offset: 80 });
   </script>
 
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const newsContainer = document.getElementById('news-container');
-
-    function formatDate(dateStr) {
-      if (!dateStr) return 'N/A';
-      const d = new Date(dateStr);
-      return d.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
-    }
-
-    function createSlug(title) {
-      if (!title) return '';
-      return title
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, '') // Remove non-word chars
-        .replace(/[\s_-]+/g, '-') // Replace spaces/underscores with single dash
-        .replace(/^-+|-+$/g, ''); // Trim dashes from start/end
-    }
-
-    function renderArticles(articles) {
-      newsContainer.innerHTML = ''; // Clear existing content
-      if (articles.length === 0) {
-        newsContainer.innerHTML = `<p>No news updates available at the moment. Please check back later.</p>`;
-        return;
-      }
-
-      articles.forEach(a => {
-        const card = document.createElement('div');
-        card.className = 'news-card';
-        const articleSlug = createSlug(a.title); // Generate slug for the link
-        card.innerHTML = `
-          <h3>${a.title || 'Untitled News'}</h3>
-          ${a.date ? `<div class="news-meta">Published: ${formatDate(a.date)}</div>` : ''}
-          <p>${a.description || 'No description available.'}</p>
-          <a class="read-more" href="/news-detail.html?slug=${articleSlug}" rel="noopener noreferrer">
-             Read More
-          </a>
-        `;
-        newsContainer.appendChild(card);
-      });
-    }
-
-    // Load fallback data if there are no live updates
-    function loadFallback() {
-      const fallback = [
-        { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students across Nigeria can now apply for the 2025 scholarship program to study locally and internationally.", date: "2025-01-01" },
-        { title: "JAMB Releases Important Update on UTME 2025 Registration", description: "Candidates for the upcoming UTME exams are advised to check the official JAMB portal for critical registration dates and guidelines.", date: "2024-12-15" },
-        { title: "Top 10 Universities in Nigeria for Computer Science", description: "Discover the leading institutions offering excellent Computer Science programs based on recent rankings and student feedback.", date: "2024-11-20" },
-        { title: "How to Prepare for Post-UTME Exams Effectively", description: "Expert tips and strategies to help you ace your Post-UTME exams and secure admission into your dream university.", date: "2024-11-05" },
-        { title: "Understanding the New Curriculum for Secondary Schools", description: "A detailed breakdown of the changes in the national secondary school curriculum and what it means for students and educators.", date: "2024-10-28" }
-      ];
-      renderArticles(fallback);
-    }
-
-    // Example of loading dynamic data (if you had an API endpoint)
-    // fetch('https://your-api.com/news')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     renderArticles(data.articles);
-    //   })
-    //   .catch(error => {
-    //     console.error('Error fetching news:', error);
-    //     loadFallback(); // Load fallback on error
-    //   });
-
-    // For now, just load the fallback data immediately
-    loadFallback();
-  });
-  </script>
-
-</body>
-</html>
+  <
