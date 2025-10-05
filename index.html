@@ -11,13 +11,13 @@
   <meta property="og:url" content="https://bigquamseducationalhub.vercel.app/">
   <meta property="og:title" content="BIG QUAMS EDUCATIONAL HUB" />
   <meta property="og:description" content="Your trusted hub for academic updates, admission guides, campus gist & more!" />
-  <meta property="og:image" content="https://i.imgur.com/UckiJ55.png">
+  <meta property="og:image" content="https://ik.imagekit.io/bigquamsmedia/new3290-BigQuam%20(1).jpeg?updatedAt=1759631203646">
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://bigquamseducationalhub.vercel.app/" />
   <meta name="twitter:title" content="BIG QUAMS EDUCATIONAL HUB" />
   <meta name="twitter:description" content="Your trusted hub for academic updates, admission guides, campus gist & more!" />
-  <meta name="twitter:image" content="https://i.imgur.com/UckiJ55.png">
+  <meta name="twitter:image" content="https://ik.imagekit.io/bigquamsmedia/new3290-BigQuam%20(1).jpeg?updatedAt=1759631203646">
 
   <!-- AOS Library CSS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
@@ -164,7 +164,7 @@
       <nav>
         <div class="brand">
           <div class="logo">
-            <img src="https://i.imgur.com/UckiJ55.png" alt="Big Quams Logo" />
+            <img src="https://ik.imagekit.io/bigquamsmedia/new3290-BigQuam%20(1).jpeg?updatedAt=1759631203646" alt="Big Quams Logo" />
           </div>
           <div>
             <div class="brand-text">BIG QUAMS</div>
@@ -361,17 +361,29 @@
       const fallback = [
         { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students across Nigeria can now apply for the 2025 scholarship program to study locally and internationally.", date: "2025-01-01" },
         { title: "JAMB Releases Important Update on UTME 2025 Registration", description: "All prospective candidates are advised to take note of the new guidelines and deadlines for the upcoming examination.", date: "2024-12-20" },
-        { title: "Top 10 Tips for Excelling in Your Post-UTME Exams", description: "Our experts share invaluable strategies to help you ace your post-UTME and secure admission.", date: "2024-11-15" }
+        { title: "To Be Continued...", description: "More news coming soon!", date: "2024-12-01" }
       ];
       renderArticles(fallback);
     }
 
-    // You can replace this with an actual API call if you have a backend for news.
-    // For now, it will just load the fallback data.
-    loadFallback();
-
+    // Attempt to fetch live news (replace with your actual API endpoint if you have one)
+    fetch('https://api.yournewsfeed.com/articles') // <--- REPLACE THIS WITH YOUR ACTUAL NEWS API ENDPOINT
+      .then(response => {
+        if (!response.ok) throw new Error('Network response was not ok');
+        return response.json();
+      })
+      .then(data => {
+        if (data && data.articles && data.articles.length > 0) {
+          renderArticles(data.articles);
+        } else {
+          loadFallback(); // Fallback if API returns no articles
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching news:', error);
+        loadFallback(); // Load fallback if API fetch fails
+      });
   });
   </script>
-
 </body>
 </html>
