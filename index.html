@@ -64,6 +64,42 @@
     .testimonial { background: #f1f5f9; padding: 20px 24px; margin: 16px 0; border-left: 5px solid var(--accent-orange); border-radius: 8px; font-style: italic; color: #475569; max-width: 800px; }
     .testimonial strong { display: block; margin-bottom: 6px; color: var(--accent-blue); font-style: normal; }
 
+    .campus-network-section {
+      background: linear-gradient(135deg, var(--accent-blue) 0%, #3b82f6 100%);
+      color: white;
+      padding: 40px 24px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    .campus-network-section h2 {
+      color: white;
+      border-bottom: 3px solid var(--accent-orange);
+      margin-bottom: 16px;
+      display: inline-block;
+      padding-bottom: 8px;
+    }
+    .campus-network-section p {
+      color: #e0e7ff;
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    .campus-network-section .btn {
+      background-color: var(--accent-orange);
+      color: white;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 25px;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+    .campus-network-section .btn:hover {
+      background-color: #d96211;
+    }
+
     .contact-section { background: #f9fafb; padding: 32px 24px; border-radius: 12px; max-width: 700px; margin: 0 auto 60px; box-shadow: 0 8px 24px rgb(0 0 0 / 0.05); }
     .contact-section h2 { text-align: center; margin-bottom: 24px; }
     .contact-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 32px; }
@@ -178,6 +214,7 @@
           <a href="#news-updates">News Updates</a>
           <a href="#library">Library</a>
           <a href="#testimonials">Testimonials</a>
+          <a href="#campus-network">Join Our Campus Network</a>
           <a href="#blog">Blog</a>
           <a href="#contact" class="btn">Contact</a>
         </div>
@@ -253,6 +290,14 @@
     </div>
   </section>
 
+  <section class="container campus-network-section" id="campus-network" data-aos="fade-up">
+    <h2>Join Our Campus Network</h2>
+    <p>CampusConnect NG: Connect with fellow students across Nigeria. Share information, get support, and build your academic community!</p>
+    <a href="https://example.com/join-campus-network" target="_blank" rel="noopener noreferrer" class="btn" aria-label="Join CampusConnect NG">
+      🚀 Join CampusConnect NG
+    </a>
+  </section>
+
   <section class="container" id="blog" data-aos="fade-up">
     <h2>Blog Suggestions</h2>
     <ul class="services-list">
@@ -279,7 +324,7 @@
       <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn" aria-label="Send Email">
         📧 Send Email
       </a>
-      <a href="https://chat.whatsapp.com/Bvi1BVHGAC8A9pTBTFNEXh" target="_blank" rel="noopener noreferrer" class="group-btn" aria-label="Join WhatsApp Group">
+      <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="group-btn" aria-label="Join WhatsApp Group">
         👥 Join Brainy Buddies Group
       </a>
       <a href="https://bigquamsmedia-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="Visit Portfolio">
@@ -360,30 +405,29 @@
     function loadFallback() {
       const fallback = [
         { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students across Nigeria can now apply for the 2025 scholarship program to study locally and internationally.", date: "2025-01-01" },
-        { title: "JAMB Releases Important Update on UTME 2025 Registration", description: "All prospective candidates are advised to take note of the new guidelines and deadlines for the upcoming examination.", date: "2024-12-20" },
-        { title: "To Be Continued...", description: "More news coming soon!", date: "2024-12-01" }
+        { title: "JAMB Releases Important Update on UTME 2025 Registration", description: "Candidates for the upcoming UTME exams are advised to check the official JAMB portal for critical registration dates and guidelines.", date: "2024-12-15" },
+        { title: "Top 10 Universities in Nigeria for Computer Science", description: "Discover the leading institutions offering excellent Computer Science programs based on recent rankings and student feedback.", date: "2024-11-20" },
+        { title: "How to Prepare for Post-UTME Exams Effectively", description: "Expert tips and strategies to help you ace your Post-UTME exams and secure admission into your dream university.", date: "2024-11-05" },
+        { title: "Understanding the New Curriculum for Secondary Schools", description: "A detailed breakdown of the changes in the national secondary school curriculum and what it means for students and educators.", date: "2024-10-28" }
       ];
       renderArticles(fallback);
     }
 
-    // Attempt to fetch live news (replace with your actual API endpoint if you have one)
-    fetch('https://api.yournewsfeed.com/articles') // <--- REPLACE THIS WITH YOUR ACTUAL NEWS API ENDPOINT
-      .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-      })
-      .then(data => {
-        if (data && data.articles && data.articles.length > 0) {
-          renderArticles(data.articles);
-        } else {
-          loadFallback(); // Fallback if API returns no articles
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching news:', error);
-        loadFallback(); // Load fallback if API fetch fails
-      });
+    // Example of loading dynamic data (if you had an API endpoint)
+    // fetch('https://your-api.com/news')
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     renderArticles(data.articles);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error fetching news:', error);
+    //     loadFallback(); // Load fallback on error
+    //   });
+
+    // For now, just load the fallback data immediately
+    loadFallback();
   });
   </script>
+
 </body>
 </html>
