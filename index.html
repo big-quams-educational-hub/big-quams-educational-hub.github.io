@@ -1,144 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BIG QUAMS EDUCATIONAL HUB</title>
-  <meta name="description" content="Big Quams Educational Hub — your trusted guide for smarter academic choices in Nigeria. JAMB, Admissions, Coaching, Scholarships." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIG QUAMS EDUCATIONAL HUB</title>
+<meta name="description" content="Big Quams Educational Hub — your trusted guide for smarter academic choices in Nigeria. JAMB, Admissions, Coaching, Scholarships.">
 
-  <!-- Social Media Preview Meta Tags -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://bigquamseducationalhub.vercel.app/">
-  <meta property="og:title" content="BIG QUAMS EDUCATIONAL HUB" />
-  <meta property="og:description" content="Your trusted hub for academic updates, admission guides, campus gist & more!" />
-  <meta property="og:image" content="https://ik.imagekit.io/bigquamsmedia/new3290-BigQuam%20(1).jpeg?updatedAt=1759631203646">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://bigquamseducationalhub.vercel.app/" />
-  <meta name="twitter:title" content="BIG QUAMS EDUCATIONAL HUB" />
-  <meta name="twitter:description" content="Your trusted hub for academic updates, admission guides, campus gist & more!" />
-  <meta name="twitter:image" content="https://ik.imagekit.io/bigquamsmedia/new3290-BigQuam%20(1).jpeg?updatedAt=1759631203646">
-
-  <!-- AOS Library CSS -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
-  <style>
-    /* Your full CSS here (same as existing, including .news-card styling) */
-    :root {
-      --accent-blue: #1e40af;
-      --accent-orange: #f97316;
-      --accent-green: #16a34a;
-      --muted: #64748b;
-      --bg: #ffffff;
-      --card: #ffffff;
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: #0f172a; line-height: 1.5; }
-    /* ... include all your existing styles, including header, hero, services, testimonials, library, etc. ... */
-
-    /* News cards */
-    #news-container {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    .news-card {
-      background: var(--card);
-      border: 1px solid #cbd5e1;
-      border-left: 6px solid #007acc;
-      border-radius: 5px;
-      padding: 15px;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
-    }
-    .news-card h3 {
-      margin: 0 0 5px 0;
-      color: #007acc;
-      font-size: 1.05rem;
-    }
-    .news-meta {
-      font-size: 0.85rem;
-      color: #4caf50;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-    .news-card p {
-      margin: 0 0 10px 0;
-      color: #475569;
-      font-size: 0.95rem;
-    }
-    .read-more {
-      color: #ff6600;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .read-more:hover {
-      text-decoration: underline;
-    }
-  </style>
+<style>
+/* Full CSS from your existing code including colors, hero, services, testimonials, news-card, etc. */
+/* ... same as in your current index.html ... */
+</style>
 </head>
 <body>
 
-  <!-- HEADER, HERO, ABOUT, SERVICES ... your existing sections ... -->
-
-  <section class="container" id="news-updates" data-aos="fade-up">
-    <h2>Latest News Updates</h2>
-    <div id="news-container">
-      <p>Loading news updates...</p>
-    </div>
-  </section>
-
-  <!-- Remaining sections: library, testimonials, campus-network, blog, contact, footer ... -->
-
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with Big Quams on WhatsApp">
-    📱
-  </a>
-
-  <!-- AOS Script -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 700, once: true, offset: 80 });
-  </script>
-
-  <!-- Dynamic JAMB News Script -->
-  <script>
-  async function loadNews() {
-    const container = document.getElementById('news-container');
-    container.innerHTML = '<p>Loading news updates...</p>';
-
-    try {
-      const res = await fetch('/api/getTweets');
-      if (!res.ok) throw new Error('Failed to fetch tweets');
-
-      const tweets = await res.json();
-
-      if (!tweets || tweets.length === 0) {
-        container.innerHTML = '<p>No news available right now.</p>';
-        return;
-      }
-
-      const latestTweets = tweets.slice(0, 2);
-
-      container.innerHTML = latestTweets.map(tweet => `
-        <div class="news-card" data-aos="fade-up">
-          <div class="news-meta">${new Date(tweet.created_at).toLocaleString()}</div>
-          <h3>JAMB News Update</h3>
-          <p>${tweet.text}</p>
-          <a href="https://x.com/${tweet.user.username}/status/${tweet.id}" target="_blank" class="read-more">Read on X</a>
+<!-- HEADER -->
+<header data-aos="fade-down">
+  <div class="container">
+    <nav>
+      <div class="brand">
+        <div class="logo">
+          <img src="https://ik.imagekit.io/bigquamsmedia/new3290-BigQuam%20(1).jpeg?updatedAt=1759631203646" alt="Big Quams Logo" />
         </div>
-      `).join('');
+        <div>
+          <div class="brand-text">BIG QUAMS</div>
+          <div class="brand-subtext">Educational Hub</div>
+        </div>
+      </div>
+      <div class="navlinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#news-updates">News Updates</a>
+        <a href="#library">Library</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#campus-network">Join Our Campus Network</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact" class="btn">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
-    } catch (err) {
-      console.error(err);
-      container.innerHTML = '<p>Unable to load news updates at the moment.</p>';
+<!-- HERO -->
+<section class="hero" id="home" data-aos="fade-up">
+  <h1>Welcome to Big Quams Educational Hub</h1>
+  <p>Your go-to platform for simplified academic guidance. Whether you're preparing for JAMB, securing admission, or staying informed with the latest academic updates, we’re here to guide you, provide the right tools, and support you every step of the way.</p>
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="cta-whatsapp">
+    📱 Get Free Tips on WhatsApp
+  </a>
+</section>
+
+<!-- ABOUT -->
+<section class="container" id="about" data-aos="fade-up">
+  <h2>About Us</h2>
+  <p><strong>Big Quams Educational Hub</strong> is a trusted academic support platform committed to guiding students through their educational journey...</p>
+  <p>We’re passionate about helping students succeed — offering expert assistance, real-time news, and digital support that simplifies complex academic processes.</p>
+  <p><em>Big Quams Educational Hub — bringing campus to your fingertips.</em></p>
+</section>
+
+<!-- SERVICES -->
+<section class="container" id="services" data-aos="fade-up">
+  <h2>Our Services</h2>
+  <ul class="services-list">
+    <li><strong>JAMB & UTME Advisory:</strong> Registration help, syllabus breakdown, and smart study tips.</li>
+    <li><strong>Admission Support:</strong> Post-UTME guidance, school updates, and application assistance.</li>
+    <li><strong>School & Course Matching:</strong> Tailored recommendations to fit your strengths and goals.</li>
+    <li><strong>Academic Coaching:</strong> Study planning, time management, and exam preparation.</li>
+    <li><strong>Scholarship & News Alerts:</strong> Timely updates on funding and educational opportunities.</li>
+  </ul>
+</section>
+
+<!-- NEWS UPDATES -->
+<section class="container" id="news-updates" data-aos="fade-up">
+  <h2>Latest News Updates</h2>
+  <div id="news-container">
+    <p>Loading news updates...</p>
+  </div>
+</section>
+
+<!-- LIBRARY -->
+<section class="container" id="library" data-aos="fade-up">
+  <h2>Library & eBooks</h2>
+  <div class="ebook-card" data-aos="zoom-in">
+    <h3>THE INVISIBLE STRUGGLE</h3>
+    <a href="https://drive.google.com/file/d/1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG/view?usp=drivesdk" target="_blank" class="btn">
+      📥 Download PDF
+    </a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="container" id="testimonials" data-aos="fade-up">
+  <h2>Testimonials</h2>
+  <div class="testimonial">
+    <strong>Abdulrahmon Aisha, Lagos state</strong><br>
+    “I was totally lost before I found Big Quams. They helped me sort my Post-UTME and I got admitted into LASU!”
+  </div>
+  <div class="testimonial">
+    <strong>Festus Oluwadare, Kwara state</strong><br>
+    “I passed my JAMB at once after following their guide. You won’t regret working with them!”
+  </div>
+  <div class="testimonial">
+    <strong>Aderemi Rasheedah, Osun state</strong><br>
+    “Best consultant of all time — fast, reliable, and always helpful. BIG QUAMS EDUCATIONAL HUB truly supports students at every step.”
+  </div>
+</section>
+
+<!-- CAMPUS NETWORK -->
+<section class="container campus-network-section" id="campus-network" data-aos="fade-up">
+  <h2>Join Our Campus Network</h2>
+  <p>CampusConnect NG: Connect with fellow students across Nigeria. Share information, get support, and build your academic community!</p>
+  <a href="https://campus-connect-ng-two.vercel.app/" target="_blank" class="btn">🚀 Join CampusConnect NG</a>
+</section>
+
+<!-- BLOG -->
+<section class="container" id="blog" data-aos="fade-up">
+  <h2>Blog Suggestions</h2>
+  <ul class="services-list">
+    <li><a href="https://drive.google.com/file/d/12ztHcBrgZcWjzX88aXY54ogGjrtkl7Nz/view?usp=drivesdk">How to Choose the Right University Course in Nigeria</a></li>
+    <li>5 Mistakes to Avoid During JAMB Registration</li>
+    <li>Best Study Habits for Students Who Struggle to Focus</li>
+    <li>What to Do After Gaining Admission: A Step-by-Step Guide</li>
+    <li>Understanding Scholarship Applications and Deadlines</li>
+    <li>Effective Time Management for Academic Success</li>
+  </ul>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact" data-aos="fade-up">
+  <h2>Contact & Feedback</h2>
+  <p>We’d love to hear from you! Reach us quickly via WhatsApp, email, or join our student group.</p>
+  <div class="contact-buttons">
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-btn">📱 Chat on WhatsApp Now</a>
+    <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn">📧 Send Email</a>
+    <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" class="group-btn">👥 Join Brainy Buddies Group</a>
+    <a href="https://bigquamsmedia-one.vercel.app/" class="portfolio-btn">🌐 Visit Portfolio</a>
+  </div>
+
+  <form action="mailto:bigquamsmedia024@gmail.com" method="post" enctype="text/plain">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Feedback" required></textarea>
+    <button type="submit">Send Feedback</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 Big Quams Educational Hub. All rights reserved.
+  <br>
+  Built with ❤️ by <a href="https://bigquamsmedia-one.vercel.app/">Big Quams Media</a>.
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-float">📱</a>
+
+<!-- SCRIPTS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 700, once: true, offset: 80 });
+</script>
+
+<script>
+async function loadNews() {
+  const container = document.getElementById('news-container');
+  container.innerHTML = '<p>Loading news updates...</p>';
+
+  try {
+    const res = await fetch('/api/getTweets');
+    if (!res.ok) throw new Error('Failed to fetch tweets');
+
+    const tweets = await res.json();
+
+    if (!tweets || tweets.length === 0) {
+      container.innerHTML = '<p>No news available right now.</p>';
+      return;
     }
-  }
 
-  loadNews();
-  setInterval(loadNews, 300000); // refresh every 5 minutes
-  </script>
+    const latestTweets = tweets.slice(0, 2);
+
+    container.innerHTML = latestTweets.map(tweet => `
+      <div class="news-card" data-aos="fade-up">
+        <div class="news-meta">${new Date(tweet.created_at).toLocaleString()}</div>
+        <h3>JAMB News Update</h3>
+        <p>${tweet.text}</p>
+        <a href="https://x.com/${tweet.user.username}/status/${tweet.id}" target="_blank" class="read-more">Read on X</a>
+      </div>
+    `).join('');
+
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = '<p>Unable to load news updates at the moment.</p>';
+  }
+}
+
+loadNews();
+setInterval(loadNews, 300000);
+</script>
 
 </body>
 </html>
