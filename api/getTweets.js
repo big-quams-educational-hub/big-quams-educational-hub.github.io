@@ -1,26 +1,40 @@
+// api/getTweets.js
 import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
-  const BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN;
+  const BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN; // must be set in Vercel Environment Variables
 
-  // Get JAMBHQ user ID
-  const userResponse = await fetch('https://api.twitter.com/2/users/by/username/JAMBHQ', {
-    headers: { Authorization: `Bearer ${BEARER_TOKEN}` }
-  });
-  const userData = await userResponse.json();
-  const userId = userData.data.id;
+  try {
+    const response = await fetch(
+      'https://api.twitter.com/2/users/by/username/JAMBHQ/tweets?max_results=5&tweet.fields=created_at',
+      {
+        headers: {
+          'Authorization': `Bearer ${BEARER_TOKEN}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
 
-  // Fetch latest 5 tweets excluding replies/retweets
-  const tweetsResponse = await fetch(
-    `https://api.twitter.com/2/users/${userId}/tweets?max_results=5&exclude=replies,retweets`,
-    { headers: { Authorization: `Bearer ${BEARER_TOKEN}` } }
-  );
-  const tweetsData = await tweetsResponse.json();
+    if (!response.ok) {
+      const errText = await response.text();
+      throw new Error(errText);
+    }
 
-  // Take only last 2 tweets
-  const latestTwo = tweetsData.data.slice(0, 2);
+    const data = await response.json();
 
-  // Return JSON with CORS header
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.status(200).json(latestTwo);
+    // Simplify tweets for frontend
+    const tweets = data.data.map(tweet => ({
+      id: tweet.id,
+      text: tweet.text,
+      created_at: tweet.created_at,
+      user: { username: 'JAMBHQ' }
+    }));
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.status(200).json(tweets);
+
+  } catch (err) {
+    console.error('Error fetching tweets:', err);
+    res.status(500).json({ error: 'Failed to fetch tweets' });
+  }
 }
