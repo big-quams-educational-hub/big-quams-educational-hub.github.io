@@ -244,24 +244,39 @@ html, body {
     background-color: #fff;  /* Optional background */
 }
 
-.logo-circle {
-    width: 150px;             /* Circle size */
-    height: 150px;
-    border-radius: 50%;       /* Make container circular */
-    overflow: hidden;         /* Crop image to circle */
-    border: 2px solid #FF6600; /* Optional border */
+/* Full-page centered circular logo */
+html, body {
+    height: 100%;
+    margin: 0;
     display: flex;
-    justify-content: center;  /* Center image horizontally */
-    align-items: center;      /* Center image vertically */
+    justify-content: center; /* Horizontal center */
+    align-items: center;     /* Vertical center */
+    background-color: #fff;  /* Optional background */
 }
 
+/* Circle container */
+.logo-circle {
+    width: 20vw;               /* Responsive width (20% of viewport) */
+    max-width: 200px;          /* Maximum size */
+    height: 20vw;              /* Responsive height */
+    max-height: 200px;         /* Maximum size */
+    border-radius: 50%;        /* Circular shape */
+    overflow: hidden;          /* Crop image inside circle */
+    border: 2px solid #FF6600; /* Optional circular border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Logo image */
 .logo-circle img {
     width: 100%;
     height: 100%;
-    object-fit: cover;        /* Image fills circle without distortion */
-    border-radius: 50%;       /* Make image circular */
+    object-fit: cover;         /* Fill circle without distortion */
+    border-radius: 50%;        /* Keep image circular */
     display: block;
-}  
+}
+    
       .brand-text {
         font-size: 1.4rem;
       }
