@@ -194,15 +194,18 @@
     }
 
  .logo {
-    width: 100px;             /* Circle size */
-    height: 100px;            /* Circle size */
-    border-radius: 50%;       /* Makes it a perfect circle */
-    overflow: hidden;         /* Crop any extra edges */
-    display: flex;
-    justify-content: center;  /* Horizontally center */
-    align-items: center;      /* Vertically center */
-    margin: 0 auto;           /* Center in container */
-    background-color: transparent; /* No background, removes white cover */
+    width: 100px;           /* Circle size */
+    height: 100px;
+    border-radius: 50%;     /* Makes it a perfect circle */
+    overflow: hidden;       /* Ensures the image is cropped to the circle */
+    margin: 0 auto;         /* Centers the circle */
+}
+
+.logo img {
+    width: 100%;            /* Image fills the circle */
+    height: 100%;
+    object-fit: cover;      /* Crops/resizes the image to fit perfectly */
+    display: block;         /* Removes any inline spacing */
 }
 
 .logo img {
