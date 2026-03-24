@@ -64,7 +64,9 @@ h2 { color: var(--accent-blue); font-size: 1.8rem; margin-bottom: 14px; border-b
 /* News Grid */
 .news-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 25px; }
 @media (min-width: 700px) { .news-grid { grid-template-columns: 1fr 1fr; } }
-.news-card { background: var(--card); border: 1px solid #cbd5e1; border-radius: 12px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+.news-card { background: var(--card); border: 1px solid #cbd5e1; border-radius: 12px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s; }
+.news-card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+
 .news-card h3 { margin: 8px 0; color: var(--accent-blue); font-size: 1.1rem; line-height: 1.3; }
 .news-card p { margin: 0 0 16px; color: #475569; font-size: 0.95rem; flex-grow: 1; }
 
@@ -73,24 +75,44 @@ h2 { color: var(--accent-blue); font-size: 1.8rem; margin-bottom: 14px; border-b
 .category-label { background: #dbeafe; color: var(--accent-blue); padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
 .date-label { color: var(--muted); }
 
-/* Share Button */
-.share-btn-full {
-  width: 100%;
-  background: var(--accent-blue);
-  color: white;
-  padding: 12px;
+/* News Buttons */
+.news-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.news-actions a.btn,
+.news-actions button.share-btn-full {
+  flex: 1;
+  text-align: center;
+  padding: 10px 12px;
   border-radius: 8px;
   font-weight: 700;
   font-size: 0.95rem;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
   transition: 0.3s;
+  cursor: pointer;
+  text-decoration: none;
 }
-.share-btn-full:hover {
+
+/* Read More button style */
+.news-actions a.btn {
+  background: var(--accent-orange);
+  color: white;
+  border: none;
+}
+.news-actions a.btn:hover {
+  background: #dc6803;
+}
+
+/* Share Update button style */
+.news-actions button.share-btn-full {
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+}
+.news-actions button.share-btn-full:hover {
   background: #1e3a8a;
   transform: translateY(-2px);
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
@@ -245,6 +267,8 @@ async function fetchNewsData() {
       card.setAttribute('data-aos','fade-up');
 
       const safeTitle = (item.title || "Update").replace(/'/g, "\\'");
+      const link = item.link || '#';
+
       card.innerHTML = `
         <div class="news-meta">
           <span class="category-label">${item.category || 'News'}</span>
@@ -253,9 +277,8 @@ async function fetchNewsData() {
         <h3>${item.title}</h3>
         <p>${item.description}</p>
         <div class="news-actions">
-          <button class="share-btn-full" onclick="shareContent('${safeTitle}', '${item.link}')">
-            🔗 Share Update
-          </button>
+          <a href="${link}" target="_blank" class="btn">📖 Read More</a>
+          <button class="share-btn-full" onclick="shareContent('${safeTitle}', '${link}')">🔗 Share Update</button>
         </div>
       `;
       container.appendChild(card);
@@ -271,16 +294,4 @@ async function fetchNewsData() {
 
 function shareContent(title, url) {
   const text = `🚨 BIG QUAMS MEDIA UPDATE 🚨\n\n${title}\n\nRead more: ${url}`;
-  if (navigator.share) {
-    navigator.share({ title: 'Big Quams Media Update', text, url })
-      .catch(err => console.log('Error sharing:', err));
-  } else {
-    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
-    window.open(whatsappUrl, '_blank');
-  }
-}
-
-document.addEventListener('DOMContentLoaded', fetchNewsData);
-</script>
-</body>
-  </html>
+  if
