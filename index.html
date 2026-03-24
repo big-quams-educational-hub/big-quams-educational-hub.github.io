@@ -118,6 +118,25 @@ h2 { color: var(--accent-blue); font-size: 1.8rem; margin-bottom: 14px; border-b
   box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
 }
 
+/* Toast */
+.toast {
+  background: var(--accent-blue);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin-top: 8px;
+  min-width: 200px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Testimonials */
 .testimonial { background: #f1f5f9; padding: 20px; margin: 16px 0; border-left: 5px solid var(--accent-orange); border-radius: 8px; font-style: italic; color: #475569; max-width: 800px; }
 .testimonial strong { display: block; margin-bottom: 6px; color: var(--accent-blue); font-style: normal; }
@@ -248,7 +267,11 @@ ul.services-list li { margin-bottom: 10px; }
   Built with ❤️ by <a href="https://wa.me/message/OVCVEDHU3I2PH1">Big Quams Media</a>
 </footer>
 
+<!-- Floating WhatsApp -->
 <a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float">💬</a>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
 
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
@@ -266,32 +289,19 @@ async function fetchNewsData() {
       card.className = 'news-card';
       card.setAttribute('data-aos','fade-up');
 
-      const safeTitle = (item.title || "Update").replace(/'/g, "\\'");
       const link = item.link || '#';
+      const title = item.title || "Update";
+      const description = item.description || "";
+
+      // Encode values safely for use in onclick
+      const safeTitle = encodeURIComponent(title);
+      const safeLink = encodeURIComponent(link);
 
       card.innerHTML = `
         <div class="news-meta">
           <span class="category-label">${item.category || 'News'}</span>
           <span class="date-label">${item.date || ''}</span>
         </div>
-        <h3>${item.title}</h3>
-        <p>${item.description}</p>
-        <div class="news-actions">
-          <a href="${link}" target="_blank" class="btn">📖 Read More</a>
-          <button class="share-btn-full" onclick="shareContent('${safeTitle}', '${link}')">🔗 Share Update</button>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-
-    setTimeout(() => { AOS.refresh(); }, 100);
-
-  } catch (error) {
-    console.error('Error loading news:', error);
-    container.innerHTML = '<p>Check back soon for new updates!</p>';
-  }
-}
-
-function shareContent(title, url) {
-  const text = `🚨 BIG QUAMS MEDIA UPDATE 🚨\n\n${title}\n\nRead more: ${url}`;
-  if
+        <h3>${title}</h3>
+        <p>${description}</p>
+        <
