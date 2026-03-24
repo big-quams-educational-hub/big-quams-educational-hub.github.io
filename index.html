@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BIG QUAMS MEDIA®</title>
+<title>BIG QUAMS MEDIA® | Simplifying Campus Life</title>
 
 <!-- Social Media Preview Meta Tags -->
 <meta property="og:type" content="website" />
@@ -85,6 +85,8 @@
   #whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50%; text-align: center; font-size: 30px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; z-index: 1000; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease; }
   #whatsapp-float:hover { background-color: #128c4a; transform: translateY(-2px); }
 
+  ul.services-list { padding-left: 20px; }
+  ul.services-list li { margin-bottom: 10px; }
 </style>
 </head>
 <body>
@@ -117,7 +119,7 @@
 
 <section class="container" id="about" data-aos="fade-up">
   <h2>About Us</h2>
-  <p>We provide timely and reliable resources to empower learners at all levels. From JAMB and Post-UTME tips to scholarship alerts, we simplify complex academic processes.</p>
+  <p>We provide timely and reliable resources to empower learners at all levels. From JAMB and Post-UTME tips to scholarship alerts, we simplify complex academic processes and digital services for students and learners nationwide.</p>
 </section>
 
 <section class="container" id="services" data-aos="fade-up">
@@ -126,7 +128,7 @@
     <li><strong>JAMB & UTME Advisory:</strong> Registration help, syllabus breakdown, and study tips.</li>
     <li><strong>Admission Support:</strong> Post-UTME guidance and school updates.</li>
     <li><strong>NIN Services:</strong> Modifications and printing support.</li>
-    <li><strong>Digital Solutions:</strong> Graphic design and web services.</li>
+    <li><strong>Digital Solutions:</strong> Graphic design, web services, and other digital tools.</li>
   </ul>
 </section>
 
@@ -166,12 +168,12 @@
   </ul>
 </section>
 
-<section class="contact-section" id="contact" data-aos="fade-up">
+<section class="container" id="contact" data-aos="fade-up">
   <h2>Contact & Feedback</h2>
   <p>We’d love to hear from you! Reach us quickly via WhatsApp, email, or join our student group.</p>
   <div class="contact-buttons">
-    <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-btn btn">💬 Chat on WhatsApp</a>
-    <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn btn">📧 Send Email</a>
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="btn cta-whatsapp">💬 Chat on WhatsApp</a>
+    <a href="mailto:bigquamsmedia024@gmail.com" class="btn">📧 Send Email</a>
   </div>
 </section>
 
@@ -188,19 +190,12 @@
 
   async function fetchNewsData() {
     const container = document.getElementById('news-container');
-
     try {
       const response = await fetch('news.json');
       if (!response.ok) throw new Error('Failed to load news.json');
-
       const newsData = await response.json();
       container.innerHTML = '';
-
-      if (newsData.length === 0) {
-        container.innerHTML = '<p>No news updates at the moment.</p>';
-        return;
-      }
-
+      if (newsData.length === 0) { container.innerHTML = '<p>No news updates at the moment.</p>'; return; }
       newsData.forEach(item => {
         const card = document.createElement('div');
         card.className = 'news-card';
@@ -213,7 +208,6 @@
         `;
         container.appendChild(card);
       });
-
     } catch (error) {
       console.error('Error loading news:', error);
       container.innerHTML = '<p>Failed to load news. Please try again later.</p>';
@@ -223,4 +217,4 @@
   document.addEventListener('DOMContentLoaded', fetchNewsData);
 </script>
 </body>
-      </html>
+</html>
