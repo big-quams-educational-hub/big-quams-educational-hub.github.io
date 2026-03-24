@@ -193,11 +193,24 @@
       padding: 16px;
     }
 
-    /* Logo */
-    .logo img {
-      height: 80px;
-      width: auto;
-    }
+  .logo {
+    width: 100px;            /* Circle size */
+    height: 100px;           /* Circle size */
+    border-radius: 50%;      /* Makes it a perfect circle */
+    overflow: hidden;        /* Ensures the image fits inside */
+    display: flex;
+    justify-content: center; /* Horizontally center image */
+    align-items: center;     /* Vertically center image */
+    margin: 0 auto;          /* Center the circle in its container */
+    background-color: #fff;  /* Optional: circle background */
+}
+
+.logo img {
+    width: 100%;             /* Image fills the circle */
+    height: 100%;            /* Maintain aspect ratio */
+    object-fit: cover;       /* Crop or scale image to fit perfectly */
+}
+    
 
     /* Brand text */
     .brand-text {
