@@ -76,66 +76,16 @@ h2 { color: var(--accent-blue); font-size: 1.8rem; margin-bottom: 14px; border-b
 .date-label { color: var(--muted); }
 
 /* News Buttons */
-.news-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-.news-actions a.btn,
-.news-actions button.share-btn-full {
-  flex: 1;
-  text-align: center;
-  padding: 10px 12px;
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.95rem;
-  transition: 0.3s;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-/* Read More button style */
-.news-actions a.btn {
-  background: var(--accent-orange);
-  color: white;
-  border: none;
-}
-.news-actions a.btn:hover {
-  background: #dc6803;
-}
-
-/* Share Update button style */
-.news-actions button.share-btn-full {
-  background: var(--accent-blue);
-  color: white;
-  border: none;
-}
-.news-actions button.share-btn-full:hover {
-  background: #1e3a8a;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-}
+.news-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.news-actions a.btn, .news-actions button.share-btn-full { flex: 1; text-align: center; padding: 10px 12px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; transition: 0.3s; cursor: pointer; text-decoration: none; }
+.news-actions a.btn { background: var(--accent-orange); color: white; border: none; }
+.news-actions a.btn:hover { background: #dc6803; }
+.news-actions button.share-btn-full { background: var(--accent-blue); color: white; border: none; }
+.news-actions button.share-btn-full:hover { background: #1e3a8a; transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
 
 /* Toast */
-.toast {
-  background: var(--accent-blue);
-  color: white;
-  padding: 12px 18px;
-  border-radius: 8px;
-  margin-top: 8px;
-  min-width: 200px;
-  font-weight: 600;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-.toast.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+.toast { background: var(--accent-blue); color: white; padding: 12px 18px; border-radius: 8px; margin-top: 8px; min-width: 200px; font-weight: 600; box-shadow: 0 2px 6px rgba(0,0,0,0.2); opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; }
+.toast.show { opacity: 1; transform: translateY(0); }
 
 /* Testimonials */
 .testimonial { background: #f1f5f9; padding: 20px; margin: 16px 0; border-left: 5px solid var(--accent-orange); border-radius: 8px; font-style: italic; color: #475569; max-width: 800px; }
@@ -213,6 +163,9 @@ ul.services-list li { margin-bottom: 10px; }
   </div>
 </section>
 
+<!-- Toast container -->
+<div id="toast-container"></div>
+
 <section class="container" id="library" data-aos="fade-up">
   <h2>Library & eBooks</h2>
   <div class="ebook-card" style="text-align:center; max-width:400px; margin:0 auto;">
@@ -267,16 +220,13 @@ ul.services-list li { margin-bottom: 10px; }
   Built with ❤️ by <a href="https://wa.me/message/OVCVEDHU3I2PH1">Big Quams Media</a>
 </footer>
 
-<!-- Floating WhatsApp -->
 <a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float">💬</a>
-
-<!-- Toast container -->
-<div id="toast-container"></div>
 
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
 AOS.init({ duration: 700, once: true, offset: 80 });
 
+// Fetch news and populate cards
 async function fetchNewsData() {
   const container = document.getElementById('news-container');
   try {
@@ -293,15 +243,7 @@ async function fetchNewsData() {
       const title = item.title || "Update";
       const description = item.description || "";
 
-      // Encode values safely for use in onclick
       const safeTitle = encodeURIComponent(title);
       const safeLink = encodeURIComponent(link);
 
       card.innerHTML = `
-        <div class="news-meta">
-          <span class="category-label">${item.category || 'News'}</span>
-          <span class="date-label">${item.date || ''}</span>
-        </div>
-        <h3>${title}</h3>
-        <p>${description}</p>
-        <
