@@ -1,8 +1,0 @@
-collections:
-  news:
-    output: true
-    folder: news
-    path: /news/
-    title: News
-    editor:
-      preview: true
