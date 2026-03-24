@@ -235,13 +235,21 @@ body, html {
     align-items: center;     /* Vertical center */
     background-color: #fff;  /* Optional page background */
 }
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center; /* Horizontal center */
+    align-items: center;     /* Vertical center */
+    background-color: #fff;  /* Optional background */
+}
 
 .logo-circle {
-    width: 100px;             /* Circle size */
-    height: 100px;
+    width: 150px;             /* Circle size */
+    height: 150px;
     border-radius: 50%;       /* Make container circular */
     overflow: hidden;         /* Crop image to circle */
-    border: 2px solid #FF6600; /* Optional frame border */
+    border: 2px solid #FF6600; /* Optional border */
     display: flex;
     justify-content: center;  /* Center image horizontally */
     align-items: center;      /* Center image vertically */
@@ -251,10 +259,9 @@ body, html {
     width: 100%;
     height: 100%;
     object-fit: cover;        /* Image fills circle without distortion */
-    border-radius: 50%;       /* Make image itself circular */
+    border-radius: 50%;       /* Make image circular */
     display: block;
-}dth: 400px) {
-  
+}  
       .brand-text {
         font-size: 1.4rem;
       }
