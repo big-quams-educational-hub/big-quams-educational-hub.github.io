@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta property="og:image" content="https://big-quams-educational-hub-github-io.vercel.app//https://i.imgur.com/lYJXUyY.jpeg">
-  <!-- Social Media Preview Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BIG QUAMS MEDIA® | Simplifying Campus Life</title>
+  
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bigquamseducationalhub.vercel.app/">
   <meta property="og:title" content="BIG QUAMS MEDIA®" />
   <meta property="og:description" content="Your trusted hub for academic updates, admission guides, campus gist & more!" />
-  
+  <meta property="og:image" content="https://i.imgur.com/lYJXUyY.jpeg">
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://bigquamseducationalhub.vercel.app/" />
   <meta name="twitter:title" content="BIG QUAMS MEDIA®" />
   <meta name="twitter:description" content="Your trusted hub for academic updates, admission guides, campus gist & more!" />
-  <meta name="twitter:image" content="https://big-quams-educational-hub-github-io.vercel.app//IMG-20250818-WA0020.jpg">
+  <meta name="twitter:image" content="https://i.imgur.com/lYJXUyY.jpeg">
 
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BIG QUAMS MEDIA®</title>
-  <meta name="description" content="<p>BIG QUAMS MEDIA® is your trusted multidisciplinary media platform, delivering everything campus, tech, and education-related right to your fingertips. From simplifying campus life with Digital services like NIN modification, admission support & guidance, school fee payments, to providing up-to-date news, scholarships, and digital solutions like graphic design and web services, we make managing student life and digital tasks effortless.</p>
-
-<p><strong>Your campus, your tech, your media — simplified.</strong></p>"
-</head>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 
   <style>
     :root {
@@ -32,464 +26,155 @@
       --muted: #64748b;
       --bg: #ffffff;
       --card: #ffffff;
-      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
     }
+
     * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: #0f172a; line-height: 1.5; }
-    header { background: var(--accent-blue); color: white; padding: 16px 24px; }
-    .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
-    nav { display: flex; align-items: center; justify-content: space-between; }
-    .brand { display: flex; align-items: center; gap: 16px; }
-    .logo { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; border: 2px solid white; flex-shrink: 0; }
-    .logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .brand-text { font-weight: 700; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 2px; user-select: none; }
-    .brand-subtext { color: #dbeafe; font-size: 0.85rem; letter-spacing: 1px; user-select: none; }
-    .navlinks { display: flex; gap: 18px; }
-    a { color: inherit; text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
-    a:hover, a:focus { color: var(--accent-orange); outline: none; }
-    .btn { background: var(--accent-orange); color: white; padding: 10px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; user-select: none; transition: background 0.3s ease; }
-    .btn:hover, .btn:focus { background: #dc6803; outline: none; }
+    body { margin: 0; background: var(--bg); color: #0f172a; line-height: 1.5; scroll-behavior: smooth; }
+    
+    /* Header & Nav */
+    header { background: var(--accent-blue); color: white; padding: 20px 24px; text-align: center; }
+    .header-container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+    
+    .logo-circle { width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 3px solid var(--accent-orange); background: white; }
+    .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
+    
+    .brand-text { font-size: 1.8rem; font-weight: 800; letter-spacing: 1px; }
+    .brand-subtext { font-size: 0.9rem; color: #dbeafe; }
 
-    .hero { padding: 60px 24px 48px; text-align: center; background-color: #f0f5ff; border-radius: 12px; margin-bottom: 40px; }
-    .hero h1 { font-size: 2.4rem; color: var(--accent-blue); margin-bottom: 12px; }
-    .hero p { color: var(--muted); font-size: 1.1rem; max-width: 650px; margin: 0 auto 24px; line-height: 1.6; }
-    .cta-whatsapp { display: inline-block; background-color: #25d366; color: white; padding: 12px 20px; border-radius: 25px; font-weight: 700; text-decoration: none; user-select: none; transition: background-color 0.3s ease; }
-    .cta-whatsapp:hover { background-color: #128c4a; }
+    nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 15px; }
+    nav a { color: white; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.3s; }
+    nav a:hover { color: var(--accent-orange); }
 
-    section { padding-bottom: 36px; }
-    h2 { color: var(--accent-blue); font-size: 1.8rem; margin-bottom: 14px; border-bottom: 3px solid var(--accent-orange); display: inline-block; padding-bottom: 6px; }
-    p, ul { font-size: 1rem; color: #334155; max-width: 800px; line-height: 1.6; }
-    ul { padding-left: 20px; }
-    ul li { margin-bottom: 8px; }
-    .services-list { list-style-type: disc; }
+    /* Layout */
+    .container { max-width: 1000px; margin: 0 auto; padding: 40px 24px; }
+    .hero { text-align: center; background: #f0f5ff; padding: 60px 24px; border-radius: 12px; margin-bottom: 40px; }
+    .hero h1 { font-size: 2.2rem; color: var(--accent-blue); }
+    
+    /* Buttons */
+    .btn { background: var(--accent-orange); color: white; padding: 12px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; }
+    .btn:hover { background: #dc6803; }
+    .cta-whatsapp { background: #25d366; }
+    .cta-whatsapp:hover { background: #128c4a; }
 
-    .testimonial { background: #f1f5f9; padding: 20px 24px; margin: 16px 0; border-left: 5px solid var(--accent-orange); border-radius: 8px; font-style: italic; color: #475569; max-width: 800px; }
-    .testimonial strong { display: block; margin-bottom: 6px; color: var(--accent-blue); font-style: normal; }
-
-    .contact-section { background: #f9fafb; padding: 32px 24px; border-radius: 12px; max-width: 700px; margin: 0 auto 60px; box-shadow: 0 8px 24px rgb(0 0 0 / 0.05); }
-    .contact-section h2 { text-align: center; margin-bottom: 24px; }
-    .contact-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 32px; }
-    .contact-buttons a { flex: 1 1 180px; padding: 12px 20px; border-radius: 25px; font-weight: 700; color: white; text-align: center; text-decoration: none; user-select: none; transition: background-color 0.3s ease; }
-    .whatsapp-btn { background-color: #25d366; }
-    .whatsapp-btn:hover { background-color: #128c4a; }
-    .email-btn { background-color: #f97316; }
-    .email-btn:hover { background-color: #d96211; }
-    .group-btn { background-color: var(--accent-blue); }
-    .group-btn:hover { background-color: #1b37a6; }
-    .portfolio-btn { background-color: #6f42c1; }
-    .portfolio-btn:hover { background-color: #5829a6; }
-
-    form { display: flex; flex-direction: column; gap: 16px; }
-    input, textarea { width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1rem; resize: vertical; font-family: inherit; transition: border-color 0.3s ease; }
-    input:focus, textarea:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 5px var(--accent-blue); }
-    button { background-color: var(--accent-green); color: white; font-weight: 700; border: none; border-radius: 8px; padding: 12px 20px; cursor: pointer; transition: background-color 0.3s ease; user-select: none; }
-    button:hover, button:focus { background-color: #138f3f; outline: none; }
-
-    footer { text-align: center; padding: 24px 16px; font-size: 0.9rem; color: var(--muted); border-top: 3px solid var(--accent-green); user-select: none; }
-    footer a { color: var(--accent-blue); text-decoration: none; font-weight: 700; }
-    footer a:hover, footer a:focus { text-decoration: underline; outline: none; }
-
-    /* Floating WhatsApp Button */
-    #whatsapp-float {
-      position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
-      background-color: #25d366; color: white; border-radius: 50%; text-align: center; font-size: 30px;
-      box-shadow: 2px 2px 5px rgba(0,0,0,0.3); z-index: 1000; cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+    /* News Grid */
+    .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 25px; }
+    .news-card { 
+      background: var(--card); border: 1px solid #cbd5e1; border-radius: 12px; padding: 20px; 
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;
     }
-    #whatsapp-float:hover { background-color: #128c4a; transform: translateY(-2px); }
+    .news-card h3 { color: var(--accent-blue); margin-top: 0; font-size: 1.2rem; }
+    .news-card p { color: #475569; font-size: 0.95rem; margin-bottom: 20px; }
+    
+    h2 { color: var(--accent-blue); border-bottom: 3px solid var(--accent-orange); display: inline-block; padding-bottom: 5px; margin-bottom: 20px; }
 
-    /* Library & eBooks styles */
-    #library { max-width: 700px; margin: 0 auto 60px; }
-    .ebook-card { background: var(--card); border: 1px solid #cbd5e1; border-radius: 12px; padding: 24px; box-shadow: 0 4px 12px rgb(0 0 0 / 0.1); text-align: center; max-width: 400px; margin: 0 auto; }
-    .ebook-card h3 { font-size: 1.6rem; margin-bottom: 24px; color: var(--accent-blue); }
-    .ebook-card .btn { background-color: var(--accent-green); padding: 14px 24px; font-size: 1.1rem; border-radius: 8px; }
-    .ebook-card .btn:hover, .ebook-card .btn:focus { background-color: #138f3f; }
+    /* Floating WhatsApp */
+    .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px; background: #25d366; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 2px 4px 10px rgba(0,0,0,0.3); z-index: 1000; }
 
-    /* News cards */
-    .news-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-    .news-card { background: var(--card); border: 1px solid #cbd5e1; border-radius: 12px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-    .news-card h3 { margin: 0 0 8px; color: var(--accent-blue); font-size: 1.05rem; }
-    .news-card p { margin: 0 0 12px; color: #475569; font-size: 0.95rem; }
-    .news-meta { font-size: 0.8rem; color: #64748b; margin-bottom: 8px; }
-    .news-card .read-more { display: inline-block; background: var(--accent-orange); color: #fff; padding: 8px 12px; border-radius: 8px; font-weight: 700; text-decoration: none; }
-    .news-card .read-more:hover { background: #dc6803; }
-
-    /* Responsive */
-    @media (max-width: 800px) {
-      nav { flex-direction: column; gap: 16px; }
-      .navlinks { flex-wrap: wrap; justify-content: center; gap: 12px; }
-      .contact-buttons a { flex: 1 1 100%; }
-    }
-    @media (min-width: 700px) {
-      .news-grid { grid-template-columns: 1fr 1fr; }
-    }
+    footer { text-align: center; padding: 40px 20px; border-top: 3px solid var(--accent-green); color: var(--muted); font-size: 0.9rem; }
   </style>
-<meta property="og:title" content="Big Quams Media®" />
-<meta property="og:description" content="Your trusted guide for smarter academic choices in Nigeria — JAMB, Admissions, Coaching, Scholarships." />
-<meta property="og:image" content="https://i.imgur.com/lYJXUyY.jpeg" />
-<meta property="og:url" content="https://bigquamseducationalhub.vercel.app/" />
-<meta name="twitter:card" content="summary_large_image" />
-
-<style>
-  /* Floating WhatsApp Button */
-  .whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: #fff;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-  }
-  .whatsapp-float:hover {
-    background-color: #1ebc57;
-  }
-</style>
-
 </head>
 <body>
+
 <header>
   <div class="header-container">
-    <!-- Logo -->
-    <div class="logo">
+    <div class="logo-circle">
       <img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Big Quams Logo">
     </div>
-
-    <!-- Brand Text & Tagline -->
-    <div class="brand-texts">
+    <div>
       <div class="brand-text">BIG QUAMS MEDIA®</div>
       <div class="brand-subtext">Simplifying Campus Life with News Updates & Digital Services</div>
     </div>
-
-    <!-- Navigation -->
-    <nav class="navlinks">
+    <nav>
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#news-updates">News Updates</a>
+      <a href="#news-updates">News</a>
       <a href="#library">Library</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#blog">Blog</a>
-      <a href="#contact" class="btn">Contact</a>
+      <a href="#contact">Contact</a>
     </nav>
   </div>
-
-<style>
-.header-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  text-align: center;
-  padding: 16px;
-}
-.logo-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-
-.logo-circle {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #FF6600;
-}
-
-.logo-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Brand text */
-.brand-text {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-.brand-subtext {
-  font-size: 1rem;
-}
-
-
-  .logo-circle {
-    width: 100px;
-    height: 100px;
-  }
-
-  .brand-text {
-    font-size: 1.4rem;
-  }
-
-  .brand-subtext {
-    font-size: 0.85rem;
-  }
-
-}
-
-</style>
-  
 </header>
+
+<main class="container">
   <section class="hero" id="home" data-aos="fade-up">
-  
-    <p>BIG QUAMS MEDIA® is your trusted multidisciplinary media platform, delivering everything campus, tech, and education-related right to your fingertips.
-   </p>
-    <p>
-      
-      <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="cta-whatsapp" aria-label="Chat with Big Quams on WhatsApp">
-   💬 Chat with Us on WhatsAppp 🚀
-    </a>
+    <h1>Your Campus. Your Tech. Simplified.</h1>
+    <p>BIG QUAMS MEDIA® is your trusted hub for academic updates, admission guides, and digital solutions.</p>
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="btn cta-whatsapp">💬 Chat with Us on WhatsApp</a>
   </section>
 
-  <section class="container" id="about" data-aos="fade-up">
+  <section id="about" data-aos="fade-up">
     <h2>About Us</h2>
-      <p>
-      <strong>Big Quams Media®</strong> is a trusted academic support platform committed to guiding students through their educational journey. From JAMB and Post-UTME to admission tips, school updates, and scholarship alerts, we provide timely and reliable resources to empower learners at all levels.
-    </p>
-    <p>
-      We’re passionate about helping students succeed — offering expert assistance, real-time news, and digital support that simplifies complex academic processes. With a focus on accuracy, accessibility, and innovation, we continue to build a community where education meets opportunity.
-    </p>
-    <p>
-      <em>Big Quams Media® — simplifying campus life for every student</em>
-    </p>
-
+    <p>We provide timely and reliable resources to empower learners at all levels. From JAMB and Post-UTME tips to scholarship alerts, we simplify complex academic processes.</p>
   </section>
 
-  <section class="container" id="services" data-aos="fade-up">
+  <section id="news-updates" data-aos="fade-up">
+    <h2>News Updates</h2>
+    <div id="news-container" class="news-grid">
+      <div class="news-card"><p>Loading latest news...</p></div>
+    </div>
+  </section>
+
+  <section id="services" data-aos="fade-up">
     <h2>Our Services</h2>
-    <p>Here’s how we help students succeed academically and beyond:</p>
-    <ul class="services-list">
-      <li><strong>JAMB & UTME Advisory:</strong> Registration help, syllabus breakdown, and smart study tips.</li>
-      <li><strong>Admission Support:</strong> Post-UTME guidance, school updates, and application assistance.</li>
-      <li><strong>School & Course Matching:</strong> Tailored recommendations to fit your strengths and goals.</li>
-      <li><strong>Academic Coaching:</strong> Study planning, time management, and exam preparation.</li>
-      <li><strong>Scholarship & News Alerts:</strong> Timely updates on funding and educational opportunities.</li>
+    <ul>
+      <li><strong>JAMB & UTME Advisory:</strong> Registration and syllabus help.</li>
+      <li><strong>Admission Support:</strong> Post-UTME guidance and school updates.</li>
+      <li><strong>NIN Services:</strong> Modifications and printing support.</li>
+      <li><strong>Digital Solutions:</strong> Graphic design and web services.</li>
     </ul>
   </section>
 
-  
-  <section class="container" id="news-updates" data-aos="fade-up">
-    <h2>News Updates</h2>
-    <div id="news-container" class="news-grid" aria-live="polite">
-      <div class="news-card"><p>Loading latest news…</p></div>
+  <section id="library" data-aos="fade-up">
+    <h2>Library & eBooks</h2>
+    <div class="news-card" style="text-align: center; max-width: 400px; margin: 0 auto;">
+      <h3>THE INVISIBLE STRUGGLE</h3>
+      <a href="https://drive.google.com/uc?export=download&id=1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG" class="btn" style="background: var(--accent-green)">📥 Download PDF</a>
     </div>
   </section>
-  
-<style>
-  .read-more-btn {
-    display: inline-block;
-    background-color: #ff7e1a; /* Your brand orange */
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 15px;
-    transition: background 0.3s;
-}
+</main>
 
-.read-more-btn:hover {
-    background-color: #e66d10;
-}
+<footer>
+  <p>&copy; 2026 Big Quams Media®. All rights reserved.<br>
+  Built with ❤️ by <a href="https://wa.me/message/OVCVEDHU3I2PH1" style="color: var(--accent-blue); font-weight: bold;">Big Quams Media</a></p>
+</footer>
 
-.news-card h3 {
-    color: #1a4a9e; /* Your Royal Blue */
-    margin-bottom: 10px;
-}
-  
+<a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-float" target="_blank">💬</a>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-  async function fetchNewsData() {
+  // Initialize Animations
+  AOS.init({ duration: 800, once: true });
+
+  // Fetch News from news.json
+  async function loadNews() {
     const container = document.getElementById('news-container');
-    
     try {
-      // 1. Fetch your news.json file from your GitHub repo
       const response = await fetch('news.json');
-      if (!response.ok) throw new Error('Network response was not ok');
+      if (!response.ok) throw new Error();
+      const data = await response.json();
       
-      const newsData = await response.json();
-
-      // 2. Clear the "Loading..." message
-      container.innerHTML = '';
-
-      // 3. Build the cards
-      if (newsData.length === 0) {
-        container.innerHTML = '<p>No news updates at the moment.</p>';
-        return;
-      }
-
-      newsData.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'news-card';
-        card.innerHTML = `
-          <h3>${item.title}</h3>
-          <p>${item.description}</p>
-          <a href="${item.link}" class="read-more-btn" target="_blank">Read More</a>
+      container.innerHTML = ''; // Clear loading
+      
+      data.forEach(item => {
+        const card = `
+          <div class="news-card" data-aos="fade-up">
+            <h3>${item.title}</h3>
+            <p>${item.description}</p>
+            <a href="${item.link}" class="btn" target="_blank">Read More</a>
+          </div>
         `;
-        container.appendChild(card);
+        container.insertAdjacentHTML('beforeend', card);
       });
-
-    } catch (error) {
-      console.error('Error fetching news:', error);
-      container.innerHTML = '<p>Failed to load news. Please try again later.</p>';
+      AOS.refresh();
+    } catch (e) {
+      container.innerHTML = '<p>Check back soon for new updates!</p>';
     }
   }
 
-  // Initialize the fetch when the page is ready
-  document.addEventListener('DOMContentLoaded', fetchNewsData);
+  document.addEventListener('DOMContentLoaded', loadNews);
 </script>
-  
-  <section class="container" id="library" data-aos="fade-up">
-  </style>
-  
-    <h2>Library & eBooks</h2>
-    <div class="ebook-card" data-aos="zoom-in">
-      <h3>THE INVISIBLE STRUGGLE</h3>
-      <a href="https://drive.google.com/uc?export=download&id=1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG" target="_blank" rel="noopener noreferrer" class="btn" aria-label="Download The Invisible Struggle PDF">
-        📥 Download PDF
-      </a>
-    </div>
-  </section>
-
-  <section class="container" id="testimonials" data-aos="fade-up">
-    <h2>Testimonials</h2>
-    <div class="testimonial" data-aos="fade-right">
-      <strong>Abdulrahmon Aisha, Lagos state</strong><br />
-      “I was totally lost before I found Big Quams. They helped me sort my Post-UTME and I got admitted into LASU!”
-    </div>
-    <div class="testimonial" data-aos="fade-right" data-aos-delay="100">
-      <strong>Festus Oluwadare, Kwara state</strong><br />
-      “I passed my JAMB at once after following their guide. You won’t regret working with them!”
-    </div>
-    <div class="testimonial" data-aos="fade-right" data-aos-delay="200">
-      <strong>Aderemi Rasheedah, Osun state</strong><br />
-      “Best consultant of all time — fast, reliable, and always helpful. BIG QUAMS EDUCATIONAL HUB truly supports students at every step.”
-    </div>
-  </section>
-
-  <section class="container" id="blog" data-aos="fade-up">
-    <h2>Blog Suggestions</h2>
-    <ul class="services-list">
-      <li>
-        <a href="https://drive.google.com/file/d/12ztHcBrgZcWjzX88aXY54ogGjrtkl7Nz/view?usp=drivesdk" target="_blank">
-          How to Choose the Right University Course in Nigeria
-        </a>
-      </li>
-      <li>5 Mistakes to Avoid During JAMB Registration</li>
-      <li>Best Study Habits for Students Who Struggle to Focus</li>
-      <li>What to Do After Gaining Admission: A Step-by-Step Guide</li>
-      <li>Understanding Scholarship Applications and Deadlines</li>
-      <li>Effective Time Management for Academic Success</li>
-    </ul>
-  </section>
-
-  <section class="contact-section" id="contact" data-aos="fade-up">
-    <h2>Contact & Feedback</h2>
-    <p>We’d love to hear from you! Reach us quickly via WhatsApp, email, or join our student group.</p>
-    <div class="contact-buttons">
-      <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Chat on WhatsApp">
-        💬 Chat on WhatsApp Now
-      </a>
-      <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn" aria-label="Send Email">
-        📧 Send Email
-      </a>
-      <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="group-btn" aria-label="Join WhatsApp Group">
-        👥 Join Brainy Buddies Group
-      </a>
-      <a href="https://bigquamsmedia-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-btn" aria-label="Visit Portfolio">
-        🌐 Visit Portfolio
-      </a>
-    </div>
-
-    <form action="mailto:bigquamsmedia024@gmail.com" method="post" enctype="text/plain">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" rows="5" placeholder="Your Feedback" required></textarea>
-      <button type="submit">Send Feedback</button>
-    </form>
-  </section>
-
-
-
-
-  <footer>
-    &copy; 2025 Big Quams Media®. All rights reserved. 
-    <br />
-    Built with ❤️ by <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer">Big Quams Media</a>.
-  </footer>
-
-  <!-- AOS Script -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 700, once: true, offset: 80 });
-  </script>
-
-  <script>
-    // API-powered news with graceful fallback. Kept your styles/structure intact.
-    document.addEventListener('DOMContentLoaded', () => {
-      const apiKey = '3ab411793f704118ba852fe0de5a51a8'; // Your NewsAPI key
-      const url = `https://newsapi.org/v2/everything?q=education+scholarship&language=en&sortBy=publishedAt&pageSize=6&apiKey=${apiKey}`;
-      const newsContainer = document.getElementById('news-container');
-
-      function dateFmt(s) {
-        try { return new Date(s).toLocaleString(); } catch { return ''; }
-      }
-
-      function renderArticles(articles) {
-        newsContainer.innerHTML = '';
-        articles.forEach(a => {
-          const card = document.createElement('div');
-          card.className = 'news-card';
-          card.setAttribute('data-aos','fade-up'); // animate each news card
-          card.innerHTML = `
-            <h3>${a.title || 'Untitled News'}</h3>
-            ${a.publishedAt ? `<div class="news-meta">${dateFmt(a.publishedAt)}</div>` : ''}
-            <p>${a.description || 'No description available.'}</p>
-            <a class="read-more" target="_blank"
-               href="https://wa.me/2349049871643?text=Hello%20BIG%20QUAMS%20MEDIA%20HUB%2C%20I'm%20interested%20in%20${encodeURIComponent(a.title || 'this news')}">
-               Read More
-            </a>
-          `;
-          newsContainer.appendChild(card);
-        });
-        // Refresh AOS for dynamically added elements
-        if (window.AOS) { AOS.refresh(); }
-      }
-
-      function loadFallback() {
-        const fallback = [
-          { title: "Federal Government Announces New Scholarship Scheme", description: "Eligible students across Nigeria can now apply for the 2025 scholarship program to study locally and internationally." },
-          { title: "WAEC Releases 2025 Examination Timetable", description: "The West African Examination Council has officially published the timetable for the upcoming WAEC examinations." },
-          { title: "Nigerian Universities to Resume Academic Activities", description: "Most public universities are set to resume academic activities from September following the recent ASUU agreement." },
-          { title: "Applications Open for National Essay Competition", description: "Secondary school students nationwide are invited to participate in the annual national essay competition." },
-          { title: "Education Minister Advocates for Digital Learning", description: "The Federal Ministry of Education is pushing for more technology-based learning in Nigerian schools." }
-        ];
-        renderArticles(fallback);
-      }
-
-      fetch(url)
-        .then(r => r.ok ? r.json() : Promise.reject(new Error('Network error')))
-        .then(data => (data && data.articles && data.articles.length) ? renderArticles(data.articles) : loadFallback())
-        .catch(() => loadFallback());
-    });
-  </script>
-<a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="whatsapp-float" title="Chat with us on WhatsApp">
-  💬
-</a>
 
 </body>
-</html>
-
- 
-
+  </html>
   
