@@ -278,15 +278,80 @@
     </ul>
   </section>
 
-  <!-- UPDATED NEWS SECTION (kept your container, heading style, and design) -->
+  
   <section class="container" id="news-updates" data-aos="fade-up">
     <h2>News Updates</h2>
     <div id="news-container" class="news-grid" aria-live="polite">
       <div class="news-card"><p>Loading latest news…</p></div>
     </div>
   </section>
+  
+<style>
+  .read-more-btn {
+    display: inline-block;
+    background-color: #ff7e1a; /* Your brand orange */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
 
+.read-more-btn:hover {
+    background-color: #e66d10;
+}
+
+.news-card h3 {
+    color: #1a4a9e; /* Your Royal Blue */
+    margin-bottom: 10px;
+}
+  
+<script>
+  async function fetchNewsData() {
+    const container = document.getElementById('news-container');
+    
+    try {
+      // 1. Fetch your news.json file from your GitHub repo
+      const response = await fetch('news.json');
+      if (!response.ok) throw new Error('Network response was not ok');
+      
+      const newsData = await response.json();
+
+      // 2. Clear the "Loading..." message
+      container.innerHTML = '';
+
+      // 3. Build the cards
+      if (newsData.length === 0) {
+        container.innerHTML = '<p>No news updates at the moment.</p>';
+        return;
+      }
+
+      newsData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'news-card';
+        card.innerHTML = `
+          <h3>${item.title}</h3>
+          <p>${item.description}</p>
+          <a href="${item.link}" class="read-more-btn" target="_blank">Read More</a>
+        `;
+        container.appendChild(card);
+      });
+
+    } catch (error) {
+      console.error('Error fetching news:', error);
+      container.innerHTML = '<p>Failed to load news. Please try again later.</p>';
+    }
+  }
+
+  // Initialize the fetch when the page is ready
+  document.addEventListener('DOMContentLoaded', fetchNewsData);
+</script>
+  
   <section class="container" id="library" data-aos="fade-up">
+  </style>
+  
     <h2>Library & eBooks</h2>
     <div class="ebook-card" data-aos="zoom-in">
       <h3>THE INVISIBLE STRUGGLE</h3>
