@@ -74,10 +74,9 @@
   .date-label { color: var(--muted); }
 
   /* News Action Buttons */
-  .news-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
-  .read-more-btn { flex: 2; text-align: center; font-size: 0.9rem; }
-  .share-btn { flex: 1; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 8px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
-  .share-btn:hover { background: var(--accent-blue); color: white; }
+  .news-actions { display: flex; margin-top: auto; }
+  .share-btn-full { width: 100%; background: var(--accent-blue); color: white; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .share-btn-full:hover { background: #1e3a8a; transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
 
   /* Testimonials */
   .testimonial { background: #f1f5f9; padding: 20px; margin: 16px 0; border-left: 5px solid var(--accent-orange); border-radius: 8px; font-style: italic; color: #475569; max-width: 800px; }
@@ -231,7 +230,6 @@
   async function fetchNewsData() {
     const container = document.getElementById('news-container');
     try {
-      // Force refresh by adding timestamp to the URL
       const response = await fetch('news.json?v=' + Date.now());
       if (!response.ok) throw new Error('Failed to load news.json');
       const newsData = await response.json();
@@ -247,7 +245,6 @@
         card.className = 'news-card';
         card.setAttribute('data-aos','fade-up');
         
-        // Safety for titles with quotes
         const safeTitle = (item.title || "Update").replace(/'/g, "\\'");
         
         card.innerHTML = `
@@ -258,32 +255,33 @@
           <h3>${item.title}</h3>
           <p>${item.description}</p>
           <div class="news-actions">
-            <a href="${item.link}" class="read-more-btn btn" target="_blank">Read More</a>
-            <button class="share-btn" onclick="shareContent('${safeTitle}', '${item.link}')">Share 🔗</button>
+            <button class="share-btn-full" onclick="shareContent('${safeTitle}', '${item.link}')">
+               Share Update 🔗
+            </button>
           </div>
         `;
         container.appendChild(card);
       });
       
-      // Refresh animations for new elements
       setTimeout(() => { AOS.refresh(); }, 100);
       
     } catch (error) {
       console.error('Error loading news:', error);
-      container.innerHTML = '<p>Failed to load news. Check your news.json format.</p>';
+      container.innerHTML = '<p>Check back soon for new updates!</p>';
     }
   }
 
   function shareContent(title, url) {
+    const text = `🚨 *BIG QUAMS MEDIA UPDATE* 🚨\n\n*${title}*\n\nRead more here: ${url}`;
+    
     if (navigator.share) {
       navigator.share({
-        title: title,
-        text: `Big Quams Media Update: ${title}`,
+        title: 'Big Quams Media Update',
+        text: text,
         url: url,
       }).catch(err => console.log('Error sharing', err));
     } else {
-      // Direct WhatsApp share for browsers that don't support the Share API
-      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ": " + url)}`;
+      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
       window.open(whatsappUrl, '_blank');
     }
   }
@@ -291,5 +289,4 @@
   document.addEventListener('DOMContentLoaded', fetchNewsData);
 </script>
 </body>
-      </html>
-      
+</html>
