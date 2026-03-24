@@ -193,22 +193,23 @@
       padding: 16px;
     }
 
-  .logo {
-    width: 100px;            /* Circle size */
-    height: 100px;           /* Circle size */
-    border-radius: 50%;      /* Makes it a perfect circle */
-    overflow: hidden;        /* Ensures the image fits inside */
+ .logo {
+    width: 100px;             /* Circle size */
+    height: 100px;            /* Circle size */
+    border-radius: 50%;       /* Makes it a perfect circle */
+    overflow: hidden;         /* Crop any extra edges */
     display: flex;
-    justify-content: center; /* Horizontally center image */
-    align-items: center;     /* Vertically center image */
-    margin: 0 auto;          /* Center the circle in its container */
-    background-color: #fff;  /* Optional: circle background */
+    justify-content: center;  /* Horizontally center */
+    align-items: center;      /* Vertically center */
+    margin: 0 auto;           /* Center in container */
+    background-color: transparent; /* No background, removes white cover */
 }
 
 .logo img {
-    width: 100%;             /* Image fills the circle */
-    height: 100%;            /* Maintain aspect ratio */
-    object-fit: cover;       /* Crop or scale image to fit perfectly */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* Ensures image fills circle, crops edges */
+    display: block;           /* Removes inline spacing issues */
 }
     
 
