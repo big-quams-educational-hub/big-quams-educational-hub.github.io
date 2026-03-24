@@ -193,19 +193,24 @@
       padding: 16px;
     }
 
- .logo {
-    width: 100px;           /* Circle size */
+ .logo-circle {
+    width: 100px;             /* Circle frame size */
     height: 100px;
-    border-radius: 50%;     /* Makes it a perfect circle */
-    overflow: hidden;       /* Ensures the image is cropped to the circle */
-    margin: 0 auto;         /* Centers the circle */
+    border-radius: 50%;       /* Makes the container circular */
+    overflow: hidden;         /* Crop image to circle */
+    margin: 0 auto;           /* Center the circle */
+    display: flex;
+    justify-content: center;  /* Center image horizontally */
+    align-items: center;      /* Center image vertically */
+    border: 2px solid #FF6600; /* Optional: circular frame border */
 }
 
-.logo img {
-    width: 100%;            /* Image fills the circle */
+.logo-circle img {
+    width: 100%;
     height: 100%;
-    object-fit: cover;      /* Crops/resizes the image to fit perfectly */
-    display: block;         /* Removes any inline spacing */
+    object-fit: cover;        /* Ensures image fills the circle without distortion */
+    border-radius: 50%;       /* Makes the image itself circular */
+    display: block;
 }
 
 
