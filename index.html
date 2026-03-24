@@ -5,19 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>BIG QUAMS MEDIA® | Simplifying Campus Life</title>
 
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://bigquamseducationalhub.vercel.app/">
-<meta property="og:title" content="BIG QUAMS MEDIA®" />
-<meta property="og:description" content="Your trusted hub for academic updates, admission guides, campus gist & more!" />
-<meta property="og:image" content="https://i.imgur.com/lYJXUyY.jpeg">
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="BIG QUAMS MEDIA®" />
-<meta name="twitter:description" content="Your trusted hub for academic updates, admission guides, campus gist & more!" />
-<meta name="twitter:image" content="https://i.imgur.com/lYJXUyY.jpeg">
-
-<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-
 <style>
 :root {
   --accent-blue: #1e40af;
@@ -70,163 +57,95 @@ h2 { color: var(--accent-blue); font-size: 1.8rem; margin-bottom: 14px; border-b
 .news-card h3 { margin: 8px 0; color: var(--accent-blue); font-size: 1.1rem; line-height: 1.3; }
 .news-card p { margin: 0 0 16px; color: #475569; font-size: 0.95rem; flex-grow: 1; }
 
-/* News Meta Styles */
 .news-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-weight: 600; margin-bottom: 4px; }
 .category-label { background: #dbeafe; color: var(--accent-blue); padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
 .date-label { color: var(--muted); }
 
-/* News Buttons */
 .news-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
 .news-actions a.btn, .news-actions button.share-btn-full { flex: 1; text-align: center; padding: 10px 12px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; transition: 0.3s; cursor: pointer; text-decoration: none; }
 .news-actions a.btn { background: var(--accent-orange); color: white; border: none; }
-.news-actions a.btn:hover { background: #dc6803; }
 .news-actions button.share-btn-full { background: var(--accent-blue); color: white; border: none; }
-.news-actions button.share-btn-full:hover { background: #1e3a8a; transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
 
 /* Toast */
-.toast { background: var(--accent-blue); color: white; padding: 12px 18px; border-radius: 8px; margin-top: 8px; min-width: 200px; font-weight: 600; box-shadow: 0 2px 6px rgba(0,0,0,0.2); opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; }
+#toast-container { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; }
+.toast { background: var(--accent-blue); color: white; padding: 12px 18px; border-radius: 8px; margin-top: 8px; min-width: 200px; font-weight: 600; box-shadow: 0 2px 6px rgba(0,0,0,0.2); opacity: 0; transform: translateY(20px); transition: 0.4s ease; }
 .toast.show { opacity: 1; transform: translateY(0); }
 
-/* Testimonials */
 .testimonial { background: #f1f5f9; padding: 20px; margin: 16px 0; border-left: 5px solid var(--accent-orange); border-radius: 8px; font-style: italic; color: #475569; max-width: 800px; }
 .testimonial strong { display: block; margin-bottom: 6px; color: var(--accent-blue); font-style: normal; }
 
-/* Footer */
 footer { text-align: center; padding: 24px 16px; font-size: 0.9rem; color: var(--muted); border-top: 3px solid var(--accent-green); }
-footer a { color: var(--accent-blue); text-decoration: none; font-weight: 700; }
-footer a:hover { text-decoration: underline; }
-
-/* Floating WhatsApp */
-#whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50%; text-align: center; font-size: 30px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; z-index: 1000; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease; }
-#whatsapp-float:hover { background-color: #128c4a; transform: translateY(-2px); }
-
-ul.services-list { padding-left: 20px; }
-ul.services-list li { margin-bottom: 10px; }
+#whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50%; text-align: center; font-size: 30px; display: flex; align-items: center; justify-content: center; z-index: 1000; text-decoration: none; }
 
 .contact-buttons a { display: block; margin-bottom: 10px; padding: 12px; border-radius: 8px; text-decoration: none; color: white; font-weight: bold; text-align: center; }
 .whatsapp-btn { background: #25d366; }
 .email-btn { background: var(--accent-blue); }
 .group-btn { background: var(--accent-orange); }
 .portfolio-btn { background: #333; }
-
 </style>
 </head>
 <body>
 
 <header>
   <div class="header-container">
-    <div class="logo-circle">
-      <img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Big Quams Logo">
-    </div>
+    <div class="logo-circle"><img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Logo"></div>
     <div class="brand-text">BIG QUAMS MEDIA®</div>
-    <div class="brand-subtext">Simplifying Campus Life with News Updates & Digital Services</div>
-    <nav class="navlinks">
+    <div class="brand-subtext">Simplifying Campus Life</div>
+    <nav>
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#news-updates">News Updates</a>
-      <a href="#library">Library</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#blog">Blog</a>
+      <a href="#news-updates">News</a>
       <a href="#contact" class="btn">Contact</a>
     </nav>
   </div>
 </header>
 
-<section class="hero" id="home" data-aos="fade-up">
-  <p>BIG QUAMS MEDIA® is your trusted multidisciplinary media platform, delivering everything campus, tech, and education-related right to your fingertips.</p>
-  <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="btn cta-whatsapp">💬 Chat with Us on WhatsApp 🚀</a>
+<section class="hero" id="home">
+  <h1>Welcome to Big Quams Media</h1>
+  <p>Your trusted multidisciplinary media platform for campus, tech, and education.</p>
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="btn cta-whatsapp">💬 Chat on WhatsApp</a>
 </section>
 
-<section class="container" id="about" data-aos="fade-up">
+<section class="container" id="about">
   <h2>About Us</h2>
-  <p><strong>Big Quams Media®</strong> is a trusted academic support platform committed to guiding students through their educational journey. From JAMB and Post-UTME to admission tips, school updates, and scholarship alerts, we provide timely and reliable resources to empower learners at all levels.</p>
-  <p>We’re passionate about helping students succeed — offering expert assistance, real-time news, and digital support that simplifies complex academic processes. With a focus on accuracy, accessibility, and innovation, we continue to build a community where education meets opportunity.</p>
-  <p><em>Big Quams Media® — simplifying campus life for every student</em></p>
+  <p>Big Quams Media® is a trusted academic support platform committed to guiding students through their educational journey.</p>
 </section>
 
-<section class="container" id="services" data-aos="fade-up">
+<section class="container" id="services">
   <h2>Our Services</h2>
-  <ul class="services-list">
-    <li><strong>JAMB & UTME Advisory:</strong> Registration help, syllabus breakdown, and smart study tips.</li>
-    <li><strong>Admission Support:</strong> Post-UTME guidance, school updates, and application assistance.</li>
-    <li><strong>School & Course Matching:</strong> Tailored recommendations to fit your strengths and goals.</li>
-    <li><strong>Academic Coaching:</strong> Study planning, time management, and exam preparation.</li>
-    <li><strong>Scholarship & News Alerts:</strong> Timely updates on funding and educational opportunities.</li>
+  <ul>
+    <li>JAMB & UTME Advisory</li>
+    <li>Admission Support</li>
+    <li>Scholarship & News Alerts</li>
   </ul>
 </section>
 
-<section class="container" id="news-updates" data-aos="fade-up">
+<section class="container" id="news-updates">
   <h2>News Updates</h2>
   <div id="news-container" class="news-grid">
-    <div class="news-card"><p>Loading latest news…</p></div>
+    <p>Loading latest news…</p>
   </div>
 </section>
 
-<!-- Toast container -->
 <div id="toast-container"></div>
 
-<section class="container" id="library" data-aos="fade-up">
-  <h2>Library & eBooks</h2>
-  <div class="ebook-card" style="text-align:center; max-width:400px; margin:0 auto;">
-    <h3>THE INVISIBLE STRUGGLE</h3>
-    <a href="https://drive.google.com/uc?export=download&id=1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG" class="btn" style="background:var(--accent-green)">📥 Download PDF</a>
-  </div>
-</section>
-
-<section class="container" id="testimonials" data-aos="fade-up">
-  <h2>Testimonials</h2>
-  <div class="testimonial" data-aos="fade-right">
-    <strong>Abdulrahmon Aisha, Lagos state</strong><br>
-    “I was totally lost before I found Big Quams. They helped me sort my Post-UTME and I got admitted into LASU!”
-  </div>
-  <div class="testimonial" data-aos="fade-right" data-aos-delay="100">
-    <strong>Festus Oluwadare, Kwara state</strong><br>
-    “I passed my JAMB at once after following their guide. You won’t regret working with them!”
-  </div>
-</section>
-
-<section class="container" id="blog" data-aos="fade-up">
-  <h2>Blog Suggestions</h2>
-  <ul class="services-list">
-    <li><a href="https://drive.google.com/file/d/12ztHcBrgZcWjzX88aXY54ogGjrtkl7Nz/view?usp=drivesdk" target="_blank">How to Choose the Right University Course in Nigeria</a></li>
-    <li>5 Mistakes to Avoid During JAMB Registration</li>
-    <li>Best Study Habits for Students Who Struggle to Focus</li>
-    <li>What to Do After Gaining Admission: A Step-by-Step Guide</li>
-    <li>Understanding Scholarship Applications and Deadlines</li>
-    <li>Effective Time Management for Academic Success</li>
-  </ul>
-</section>
-
-<section class="container contact-section" id="contact" data-aos="fade-up">
+<section class="container" id="contact">
   <h2>Contact & Feedback</h2>
   <div class="contact-buttons">
-    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="whatsapp-btn">💬 Chat on WhatsApp Now</a>
-    <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn">📧 Send Email</a>
-    <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" class="group-btn">👥 Join Brainy Buddies Group</a>
-    <a href="https://bigquamsmedia-one.vercel.app/" target="_blank" class="portfolio-btn">🌐 Visit Portfolio</a>
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" class="whatsapp-btn">💬 WhatsApp</a>
+    <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn">📧 Email</a>
   </div>
-
-  <form action="mailto:bigquamsmedia024@gmail.com" method="post" enctype="text/plain" style="margin-top:20px;">
-    <input type="text" name="name" placeholder="Your Name" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;" />
-    <input type="email" name="email" placeholder="Your Email" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;" />
-    <textarea name="message" rows="5" placeholder="Your Feedback" required style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;"></textarea>
-    <button type="submit" class="btn" style="width:100%;">Send Feedback</button>
-  </form>
 </section>
 
 <footer>
-  &copy; 2026 Big Quams Media®. All rights reserved.<br>
-  Built with ❤️ by <a href="https://wa.me/message/OVCVEDHU3I2PH1">Big Quams Media</a>
+  &copy; 2026 Big Quams Media®. All rights reserved.
 </footer>
 
 <a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float">💬</a>
 
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-AOS.init({ duration: 700, once: true, offset: 80 });
-
-// Fetch news and populate cards
+// Fetch news without AOS triggers
 async function fetchNewsData() {
   const container = document.getElementById('news-container');
   try {
@@ -237,19 +156,47 @@ async function fetchNewsData() {
     newsData.forEach(item => {
       const card = document.createElement('div');
       card.className = 'news-card';
-      card.setAttribute('data-aos','fade-up');
-
       const link = item.link || '#';
-      const title = item.title || "Update";
-      const description = item.description || "";
-
-      const safeTitle = encodeURIComponent(title);
-      const safeLink = encodeURIComponent(link);
 
       card.innerHTML = `
         <div class="news-meta">
           <span class="category-label">${item.category || 'News'}</span>
           <span class="date-label">${item.date || ''}</span>
         </div>
-        <h3>${title}</h3>
-        <p>${description
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        <div class="news-actions">
+          <a href="${link}" class="btn" target="_blank">Read More</a>
+          <button class="share-btn-full" onclick="copyLink('${link}')">🔗 Share</button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  } catch (err) {
+    container.innerHTML = '<p>Latest news currently unavailable.</p>';
+  }
+}
+
+function copyLink(url) {
+  navigator.clipboard.writeText(url).then(() => {
+    showToast("Link copied!");
+  });
+}
+
+function showToast(msg) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerText = msg;
+  document.getElementById('toast-container').appendChild(toast);
+  setTimeout(() => toast.classList.add('show'), 50);
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 500);
+  }, 2500);
+}
+
+fetchNewsData();
+</script>
+
+</body>
+</html>
