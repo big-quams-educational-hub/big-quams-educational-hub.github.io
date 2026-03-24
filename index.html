@@ -200,6 +200,63 @@
       font-size: 1.8rem;
       font-weight: bold;
     }
+   /* Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Hero section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Vertical center */
+    align-items: center;      /* Horizontal center */
+    text-align: center;
+    background-color: #2d4aa5; /* Your blue background */
+    padding: 20px;
+}
+
+/* Logo wrapper */
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Circle logo */
+.logo-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #FF6600;
+}
+
+/* Image */
+.logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Title */
+.hero h1 {
+    color: #fff;
+    font-size: 32px;
+    margin: 10px 0;
+    letter-spacing: 2px;
+}
+
+/* Subtitle */
+.subtitle {
+    color: #FF6600;
+    font-size: 16px;
+    max-width: 500px;
+    line-height: 1.6;
+}
     .brand-subtext {
       font-size: 1rem;
       color: #FF6600; /* Orange tagline */
@@ -225,57 +282,7 @@
       color: white;
     }
 
-    /* Mobile adjustments */
-    @media screen and (max-wi/* Full-page centered circular logo */
-body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center; /* Horizontal center */
-    align-items: center;     /* Vertical center */
-    background-color: #fff;  /* Optional page background */
-}
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center; /* Horizontal center */
-    align-items: center;     /* Vertical center */
-    background-color: #fff;  /* Optional background */
-}
-
-/* Full-page centered circular logo */
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center; /* Horizontal center */
-    align-items: center;     /* Vertical center */
-    background-color: #fff;  /* Optional background */
-}
-
-/* Circle container */
-.logo-circle {
-    width: 20vw;               /* Responsive width (20% of viewport) */
-    max-width: 200px;          /* Maximum size */
-    height: 20vw;              /* Responsive height */
-    max-height: 200px;         /* Maximum size */
-    border-radius: 50%;        /* Circular shape */
-    overflow: hidden;          /* Crop image inside circle */
-    border: 2px solid #FF6600; /* Optional circular border */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Logo image */
-.logo-circle img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;         /* Fill circle without distortion */
-    border-radius: 50%;        /* Keep image circular */
-    display: block;
-}
+   
     
       .brand-text {
         font-size: 1.4rem;
