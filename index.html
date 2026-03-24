@@ -74,7 +74,7 @@
   .date-label { color: var(--muted); }
 
   /* News Action Buttons */
-  .news-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .news-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
   .read-more-btn { flex: 2; text-align: center; font-size: 0.9rem; }
   .share-btn { flex: 1; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 8px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: 0.3s; }
   .share-btn:hover { background: var(--accent-blue); color: white; }
@@ -231,12 +231,13 @@
   async function fetchNewsData() {
     const container = document.getElementById('news-container');
     try {
-      const response = await fetch('news.json');
+      // Force refresh by adding timestamp to the URL
+      const response = await fetch('news.json?v=' + Date.now());
       if (!response.ok) throw new Error('Failed to load news.json');
       const newsData = await response.json();
       container.innerHTML = '';
       
-      if (newsData.length === 0) { 
+      if (!newsData || newsData.length === 0) { 
         container.innerHTML = '<p>No news updates at the moment.</p>'; 
         return; 
       }
@@ -245,6 +246,10 @@
         const card = document.createElement('div');
         card.className = 'news-card';
         card.setAttribute('data-aos','fade-up');
+        
+        // Safety for titles with quotes
+        const safeTitle = (item.title || "Update").replace(/'/g, "\\'");
+        
         card.innerHTML = `
           <div class="news-meta">
             <span class="category-label">${item.category || 'News'}</span>
@@ -254,14 +259,18 @@
           <p>${item.description}</p>
           <div class="news-actions">
             <a href="${item.link}" class="read-more-btn btn" target="_blank">Read More</a>
-            <button class="share-btn" onclick="shareContent('${item.title}', '${item.link}')">Share 🔗</button>
+            <button class="share-btn" onclick="shareContent('${safeTitle}', '${item.link}')">Share 🔗</button>
           </div>
         `;
         container.appendChild(card);
       });
+      
+      // Refresh animations for new elements
+      setTimeout(() => { AOS.refresh(); }, 100);
+      
     } catch (error) {
       console.error('Error loading news:', error);
-      container.innerHTML = '<p>Failed to load news. Please check your news.json file.</p>';
+      container.innerHTML = '<p>Failed to load news. Check your news.json format.</p>';
     }
   }
 
@@ -269,11 +278,11 @@
     if (navigator.share) {
       navigator.share({
         title: title,
-        text: `Check out this update from BIG QUAMS MEDIA: ${title}`,
+        text: `Big Quams Media Update: ${title}`,
         url: url,
       }).catch(err => console.log('Error sharing', err));
     } else {
-      // Fallback for browsers that don't support Web Share API
+      // Direct WhatsApp share for browsers that don't support the Share API
       const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(title + ": " + url)}`;
       window.open(whatsappUrl, '_blank');
     }
@@ -282,4 +291,5 @@
   document.addEventListener('DOMContentLoaded', fetchNewsData);
 </script>
 </body>
-</html>
+      </html>
+      
