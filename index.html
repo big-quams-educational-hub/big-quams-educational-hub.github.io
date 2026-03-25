@@ -178,6 +178,12 @@ form button:hover {
 <p>We’d love to hear from you! Reach us quickly via WhatsApp, email, or send a message below.</p>
 
 <form action="https://formspree.io/f/mqegznag" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required class="form-input">
+  
+  <input type="email" name="email" placeholder="Your Email" required class="form-input">
+  
+  <textarea name="message" placeholder="Your Message" rows="5" required class="form-input"></textarea>
+
   <button type="submit" class="submit-btn">Send Message</button>
 </form>
 
@@ -185,13 +191,33 @@ form button:hover {
   <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="whatsapp-btn">
     💬 Chat on WhatsApp Now
   </a>
-  </div>
+</div>
 
 <style>
-  /* This ensures the space is visible */
+  /* Basic styling for the inputs to make them look like your screenshot */
+  .form-input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  /* THE SPACE FIX: margin-bottom pushes the WhatsApp button down */
   .submit-btn {
-    margin-bottom: 20px; /* The "Up/Down" space */
+    display: block;
+    width: 100%;
+    background-color: #1e74fd;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
     cursor: pointer;
+    margin-bottom: 30px; /* Adjust this to change the gap size */
   }
 
   .whatsapp-btn {
@@ -201,8 +227,9 @@ form button:hover {
     background-color: #25d366;
     color: white;
     text-decoration: none;
-    padding: 12px;
+    padding: 14px;
     border-radius: 8px;
+    font-weight: bold;
   }
 </style>
 
