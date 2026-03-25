@@ -178,17 +178,40 @@ form button:hover {
 <p>We’d love to hear from you! Reach us quickly via WhatsApp, email, or send a message below.</p>
 
 <form action="https://formspree.io/f/mqegznag" method="POST">
-  
-  <input type="text" name="name" placeholder="Your Name" required>
-  
-  <input type="email" name="email" placeholder="Your Email" required>
-  
-  <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+  <button type="submit" class="submit-btn">Send Message</button>
+</form>
 
-  <input type="hidden" name="_next" value="https://bigquamseducationalhub.vercel.app/thank-you.html">
-  
-  <button type="submit">Send Message</button>
+<div class="contact-buttons">
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="whatsapp-btn">
+    💬 Chat on WhatsApp Now
+  </a>
+  </div>
 
+<style>
+  /* This ensures the space is visible */
+  .submit-btn {
+    margin-bottom: 20px; /* The "Up/Down" space */
+    cursor: pointer;
+  }
+
+  .whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25d366;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+  }
+</style>
+
+
+
+
+
+
+  
 </form>
 
 <div class="contact-buttons">
