@@ -42,22 +42,41 @@ header {
 .header-inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
 }
-.logo-wrap { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.logo-wrap { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .logo-circle {
-  width: 52px; height: 52px;
+  width: 44px; height: 44px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid var(--orange);
+  flex-shrink: 0;
 }
 .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
-.brand-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; }
-.brand-sub  { font-size: 0.7rem; color: #bfdbfe; }
+.brand-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.5px; line-height: 1.2; }
+.brand-sub  { font-size: 0.65rem; color: #bfdbfe; }
+
+/* Hamburger */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 6px;
+}
+.menu-toggle span {
+  display: block; width: 24px; height: 2px;
+  background: white; border-radius: 2px;
+  transition: 0.3s;
+}
+
 nav {
   display: flex; flex-wrap: wrap;
   gap: 6px 18px; margin-left: auto;
@@ -75,14 +94,34 @@ nav a:hover { color: var(--orange); }
 }
 .nav-cta:hover { background: #ea6c0a !important; }
 
+@media (max-width: 600px) {
+  .menu-toggle { display: flex; }
+  nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--blue-dk);
+    margin-left: 0;
+    padding: 8px 0 12px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  nav.open { display: flex; }
+  nav a { padding: 10px 16px; width: 100%; font-size: 0.95rem; }
+  nav a:hover { background: rgba(255,255,255,0.08); color: var(--orange); }
+  .nav-cta { margin: 8px 16px 0; width: calc(100% - 32px); text-align: center; border-radius: 6px; }
+}
+
 /* HERO */
 .hero {
   background: linear-gradient(145deg, #dbeafe 0%, #eff6ff 60%, #fef3c7 100%);
-  padding: 72px 24px 64px;
+  padding: 48px 16px 44px;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
+@media (min-width: 600px) { .hero { padding: 72px 24px 64px; } }
 .hero::before {
   content: '';
   position: absolute; inset: 0;
@@ -121,9 +160,13 @@ nav a:hover { color: var(--orange); }
   animation: fadeUp 0.6s 0.2s ease both;
 }
 .hero-btns {
-  display: flex; gap: 12px;
+  display: flex; gap: 10px;
   justify-content: center; flex-wrap: wrap;
   animation: fadeUp 0.6s 0.3s ease both;
+}
+@media (max-width: 480px) {
+  .hero-btns { flex-direction: column; align-items: stretch; padding: 0 8px; }
+  .hero-btns .btn, .hero-btns .btn-outline { text-align: center; width: 100%; }
 }
 
 /* BUTTONS */
@@ -160,7 +203,8 @@ nav a:hover { color: var(--orange); }
 .btn-outline:hover { background: var(--blue); color: white; }
 
 /* CONTAINER */
-.container { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 16px; }
+@media (min-width: 600px) { .container { padding: 60px 24px; } }
 
 /* SECTION HEADING */
 .section-label {
@@ -215,9 +259,11 @@ h2.section-title {
 #services { background: var(--light); }
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
+@media (min-width: 500px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 860px) { .services-grid { grid-template-columns: 1fr 1fr 1fr; } }
 .service-card {
   background: white;
   border-radius: 14px;
@@ -248,7 +294,7 @@ h2.section-title {
 .news-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 16px;
 }
 @media (min-width: 640px) { .news-grid { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 960px) { .news-grid { grid-template-columns: 1fr 1fr 1fr; } }
@@ -307,9 +353,15 @@ h2.section-title {
 @media (min-width: 700px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
 .contact-form {
   background: white; border-radius: 16px;
-  padding: 32px; border: 1px solid var(--border);
+  padding: 20px 16px; border: 1px solid var(--border);
   box-shadow: 0 4px 16px rgba(0,0,0,0.05);
 }
+@media (min-width: 600px) { .contact-form { padding: 32px; } }
+.testimonial { background: #f1f5f9; padding: 20px 24px; margin: 16px 0; border-left: 5px solid var(--accent-orange); border-radius: 8px; font-style: italic; color: #475569; max-width: 800px; }
+    
+    .testimonial { background: #f1f5f9; padding: 20px 24px; margin: 16px 0; border-left: 5px solid var(--accent-orange); border-radius: 8px; font-style: italic; color: #475569; max-width: 800px; }
+    .testimonial strong { display: block; margin-bottom: 6px; color: var(--accent-blue); font-style: normal; }
+
 .contact-form h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--blue-dk); margin-bottom: 20px; }
 .form-group { margin-bottom: 14px; }
 .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: #374151; margin-bottom: 5px; }
@@ -364,6 +416,8 @@ footer {
 footer a { color: var(--orange); text-decoration: none; font-weight: 600; }
 footer a:hover { text-decoration: underline; }
 
+    
+    
 /* WA FLOAT */
 #whatsapp-float {
   position: fixed; width: 56px; height: 56px;
@@ -383,6 +437,94 @@ footer a:hover { text-decoration: underline; }
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* SERVICE CARD — clickable hint */
+.service-card { cursor: pointer; }
+.service-card .learn-more {
+  display: inline-flex; align-items: center; gap: 5px;
+  margin-top: 12px; font-size: 0.8rem; font-weight: 700;
+  color: var(--blue); opacity: 0.75; transition: opacity 0.2s;
+}
+.service-card:hover .learn-more { opacity: 1; }
+
+/* MODAL OVERLAY */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(10,20,60,0.55);
+  backdrop-filter: blur(4px);
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal-overlay.open { display: flex; }
+
+/* MODAL BOX */
+.modal-box {
+  background: white;
+  border-radius: 20px;
+  width: 100%; max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(10,20,60,0.25);
+  animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+  position: relative;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.88) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-header {
+  background: linear-gradient(135deg, var(--blue-dk), var(--blue));
+  color: white;
+  padding: 28px 28px 22px;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+}
+.modal-header .modal-icon { font-size: 2.4rem; margin-bottom: 10px; display: block; }
+.modal-header h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; margin-bottom: 4px; }
+.modal-header p { font-size: 0.88rem; color: #bfdbfe; line-height: 1.4; }
+.modal-close {
+  position: absolute; top: 16px; right: 16px;
+  background: rgba(255,255,255,0.15);
+  border: none; color: white;
+  width: 32px; height: 32px;
+  border-radius: 50%; font-size: 1.1rem;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.modal-close:hover { background: rgba(255,255,255,0.3); }
+.modal-body { padding: 24px 28px 28px; }
+.modal-body h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  color: var(--orange); margin-bottom: 12px;
+}
+.modal-body ul {
+  list-style: none; display: flex; flex-direction: column; gap: 9px;
+  margin-bottom: 24px;
+}
+.modal-body ul li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.92rem; color: #334155; line-height: 1.45;
+}
+.modal-body ul li::before {
+  content: '✓';
+  background: #dcfce7; color: var(--green);
+  border-radius: 50%; width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 800; flex-shrink: 0; margin-top: 1px;
+}
+.modal-cta {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; background: #25d366; color: white;
+  padding: 14px; border: none; border-radius: 10px;
+  font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+  text-decoration: none; cursor: pointer; transition: background 0.2s, transform 0.15s;
+}
+.modal-cta:hover { background: #20bd5a; transform: translateY(-1px); }
 </style>
 </head>
 <body>
@@ -399,11 +541,15 @@ footer a:hover { text-decoration: underline; }
         <div class="brand-sub">Simplifying Campus Life</div>
       </div>
     </div>
-    <nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#news-updates">News</a>
+      <a href="#testimonials">Testimonials</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
   </div>
@@ -411,9 +557,9 @@ footer a:hover { text-decoration: underline; }
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-badge">🎓 Nigeria's #1 Student Media Platform</div>
+  <div class="hero-badge">🎓 #1 Student Media Platform</div>
   <h1>Your Campus Life,<br><span>Simplified.</span></h1>
-  <p>Timely JAMB updates, scholarship alerts, admission guides, and digital services — all in one place for Nigerian students.</p>
+  <p>Your trusted multidisciplinary media platform, delivering everything campus, digital services, and education related information to your fingertips.</p>
   <div class="hero-btns">
     <a href="#news-updates" class="btn">📰 Latest News</a>
     <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="btn btn-wa">💬 Chat on WhatsApp</a>
@@ -429,9 +575,9 @@ footer a:hover { text-decoration: underline; }
         <div class="section-label">About Us</div>
         <h2 class="section-title">Bridging the Information Gap for Students</h2>
         <div class="section-divider"></div>
-        <p><strong>Big Quams Media®</strong> is a trusted student-focused digital platform dedicated to simplifying campus life by providing timely, relevant, and reliable information. We deliver updates on education, scholarships, campus news, and opportunities.</p>
-        <p>From JAMB and Post-UTME to admission tips, school updates, and scholarship alerts, we provide timely and reliable resources to empower learners at all levels.</p>
-        <p><em>Big Quams Media® — simplifying campus life for every student.</em></p>
+        <p><strong>Big Quams Media®</strong> is a trusted student-focused digital platform dedicated to simplifying campus life by providing timely, relevant, and reliable information. We deliver updates on education, scholarships, campus news, opportunities and other digital services.</p>
+        <p>From JAMB / Post-UTME guidance to school updates, and scholarship alerts, we provide timely and reliable resources to empower learners at all levels.</p>
+        <p><em>…Simplifying campus life for every student.</em></p>
         <br>
         <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="btn btn-wa">💬 Chat with Us</a>
       </div>
@@ -460,170 +606,4 @@ footer a:hover { text-decoration: underline; }
 <!-- SERVICES -->
 <section id="services">
   <div class="container">
-    <div class="section-label">What We Offer</div>
-    <h2 class="section-title">Our Services</h2>
-    <div class="section-divider"></div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">📝</div>
-        <h3>JAMB & UTME Advisory</h3>
-        <p>Expert guidance on registration, profile code generation, NIN linking, and exam preparation strategies.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🎓</div>
-        <h3>Admission Support</h3>
-        <p>Post-UTME coaching, CAPS status explanations, and step-by-step admission acceptance assistance.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">💰</div>
-        <h3>Scholarship Alerts</h3>
-        <p>Real-time alerts on local and international scholarship opportunities including BEA Awards.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">💻</div>
-        <h3>Digital Services</h3>
-        <p>School fee payments, result checking, graphic design, and web development solutions.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📰</div>
-        <h3>Campus News</h3>
-        <p>Up-to-date news on campus regulations, academic calendars, and institutional announcements.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🧠</div>
-        <h3>Academic Coaching</h3>
-        <p>Study strategies, past question analysis, and CBT exam techniques for top performance.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NEWS -->
-<section id="news-updates">
-  <div class="container">
-    <div class="section-label">Stay Informed</div>
-    <h2 class="section-title">Latest News & Updates</h2>
-    <div class="section-divider"></div>
-    <div id="news-container" class="news-grid">
-      <div class="news-loading">⏳ Loading latest news…</div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="section-label">Get In Touch</div>
-    <h2 class="section-title">Contact & Feedback</h2>
-    <div class="section-divider"></div>
-    <div class="contact-grid">
-      <div class="contact-form">
-        <h3>Send Us a Message</h3>
-        <form action="https://formspree.io/f/mqegznag" method="POST">
-          <input type="hidden" name="_next" value="https://bigquamseducationalhub.vercel.app/thank-you.html">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="e.g. Abdulquam Bello" required>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="you@example.com" required>
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
-          </div>
-          <button type="submit" class="submit-btn">Send Message →</button>
-        </form>
-      </div>
-      <div class="contact-links">
-        <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="contact-link-card">
-          <span class="icon">💬</span>
-          <div>Chat on WhatsApp<span class="lbl">Direct message — fastest response</span></div>
-        </a>
-        <a href="mailto:bigquamsmedia024@gmail.com" class="contact-link-card">
-          <span class="icon">📧</span>
-          <div>Send an Email<span class="lbl">bigquamsmedia024@gmail.com</span></div>
-        </a>
-        <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="contact-link-card">
-          <span class="icon">👥</span>
-          <div>Join Brainy Buddies Group<span class="lbl">Community of Nigerian students</span></div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p>&copy; 2025 Big Quams Media®. All rights reserved.</p>
-  <p style="margin-top:6px;">Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a></p>
-</footer>
-
-<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float" title="Chat on WhatsApp">💬</a>
-<div id="toast-container"></div>
-
-<script>
-async function fetchNewsData() {
-  const container = document.getElementById('news-container');
-  try {
-    const response = await fetch('news.json?v=' + Date.now());
-    if (!response.ok) throw new Error('Bad response');
-    const newsData = await response.json();
-    container.innerHTML = '';
-
-    newsData.forEach((item, i) => {
-      const card = document.createElement('div');
-      card.className = 'news-card';
-      card.style.animationDelay = (i * 0.07) + 's';
-      const link = item.link || '#';
-
-      card.innerHTML = `
-        <div class="news-meta">
-          <span class="category-label">${item.category || 'News'}</span>
-          <span class="date-label">${item.date || ''}</span>
-        </div>
-        <h3>${item.title}</h3>
-        <p>${item.description}</p>
-        <div class="news-actions">
-          <a href="${link}" target="_blank" rel="noopener noreferrer">Read More</a>
-          <button onclick="copyLink('${link}')">🔗 Share</button>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  } catch (err) {
-    container.innerHTML = '<div class="news-loading">⚠️ Latest news currently unavailable. Please check back soon.</div>';
-  }
-}
-
-function copyLink(url) {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(url).then(() => showToast('🔗 Link copied!'));
-  } else {
-    const el = document.createElement('textarea');
-    el.value = url;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    showToast('🔗 Link copied!');
-  }
-}
-
-function showToast(msg) {
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.innerText = msg;
-  document.getElementById('toast-container').appendChild(toast);
-  setTimeout(() => toast.classList.add('show'), 50);
-  setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => toast.remove(), 400);
-  }, 2500);
-}
-
-fetchNewsData();
-</script>
-</body>
-</html>
+    <
