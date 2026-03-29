@@ -1,3 +1,5 @@
+ntainer">
+    <
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -606,4 +608,362 @@ footer a:hover { text-decoration: underline; }
 <!-- SERVICES -->
 <section id="services">
   <div class="container">
-    <
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Our Services</h2>
+    <div class="section-divider"></div>
+    <div class="services-grid">
+      <div class="service-card" onclick="openModal('jamb')">
+        <div class="service-icon">📝</div>
+        <h3>JAMB & UTME Advisory</h3>
+        <p>Expert guidance on registration, profile code generation, and exam preparation strategies.</p>
+        <span class="learn-more">Learn more →</span>
+      </div>
+      <div class="service-card" onclick="openModal('admission')">
+        <div class="service-icon">🎓</div>
+        <h3>Admission Support</h3>
+        <p>Post-UTME coaching, CAPS status explanations, and step-by-step admission acceptance assistance.</p>
+        <span class="learn-more">Learn more →</span>
+      </div>
+      <div class="service-card" onclick="openModal('scholarship')">
+        <div class="service-icon">🚨</div>
+        <h3>Scholarship Alerts</h3>
+        <p>Real-time alerts on local and international scholarship opportunities including BEA Awards.</p>
+        <span class="learn-more">Learn more →</span>
+      </div>
+      <div class="service-card" onclick="openModal('digital')">
+        <div class="service-icon">💻</div>
+        <h3>Digital Services</h3>
+        <p>School fee payments, result checking, graphic design, NIN services and business brand customization.</p>
+        <span class="learn-more">Learn more →</span>
+      </div>
+      <div class="service-card" onclick="openModal('news')">
+        <div class="service-icon">📰</div>
+        <h3>Campus News</h3>
+        <p>Up-to-date news on campus regulations, academic calendars, and institutional announcements.</p>
+        <span class="learn-more">Learn more →</span>
+      </div>
+      <div class="service-card" onclick="openModal('elibrary')">
+        <div class="service-icon">📚</div>
+        <h3>eLibrary</h3>
+        <p>Access study materials, past questions, novels and more, all in one place to support your learning.</p>
+        <span class="learn-more">Learn more →</span>
+      </div>
+      <div class="service-card" onclick="openModal('coaching')">
+        <div class="service-icon">🧠</div>
+        <h3>Academic Coaching</h3>
+        <p>Study strategies, past question analysis, and CBT exam techniques for top performance.</p>
+        <span class="learn-more">Learn more →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE MODALS OVERLAY -->
+<div class="modal-overlay" id="serviceModal" onclick="handleOverlayClick(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <span class="modal-icon" id="modalIcon"></span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+    </div>
+    <div class="modal-body">
+      <h4>What's Included</h4>
+      <ul id="modalList"></ul>
+      <a class="modal-cta" id="modalCta" href="#" target="_blank" rel="noopener noreferrer">🚀 Get Started Now</a>
+      <a class="modal-cta" id="modalCtaLib" href="elibrary.html" style="display:none; background:#1a3fa8; margin-top:8px;">📚 View eLibrary</a>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS -->
+<section id="news-updates">
+  <div class="container">
+    <div class="section-label">Stay Informed</div>
+    <h2 class="section-title">Latest News & Updates</h2>
+    <div class="section-divider"></div>
+    <div id="news-container" class="news-grid">
+      <div class="news-loading">⏳ Loading latest news…</div>
+    </div>
+  </div>
+</section>
+
+
+  <section class="container" id="testimonials" data-aos="fade-up">
+    <h2>Testimonials</h2>
+    <div class="testimonial" data-aos="fade-right">
+      <strong>Abdulrahmon Aisha, Lagos state⭐⭐⭐⭐⭐</strong><br/>
+      “I was totally lost before I found Big Quams Media. They helped me sort my Post-UTME and I got admitted into Unilorin!”
+    </div>
+    <div class="testimonial" data-aos="fade-right" data-aos-delay="100">
+      <strong>Festus Oluwadare, Kwara state⭐⭐⭐⭐</strong><br/>
+      “I passed my JAMB at once after following their guide. You won’t regret working with them!”
+    </div>
+    <div class="testimonial" data-aos="fade-right" data-aos-delay="200">
+      <strong>Aderemi Rasheedah, Osun state ⭐⭐⭐⭐</strong><br/>
+      “Best consultant of all time — fast, reliable, and always helpful. BIG QUAMS MEDIA truly supports students at every step.”
+    </div>
+  </section>
+  
+  
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Contact & Feedback</h2>
+    <div class="section-divider"></div>
+    <div class="contact-grid">
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form action="https://formspree.io/f/mqegznag" method="POST">
+          <input type="hidden" name="_next" value="https://bigquamseducationalhub.vercel.app/thank-you.html">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Anthony Daniel" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="yourname@gmail.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message →</button>
+        </form>
+      </div>
+      <div class="contact-links">
+        <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="contact-link-card">
+          <span class="icon">💬</span>
+          <div>Chat on WhatsApp<span class="lbl">Direct message — fastest response</span></div>
+        </a>
+        <a href="/cdn-cgi/l/email-protection#6f0d06081e1a0e021c020a0b060e5f5d5b2f08020e0603410c0002" class="contact-link-card">
+          <span class="icon">📧</span>
+          <div>Send an Email<span class="lbl"><span class="__cf_email__" data-cfemail="33515a544246525e405e56575a5203010773545e525a5f1d505c5e">[email to bigquamsmedia]</span></span></div>
+        </a>
+        <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="contact-link-card">
+          <span class="icon">👥</span>
+          <div>Join Brainy Buddies Group<span class="lbl">Community of Nigerian students</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2025 Big Quams Media®. All rights reserved.</p>
+  <p style="margin-top:6px;">Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a></p>
+</footer>
+
+<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float" title="Chat on WhatsApp">💬</a>
+<div id="toast-container"></div>
+
+<script>
+// Hamburger menu
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
+mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('open')));
+
+// ── SERVICE MODAL DATA ──
+const WA = 'https://wa.me/2349049871643?text=';
+const services = {
+  jamb: {
+    icon: '📝',
+    title: 'JAMB & UTME Advisory',
+    desc: 'Full guidance from registration to exam day — we make JAMB stress-free.',
+    items: [
+      'JAMB profile creation & NIN linking assistance',
+      'Profile code generation (email & phone)',
+      'Mock UTME preparation & past question drill',
+      'CBT practice tips and time management strategy',
+      'Post-exam result interpretation & next steps',
+      'Direct support via WhatsApp for urgent issues',
+    ],
+    msg: 'Hello Big Quams Media! I need help with JAMB & UTME Advisory. Please guide me.'
+  },
+  admission: {
+    icon: '🎓',
+    title: 'Admission Support',
+    desc: 'From Post-UTME to your final admission letter — we guide every step.',
+    items: [
+      'Post-UTME registration & preparation coaching',
+      'JAMB CAPS portal guidance (accept/reject offer)',
+      'Understanding "Admission in Progress" status',
+      'Change of course / institution processing',
+      'Direct Entry (DE) application support',
+      'School clearance & matriculation guidance',
+    ],
+    msg: 'Hello Big Quams Media! I need Admission Support. Please assist me.'
+  },
+  scholarship: {
+    icon: '🚨',
+    title: 'Scholarship Alerts',
+    desc: 'Never miss a funded opportunity — local and international alerts delivered to you.',
+    items: [
+      'Federal Government BEA Scholarship alerts',
+      'State government scholarship notifications',
+      'International undergraduate & postgraduate alerts',
+      'Application deadline reminders',
+      'Document checklist & application guidance',
+      'Essay & personal statement tips',
+    ],
+    msg: 'Hello Big Quams Media! I want to receive Scholarship Alerts. How do I get started?'
+  },
+  digital: {
+    icon: '💻',
+    title: 'Digital Services',
+    desc: 'Your one-stop digital hub — from payments to branding, we handle it all.',
+    items: [
+      'School fee payment & e-receipt assistance',
+      'Student result & transcript checking',
+      'NIN digital slip retrieval & ID card printing',
+      'NIN modification (name, DOB, phone corrections)',
+      'Graphic design & business brand customization',
+      'Website creation & social media setup',
+    ],
+    msg: 'Hello Big Quams Media! I need Digital Services. Please tell me more.'
+  },
+  news: {
+    icon: '📰',
+    title: 'Campus News',
+    desc: 'Stay informed on everything happening in Nigerian campuses and beyond.',
+    items: [
+      'Yabatech & university regulation updates',
+      'Academic calendar & exam timetable alerts',
+      'ASUU strike & resumption news',
+      'Student union & campus event coverage',
+      'Federal Ministry of Education announcements',
+      'Breaking education news delivered first',
+    ],
+    msg: 'Hello Big Quams Media! I want to stay updated with Campus News. How can I subscribe?'
+  },
+  elibrary: {
+    icon: '📚',
+    title: 'eLibrary',
+    desc: 'Every material you need to study smarter — all in one digital library.',
+    items: [
+      'JAMB & Post-UTME past questions (all subjects)',
+      'University course textbooks & lecture notes',
+      'Novels, fiction & non-fiction books',
+      'Professional certification study materials',
+      'Research papers & project templates',
+      'Free & premium material access options',
+    ],
+    msg: 'Hello Big Quams Media! I want to access the eLibrary. What materials do you have?'
+  },
+  coaching: {
+    icon: '🧠',
+    title: 'Academic Coaching',
+    desc: 'Personalized coaching to help you study smarter and perform at your best.',
+    items: [
+      'Personalized study plan creation',
+      'Subject-by-subject past question analysis',
+      'CBT exam techniques & answer strategies',
+      'Time management during exams',
+      '1-on-1 tutoring sessions via WhatsApp/call',
+      'Post-exam performance review & feedback',
+    ],
+    msg: 'Hello Big Quams Media! I need Academic Coaching. Please tell me more.'
+  }
+};
+
+function openModal(key) {
+  const s = services[key];
+  if (!s) return;
+  document.getElementById('modalIcon').textContent  = s.icon;
+  document.getElementById('modalTitle').textContent = s.title;
+  document.getElementById('modalDesc').textContent  = s.desc;
+  const ul = document.getElementById('modalList');
+  ul.innerHTML = s.items.map(i => `<li>${i}</li>`).join('');
+  document.getElementById('modalCta').href = WA + encodeURIComponent(s.msg);
+
+  // Show eLibrary button only for elibrary service
+  const libBtn = document.getElementById('modalCtaLib');
+  if (key === 'elibrary') {
+    document.getElementById('modalCta').textContent = '💬 Ask on WhatsApp';
+    libBtn.style.display = 'flex';
+  } else {
+    document.getElementById('modalCta').textContent = '🚀 Get Started Now';
+    libBtn.style.display = 'none';
+  }
+
+  const overlay = document.getElementById('serviceModal');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('serviceModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('serviceModal')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// News loader
+async function fetchNewsData() {
+  const container = document.getElementById('news-container');
+  try {
+    const response = await fetch('news.json?v=' + Date.now());
+    if (!response.ok) throw new Error('Bad response');
+    const newsData = await response.json();
+    container.innerHTML = '';
+    newsData.forEach((item, i) => {
+      const card = document.createElement('div');
+      card.className = 'news-card';
+      card.style.animationDelay = (i * 0.07) + 's';
+      const link = item.link || '#';
+      card.innerHTML = `
+        <div class="news-meta">
+          <span class="category-label">${item.category || 'News'}</span>
+          <span class="date-label">${item.date || ''}</span>
+        </div>
+        <h3>${item.title}</h3>
+        <p>${item.description}</p>
+        <div class="news-actions">
+          <a href="${link}" target="_blank" rel="noopener noreferrer">Read More</a>
+          <button onclick="copyLink('${link}')">🔗 Share</button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  } catch (err) {
+    container.innerHTML = '<div class="news-loading">⚠️ Latest news currently unavailable. Please check back soon.</div>';
+  }
+}
+
+function copyLink(url) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => showToast('🔗 Link copied!'));
+  } else {
+    const el = document.createElement('textarea');
+    el.value = url;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    showToast('🔗 Link copied!');
+  }
+}
+
+function showToast(msg) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerText = msg;
+  document.getElementById('toast-container').appendChild(toast);
+  setTimeout(() => toast.classList.add('show'), 50);
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 400);
+  }, 2500);
+}
+
+fetchNewsData();
+</script>
+</body>
+</html>
