@@ -3,283 +3,579 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BIG QUAMS MEDIA® | Simplifying Campus Life with News Updates & Digital Services</title>
+<title>BIG QUAMS MEDIA® | Simplifying Campus Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --accent-blue: #1e40af;
-  --accent-orange: #f97316;
-  --accent-green: #16a34a;
-  --muted: #64748b;
-  --bg: #ffffff;
-  --card: #ffffff;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --blue:    #1a3fa8;
+  --blue-dk: #102880;
+  --orange:  #f97316;
+  --green:   #16a34a;
+  --muted:   #64748b;
+  --light:   #f0f5ff;
+  --card:    #ffffff;
+  --text:    #0f172a;
+  --border:  #e2e8f0;
 }
 
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: #0f172a; line-height: 1.5; scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #f8faff;
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-/* Header & Nav */
-header { background: var(--accent-blue); color: white; padding: 16px 24px; text-align: center; }
-.header-container { display: grid; grid-template-columns: 1fr; gap: 12px; text-align: center; padding: 16px; }
-
-.logo-circle { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; border: 3px solid var(--accent-orange); margin: 0 auto; }
+/* HEADER */
+header {
+  background: linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 100%);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(26,63,168,0.25);
+}
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.logo-wrap { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.logo-circle {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--orange);
+}
 .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
+.brand-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px; }
+.brand-sub  { font-size: 0.7rem; color: #bfdbfe; }
+nav {
+  display: flex; flex-wrap: wrap;
+  gap: 6px 18px; margin-left: auto;
+  align-items: center;
+}
+nav a { color: #dbeafe; text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+nav a:hover { color: var(--orange); }
+.nav-cta {
+  background: var(--orange) !important;
+  color: white !important;
+  padding: 7px 16px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+}
+.nav-cta:hover { background: #ea6c0a !important; }
 
-.brand-text { font-weight: bold; font-size: 1.8rem; letter-spacing: 1px; }
-.brand-subtext { font-size: 0.85rem; color: #dbeafe; }
+/* HERO */
+.hero {
+  background: linear-gradient(145deg, #dbeafe 0%, #eff6ff 60%, #fef3c7 100%);
+  padding: 72px 24px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(249,115,22,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(26,63,168,0.1);
+  color: var(--blue);
+  border: 1px solid rgba(26,63,168,0.2);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  animation: fadeUp 0.5s ease both;
+}
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: var(--blue-dk);
+  line-height: 1.15;
+  margin-bottom: 16px;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.hero h1 span { color: var(--orange); }
+.hero p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto 28px;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+.hero-btns {
+  display: flex; gap: 12px;
+  justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
 
-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-nav a { color: white; text-decoration: none; font-weight: 600; transition: color 0.3s; }
-nav a:hover { color: var(--accent-orange); }
+/* BUTTONS */
+.btn {
+  background: var(--orange);
+  color: white;
+  padding: 11px 22px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, transform 0.15s;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+}
+.btn:hover { background: #ea6c0a; transform: translateY(-1px); }
+.btn-wa { background: #25d366; }
+.btn-wa:hover { background: #20bd5a; }
+.btn-outline {
+  background: transparent;
+  color: var(--blue);
+  border: 2px solid var(--blue);
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.2s;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+}
+.btn-outline:hover { background: var(--blue); color: white; }
 
-/* Hero */
-.hero { text-align: center; background: #f0f5ff; padding: 60px 24px; border-radius: 12px; margin-bottom: 40px; }
-.hero h1 { font-size: 2.4rem; color: var(--accent-blue); margin-bottom: 12px; }
-.hero p { color: #64748b; font-size: 1.1rem; max-width: 650px; margin: 0 auto 24px; }
+/* CONTAINER */
+.container { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
 
-/* Buttons */
-.btn { background: var(--accent-orange); color: white; padding: 10px 16px; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-block; transition: 0.3s; border: none; cursor: pointer; }
-.btn:hover { background: #dc6803; }
-.cta-whatsapp { background: #25d366; }
-.cta-whatsapp:hover { background: #128c4a; }
+/* SECTION HEADING */
+.section-label {
+  display: inline-block;
+  background: rgba(249,115,22,0.1);
+  color: var(--orange);
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+h2.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  color: var(--blue-dk);
+  margin-bottom: 8px;
+}
+.section-divider {
+  width: 48px; height: 4px;
+  background: var(--orange);
+  border-radius: 2px;
+  margin-bottom: 28px;
+}
 
-/* Sections */
-.container { max-width: 1000px; margin: 0 auto; padding: 24px; }
-h2 { color: var(--accent-blue); font-size: 1.8rem; margin-bottom: 14px; border-bottom: 3px solid var(--accent-orange); display: inline-block; padding-bottom: 6px; }
+/* ABOUT */
+#about { background: white; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+@media (min-width: 700px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+.about-text p { color: #475569; margin-bottom: 14px; font-size: 0.97rem; }
+.about-text em { color: var(--blue); font-style: normal; font-weight: 600; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.stat-card {
+  background: var(--light);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  border-left: 4px solid var(--orange);
+}
+.stat-num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--blue); }
+.stat-lbl { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
 
-/* News Grid */
-.news-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 25px; }
-@media (min-width: 700px) { .news-grid { grid-template-columns: 1fr 1fr; } }
-.news-card { background: var(--card); border: 1px solid #cbd5e1; border-radius: 12px; padding: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.3s, box-shadow 0.3s; }
-.news-card:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+/* SERVICES */
+#services { background: var(--light); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.service-card {
+  background: white;
+  border-radius: 14px;
+  padding: 28px 22px;
+  border: 1px solid var(--border);
+  transition: transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--blue));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.service-card:hover::after { transform: scaleX(1); }
+.service-icon { font-size: 2rem; margin-bottom: 14px; }
+.service-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--blue-dk); margin-bottom: 8px; }
+.service-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.5; }
 
-.news-card h3 { margin: 8px 0; color: var(--accent-blue); font-size: 1.1rem; line-height: 1.3; }
-.news-card p { margin: 0 0 16px; color: #475569; font-size: 0.95rem; flex-grow: 1; }
+/* NEWS */
+#news-updates { background: white; }
+.news-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 640px) { .news-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 960px) { .news-grid { grid-template-columns: 1fr 1fr 1fr; } }
 
-.news-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; font-weight: 600; margin-bottom: 4px; }
-.category-label { background: #dbeafe; color: var(--accent-blue); padding: 2px 8px; border-radius: 4px; text-transform: uppercase; }
-.date-label { color: var(--muted); }
-
-.news-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
-.news-actions a.btn, .news-actions button.share-btn-full { flex: 1; text-align: center; padding: 10px 12px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; transition: 0.3s; cursor: pointer; text-decoration: none; }
-.news-actions a.btn { background: var(--accent-orange); color: white; border: none; }
-.news-actions button.share-btn-full { background: var(--accent-blue); color: white; border: none; }
-
-/* Toast */
-#toast-container { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; }
-.toast { background: var(--accent-blue); color: white; padding: 12px 18px; border-radius: 8px; margin-top: 8px; min-width: 200px; font-weight: 600; box-shadow: 0 2px 6px rgba(0,0,0,0.2); opacity: 0; transform: translateY(20px); transition: 0.4s ease; }
-.toast.show { opacity: 1; transform: translateY(0); }
-
-.testimonial { background: #f1f5f9; padding: 20px; margin: 16px 0; border-left: 5px solid var(--accent-orange); border-radius: 8px; font-style: italic; color: #475569; max-width: 800px; }
-.testimonial strong { display: block; margin-bottom: 6px; color: var(--accent-blue); font-style: normal; }
-
-footer { text-align: center; padding: 24px 16px; font-size: 0.9rem; color: var(--muted); border-top: 3px solid var(--accent-green); }
-#whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 50%; text-align: center; font-size: 30px; display: flex; align-items: center; justify-content: center; z-index: 1000; text-decoration: none; }
-
-.contact-buttons a { display: block; margin-bottom: 10px; padding: 12px; border-radius: 8px; text-decoration: none; color: white; font-weight: bold; text-align: center; }
-.whatsapp-btn { background: #25d366; }
-.email-btn { background: var(--accent-blue); }
-.group-btn { background: var(--accent-orange); }
-.portfolio-btn { background: #333; }
-
-  form {
+.news-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 15px;
+  transition: transform 0.25s, box-shadow 0.25s;
+  animation: fadeUp 0.5s ease both;
+}
+.news-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.09); }
+.news-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.category-label {
+  background: #dbeafe; color: var(--blue);
+  padding: 2px 10px; border-radius: 20px;
+  font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.date-label { color: var(--muted); font-size: 0.72rem; }
+.news-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.97rem; font-weight: 700;
+  color: var(--blue-dk); line-height: 1.35;
+  margin-bottom: 10px;
+}
+.news-card p { font-size: 0.875rem; color: #475569; flex-grow: 1; margin-bottom: 16px; line-height: 1.55; }
+.news-actions { display: flex; gap: 8px; }
+.news-actions a, .news-actions button {
+  flex: 1; text-align: center;
+  padding: 9px 10px; border-radius: 7px;
+  font-weight: 700; font-size: 0.82rem;
+  cursor: pointer; text-decoration: none;
+  border: none; transition: 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+.news-actions a { background: var(--orange); color: white; }
+.news-actions a:hover { background: #ea6c0a; }
+.news-actions button { background: var(--light); color: var(--blue); }
+.news-actions button:hover { background: #dbeafe; }
+.news-loading {
+  grid-column: 1 / -1; text-align: center;
+  padding: 48px; color: var(--muted); font-size: 0.95rem;
 }
 
-form input, form textarea {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
+/* CONTACT */
+#contact { background: var(--light); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
 }
+@media (min-width: 700px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+.contact-form {
+  background: white; border-radius: 16px;
+  padding: 32px; border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+.contact-form h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--blue-dk); margin-bottom: 20px; }
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: #374151; margin-bottom: 5px; }
+.form-group input, .form-group textarea {
+  width: 100%; padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: 0.95rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text); transition: border-color 0.2s;
+  background: #fafafa;
+}
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--blue); background: white; }
+.form-group textarea { resize: vertical; min-height: 110px; }
+.submit-btn {
+  width: 100%; background: var(--blue); color: white;
+  padding: 13px; border: none; border-radius: 8px;
+  font-weight: 700; font-size: 1rem;
+  font-family: 'Syne', sans-serif;
+  cursor: pointer; transition: 0.2s; margin-top: 4px;
+}
+.submit-btn:hover { background: var(--blue-dk); }
+.contact-links { display: flex; flex-direction: column; gap: 14px; }
+.contact-link-card {
+  display: flex; align-items: center; gap: 14px;
+  background: white; border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px 18px;
+  text-decoration: none; color: var(--text);
+  transition: box-shadow 0.2s, transform 0.2s;
+  font-weight: 600;
+}
+.contact-link-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); transform: translateX(4px); }
+.contact-link-card .icon { font-size: 1.6rem; }
+.contact-link-card .lbl { font-size: 0.78rem; color: var(--muted); font-weight: 400; display: block; }
 
-form button {
-  padding: 12px;
-  background: #0d6efd;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+/* TOAST */
+#toast-container { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 9999; }
+.toast {
+  background: var(--blue-dk); color: white;
+  padding: 12px 20px; border-radius: 8px;
+  margin-top: 8px; font-weight: 600; font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  opacity: 0; transform: translateY(12px);
+  transition: 0.35s ease; white-space: nowrap;
 }
+.toast.show { opacity: 1; transform: translateY(0); }
 
-form button:hover {
-  background: #0b5ed7;
+/* FOOTER */
+footer {
+  background: var(--blue-dk); color: #bfdbfe;
+  text-align: center; padding: 28px 24px; font-size: 0.88rem;
 }
-  
+footer a { color: var(--orange); text-decoration: none; font-weight: 600; }
+footer a:hover { text-decoration: underline; }
+
+/* WA FLOAT */
+#whatsapp-float {
+  position: fixed; width: 56px; height: 56px;
+  bottom: 28px; right: 24px;
+  background: #25d366; color: white;
+  border-radius: 50%; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 1.6rem; z-index: 999;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37,211,102,0.45);
+  transition: transform 0.2s;
+}
+#whatsapp-float:hover { transform: scale(1.1); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
-  <div class="header-container">
-    <div class="logo-circle"><img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Logo"></div>
-    <div class="brand-text">BIG QUAMS MEDIA®</div>
-    <div class="brand-subtext">Simplifying Campus Life with News Updates & Digital Services</div>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <div class="logo-circle">
+        <img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Big Quams Media Logo">
+      </div>
+      <div>
+        <div class="brand-text">BIG QUAMS MEDIA®</div>
+        <div class="brand-sub">Simplifying Campus Life</div>
+      </div>
+    </div>
     <nav>
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#news-updates">News</a>
-      <a href="#contact" class="btn">Contact</a>
+      <a href="#contact" class="nav-cta">Contact</a>
     </nav>
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero" id="home">
-
-  <section class="container" id="about">
-  <h2>About Us</h2>
-  <p>
-    BIG QUAMS MEDIA® is a student-focused digital platform dedicated to simplifying campus life by providing timely, relevant, and reliable information. We deliver updates on education, scholarships, campus news, and opportunities, helping students stay informed and make better decisions throughout their academic journey.
-  </p>
-  
-  <p>
-    Our mission is to bridge the information gap among students by creating a central hub where valuable resources and updates are easily accessible.
-  </p>
-  
-  <p>
-    At BIG QUAMS MEDIA®, we are committed to clarity, consistency, and impact—ensuring every student has access to the information they need to succeed.
-  </p>
-  <div class="contact-buttons">
-‎      <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="cta-whatsapp" aria-label="Chat with Big Quams on WhatsApp">
-‎   💬Chat with Us on WhatsAppp
-‎    </a>
-‎  </section>
-  
-</section>
-
-<section class="container" id="about">
-  <h2>About Us</h2>
-     <p>
-‎      <strong>Big Quams Media®</strong> is a trusted academic support platform committed to guiding students through their educational journey. From JAMB and Post-UTME to admission tips, school updates, and scholarship alerts, we provide timely and reliable resources to empower learners at all levels.
-‎    </p>
-‎    <p>
-‎      We’re passionate about helping students succeed — offering expert assistance, real-time news, and digital support that simplifies complex academic processes. With a focus on accuracy, accessibility, and innovation, we continue to build a community where education meets opportunity.
-‎    </p>
-‎    <p>
-‎      <em>Big Quams Media® — simplifying campus life for every student</em>
-‎    </p>
-  
-<section class="container" id="services">
-  <h2>Our Services</h2>
-  <ul>
-    <li>JAMB & UTME Advisory</li>
-    <li>Admission Support</li>
-    <li>Scholarship & News Alerts</li>
-  </ul>
-</section>
-
-<section class="container" id="news-updates">
-  <h2>News Updates</h2>
-  <div id="news-container" class="news-grid">
-    <p>Loading latest news…</p>
+  <div class="hero-badge">🎓 Nigeria's #1 Student Media Platform</div>
+  <h1>Your Campus Life,<br><span>Simplified.</span></h1>
+  <p>Timely JAMB updates, scholarship alerts, admission guides, and digital services — all in one place for Nigerian students.</p>
+  <div class="hero-btns">
+    <a href="#news-updates" class="btn">📰 Latest News</a>
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="btn btn-wa">💬 Chat on WhatsApp</a>
+    <a href="#services" class="btn-outline">Our Services</a>
   </div>
 </section>
 
-<div id="toast-container"></div>
-
-<section class="container" id="contact">
-
-  
- 
-<h2>Contact & Feedback</h2>
-<p>Get in touch with us via WhatsApp, email, or by filling out the form below.</p>
-
-<form action="https://formspree.io/f/mqegznag" method="POST">
-  <input type="text" name="name" placeholder="Your Name" required class="form-input">
-  
-  <input type="email" name="email" placeholder="Your Email" required class="form-input">
-  
-  <textarea name="message" placeholder="Your Message" rows="5" required class="form-input"></textarea>
-
-  <button type="submit" class="submit-btn">Send Message</button>
-</form>
-
-<div class="contact-buttons">
-  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="whatsapp-btn">
-    💬 Chat on WhatsApp Now
-  </a>
-</div>
-
-<style>
-  /* Basic styling for the inputs to make them look like your screenshot */
-  .form-input {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-size: 16px;
-  }
-
-  /* THE SPACE FIX: margin-bottom pushes the WhatsApp button down */
-  .submit-btn {
-    display: block;
-    width: 100%;
-    background-color: #1e74fd;
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 30px; /* Adjust this to change the gap size */
-  }
-
-  .whatsapp-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #25d366;
-    color: white;
-    text-decoration: none;
-    padding: 14px;
-    border-radius: 8px;
-    font-weight: bold;
-  }
-</style>
-
-  
-</form>
-
-<div class="contact-buttons">
-    
-  <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" class="group-btn">
-    👥 Join Brainy Buddies Group
-  </a>
-
-
-</div>
-
-
-</section>‎
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About Us</div>
+        <h2 class="section-title">Bridging the Information Gap for Students</h2>
+        <div class="section-divider"></div>
+        <p><strong>Big Quams Media®</strong> is a trusted student-focused digital platform dedicated to simplifying campus life by providing timely, relevant, and reliable information. We deliver updates on education, scholarships, campus news, and opportunities.</p>
+        <p>From JAMB and Post-UTME to admission tips, school updates, and scholarship alerts, we provide timely and reliable resources to empower learners at all levels.</p>
+        <p><em>Big Quams Media® — simplifying campus life for every student.</em></p>
+        <br>
+        <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="btn btn-wa">💬 Chat with Us</a>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">10K+</div>
+          <div class="stat-lbl">Students Reached</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">500+</div>
+          <div class="stat-lbl">News Articles</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">50+</div>
+          <div class="stat-lbl">Scholarships Shared</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">24/7</div>
+          <div class="stat-lbl">Support Available</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Our Services</h2>
+    <div class="section-divider"></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">📝</div>
+        <h3>JAMB & UTME Advisory</h3>
+        <p>Expert guidance on registration, profile code generation, NIN linking, and exam preparation strategies.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎓</div>
+        <h3>Admission Support</h3>
+        <p>Post-UTME coaching, CAPS status explanations, and step-by-step admission acceptance assistance.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💰</div>
+        <h3>Scholarship Alerts</h3>
+        <p>Real-time alerts on local and international scholarship opportunities including BEA Awards.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h3>Digital Services</h3>
+        <p>School fee payments, result checking, graphic design, and web development solutions.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📰</div>
+        <h3>Campus News</h3>
+        <p>Up-to-date news on campus regulations, academic calendars, and institutional announcements.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧠</div>
+        <h3>Academic Coaching</h3>
+        <p>Study strategies, past question analysis, and CBT exam techniques for top performance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news-updates">
+  <div class="container">
+    <div class="section-label">Stay Informed</div>
+    <h2 class="section-title">Latest News & Updates</h2>
+    <div class="section-divider"></div>
+    <div id="news-container" class="news-grid">
+      <div class="news-loading">⏳ Loading latest news…</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Contact & Feedback</h2>
+    <div class="section-divider"></div>
+    <div class="contact-grid">
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form action="https://formspree.io/f/mqegznag" method="POST">
+          <input type="hidden" name="_next" value="https://bigquamseducationalhub.vercel.app/thank-you.html">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Abdulquam Bello" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Message →</button>
+        </form>
+      </div>
+      <div class="contact-links">
+        <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="contact-link-card">
+          <span class="icon">💬</span>
+          <div>Chat on WhatsApp<span class="lbl">Direct message — fastest response</span></div>
+        </a>
+        <a href="mailto:bigquamsmedia024@gmail.com" class="contact-link-card">
+          <span class="icon">📧</span>
+          <div>Send an Email<span class="lbl">bigquamsmedia024@gmail.com</span></div>
+        </a>
+        <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="contact-link-card">
+          <span class="icon">👥</span>
+          <div>Join Brainy Buddies Group<span class="lbl">Community of Nigerian students</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  &copy; 2025 Big Quams Media®. All rights reserved.<br>
-  Built by <a href="https://wa.me/+2349049871643">Big Quams Media</a>
+  <p>&copy; 2025 Big Quams Media®. All rights reserved.</p>
+  <p style="margin-top:6px;">Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a></p>
 </footer>
 
-<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float">💬</a>
+<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float" title="Chat on WhatsApp">💬</a>
+<div id="toast-container"></div>
 
 <script>
-// Fetch news without AOS triggers
 async function fetchNewsData() {
   const container = document.getElementById('news-container');
   try {
     const response = await fetch('news.json?v=' + Date.now());
+    if (!response.ok) throw new Error('Bad response');
     const newsData = await response.json();
     container.innerHTML = '';
 
-    newsData.forEach(item => {
+    newsData.forEach((item, i) => {
       const card = document.createElement('div');
       card.className = 'news-card';
+      card.style.animationDelay = (i * 0.07) + 's';
       const link = item.link || '#';
 
       card.innerHTML = `
@@ -290,54 +586,29 @@ async function fetchNewsData() {
         <h3>${item.title}</h3>
         <p>${item.description}</p>
         <div class="news-actions">
-          <a href="${link}" class="btn" target="_blank">Read More</a>
-          <button class="share-btn-full" onclick="copyLink('${link}')">🔗 Share</button>
+          <a href="${link}" target="_blank" rel="noopener noreferrer">Read More</a>
+          <button onclick="copyLink('${link}')">🔗 Share</button>
         </div>
       `;
       container.appendChild(card);
     });
- <h2>Contact & Feedback</h2>
-<p>We’d love to hear from you! Reach us quickly via WhatsApp, email, or send a message below.</p>
-
-<form action="https://formspree.io/f/mqegznag" method="POST">
-  
-  <input type="text" name="name" placeholder="Your Name" required>
-  
-  <input type="email" name="email" placeholder="Your Email" required>
-  
-  <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-
-  <!-- ✅ Hidden redirect -->
-  <input type="hidden" name="_next" value="https://bigquamseducationalhub.vercel.app/thank-you.html">
-  
-  <button type="submit">Send Message</button>
-
-</form>
-   
-<div class="contact-buttons">
-   
-  <a href="mailto:bigquamsmedia024@gmail.com" class="email-btn">
-    📧 Send Email
-  </a>
-
-  <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" class="group-btn">
-    👥 Join Brainy Buddies Group
-  </a>
-
-  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="whatsapp-btn">
-    💬 Chat on WhatsApp Now
-  </a>
-</div>
-   
   } catch (err) {
-    container.innerHTML = '<p>Latest news currently unavailable.</p>';
+    container.innerHTML = '<div class="news-loading">⚠️ Latest news currently unavailable. Please check back soon.</div>';
   }
 }
 
 function copyLink(url) {
-  navigator.clipboard.writeText(url).then(() => {
-    showToast("Link copied!");
-  });
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => showToast('🔗 Link copied!'));
+  } else {
+    const el = document.createElement('textarea');
+    el.value = url;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    showToast('🔗 Link copied!');
+  }
 }
 
 function showToast(msg) {
@@ -348,12 +619,11 @@ function showToast(msg) {
   setTimeout(() => toast.classList.add('show'), 50);
   setTimeout(() => {
     toast.classList.remove('show');
-    setTimeout(() => toast.remove(), 500);
+    setTimeout(() => toast.remove(), 400);
   }, 2500);
 }
 
 fetchNewsData();
 </script>
-
 </body>
 </html>
