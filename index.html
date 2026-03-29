@@ -3,7 +3,28 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BIG QUAMS MEDIA® | Simplifying Campus Life</title>
+<title>BIG QUAMS MEDIA® | Simplifying Campus Life for Nigerian Students</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="Big Quams Media® — Nigeria's #1 student platform for JAMB updates, admission guides, scholarship alerts, campus news, eLibrary and digital services. Simplifying campus life.">
+<meta name="keywords" content="JAMB 2026, UTME, admission, scholarship Nigeria, campus news, Yabatech, Post-UTME, Big Quams Media, eLibrary, student platform Nigeria">
+<meta name="author" content="Big Quams Media">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://big-quams-educational-hub.github.io/">
+
+<!-- Open Graph (WhatsApp / Facebook preview) -->
+<meta property="og:title" content="BIG QUAMS MEDIA® | Simplifying Campus Life">
+<meta property="og:description" content="JAMB updates, scholarships, admission guides, campus news and digital services — all in one place for Nigerian students.">
+<meta property="og:image" content="https://i.imgur.com/lYJXUyY.jpeg">
+<meta property="og:url" content="https://big-quams-educational-hub.github.io/">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BIG QUAMS MEDIA® | Simplifying Campus Life">
+<meta name="twitter:description" content="Nigeria's #1 student media platform for JAMB, admissions, scholarships and more.">
+<meta name="twitter:image" content="https://i.imgur.com/lYJXUyY.jpeg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 
@@ -18,7 +39,63 @@
   --card:    #ffffff;
   --text:    #0f172a;
   --border:  #e2e8f0;
+  --bg:      #f8faff;
+  --sec-bg:  #ffffff;
 }
+
+/* DARK MODE */
+body.dark {
+  --muted:  #94a3b8;
+  --light:  #1e2a4a;
+  --card:   #1a2540;
+  --text:   #e2e8f0;
+  --border: #2d3f6b;
+  --bg:     #0f172a;
+  --sec-bg: #141f38;
+}
+body.dark { background: var(--bg); color: var(--text); }
+body.dark header { background: linear-gradient(135deg, #080f20, #102880); }
+body.dark .hero  { background: linear-gradient(145deg, #1a2540 0%, #0f1a35 60%, #1c2035 100%); }
+body.dark .hero h1 { color: #e2e8f0; }
+body.dark .hero p  { color: #94a3b8; }
+body.dark .hero-badge { background: rgba(255,255,255,0.07); color: #93c5fd; border-color: rgba(255,255,255,0.1); }
+body.dark #about  { background: var(--sec-bg); }
+body.dark #services { background: var(--bg); }
+body.dark #news-updates { background: var(--sec-bg); }
+body.dark #contact { background: var(--bg); }
+body.dark .service-card,
+body.dark .news-card,
+body.dark .contact-form,
+body.dark .contact-link-card { background: var(--card); border-color: var(--border); color: var(--text); }
+body.dark .service-card h3,
+body.dark .news-card h3,
+body.dark h2.section-title { color: #bfdbfe; }
+body.dark .news-card p,
+body.dark .about-text p,
+body.dark .service-card p { color: var(--muted); }
+body.dark .stat-card { background: #1a2540; }
+body.dark .form-group input,
+body.dark .form-group textarea { background: #1a2540; border-color: var(--border); color: var(--text); }
+body.dark .testimonial { background: #1a2540; color: #94a3b8; }
+body.dark .contact-link-card { color: var(--text); }
+body.dark .contact-link-card .lbl { color: var(--muted); }
+body.dark .modal-box { background: #1a2540; }
+body.dark .modal-body ul li { color: #cbd5e1; }
+body.dark .modal-body h4 { color: var(--orange); }
+body.dark .modal-close { background: rgba(255,255,255,0.1); }
+
+/* DARK TOGGLE BUTTON */
+.dark-toggle {
+  background: rgba(255,255,255,0.12);
+  border: none; color: white;
+  width: 36px; height: 36px;
+  border-radius: 50%; font-size: 1rem;
+  cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.dark-toggle:hover { background: rgba(255,255,255,0.22); }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -438,7 +515,95 @@ footer a:hover { text-decoration: underline; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* SERVICE CARD — clickable hint */
+/* JAMB SCORE CALCULATOR */
+#calculator { background: var(--light); }
+body.dark #calculator { background: var(--bg); }
+
+.calc-card {
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  max-width: 680px;
+  margin: 0 auto;
+}
+body.dark .calc-card { background: var(--card); }
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+@media (max-width: 480px) { .calc-grid { grid-template-columns: 1fr; } }
+
+.calc-group label {
+  display: block; font-size: 0.82rem;
+  font-weight: 600; color: #374151;
+  margin-bottom: 5px;
+}
+body.dark .calc-group label { color: #94a3b8; }
+
+.calc-group input {
+  width: 100%; padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px; font-size: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text); background: #fafafa;
+  transition: border-color 0.2s;
+}
+body.dark .calc-group input { background: #1a2540; color: var(--text); border-color: var(--border); }
+.calc-group input:focus { outline: none; border-color: var(--blue); }
+
+.calc-btn {
+  width: 100%; background: var(--blue); color: white;
+  padding: 13px; border: none; border-radius: 8px;
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 1rem; cursor: pointer; transition: 0.2s;
+  margin-bottom: 16px;
+}
+.calc-btn:hover { background: var(--blue-dk); }
+
+.calc-result {
+  display: none;
+  background: var(--light);
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+  border-left: 4px solid var(--orange);
+}
+body.dark .calc-result { background: #1a2540; }
+.calc-result.show { display: block; }
+.calc-result .result-score {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.2rem; font-weight: 800;
+  color: var(--blue); line-height: 1;
+  margin-bottom: 4px;
+}
+body.dark .calc-result .result-score { color: #93c5fd; }
+.calc-result .result-label { font-size: 0.88rem; color: var(--muted); }
+.calc-result .result-msg {
+  margin-top: 10px; font-size: 0.9rem;
+  font-weight: 600; color: var(--green);
+}
+.calc-result .result-msg.warn { color: var(--orange); }
+.calc-result .result-msg.bad  { color: #dc2626; }
+
+/* SHARE PAGE BUTTON */
+.share-page-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: #25d366; color: white;
+  border: none; padding: 11px 20px;
+  border-radius: 8px; font-weight: 700;
+  font-size: 0.92rem; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: 0.2s; text-decoration: none;
+}
+.share-page-btn:hover { background: #20bd5a; transform: translateY(-1px); }
+
+/* ANIMATED COUNTERS */
+.stat-num { transition: color 0.3s; }
 .service-card { cursor: pointer; }
 .service-card .learn-more {
   display: inline-flex; align-items: center; gap: 5px;
@@ -541,6 +706,7 @@ footer a:hover { text-decoration: underline; }
         <div class="brand-sub">Simplifying Campus Life</div>
       </div>
     </div>
+    <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">🌙</button>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -564,6 +730,7 @@ footer a:hover { text-decoration: underline; }
     <a href="#news-updates" class="btn">📰 Latest News</a>
     <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="btn btn-wa">💬 Chat on WhatsApp</a>
     <a href="#services" class="btn-outline">Our Services</a>
+    <button class="share-page-btn" onclick="sharePage()">📤 Share</button>
   </div>
 </section>
 
@@ -674,6 +841,41 @@ footer a:hover { text-decoration: underline; }
   </div>
 </div>
 
+<!-- JAMB SCORE CALCULATOR -->
+<section id="calculator">
+  <div class="container">
+    <div class="section-label">Student Tools</div>
+    <h2 class="section-title">JAMB Score Calculator</h2>
+    <div class="section-divider"></div>
+    <div class="calc-card">
+      <p style="font-size:0.9rem; color:var(--muted); margin-bottom:18px;">Enter your scores for each subject (0–100). Your aggregate will be calculated instantly.</p>
+      <div class="calc-grid">
+        <div class="calc-group">
+          <label>Use of English</label>
+          <input type="number" id="c1" min="0" max="100" placeholder="e.g. 72" oninput="calcScore()">
+        </div>
+        <div class="calc-group">
+          <label>Subject 2</label>
+          <input type="number" id="c2" min="0" max="100" placeholder="e.g. 65" oninput="calcScore()">
+        </div>
+        <div class="calc-group">
+          <label>Subject 3</label>
+          <input type="number" id="c3" min="0" max="100" placeholder="e.g. 58" oninput="calcScore()">
+        </div>
+        <div class="calc-group">
+          <label>Subject 4</label>
+          <input type="number" id="c4" min="0" max="100" placeholder="e.g. 61" oninput="calcScore()">
+        </div>
+      </div>
+      <div class="calc-result" id="calcResult">
+        <div class="result-score" id="resultScore">—</div>
+        <div class="result-label">Total JAMB Score (out of 400)</div>
+        <div class="result-msg" id="resultMsg"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- NEWS -->
 <section id="news-updates">
   <div class="container">
@@ -758,7 +960,93 @@ footer a:hover { text-decoration: underline; }
 <div id="toast-container"></div>
 
 <script>
-// Hamburger menu
+// ── DARK MODE ──
+const darkToggle = document.getElementById('darkToggle');
+const savedTheme = localStorage.getItem('bqm-theme');
+if (savedTheme === 'dark') { document.body.classList.add('dark'); darkToggle.textContent = '☀️'; }
+
+darkToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  darkToggle.textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('bqm-theme', isDark ? 'dark' : 'light');
+});
+
+// ── SHARE PAGE ──
+function sharePage() {
+  const text = 'Check out Big Quams Media® — Nigeria\'s #1 student platform for JAMB, admissions, scholarships and more! 🎓\n\nhttps://big-quams-educational-hub.github.io/';
+  if (navigator.share) {
+    navigator.share({ title: 'Big Quams Media®', text, url: location.href });
+  } else {
+    const waUrl = 'https://wa.me/?text=' + encodeURIComponent(text);
+    window.open(waUrl, '_blank');
+  }
+}
+
+// ── JAMB SCORE CALCULATOR ──
+function calcScore() {
+  const vals = ['c1','c2','c3','c4'].map(id => {
+    const v = parseInt(document.getElementById(id).value);
+    return isNaN(v) ? null : Math.min(100, Math.max(0, v));
+  });
+  const filled = vals.filter(v => v !== null);
+  if (filled.length < 4) {
+    document.getElementById('calcResult').classList.remove('show');
+    return;
+  }
+  const total = filled.reduce((a, b) => a + b, 0);
+  const result = document.getElementById('calcResult');
+  const scoreEl = document.getElementById('resultScore');
+  const msgEl   = document.getElementById('resultMsg');
+  scoreEl.textContent = total;
+  result.classList.add('show');
+
+  if (total >= 300) {
+    msgEl.textContent = '🎉 Excellent! You qualify for top universities.';
+    msgEl.className = 'result-msg';
+  } else if (total >= 250) {
+    msgEl.textContent = '👍 Good score! Many universities are within reach.';
+    msgEl.className = 'result-msg';
+  } else if (total >= 200) {
+    msgEl.textContent = '⚠️ Fair score. Consider polytechnics or improving next attempt.';
+    msgEl.className = 'result-msg warn';
+  } else {
+    msgEl.textContent = '❌ Below average. Chat with us for guidance on next steps.';
+    msgEl.className = 'result-msg bad';
+  }
+}
+
+// ── ANIMATED COUNTERS ──
+function animateCounters() {
+  document.querySelectorAll('.stat-num').forEach(el => {
+    const raw   = el.textContent.trim();
+    const num   = parseInt(raw.replace(/\D/g, ''));
+    const suffix = raw.replace(/[\d]/g, '');
+    if (isNaN(num)) return;
+    let start = 0;
+    const duration = 1600;
+    const step = 16;
+    const increment = num / (duration / step);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= num) { start = num; clearInterval(timer); }
+      el.textContent = Math.floor(start) + suffix;
+    }, step);
+  });
+}
+
+// Trigger counters when About section comes into view
+const aboutSection = document.getElementById('about');
+let countersRan = false;
+const observer = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !countersRan) {
+    countersRan = true;
+    animateCounters();
+  }
+}, { threshold: 0.3 });
+if (aboutSection) observer.observe(aboutSection);
+
+// ── HAMBURGER MENU ──
 const menuToggle = document.getElementById('menuToggle');
 const mainNav = document.getElementById('mainNav');
 menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
