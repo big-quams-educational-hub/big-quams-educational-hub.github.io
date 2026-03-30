@@ -74,9 +74,10 @@ header {
 /* CONTROLS */
 .controls {
   max-width: 1100px; margin: 0 auto;
-  padding: 28px 16px 0;
-  display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+  padding: 20px 16px 0;
+  display: flex; flex-direction: column; gap: 10px;
 }
+@media (min-width: 640px) { .controls { flex-direction: row; flex-wrap: wrap; align-items: center; } }
 .search-wrap {
   flex: 1; min-width: 200px;
   position: relative;
@@ -95,6 +96,10 @@ header {
 }
 .filter-tabs {
   display: flex; flex-wrap: wrap; gap: 8px;
+}
+@media (max-width: 480px) {
+  .filter-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
+  .filter-tab { flex-shrink: 0; }
 }
 .filter-tab {
   padding: 8px 14px; border-radius: 20px;
