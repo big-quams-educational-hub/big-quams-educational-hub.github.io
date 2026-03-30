@@ -32,12 +32,12 @@
     "driveId": "REPLACE_WITH_GOOGLE_DRIVE_FILE_ID"
   },
   {
-    "title": "Things Fall Apart",
-    "author": "Chinua Achebe",
+    "title": "The Invisible Struggle",
+    "author": "Big Quams Media",
     "category": "Novels & Fiction",
     "description": "A classic African novel that depicts the life of Okonkwo, an Igbo warrior, and the arrival of European missionaries in Nigeria. A must-read for every student.",
-    "cover": "",
-    "driveId": "REPLACE_WITH_GOOGLE_DRIVE_FILE_ID"
+    "cover": "https://imgur.com/a/YXIG4kr",
+    "driveId": "https://drive.google.com/file/d/1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG/view?usp=drivesdk"
   },
   {
     "title": "Purple Hibiscus",
@@ -45,7 +45,7 @@
     "category": "Novels & Fiction",
     "description": "A coming-of-age story set in Nigeria that explores themes of family, faith, and freedom through the eyes of a teenager navigating a turbulent home life.",
     "cover": "",
-    "driveId": "REPLACE_WITH_GOOGLE_DRIVE_FILE_ID"
+    "driveId": "https://drive.google.com/file/d/1zE6ZssQ02qbmF5gwHhmnSXMv-pXHYYOG/view?usp=drivesdk"
   },
   {
     "title": "WAEC & NECO Mathematics Past Questions",
