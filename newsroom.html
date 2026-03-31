@@ -39,19 +39,25 @@ header {
 .logo-circle img { width: 100%; height: 100%; object-fit: cover; }
 .brand-text { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; color: white; }
 .brand-sub  { font-size: 0.65rem; color: #bfdbfe; }
-.back-btn {
-  margin-left: auto; background: rgba(255,255,255,0.15);
-  color: white; text-decoration: none; padding: 7px 14px;
-  border-radius: 6px; font-size: 0.85rem; font-weight: 600; transition: 0.2s;
+.news-nav {
+  margin-left: auto; display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
 }
-.back-btn:hover { background: rgba(255,255,255,0.25); }
+.news-nav-link {
+  background: rgba(255,255,255,0.13); color: white;
+  text-decoration: none; padding: 6px 12px;
+  border-radius: 6px; font-size: 0.8rem; font-weight: 600;
+  transition: 0.2s; white-space: nowrap;
+}
+.news-nav-link:hover { background: rgba(255,255,255,0.25); }
+@media (max-width: 400px) { .news-nav-link { font-size: 0.74rem; padding: 5px 9px; } }
 
 /* HERO */
 .newsroom-hero {
   background: linear-gradient(135deg, var(--blue-dk), var(--blue) 60%, #2563eb);
   color: white; text-align: center;
-  padding: 44px 16px 36px; position: relative; overflow: hidden;
+  padding: 36px 14px 28px; position: relative; overflow: hidden;
 }
+@media (min-width: 600px) { .newsroom-hero { padding: 48px 24px 38px; } }
 .newsroom-hero::before {
   content: '📰'; position: absolute; font-size: 14rem;
   opacity: 0.04; right: -20px; top: -20px; pointer-events: none;
@@ -73,10 +79,11 @@ header {
 /* CONTROLS */
 .controls {
   max-width: 1100px; margin: 0 auto;
-  padding: 24px 16px 0;
-  display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+  padding: 18px 14px 0;
+  display: flex; flex-direction: column; gap: 10px;
 }
-.search-wrap { flex: 1; min-width: 200px; position: relative; }
+@media (min-width: 620px) { .controls { flex-direction: row; flex-wrap: wrap; align-items: center; } }
+.search-wrap { width: 100%; flex: 1; min-width: 0; position: relative; }
 .search-wrap input {
   width: 100%; padding: 11px 16px 11px 40px;
   border: 1.5px solid var(--border); border-radius: 10px;
@@ -111,12 +118,12 @@ header {
 }
 
 /* NEWS GRID */
-.news-section { max-width: 1100px; margin: 0 auto; padding: 14px 16px 60px; }
+.news-section { max-width: 1100px; margin: 0 auto; padding: 12px 14px 50px; }
 .news-grid {
-  display: grid; grid-template-columns: 1fr; gap: 16px;
+  display: grid; grid-template-columns: 1fr; gap: 14px;
 }
-@media (min-width: 600px) { .news-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 960px) { .news-grid { grid-template-columns: 1fr 1fr 1fr; } }
+@media (min-width: 560px) { .news-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .news-grid { grid-template-columns: 1fr 1fr 1fr; } }
 
 
 .pinned-card { border-color: #f59e0b !important; background: #fffbeb; position: relative; padding-top: 32px !important; }
@@ -124,11 +131,12 @@ header {
 
 .news-card {
   background: white; border: 1px solid var(--border);
-  border-radius: 14px; padding: 20px;
+  border-radius: 12px; padding: 16px;
   display: flex; flex-direction: column;
   transition: transform 0.25s, box-shadow 0.25s;
-  cursor: pointer;
+  cursor: pointer; position: relative;
 }
+@media (min-width: 600px) { .news-card { padding: 20px; } }
 .news-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.09); }
 .news-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
 .category-label {
@@ -174,9 +182,9 @@ header {
 }
 .article-overlay.open { display: flex; }
 .article-modal {
-  background: white; border-radius: 16px;
+  background: white; border-radius: 14px;
   width: 100%; max-width: 640px;
-  max-height: 94vh; overflow-y: auto;
+  max-height: 96vh; overflow-y: auto;
   box-shadow: 0 24px 64px rgba(10,20,60,0.3);
   animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
 }
@@ -206,8 +214,9 @@ header {
 }
 .article-close:hover { background: rgba(255,255,255,0.3); }
 .article-body {
-  padding: 24px; font-size: 0.95rem; color: #334155; line-height: 1.75;
+  padding: 16px; font-size: 0.92rem; color: #334155; line-height: 1.75;
 }
+@media (min-width: 500px) { .article-body { padding: 22px; font-size: 0.95rem; } }
 .article-body p { margin-bottom: 14px; }
 .article-footer {
   padding: 0 24px 24px; display: flex; gap: 10px; flex-wrap: wrap;
@@ -242,7 +251,10 @@ footer a { color: var(--orange); text-decoration: none; font-weight: 600; }
         <div class="brand-sub">Simplifying Campus Life</div>
       </div>
     </a>
-    <a href="index.html" class="back-btn">← Back to Home</a>
+    <nav class="news-nav">
+      <a href="index.html" class="news-nav-link">🏠 Home</a>
+      <a href="elibrary.html" class="news-nav-link">📚 eLibrary</a>
+    </nav>
   </div>
 </header>
 
