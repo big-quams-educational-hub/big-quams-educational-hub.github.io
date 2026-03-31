@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+: 0.88rem;
+}
+foo<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -1708,7 +1710,10 @@ async function fetchNewsData() {
     if (!response.ok) throw new Error('Bad response');
     const newsData = await response.json();
     container.innerHTML = '';
-    const preview = newsData.slice(0, 5);
+    // Pinned first, then rest, limit to 5
+    const pinned = newsData.filter(n => n.pinned);
+    const normal = newsData.filter(n => !n.pinned);
+    const preview = [...pinned, ...normal].slice(0, 5);
     preview.forEach((item, i) => {
       const card = document.createElement('div');
       card.className = 'news-card';
