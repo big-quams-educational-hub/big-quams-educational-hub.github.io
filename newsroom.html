@@ -118,6 +118,10 @@ header {
 @media (min-width: 600px) { .news-grid { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 960px) { .news-grid { grid-template-columns: 1fr 1fr 1fr; } }
 
+
+.pinned-card { border-color: #f59e0b !important; background: #fffbeb; position: relative; padding-top: 32px !important; }
+.pin-label { position: absolute; top: 0; left: 0; right: 0; background: #f59e0b; color: white; font-size: 0.68rem; font-weight: 700; padding: 3px 12px; border-radius: 14px 14px 0 0; text-align: center; letter-spacing: 0.3px; }
+
 .news-card {
   background: white; border: 1px solid var(--border);
   border-radius: 14px; padding: 20px;
@@ -328,8 +332,12 @@ function renderNews(items) {
     return;
   }
 
-  grid.innerHTML = items.map((item, i) => `
-    <div class="news-card" onclick="openArticle(${i})">
+  // Pinned articles first
+  const sorted = [...items.filter(n => n.pinned), ...items.filter(n => !n.pinned)];
+
+  grid.innerHTML = sorted.map((item, i) => `
+    <div class="news-card${item.pinned ? ' pinned-card' : ''}" onclick="openArticle(${i})">
+      ${item.pinned ? '<div class="pin-label">📌 Pinned</div>' : ''}
       <div class="news-meta">
         <span class="category-label">${item.category || 'News'}</span>
         <span class="date-label">${item.date || ''}</span>
