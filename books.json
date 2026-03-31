@@ -1,6 +1,6 @@
 [
   {
-    "title": "JAMB Past Questions & Answers 2020 — 2024",
+    "title": "JAMB Past Questions & Answers 2020 â 2024",
     "author": "Big Quams Media",
     "category": "JAMB & UTME",
     "description": "A comprehensive collection of JAMB UTME past questions and answers covering all major subjects from 2020 to 2024. Ideal for candidates preparing for the UTME examination.",
@@ -55,11 +55,12 @@
     "driveId": "REPLACE_WITH_GOOGLE_DRIVE_FILE_ID"
   },
   {
-    "title": "WAEC English Language Past Questions 2015 — 2024",
+    "title": "2026 WASSCE Final Timetable for School Candidates (Nigeria Edition)",
     "author": "Big Quams Media",
     "category": "Secondary School",
-    "description": "Comprehensive English Language past questions from WAEC covering oral English, essay writing, comprehension, and summary with model answers.",
-    "driveId": "REPLACE_WITH_GOOGLE_DRIVE_FILE_ID"
+    "description": "This is the official 2026 WASSCE timetable for school candidates in Nigeria, released by WAEC.\nIt contains the complete schedule of subjects, exam dates, and important instructions.\nCandidates are advised to review it carefully for proper preparation.",
+    "driveId": "https://waecnigeria.org/sites/default/files/2026-03/FINAL%20TIMETABLE%20WASSCE%20%28SC%29%202026%20-%20NIGERIA.pdf",
+    "readUrl": "https://waecnigeria.org/sites/default/files/2026-03/FINAL%20TIMETABLE%20WASSCE%20%28SC%29%202026%20-%20NIGERIA.pdfhttps://waecnigeria.org/sites/default/files/2026-03/FINAL%20TIMETABLE%20WASSCE%20%28SC%29%202026%20-%20NIGERIA.pdf"
   },
   {
     "title": "Federal Government BEA Scholarship Guide",
