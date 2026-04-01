@@ -25,6 +25,16 @@
 <meta name="twitter:description" content="Nigeria's #1 student media platform for JAMB, admissions, scholarships and more.">
 <meta name="twitter:image" content="https://i.imgur.com/lYJXUyY.jpeg">
 
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#102880">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="BIG QUAMS MEDIA">
+<link rel="apple-touch-icon" href="https://i.imgur.com/lYJXUyY.jpeg">
+<!-- Favicon -->
+<link rel="icon" type="image/jpeg" href="https://i.imgur.com/lYJXUyY.jpeg">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
@@ -983,11 +993,160 @@ body.dark .spotlight-title { color: #bfdbfe; }
 body.dark .spotlight-summary { color: var(--muted); }
 .spotlight-date { font-size: 0.7rem; color: var(--muted); font-weight: 500; }
 
+
+/* VISITOR COUNTER */
+.visitor-bar {
+  background: var(--blue-dk); color: white;
+  text-align: center; padding: 7px 16px;
+  font-size: 0.78rem; font-weight: 500;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  flex-wrap: wrap;
+}
+.visitor-bar strong { font-weight: 700; color: #fbbf24; }
+
+/* ACADEMIC CALENDAR */
+#calendar-section { background: var(--light); }
+body.dark #calendar-section { background: var(--bg); }
+.calendar-grid {
+  display: grid; grid-template-columns: 1fr; gap: 12px;
+}
+@media(min-width:560px){ .calendar-grid { grid-template-columns: 1fr 1fr; } }
+@media(min-width:860px){ .calendar-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.cal-card {
+  background: white; border-radius: 12px; padding: 16px;
+  border: 1px solid var(--border); display: flex; gap: 14px;
+  align-items: flex-start; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+body.dark .cal-card { background: var(--card); border-color: var(--border); }
+.cal-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+.cal-date-box {
+  background: var(--blue); color: white; border-radius: 8px;
+  min-width: 48px; padding: 8px 6px; text-align: center; flex-shrink: 0;
+}
+.cal-month { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.85; }
+.cal-day { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 800; line-height: 1; }
+.cal-info { flex: 1; min-width: 0; }
+.cal-title { font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--blue-dk); margin-bottom: 3px; }
+body.dark .cal-title { color: #bfdbfe; }
+.cal-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+.cal-badge { font-size: 0.64rem; font-weight: 700; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; margin-top: 5px; display: inline-block; }
+.cal-badge-jamb { background: #dbeafe; color: var(--blue); }
+.cal-badge-exam { background: #fce7f3; color: #9d174d; }
+.cal-badge-admission { background: #dcfce7; color: var(--green); }
+.cal-badge-school { background: #fef9c3; color: #92400e; }
+.cal-badge-scholarship { background: #ede9fe; color: #7c3aed; }
+
+/* QUICK POLL */
+#poll-section { background: white; }
+body.dark #poll-section { background: var(--sec-bg); }
+.poll-card {
+  background: var(--light); border-radius: 14px; padding: 24px 20px;
+  border: 1px solid var(--border); max-width: 620px; margin: 0 auto;
+}
+body.dark .poll-card { background: var(--card); }
+.poll-question {
+  font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700;
+  color: var(--blue-dk); margin-bottom: 16px;
+}
+body.dark .poll-question { color: #bfdbfe; }
+.poll-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.poll-option {
+  display: flex; align-items: center; gap: 10px;
+  background: white; border: 1.5px solid var(--border); border-radius: 9px;
+  padding: 11px 14px; cursor: pointer; transition: 0.2s;
+  font-size: 0.9rem; font-weight: 500;
+}
+body.dark .poll-option { background: #0f172a; border-color: var(--border); color: var(--text); }
+.poll-option:hover:not(.voted) { border-color: var(--blue); background: var(--light); }
+.poll-option.selected { border-color: var(--blue); background: #dbeafe; }
+body.dark .poll-option.selected { background: #1e3a6e; }
+.poll-option input[type=radio] { accent-color: var(--blue); width: 16px; height: 16px; flex-shrink: 0; }
+.poll-vote-btn {
+  background: var(--blue); color: white; border: none; padding: 11px 24px;
+  border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 0.88rem; cursor: pointer; transition: 0.2s; width: 100%;
+}
+.poll-vote-btn:hover { background: var(--blue-dk); }
+.poll-result-bar { margin-top: 4px; }
+.poll-result-item { margin-bottom: 10px; }
+.poll-result-label { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 4px; display: flex; justify-content: space-between; }
+body.dark .poll-result-label { color: #cbd5e1; }
+.poll-bar-wrap { background: var(--border); border-radius: 4px; height: 8px; overflow: hidden; }
+.poll-bar-fill { background: var(--blue); height: 8px; border-radius: 4px; transition: width 0.6s ease; }
+.poll-total { font-size: 0.74rem; color: var(--muted); margin-top: 10px; text-align: center; }
+
+/* STUDENT Q&A */
+#qa-section { background: var(--light); }
+body.dark #qa-section { background: var(--bg); }
+.qa-submit-card {
+  background: white; border-radius: 14px; padding: 22px 20px;
+  border: 1px solid var(--border); max-width: 620px; margin: 0 auto 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+body.dark .qa-submit-card { background: var(--card); }
+.qa-submit-card h3 { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--blue-dk); margin-bottom: 12px; }
+body.dark .qa-submit-card h3 { color: #bfdbfe; }
+.qa-input { width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.9rem; font-family: 'Roboto', sans-serif; color: var(--text); background: #fafafa; margin-bottom: 10px; transition: border-color 0.2s; }
+body.dark .qa-input { background: #0f172a; color: var(--text); border-color: var(--border); }
+.qa-input:focus { outline: none; border-color: var(--blue); background: white; }
+.qa-submit-btn { background: var(--orange); color: white; border: none; padding: 10px 22px; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: 0.2s; }
+.qa-submit-btn:hover { background: #ea6c0a; }
+.qa-list { display: flex; flex-direction: column; gap: 12px; max-width: 620px; margin: 0 auto; }
+.qa-card { background: white; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+body.dark .qa-card { background: var(--card); }
+.qa-question { background: var(--light); padding: 14px 16px; font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--blue-dk); display: flex; gap: 10px; align-items: flex-start; }
+body.dark .qa-question { background: #1a2540; color: #bfdbfe; }
+.qa-q-icon { font-size: 1rem; flex-shrink: 0; }
+.qa-answer { padding: 12px 16px; font-size: 0.85rem; color: #475569; line-height: 1.6; border-top: 1px solid var(--border); }
+body.dark .qa-answer { color: var(--muted); }
+.qa-answer-label { font-size: 0.7rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+
+/* UPDATED FOOTER */
+.footer-inner {
+  max-width: 1000px; margin: 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  padding: 28px 16px 22px;
+}
+.footer-brand { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: white; margin-bottom: 2px; }
+.footer-tagline { font-size: 0.78rem; color: #94a3b8; }
+.footer-social { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.footer-social a {
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(255,255,255,0.1); color: white;
+  text-decoration: none; font-size: 1.1rem; transition: 0.2s;
+}
+.footer-social a:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+.footer-links { display: flex; gap: 8px 16px; flex-wrap: wrap; justify-content: center; }
+.footer-links a { color: #94a3b8; text-decoration: none; font-size: 0.78rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--orange); }
+.footer-copy { font-size: 0.75rem; color: #64748b; text-align: center; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.07); width: 100%; }
+.footer-copy a { color: var(--orange); text-decoration: none; font-weight: 600; }
+
+/* CUTOFF CHECKER (inside calc modal) */
+.cutoff-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.cutoff-row { display: flex; gap: 10px; }
+@media(max-width:420px){ .cutoff-row { flex-direction: column; } }
+.cutoff-result {
+  background: linear-gradient(135deg, var(--blue-dk), var(--blue));
+  border-radius: 10px; padding: 14px; color: white; text-align: center; display: none;
+}
+.cutoff-result.show { display: block; }
+.cutoff-result .score { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800; }
+.cutoff-result .verdict { font-size: 0.84rem; color: #bfdbfe; margin-top: 4px; }
+.cutoff-result .verdict strong { color: #fbbf24; }
+
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
+<!-- VISITOR COUNTER BAR -->
+<div class="visitor-bar" id="visitorBar">
+  👁️ <strong id="visitorCount">—</strong> students have visited this site
+</div>
+
 <header>
   <div class="header-inner">
     <div class="logo-wrap">
@@ -1199,6 +1358,42 @@ body.dark .spotlight-summary { color: var(--muted); }
   </div>
 </section>
 
+<!-- ACADEMIC CALENDAR -->
+<section id="calendar-section">
+  <div class="container">
+    <div class="section-label">Key Dates</div>
+    <h2 class="section-title">Academic Calendar 2026</h2>
+    <div class="section-divider"></div>
+    <div class="calendar-grid">
+      <div class="cal-card">
+        <div class="cal-date-box" style="background:#1a3fa8;"><div class="cal-month">Feb</div><div class="cal-day">03</div></div>
+        <div class="cal-info"><div class="cal-title">JAMB Registration Opens</div><div class="cal-desc">2026 UTME registration begins at accredited CBT centres nationwide</div><span class="cal-badge cal-badge-jamb">JAMB</span></div>
+      </div>
+      <div class="cal-card">
+        <div class="cal-date-box" style="background:#7c3aed;"><div class="cal-month">Mar</div><div class="cal-day">28</div></div>
+        <div class="cal-info"><div class="cal-title">JAMB Mock-UTME</div><div class="cal-desc">Optional mock examination for registered candidates at designated centres</div><span class="cal-badge cal-badge-jamb">JAMB</span></div>
+      </div>
+      <div class="cal-card">
+        <div class="cal-date-box" style="background:#dc2626;"><div class="cal-month">Apr</div><div class="cal-day">24</div></div>
+        <div class="cal-info"><div class="cal-title">UTME 2026 Begins</div><div class="cal-desc">Main Unified Tertiary Matriculation Examination commences nationwide</div><span class="cal-badge cal-badge-exam">Exam</span></div>
+      </div>
+      <div class="cal-card">
+        <div class="cal-date-box" style="background:#16a34a;"><div class="cal-month">Jun</div><div class="cal-day">15</div></div>
+        <div class="cal-info"><div class="cal-title">Post-UTME Screening</div><div class="cal-desc">Universities begin Post-UTME screening exercises. Check your institution's portal</div><span class="cal-badge cal-badge-admission">Admission</span></div>
+      </div>
+      <div class="cal-card">
+        <div class="cal-date-box" style="background:#f97316;"><div class="cal-month">Jul</div><div class="cal-day">01</div></div>
+        <div class="cal-info"><div class="cal-title">CAPS Admission Opens</div><div class="cal-desc">JAMB CAPS portal opens for admission offers. Check and accept your admission</div><span class="cal-badge cal-badge-admission">Admission</span></div>
+      </div>
+      <div class="cal-card">
+        <div class="cal-date-box" style="background:#0891b2;"><div class="cal-month">Sep</div><div class="cal-day">01</div></div>
+        <div class="cal-info"><div class="cal-title">New Academic Session</div><div class="cal-desc">2026/2027 academic session begins for Nigerian universities and polytechnics</div><span class="cal-badge cal-badge-school">School</span></div>
+      </div>
+    </div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-top:16px;text-align:center;">📌 Dates are approximate. Always verify with your institution or JAMB portal.</p>
+  </div>
+</section>
+
 <!-- CALCULATOR SECTION -->
 <section id="calculator-section">
   <div class="container">
@@ -1234,6 +1429,26 @@ body.dark .spotlight-summary { color: var(--muted); }
   </div>
 </section>
 
+<!-- QUICK POLL -->
+<section id="poll-section">
+  <div class="container">
+    <div class="section-label">Your Voice</div>
+    <h2 class="section-title">Quick Poll</h2>
+    <div class="section-divider"></div>
+    <div class="poll-card">
+      <div class="poll-question" id="pollQuestion">Which service do you use most on Big Quams Media?</div>
+      <div class="poll-options" id="pollOptions">
+        <label class="poll-option"><input type="radio" name="poll" value="0"> JAMB & Admission Advisory</label>
+        <label class="poll-option"><input type="radio" name="poll" value="1"> News & Campus Updates</label>
+        <label class="poll-option"><input type="radio" name="poll" value="2"> eLibrary & Study Materials</label>
+        <label class="poll-option"><input type="radio" name="poll" value="3"> Score Calculator</label>
+        <label class="poll-option"><input type="radio" name="poll" value="4"> DYK & Current Affairs</label>
+      </div>
+      <button class="poll-vote-btn" onclick="submitPoll()">Submit Vote</button>
+    </div>
+  </div>
+</section>
+
 <!-- REVIEWS -->
 <section id="reviews">
   <div class="container">
@@ -1242,43 +1457,25 @@ body.dark .spotlight-summary { color: var(--muted); }
     <div class="section-divider"></div>
     <div class="reviews-grid">
 
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-msg">I was totally lost before I found Big Quams Media. They helped me sort my Post-UTME and I got admitted into Unilorin!</div>
-        <div class="review-footer">
-          <div class="review-avatar">AA</div>
-          <div>
-            <div class="review-name">Abdulrahmon Aisha</div>
-            <div class="review-location">Lagos State</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-stars">★★★★☆</div>
-        <div class="review-msg">I passed my JAMB at once after following their guide. You won't regret working with them!</div>
-        <div class="review-footer">
-          <div class="review-avatar">FO</div>
-          <div>
-            <div class="review-name">Festus Oluwadare</div>
-            <div class="review-location">Kwara State</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="review-card">
-        <div class="review-stars">★★★★☆</div>
-        <div class="review-msg">Best consultant of all time — fast, reliable, and always helpful. Big Quams Media truly supports students at every step.</div>
-        <div class="review-footer">
-          <div class="review-avatar">AR</div>
-          <div>
-            <div class="review-name">Aderemi Rasheedah</div>
-            <div class="review-location">Osun State</div>
-          </div>
-        </div>
-      </div>
+      <div id="reviews-dynamic-grid" style="display:contents;"></div>
 
     </div>
+  </div>
+</section>
+
+<!-- STUDENT Q&A -->
+<section id="qa-section">
+  <div class="container">
+    <div class="section-label">Ask Us Anything</div>
+    <h2 class="section-title">Student Q&amp;A</h2>
+    <div class="section-divider"></div>
+    <div class="qa-submit-card">
+      <h3>💬 Got a question? Ask us!</h3>
+      <input type="text" class="qa-input" id="qaName" placeholder="Your name (optional)">
+      <textarea class="qa-input" id="qaQuestion" rows="3" placeholder="Type your question here… e.g. How do I check my CAPS status?"></textarea>
+      <button class="qa-submit-btn" onclick="submitQA()">Send Question via WhatsApp →</button>
+    </div>
+    <div class="qa-list" id="qaList"></div>
   </div>
 </section>
 
@@ -1446,8 +1643,30 @@ body.dark .spotlight-summary { color: var(--muted); }
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2025 Big Quams Media®. All rights reserved.</p>
-  <p style="margin-top:6px;">Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a></p>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">BIG QUAMS MEDIA®</div>
+      <div class="footer-tagline">Simplifying Campus Life for Every Nigerian Student</div>
+    </div>
+    <div class="footer-social">
+      <a href="https://wa.me/message/OVCVEDHU3I2PH1" title="WhatsApp" target="_blank" rel="noopener">💬</a>
+      <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" title="WhatsApp Channel" target="_blank" rel="noopener">📢</a>
+      <a href="mailto:bigquamsmedia024@gmail.com" title="Email">📧</a>
+      <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" title="Join Group" target="_blank" rel="noopener">👥</a>
+    </div>
+    <div class="footer-links">
+      <a href="#home">Home</a>
+      <a href="newsroom.html">Newsroom</a>
+      <a href="elibrary.html">eLibrary</a>
+      <a href="dyk.html">DYK</a>
+      <a href="spotlight.html">Spotlight</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-copy">
+      &copy; 2025 Big Quams Media®. All rights reserved. &nbsp;|&nbsp;
+      Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a>
+    </div>
+  </div>
 </footer>
 
 
@@ -2038,6 +2257,221 @@ function closeWaPopup() {
     if (el) el.classList.add('hidden');
   }
 })();
+
+
+// ── VISITOR COUNTER ──
+(async function() {
+  try {
+    const res = await fetch('https://api.countapi.xyz/hit/big-quams-educational-hub.github.io/visits');
+    const data = await res.json();
+    const el = document.getElementById('visitorCount');
+    if (el && data.value) el.textContent = Number(data.value).toLocaleString();
+  } catch { /* silently fail */ }
+})();
+
+// ── POLL ──
+(function() {
+  const POLL_KEY = 'bqm_poll_vote';
+  const counts = JSON.parse(localStorage.getItem('bqm_poll_counts') || '[0,0,0,0,0]');
+  const voted  = localStorage.getItem(POLL_KEY);
+  if (voted !== null) showPollResults(counts, parseInt(voted));
+
+  function showPollResults(counts, selected) {
+    const total = counts.reduce((a,b) => a+b, 0) || 1;
+    const labels = ['JAMB & Admission Advisory','News & Campus Updates','eLibrary & Study Materials','Score Calculator','DYK & Current Affairs'];
+    const container = document.getElementById('pollOptions');
+    if (!container) return;
+    container.innerHTML = labels.map((label, i) => {
+      const pct = Math.round((counts[i]/total)*100);
+      return `<div class="poll-result-item">
+        <div class="poll-result-label"><span>${i===selected?'✓ ':''} ${label}</span><span>${pct}%</span></div>
+        <div class="poll-bar-wrap"><div class="poll-bar-fill" style="width:${pct}%"></div></div>
+      </div>`;
+    }).join('');
+    const btn = document.querySelector('.poll-vote-btn');
+    if (btn) btn.style.display = 'none';
+    const totalEl = document.createElement('div');
+    totalEl.className = 'poll-total';
+    totalEl.textContent = `${total} vote${total!==1?'s':''} total`;
+    container.after(totalEl);
+  }
+
+  window.submitPoll = function() {
+    const selected = document.querySelector('input[name="poll"]:checked');
+    if (!selected) { showToast('Please select an option first!'); return; }
+    const idx = parseInt(selected.value);
+    if (localStorage.getItem(POLL_KEY) !== null) return;
+    counts[idx]++;
+    localStorage.setItem('bqm_poll_counts', JSON.stringify(counts));
+    localStorage.setItem(POLL_KEY, idx.toString());
+    showPollResults(counts, idx);
+    showToast('✅ Thanks for voting!');
+  };
+})();
+
+// ── REVIEWS FROM JSON ──
+async function loadReviews() {
+  const grid = document.getElementById('reviews-dynamic-grid');
+  if (!grid) return;
+  try {
+    const res = await fetch('reviews.json?v=' + Date.now());
+    if (!res.ok) throw new Error();
+    const reviews = await res.json();
+    grid.innerHTML = reviews.map(r => {
+      const stars = '★'.repeat(r.stars || 5) + '☆'.repeat(5 - (r.stars || 5));
+      const initials = r.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+      return `<div class="review-card">
+        <div class="review-stars">${stars}</div>
+        <div class="review-msg">${r.message}</div>
+        <div class="review-footer">
+          <div class="review-avatar">${initials}</div>
+          <div>
+            <div class="review-name">${r.name}</div>
+            <div class="review-location">${r.location||''}</div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  } catch {
+    // Fallback to hardcoded reviews if JSON not found
+    grid.innerHTML = `
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-msg">I was totally lost before I found Big Quams Media. They helped me sort my Post-UTME and I got admitted into Unilorin!</div>
+        <div class="review-footer"><div class="review-avatar">AA</div><div><div class="review-name">Abdulrahmon Aisha</div><div class="review-location">Lagos State</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <div class="review-msg">I passed my JAMB at once after following their guide. You won't regret working with them!</div>
+        <div class="review-footer"><div class="review-avatar">FO</div><div><div class="review-name">Festus Oluwadare</div><div class="review-location">Kwara State</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <div class="review-msg">Best consultant of all time — fast, reliable, and always helpful. Big Quams Media truly supports students at every step.</div>
+        <div class="review-footer"><div class="review-avatar">AR</div><div><div class="review-name">Aderemi Rasheedah</div><div class="review-location">Osun State</div></div></div>
+      </div>`;
+  }
+}
+loadReviews();
+
+// ── Q&A ──
+async function loadQA() {
+  const list = document.getElementById('qaList');
+  if (!list) return;
+  try {
+    const res = await fetch('qa.json?v=' + Date.now());
+    if (!res.ok) throw new Error();
+    const items = await res.json();
+    if (!items.length) return;
+    list.innerHTML = items.map(qa => `
+      <div class="qa-card">
+        <div class="qa-question"><span class="qa-q-icon">❓</span>${qa.question}</div>
+        ${qa.answer ? `<div class="qa-answer"><div class="qa-answer-label">✅ BIG QUAMS MEDIA</div>${qa.answer}</div>` : ''}
+      </div>`).join('');
+  } catch { /* no qa.json yet */ }
+}
+loadQA();
+
+function submitQA() {
+  const name = document.getElementById('qaName').value.trim();
+  const question = document.getElementById('qaQuestion').value.trim();
+  if (!question) { showToast('Please type your question first!'); return; }
+  const text = (name ? name + ' asks: ' : 'Student question: ') + question;
+  const url = 'https://wa.me/2349049871643?text=' + encodeURIComponent(text);
+  window.open(url, '_blank');
+  document.getElementById('qaQuestion').value = '';
+  document.getElementById('qaName').value = '';
+  showToast('✅ Opening WhatsApp with your question!');
+}
+
+// ── CUTOFF CHECKER (add as 3rd tab to calculator) ──
+// Injected into calc modal dynamically
+(function addCutoffTab() {
+  const tabBar = document.querySelector('.calc-tabs');
+  if (!tabBar) return;
+  const btn = document.createElement('button');
+  btn.className = 'calc-tab';
+  btn.textContent = '🎯 Cut-off Checker';
+  btn.onclick = () => switchTab('cutoff');
+  tabBar.appendChild(btn);
+
+  const calcModal = document.getElementById('calcModal');
+  if (!calcModal) return;
+  const panel = document.createElement('div');
+  panel.className = 'calc-panel';
+  panel.id = 'tab-cutoff';
+  panel.innerHTML = `
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:14px;">Enter your JAMB score to see if you meet common cut-off marks for Nigerian universities.</p>
+    <div class="ci-group" style="margin-bottom:12px;">
+      <label>Your JAMB Score *</label>
+      <input type="number" id="coScore" min="0" max="400" placeholder="e.g. 260" oninput="checkCutoff()">
+    </div>
+    <div class="ci-group" style="margin-bottom:14px;">
+      <label>Your Course Area</label>
+      <select id="coCourse" onchange="checkCutoff()">
+        <option value="">— Select course type —</option>
+        <option value="medicine">Medicine / Pharmacy / Nursing</option>
+        <option value="engineering">Engineering / Technology</option>
+        <option value="science">Sciences (Biology, Chemistry, Physics)</option>
+        <option value="law">Law</option>
+        <option value="arts">Arts / Humanities / Social Sciences</option>
+        <option value="education">Education</option>
+        <option value="business">Business / Accounting / Economics</option>
+        <option value="mass">Mass Communication / Journalism</option>
+      </select>
+    </div>
+    <div class="cutoff-result" id="cutoffResult">
+      <div class="score" id="coScoreDisplay">—</div>
+      <div class="verdict" id="coVerdict"></div>
+    </div>`;
+  calcModal.appendChild(panel);
+})();
+
+const cutoffMap = {
+  medicine:    { min: 280, federal: 300, private: 200, msg: 'Medicine/Pharmacy/Nursing' },
+  engineering: { min: 200, federal: 220, private: 180, msg: 'Engineering/Technology' },
+  science:     { min: 180, federal: 200, private: 160, msg: 'Sciences' },
+  law:         { min: 200, federal: 220, private: 180, msg: 'Law' },
+  arts:        { min: 160, federal: 180, private: 140, msg: 'Arts/Humanities' },
+  education:   { min: 160, federal: 180, private: 140, msg: 'Education' },
+  business:    { min: 180, federal: 200, private: 160, msg: 'Business/Accounting' },
+  mass:        { min: 180, federal: 200, private: 160, msg: 'Mass Communication' },
+};
+
+function checkCutoff() {
+  const score = parseInt(document.getElementById('coScore').value);
+  const course = document.getElementById('coCourse').value;
+  const result = document.getElementById('cutoffResult');
+  if (!score || !course) { result.classList.remove('show'); return; }
+  const co = cutoffMap[course];
+  document.getElementById('coScoreDisplay').textContent = score + ' / 400';
+  let verdict = '';
+  if (score >= co.federal) verdict = `✅ <strong>Qualifies</strong> for most Federal & State universities offering ${co.msg}`;
+  else if (score >= co.private) verdict = `🟡 <strong>Qualifies</strong> for some State universities & private institutions. Consider polytechnics too.`;
+  else if (score >= co.min) verdict = `⚠️ <strong>May qualify</strong> for some private universities & polytechnics. Improve for better options.`;
+  else verdict = `❌ <strong>Below common cut-offs</strong> for ${co.msg}. Consider JUPEB, Direct Entry, or retaking JAMB.`;
+  document.getElementById('coVerdict').innerHTML = verdict;
+  result.classList.add('show');
+}
+
+// Extend switchTab for cutoff
+const _origSwitchCalcTab = switchTab;
+function switchTab(tab) {
+  const tabs = document.querySelectorAll('.calc-tab');
+  const panels = document.querySelectorAll('.calc-panel');
+  tabs.forEach((t,i) => t.classList.toggle('active',
+    (i===0&&tab==='jamb')||(i===1&&tab==='screening')||(i===2&&tab==='cutoff')));
+  panels.forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('tab-' + tab);
+  if (target) target.classList.add('active');
+}
+
+// ── PWA SERVICE WORKER REGISTRATION ──
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
 
 </script>
 
