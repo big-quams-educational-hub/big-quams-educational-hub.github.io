@@ -1,0 +1,31 @@
+{
+  "name": "BIG QUAMS MEDIA®",
+  "short_name": "Big Quams",
+  "description": "Nigeria's #1 student platform — JAMB, admissions, scholarships, campus news and digital services.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#102880",
+  "theme_color": "#102880",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://i.imgur.com/lYJXUyY.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.imgur.com/lYJXUyY.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ],
+  "categories": ["education", "news"],
+  "lang": "en-NG",
+  "shortcuts": [
+    { "name": "Newsroom", "url": "/newsroom.html", "description": "Latest news" },
+    { "name": "eLibrary", "url": "/elibrary.html", "description": "Free books" },
+    { "name": "Calculator", "url": "/#calculator-section", "description": "JAMB score calculator" }
+  ]
+}
+
