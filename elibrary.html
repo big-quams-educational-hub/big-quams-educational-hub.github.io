@@ -17,6 +17,11 @@
   --border:  #e2e8f0;
   --text:    #0f172a;
 }
+
+/* GLOBAL IMAGE OVERFLOW FIX */
+img { max-width: 100%; height: auto; display: block; }
+.news-card, .dyk-card, .dyk-preview-card, .spotlight-card, .book-card, .review-card { overflow: hidden; }
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Roboto', sans-serif; background: #f8faff; color: var(--text); line-height: 1.6; overflow-x: hidden; }
@@ -339,7 +344,7 @@ footer a { color: var(--orange); text-decoration: none; font-weight: 600; }
   </div>
   <div class="filter-tabs" id="filterTabs">
     <button class="filter-tab active" data-cat="All" onclick="setFilter('All')">All</button>
-    <button class="filter-tab" data-cat="JAMB & UTME" onclick="setFilter('JAMB & UTME')">JAMB & UTME</button>
+    <button class="filter-tab" data-cat="JAMB (UTME & DE)" onclick="setFilter('JAMB (UTME & DE)')">JAMB (UTME & DE)</button>
     <button class="filter-tab" data-cat="University" onclick="setFilter('University')">University</button>
     <button class="filter-tab" data-cat="Novels & Fiction" onclick="setFilter('Novels & Fiction')">Novels</button>
     <button class="filter-tab" data-cat="Secondary School" onclick="setFilter('Secondary School')">Secondary</button>
