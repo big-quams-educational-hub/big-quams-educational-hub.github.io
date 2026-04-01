@@ -218,16 +218,20 @@ header {
 }
 @media (min-width: 500px) { .article-body { padding: 22px; font-size: 0.95rem; } }
 .article-body p { margin-bottom: 14px; }
-.article-footer {
-  padding: 0 24px 24px; display: flex; gap: 10px; flex-wrap: wrap;
-}
-.btn-share-article {
-  flex: 1; background: #25d366; color: white; border: none;
-  padding: 12px; border-radius: 8px; font-family: 'Montserrat', sans-serif;
-  font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: 0.2s;
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-}
-.btn-share-article:hover { background: #20bd5a; }
+
+
+
+
+
+.article-img { width:100%; max-height:240px; object-fit:cover; display:block; }
+.article-author { font-size:0.78rem; color:rgba(255,255,255,0.7); margin-top:4px; }
+
+@media(min-width:500px){  }
+
+
+
+
+
 
 /* FOOTER */
 footer {
@@ -235,6 +239,46 @@ footer {
   text-align: center; padding: 24px 16px; font-size: 0.88rem;
 }
 footer a { color: var(--orange); text-decoration: none; font-weight: 600; }
+
+/* IMAGE IN CARD */
+.news-card-img-wrap { margin: -16px -16px 12px; overflow: hidden; border-radius: 12px 12px 0 0; }
+@media(min-width:600px) { .news-card-img-wrap { margin: -20px -20px 14px; } }
+.news-card-img-wrap img { width: 100%; height: 160px; object-fit: cover; display: block; }
+.news-card-img-ph { width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f0f5ff, #dbeafe); font-size: 2rem; }
+
+/* ARTICLE IMAGE */
+.article-img { width: 100%; max-height: 240px; object-fit: cover; display: block; }
+
+/* ARTICLE AUTHOR */
+.article-author { font-size: 0.74rem; color: #bfdbfe; margin-top: 5px; font-weight: 500; }
+
+/* ARTICLE ACTION BUTTONS */
+.article-action-btns { display: flex; gap: 8px; padding: 12px 16px 0; flex-wrap: wrap; }
+@media(min-width:500px) { .article-action-btns { padding: 14px 22px 0; } }
+.action-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 16px; border-radius: 8px;
+  font-weight: 700; font-size: 0.82rem; text-decoration: none;
+  font-family: 'Roboto', sans-serif; transition: 0.2s; flex: 1;
+  justify-content: center; white-space: nowrap;
+}
+.action-btn-view { background: var(--blue); color: white; }
+.action-btn-view:hover { background: var(--blue-dk); }
+.action-btn-download { background: var(--green); color: white; }
+.action-btn-download:hover { background: #15803d; }
+
+/* ARTICLE FOOTER */
+.article-footer { padding: 10px 16px 18px; display: flex; gap: 8px; flex-wrap: wrap; }
+@media(min-width:500px) { .article-footer { padding: 12px 22px 22px; } }
+.btn-share-article {
+  flex: 1; background: #25d366; color: white; border: none;
+  padding: 11px; border-radius: 8px;
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 0.88rem; cursor: pointer; transition: 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btn-share-article:hover { background: #20bd5a; }
+
 </style>
 </head>
 <body>
@@ -303,8 +347,11 @@ footer a { color: var(--orange); text-decoration: none; font-weight: 600; }
       <div class="art-cat" id="artCat"></div>
       <h2 id="artTitle"></h2>
       <div class="art-meta" id="artMeta"></div>
+      <div class="article-author" id="artAuthor"></div>
     </div>
+    <img id="artImg" class="article-img" alt="" style="display:none;">
     <div class="article-body" id="artBody"></div>
+    <div class="article-action-btns" id="artActionBtns"></div>
     <div class="article-footer">
       <button class="btn-share-article" id="artShareBtn">📤 Share this Article</button>
     </div>
@@ -353,14 +400,18 @@ function renderNews(items) {
   grid.innerHTML = sorted.map((item, i) => `
     <div class="news-card${item.pinned ? ' pinned-card' : ''}" onclick="openArticle(${i})">
       ${item.pinned ? '<div class="pin-label">📌 Pinned</div>' : ''}
+      ${item.image
+        ? `<div class="news-card-img-wrap"><img src="${item.image}" alt="${item.title}" loading="lazy"></div>`
+        : ''}
       <div class="news-meta">
         <span class="category-label">${item.category || 'News'}</span>
         <span class="date-label">${item.date || ''}</span>
       </div>
       <h3>${item.title}</h3>
       <div class="summary">${item.summary || item.description}</div>
+      ${item.author ? `<div style="font-size:0.71rem;color:var(--muted);margin-bottom:8px;font-weight:500;">✍️ ${item.author}</div>` : ''}
       <div class="news-actions">
-        <button class="btn-read-full" onclick="event.stopPropagation(); openArticle(${i})">Read Full Article</button>
+        <button class="btn-read-full" onclick="event.stopPropagation(); openArticle(${i})">Read More</button>
         <button class="btn-share-news" onclick="event.stopPropagation(); shareArticle(${i})">🔗 Share</button>
       </div>
     </div>
@@ -396,12 +447,26 @@ function openArticle(index) {
   document.getElementById('artCat').textContent   = item.category || 'News';
   document.getElementById('artTitle').textContent = item.title;
   document.getElementById('artMeta').textContent  = item.date || '';
+  document.getElementById('artAuthor').textContent = item.author ? '✍️ ' + item.author : '';
 
-  // Render full content — split by \n into paragraphs
+  // Image
+  const artImg = document.getElementById('artImg');
+  if (item.image) { artImg.src = item.image; artImg.style.display = 'block'; }
+  else { artImg.style.display = 'none'; }
+
+  // Full content
   const fullText = item.fullContent || item.description || 'Full article coming soon.';
   document.getElementById('artBody').innerHTML = fullText
     .split('\n').filter(p => p.trim())
     .map(p => `<p>${p.trim()}</p>`).join('');
+
+  // Action buttons (view + download only — share is always shown separately)
+  const actionBtns = document.getElementById('artActionBtns');
+  const acts = item.actions || {};
+  let btns = '';
+  if (acts.viewUrl) btns += `<a href="${acts.viewUrl}" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-view">👁️ View</a>`;
+  if (acts.downloadUrl) btns += `<a href="${acts.downloadUrl}" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-download">⬇️ Download</a>`;
+  actionBtns.innerHTML = btns;
 
   // Share button
   document.getElementById('artShareBtn').onclick = () => shareArticle(index);
