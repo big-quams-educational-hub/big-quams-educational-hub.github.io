@@ -19,6 +19,11 @@
   --text:    #0f172a;
   --border:  #e2e8f0;
 }
+
+/* GLOBAL IMAGE OVERFLOW FIX */
+img { max-width: 100%; height: auto; display: block; }
+.news-card, .dyk-card, .dyk-preview-card, .spotlight-card, .book-card, .review-card { overflow: hidden; }
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Roboto', sans-serif; background: #f8faff; color: var(--text); line-height: 1.6; overflow-x: hidden; }
