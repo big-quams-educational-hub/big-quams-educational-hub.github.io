@@ -61,8 +61,8 @@ header{background:linear-gradient(135deg,var(--blue-dk),var(--blue));color:white
 /* DYK CARD */
 .dyk-card{background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;position:relative;}
 .dyk-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.1);}
-.dyk-card-img{width:100%;height:140px;object-fit:cover;display:block;background:var(--light);}
-.dyk-card-img-ph{width:100%;height:140px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:linear-gradient(135deg,var(--light),#dbeafe);}
+.dyk-card-img{width:100%;height:160px;object-fit:cover;display:block;background:var(--light);}
+.dyk-card-img-ph{width:100%;height:160px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:linear-gradient(135deg,var(--light),#dbeafe);}
 .dyk-cat-badge{position:absolute;top:10px;left:10px;padding:3px 10px;border-radius:20px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
 .cat-dyk{background:#dbeafe;color:var(--blue);}
 .cat-history{background:#fef9c3;color:#854d0e;}
@@ -90,7 +90,7 @@ header{background:linear-gradient(135deg,var(--blue-dk),var(--blue));color:white
 .article-header .art-meta{font-size:0.75rem;color:#c4b5fd;}
 .article-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.15);border:none;color:white;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;transition:0.2s;}
 .article-close:hover{background:rgba(255,255,255,0.3);}
-.article-img{width:100%;max-height:220px;object-fit:cover;display:block;}
+.article-img{width:100%;max-height:240px;object-fit:cover;display:block;border-radius:0;}
 .article-body{padding:16px;font-size:0.92rem;color:#334155;line-height:1.75;}
 @media(min-width:500px){.article-body{padding:22px;font-size:0.95rem;}}
 .article-body p{margin-bottom:14px;}
@@ -153,6 +153,7 @@ footer a{color:var(--orange);text-decoration:none;font-weight:600;}
       <div class="art-cat" id="artCat"></div>
       <h2 id="artTitle"></h2>
       <div class="art-meta" id="artMeta"></div>
+      <div id="artAuthor" style="font-size:0.74rem;color:#c4b5fd;margin-top:4px;font-weight:500;"></div>
     </div>
     <img id="artImg" class="article-img" alt="" style="display:none;">
     <div class="article-body" id="artBody"></div>
@@ -200,6 +201,7 @@ function renderItems(items) {
         <div class="dyk-card-date">${item.date||''}</div>
         <div class="dyk-card-title">${item.title}</div>
         <div class="dyk-card-summary">${item.summary||''}</div>
+        ${item.author ? `<div style="font-size:0.7rem;color:var(--muted);margin-bottom:6px;font-weight:500;">✍️ ${item.author}</div>` : ''}
         <button class="dyk-read-btn" onclick="event.stopPropagation();openArticle(${i})">Read More →</button>
       </div>
     </div>`).join('');
@@ -233,9 +235,11 @@ function getFiltered() {
 function openArticle(idx) {
   const item = getFiltered()[idx];
   if (!item) return;
-  document.getElementById('artCat').textContent   = item.category || 'DYK';
-  document.getElementById('artTitle').textContent = item.title;
-  document.getElementById('artMeta').textContent  = item.date || '';
+  document.getElementById('artCat').textContent    = item.category || 'DYK';
+  document.getElementById('artTitle').textContent  = item.title;
+  document.getElementById('artMeta').textContent   = item.date || '';
+  const authEl = document.getElementById('artAuthor');
+  if (authEl) authEl.textContent = item.author ? '✍️ ' + item.author : '✍️ BIG QUAMS MEDIA';
   const imgEl = document.getElementById('artImg');
   if (item.image) { imgEl.src = item.image; imgEl.style.display = 'block'; }
   else { imgEl.style.display = 'none'; }
@@ -264,5 +268,4 @@ function shareItem(idx) {
 loadItems();
 </script>
 </body>
-      </html>
-  
+</html>
