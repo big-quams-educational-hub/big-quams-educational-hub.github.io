@@ -1012,7 +1012,7 @@ body.dark .spotlight-summary { color: var(--muted); }
       <a href="#calculator-section">Calculator</a>
       <a href="#spotlight-section">Spotlight</a>
       <a href="#reviews">Reviews</a>
-      <a href="dyk.html">DYK</a>
+      <a href="#dyk-section">DYK</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
   </div>
@@ -1973,10 +1973,15 @@ async function fetchDykPreview() {
           ? `<div class="dyk-preview-img-wrap"><img class="dyk-preview-img" src="${item.image}" alt="${item.title}" loading="lazy"></div>`
           : `<div class="dyk-preview-img-ph">${catIcon[item.category]||'💡'}</div>`}
         <div class="dyk-preview-body">
-          <span class="dyk-preview-cat ${catClass[item.category]||'dyk-cat-dyk'}">${item.category||'DYK'}</span>
+          <div class="dyk-meta">
+            <span class="dyk-preview-cat ${catClass[item.category]||'dyk-cat-dyk'}">${item.category||'DYK'}</span>
+            <span class="dyk-preview-date">${item.date||''}</span>
+          </div>
           <div class="dyk-preview-title">${item.title}</div>
           <div class="dyk-preview-summary">${item.summary||''}</div>
-          <a href="dyk.html" style="display:inline-flex;align-items:center;gap:5px;font-size:0.78rem;font-weight:700;color:var(--blue);text-decoration:none;margin-top:auto;">Read More →</a>
+          <div class="dyk-card-actions">
+            <a href="dyk.html">Read More →</a>
+          </div>
         </div>
       </div>`).join('');
   } catch {
