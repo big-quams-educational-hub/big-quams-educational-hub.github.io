@@ -80,6 +80,17 @@ async function setStore(key, val) {
   try { const c = await caches.open('bqm-store'); await c.put('/__s/'+key, new Response(val)); } catch {}
 }
 
-self.addEventListener('message', e => { if (e.data === 'CHECK_UPDATES') checkForUpdates(); });
+self.addEventListener('message', e => {
+  if (!e.data) return;
+  if (e.data === 'CHECK_UPDATES') { checkForUpdates(); return; }
+  if (e.data.type === 'SHOW_NOTIFICATION') {
+    self.registration.showNotification(e.data.title || 'BIG QUAMS MEDIA®', {
+      body: e.data.body || 'Thanks for enabling notifications!',
+      icon: 'https://i.imgur.com/lYJXUyY.jpeg',
+      badge: 'https://i.imgur.com/lYJXUyY.jpeg',
+      tag: 'bqm-welcome',
+      data: { url: e.data.url || '/' }
+    });
+  }
+});
 self.addEventListener('periodicsync', e => { if (e.tag === 'check-updates') e.waitUntil(checkForUpdates()); });
-    
