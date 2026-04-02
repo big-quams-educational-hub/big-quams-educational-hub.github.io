@@ -2493,74 +2493,122 @@ const NOTIF_DISMISSED_KEY = 'bqm_notif_dismissed';
 const NOTIF_ENABLED_KEY   = 'bqm_notif_enabled';
 
 function dismissNotifBar() {
-  document.getElementById('notifBar').classList.remove('show');
+  const bar = document.getElementById('notifBar');
+  if (bar) bar.classList.remove('show');
   sessionStorage.setItem(NOTIF_DISMISSED_KEY, '1');
 }
 
 function updateNotifUI(granted) {
   const btn = document.getElementById('notifEnableBtn');
   const msg = document.getElementById('notifEnabledMsg');
+  const bar = document.getElementById('notifBar');
   if (granted) {
     if (btn) btn.style.display = 'none';
     if (msg) msg.classList.add('show');
-    document.getElementById('notifBar').classList.remove('show');
+    if (bar) bar.classList.remove('show');
     localStorage.setItem(NOTIF_ENABLED_KEY, '1');
+  }
+}
+
+async function sendWelcomeNotification() {
+  // Use service worker to send the notification (works on all platforms)
+  if ('serviceWorker' in navigator) {
+    try {
+      const reg = await navigator.serviceWorker.ready;
+      // Post message to SW to show the notification
+      if (reg.active) {
+        reg.active.postMessage({
+          type: 'SHOW_NOTIFICATION',
+          title: '🎓 Big Quams Media® — Notifications On!',
+          body: 'Thanks for turning on notifications! You will receive the latest news updates, new eBooks, scholarships and campus information from Big Quams Media. Stay tuned!',
+          url: '/'
+        });
+      } else {
+        // Fallback: direct Notification API
+        new Notification('🎓 Big Quams Media® — Notifications On!', {
+          body: 'Thanks for turning on notifications! You will receive news updates, new eBooks and scholarship alerts from Big Quams Media. Stay tuned!',
+          icon: 'https://i.imgur.com/lYJXUyY.jpeg',
+          badge: 'https://i.imgur.com/lYJXUyY.jpeg',
+          tag: 'bqm-welcome'
+        });
+      }
+    } catch(e) {
+      // Final fallback
+      try {
+        new Notification('🎓 Big Quams Media® — Notifications On!', {
+          body: 'Thanks for turning on notifications! You will receive news, eBooks, and scholarship alerts from Big Quams Media. Stay tuned!',
+          icon: 'https://i.imgur.com/lYJXUyY.jpeg'
+        });
+      } catch {}
+    }
   }
 }
 
 async function enableNotifications() {
+  // Check browser support
   if (!('Notification' in window)) {
-    showToast('⚠️ Notifications are not supported on this browser.');
+    showToast('⚠️ Your browser does not support notifications. Try Chrome or Firefox.');
     return;
   }
+
+  // iOS Safari special case — must be PWA
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+  if (isIOS && !isStandalone) {
+    showToast('📱 On iPhone: First add this site to your Home Screen, then enable notifications from the app.');
+    return;
+  }
+
   if (Notification.permission === 'granted') {
-    subscribeUser();
     updateNotifUI(true);
-    showToast('✅ Notifications already enabled!');
+    showToast('✅ Notifications are already enabled!');
+    await sendWelcomeNotification();
     return;
   }
+
   if (Notification.permission === 'denied') {
-    showToast('❌ Notifications blocked. Please enable in your browser settings.');
+    showToast('❌ Notifications are blocked. Go to your browser settings → Site Settings → Notifications and allow this site.');
     return;
   }
-  const perm = await Notification.requestPermission();
-  if (perm === 'granted') {
-    subscribeUser();
-    updateNotifUI(true);
-    showToast('✅ Notifications enabled! You will get updates.');
-    // Send a welcome notification
-    setTimeout(() => {
-      new Notification('🎓 Big Quams Media', {
-        body: 'Welcome! You will now receive JAMB updates, new books, and scholarship alerts.',
-        icon: 'https://i.imgur.com/lYJXUyY.jpeg',
-        badge: 'https://i.imgur.com/lYJXUyY.jpeg'
-      });
-    }, 1000);
-  } else {
-    showToast('Notifications not enabled. You can try again anytime.');
-  }
-}
 
-async function subscribeUser() {
-  if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
+  // Request permission
   try {
-    const reg = await navigator.serviceWorker.ready;
-    // Store subscription intent — actual push server not needed for basic notifications
-    localStorage.setItem(NOTIF_ENABLED_KEY, '1');
-  } catch(e) { /* silently handle */ }
+    const perm = await Notification.requestPermission();
+    if (perm === 'granted') {
+      updateNotifUI(true);
+      showToast('✅ Notifications enabled!');
+      // Register service worker first then send welcome
+      if ('serviceWorker' in navigator) {
+        await navigator.serviceWorker.register('sw.js');
+        await navigator.serviceWorker.ready;
+      }
+      // Small delay then send welcome notification
+      setTimeout(sendWelcomeNotification, 800);
+      // Store counts so SW knows baseline
+      try {
+        const [nr, br] = await Promise.all([
+          fetch('news.json?v='+Date.now()), fetch('books.json?v='+Date.now())
+        ]);
+        const [news, books] = await Promise.all([nr.json(), br.json()]);
+        localStorage.setItem('bqm_news_count', news.length);
+        localStorage.setItem('bqm_books_count', books.length);
+      } catch {}
+    } else {
+      showToast('Notification permission not granted. You can enable it anytime.');
+    }
+  } catch(err) {
+    showToast('Could not enable notifications: ' + err.message);
+  }
 }
 
-// Show notification bar after 5s if not dismissed and not already enabled
+// Check & show notification bar
 (function initNotifBar() {
-  if (localStorage.getItem(NOTIF_ENABLED_KEY) === '1') {
-    // Already enabled — update UI
+  if (localStorage.getItem(NOTIF_ENABLED_KEY) === '1' || Notification.permission === 'granted') {
     updateNotifUI(true);
     return;
   }
-  if (Notification.permission === 'granted') {
-    updateNotifUI(true); return;
-  }
-  if (!sessionStorage.getItem(NOTIF_DISMISSED_KEY) && 'Notification' in window) {
+  if (!('Notification' in window)) return; // Not supported
+  if (!sessionStorage.getItem(NOTIF_DISMISSED_KEY)) {
     setTimeout(() => {
       const bar = document.getElementById('notifBar');
       if (bar) bar.classList.add('show');
