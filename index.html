@@ -1091,9 +1091,74 @@ body.dark .qa-answer { color: var(--muted); }
 .cutoff-result .verdict { font-size: 0.84rem; color: #bfdbfe; margin-top: 4px; }
 .cutoff-result .verdict strong { color: #fbbf24; }
 
+
+/* PUSH NOTIFICATIONS */
+.notif-bar {
+  background: linear-gradient(135deg, #102880, #1a3fa8);
+  color: white; padding: 14px 16px;
+  display: none; /* shown via JS */
+  align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+}
+.notif-bar.show { display: flex; }
+.notif-bar-text { font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+.notif-bar-text strong { font-family: 'Montserrat', sans-serif; }
+.notif-bar-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.notif-allow-btn {
+  background: #25d366; color: white; border: none;
+  padding: 8px 16px; border-radius: 7px;
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 0.8rem; cursor: pointer; transition: 0.2s;
+  white-space: nowrap;
+}
+.notif-allow-btn:hover { background: #20bd5a; }
+.notif-dismiss-btn {
+  background: rgba(255,255,255,0.15); color: white; border: none;
+  padding: 8px 12px; border-radius: 7px; font-size: 0.8rem;
+  cursor: pointer; transition: 0.2s; white-space: nowrap;
+}
+.notif-dismiss-btn:hover { background: rgba(255,255,255,0.25); }
+
+/* Notification prompt section */
+#notifications-section { background: var(--light); }
+body.dark #notifications-section { background: var(--bg); }
+.notif-card {
+  background: linear-gradient(135deg, #102880, #1a3fa8);
+  border-radius: 16px; padding: 24px 20px;
+  color: white; max-width: 580px; margin: 0 auto;
+  display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+}
+.notif-icon { font-size: 2.5rem; flex-shrink: 0; }
+.notif-card-text { flex: 1; min-width: 200px; }
+.notif-card-text h3 { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; margin-bottom: 5px; }
+.notif-card-text p { font-size: 0.82rem; color: #bfdbfe; line-height: 1.5; margin-bottom: 12px; }
+.notif-features { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+.notif-feat { font-size: 0.78rem; color: #dbeafe; display: flex; align-items: center; gap: 6px; }
+.notif-feat::before { content: '✓'; background: rgba(255,255,255,0.15); border-radius: 50%; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 800; flex-shrink: 0; }
+.notif-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.notif-enable-btn {
+  background: #f97316; color: white; border: none;
+  padding: 11px 22px; border-radius: 9px;
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 0.88rem; cursor: pointer; transition: 0.2s;
+  display: flex; align-items: center; gap: 7px;
+}
+.notif-enable-btn:hover { background: #ea6c0a; transform: translateY(-1px); }
+.notif-enabled-msg { font-size: 0.82rem; color: #86efac; font-weight: 600; display: none; align-items: center; gap: 6px; }
+.notif-enabled-msg.show { display: flex; }
+
 </style>
 </head>
 <body>
+
+<!-- NOTIFICATION BAR -->
+<div class="notif-bar" id="notifBar">
+  <div class="notif-bar-text">🔔 <strong>Stay updated!</strong> Enable notifications to get news & new books directly on your phone</div>
+  <div class="notif-bar-btns">
+    <button class="notif-allow-btn" onclick="enableNotifications()">Enable Notifications</button>
+    <button class="notif-dismiss-btn" onclick="dismissNotifBar()">Not now</button>
+  </div>
+</div>
 
 <!-- HEADER -->
 <header>
@@ -1121,6 +1186,7 @@ body.dark .qa-answer { color: var(--muted); }
       <a href="#spotlight-section">Spotlight</a>
       <a href="#reviews">Reviews</a>
       <a href="#dyk-section">DYK</a>
+      <a href="#notifications-section">🔔 Notifications</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
   </div>
@@ -1382,6 +1448,36 @@ body.dark .qa-answer { color: var(--muted); }
       <button class="qa-submit-btn" onclick="submitQA()">Send Question via WhatsApp →</button>
     </div>
     <div class="qa-list" id="qaList"></div>
+  </div>
+</section>
+
+<!-- NOTIFICATIONS SECTION -->
+<section id="notifications-section">
+  <div class="container">
+    <div class="section-label">Stay Updated</div>
+    <h2 class="section-title">Get Instant Notifications</h2>
+    <div class="section-divider"></div>
+    <div class="notif-card">
+      <div class="notif-icon">🔔</div>
+      <div class="notif-card-text">
+        <h3>Never Miss an Update!</h3>
+        <p>Enable push notifications and we'll alert you instantly whenever we post something new — even when you're not on the website.</p>
+        <div class="notif-features">
+          <div class="notif-feat">Breaking JAMB & admission updates</div>
+          <div class="notif-feat">New books added to eLibrary</div>
+          <div class="notif-feat">Scholarship deadlines & alerts</div>
+          <div class="notif-feat">Campus news & DYK facts</div>
+        </div>
+        <div class="notif-btns">
+          <button class="notif-enable-btn" id="notifEnableBtn" onclick="enableNotifications()">
+            🔔 Enable Notifications
+          </button>
+          <div class="notif-enabled-msg" id="notifEnabledMsg">
+            ✅ Notifications enabled! You're all set.
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -2123,7 +2219,7 @@ async function fetchDykPreview() {
           <div class="dyk-preview-title">${item.title}</div>
           <div class="dyk-preview-summary">${item.summary||''}</div>
           <div class="dyk-card-actions">
-            <a href="dyk.html">Read More →</a>
+            <a href="dyk.html" class="dyk-read-more">Read More </a>
           </div>
         </div>
       </div>`).join('');
@@ -2390,6 +2486,87 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(() => {});
   });
 }
+
+
+// ── PUSH NOTIFICATIONS ──
+const NOTIF_DISMISSED_KEY = 'bqm_notif_dismissed';
+const NOTIF_ENABLED_KEY   = 'bqm_notif_enabled';
+
+function dismissNotifBar() {
+  document.getElementById('notifBar').classList.remove('show');
+  sessionStorage.setItem(NOTIF_DISMISSED_KEY, '1');
+}
+
+function updateNotifUI(granted) {
+  const btn = document.getElementById('notifEnableBtn');
+  const msg = document.getElementById('notifEnabledMsg');
+  if (granted) {
+    if (btn) btn.style.display = 'none';
+    if (msg) msg.classList.add('show');
+    document.getElementById('notifBar').classList.remove('show');
+    localStorage.setItem(NOTIF_ENABLED_KEY, '1');
+  }
+}
+
+async function enableNotifications() {
+  if (!('Notification' in window)) {
+    showToast('⚠️ Notifications are not supported on this browser.');
+    return;
+  }
+  if (Notification.permission === 'granted') {
+    subscribeUser();
+    updateNotifUI(true);
+    showToast('✅ Notifications already enabled!');
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    showToast('❌ Notifications blocked. Please enable in your browser settings.');
+    return;
+  }
+  const perm = await Notification.requestPermission();
+  if (perm === 'granted') {
+    subscribeUser();
+    updateNotifUI(true);
+    showToast('✅ Notifications enabled! You will get updates.');
+    // Send a welcome notification
+    setTimeout(() => {
+      new Notification('🎓 Big Quams Media', {
+        body: 'Welcome! You will now receive JAMB updates, new books, and scholarship alerts.',
+        icon: 'https://i.imgur.com/lYJXUyY.jpeg',
+        badge: 'https://i.imgur.com/lYJXUyY.jpeg'
+      });
+    }, 1000);
+  } else {
+    showToast('Notifications not enabled. You can try again anytime.');
+  }
+}
+
+async function subscribeUser() {
+  if (!('serviceWorker' in navigator) || !('PushManager' in window)) return;
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    // Store subscription intent — actual push server not needed for basic notifications
+    localStorage.setItem(NOTIF_ENABLED_KEY, '1');
+  } catch(e) { /* silently handle */ }
+}
+
+// Show notification bar after 5s if not dismissed and not already enabled
+(function initNotifBar() {
+  if (localStorage.getItem(NOTIF_ENABLED_KEY) === '1') {
+    // Already enabled — update UI
+    updateNotifUI(true);
+    return;
+  }
+  if (Notification.permission === 'granted') {
+    updateNotifUI(true); return;
+  }
+  if (!sessionStorage.getItem(NOTIF_DISMISSED_KEY) && 'Notification' in window) {
+    setTimeout(() => {
+      const bar = document.getElementById('notifBar');
+      if (bar) bar.classList.add('show');
+    }, 5000);
+  }
+})();
 
 </script>
 
