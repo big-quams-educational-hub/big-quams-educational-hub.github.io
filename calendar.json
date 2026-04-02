@@ -1,0 +1,44 @@
+[
+  {
+    "title": "JAMB Registration Opens",
+    "category": "jamb",
+    "date": "2026-02-03",
+    "color": "#1a3fa8",
+    "description": "2026 UTME registration begins at accredited CBT centres nationwide. Ensure your NIN is linked before visiting a centre."
+  },
+  {
+    "title": "JAMB Mock-UTME",
+    "category": "jamb",
+    "date": "2026-03-28",
+    "color": "#7c3aed",
+    "description": "Optional mock examination for registered candidates at designated CBT centres. Highly recommended for first-time candidates."
+  },
+  {
+    "title": "UTME 2026 Begins",
+    "category": "exam",
+    "date": "2026-04-24",
+    "color": "#dc2626",
+    "description": "Main Unified Tertiary Matriculation Examination commences nationwide. Candidates must bring their exam slip and a valid ID."
+  },
+  {
+    "title": "Post-UTME Screening",
+    "category": "admission",
+    "date": "2026-06-15",
+    "color": "#16a34a",
+    "description": "Universities begin Post-UTME screening exercises. Check your institution's portal for specific dates and registration requirements."
+  },
+  {
+    "title": "CAPS Admission Opens",
+    "category": "admission",
+    "date": "2026-07-01",
+    "color": "#f97316",
+    "description": "JAMB CAPS portal opens for admission offers. Log in to your JAMB profile and accept your admission before the deadline."
+  },
+  {
+    "title": "New Academic Session",
+    "category": "school",
+    "date": "2026-09-01",
+    "color": "#0891b2",
+    "description": "2026/2027 academic session begins for Nigerian universities and polytechnics. Check your institution's resumption date."
+  }
+]
