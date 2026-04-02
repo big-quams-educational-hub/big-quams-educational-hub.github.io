@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+avigator.share) <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -399,11 +399,13 @@ function renderNews(items) {
     return;
   }
 
-  // Pinned articles first
+  // Pinned articles first — use allNews index as stable ID
   const sorted = [...items.filter(n => n.pinned), ...items.filter(n => !n.pinned)];
 
-  grid.innerHTML = sorted.map((item, i) => `
-    <div class="news-card${item.pinned ? ' pinned-card' : ''}" onclick="openArticle(${i})">
+  grid.innerHTML = sorted.map(item => {
+    const realIdx = allNews.indexOf(item); // stable index into allNews
+    return `
+    <div class="news-card${item.pinned ? ' pinned-card' : ''}" onclick="openArticle(${realIdx === -1 ? "'"+item.title.replace(/'/g,"\'"  )+"'" : realIdx})">
       ${item.pinned ? '<div class="pin-label">📌 Pinned</div>' : ''}
       ${item.image
         ? `<div class="news-card-img-wrap"><img src="${item.image}" alt="${item.title}" loading="lazy"></div>`
@@ -416,11 +418,11 @@ function renderNews(items) {
       <div class="summary">${item.summary || item.description}</div>
       ${item.author ? `<div style="font-size:0.71rem;color:var(--muted);margin-bottom:8px;font-weight:500;">✍️ ${item.author}</div>` : ''}
       <div class="news-actions">
-        <button class="btn-read-full" onclick="event.stopPropagation(); openArticle(${i})">Read More</button>
-        <button class="btn-share-news" onclick="event.stopPropagation(); shareArticle(${i})">🔗 Share</button>
+        <button class="btn-read-full" onclick="event.stopPropagation(); openArticle(${realIdx})">Read More</button>
+        <button class="btn-share-news" onclick="event.stopPropagation(); shareArticle(${realIdx})">🔗 Share</button>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 function setFilter(cat) {
@@ -440,13 +442,8 @@ function filterNews() {
 }
 
 function openArticle(index) {
-  const q = document.getElementById('searchInput').value.toLowerCase().trim();
-  const filtered = allNews.filter(item => {
-    const matchCat = activeFilter === 'All' || item.category === activeFilter;
-    const matchQ   = !q || item.title.toLowerCase().includes(q) || (item.summary || item.description || '').toLowerCase().includes(q);
-    return matchCat && matchQ;
-  });
-  const item = filtered[index];
+  // Use direct allNews index for reliability (avoids pin/filter mismatch)
+  const item = allNews[index];
   if (!item) return;
 
   document.getElementById('artCat').textContent   = item.category || 'News';
@@ -474,7 +471,7 @@ function openArticle(index) {
   actionBtns.innerHTML = btns;
 
   // Share button
-  document.getElementById('artShareBtn').onclick = () => shareArticle(index);
+  document.getElementById('artShareBtn').onclick = () => shareArticle(allNews.indexOf(item));
 
   document.getElementById('articleOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -490,13 +487,7 @@ function handleArticleOverlay(e) {
 }
 
 function shareArticle(index) {
-  const q = document.getElementById('searchInput').value.toLowerCase().trim();
-  const filtered = allNews.filter(item => {
-    const matchCat = activeFilter === 'All' || item.category === activeFilter;
-    const matchQ   = !q || item.title.toLowerCase().includes(q) || (item.summary || item.description || '').toLowerCase().includes(q);
-    return matchCat && matchQ;
-  });
-  const item = filtered[index];
+  const item = allNews[index];
   if (!item) return;
   const text = item.title + '\n\n' + (item.summary || '') + '\n\nRead more: https://big-quams-educational-hub.github.io/newsroom.html';
   if (navigator.share) {
