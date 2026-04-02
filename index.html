@@ -994,15 +994,6 @@ body.dark .spotlight-summary { color: var(--muted); }
 .spotlight-date { font-size: 0.7rem; color: var(--muted); font-weight: 500; }
 
 
-/* VISITOR COUNTER */
-.visitor-bar {
-  background: var(--blue-dk); color: white;
-  text-align: center; padding: 7px 16px;
-  font-size: 0.78rem; font-weight: 500;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  flex-wrap: wrap;
-}
-.visitor-bar strong { font-weight: 700; color: #fbbf24; }
 
 /* ACADEMIC CALENDAR */
 #calendar-section { background: var(--light); }
@@ -1037,44 +1028,6 @@ body.dark .cal-title { color: #bfdbfe; }
 .cal-badge-school { background: #fef9c3; color: #92400e; }
 .cal-badge-scholarship { background: #ede9fe; color: #7c3aed; }
 
-/* QUICK POLL */
-#poll-section { background: white; }
-body.dark #poll-section { background: var(--sec-bg); }
-.poll-card {
-  background: var(--light); border-radius: 14px; padding: 24px 20px;
-  border: 1px solid var(--border); max-width: 620px; margin: 0 auto;
-}
-body.dark .poll-card { background: var(--card); }
-.poll-question {
-  font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700;
-  color: var(--blue-dk); margin-bottom: 16px;
-}
-body.dark .poll-question { color: #bfdbfe; }
-.poll-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
-.poll-option {
-  display: flex; align-items: center; gap: 10px;
-  background: white; border: 1.5px solid var(--border); border-radius: 9px;
-  padding: 11px 14px; cursor: pointer; transition: 0.2s;
-  font-size: 0.9rem; font-weight: 500;
-}
-body.dark .poll-option { background: #0f172a; border-color: var(--border); color: var(--text); }
-.poll-option:hover:not(.voted) { border-color: var(--blue); background: var(--light); }
-.poll-option.selected { border-color: var(--blue); background: #dbeafe; }
-body.dark .poll-option.selected { background: #1e3a6e; }
-.poll-option input[type=radio] { accent-color: var(--blue); width: 16px; height: 16px; flex-shrink: 0; }
-.poll-vote-btn {
-  background: var(--blue); color: white; border: none; padding: 11px 24px;
-  border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 700;
-  font-size: 0.88rem; cursor: pointer; transition: 0.2s; width: 100%;
-}
-.poll-vote-btn:hover { background: var(--blue-dk); }
-.poll-result-bar { margin-top: 4px; }
-.poll-result-item { margin-bottom: 10px; }
-.poll-result-label { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 4px; display: flex; justify-content: space-between; }
-body.dark .poll-result-label { color: #cbd5e1; }
-.poll-bar-wrap { background: var(--border); border-radius: 4px; height: 8px; overflow: hidden; }
-.poll-bar-fill { background: var(--blue); height: 8px; border-radius: 4px; transition: width 0.6s ease; }
-.poll-total { font-size: 0.74rem; color: var(--muted); margin-top: 10px; text-align: center; }
 
 /* STUDENT Q&A */
 #qa-section { background: var(--light); }
@@ -1110,14 +1063,15 @@ body.dark .qa-answer { color: var(--muted); }
 }
 .footer-brand { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: white; margin-bottom: 2px; }
 .footer-tagline { font-size: 0.78rem; color: #94a3b8; }
-.footer-social { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.footer-social { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .footer-social a {
   display: flex; align-items: center; justify-content: center;
-  width: 38px; height: 38px; border-radius: 50%;
+  width: 40px; height: 40px; border-radius: 50%;
   background: rgba(255,255,255,0.1); color: white;
-  text-decoration: none; font-size: 1.1rem; transition: 0.2s;
+  text-decoration: none; font-size: 1rem; transition: 0.2s;
+  border: 1px solid rgba(255,255,255,0.1);
 }
-.footer-social a:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+.footer-social a:hover { background: var(--orange); border-color: var(--orange); transform: translateY(-2px); }
 .footer-links { display: flex; gap: 8px 16px; flex-wrap: wrap; justify-content: center; }
 .footer-links a { color: #94a3b8; text-decoration: none; font-size: 0.78rem; transition: color 0.2s; }
 .footer-links a:hover { color: var(--orange); }
@@ -1142,11 +1096,6 @@ body.dark .qa-answer { color: var(--muted); }
 <body>
 
 <!-- HEADER -->
-<!-- VISITOR COUNTER BAR -->
-<div class="visitor-bar" id="visitorBar">
-  👁️ <strong id="visitorCount">—</strong> students have visited this site
-</div>
-
 <header>
   <div class="header-inner">
     <div class="logo-wrap">
@@ -1364,31 +1313,8 @@ body.dark .qa-answer { color: var(--muted); }
     <div class="section-label">Key Dates</div>
     <h2 class="section-title">Academic Calendar 2026</h2>
     <div class="section-divider"></div>
-    <div class="calendar-grid">
-      <div class="cal-card">
-        <div class="cal-date-box" style="background:#1a3fa8;"><div class="cal-month">Feb</div><div class="cal-day">03</div></div>
-        <div class="cal-info"><div class="cal-title">JAMB Registration Opens</div><div class="cal-desc">2026 UTME registration begins at accredited CBT centres nationwide</div><span class="cal-badge cal-badge-jamb">JAMB</span></div>
-      </div>
-      <div class="cal-card">
-        <div class="cal-date-box" style="background:#7c3aed;"><div class="cal-month">Mar</div><div class="cal-day">28</div></div>
-        <div class="cal-info"><div class="cal-title">JAMB Mock-UTME</div><div class="cal-desc">Optional mock examination for registered candidates at designated centres</div><span class="cal-badge cal-badge-jamb">JAMB</span></div>
-      </div>
-      <div class="cal-card">
-        <div class="cal-date-box" style="background:#dc2626;"><div class="cal-month">Apr</div><div class="cal-day">24</div></div>
-        <div class="cal-info"><div class="cal-title">UTME 2026 Begins</div><div class="cal-desc">Main Unified Tertiary Matriculation Examination commences nationwide</div><span class="cal-badge cal-badge-exam">Exam</span></div>
-      </div>
-      <div class="cal-card">
-        <div class="cal-date-box" style="background:#16a34a;"><div class="cal-month">Jun</div><div class="cal-day">15</div></div>
-        <div class="cal-info"><div class="cal-title">Post-UTME Screening</div><div class="cal-desc">Universities begin Post-UTME screening exercises. Check your institution's portal</div><span class="cal-badge cal-badge-admission">Admission</span></div>
-      </div>
-      <div class="cal-card">
-        <div class="cal-date-box" style="background:#f97316;"><div class="cal-month">Jul</div><div class="cal-day">01</div></div>
-        <div class="cal-info"><div class="cal-title">CAPS Admission Opens</div><div class="cal-desc">JAMB CAPS portal opens for admission offers. Check and accept your admission</div><span class="cal-badge cal-badge-admission">Admission</span></div>
-      </div>
-      <div class="cal-card">
-        <div class="cal-date-box" style="background:#0891b2;"><div class="cal-month">Sep</div><div class="cal-day">01</div></div>
-        <div class="cal-info"><div class="cal-title">New Academic Session</div><div class="cal-desc">2026/2027 academic session begins for Nigerian universities and polytechnics</div><span class="cal-badge cal-badge-school">School</span></div>
-      </div>
+    <div class="calendar-grid" id="calendarGrid">
+      <div class="news-loading">⏳ Loading calendar…</div>
     </div>
     <p style="font-size:0.78rem;color:var(--muted);margin-top:16px;text-align:center;">📌 Dates are approximate. Always verify with your institution or JAMB portal.</p>
   </div>
@@ -1425,26 +1351,6 @@ body.dark .qa-answer { color: var(--muted); }
     </div>
     <div style="text-align:center;margin-top:28px;">
       <a href="spotlight.html" class="btn">🌟 See All Spotlights</a>
-    </div>
-  </div>
-</section>
-
-<!-- QUICK POLL -->
-<section id="poll-section">
-  <div class="container">
-    <div class="section-label">Your Voice</div>
-    <h2 class="section-title">Quick Poll</h2>
-    <div class="section-divider"></div>
-    <div class="poll-card">
-      <div class="poll-question" id="pollQuestion">Which service do you use most on Big Quams Media?</div>
-      <div class="poll-options" id="pollOptions">
-        <label class="poll-option"><input type="radio" name="poll" value="0"> JAMB & Admission Advisory</label>
-        <label class="poll-option"><input type="radio" name="poll" value="1"> News & Campus Updates</label>
-        <label class="poll-option"><input type="radio" name="poll" value="2"> eLibrary & Study Materials</label>
-        <label class="poll-option"><input type="radio" name="poll" value="3"> Score Calculator</label>
-        <label class="poll-option"><input type="radio" name="poll" value="4"> DYK & Current Affairs</label>
-      </div>
-      <button class="poll-vote-btn" onclick="submitPoll()">Submit Vote</button>
     </div>
   </div>
 </section>
@@ -1649,10 +1555,28 @@ body.dark .qa-answer { color: var(--muted); }
       <div class="footer-tagline">Simplifying Campus Life for Every Nigerian Student</div>
     </div>
     <div class="footer-social">
-      <a href="https://wa.me/message/OVCVEDHU3I2PH1" title="WhatsApp" target="_blank" rel="noopener">💬</a>
-      <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" title="WhatsApp Channel" target="_blank" rel="noopener">📢</a>
-      <a href="mailto:bigquamsmedia024@gmail.com" title="Email">📧</a>
-      <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" title="Join Group" target="_blank" rel="noopener">👥</a>
+      <a href="https://wa.me/message/OVCVEDHU3I2PH1" title="WhatsApp" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.847L.073 23.927l6.241-1.635A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.71.972.99-3.614-.234-.373A9.818 9.818 0 0112 2.182c5.427 0 9.818 4.391 9.818 9.818 0 5.428-4.391 9.818-9.818 9.818z"/></svg>
+      </a>
+      <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" title="WhatsApp Channel" target="_blank" rel="noopener" aria-label="WhatsApp Channel">📢</a>
+      <a href="https://x.com/big_quams" title="X (Twitter)" target="_blank" rel="noopener" aria-label="X Twitter">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/bigquamsmedia024" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/bigquamsmedia?igsh=MThsdjVwNXh2Z2hrZg==" title="Instagram" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@bigquamsmedia?_r=1&_t=ZS-95BRwj93lZ7" title="TikTok" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+      </a>
+      <a href="https://t.me/bigquamsmedia024" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </a>
+      <a href="mailto:bigquamsmedia024@gmail.com" title="Email" aria-label="Email">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
     </div>
     <div class="footer-links">
       <a href="#home">Home</a>
@@ -2209,6 +2133,48 @@ async function fetchDykPreview() {
 }
 fetchDykPreview();
 
+// ── ACADEMIC CALENDAR LOADER ──
+async function loadCalendar() {
+  const grid = document.getElementById('calendarGrid');
+  if (!grid) return;
+  const catBadge = {jamb:'cal-badge-jamb',exam:'cal-badge-exam',admission:'cal-badge-admission',school:'cal-badge-school',scholarship:'cal-badge-scholarship'};
+  const catLabel = {jamb:'JAMB',exam:'Exam',admission:'Admission',school:'School',scholarship:'Scholarship'};
+  try {
+    const res = await fetch('calendar.json?v=' + Date.now());
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    if (!data.length) { grid.innerHTML = '<div class="news-loading">Calendar coming soon.</div>'; return; }
+    const sorted = [...data].sort((a,b) => new Date(a.date) - new Date(b.date));
+    grid.innerHTML = sorted.map(item => {
+      const d = new Date(item.date);
+      const month = d.toLocaleString('en-US',{month:'short'});
+      const day   = d.getDate();
+      return `<div class="cal-card">
+        <div class="cal-date-box" style="background:${item.color||'#1a3fa8'};">
+          <div class="cal-month">${month}</div>
+          <div class="cal-day">${day}</div>
+        </div>
+        <div class="cal-info">
+          <div class="cal-title">${item.title}</div>
+          <div class="cal-desc">${item.description}</div>
+          <span class="cal-badge ${catBadge[item.category]||'cal-badge-jamb'}">${catLabel[item.category]||item.category||'Event'}</span>
+        </div>
+      </div>`;
+    }).join('');
+  } catch {
+    // Fallback hardcoded calendar
+    grid.innerHTML = `
+      <div class="cal-card"><div class="cal-date-box" style="background:#1a3fa8;"><div class="cal-month">Feb</div><div class="cal-day">03</div></div><div class="cal-info"><div class="cal-title">JAMB Registration Opens</div><div class="cal-desc">2026 UTME registration begins at accredited CBT centres nationwide</div><span class="cal-badge cal-badge-jamb">JAMB</span></div></div>
+      <div class="cal-card"><div class="cal-date-box" style="background:#7c3aed;"><div class="cal-month">Mar</div><div class="cal-day">28</div></div><div class="cal-info"><div class="cal-title">JAMB Mock-UTME</div><div class="cal-desc">Optional mock examination for registered candidates</div><span class="cal-badge cal-badge-jamb">JAMB</span></div></div>
+      <div class="cal-card"><div class="cal-date-box" style="background:#dc2626;"><div class="cal-month">Apr</div><div class="cal-day">24</div></div><div class="cal-info"><div class="cal-title">UTME 2026 Begins</div><div class="cal-desc">Main Unified Tertiary Matriculation Examination commences nationwide</div><span class="cal-badge cal-badge-exam">Exam</span></div></div>
+      <div class="cal-card"><div class="cal-date-box" style="background:#16a34a;"><div class="cal-month">Jun</div><div class="cal-day">15</div></div><div class="cal-info"><div class="cal-title">Post-UTME Screening</div><div class="cal-desc">Universities begin Post-UTME screening exercises</div><span class="cal-badge cal-badge-admission">Admission</span></div></div>
+      <div class="cal-card"><div class="cal-date-box" style="background:#f97316;"><div class="cal-month">Jul</div><div class="cal-day">01</div></div><div class="cal-info"><div class="cal-title">CAPS Admission Opens</div><div class="cal-desc">JAMB CAPS portal opens for admission offers</div><span class="cal-badge cal-badge-admission">Admission</span></div></div>
+      <div class="cal-card"><div class="cal-date-box" style="background:#0891b2;"><div class="cal-month">Sep</div><div class="cal-day">01</div></div><div class="cal-info"><div class="cal-title">New Academic Session</div><div class="cal-desc">2026/2027 academic session begins for Nigerian institutions</div><span class="cal-badge cal-badge-school">School</span></div></div>`;
+  }
+}
+loadCalendar();
+
+
 // SPOTLIGHT PREVIEW LOADER
 async function fetchSpotlightPreview() {
   const container = document.getElementById('spotlight-preview-container');
@@ -2259,55 +2225,7 @@ function closeWaPopup() {
 })();
 
 
-// ── VISITOR COUNTER ──
-(async function() {
-  try {
-    const res = await fetch('https://api.countapi.xyz/hit/big-quams-educational-hub.github.io/visits');
-    const data = await res.json();
-    const el = document.getElementById('visitorCount');
-    if (el && data.value) el.textContent = Number(data.value).toLocaleString();
-  } catch { /* silently fail */ }
-})();
 
-// ── POLL ──
-(function() {
-  const POLL_KEY = 'bqm_poll_vote';
-  const counts = JSON.parse(localStorage.getItem('bqm_poll_counts') || '[0,0,0,0,0]');
-  const voted  = localStorage.getItem(POLL_KEY);
-  if (voted !== null) showPollResults(counts, parseInt(voted));
-
-  function showPollResults(counts, selected) {
-    const total = counts.reduce((a,b) => a+b, 0) || 1;
-    const labels = ['JAMB & Admission Advisory','News & Campus Updates','eLibrary & Study Materials','Score Calculator','DYK & Current Affairs'];
-    const container = document.getElementById('pollOptions');
-    if (!container) return;
-    container.innerHTML = labels.map((label, i) => {
-      const pct = Math.round((counts[i]/total)*100);
-      return `<div class="poll-result-item">
-        <div class="poll-result-label"><span>${i===selected?'✓ ':''} ${label}</span><span>${pct}%</span></div>
-        <div class="poll-bar-wrap"><div class="poll-bar-fill" style="width:${pct}%"></div></div>
-      </div>`;
-    }).join('');
-    const btn = document.querySelector('.poll-vote-btn');
-    if (btn) btn.style.display = 'none';
-    const totalEl = document.createElement('div');
-    totalEl.className = 'poll-total';
-    totalEl.textContent = `${total} vote${total!==1?'s':''} total`;
-    container.after(totalEl);
-  }
-
-  window.submitPoll = function() {
-    const selected = document.querySelector('input[name="poll"]:checked');
-    if (!selected) { showToast('Please select an option first!'); return; }
-    const idx = parseInt(selected.value);
-    if (localStorage.getItem(POLL_KEY) !== null) return;
-    counts[idx]++;
-    localStorage.setItem('bqm_poll_counts', JSON.stringify(counts));
-    localStorage.setItem(POLL_KEY, idx.toString());
-    showPollResults(counts, idx);
-    showToast('✅ Thanks for voting!');
-  };
-})();
 
 // ── REVIEWS FROM JSON ──
 async function loadReviews() {
