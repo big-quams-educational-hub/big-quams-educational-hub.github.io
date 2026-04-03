@@ -581,13 +581,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 loadBooks();
 </script>
 
-// ── DARK MODE SYNC ──
-(function() {
-  const saved = localStorage.getItem('bqm-theme');
-  if (saved === 'dark') document.body.classList.add('dark');
-})();
-
-
 <script>
 // ── NOTIFICATION BAR FOR SUB-PAGES ──
 const NOTIF_DISMISSED_KEY = 'bqm_notif_dismissed';
@@ -637,6 +630,14 @@ async function enablePageNotifications() {
     }
   } catch(err) { console.warn(err); }
 }
+
+    // ── DARK MODE SYNC ──
+(function() {
+  const saved = localStorage.getItem('bqm-theme');
+  if (saved === 'dark') document.body.classList.add('dark');
+})();
+
+  
 </script>
 
 </body>
