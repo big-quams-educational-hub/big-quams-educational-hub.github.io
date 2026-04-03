@@ -2488,6 +2488,7 @@ if ('serviceWorker' in navigator) {
 }
 
 
+
 // ── PUSH NOTIFICATIONS ──
 const NOTIF_DISMISSED_KEY = 'bqm_notif_dismissed';
 const NOTIF_ENABLED_KEY   = 'bqm_notif_enabled';
@@ -2561,7 +2562,7 @@ async function enableNotifications() {
 
   if (Notification.permission === 'granted') {
     updateNotifUI(true);
-    showToast('✅ Notifications are already enabled!');
+    showToast('✅ You\'re already subscribed! We\'ll notify you of all new updates.');
     await sendWelcomeNotification();
     return;
   }
@@ -2576,7 +2577,8 @@ async function enableNotifications() {
     const perm = await Notification.requestPermission();
     if (perm === 'granted') {
       updateNotifUI(true);
-      showToast('✅ Notifications enabled!');
+      // Show thanks toast immediately
+      showToast('🎉 Thanks for subscribing! You\'ll be the first to know about news, new books & spotlights.');
       // Register service worker first then send welcome
       if ('serviceWorker' in navigator) {
         await navigator.serviceWorker.register('sw.js');
@@ -2584,21 +2586,124 @@ async function enableNotifications() {
       }
       // Small delay then send welcome notification
       setTimeout(sendWelcomeNotification, 800);
-      // Store counts so SW knows baseline
+      // Store baseline counts so polling knows what's "new"
       try {
-        const [nr, br] = await Promise.all([
-          fetch('news.json?v='+Date.now()), fetch('books.json?v='+Date.now())
+        const [nr, br, sr] = await Promise.all([
+          fetch('news.json?v='+Date.now()),
+          fetch('books.json?v='+Date.now()),
+          fetch('spotlight.json?v='+Date.now())
         ]);
-        const [news, books] = await Promise.all([nr.json(), br.json()]);
+        const [news, books, spotlight] = await Promise.all([nr.json(), br.json(), sr.json()]);
         localStorage.setItem('bqm_news_count', news.length);
         localStorage.setItem('bqm_books_count', books.length);
+        localStorage.setItem('bqm_spotlight_count', spotlight.length);
+        // Store latest item IDs/titles to detect changes
+        if (news.length) localStorage.setItem('bqm_news_latest', news[0].title || '');
+        if (books.length) localStorage.setItem('bqm_books_latest', books[0].title || '');
+        if (spotlight.length) localStorage.setItem('bqm_spotlight_latest', spotlight[0].title || '');
       } catch {}
+      // Start polling for new content
+      startContentPolling();
     } else {
-      showToast('Notification permission not granted. You can enable it anytime.');
+      showToast('Notification permission not granted. You can enable it anytime from the Notifications section.');
     }
   } catch(err) {
     showToast('Could not enable notifications: ' + err.message);
   }
+}
+
+// ── CONTENT UPDATE POLLING ──
+// Polls news.json, books.json, spotlight.json every 5 minutes for new content
+// and fires a push notification if subscribers are detected.
+async function checkForNewContent() {
+  if (Notification.permission !== 'granted') return;
+
+  async function fireNotif(title, body, tag) {
+    if ('serviceWorker' in navigator) {
+      try {
+        const reg = await navigator.serviceWorker.ready;
+        if (reg.active) {
+          reg.active.postMessage({ type: 'SHOW_NOTIFICATION', title, body, url: '/' });
+          return;
+        }
+      } catch {}
+    }
+    try { new Notification(title, { body, icon: 'https://i.imgur.com/lYJXUyY.jpeg', badge: 'https://i.imgur.com/lYJXUyY.jpeg', tag }); } catch {}
+  }
+
+  try {
+    // --- NEWS ---
+    const newsRes = await fetch('news.json?v=' + Date.now());
+    if (newsRes.ok) {
+      const news = await newsRes.json();
+      const prevCount = parseInt(localStorage.getItem('bqm_news_count') || '0');
+      const prevLatest = localStorage.getItem('bqm_news_latest') || '';
+      const latestTitle = news.length ? (news[0].title || '') : '';
+      if (news.length > prevCount || (news.length && latestTitle !== prevLatest)) {
+        const newItem = news[0];
+        await fireNotif(
+          '📰 New Update on Big Quams Media!',
+          (newItem.title || 'New campus news is available') + ' — Tap to read.',
+          'bqm-news-update'
+        );
+        localStorage.setItem('bqm_news_count', news.length);
+        localStorage.setItem('bqm_news_latest', latestTitle);
+      }
+    }
+  } catch {}
+
+  try {
+    // --- ELIBRARY / BOOKS ---
+    const booksRes = await fetch('books.json?v=' + Date.now());
+    if (booksRes.ok) {
+      const books = await booksRes.json();
+      const prevCount = parseInt(localStorage.getItem('bqm_books_count') || '0');
+      const prevLatest = localStorage.getItem('bqm_books_latest') || '';
+      const latestTitle = books.length ? (books[0].title || '') : '';
+      if (books.length > prevCount || (books.length && latestTitle !== prevLatest)) {
+        const newItem = books[0];
+        await fireNotif(
+          '📚 New Book Added to eLibrary!',
+          (newItem.title || 'A new resource is available in the eLibrary') + ' — Tap to explore.',
+          'bqm-book-update'
+        );
+        localStorage.setItem('bqm_books_count', books.length);
+        localStorage.setItem('bqm_books_latest', latestTitle);
+      }
+    }
+  } catch {}
+
+  try {
+    // --- SPOTLIGHT ---
+    const spotRes = await fetch('spotlight.json?v=' + Date.now());
+    if (spotRes.ok) {
+      const spotlight = await spotRes.json();
+      const prevCount = parseInt(localStorage.getItem('bqm_spotlight_count') || '0');
+      const prevLatest = localStorage.getItem('bqm_spotlight_latest') || '';
+      const latestTitle = spotlight.length ? (spotlight[0].title || '') : '';
+      if (spotlight.length > prevCount || (spotlight.length && latestTitle !== prevLatest)) {
+        const newItem = spotlight[0];
+        await fireNotif(
+          '🌟 New Spotlight Posted!',
+          (newItem.title || 'Someone has been spotlighted on Big Quams Media') + ' — Tap to see.',
+          'bqm-spotlight-update'
+        );
+        localStorage.setItem('bqm_spotlight_count', spotlight.length);
+        localStorage.setItem('bqm_spotlight_latest', latestTitle);
+      }
+    }
+  } catch {}
+}
+
+function startContentPolling() {
+  // Poll every 5 minutes (300,000 ms)
+  checkForNewContent(); // run once immediately
+  setInterval(checkForNewContent, 5 * 60 * 1000);
+}
+
+// Auto-start polling if already subscribed on page load
+if (localStorage.getItem(NOTIF_ENABLED_KEY) === '1' && Notification.permission === 'granted') {
+  startContentPolling();
 }
 
 // Check & show notification bar
@@ -2609,12 +2714,7 @@ async function enableNotifications() {
   }
   if (!('Notification' in window)) return; // Not supported
   if (!sessionStorage.getItem(NOTIF_DISMISSED_KEY)) {
-    setTimeout(() => {
-      const bar = document.getElementById('notifBar');
-      if (bar) bar.classList.add('show');
-    }, 5000);
-  }
-})();
+    setTimeout((
 
 </script>
 
