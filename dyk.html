@@ -125,9 +125,34 @@ body.dark .controls, body.dark .search-wrap input, body.dark .filter-tab {
 body.dark .filter-tab.active { background: #1a3fa8; color: white; }
 body.dark .back-btn-link, body.dark .page-nav-link { background: rgba(255,255,255,0.1); }
 
+
+/* NOTIFICATION BAR */
+.notif-bar {
+  background: linear-gradient(135deg, #102880, #1a3fa8);
+  color: white; padding: 12px 16px;
+  display: none; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+}
+.notif-bar.show { display: flex; }
+.notif-bar-text { font-size: 0.84rem; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+.notif-bar-text strong { font-family: 'Montserrat', sans-serif; }
+.notif-bar-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.notif-allow-btn { background: #25d366; color: white; border: none; padding: 8px 16px; border-radius: 7px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+.notif-allow-btn:hover { background: #20bd5a; }
+.notif-dismiss-btn { background: rgba(255,255,255,0.15); color: white; border: none; padding: 8px 12px; border-radius: 7px; font-size: 0.8rem; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+.notif-dismiss-btn:hover { background: rgba(255,255,255,0.25); }
 </style>
 </head>
 <body>
+
+<!-- NOTIFICATION BAR -->
+<div class="notif-bar" id="notifBar">
+  <div class="notif-bar-text">🔔 <strong>Stay updated!</strong> Enable notifications to get the latest news &amp; campus updates</div>
+  <div class="notif-bar-btns">
+    <button class="notif-allow-btn" onclick="enablePageNotifications()">Enable Notifications</button>
+    <button class="notif-dismiss-btn" onclick="dismissPageNotifBar()">Not now</button>
+  </div>
+</div>
 
 <header>
   <div class="header-inner">
@@ -307,6 +332,58 @@ loadItems();
   const saved = localStorage.getItem('bqm-theme');
   if (saved === 'dark') document.body.classList.add('dark');
 })();
+
+
+<script>
+// ── NOTIFICATION BAR FOR SUB-PAGES ──
+const NOTIF_DISMISSED_KEY = 'bqm_notif_dismissed';
+const NOTIF_ENABLED_KEY   = 'bqm_notif_enabled';
+function dismissPageNotifBar() {
+  const bar = document.getElementById('notifBar');
+  if (bar) bar.classList.remove('show');
+  sessionStorage.setItem(NOTIF_DISMISSED_KEY, '1');
+}
+(function initPageNotifBar() {
+  if (localStorage.getItem(NOTIF_ENABLED_KEY) === '1' || Notification.permission === 'granted') return;
+  if (!('Notification' in window)) return;
+  if (sessionStorage.getItem(NOTIF_DISMISSED_KEY)) return;
+  setTimeout(function() {
+    const bar = document.getElementById('notifBar');
+    if (bar) bar.classList.add('show');
+  }, 4000);
+})();
+async function sendWelcomeNotificationPage() {
+  if ('serviceWorker' in navigator) {
+    try {
+      const reg = await navigator.serviceWorker.ready;
+      if (reg.active) reg.active.postMessage({ type: 'SHOW_NOTIFICATION', title: '🎓 Big Quams Media® — Notifications On!', body: 'Thanks for subscribing! You will now get the latest news, new eBooks, scholarships and campus updates. Stay tuned!', url: '/' });
+    } catch(e) {
+      try { new Notification('🎓 Thanks for subscribing to Big Quams Media®!', { body: "You'll now get updates. Stay tuned!", icon: 'https://i.imgur.com/lYJXUyY.jpeg' }); } catch {}
+    }
+  }
+}
+async function enablePageNotifications() {
+  if (!('Notification' in window)) { alert('Your browser does not support notifications. Try Chrome or Firefox.'); return; }
+  if (Notification.permission === 'granted') {
+    localStorage.setItem(NOTIF_ENABLED_KEY, '1');
+    dismissPageNotifBar();
+    await sendWelcomeNotificationPage();
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    alert('Notifications are blocked. Please allow them in your browser site settings.'); return;
+  }
+  try {
+    const perm = await Notification.requestPermission();
+    if (perm === 'granted') {
+      localStorage.setItem(NOTIF_ENABLED_KEY, '1');
+      dismissPageNotifBar();
+      if ('serviceWorker' in navigator) { await navigator.serviceWorker.register('sw.js'); await navigator.serviceWorker.ready; }
+      setTimeout(sendWelcomeNotificationPage, 800);
+    }
+  } catch(err) { console.warn(err); }
+}
+</script>
 
 </body>
 </html>
