@@ -3,8 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Newsroom | BIG QUAMS MEDIA®</title>
-<meta name="description" content="Latest news, updates and announcements for Nigerian students — JAMB, admissions, scholarships, campus news and more from Big Quams Media.">
+<title id="pageTitle">Newsroom | BIG QUAMS MEDIA®</title>
+<meta id="metaDesc" name="description" content="Latest news, updates and announcements for Nigerian students — JAMB, admissions, scholarships, campus news and more from Big Quams Media.">
+
+<!-- Open Graph / Social Sharing (updated dynamically per article) -->
+<meta id="ogTitle"  property="og:title"       content="BIG QUAMS MEDIA® Newsroom">
+<meta id="ogDesc"   property="og:description"  content="Latest news, scholarships, JAMB and admission updates for Nigerian students.">
+<meta id="ogImage"  property="og:image"        content="https://i.imgur.com/lYJXUyY.jpeg">
+<meta id="ogUrl"    property="og:url"          content="https://big-quams-educational-hub.github.io/newsroom.html">
+<meta         property="og:type"          content="article">
+<meta id="twCard"   name="twitter:card"        content="summary_large_image">
+<meta id="twTitle"  name="twitter:title"       content="BIG QUAMS MEDIA® Newsroom">
+<meta id="twDesc"   name="twitter:description" content="Latest news and campus updates for Nigerian students.">
+<meta id="twImage"  name="twitter:image"       content="https://i.imgur.com/lYJXUyY.jpeg">
+
+<!-- Canonical -->
+<link id="canonicalLink" rel="canonical" href="https://big-quams-educational-hub.github.io/newsroom.html">
+
+<!-- PWA / Theme -->
+<meta name="theme-color" content="#102880">
+<link rel="icon" type="image/jpeg" href="https://i.imgur.com/lYJXUyY.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -302,11 +320,43 @@ body.dark .controls, body.dark .search-wrap input, body.dark .filter-tab {
 body.dark .filter-tab.active { background: #1a3fa8; color: white; }
 body.dark .back-btn-link, body.dark .page-nav-link { background: rgba(255,255,255,0.1); }
 
+/* NOTIFICATION BAR */
+.notif-bar {
+  background: linear-gradient(135deg, #102880, #1a3fa8);
+  color: white; padding: 12px 16px;
+  display: none; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+}
+.notif-bar.show { display: flex; }
+.notif-bar-text { font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+.notif-bar-text strong { font-family: 'Montserrat', sans-serif; }
+.notif-bar-btns { display: flex; gap: 8px; flex-shrink: 0; }
+.notif-allow-btn {
+  background: #25d366; color: white; border: none;
+  padding: 8px 16px; border-radius: 7px;
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 0.8rem; cursor: pointer; transition: 0.2s; white-space: nowrap;
+}
+.notif-allow-btn:hover { background: #20bd5a; }
+.notif-dismiss-btn {
+  background: rgba(255,255,255,0.15); color: white; border: none;
+  padding: 8px 12px; border-radius: 7px; font-size: 0.8rem;
+  cursor: pointer; transition: 0.2s; white-space: nowrap;
+}
+.notif-dismiss-btn:hover { background: rgba(255,255,255,0.25); }
+
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- NOTIFICATION BAR (shown after a few seconds on all pages except homepage) -->
+<div class="notif-bar" id="notifBar">
+  <div class="notif-bar-text">🔔 <strong>Stay updated!</strong> Enable notifications to get news &amp; updates directly on your device</div>
+  <div class="notif-bar-btns">
+    <button class="notif-allow-btn" id="notifBarBtn" onclick="enablePageNotifications()">Enable Notifications</button>
+    <button class="notif-dismiss-btn" onclick="dismissPageNotifBar()">Not now</button>
+  </div>
+</div>
 <header>
   <div class="header-inner">
     <a href="index.html" class="logo-wrap">
@@ -392,13 +442,123 @@ body.dark .back-btn-link, body.dark .page-nav-link { background: rgba(255,255,25
 // ── DARK MODE SYNC FROM HOMEPAGE ──
 (function syncDarkMode() {
   const theme = localStorage.getItem('bqm-theme');
-  if (theme === 'dark') {
-    document.body.classList.add('dark');
-  } else {
-    document.body.classList.remove('dark');
-  }
+  if (theme === 'dark') document.body.classList.add('dark');
+  else document.body.classList.remove('dark');
 })();
 
+// ── NOTIFICATION BAR (shown after 4s on sub-pages) ──
+const NOTIF_DISMISSED_KEY = 'bqm_notif_dismissed';
+const NOTIF_ENABLED_KEY   = 'bqm_notif_enabled';
+
+function dismissPageNotifBar() {
+  const bar = document.getElementById('notifBar');
+  if (bar) bar.classList.remove('show');
+  sessionStorage.setItem(NOTIF_DISMISSED_KEY, '1');
+}
+
+(function initPageNotifBar() {
+  if (localStorage.getItem(NOTIF_ENABLED_KEY) === '1' || Notification.permission === 'granted') return;
+  if (!('Notification' in window)) return;
+  if (sessionStorage.getItem(NOTIF_DISMISSED_KEY)) return;
+  setTimeout(() => {
+    const bar = document.getElementById('notifBar');
+    if (bar) bar.classList.add('show');
+  }, 4000);
+})();
+
+async function sendWelcomeNotification() {
+  if ('serviceWorker' in navigator) {
+    try {
+      const reg = await navigator.serviceWorker.ready;
+      if (reg.active) {
+        reg.active.postMessage({
+          type: 'SHOW_NOTIFICATION',
+          title: '🎓 Big Quams Media® — Notifications On!',
+          body: 'Thanks for subscribing! You will now receive the latest news, new eBooks, scholarships and campus updates. Stay tuned!',
+          url: '/'
+        });
+      }
+    } catch(e) {
+      try { new Notification('🎓 Thanks for subscribing to Big Quams Media®!', { body: 'You\'ll now get the latest updates. Stay tuned!', icon: 'https://i.imgur.com/lYJXUyY.jpeg' }); } catch {}
+    }
+  }
+}
+
+async function enablePageNotifications() {
+  if (!('Notification' in window)) { alert('Your browser does not support notifications. Try Chrome.'); return; }
+  if (Notification.permission === 'granted') {
+    localStorage.setItem(NOTIF_ENABLED_KEY, '1');
+    dismissPageNotifBar();
+    showPageToast('✅ Notifications are already enabled!');
+    await sendWelcomeNotification();
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    alert('Notifications are blocked. Go to browser settings → Site Settings → Notifications and allow this site.');
+    return;
+  }
+  try {
+    const perm = await Notification.requestPermission();
+    if (perm === 'granted') {
+      localStorage.setItem(NOTIF_ENABLED_KEY, '1');
+      dismissPageNotifBar();
+      showPageToast('✅ Notifications enabled! Thanks for subscribing!');
+      if ('serviceWorker' in navigator) { await navigator.serviceWorker.register('sw.js'); await navigator.serviceWorker.ready; }
+      setTimeout(sendWelcomeNotification, 800);
+    } else {
+      showPageToast('Notification permission not granted. You can enable it anytime.');
+    }
+  } catch(err) { console.warn(err); }
+}
+
+function showPageToast(msg) {
+  let tc = document.getElementById('toast-container');
+  if (!tc) { tc = document.createElement('div'); tc.id = 'toast-container'; tc.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;'; document.body.appendChild(tc); }
+  const t = document.createElement('div');
+  t.style.cssText = 'background:#102880;color:white;padding:12px 20px;border-radius:8px;margin-top:8px;font-weight:600;font-size:0.9rem;box-shadow:0 4px 12px rgba(0,0,0,0.2);opacity:0;transform:translateY(12px);transition:0.35s;white-space:nowrap;';
+  t.textContent = msg; tc.appendChild(t);
+  setTimeout(() => { t.style.opacity = '1'; t.style.transform = 'translateY(0)'; }, 50);
+  setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 400); }, 2800);
+}
+
+// ── PERMALINK / OG META HELPERS ──
+const BASE_URL = 'https://big-quams-educational-hub.github.io';
+
+function slugify(title) {
+  return encodeURIComponent(title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''));
+}
+
+function setOGMeta(item) {
+  const url = BASE_URL + '/newsroom.html?article=' + slugify(item.title);
+  const img  = item.image || (BASE_URL + '/og-default.jpeg');
+  document.getElementById('pageTitle').textContent   = item.title + ' | BIG QUAMS MEDIA®';
+  document.getElementById('metaDesc').content        = item.summary || item.description || '';
+  document.getElementById('ogTitle').content         = item.title;
+  document.getElementById('ogDesc').content          = item.summary || item.description || '';
+  document.getElementById('ogImage').content         = img;
+  document.getElementById('ogUrl').content           = url;
+  document.getElementById('twTitle').content         = item.title;
+  document.getElementById('twDesc').content          = item.summary || item.description || '';
+  document.getElementById('twImage').content         = img;
+  document.getElementById('canonicalLink').href      = url;
+  // Update URL bar without reload (for copying/sharing)
+  history.replaceState(null, '', '?article=' + slugify(item.title));
+}
+
+function resetOGMeta() {
+  document.getElementById('pageTitle').textContent = 'Newsroom | BIG QUAMS MEDIA®';
+  document.getElementById('ogTitle').content  = 'BIG QUAMS MEDIA® Newsroom';
+  document.getElementById('ogDesc').content   = 'Latest news and campus updates for Nigerian students.';
+  document.getElementById('ogImage').content  = BASE_URL + '/og-default.jpeg';
+  document.getElementById('ogUrl').content    = BASE_URL + '/newsroom.html';
+  document.getElementById('twTitle').content  = 'BIG QUAMS MEDIA® Newsroom';
+  document.getElementById('twDesc').content   = 'Latest news and campus updates for Nigerian students.';
+  document.getElementById('twImage').content  = BASE_URL + '/og-default.jpeg';
+  document.getElementById('canonicalLink').href = BASE_URL + '/newsroom.html';
+  history.replaceState(null, '', 'newsroom.html');
+}
+
+// ── NEWS DATA ──
 let allNews = [];
 let activeFilter = 'All';
 
@@ -408,6 +568,14 @@ async function loadNews() {
     if (!res.ok) throw new Error('Failed');
     allNews = await res.json();
     renderNews(allNews);
+
+    // Check if URL has ?article= param to auto-open
+    const params = new URLSearchParams(window.location.search);
+    const articleParam = params.get('article');
+    if (articleParam) {
+      const match = allNews.find(n => slugify(n.title) === articleParam);
+      if (match) openArticle(allNews.indexOf(match));
+    }
   } catch (e) {
     document.getElementById('newsGrid').innerHTML = `
       <div class="empty-state">
@@ -428,13 +596,12 @@ function renderNews(items) {
     return;
   }
 
-  // Pinned articles first — use allNews index as stable ID
   const sorted = [...items.filter(n => n.pinned), ...items.filter(n => !n.pinned)];
 
   grid.innerHTML = sorted.map(item => {
-    const realIdx = allNews.indexOf(item); // stable index into allNews
+    const realIdx = allNews.indexOf(item);
     return `
-    <div class="news-card${item.pinned ? ' pinned-card' : ''}" onclick="openArticle(${realIdx === -1 ? "'"+item.title.replace(/'/g,"\'"  )+"'" : realIdx})">
+    <div class="news-card${item.pinned ? ' pinned-card' : ''}" onclick="openArticle(${realIdx})">
       ${item.pinned ? '<div class="pin-label">📌 Pinned</div>' : ''}
       ${item.image
         ? `<div class="news-card-img-wrap"><img src="${item.image}" alt="${item.title}" loading="lazy"></div>`
@@ -471,36 +638,34 @@ function filterNews() {
 }
 
 function openArticle(index) {
-  // Use direct allNews index for reliability (avoids pin/filter mismatch)
   const item = allNews[index];
   if (!item) return;
 
-  document.getElementById('artCat').textContent   = item.category || 'News';
-  document.getElementById('artTitle').textContent = item.title;
-  document.getElementById('artMeta').textContent  = item.date || '';
+  // Update OG meta and URL for sharing
+  setOGMeta(item);
+
+  document.getElementById('artCat').textContent    = item.category || 'News';
+  document.getElementById('artTitle').textContent  = item.title;
+  document.getElementById('artMeta').textContent   = item.date || '';
   document.getElementById('artAuthor').textContent = item.author ? '✍️ ' + item.author : '';
 
-  // Image
   const artImg = document.getElementById('artImg');
   if (item.image) { artImg.src = item.image; artImg.style.display = 'block'; }
   else { artImg.style.display = 'none'; }
 
-  // Full content
   const fullText = item.fullContent || item.description || 'Full article coming soon.';
   document.getElementById('artBody').innerHTML = fullText
     .split('\n').filter(p => p.trim())
     .map(p => `<p>${p.trim()}</p>`).join('');
 
-  // Action buttons (view + download only — share is always shown separately)
   const actionBtns = document.getElementById('artActionBtns');
   const acts = item.actions || {};
   let btns = '';
-  if (acts.viewUrl) btns += `<a href="${acts.viewUrl}" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-view">👁️ View</a>`;
+  if (acts.viewUrl)     btns += `<a href="${acts.viewUrl}" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-view">👁️ View</a>`;
   if (acts.downloadUrl) btns += `<a href="${acts.downloadUrl}" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-download">⬇️ Download</a>`;
   actionBtns.innerHTML = btns;
 
-  // Share button
-  document.getElementById('artShareBtn').onclick = () => shareArticle(allNews.indexOf(item));
+  document.getElementById('artShareBtn').onclick = () => shareArticle(index);
 
   document.getElementById('articleOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -509,6 +674,7 @@ function openArticle(index) {
 function closeArticle() {
   document.getElementById('articleOverlay').classList.remove('open');
   document.body.style.overflow = '';
+  resetOGMeta();
 }
 
 function handleArticleOverlay(e) {
@@ -518,9 +684,10 @@ function handleArticleOverlay(e) {
 function shareArticle(index) {
   const item = allNews[index];
   if (!item) return;
-  const text = item.title + '\n\n' + (item.summary || '') + '\n\nRead more: https://big-quams-educational-hub.github.io/newsroom.html';
+  const articleUrl = BASE_URL + '/newsroom.html?article=' + slugify(item.title);
+  const text = '📰 ' + item.title + '\n\n' + (item.summary || '') + '\n\nRead the full article: ' + articleUrl;
   if (navigator.share) {
-    navigator.share({ title: item.title, text, url: 'https://big-quams-educational-hub.github.io/newsroom.html' });
+    navigator.share({ title: item.title, text: item.summary || '', url: articleUrl });
   } else {
     window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
   }
@@ -530,12 +697,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArticle
 
 loadNews();
 </script>
-
-// ── DARK MODE SYNC ──
-(function() {
-  const saved = localStorage.getItem('bqm-theme');
-  if (saved === 'dark') document.body.classList.add('dark');
-})();
 
 </body>
 </html>
