@@ -2182,14 +2182,6 @@ function showToast(msg) {
 
 fetchNewsData();
 
-// WhatsApp channel popup
-function showWaPopup() {
-  if (!sessionStorage.getItem('bqm_popup_seen')) {
-    setTimeout(() => {
-          }, 3000);
-  }
-}
-showWaPopup();
 
 
 // DYK PREVIEW LOADER
@@ -2299,26 +2291,6 @@ async function fetchSpotlightPreview() {
   }
 }
 fetchSpotlightPreview();
-
-
-
-// ── WHATSAPP CHANNEL POPUP ──
-function closeWaPopup() {
-  const el = document.getElementById('waPopupOverlay');
-  if (el) el.classList.add('hidden');
-  sessionStorage.setItem('wa_popup_closed', '1');
-}
-(function() {
-  if (!sessionStorage.getItem('wa_popup_closed')) {
-    setTimeout(function() {
-      const el = document.getElementById('waPopupOverlay');
-      if (el) el.classList.remove('hidden');
-    }, 3000);
-  } else {
-    const el = document.getElementById('waPopupOverlay');
-    if (el) el.classList.add('hidden');
-  }
-})();
 
 
 
