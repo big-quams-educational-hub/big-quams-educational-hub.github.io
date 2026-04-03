@@ -327,12 +327,6 @@ function shareItem(idx) {
 loadItems();
 </script>
 
-// ── DARK MODE SYNC ──
-(function() {
-  const saved = localStorage.getItem('bqm-theme');
-  if (saved === 'dark') document.body.classList.add('dark');
-})();
-
 
 <script>
 // ── NOTIFICATION BAR FOR SUB-PAGES ──
@@ -383,6 +377,12 @@ async function enablePageNotifications() {
     }
   } catch(err) { console.warn(err); }
 }
+  // ── DARK MODE SYNC ──
+(function() {
+  const saved = localStorage.getItem('bqm-theme');
+  if (saved === 'dark') document.body.classList.add('dark');
+})();
+  
 </script>
 
 </body>
