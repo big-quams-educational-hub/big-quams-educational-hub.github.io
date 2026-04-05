@@ -637,14 +637,16 @@ async function subEnableNotif() {
     if (bar) bar.classList.add('show');
   }, 4000);
 })();
-
-</script>
-
+  
 // ── DARK MODE SYNC ──
 (function() {
   const saved = localStorage.getItem('bqm-theme');
   if (saved === 'dark') document.body.classList.add('dark');
 })();
+
+  
+</script>
+
 
 </body>
 </html>
