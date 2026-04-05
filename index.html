@@ -898,53 +898,6 @@ body.dark .elib-features li { color: #cbd5e1; }
 .elib-book span { font-size: 0.72rem; font-weight: 600; line-height: 1.3; opacity: 0.9; }
 
 
-/* WHATSAPP CHANNEL POPUP */
-.wa-popup-overlay {
-  position: fixed; inset: 0; background: rgba(10,20,60,0.45);
-  z-index: 9998; display: flex; align-items: center;
-  justify-content: center; padding: 16px;
-  animation: fadeIn 0.3s ease;
-}
-.wa-popup-overlay.hidden { display: none; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.wa-popup {
-  background: white; border-radius: 16px;
-  padding: 24px 20px 20px; max-width: 340px; width: 100%;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.2);
-  animation: popUp 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
-  position: relative; text-align: center;
-}
-body.dark .wa-popup { background: #1a2540; color: #e2e8f0; }
-@keyframes popUp { from { opacity:0; transform:scale(0.85) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
-.wa-popup-close {
-  position: absolute; top: 10px; right: 12px;
-  background: none; border: none; font-size: 1.1rem;
-  cursor: pointer; color: var(--muted); line-height: 1;
-  padding: 4px; transition: color 0.2s;
-}
-.wa-popup-close:hover { color: var(--red, #dc2626); }
-.wa-popup-icon { font-size: 2.4rem; margin-bottom: 10px; }
-.wa-popup h3 {
-  font-family: 'Montserrat', sans-serif; font-size: 1rem;
-  font-weight: 800; color: var(--blue-dk); margin-bottom: 6px;
-}
-body.dark .wa-popup h3 { color: #bfdbfe; }
-.wa-popup p { font-size: 0.82rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
-.wa-popup-btn {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: #25d366; color: white;
-  padding: 11px 20px; border-radius: 9px;
-  text-decoration: none; font-weight: 700;
-  font-size: 0.88rem; font-family: 'Montserrat', sans-serif;
-  transition: background 0.2s; width: 100%; justify-content: center;
-}
-.wa-popup-btn:hover { background: #20bd5a; }
-.wa-popup-skip {
-  display: block; margin-top: 10px; font-size: 0.75rem;
-  color: var(--muted); cursor: pointer; text-decoration: underline;
-  background: none; border: none; font-family: inherit;
-}
-
 
 /* SPOTLIGHT SECTION */
 #spotlight-section { background: white; }
@@ -1787,22 +1740,6 @@ body.dark .dyk-preview-summary { color: #94a3b8; }
 
 
 
-<!-- WHATSAPP CHANNEL POPUP -->
-<div class="wa-popup-overlay" id="waPopupOverlay">
-  <div class="wa-popup">
-    <button class="wa-popup-close" onclick="closeWaPopup()" aria-label="Close">✕</button>
-    <div class="wa-popup-icon">📢</div>
-    <h3>Join Our WhatsApp Channel!</h3>
-    <p>Get the latest JAMB updates, scholarship alerts, campus news and admission guides delivered straight to your WhatsApp.</p>
-    <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="wa-popup-btn" onclick="closeWaPopup()">
-      📲 Join BIG QUAMS MEDIA Channel
-    </a>
-    <button class="wa-popup-skip" onclick="closeWaPopup()">Maybe later</button>
-  </div>
-</div>
-
-<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float" title="Chat on WhatsApp">💬</a>
-<div id="toast-container"></div>
 
 <script>
 // ── DARK MODE ──
@@ -2398,23 +2335,6 @@ fetchSpotlightPreview();
 
 
 
-// ── WHATSAPP CHANNEL POPUP ──
-function closeWaPopup() {
-  const el = document.getElementById('waPopupOverlay');
-  if (el) el.classList.add('hidden');
-  sessionStorage.setItem('wa_popup_closed', '1');
-}
-(function() {
-  if (!sessionStorage.getItem('wa_popup_closed')) {
-    setTimeout(function() {
-      const el = document.getElementById('waPopupOverlay');
-      if (el) el.classList.remove('hidden');
-    }, 3000);
-  } else {
-    const el = document.getElementById('waPopupOverlay');
-    if (el) el.classList.add('hidden');
-  }
-})();
 
 
 
