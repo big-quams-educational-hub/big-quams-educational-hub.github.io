@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>DYK & Current Affairs | BIG QUAMS MEDIA®</title>
+<meta name="description" content="Did You Know facts, Today in History, and Current Affairs for Nigerian students — Big Quams Media.">
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+/* GLOBAL IMAGE OVERFLOW FIX */
+img { max-width: 100%; height: auto; display: block; }
+.news-card, .dyk-card, .dyk-preview-card, .spotlight-card, .book-card, .review-card { overflow: hidden; }
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --blue:#1a3fa8;--blue-dk:#102880;--orange:#f97316;--green:#16a34a;
+  --muted:#64748b;--light:#f0f5ff;--border:#e2e8f0;--text:#0f172a;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Roboto',sans-serif;background:#f8faff;color:var(--text);line-height:1.6;overflow-x:hidden;}
+
+/* HEADER */
+header{background:linear-gradient(135deg,var(--blue-dk),var(--blue));color:white;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(26,63,168,0.25);}
+.header-inner{max-width:1100px;margin:0 auto;padding:12px 14px;display:flex;align-items:center;gap:10px;}
+.logo-wrap{display:flex;align-items:center;gap:9px;flex-shrink:0;text-decoration:none;}
+.logo-circle{width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid var(--orange);flex-shrink:0;}
+.logo-circle img{width:100%;height:100%;object-fit:cover;}
+.brand-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.95rem;color:white;line-height:1.2;}
+.brand-sub{font-size:0.62rem;color:#bfdbfe;}
+.page-nav{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.page-nav-link{background:rgba(255,255,255,0.13);color:white;text-decoration:none;padding:6px 11px;border-radius:6px;font-size:0.78rem;font-weight:600;transition:0.2s;white-space:nowrap;}
+.page-nav-link:hover{background:rgba(255,255,255,0.25);}
+.back-home{background:var(--orange)!important;}
+@media(max-width:400px){.page-nav-link{font-size:0.7rem;padding:5px 8px;}}
+
+/* HERO */
+.dyk-hero{background:linear-gradient(135deg,var(--blue-dk),#7c3aed 80%,var(--blue));color:white;text-align:center;padding:32px 14px 26px;position:relative;overflow:hidden;}
+@media(min-width:600px){.dyk-hero{padding:46px 24px 36px;}}
+.dyk-hero::before{content:'💡';position:absolute;font-size:12rem;opacity:0.05;right:-10px;top:-20px;pointer-events:none;}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;}
+.dyk-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,4vw,2.3rem);font-weight:800;margin-bottom:8px;line-height:1.2;}
+.dyk-hero h1 span{color:#fbbf24;}
+.dyk-hero p{color:#c4b5fd;font-size:0.9rem;max-width:480px;margin:0 auto;}
+
+/* CONTROLS */
+.controls{max-width:1100px;margin:0 auto;padding:16px 14px 0;display:flex;flex-direction:column;gap:10px;}
+@media(min-width:580px){.controls{flex-direction:row;flex-wrap:wrap;align-items:center;}}
+.search-wrap{width:100%;flex:1;min-width:0;position:relative;}
+.search-wrap input{width:100%;padding:10px 14px 10px 38px;border:1.5px solid var(--border);border-radius:9px;font-size:0.9rem;font-family:'Roboto',sans-serif;background:white;color:var(--text);transition:border-color 0.2s;}
+.search-wrap input:focus{outline:none;border-color:var(--blue);}
+.search-wrap::before{content:'🔍';position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:0.85rem;pointer-events:none;}
+.filter-tabs{display:flex;flex-wrap:wrap;gap:7px;}
+@media(max-width:480px){.filter-tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;}}
+.filter-tab{padding:7px 13px;border-radius:20px;border:1.5px solid var(--border);background:white;color:var(--muted);font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'Roboto',sans-serif;transition:0.2s;white-space:nowrap;flex-shrink:0;}
+.filter-tab:hover{border-color:var(--blue);color:var(--blue);}
+.filter-tab.active{background:var(--blue);color:white;border-color:var(--blue);}
+.results-bar{max-width:1100px;margin:0 auto;padding:10px 14px 0;font-size:0.82rem;color:var(--muted);font-weight:500;}
+
+/* DYK GRID */
+.dyk-section{max-width:1100px;margin:0 auto;padding:12px 14px 50px;}
+.dyk-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+@media(min-width:560px){.dyk-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:900px){.dyk-grid{grid-template-columns:1fr 1fr 1fr;}}
+
+/* DYK CARD */
+.dyk-card{background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;position:relative;}
+.dyk-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.1);}
+.dyk-card-img{width:100%;height:160px;object-fit:cover;display:block;background:var(--light);}
+.dyk-card-img-ph{width:100%;height:160px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:linear-gradient(135deg,var(--light),#dbeafe);}
+.dyk-cat-badge{position:absolute;top:10px;left:10px;padding:3px 10px;border-radius:20px;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+.cat-dyk{background:#dbeafe;color:var(--blue);}
+.cat-history{background:#fef9c3;color:#854d0e;}
+.cat-affairs{background:#dcfce7;color:var(--green);}
+.dyk-card-body{padding:14px;flex:1;display:flex;flex-direction:column;gap:4px;}
+.dyk-card-date{font-size:0.7rem;color:var(--muted);}
+.dyk-card-title{font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:700;color:var(--blue-dk);line-height:1.3;margin-bottom:4px;}
+.dyk-card-summary{font-size:0.82rem;color:#475569;line-height:1.5;flex:1;margin-bottom:10px;}
+.dyk-read-btn{background:var(--orange);color:white;border:none;padding:8px 14px;border-radius:7px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Roboto',sans-serif;transition:0.2s;align-self:flex-start;}
+.dyk-read-btn:hover{background:#ea6c0a;}
+
+/* EMPTY */
+.empty-state{grid-column:1/-1;text-align:center;padding:48px 20px;color:var(--muted);}
+.empty-state .ei{font-size:2.5rem;margin-bottom:10px;}
+.empty-state h3{font-family:'Montserrat',sans-serif;font-size:1rem;color:var(--blue-dk);margin-bottom:5px;}
+
+/* MODAL */
+.article-overlay{display:none;position:fixed;inset:0;background:rgba(10,20,60,0.6);backdrop-filter:blur(5px);z-index:500;align-items:flex-start;justify-content:center;padding:10px;overflow-y:auto;}
+.article-overlay.open{display:flex;}
+.article-modal{background:white;border-radius:14px;width:100%;max-width:640px;max-height:96vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,0.3);animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1) both;margin:auto;}
+@keyframes popIn{from{opacity:0;transform:scale(0.9) translateY(16px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.article-header{background:linear-gradient(135deg,var(--blue-dk),#7c3aed);color:white;padding:18px 18px 16px;border-radius:14px 14px 0 0;position:relative;}
+.article-header .art-cat{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#fbbf24;margin-bottom:6px;}
+.article-header h2{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;line-height:1.3;padding-right:32px;margin-bottom:6px;}
+.article-header .art-meta{font-size:0.75rem;color:#c4b5fd;}
+.article-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.15);border:none;color:white;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;transition:0.2s;}
+.article-close:hover{background:rgba(255,255,255,0.3);}
+.article-img{width:100%;max-height:240px;object-fit:cover;display:block;border-radius:0;}
+.article-body{padding:16px;font-size:0.92rem;color:#334155;line-height:1.75;}
+@media(min-width:500px){.article-body{padding:22px;font-size:0.95rem;}}
+.article-body p{margin-bottom:14px;}
+.article-footer{padding:0 16px 18px;display:flex;gap:10px;flex-wrap:wrap;}
+@media(min-width:500px){.article-footer{padding:0 22px 22px;}}
+.btn-share{flex:1;background:#25d366;color:white;border:none;padding:11px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.88rem;cursor:pointer;transition:0.2s;display:flex;align-items:center;justify-content:center;gap:6px;}
+.btn-share:hover{background:#20bd5a;}
+
+/* FOOTER */
+footer{background:var(--blue-dk);color:#bfdbfe;text-align:center;padding:22px 16px;font-size:0.85rem;}
+footer a{color:var(--orange);text-decoration:none;font-weight:600;}
+
+/* DARK MODE (synced with homepage) */
+body.dark { background: #0f172a; color: #e2e8f0; }
+body.dark header { background: linear-gradient(135deg, #080f20, #102880); }
+body.dark footer { background: #080f20; }
+body.dark .news-card, body.dark .dyk-card, body.dark .spotlight-card,
+body.dark .book-card, body.dark .review-card, body.dark .qa-card,
+body.dark .article-modal, body.dark .sp-modal, body.dark .dyk-preview-card { background: #1a2540; border-color: #2d3f6b; }
+body.dark .news-card h3, body.dark .dyk-preview-title, body.dark .sp-title { color: #bfdbfe; }
+body.dark .news-card p, body.dark .summary, body.dark .dyk-preview-summary,
+body.dark .sp-summary, body.dark .article-body, body.dark .sp-modal-body { color: #94a3b8; }
+body.dark .category-label { background: #1e3a6e; }
+body.dark .controls, body.dark .search-wrap input, body.dark .filter-tab {
+  background: #1a2540; border-color: #2d3f6b; color: #94a3b8;
+}
+body.dark .filter-tab.active { background: #1a3fa8; color: white; }
+body.dark .back-btn-link, body.dark .page-nav-link { background: rgba(255,255,255,0.1); }
+
+
+.nb-allow { background: #25d366; color: white; border: none; padding: 7px 14px; border-radius: 7px; font-weight: 700; font-size: 0.78rem; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+.nb-allow:hover { background: #20bd5a; }
+.nb-dismiss { background: rgba(255,255,255,0.15); color: white; border: none; padding: 7px 10px; border-radius: 7px; font-size: 0.78rem; cursor: pointer; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo-wrap">
+      <div class="logo-circle"><img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Logo"></div>
+      <div><div class="brand-text">BIG QUAMS MEDIA®</div><div class="brand-sub">Simplifying Campus Life</div></div>
+    </a>
+    <nav class="page-nav">
+      <a href="index.html" class="page-nav-link back-home">← Home</a>
+      <a href="newsroom.html" class="page-nav-link">News</a>
+      <a href="elibrary.html" class="page-nav-link">eLibrary</a>
+    </nav>
+  </div>
+</header>
+</div>
+
+
+<div class="dyk-hero">
+  <div class="hero-badge">💡 Knowledge Hub</div>
+  <h1>DYK, History &amp; <span>Current Affairs</span></h1>
+  <p>Expand your knowledge with fascinating facts, historical moments, and latest current affairs for Nigerian students.</p>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search by title or keyword…" oninput="filterItems()">
+  </div>
+  <div class="filter-tabs">
+    <button class="filter-tab active" data-cat="All" onclick="setFilter('All')">All</button>
+    <button class="filter-tab" data-cat="DYK Fact" onclick="setFilter('DYK Fact')">💡 DYK Facts</button>
+    <button class="filter-tab" data-cat="Today in History" onclick="setFilter('Today in History')">📅 History</button>
+    <button class="filter-tab" data-cat="Current Affairs" onclick="setFilter('Current Affairs')">🌍 Current Affairs</button>
+  </div>
+</div>
+<div class="results-bar" id="resultsBar"></div>
+
+<div class="dyk-section">
+  <div class="dyk-grid" id="dykGrid">
+    <div class="empty-state"><div class="ei">⏳</div><h3>Loading…</h3></div>
+  </div>
+</div>
+
+<!-- ARTICLE MODAL -->
+<div class="article-overlay" id="articleOverlay" onclick="handleOverlay(event)">
+  <div class="article-modal">
+    <div class="article-header">
+      <button class="article-close" onclick="closeArticle()">✕</button>
+      <div class="art-cat" id="artCat"></div>
+      <h2 id="artTitle"></h2>
+      <div class="art-meta" id="artMeta"></div>
+      <div id="artAuthor" style="font-size:0.74rem;color:#c4b5fd;margin-top:4px;font-weight:500;"></div>
+    </div>
+    <img id="artImg" class="article-img" alt="" style="display:none;">
+    <div class="article-body" id="artBody"></div>
+    <div class="article-footer">
+      <button class="btn-share" id="artShare">📤 Share this</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Big Quams Media®. All rights reserved.</p>
+  <p style="margin-top:6px;">Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a></p>
+</footer>
+
+<script>
+
+// ── DARK MODE SYNC FROM HOMEPAGE ──
+(function syncDarkMode() {
+  const theme = localStorage.getItem('bqm-theme');
+  if (theme === 'dark') {
+    document.body.classList.add('dark');
+  } else {
+    document.body.classList.remove('dark');
+  }
+})();
+
+let allItems = [], activeFilter = 'All';
+
+async function loadItems() {
+  return new Promise(async (resolve) => {
+  try {
+    const res = await fetch('dyk.json?v=' + Date.now());
+    if (!res.ok) throw new Error();
+    allItems = await res.json();
+    renderItems(allItems);
+  } catch {
+    document.getElementById('dykGrid').innerHTML = '<div class="empty-state"><div class="ei">📭</div><h3>Content coming soon</h3><p>Check back shortly!</p></div>';
+  }
+  resolve();
+  });
+}
+
+const catClass = { 'DYK Fact': 'cat-dyk', 'Today in History': 'cat-history', 'Current Affairs': 'cat-affairs' };
+
+function renderItems(items) {
+  const grid = document.getElementById('dykGrid');
+  document.getElementById('resultsBar').textContent = `Showing ${items.length} item${items.length!==1?'s':''}`;
+  if (!items.length) {
+    grid.innerHTML = '<div class="empty-state"><div class="ei">🔍</div><h3>No results found</h3><p>Try a different search or category.</p></div>';
+    return;
+  }
+  grid.innerHTML = items.map((item, i) => `
+    <div class="dyk-card" onclick="openArticle(${i})">
+      ${item.image
+        ? `<img class="dyk-card-img" src="${item.image}" alt="${item.title}" loading="lazy">`
+        : `<div class="dyk-card-img-ph">${item.category==='DYK Fact'?'💡':item.category==='Today in History'?'📅':'🌍'}</div>`}
+      <span class="dyk-cat-badge ${catClass[item.category]||'cat-dyk'}">${item.category||'DYK'}</span>
+      <div class="dyk-card-body">
+        <div class="dyk-card-date">${item.date||''}</div>
+        <div class="dyk-card-title">${item.title}</div>
+        <div class="dyk-card-summary">${item.summary||''}</div>
+        ${item.author ? `<div style="font-size:0.7rem;color:var(--muted);margin-bottom:6px;font-weight:500;">✍️ ${item.author}</div>` : ''}
+        <button class="dyk-read-btn" onclick="event.stopPropagation();openArticle(${i})">Read More →</button>
+      </div>
+    </div>`).join('');
+}
+
+function setFilter(cat) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.toggle('active', t.dataset.cat === cat));
+  filterItems();
+}
+
+function filterItems() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const filtered = allItems.filter(item => {
+    const matchCat = activeFilter === 'All' || item.category === activeFilter;
+    const matchQ = !q || item.title.toLowerCase().includes(q) || (item.summary||'').toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+  renderItems(filtered);
+}
+
+function getFiltered() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  return allItems.filter(item => {
+    const matchCat = activeFilter === 'All' || item.category === activeFilter;
+    const matchQ = !q || item.title.toLowerCase().includes(q) || (item.summary||'').toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+}
+
+function openArticle(idx) {
+  const item = getFiltered()[idx];
+  if (!item) return;
+  document.getElementById('artCat').textContent    = item.category || 'DYK';
+  document.getElementById('artTitle').textContent  = item.title;
+  document.getElementById('artMeta').textContent   = item.date || '';
+  const authEl = document.getElementById('artAuthor');
+  if (authEl) authEl.textContent = item.author ? '✍️ ' + item.author : '✍️ BIG QUAMS MEDIA';
+  const imgEl = document.getElementById('artImg');
+  if (item.image) { imgEl.src = item.image; imgEl.style.display = 'block'; }
+  else { imgEl.style.display = 'none'; }
+  document.getElementById('artBody').innerHTML = (item.content || item.summary || '')
+    .split('\n').filter(p => p.trim()).map(p => `<p>${p}</p>`).join('');
+  document.getElementById('artShare').onclick = () => shareItem(idx);
+  // Update URL + page title for sharing
+  const itemIdx = allItems.indexOf(item);
+  try { history.pushState({}, '', '?item=' + itemIdx); } catch {}
+  document.title = item.title + ' | BIG QUAMS MEDIA®';
+  document.getElementById('articleOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArticle() {
+  document.getElementById('articleOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  document.title = 'DYK & Current Affairs | BIG QUAMS MEDIA®';
+  try { history.pushState({}, '', 'dyk.html'); } catch {}
+}
+function handleOverlay(e) { if (e.target === document.getElementById('articleOverlay')) closeArticle(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeArticle(); });
+
+function shareItem(idx) {
+  const item = getFiltered()[idx];
+  if (!item) return;
+  const text = item.title + '\n\n' + (item.summary||'') + '\n\nMore on Big Quams Media: https://big-quams-educational-hub.github.io/dyk.html';
+  if (navigator.share) navigator.share({ title: item.title, text, url: 'https://big-quams-educational-hub.github.io/dyk.html' });
+  else window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+}
+
+loadItems().then(() => {
+  const p = new URLSearchParams(window.location.search);
+  const idx = p.get('item');
+  if (idx !== null) setTimeout(() => openArticle(parseInt(idx)), 300);
+});
+
+
+
+
+
+// ── Firebase Notification Bar (sub-pages) ──
+// Firebase config — same as index.html
+const FIREBASE_CONFIG = {
+  apiKey:            "AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ",
+  authDomain:        "big-quams-media.firebaseapp.com",
+  projectId:         "big-quams-media",
+  storageBucket:     "big-quams-media.firebasestorage.app",
+  messagingSenderId: "383186323859",
+  appId:             "1:383186323859:web:826d6b9977cfa947730066"
+};
+const VAPID_KEY = "BBb1Kl0U1VL2p1Buf6HsxIOxRaiEqyyBKO3KuNpJupif027umU-WzgZRWGHI4FANB3w0aBo5k3tQ8lGu7LC57mo";
+
+if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+const _messaging = firebase.messaging();
+const _db        = firebase.firestore();
+
+function subDismissNotif() {
+  const bar = document.getElementById('notifBarSub');
+  if (bar) bar.classList.remove('show');
+  sessionStorage.setItem('bqm_notif_bar_dismissed', '1');
+}
+
+async function subEnableNotif() {
+  if (!('Notification' in window)) {
+    alert('Notifications not supported. Try Chrome or Firefox.');
+    return;
+  }
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  const isPWA = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+  if (isIOS && !isPWA) {
+    alert('On iPhone: tap Share → Add to Home Screen, then open the app and enable notifications.');
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    alert('Notifications are blocked. Go to browser Settings and allow this site.');
+    return;
+  }
+  let permission = Notification.permission;
+  if (permission !== 'granted') {
+    try { permission = await Notification.requestPermission(); } catch {}
+  }
+  if (permission !== 'granted') return;
+
+  try {
+    const swReg = await navigator.serviceWorker.register('firebase-messaging-sw.js');
+    const token = await _messaging.getToken({ vapidKey: VAPID_KEY, serviceWorkerRegistration: swReg });
+    if (token) {
+      await _db.collection('subscribers').doc(token).set({
+        token, subscribedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        platform: navigator.userAgent.includes('Mobile') ? 'mobile' : 'desktop', active: true
+      }, { merge: true });
+      localStorage.setItem('bqm_notif_enabled', '1');
+      const bar = document.getElementById('notifBarSub');
+      if (bar) bar.classList.remove('show');
+      setTimeout(() => {
+        try {
+          new Notification('BIG QUAMS MEDIA® — Notifications On!', {
+            body: 'Thanks for subscribing! You will receive news, new books and scholarship alerts. Stay tuned!',
+            icon: 'https://i.imgur.com/lYJXUyY.jpeg'
+          });
+        } catch {}
+      }, 600);
+    }
+  } catch(e) { console.error('FCM sub-page error:', e); }
+}
+
+// Also register cache SW
+(async function() {
+  if ('serviceWorker' in navigator) {
+    try { await navigator.serviceWorker.register('sw.js'); } catch {}
+  }
+})();
+
+// Show bar after 4s if not enabled
+(function() {
+  if (!('Notification' in window)) return;
+  if (localStorage.getItem('bqm_notif_enabled') === '1' || Notification.permission === 'granted') return;
+  if (sessionStorage.getItem('bqm_notif_bar_dismissed') === '1') return;
+  setTimeout(() => {
+    const bar = document.getElementById('notifBarSub');
+    if (bar) bar.classList.add('show');
+  }, 4000);
+})();
+
+</script>
+
+// ── DARK MODE SYNC ──
+(function() {
+  const saved = localStorage.getItem('bqm-theme');
+  if (saved === 'dark') document.body.classList.add('dark');
+})();
+
+</body>
+</html>
