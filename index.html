@@ -1147,6 +1147,30 @@ body.dark #notifications-section { background: var(--bg); }
 .notif-enabled-msg { font-size: 0.82rem; color: #86efac; font-weight: 600; display: none; align-items: center; gap: 6px; }
 .notif-enabled-msg.show { display: flex; }
 
+  
+.cd-unit {
+  display: flex; flex-direction: column; align-items: center;
+  background: rgba(255,255,255,0.08); border-radius: 14px;
+  padding: 20px 24px; min-width: 80px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.cd-num {
+  font-family: 'Montserrat', sans-serif; font-size: 2.6rem;
+  font-weight: 800; line-height: 1; color: white;
+}
+.cd-lbl { font-size: 0.7rem; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; }
+.cd-sep { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800; color: var(--orange); align-self: center; padding-bottom: 24px; }
+.upcoming-event-row {
+  display: flex; gap: 12px; align-items: center;
+  background: rgba(255,255,255,0.06); border-radius: 10px;
+  padding: 12px 16px; border: 1px solid rgba(255,255,255,0.08);
+}
+.upcoming-event-row .ue-date { font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 800; color: var(--orange); min-width: 54px; }
+.upcoming-event-row .ue-title { font-size: 0.84rem; font-weight: 600; color: #e2e8f0; flex: 1; }
+.upcoming-event-row .ue-days { font-size: 0.72rem; color: #94a3b8; white-space: nowrap; }
+.upcoming-event-row.ue-active { background: rgba(249,115,22,0.15); border-color: rgba(249,115,22,0.3); }
+@media(max-width:480px) { .cd-num { font-size: 1.9rem; } .cd-unit { padding: 14px 16px; min-width: 64px; } .cd-sep { font-size: 1.5rem; } }
+
 </style>
 </head>
 <body>
@@ -1188,6 +1212,8 @@ body.dark #notifications-section { background: var(--bg); }
       <a href="#dyk-section">DYK</a>
       <a href="#notifications-section">🔔 Notifications</a>
       <a href="#contact" class="nav-cta">Contact</a>
+      <a href="results.html">📋 Results Checker</a>
+      <a href="postutme-calculator.html">🏫 Post UTME Calc</a>
     </nav>
   </div>
 </header>
@@ -1386,6 +1412,36 @@ body.dark #notifications-section { background: var(--bg); }
   </div>
 </section>
 
+  <!-- UPCOMING EVENTS COUNTDOWN -->
+<section id="countdown-section" style="background:var(--blue-dk);color:white;">
+  <div class="container" style="padding-top:44px;padding-bottom:44px;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <div style="display:inline-block;background:rgba(249,115,22,0.2);color:#fdba74;padding:3px 12px;border-radius:20px;font-size:0.74rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">⏰ Live Countdown</div>
+      <h2 style="font-family:'Montserrat',sans-serif;font-size:clamp(1.4rem,4vw,1.9rem);font-weight:800;color:white;margin-bottom:6px;">Next Key Deadline</h2>
+      <p style="color:#94a3b8;font-size:0.88rem;" id="countdownEventName">Loading upcoming event…</p>
+    </div>
+
+    <!-- COUNTDOWN DISPLAY -->
+    <div id="countdownDisplay" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;">
+      <div class="cd-unit"><span class="cd-num" id="cdDays">--</span><span class="cd-lbl">Days</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cdHours">--</span><span class="cd-lbl">Hours</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cdMins">--</span><span class="cd-lbl">Minutes</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-num" id="cdSecs">--</span><span class="cd-lbl">Seconds</span></div>
+    </div>
+
+    <!-- UPCOMING EVENTS LIST -->
+    <div id="upcomingEventsList" style="display:grid;grid-template-columns:1fr;gap:10px;max-width:720px;margin:0 auto 24px;"></div>
+
+    <div style="text-align:center;">
+      <a href="#calendar-section" style="display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:white;padding:11px 22px;border-radius:8px;font-weight:700;text-decoration:none;font-family:'Roboto',sans-serif;font-size:0.92rem;transition:0.2s;" onmouseover="this.style.background='#ea6c0a'" onmouseout="this.style.background='#f97316'">📅 View Full Academic Calendar</a>
+    </div>
+  </div>
+</section>
+
+  
 <!-- CALCULATOR SECTION -->
 <section id="calculator-section">
   <div class="container">
@@ -2616,6 +2672,79 @@ async function enableNotifications() {
   }
 })();
 
+  
+// ── UPCOMING EVENTS COUNTDOWN ──
+async function initCountdown() {
+  let events = [];
+  try {
+    const res = await fetch('calendar.json?v=' + Date.now());
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    events = data.filter(e => e.date).map(e => ({ ...e, dateObj: new Date(e.date) }));
+  } catch {
+    // Fallback hardcoded events
+    events = [
+      { title: 'UTME 2026 Begins', date: '2026-04-24', dateObj: new Date('2026-04-24'), category: 'exam', color: '#dc2626' },
+      { title: 'Post-UTME Screening', date: '2026-06-15', dateObj: new Date('2026-06-15'), category: 'admission', color: '#16a34a' },
+      { title: 'CAPS Admission Opens', date: '2026-07-01', dateObj: new Date('2026-07-01'), category: 'admission', color: '#f97316' },
+      { title: 'New Academic Session', date: '2026-09-01', dateObj: new Date('2026-09-01'), category: 'school', color: '#0891b2' },
+    ];
+  }
+
+  const now = new Date();
+  const upcoming = events.filter(e => e.dateObj >= now).sort((a,b) => a.dateObj - b.dateObj);
+  const next = upcoming[0];
+  const after = upcoming.slice(1, 4);
+
+  if (!next) {
+    document.getElementById('countdownEventName').textContent = 'No upcoming events — check back soon!';
+    document.getElementById('countdownDisplay').innerHTML = '<p style="color:#94a3b8;">All events have passed. Calendar updating soon.</p>';
+    return;
+  }
+
+  // Set event name
+  document.getElementById('countdownEventName').textContent = '📌 Counting down to: ' + next.title;
+
+  // Render upcoming list
+  const catLabel = {jamb:'JAMB',exam:'Exam',admission:'Admission',school:'School',scholarship:'Scholarship'};
+  document.getElementById('upcomingEventsList').innerHTML = [next, ...after].map((e, i) => {
+    const diff = Math.ceil((e.dateObj - now) / (1000 * 60 * 60 * 24));
+    const d = e.dateObj;
+    const dateStr = d.toLocaleDateString('en-NG',{day:'numeric',month:'short'});
+    return '<div class="upcoming-event-row' + (i===0?' ue-active':'') + '">'
+      + '<span class="ue-date">' + dateStr + '</span>'
+      + '<span class="ue-title">' + (i===0?'🎯 ':'') + e.title + (e.category?' <span style="font-size:0.68rem;color:#94a3b8;">('+catLabel[e.category]+')</span>':'') + '</span>'
+      + '<span class="ue-days">' + (diff === 0 ? '🔴 Today!' : diff === 1 ? '1 day' : diff + ' days') + '</span>'
+      + '</div>';
+  }).join('');
+
+  // Live countdown ticker
+  function tick() {
+    const now = new Date();
+    const diff = next.dateObj - now;
+    if (diff <= 0) {
+      document.getElementById('cdDays').textContent = '00';
+      document.getElementById('cdHours').textContent = '00';
+      document.getElementById('cdMins').textContent = '00';
+      document.getElementById('cdSecs').textContent = '00';
+      document.getElementById('countdownEventName').textContent = '🎉 ' + next.title + ' is TODAY!';
+      clearInterval(ticker);
+      return;
+    }
+    const days  = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins  = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const secs  = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('cdDays').textContent  = String(days).padStart(2,'0');
+    document.getElementById('cdHours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cdMins').textContent  = String(mins).padStart(2,'0');
+    document.getElementById('cdSecs').textContent  = String(secs).padStart(2,'0');
+  }
+  tick();
+  const ticker = setInterval(tick, 1000);
+}
+initCountdown();
+  
 </script>
 
 
