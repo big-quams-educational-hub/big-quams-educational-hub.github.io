@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Post UTME Aggregator Calculator | BIG QUAMS MEDIA®</title>
+<meta name="description" content="Calculate your Post UTME aggregate score for UNILAG, UI, OAU, UNIBEN, UNIPORT, ABU, and 20+ Nigerian universities using their exact school formulas.">
+<meta name="keywords" content="Post UTME aggregate calculator, UNILAG aggregate, UI Post UTME score, OAU aggregate 2026, Nigerian university calculator">
+<meta name="author" content="Big Quams Media">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://big-quams-educational-hub.github.io/postutme-calculator.html">
+<meta property="og:title" content="Post UTME Aggregator Calculator | BIG QUAMS MEDIA®">
+<meta property="og:description" content="Know your exact aggregate score for 20+ Nigerian universities using school-specific formulas.">
+<meta property="og:image" content="https://i.imgur.com/lYJXUyY.jpeg">
+<meta property="og:url" content="https://big-quams-educational-hub.github.io/postutme-calculator.html">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#102880">
+<link rel="icon" type="image/jpeg" href="https://i.imgur.com/lYJXUyY.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:    #1a3fa8;
+  --blue-dk: #102880;
+  --orange:  #f97316;
+  --green:   #16a34a;
+  --muted:   #64748b;
+  --light:   #f0f5ff;
+  --card:    #ffffff;
+  --text:    #0f172a;
+  --border:  #e2e8f0;
+  --bg:      #f8faff;
+  --sec-bg:  #ffffff;
+}
+body.dark { --muted:#94a3b8;--light:#1e2a4a;--card:#1a2540;--text:#e2e8f0;--border:#2d3f6b;--bg:#0f172a;--sec-bg:#141f38; background:var(--bg);color:var(--text); }
+body.dark header { background:linear-gradient(135deg,#080f20,#102880); }
+body.dark .hero  { background:linear-gradient(145deg,#1a2540 0%,#0f1a35 60%,#1c2035 100%); }
+body.dark .hero h1 { color:#e2e8f0; }
+body.dark .hero p  { color:#94a3b8; }
+body.dark .hero-badge { background:rgba(255,255,255,0.07);color:#93c5fd;border-color:rgba(255,255,255,0.1); }
+body.dark h2.section-title { color:#bfdbfe; }
+body.dark .calc-card, body.dark .school-card, body.dark .info-card { background:var(--card);border-color:var(--border); }
+body.dark .ci-label { color:#94a3b8; }
+body.dark .ci-input, body.dark .ci-select { background:#0f172a;color:var(--text);border-color:var(--border); }
+body.dark .school-search { background:#0f172a;color:var(--text);border-color:var(--border); }
+body.dark .school-card h4 { color:#bfdbfe; }
+body.dark .school-card p  { color:var(--muted); }
+body.dark .formula-tag { background:#1a2540; }
+body.dark .filter-btn { background:#1a2540;color:#94a3b8;border-color:var(--border); }
+body.dark .filter-btn.active { background:var(--blue);color:white;border-color:var(--blue); }
+body.dark .olevel-row input, body.dark .olevel-row select { background:#0f172a;color:var(--text);border-color:var(--border); }
+body.dark .add-subj-btn { background:#0f172a; }
+body.dark .disclaimer { background:#1a2540;border-color:#2d3f6b;color:#94a3b8; }
+body.dark .result-breakdown li { color:#cbd5e1; }
+
+*, *::before, *::after { box-sizing:border-box;margin:0;padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:'Roboto',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden; }
+img { max-width:100%;height:auto;display:block; }
+
+/* DARK TOGGLE */
+.dark-toggle { background:rgba(255,255,255,0.12);border:none;color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0; }
+.dark-toggle:hover { background:rgba(255,255,255,0.22); }
+
+/* HEADER */
+header { background:linear-gradient(135deg,var(--blue-dk) 0%,var(--blue) 100%);color:white;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(26,63,168,0.25); }
+.header-inner { max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap; }
+.logo-wrap { display:flex;align-items:center;gap:10px;flex-shrink:0; }
+.logo-circle { width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--orange);flex-shrink:0; }
+.logo-circle img { width:100%;height:100%;object-fit:cover; }
+.brand-text { font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;letter-spacing:0.5px;line-height:1.2; }
+.brand-sub  { font-size:0.65rem;color:#bfdbfe; }
+.menu-toggle { display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;margin-left:auto;padding:6px; }
+.menu-toggle span { display:block;width:24px;height:2px;background:white;border-radius:2px;transition:0.3s; }
+nav { display:flex;flex-wrap:wrap;gap:6px 18px;margin-left:auto;align-items:center; }
+nav a { color:#dbeafe;text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s; }
+nav a:hover { color:var(--orange); }
+.nav-cta { background:var(--orange)!important;color:white!important;padding:7px 16px;border-radius:6px;font-weight:700!important;font-size:0.85rem!important; }
+@media(max-width:600px){.menu-toggle{display:flex;}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:0;background:var(--blue-dk);margin-left:0;padding:8px 0 12px;border-top:1px solid rgba(255,255,255,0.1);}nav.open{display:flex;}nav a{padding:10px 16px;width:100%;font-size:0.95rem;}nav a:hover{background:rgba(255,255,255,0.08);color:var(--orange);}.nav-cta{margin:8px 16px 0;width:calc(100% - 32px);text-align:center;border-radius:6px;}}
+
+/* HERO */
+.hero { background:linear-gradient(145deg,#dbeafe 0%,#eff6ff 60%,#fef3c7 100%);padding:48px 16px 44px;text-align:center;position:relative;overflow:hidden; }
+@media(min-width:600px){.hero{padding:64px 24px 56px;}}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(249,115,22,0.08) 0%,transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-block;background:rgba(26,63,168,0.1);color:var(--blue);border:1px solid rgba(26,63,168,0.2);padding:4px 14px;border-radius:20px;font-size:0.76rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:16px;animation:fadeUp 0.5s ease both;}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;color:var(--blue-dk);line-height:1.15;margin-bottom:14px;animation:fadeUp 0.6s 0.1s ease both;}
+.hero h1 span{color:var(--orange);}
+.hero p{color:var(--muted);font-size:1rem;max-width:600px;margin:0 auto 24px;animation:fadeUp 0.6s 0.2s ease both;}
+
+/* BUTTONS */
+.btn{background:var(--orange);color:white;padding:11px 22px;border-radius:8px;font-weight:700;text-decoration:none;display:inline-block;transition:background 0.2s,transform 0.15s;border:none;cursor:pointer;font-family:'Roboto',sans-serif;font-size:0.95rem;}
+.btn:hover{background:#ea6c0a;transform:translateY(-1px);}
+
+/* CONTAINER */
+.container{max-width:1100px;margin:0 auto;padding:40px 16px;}
+@media(min-width:600px){.container{padding:56px 24px;}}
+
+/* SECTION HEADING */
+.section-label{display:inline-block;background:rgba(249,115,22,0.1);color:var(--orange);padding:3px 12px;border-radius:20px;font-size:0.74rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+h2.section-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.4rem,4vw,1.9rem);font-weight:800;color:var(--blue-dk);margin-bottom:8px;}
+.section-divider{width:48px;height:4px;background:var(--orange);border-radius:2px;margin-bottom:28px;}
+
+/* MAIN CALC LAYOUT */
+.calc-layout { display:grid;grid-template-columns:1fr;gap:24px; }
+@media(min-width:900px){.calc-layout{grid-template-columns:1fr 380px;align-items:start;}}
+
+/* CALC CARD */
+.calc-card { background:white;border-radius:18px;border:1px solid var(--border);padding:28px;box-shadow:0 4px 20px rgba(0,0,0,0.06); }
+
+.calc-card h3 { font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue-dk);margin-bottom:4px; }
+.calc-card .sub { font-size:0.82rem;color:var(--muted);margin-bottom:20px; }
+
+/* SCHOOL SELECTOR */
+.school-search { width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:0.92rem;font-family:'Roboto',sans-serif;color:var(--text);background:#fafafa;margin-bottom:10px;transition:border-color 0.2s; }
+.school-search:focus{outline:none;border-color:var(--blue);}
+.school-select { width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:0.9rem;font-family:'Roboto',sans-serif;color:var(--text);background:#fafafa;cursor:pointer;transition:border-color 0.2s;margin-bottom:16px; }
+.school-select:focus{outline:none;border-color:var(--blue);}
+.selected-school-badge { display:none;background:linear-gradient(135deg,var(--blue-dk),var(--blue));color:white;border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:0.84rem; }
+.selected-school-badge.show { display:flex;gap:10px;align-items:center; }
+.selected-school-badge strong { font-family:'Montserrat',sans-serif;font-size:0.9rem; }
+.formula-display { font-size:0.76rem;color:#bfdbfe;margin-top:2px; }
+
+/* CI ROWS */
+.ci-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+@media(max-width:420px){.ci-row{grid-template-columns:1fr;}}
+.ci-group{display:flex;flex-direction:column;gap:4px;}
+.ci-label{font-size:0.78rem;font-weight:600;color:#374151;}
+.ci-input,.ci-select{padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:0.92rem;font-family:'Roboto',sans-serif;color:var(--text);background:#fafafa;transition:border-color 0.2s;width:100%;}
+.ci-input:focus,.ci-select:focus{outline:none;border-color:var(--blue);background:white;}
+
+/* O'LEVEL */
+.olevel-section{margin:16px 0 12px;}
+.olevel-section h4{font-family:'Montserrat',sans-serif;font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:6px;}
+.olevel-section p{font-size:0.75rem;color:var(--muted);margin-bottom:10px;}
+.olevel-rows{display:flex;flex-direction:column;gap:8px;}
+.olevel-row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;}
+.olevel-row input{padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:0.88rem;font-family:'Roboto',sans-serif;color:var(--text);background:#fafafa;width:100%;}
+.olevel-row select{padding:8px 6px;border:1.5px solid var(--border);border-radius:7px;font-size:0.88rem;background:#fafafa;color:var(--text);font-family:'Roboto',sans-serif;}
+.remove-row{background:#fee2e2;color:#dc2626;border:none;width:28px;height:28px;border-radius:6px;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.add-subj-btn{width:100%;background:var(--light);color:var(--blue);border:1.5px dashed var(--blue);padding:9px;border-radius:8px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Roboto',sans-serif;transition:0.2s;margin-bottom:14px;}
+.add-subj-btn:hover{background:#dbeafe;}
+
+/* WAEC/NECO TOGGLE */
+.exam-type-row{display:flex;gap:8px;margin-bottom:12px;}
+.exam-type-btn{flex:1;padding:8px;border-radius:8px;border:1.5px solid var(--border);font-size:0.8rem;font-weight:700;cursor:pointer;background:white;color:var(--muted);font-family:'Roboto',sans-serif;transition:0.2s;}
+body.dark .exam-type-btn{background:#0f172a;}
+.exam-type-btn.active{background:var(--blue);color:white;border-color:var(--blue);}
+
+/* CALC BTN */
+.calc-submit-btn{width:100%;background:linear-gradient(135deg,var(--blue-dk),var(--blue));color:white;padding:14px;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:0.2s;margin-top:6px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.calc-submit-btn:hover{opacity:0.92;transform:translateY(-1px);}
+
+/* RESULT BOX */
+.result-box{display:none;background:linear-gradient(135deg,var(--blue-dk),var(--blue));border-radius:14px;padding:24px;text-align:center;color:white;margin-top:20px;animation:fadeUp 0.4s ease both;}
+.result-box.show{display:block;}
+.rb-school{font-size:0.78rem;color:#bfdbfe;margin-bottom:4px;font-weight:500;}
+.rb-score{font-family:'Montserrat',sans-serif;font-size:3rem;font-weight:800;line-height:1;}
+.rb-label{font-size:0.82rem;color:#bfdbfe;margin-top:4px;margin-bottom:14px;}
+.rb-verdict{font-size:0.88rem;font-weight:700;padding:8px 16px;border-radius:20px;display:inline-block;margin-bottom:16px;}
+.rb-verdict.good{background:rgba(22,163,74,0.25);color:#86efac;}
+.rb-verdict.fair{background:rgba(249,115,22,0.25);color:#fdba74;}
+.rb-verdict.low{background:rgba(220,38,38,0.25);color:#fca5a5;}
+.rb-breakdown{font-size:0.8rem;color:#cbd5e1;line-height:1.7;text-align:left;background:rgba(255,255,255,0.08);border-radius:8px;padding:12px 14px;margin-bottom:14px;}
+.result-breakdown li{list-style:none;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.08);}
+.result-breakdown li:last-child{border-bottom:none;}
+.pdf-btn{display:inline-flex;align-items:center;gap:7px;background:var(--orange);color:white;border:none;padding:11px 22px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.88rem;cursor:pointer;transition:0.2s;}
+.pdf-btn:hover{background:#ea6c0a;}
+.share-btn{display:inline-flex;align-items:center;gap:7px;background:#25d366;color:white;border:none;padding:11px 18px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.88rem;cursor:pointer;transition:0.2s;margin-left:8px;}
+.share-btn:hover{background:#20bd5a;}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:18px;}
+.info-card{background:white;border-radius:14px;border:1px solid var(--border);padding:20px;box-shadow:0 2px 12px rgba(0,0,0,0.04);}
+.info-card h4{font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:800;color:var(--blue-dk);margin-bottom:12px;}
+.info-card ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.info-card li{font-size:0.82rem;color:#475569;display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
+.info-card li::before{content:'✓';background:#dcfce7;color:var(--green);border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;flex-shrink:0;margin-top:1px;}
+body.dark .info-card li{color:#cbd5e1;}
+
+/* SCHOOLS DIRECTORY */
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.filter-btn{padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);font-size:0.78rem;font-weight:700;cursor:pointer;background:white;color:var(--muted);transition:0.2s;font-family:'Roboto',sans-serif;}
+.filter-btn.active{background:var(--blue);color:white;border-color:var(--blue);}
+.schools-grid{display:grid;grid-template-columns:1fr;gap:12px;}
+@media(min-width:560px){.schools-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:900px){.schools-grid{grid-template-columns:1fr 1fr 1fr;}}
+.school-card{background:white;border-radius:12px;border:1px solid var(--border);padding:16px;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;}
+.school-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.08);}
+.school-card-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.school-abbr{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:0.64rem;font-weight:800;color:white;flex-shrink:0;text-align:center;line-height:1.2;}
+.school-card h4{font-family:'Montserrat',sans-serif;font-size:0.84rem;font-weight:700;color:var(--blue-dk);line-height:1.3;}
+.school-card p{font-size:0.76rem;color:var(--muted);}
+.formula-tag{display:inline-flex;align-items:center;gap:5px;font-size:0.7rem;font-weight:700;color:var(--muted);background:var(--light);padding:3px 9px;border-radius:20px;margin-top:6px;}
+.use-school-btn{display:block;width:100%;background:var(--light);color:var(--blue);border:none;padding:8px;border-radius:7px;font-weight:700;font-size:0.78rem;cursor:pointer;font-family:'Roboto',sans-serif;margin-top:10px;transition:0.2s;}
+.use-school-btn:hover{background:#dbeafe;}
+
+/* DISCLAIMER */
+.disclaimer{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:14px;font-size:0.78rem;color:#78350f;line-height:1.5;margin-top:16px;}
+
+/* TOAST */
+#toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;}
+.toast{background:var(--blue-dk);color:white;padding:12px 20px;border-radius:8px;margin-top:8px;font-weight:600;font-size:0.9rem;box-shadow:0 4px 12px rgba(0,0,0,0.2);opacity:0;transform:translateY(12px);transition:0.35s ease;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateY(0);}
+
+/* FOOTER */
+footer{background:var(--blue-dk);color:#bfdbfe;text-align:center;padding:28px 24px;font-size:0.88rem;}
+.footer-inner{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px 16px 22px;}
+.footer-brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:white;}
+.footer-tagline{font-size:0.78rem;color:#94a3b8;}
+.footer-links{display:flex;gap:8px 16px;flex-wrap:wrap;justify-content:center;}
+.footer-links a{color:#94a3b8;text-decoration:none;font-size:0.78rem;transition:color 0.2s;}
+.footer-links a:hover{color:var(--orange);}
+.footer-copy{font-size:0.75rem;color:#64748b;text-align:center;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);width:100%;}
+footer a{color:var(--orange);text-decoration:none;font-weight:600;}
+#whatsapp-float{position:fixed;width:56px;height:56px;bottom:28px;right:24px;background:#25d366;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;z-index:999;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.45);transition:transform 0.2s;}
+#whatsapp-float:hover{transform:scale(1.1);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <div class="logo-circle"><img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Big Quams Media Logo"></div>
+      <div>
+        <div class="brand-text">BIG QUAMS MEDIA®</div>
+        <div class="brand-sub">Simplifying Campus Life</div>
+      </div>
+    </div>
+    <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">🌙</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="elibrary.html">eLibrary</a>
+      <a href="newsroom.html">News</a>
+      <a href="postutme-calculator.html" style="color:var(--orange);">Post UTME Calc</a>
+      <a href="results.html">Results Checker</a>
+      <a href="index.html#contact" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🏫 20+ School Formulas</div>
+  <h1>Post UTME<br><span>Aggregate Calculator</span></h1>
+  <p>Select your target university and instantly calculate your exact Post UTME aggregate score using their official formula — with a breakdown you can download.</p>
+</section>
+
+<!-- MAIN CALCULATOR -->
+<section style="background:var(--bg);">
+  <div class="container">
+    <div class="calc-layout">
+
+      <!-- LEFT: CALCULATOR -->
+      <div>
+        <div class="calc-card">
+          <h3>🏫 Select Your School & Calculate</h3>
+          <p class="sub">Choose a university, enter your scores, and get your aggregate instantly.</p>
+
+          <!-- SCHOOL SELECTOR -->
+          <select class="school-select" id="schoolSelect" onchange="onSchoolChange()">
+            <option value="">— Select a University —</option>
+            <optgroup label="🏙️ South West">
+              <option value="unilag">University of Lagos (UNILAG)</option>
+              <option value="ui">University of Ibadan (UI)</option>
+              <option value="oau">Obafemi Awolowo University (OAU)</option>
+              <option value="lasu">Lagos State University (LASU)</option>
+              <option value="funaab">Fed. Univ. of Agric. Abeokuta (FUNAAB)</option>
+              <option value="babcock">Babcock University</option>
+              <option value="covenant">Covenant University</option>
+            </optgroup>
+            <optgroup label="🌿 South South">
+              <option value="uniben">University of Benin (UNIBEN)</option>
+              <option value="uniport">University of Port Harcourt (UNIPORT)</option>
+              <option value="delsu">Delta State University (DELSU)</option>
+              <option value="ndelta">Niger Delta University (NDU)</option>
+            </optgroup>
+            <optgroup label="☀️ South East">
+              <option value="unn">University of Nigeria, Nsukka (UNN)</option>
+              <option value="imsu">Imo State University (IMSU)</option>
+              <option value="ebsu">Ebonyi State University (EBSU)</option>
+            </optgroup>
+            <optgroup label="🌾 North West">
+              <option value="abu">Ahmadu Bello University (ABU)</option>
+              <option value="udusok">Usmanu Danfodiyo University (UDUS)</option>
+              <option value="bayero">Bayero University Kano (BUK)</option>
+            </optgroup>
+            <optgroup label="🏔️ North Central">
+              <option value="uniabuja">University of Abuja (UNIABUJA)</option>
+              <option value="unilorin">University of Ilorin (UNILORIN)</option>
+              <option value="futminna">Fed. Univ. of Tech. Minna (FUTMINNA)</option>
+            </optgroup>
+            <optgroup label="🌄 North East">
+              <option value="unimaid">University of Maiduguri (UNIMAID)</option>
+              <option value="atbu">Abubakar Tafawa Balewa University (ATBU)</option>
+            </optgroup>
+          </select>
+
+          <!-- SELECTED SCHOOL BADGE -->
+          <div class="selected-school-badge" id="schoolBadge">
+            <span style="font-size:1.5rem;" id="badgeEmoji">🏫</span>
+            <div>
+              <strong id="badgeName">—</strong>
+              <div class="formula-display" id="badgeFormula">—</div>
+            </div>
+          </div>
+
+          <!-- JAMB SCORE -->
+          <div class="ci-row">
+            <div class="ci-group">
+              <label class="ci-label">JAMB Score (out of 400) *</label>
+              <input type="number" class="ci-input" id="jambScore" min="0" max="400" placeholder="e.g. 260" oninput="liveCalculate()">
+            </div>
+            <div class="ci-group">
+              <label class="ci-label">Post UTME Score (out of 100)</label>
+              <input type="number" class="ci-input" id="postUtmeScore" min="0" max="100" placeholder="e.g. 68" oninput="liveCalculate()">
+            </div>
+          </div>
+
+          <!-- O'LEVEL SECTION (shown for schools that use it) -->
+          <div class="olevel-section" id="olevelSection" style="display:none;">
+            <h4>O'Level Grades (WAEC/NECO)</h4>
+            <p>Enter your best relevant subjects for this school's aggregate calculation.</p>
+            <div class="exam-type-row">
+              <button class="exam-type-btn active" onclick="setExamType(this,'waec')">WAEC</button>
+              <button class="exam-type-btn" onclick="setExamType(this,'neco')">NECO</button>
+            </div>
+            <div class="olevel-rows" id="olevelRows">
+              <div class="olevel-row">
+                <input type="text" value="English Language" readonly style="background:#f0f5ff;color:var(--blue);font-weight:600;" oninput="liveCalculate()">
+                <select onchange="liveCalculate()">
+                  <option value="">Grade</option>
+                  <option value="6">A1</option><option value="5">B2</option><option value="4">B3</option>
+                  <option value="3">C4</option><option value="2">C5</option><option value="1">C6</option><option value="0">F9</option>
+                </select>
+                <span style="width:28px;"></span>
+              </div>
+              <div class="olevel-row">
+                <input type="text" value="Mathematics" readonly style="background:#f0f5ff;color:var(--blue);font-weight:600;" oninput="liveCalculate()">
+                <select onchange="liveCalculate()">
+                  <option value="">Grade</option>
+                  <option value="6">A1</option><option value="5">B2</option><option value="4">B3</option>
+                  <option value="3">C4</option><option value="2">C5</option><option value="1">C6</option><option value="0">F9</option>
+                </select>
+                <span style="width:28px;"></span>
+              </div>
+            </div>
+            <button class="add-subj-btn" onclick="addOlevelRow()">+ Add Subject</button>
+          </div>
+
+          <!-- NAME FOR PDF -->
+          <div class="ci-group" style="margin-bottom:16px;">
+            <label class="ci-label">Your Name (for PDF download)</label>
+            <input type="text" class="ci-input" id="studentName" placeholder="e.g. Abdulquam Bello">
+          </div>
+
+          <button class="calc-submit-btn" onclick="calculate()">🚀 Calculate My Aggregate</button>
+
+          <!-- RESULT -->
+          <div class="result-box" id="resultBox">
+            <div class="rb-school" id="rbSchool">—</div>
+            <div class="rb-score" id="rbScore">—</div>
+            <div class="rb-label" id="rbLabel">Aggregate Score</div>
+            <div class="rb-verdict" id="rbVerdict"></div>
+            <div class="rb-breakdown" id="rbBreakdown">
+              <ul class="result-breakdown" id="breakdownList"></ul>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+              <button class="pdf-btn" onclick="downloadPDF()">⬇️ Download PDF</button>
+              <button class="share-btn" onclick="shareResult()">📤 Share Result</button>
+            </div>
+          </div>
+
+          <div class="disclaimer">
+            ⚠️ <strong>Disclaimer:</strong> Formulas are based on publicly available information and may change. Always verify with your target institution's official website or admissions office. Big Quams Media is not liable for admission decisions.
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: SIDEBAR -->
+      <div class="sidebar">
+        <div class="info-card">
+          <h4>📌 How Aggregates Work</h4>
+          <ul>
+            <li>Most Nigerian universities combine JAMB, Post UTME, and O'level scores into one aggregate.</li>
+            <li>Each school has its own weighting formula — the same scores can give different aggregates at different schools.</li>
+            <li>Some schools (like UI) don't use Post UTME but still combine JAMB and O'level.</li>
+            <li>A higher aggregate = better chance of being offered admission.</li>
+            <li>Cut-off marks vary by course — Medicine typically needs 70+, Arts/Education may need 50+.</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h4>🎯 Typical Cut-off Ranges</h4>
+          <ul>
+            <li><strong>Medicine/Pharmacy:</strong> 70–80+ aggregate</li>
+            <li><strong>Engineering/Tech:</strong> 60–75+ aggregate</li>
+            <li><strong>Sciences:</strong> 55–70+ aggregate</li>
+            <li><strong>Law:</strong> 60–75+ aggregate</li>
+            <li><strong>Social Sciences:</strong> 50–65+ aggregate</li>
+            <li><strong>Arts/Education:</strong> 45–60+ aggregate</li>
+          </ul>
+        </div>
+        <div class="info-card" style="background:linear-gradient(135deg,var(--blue-dk),var(--blue));color:white;border:none;">
+          <h4 style="color:white;">💬 Need Admission Help?</h4>
+          <p style="font-size:0.82rem;color:#bfdbfe;margin-bottom:12px;line-height:1.5;">Our team is ready to guide you through your Post UTME registration, preparation, and admission process.</p>
+          <a href="https://wa.me/2349049871643?text=Hello%20Big%20Quams%20Media!%20I%20need%20help%20with%20my%20Post%20UTME%20and%20admission." target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:white;padding:11px;border-radius:9px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.88rem;transition:0.2s;">💬 Chat with Us on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHOOLS DIRECTORY -->
+<section style="background:white;">
+  <div class="container">
+    <div class="section-label">School Formulas</div>
+    <h2 class="section-title">University Aggregate Formulas</h2>
+    <div class="section-divider"></div>
+    <div class="filter-row" id="filterRow">
+      <button class="filter-btn active" onclick="filterSchools('all',this)">All Schools</button>
+      <button class="filter-btn" onclick="filterSchools('federal',this)">Federal</button>
+      <button class="filter-btn" onclick="filterSchools('state',this)">State</button>
+      <button class="filter-btn" onclick="filterSchools('private',this)">Private</button>
+    </div>
+    <div class="schools-grid" id="schoolsGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">BIG QUAMS MEDIA®</div>
+      <div class="footer-tagline">Simplifying Campus Life for Every Nigerian Student</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="newsroom.html">Newsroom</a>
+      <a href="elibrary.html">eLibrary</a>
+      <a href="results.html">Results Checker</a>
+      <a href="postutme-calculator.html">Post UTME Calc</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="footer-copy">
+      &copy; 2025 Big Quams Media®. All rights reserved. &nbsp;|&nbsp;
+      Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float" title="Chat on WhatsApp">💬</a>
+<div id="toast-container"></div>
+
+<script>
+// ── SCHOOL DATA ──
+const schools = {
+  unilag: {
+    name:'University of Lagos', abbr:'UNILAG', emoji:'🏙️', type:'federal', color:'#1a3fa8',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'JAMB score (÷8) + Post UTME score. Total out of 100.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  ui: {
+    name:'University of Ibadan', abbr:'UI', emoji:'🌳', type:'federal', color:'#15803d',
+    formula:'JAMB 60% + O\'level 40%',
+    desc:'UI uses JAMB + O\'level. No Post UTME exam.',
+    usePostUtme:false, useOlevel:true,
+    calc(j, p, o) {
+      const jPart = (j/400)*60;
+      const oMax = o.length * 6;
+      const oSum = o.reduce((a,b)=>a+b,0);
+      const oPart = oMax > 0 ? (oSum/oMax)*40 : 0;
+      const total = jPart + oPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 60%: ${jPart.toFixed(2)}`,
+        `O'level (${oSum}/${oMax}) → 40%: ${oPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  oau: {
+    name:'Obafemi Awolowo University', abbr:'OAU', emoji:'🌿', type:'federal', color:'#16a34a',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'JAMB and Post UTME equally weighted, each scaled to 50.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  uniben: {
+    name:'University of Benin', abbr:'UNIBEN', emoji:'🦁', type:'federal', color:'#b45309',
+    formula:'JAMB 50% + Post UTME 25% + O\'level 25%',
+    desc:'Three-component aggregate used by UNIBEN.',
+    usePostUtme:true, useOlevel:true,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*25;
+      const oMax = o.length * 6;
+      const oSum = o.reduce((a,b)=>a+b,0);
+      const oPart = oMax > 0 ? (oSum/oMax)*25 : 0;
+      const total = jPart + pPart + oPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 25%: ${pPart.toFixed(2)}`,
+        `O'level (${oSum}/${oMax}) → 25%: ${oPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  uniport: {
+    name:'University of Port Harcourt', abbr:'UNIPORT', emoji:'⚓', type:'federal', color:'#0891b2',
+    formula:'JAMB 60% + Post UTME 40%',
+    desc:'JAMB has heavier weighting at UNIPORT.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*60;
+      const pPart = (p/100)*40;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 60%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 40%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  abu: {
+    name:'Ahmadu Bello University', abbr:'ABU', emoji:'🏛️', type:'federal', color:'#7c3aed',
+    formula:'JAMB 50% + Post UTME 30% + O\'level 20%',
+    desc:'ABU uses a three-way aggregate formula.',
+    usePostUtme:true, useOlevel:true,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*30;
+      const oMax = o.length * 6;
+      const oSum = o.reduce((a,b)=>a+b,0);
+      const oPart = oMax > 0 ? (oSum/oMax)*20 : 0;
+      const total = jPart + pPart + oPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 30%: ${pPart.toFixed(2)}`,
+        `O'level (${oSum}/${oMax}) → 20%: ${oPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  unilorin: {
+    name:'University of Ilorin', abbr:'UNILORIN', emoji:'🕌', type:'federal', color:'#dc2626',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'Equal weighting between JAMB and Post UTME.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  unn: {
+    name:'University of Nigeria, Nsukka', abbr:'UNN', emoji:'🦅', type:'federal', color:'#b91c1c',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'UNN uses equal JAMB and Post UTME weighting.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  bayero: {
+    name:'Bayero University Kano', abbr:'BUK', emoji:'🌙', type:'federal', color:'#166534',
+    formula:'JAMB 60% + Post UTME 40%',
+    desc:'BUK places more weight on JAMB score.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*60;
+      const pPart = (p/100)*40;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 60%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 40%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  uniabuja: {
+    name:'University of Abuja', abbr:'UNIABUJA', emoji:'🏛️', type:'federal', color:'#1d4ed8',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'Equal JAMB and Post UTME weighting.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  lasu: {
+    name:'Lagos State University', abbr:'LASU', emoji:'🌊', type:'state', color:'#0284c7',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'LASU uses equal JAMB and Post UTME weighting.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  covenant: {
+    name:'Covenant University', abbr:'CU', emoji:'✝️', type:'private', color:'#6d28d9',
+    formula:'JAMB 40% + Post UTME 60%',
+    desc:'Covenant places higher weight on Post UTME.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*40;
+      const pPart = (p/100)*60;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 40%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 60%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  babcock: {
+    name:'Babcock University', abbr:'BU', emoji:'🏫', type:'private', color:'#065f46',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'Babcock uses equal weighting for both scores.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  funaab: {
+    name:'Fed. Univ. of Agric. Abeokuta', abbr:'FUNAAB', emoji:'🌱', type:'federal', color:'#15803d',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'FUNAAB uses standard 50-50 formula.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  delsu: {
+    name:'Delta State University', abbr:'DELSU', emoji:'🌊', type:'state', color:'#166534',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'DELSU combines JAMB and Post UTME equally.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  imsu: {
+    name:'Imo State University', abbr:'IMSU', emoji:'🌿', type:'state', color:'#7c3aed',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'IMSU uses the standard 50-50 aggregate formula.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  ebsu: {
+    name:'Ebonyi State University', abbr:'EBSU', emoji:'🦁', type:'state', color:'#b45309',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'Standard 50-50 formula used by EBSU.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  udusok: {
+    name:'Usmanu Danfodiyo University', abbr:'UDUS', emoji:'🕌', type:'federal', color:'#0891b2',
+    formula:'JAMB 60% + Post UTME 40%',
+    desc:'UDUS uses JAMB-heavy weighting.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*60;
+      const pPart = (p/100)*40;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 60%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 40%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  ndelta: {
+    name:'Niger Delta University', abbr:'NDU', emoji:'⚓', type:'state', color:'#16a34a',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'NDU uses the standard 50-50 formula.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  futminna: {
+    name:'Fed. Univ. of Technology Minna', abbr:'FUTMINNA', emoji:'⚙️', type:'federal', color:'#1a3fa8',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'FUTMINNA uses the standard 50-50 formula.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  unimaid: {
+    name:'University of Maiduguri', abbr:'UNIMAID', emoji:'🏜️', type:'federal', color:'#b45309',
+    formula:'JAMB 60% + Post UTME 40%',
+    desc:'UNIMAID uses a JAMB-heavy formula.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*60;
+      const pPart = (p/100)*40;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 60%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 40%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  },
+  atbu: {
+    name:'Abubakar Tafawa Balewa Univ.', abbr:'ATBU', emoji:'🏔️', type:'federal', color:'#6d28d9',
+    formula:'JAMB 50% + Post UTME 50%',
+    desc:'ATBU uses the standard 50-50 formula.',
+    usePostUtme:true, useOlevel:false,
+    calc(j, p, o) {
+      const jPart = (j/400)*50;
+      const pPart = (p/100)*50;
+      const total = jPart + pPart;
+      return { score: total.toFixed(2), breakdown:[
+        `JAMB (${j}/400) → 50%: ${jPart.toFixed(2)}`,
+        `Post UTME (${p}/100) → 50%: ${pPart.toFixed(2)}`,
+        `Total Aggregate: ${total.toFixed(2)} / 100`
+      ]};
+    }
+  }
+};
+
+let selectedSchool = null;
+let lastResult = null;
+
+// Render schools directory
+function renderSchools(filter='all') {
+  const grid = document.getElementById('schoolsGrid');
+  const entries = Object.entries(schools).filter(([k,s]) => filter === 'all' || s.type === filter);
+  grid.innerHTML = entries.map(([key, s]) => `
+    <div class="school-card" onclick="selectSchool('${key}')">
+      <div class="school-card-top">
+        <div class="school-abbr" style="background:${s.color};">${s.abbr}</div>
+        <div>
+          <h4>${s.name}</h4>
+          <p>${s.type.charAt(0).toUpperCase()+s.type.slice(1)} University</p>
+        </div>
+      </div>
+      <div class="formula-tag">📐 ${s.formula}</div>
+      <button class="use-school-btn">Use this formula →</button>
+    </div>`).join('');
+}
+
+function filterSchools(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSchools(type);
+}
+renderSchools();
+
+function selectSchool(key) {
+  document.getElementById('schoolSelect').value = key;
+  onSchoolChange();
+  document.getElementById('schoolSelect').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function onSchoolChange() {
+  const key = document.getElementById('schoolSelect').value;
+  selectedSchool = key ? schools[key] : null;
+  const badge = document.getElementById('schoolBadge');
+  if (selectedSchool) {
+    badge.classList.add('show');
+    document.getElementById('badgeEmoji').textContent = selectedSchool.emoji;
+    document.getElementById('badgeName').textContent = selectedSchool.name;
+    document.getElementById('badgeFormula').textContent = '📐 ' + selectedSchool.formula;
+    badge.style.background = `linear-gradient(135deg, ${selectedSchool.color}dd, ${selectedSchool.color}aa)`;
+    document.getElementById('postUtmeScore').closest('.ci-group').style.display = selectedSchool.usePostUtme ? '' : 'none';
+    document.getElementById('olevelSection').style.display = selectedSchool.useOlevel ? '' : 'none';
+  } else {
+    badge.classList.remove('show');
+    document.getElementById('postUtmeScore').closest('.ci-group').style.display = '';
+    document.getElementById('olevelSection').style.display = 'none';
+  }
+  document.getElementById('resultBox').classList.remove('show');
+  liveCalculate();
+}
+
+function setExamType(btn, type) {
+  document.querySelectorAll('.exam-type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function addOlevelRow() {
+  const rows = document.getElementById('olevelRows');
+  const row = document.createElement('div');
+  row.className = 'olevel-row';
+  row.innerHTML = `
+    <input type="text" placeholder="Subject name" oninput="liveCalculate()">
+    <select onchange="liveCalculate()">
+      <option value="">Grade</option>
+      <option value="6">A1</option><option value="5">B2</option><option value="4">B3</option>
+      <option value="3">C4</option><option value="2">C5</option><option value="1">C6</option><option value="0">F9</option>
+    </select>
+    <button class="remove-row" onclick="this.parentElement.remove();liveCalculate()">✕</button>`;
+  rows.appendChild(row);
+}
+
+function getOlevelGrades() {
+  const rows = document.querySelectorAll('#olevelRows .olevel-row');
+  const grades = [];
+  rows.forEach(r => {
+    const sel = r.querySelector('select');
+    if (sel && sel.value !== '') grades.push(parseInt(sel.value));
+  });
+  return grades;
+}
+
+function liveCalculate() {
+  if (!selectedSchool) return;
+  const j = parseInt(document.getElementById('jambScore').value);
+  const p = parseInt(document.getElementById('postUtmeScore').value) || 0;
+  if (isNaN(j) || j < 0 || j > 400) { document.getElementById('resultBox').classList.remove('show'); return; }
+  if (selectedSchool.usePostUtme && (isNaN(p) || p < 0 || p > 100)) { document.getElementById('resultBox').classList.remove('show'); return; }
+  doCalculate(j, p);
+}
+
+function calculate() {
+  if (!selectedSchool) { showToast('⚠️ Please select a university first!'); return; }
+  const j = parseInt(document.getElementById('jambScore').value);
+  const p = parseInt(document.getElementById('postUtmeScore').value) || 0;
+  if (isNaN(j) || j < 0 || j > 400) { showToast('⚠️ Please enter a valid JAMB score (0–400)!'); return; }
+  if (selectedSchool.usePostUtme && (isNaN(p) || p < 0 || p > 100)) { showToast('⚠️ Please enter a valid Post UTME score (0–100)!'); return; }
+  doCalculate(j, p);
+  document.getElementById('resultBox').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function doCalculate(j, p) {
+  const o = getOlevelGrades();
+  const result = selectedSchool.calc(j, p, o);
+  const score = parseFloat(result.score);
+  lastResult = { school: selectedSchool.name, formula: selectedSchool.formula, score: result.score, breakdown: result.breakdown, jamb: j, postUtme: p };
+
+  document.getElementById('rbSchool').textContent = selectedSchool.name;
+  document.getElementById('rbScore').textContent = result.score;
+  document.getElementById('rbLabel').textContent = 'Aggregate Score (out of 100)';
+
+  const verdict = document.getElementById('rbVerdict');
+  if (score >= 70) { verdict.textContent = '🎉 Very competitive — keep it up!'; verdict.className = 'rb-verdict good'; }
+  else if (score >= 55) { verdict.textContent = '👍 Good score — many programmes within reach'; verdict.className = 'rb-verdict good'; }
+  else if (score >= 45) { verdict.textContent = '⚠️ Fair — consider more programme options'; verdict.className = 'rb-verdict fair'; }
+  else { verdict.textContent = '❌ Below most cut-offs — chat with us for guidance'; verdict.className = 'rb-verdict low'; }
+
+  document.getElementById('breakdownList').innerHTML = result.breakdown.map(b => `<li>${b}</li>`).join('');
+  document.getElementById('resultBox').classList.add('show');
+}
+
+function downloadPDF() {
+  if (!lastResult) { showToast('Calculate first!'); return; }
+  const name = document.getElementById('studentName').value.trim() || 'Student';
+  const now = new Date().toLocaleDateString('en-NG',{day:'numeric',month:'long',year:'numeric'});
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
+  <style>
+    body{font-family:'Roboto',sans-serif;margin:0;padding:32px;background:white;color:#0f172a;}
+    .header{display:flex;align-items:center;gap:14px;border-bottom:3px solid #f97316;padding-bottom:16px;margin-bottom:20px;}
+    .logo{width:54px;height:54px;border-radius:50%;border:2px solid #f97316;object-fit:cover;}
+    .brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.1rem;color:#102880;}
+    .sub{font-size:0.7rem;color:#64748b;}
+    h2{font-family:'Montserrat',sans-serif;color:#102880;margin:0 0 4px;}
+    .student{font-size:0.88rem;color:#64748b;margin-bottom:20px;}
+    .score-box{background:linear-gradient(135deg,#102880,#1a3fa8);color:white;border-radius:12px;padding:24px;text-align:center;margin-bottom:20px;}
+    .score-num{font-family:'Montserrat',sans-serif;font-size:3rem;font-weight:800;}
+    .score-lbl{font-size:0.82rem;color:#bfdbfe;margin-top:4px;}
+    .school-name{font-size:0.9rem;color:#dbeafe;margin-bottom:8px;}
+    table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+    td{padding:10px 12px;border-bottom:1px solid #e2e8f0;}
+    td:last-child{text-align:right;}
+    .footer{margin-top:28px;text-align:center;font-size:0.75rem;color:#94a3b8;border-top:1px solid #e2e8f0;padding-top:14px;}
+    .disclaimer{font-size:0.72rem;color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-radius:6px;padding:10px;margin-top:14px;}
+  </style></head><body>
+  <div class="header"><img class="logo" src="https://i.imgur.com/lYJXUyY.jpeg" alt="Logo"><div><div class="brand">BIG QUAMS MEDIA®</div><div class="sub">Simplifying Campus Life for Every Student</div></div></div>
+  <h2>Post UTME Aggregate Result</h2>
+  <div class="student">Student: <strong>${name}</strong> &nbsp;|&nbsp; Date: ${now}</div>
+  <div class="score-box">
+    <div class="school-name">${lastResult.school}</div>
+    <div class="score-num">${lastResult.score}</div>
+    <div class="score-lbl">Aggregate Score (out of 100)</div>
+  </div>
+  <table><tbody>${lastResult.breakdown.map(b=>`<tr><td colspan="2">${b}</td></tr>`).join('')}</tbody></table>
+  <div class="disclaimer">⚠️ This result is for guidance only. Always verify with your institution's official admissions office. Formulas may change.</div>
+  <div class="footer">Generated by Big Quams Media® — big-quams-educational-hub.github.io</div>
+  </body></html>`;
+  const win = window.open('','_blank');
+  win.document.write(html);
+  win.document.close();
+  win.focus();
+  setTimeout(()=>win.print(),600);
+}
+
+function shareResult() {
+  if (!lastResult) { showToast('Calculate first!'); return; }
+  const text = `🎓 My Post UTME Aggregate for ${lastResult.school}:\n\n📊 Score: ${lastResult.score}/100\n📐 Formula: ${lastResult.formula}\n\nCalculate yours on Big Quams Media:\nhttps://big-quams-educational-hub.github.io/postutme-calculator.html`;
+  if (navigator.share) {
+    navigator.share({title:'Post UTME Result', text});
+  } else {
+    window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
+  }
+}
+
+// Dark mode
+const darkToggle = document.getElementById('darkToggle');
+const savedTheme = localStorage.getItem('bqm-theme');
+if (savedTheme === 'dark') { document.body.classList.add('dark'); darkToggle.textContent = '☀️'; }
+darkToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  darkToggle.textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('bqm-theme', isDark ? 'dark' : 'light');
+});
+
+// Hamburger
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
+mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('open')));
+
+function showToast(msg) {
+  const toast = document.createElement('div');
+  toast.className = 'toast'; toast.innerText = msg;
+  document.getElementById('toast-container').appendChild(toast);
+  setTimeout(() => toast.classList.add('show'), 50);
+  setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 2500);
+}
+
+// PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
+</script>
+</body>
+</html>
