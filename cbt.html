@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JAMB CBT Practice | BIG QUAMS MEDIA®</title>
+<meta name="description" content="Practice JAMB CBT questions online. Timed mock exams for UTME subjects — Use of English, Mathematics, Biology, Chemistry, Physics and more.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://big-quams-educational-hub.github.io/cbt.html">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#102880">
+<link rel="icon" type="image/jpeg" href="https://i.imgur.com/lYJXUyY.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --blue:#1a3fa8; --blue-dk:#102880; --orange:#f97316; --green:#16a34a;
+  --muted:#64748b; --light:#f0f5ff; --card:#ffffff; --text:#0f172a;
+  --border:#e2e8f0; --bg:#f8faff; --sec-bg:#ffffff;
+  --correct:#16a34a; --wrong:#dc2626; --neutral:#f97316;
+}
+body.dark {
+  --muted:#94a3b8; --light:#1e2a4a; --card:#1a2540; --text:#e2e8f0;
+  --border:#2d3f6b; --bg:#0f172a; --sec-bg:#141f38;
+}
+body.dark { background:var(--bg); color:var(--text); }
+body.dark header { background:linear-gradient(135deg,#080f20,#102880); }
+body.dark .panel { background:var(--card); border-color:var(--border); }
+body.dark .opt-btn { background:var(--sec-bg); border-color:var(--border); color:var(--text); }
+body.dark .opt-btn:hover:not(:disabled) { background:#1a2540; border-color:var(--blue); }
+body.dark .stat-box { background:#1a2540; }
+body.dark .subject-card { background:var(--card); border-color:var(--border); }
+body.dark .subject-card h4 { color:#bfdbfe; }
+body.dark .tab-bar { background:var(--sec-bg); border-color:var(--border); }
+body.dark .tab-btn { color:var(--muted); }
+body.dark .tab-btn.active { color:#93c5fd; border-bottom-color:var(--orange); }
+body.dark .auth-card { background:var(--card); }
+body.dark .auth-input { background:#0f172a; color:var(--text); border-color:var(--border); }
+body.dark .q-nav-btn { background:#1a2540; color:var(--muted); }
+body.dark .q-nav-btn.answered { background:var(--blue); color:white; }
+body.dark .q-nav-btn.current { background:var(--orange); color:white; }
+body.dark .leaderboard-row { border-color:var(--border); }
+body.dark .leaderboard-row:hover { background:#1a2540; }
+body.dark .score-ring-wrap { --ring-bg:#1a2540; }
+body.dark h2.section-title { color:#bfdbfe; }
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Roboto',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+img{max-width:100%;height:auto;display:block;}
+
+/* HEADER */
+.dark-toggle{background:rgba(255,255,255,0.12);border:none;color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;}
+.dark-toggle:hover{background:rgba(255,255,255,0.22);}
+header{background:linear-gradient(135deg,var(--blue-dk) 0%,var(--blue) 100%);color:white;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(26,63,168,0.25);}
+.header-inner{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.logo-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-circle{width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--orange);flex-shrink:0;}
+.logo-circle img{width:100%;height:100%;object-fit:cover;}
+.brand-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;letter-spacing:0.5px;line-height:1.2;}
+.brand-sub{font-size:0.65rem;color:#bfdbfe;}
+.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;margin-left:auto;padding:6px;}
+.menu-toggle span{display:block;width:24px;height:2px;background:white;border-radius:2px;transition:0.3s;}
+nav{display:flex;flex-wrap:wrap;gap:6px 18px;margin-left:auto;align-items:center;}
+nav a{color:#dbeafe;text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s;}
+nav a:hover{color:var(--orange);}
+.nav-cta{background:var(--orange)!important;color:white!important;padding:7px 16px;border-radius:6px;font-weight:700!important;font-size:0.85rem!important;}
+@media(max-width:600px){.menu-toggle{display:flex;}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:0;background:var(--blue-dk);margin-left:0;padding:8px 0 12px;border-top:1px solid rgba(255,255,255,0.1);}nav.open{display:flex;}nav a{padding:10px 16px;width:100%;font-size:0.95rem;}nav a:hover{background:rgba(255,255,255,0.08);color:var(--orange);}.nav-cta{margin:8px 16px 0;width:calc(100% - 32px);text-align:center;border-radius:6px;}}
+
+/* HERO */
+.hero{background:linear-gradient(145deg,#0f172a 0%,#1a2540 50%,#102880 100%);padding:48px 16px 44px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(249,115,22,0.12) 0%,transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-block;background:rgba(249,115,22,0.15);color:#fdba74;border:1px solid rgba(249,115,22,0.3);padding:4px 14px;border-radius:20px;font-size:0.76rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:16px;animation:fadeUp 0.5s ease both;}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.9rem,5vw,2.9rem);font-weight:800;color:white;line-height:1.15;margin-bottom:14px;animation:fadeUp 0.6s 0.1s ease both;}
+.hero h1 span{color:var(--orange);}
+.hero p{color:#94a3b8;font-size:1rem;max-width:560px;margin:0 auto 28px;animation:fadeUp 0.6s 0.2s ease both;}
+.hero-stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.6s 0.3s ease both;}
+.hero-stat{text-align:center;}
+.hero-stat-num{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:800;color:var(--orange);}
+.hero-stat-lbl{font-size:0.72rem;color:#64748b;text-transform:uppercase;letter-spacing:0.5px;}
+
+/* CONTAINER */
+.container{max-width:1100px;margin:0 auto;padding:40px 16px;}
+@media(min-width:600px){.container{padding:56px 24px;}}
+.section-label{display:inline-block;background:rgba(249,115,22,0.1);color:var(--orange);padding:3px 12px;border-radius:20px;font-size:0.74rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+h2.section-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.4rem,4vw,1.9rem);font-weight:800;color:var(--blue-dk);margin-bottom:8px;}
+.section-divider{width:48px;height:4px;background:var(--orange);border-radius:2px;margin-bottom:28px;}
+
+/* AUTH SCREEN */
+#authScreen{display:none;position:fixed;inset:0;background:rgba(10,20,60,0.7);backdrop-filter:blur(8px);z-index:999;align-items:center;justify-content:center;padding:16px;}
+#authScreen.show{display:flex;}
+.auth-card{background:white;border-radius:20px;width:100%;max-width:440px;overflow:hidden;box-shadow:0 32px 80px rgba(10,20,60,0.35);animation:modalIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;}
+.auth-header{background:linear-gradient(135deg,var(--blue-dk),var(--blue));padding:28px 28px 22px;text-align:center;color:white;}
+.auth-header .auth-icon{font-size:2.4rem;margin-bottom:8px;}
+.auth-header h3{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:4px;}
+.auth-header p{font-size:0.8rem;color:#bfdbfe;}
+.auth-body{padding:24px 28px 28px;}
+.auth-tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:20px;}
+.auth-tab{flex:1;padding:10px;text-align:center;font-family:'Montserrat',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;border:none;background:none;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;transition:0.2s;}
+.auth-tab.active{color:var(--blue);border-bottom-color:var(--orange);}
+.auth-panel{display:none;}
+.auth-panel.active{display:block;}
+.auth-input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:0.92rem;font-family:'Roboto',sans-serif;color:var(--text);background:#fafafa;margin-bottom:12px;transition:border-color 0.2s;}
+.auth-input:focus{outline:none;border-color:var(--blue);background:white;}
+.auth-btn{width:100%;background:var(--blue);color:white;padding:13px;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.95rem;cursor:pointer;transition:0.2s;margin-bottom:10px;}
+.auth-btn:hover{background:var(--blue-dk);}
+.auth-btn:disabled{opacity:0.6;cursor:not-allowed;}
+.auth-divider{display:flex;align-items:center;gap:10px;margin:10px 0;color:var(--muted);font-size:0.78rem;}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.google-btn{width:100%;background:white;color:#374151;border:1.5px solid var(--border);padding:12px;border-radius:9px;font-family:'Roboto',sans-serif;font-weight:700;font-size:0.92rem;cursor:pointer;transition:0.2s;display:flex;align-items:center;justify-content:center;gap:10px;}
+.google-btn:hover{background:#f9fafb;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+.auth-error{font-size:0.78rem;color:#dc2626;margin-bottom:8px;display:none;}
+.auth-error.show{display:block;}
+.auth-close{position:absolute;display:none;}
+
+/* TAB BAR */
+.tab-bar{display:flex;border-bottom:2px solid var(--border);background:white;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.tab-btn{padding:14px 18px;font-family:'Montserrat',sans-serif;font-size:0.82rem;font-weight:700;cursor:pointer;border:none;background:none;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;transition:0.2s;white-space:nowrap;flex-shrink:0;}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--orange);}
+
+/* PANELS */
+.panel{background:white;border-radius:16px;border:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+
+/* SUBJECT SELECTION */
+.subject-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(min-width:600px){.subject-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:900px){.subject-grid{grid-template-columns:repeat(4,1fr);}}
+.subject-card{background:white;border-radius:12px;border:2px solid var(--border);padding:16px 12px;text-align:center;cursor:pointer;transition:all 0.2s;position:relative;}
+.subject-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.08);}
+.subject-card.selected{border-color:var(--orange);background:linear-gradient(135deg,#fff7ed,#fffbeb);}
+.subject-card.selected::after{content:'✓';position:absolute;top:8px;right:8px;background:var(--orange);color:white;width:20px;height:20px;border-radius:50%;font-size:0.65rem;font-weight:800;display:flex;align-items:center;justify-content:center;}
+.subject-icon{font-size:1.8rem;margin-bottom:8px;}
+.subject-card h4{font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:700;color:var(--blue-dk);line-height:1.3;}
+.subject-count{font-size:0.68rem;color:var(--muted);margin-top:3px;}
+
+/* QUIZ SETTINGS */
+.settings-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+@media(max-width:480px){.settings-row{grid-template-columns:1fr;}}
+.settings-group label{font-size:0.78rem;font-weight:600;color:#374151;display:block;margin-bottom:5px;}
+body.dark .settings-group label{color:#94a3b8;}
+.settings-select{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:0.9rem;font-family:'Roboto',sans-serif;color:var(--text);background:#fafafa;cursor:pointer;}
+body.dark .settings-select{background:#0f172a;color:var(--text);border-color:var(--border);}
+.settings-select:focus{outline:none;border-color:var(--blue);}
+
+/* START BTN */
+.start-btn{width:100%;background:linear-gradient(135deg,var(--blue-dk),var(--blue));color:white;padding:15px;border:none;border-radius:12px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:0.2s;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;}
+.start-btn:hover{opacity:0.92;transform:translateY(-1px);}
+.start-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+
+/* QUIZ SCREEN */
+#quizScreen{display:none;}
+#quizScreen.show{display:block;}
+.quiz-header{background:linear-gradient(135deg,var(--blue-dk),var(--blue));border-radius:16px 16px 0 0;padding:16px 20px;color:white;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.quiz-subject-tag{font-size:0.78rem;font-weight:700;background:rgba(255,255,255,0.15);padding:4px 12px;border-radius:20px;}
+.quiz-progress-text{font-size:0.82rem;color:#bfdbfe;}
+.timer-display{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;display:flex;align-items:center;gap:6px;}
+.timer-display.warning{color:#fbbf24;}
+.timer-display.danger{color:#fca5a5;animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+.quiz-progress-bar{height:4px;background:rgba(255,255,255,0.2);border-radius:0;}
+.quiz-progress-fill{height:100%;background:var(--orange);border-radius:0;transition:width 0.3s;}
+.quiz-body{padding:22px;}
+.question-num{font-size:0.72rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:8px;}
+.question-text{font-family:'Montserrat',sans-serif;font-size:0.98rem;font-weight:600;color:var(--blue-dk);line-height:1.5;margin-bottom:20px;}
+body.dark .question-text{color:#e2e8f0;}
+.options-list{display:flex;flex-direction:column;gap:10px;}
+.opt-btn{background:white;border:2px solid var(--border);border-radius:10px;padding:13px 16px;text-align:left;font-size:0.88rem;font-family:'Roboto',sans-serif;color:var(--text);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:12px;}
+.opt-btn:hover:not(:disabled){border-color:var(--blue);background:#eff6ff;}
+.opt-btn.selected{border-color:var(--blue);background:#eff6ff;}
+.opt-btn.correct{border-color:var(--correct);background:#dcfce7;color:#15803d;}
+.opt-btn.wrong{border-color:var(--wrong);background:#fee2e2;color:#dc2626;}
+.opt-btn:disabled{cursor:default;}
+.opt-letter{width:28px;height:28px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:0.75rem;font-weight:800;flex-shrink:0;transition:0.2s;}
+.opt-btn.correct .opt-letter{background:#16a34a;color:white;}
+.opt-btn.wrong .opt-letter{background:#dc2626;color:white;}
+.opt-btn.selected .opt-letter{background:var(--blue);color:white;}
+.explanation{display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:14px;margin-top:14px;font-size:0.84rem;color:#15803d;line-height:1.6;}
+.explanation.wrong-exp{background:#fff1f2;border-color:#fecdd3;color:#be123c;}
+.explanation.show{display:block;}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px;flex-wrap:wrap;gap:10px;}
+.nav-btn{padding:11px 22px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.88rem;cursor:pointer;border:none;transition:0.2s;}
+.nav-btn-prev{background:var(--light);color:var(--blue);}
+body.dark .nav-btn-prev{background:#1a2540;color:#93c5fd;}
+.nav-btn-prev:hover{background:#dbeafe;}
+.nav-btn-next{background:var(--orange);color:white;}
+.nav-btn-next:hover{background:#ea6c0a;}
+.nav-btn-submit{background:var(--green);color:white;}
+.nav-btn-submit:hover{background:#15803d;}
+.nav-btn:disabled{opacity:0.4;cursor:not-allowed;}
+
+/* QUESTION NAVIGATOR */
+.q-nav-wrap{padding:14px 22px;border-top:1px solid var(--border);}
+.q-nav-title{font-size:0.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;}
+.q-nav-grid{display:flex;flex-wrap:wrap;gap:6px;}
+.q-nav-btn{width:32px;height:32px;border-radius:6px;border:1.5px solid var(--border);background:white;font-size:0.78rem;font-weight:700;cursor:pointer;transition:0.2s;font-family:'Montserrat',sans-serif;}
+.q-nav-btn.answered{background:var(--blue);color:white;border-color:var(--blue);}
+.q-nav-btn.current{background:var(--orange);color:white;border-color:var(--orange);}
+.q-nav-btn.correct{background:#dcfce7;color:#15803d;border-color:#16a34a;}
+.q-nav-btn.wrong{background:#fee2e2;color:#dc2626;border-color:#dc2626;}
+
+/* RESULT SCREEN */
+#resultScreen{display:none;}
+#resultScreen.show{display:block;}
+.score-ring-wrap{display:flex;justify-content:center;margin:20px 0;}
+.score-ring{position:relative;width:160px;height:160px;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-ring-bg{fill:none;stroke:var(--border);stroke-width:12;}
+.score-ring-fill{fill:none;stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1);}
+.score-ring-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.score-ring-pct{font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:800;color:var(--text);}
+.score-ring-lbl{font-size:0.7rem;color:var(--muted);font-weight:600;}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0;}
+.stat-box{background:var(--light);border-radius:10px;padding:14px 8px;text-align:center;}
+body.dark .stat-box{background:#1a2540;}
+.stat-box-num{font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;}
+.stat-box-lbl{font-size:0.68rem;color:var(--muted);font-weight:500;}
+.review-list{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+.review-item{background:white;border-radius:10px;border:1px solid var(--border);padding:14px 16px;}
+body.dark .review-item{background:var(--card);}
+.review-item-q{font-size:0.85rem;font-weight:600;color:var(--blue-dk);margin-bottom:6px;line-height:1.4;}
+body.dark .review-item-q{color:#bfdbfe;}
+.review-item-ans{font-size:0.8rem;display:flex;flex-wrap:wrap;gap:6px;}
+.ans-tag{padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;}
+.ans-your{background:#fee2e2;color:#dc2626;}
+.ans-your.correct{background:#dcfce7;color:#15803d;}
+.ans-correct{background:#dcfce7;color:#15803d;}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+.result-actions button{flex:1;min-width:120px;padding:12px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.88rem;cursor:pointer;border:none;transition:0.2s;}
+.btn-retry{background:var(--blue);color:white;}
+.btn-retry:hover{background:var(--blue-dk);}
+.btn-new{background:var(--light);color:var(--blue);}
+body.dark .btn-new{background:#1a2540;color:#93c5fd;}
+.btn-new:hover{background:#dbeafe;}
+.btn-share-result{background:#25d366;color:white;}
+.btn-share-result:hover{background:#20bd5a;}
+
+/* LEADERBOARD */
+.leaderboard-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);transition:background 0.15s;}
+.leaderboard-row:last-child{border-bottom:none;}
+.leaderboard-row:hover{background:var(--light);}
+.lb-rank{font-family:'Montserrat',sans-serif;font-size:0.88rem;font-weight:800;color:var(--muted);min-width:28px;text-align:center;}
+.lb-rank.top{color:var(--orange);}
+.lb-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--orange));display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.8rem;color:white;flex-shrink:0;}
+.lb-info{flex:1;min-width:0;}
+.lb-name{font-family:'Montserrat',sans-serif;font-size:0.85rem;font-weight:700;color:var(--blue-dk);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+body.dark .lb-name{color:#bfdbfe;}
+.lb-subject{font-size:0.72rem;color:var(--muted);}
+.lb-score{font-family:'Montserrat',sans-serif;font-size:0.92rem;font-weight:800;color:var(--orange);}
+.lb-date{font-size:0.68rem;color:var(--muted);}
+.lb-loading{padding:32px;text-align:center;color:var(--muted);font-size:0.88rem;}
+
+/* PROFILE */
+.profile-header{background:linear-gradient(135deg,var(--blue-dk),var(--blue));border-radius:14px;padding:22px;color:white;display:flex;gap:16px;align-items:center;margin-bottom:16px;}
+.profile-avatar{width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,0.15);border:3px solid var(--orange);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.2rem;color:white;flex-shrink:0;overflow:hidden;}
+.profile-avatar img{width:100%;height:100%;object-fit:cover;}
+.profile-name{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;}
+.profile-email{font-size:0.78rem;color:#bfdbfe;}
+.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.p-stat{background:white;border-radius:10px;border:1px solid var(--border);padding:14px 10px;text-align:center;}
+body.dark .p-stat{background:var(--card);}
+.p-stat-num{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:var(--blue);}
+.p-stat-lbl{font-size:0.68rem;color:var(--muted);}
+.signout-btn{width:100%;background:#fee2e2;color:#dc2626;border:none;padding:12px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.88rem;cursor:pointer;transition:0.2s;}
+.signout-btn:hover{background:#fecaca;}
+
+/* UTILS */
+.btn{background:var(--orange);color:white;padding:11px 22px;border-radius:8px;font-weight:700;text-decoration:none;display:inline-block;transition:background 0.2s,transform 0.15s;border:none;cursor:pointer;font-family:'Roboto',sans-serif;font-size:0.95rem;}
+.btn:hover{background:#ea6c0a;transform:translateY(-1px);}
+#toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;}
+.toast{background:var(--blue-dk);color:white;padding:12px 20px;border-radius:8px;margin-top:8px;font-weight:600;font-size:0.9rem;box-shadow:0 4px 12px rgba(0,0,0,0.2);opacity:0;transform:translateY(12px);transition:0.35s ease;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateY(0);}
+footer{background:var(--blue-dk);color:#bfdbfe;text-align:center;padding:28px 24px;font-size:0.88rem;}
+footer a{color:var(--orange);text-decoration:none;font-weight:600;}
+.footer-inner{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px 16px 22px;}
+.footer-brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:white;}
+.footer-tagline{font-size:0.78rem;color:#94a3b8;}
+.footer-links{display:flex;gap:8px 16px;flex-wrap:wrap;justify-content:center;}
+.footer-links a{color:#94a3b8;text-decoration:none;font-size:0.78rem;transition:color 0.2s;}
+.footer-links a:hover{color:var(--orange);}
+.footer-copy{font-size:0.75rem;color:#64748b;text-align:center;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);width:100%;}
+#whatsapp-float{position:fixed;width:56px;height:56px;bottom:28px;right:24px;background:#25d366;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;z-index:150;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.45);transition:transform 0.2s;}
+#whatsapp-float:hover{transform:scale(1.1);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes modalIn{from{opacity:0;transform:scale(0.88) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+
+/* LOGIN PROMPT BANNER */
+.login-banner{background:linear-gradient(135deg,#fffbeb,#fff7ed);border:1.5px solid #fed7aa;border-radius:12px;padding:16px 18px;display:flex;gap:12px;align-items:center;margin-bottom:20px;}
+.login-banner p{font-size:0.84rem;color:#92400e;line-height:1.5;flex:1;}
+.login-banner button{background:var(--orange);color:white;border:none;padding:9px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;white-space:nowrap;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <div class="logo-circle"><img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Big Quams Media"></div>
+      <div>
+        <div class="brand-text">BIG QUAMS MEDIA®</div>
+        <div class="brand-sub">Simplifying Campus Life</div>
+      </div>
+    </div>
+    <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">🌙</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="elibrary.html">eLibrary</a>
+      <a href="newsroom.html">News</a>
+      <a href="results.html">Results</a>
+      <a href="postutme-calculator.html">Post UTME</a>
+      <a href="cbt.html" style="color:var(--orange);">CBT Practice</a>
+      <a href="index.html#contact" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🎯 JAMB CBT Practice</div>
+  <h1>Practice Like It's<br><span>Exam Day</span></h1>
+  <p>Timed JAMB-style mock exams across all UTME subjects. Track your progress, review answers, and compete on the leaderboard.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num" id="heroQCount">—</div><div class="hero-stat-lbl">Questions</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">8</div><div class="hero-stat-lbl">Subjects</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">Free</div><div class="hero-stat-lbl">Always</div></div>
+  </div>
+</section>
+
+<!-- AUTH MODAL -->
+<div id="authScreen">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="auth-icon">🎓</div>
+      <h3>Join the Practice Arena</h3>
+      <p>Sign in to save your scores and appear on the leaderboard</p>
+    </div>
+    <div class="auth-body">
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
+        <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="auth-panel active" id="authLogin">
+        <div class="auth-error" id="loginError"></div>
+        <input type="email" class="auth-input" id="loginEmail" placeholder="Email address">
+        <input type="password" class="auth-input" id="loginPassword" placeholder="Password">
+        <button class="auth-btn" id="loginBtn" onclick="signInEmail()">Sign In</button>
+        <div class="auth-divider">or</div>
+        <button class="google-btn" onclick="signInGoogle()">
+          <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z"/><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z"/><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 010-3.04V5.41H1.83a8 8 0 000 7.18l2.67-2.07z"/><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 001.83 5.4L4.5 7.49a4.77 4.77 0 014.48-3.3z"/></svg>
+          Continue with Google
+        </button>
+        <p style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:10px;cursor:pointer;" onclick="closeAuth()">Practice without signing in →</p>
+      </div>
+
+      <!-- REGISTER -->
+      <div class="auth-panel" id="authRegister">
+        <div class="auth-error" id="registerError"></div>
+        <input type="text" class="auth-input" id="regName" placeholder="Your full name">
+        <input type="email" class="auth-input" id="regEmail" placeholder="Email address">
+        <input type="password" class="auth-input" id="regPassword" placeholder="Password (min 6 characters)">
+        <button class="auth-btn" id="registerBtn" onclick="registerEmail()">Create Account</button>
+        <div class="auth-divider">or</div>
+        <button class="google-btn" onclick="signInGoogle()">
+          <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z"/><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z"/><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 010-3.04V5.41H1.83a8 8 0 000 7.18l2.67-2.07z"/><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 001.83 5.4L4.5 7.49a4.77 4.77 0 014.48-3.3z"/></svg>
+          Continue with Google
+        </button>
+        <p style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:10px;cursor:pointer;" onclick="closeAuth()">Practice without signing in →</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section style="background:var(--bg);">
+  <div class="container">
+
+    <!-- LOGIN PROMPT FOR GUESTS -->
+    <div class="login-banner" id="guestBanner" style="display:none;">
+      <span style="font-size:1.4rem;">🔒</span>
+      <p>Sign in to save your scores to the leaderboard and track your progress over time.</p>
+      <button onclick="openAuth()">Sign In</button>
+    </div>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar" style="border-radius:16px 16px 0 0;margin-bottom:0;">
+      <button class="tab-btn active" onclick="switchTab('practice')">📝 Practice</button>
+      <button class="tab-btn" onclick="switchTab('leaderboard')">🏆 Leaderboard</button>
+      <button class="tab-btn" onclick="switchTab('profile')">👤 My Profile</button>
+    </div>
+
+    <!-- PRACTICE TAB -->
+    <div id="tab-practice" class="panel" style="border-radius:0 0 16px 16px;padding:24px;">
+
+      <!-- SUBJECT SELECTION (shown when not in quiz) -->
+      <div id="setupScreen">
+        <div class="section-label" style="margin-bottom:8px;">Choose Your Subject</div>
+        <h2 class="section-title" style="font-size:1.3rem;margin-bottom:6px;">What are you practicing today?</h2>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:20px;">Select a subject to begin. New questions are added regularly by Big Quams Media.</p>
+
+        <div class="subject-grid" id="subjectGrid">
+          <!-- Rendered by JS -->
+        </div>
+
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border);">
+          <div class="settings-row">
+            <div class="settings-group">
+              <label>Number of Questions</label>
+              <select class="settings-select" id="qCount">
+                <option value="10">10 Questions</option>
+                <option value="20" selected>20 Questions</option>
+                <option value="40">40 Questions</option>
+                <option value="60">60 Questions (Full Mock)</option>
+              </select>
+            </div>
+            <div class="settings-group">
+              <label>Time per Question</label>
+              <select class="settings-select" id="timePerQ">
+                <option value="0">No Time Limit</option>
+                <option value="60" selected>60 seconds</option>
+                <option value="90">90 seconds</option>
+                <option value="120">2 minutes</option>
+              </select>
+            </div>
+          </div>
+          <button class="start-btn" id="startBtn" onclick="startQuiz()" disabled>
+            🚀 Start Practice Session
+          </button>
+          <p id="startHint" style="font-size:0.76rem;color:var(--muted);text-align:center;margin-top:8px;">Select a subject above to begin</p>
+        </div>
+      </div>
+
+      <!-- QUIZ SCREEN (shown during quiz) -->
+      <div id="quizScreen">
+        <div class="quiz-header">
+          <span class="quiz-subject-tag" id="quizSubjectTag">—</span>
+          <span class="quiz-progress-text" id="quizProgressText">Q 1 / 20</span>
+          <span class="timer-display" id="timerDisplay">⏱ —</span>
+        </div>
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill" style="width:0%"></div></div>
+        <div class="quiz-body">
+          <div class="question-num" id="questionNum">Question 1</div>
+          <div class="question-text" id="questionText">Loading question…</div>
+          <div class="options-list" id="optionsList"></div>
+          <div class="explanation" id="explanation"></div>
+          <div class="quiz-nav">
+            <button class="nav-btn nav-btn-prev" id="prevBtn" onclick="navigate(-1)">← Previous</button>
+            <button class="nav-btn nav-btn-next" id="nextBtn" onclick="navigate(1)">Next →</button>
+            <button class="nav-btn nav-btn-submit" id="submitBtn" onclick="submitQuiz()" style="display:none;">Submit Quiz ✓</button>
+          </div>
+        </div>
+        <div class="q-nav-wrap">
+          <div class="q-nav-title">Question Navigator</div>
+          <div class="q-nav-grid" id="qNavGrid"></div>
+        </div>
+      </div>
+
+      <!-- RESULT SCREEN (shown after quiz) -->
+      <div id="resultScreen">
+        <div style="text-align:center;padding:20px 0 10px;">
+          <div style="font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:var(--blue-dk);" id="resultTitle">Quiz Complete!</div>
+          <p style="font-size:0.82rem;color:var(--muted);margin-top:4px;" id="resultSubject">—</p>
+        </div>
+        <div class="score-ring-wrap">
+          <div class="score-ring">
+            <svg width="160" height="160" viewBox="0 0 160 160">
+              <circle class="score-ring-bg" cx="80" cy="80" r="68"/>
+              <circle class="score-ring-fill" id="scoreRingFill" cx="80" cy="80" r="68" stroke-dasharray="427" stroke-dashoffset="427"/>
+            </svg>
+            <div class="score-ring-text">
+              <div class="score-ring-pct" id="scorePct">0%</div>
+              <div class="score-ring-lbl">Score</div>
+            </div>
+          </div>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-box"><div class="stat-box-num" style="color:var(--green);" id="statCorrect">0</div><div class="stat-box-lbl">Correct</div></div>
+          <div class="stat-box"><div class="stat-box-num" style="color:#dc2626;" id="statWrong">0</div><div class="stat-box-lbl">Wrong</div></div>
+          <div class="stat-box"><div class="stat-box-num" style="color:var(--muted);" id="statSkipped">0</div><div class="stat-box-lbl">Skipped</div></div>
+        </div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:0.82rem;font-weight:700;color:var(--blue-dk);margin:16px 0 8px;">📋 Review Answers</div>
+        <div class="review-list" id="reviewList"></div>
+        <div class="result-actions">
+          <button class="nav-btn btn-retry" onclick="retryQuiz()">🔄 Retry</button>
+          <button class="nav-btn btn-new" onclick="newQuiz()">📝 New Quiz</button>
+          <button class="nav-btn btn-share-result" onclick="shareScore()">📤 Share Score</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- LEADERBOARD TAB -->
+    <div id="tab-leaderboard" class="panel" style="border-radius:0 0 16px 16px;display:none;">
+      <div style="padding:20px 20px 0;">
+        <div class="section-label">Hall of Fame</div>
+        <h2 class="section-title" style="font-size:1.3rem;margin-bottom:4px;">Top Scorers</h2>
+        <p style="font-size:0.8rem;color:var(--muted);margin-bottom:14px;">Sign in and score 70%+ to appear here.</p>
+        <select class="settings-select" id="lbSubjectFilter" onchange="loadLeaderboard()" style="max-width:280px;margin-bottom:16px;">
+          <option value="all">All Subjects</option>
+          <option value="english">Use of English</option>
+          <option value="maths">Mathematics</option>
+          <option value="biology">Biology</option>
+          <option value="chemistry">Chemistry</option>
+          <option value="physics">Physics</option>
+          <option value="commerce">Commerce</option>
+          <option value="economics">Economics</option>
+          <option value="government">Government</option>
+        </select>
+      </div>
+      <div id="leaderboardList"><div class="lb-loading">⏳ Loading leaderboard…</div></div>
+    </div>
+
+    <!-- PROFILE TAB -->
+    <div id="tab-profile" class="panel" style="border-radius:0 0 16px 16px;padding:20px;display:none;">
+      <div id="profileGuest" style="text-align:center;padding:32px 16px;">
+        <div style="font-size:3rem;margin-bottom:12px;">👤</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--blue-dk);margin-bottom:6px;">You're not signed in</div>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:16px;">Sign in to save your quiz history and track your improvement over time.</p>
+        <button class="btn" onclick="openAuth()">Sign In / Register</button>
+      </div>
+      <div id="profileUser" style="display:none;">
+        <div class="profile-header">
+          <div class="profile-avatar" id="profileAvatar">?</div>
+          <div>
+            <div class="profile-name" id="profileName">—</div>
+            <div class="profile-email" id="profileEmail">—</div>
+          </div>
+        </div>
+        <div class="profile-stats">
+          <div class="p-stat"><div class="p-stat-num" id="pStatTotal">0</div><div class="p-stat-lbl">Quizzes</div></div>
+          <div class="p-stat"><div class="p-stat-num" id="pStatAvg">0%</div><div class="p-stat-lbl">Avg Score</div></div>
+          <div class="p-stat"><div class="p-stat-num" id="pStatBest">0%</div><div class="p-stat-lbl">Best Score</div></div>
+        </div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:0.82rem;font-weight:700;color:var(--blue-dk);margin-bottom:10px;">Recent Attempts</div>
+        <div id="recentAttempts" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;"></div>
+        <button class="signout-btn" onclick="signOut()">Sign Out</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-brand">BIG QUAMS MEDIA®</div><div class="footer-tagline">Simplifying Campus Life for Every Nigerian Student</div></div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="newsroom.html">News</a><a href="elibrary.html">eLibrary</a>
+      <a href="results.html">Results</a><a href="postutme-calculator.html">Post UTME</a><a href="cbt.html">CBT Practice</a>
+    </div>
+    <div class="footer-copy">&copy; 2025 Big Quams Media®. All rights reserved. | Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float" title="Chat on WhatsApp">💬</a>
+<div id="toast-container"></div>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
+         GoogleAuthProvider, signInWithPopup, signOut as fbSignOut,
+         onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy,
+         limit, where, doc, getDoc, setDoc, updateDoc, increment,
+         serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ",
+  authDomain: "big-quams-media.firebaseapp.com",
+  projectId: "big-quams-media",
+  storageBucket: "big-quams-media.firebasestorage.app",
+  messagingSenderId: "383186323859",
+  appId: "1:383186323859:web:826d6b9977cfa947730066"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const googleProvider = new GoogleAuthProvider();
+
+// ── QUESTION BANK (built-in fallback + Firestore) ──
+const builtInQuestions = {
+  english: [
+    { q:"In the sentence 'The committee have reached their decision', the subject-verb agreement is:", opts:["Correct — committee is plural","Wrong — should be 'has reached'","Wrong — should be 'had reached'","Correct — 'have' is always used with committee"], ans:0, exp:"'Committee' as a collective noun can take a plural verb when members act individually." },
+    { q:"Choose the word that is closest in meaning to 'EPHEMERAL':", opts:["Permanent","Fleeting","Ancient","Significant"], ans:1, exp:"Ephemeral means lasting for only a short time — synonymous with 'fleeting'." },
+    { q:"Identify the figure of speech in: 'The wind whispered through the trees':", opts:["Simile","Metaphor","Personification","Hyperbole"], ans:2, exp:"Personification gives the wind a human quality — the ability to whisper." },
+    { q:"Select the grammatically correct sentence:", opts:["Neither John nor his friends was present","Neither John nor his friends were present","Neither John nor his friends is present","Neither John nor his friends are present"], ans:1, exp:"When using 'neither...nor', the verb agrees with the subject closest to it — 'friends' is plural, so 'were'." },
+    { q:"The word 'LOQUACIOUS' means:", opts:["Silent","Talkative","Aggressive","Intelligent"], ans:1, exp:"Loquacious means tending to talk a great deal." },
+    { q:"Choose the correct indirect speech: She said, 'I am going to school tomorrow'", opts:["She said she is going to school the next day","She said she was going to school the following day","She said she will go to school tomorrow","She said she would go to school tomorrow"], ans:1, exp:"In indirect speech, 'am going' becomes 'was going' and 'tomorrow' becomes 'the following day'." },
+    { q:"The plural of 'phenomenon' is:", opts:["Phenomenons","Phenomena","Phenomenas","Phenomenes"], ans:1, exp:"Phenomenon has an irregular plural — phenomena (from Greek)." },
+    { q:"Which of these sentences uses the apostrophe correctly?", opts:["The dog wagged it's tail","The dog wagged its' tail","The dog wagged its tail","The dog wagged it's' tail"], ans:2, exp:"'Its' as a possessive pronoun does not take an apostrophe. 'It's' means 'it is'." },
+    { q:"Select the option that best explains 'TO BURN ONE'S BOATS':", opts:["To set fire to ships","To commit oneself irrevocably","To travel by sea","To destroy property"], ans:1, exp:"'Burn one's boats' is an idiom meaning to commit to a course of action with no possibility of turning back." },
+    { q:"Identify the passive voice: 'The teacher taught the students'", opts:["The students were taught by the teacher","The students taught the teacher","The teacher was teaching the students","Teaching was done by the teacher to students"], ans:0, exp:"Passive voice: subject receives the action. 'The students were taught by the teacher' is correct." },
+    { q:"Which word correctly completes: 'The jury ___ unable to reach a verdict'?", opts:["was","were","is","are"], ans:0, exp:"In American/Nigerian English, collective nouns like 'jury' take singular verbs — 'was'." },
+    { q:"Choose the antonym of 'BENEVOLENT':", opts:["Kind","Generous","Malevolent","Charitable"], ans:2, exp:"Benevolent means kind and generous; its antonym is malevolent — wishing harm." },
+    { q:"'He ran as fast as a cheetah' is an example of:", opts:["Metaphor","Simile","Personification","Onomatopoeia"], ans:1, exp:"A simile makes a direct comparison using 'as' or 'like'." },
+    { q:"Which sentence is in the future perfect tense?", opts:["She will go to the market","She will have gone to the market","She goes to the market","She went to the market"], ans:1, exp:"Future perfect tense: will have + past participle." },
+    { q:"The word 'AMELIORATE' means:", opts:["To make worse","To improve","To destroy","To confuse"], ans:1, exp:"Ameliorate means to make something bad better; to improve." },
+  ],
+  maths: [
+    { q:"If 2x + 3 = 11, what is the value of x?", opts:["3","4","5","6"], ans:1, exp:"2x = 11 - 3 = 8, so x = 4." },
+    { q:"Find the simple interest on ₦5,000 at 4% per annum for 3 years.", opts:["₦400","₦500","₦600","₦700"], ans:2, exp:"SI = PRT/100 = 5000 × 4 × 3 / 100 = ₦600." },
+    { q:"The HCF of 18, 24 and 36 is:", opts:["6","9","12","18"], ans:0, exp:"Factors of 18: 1,2,3,6,9,18. Factors of 24: 1,2,3,4,6,8,12,24. Factors of 36: 1,2,3,4,6,9,12,18,36. HCF = 6." },
+    { q:"Simplify: (3² × 3³) ÷ 3⁴", opts:["3","9","27","81"], ans:1, exp:"3^(2+3-4) = 3^1... wait: 3^5/3^4 = 3^1 = 3. Recalc: 3² × 3³ = 3^5 = 243. 243 ÷ 3⁴ = 243/81 = 3.", ans:0, exp:"3^(2+3) = 3^5; 3^5 ÷ 3^4 = 3^1 = 3." },
+    { q:"What is 15% of 200?", opts:["25","30","35","40"], ans:1, exp:"15% × 200 = (15/100) × 200 = 30." },
+    { q:"If the area of a square is 64cm², what is its perimeter?", opts:["16cm","24cm","32cm","36cm"], ans:2, exp:"Side = √64 = 8cm. Perimeter = 4 × 8 = 32cm." },
+    { q:"Solve: 3(x - 2) = 2(x + 1)", opts:["x = 4","x = 6","x = 7","x = 8"], ans:3, exp:"3x - 6 = 2x + 2 → x = 8." },
+    { q:"The mean of 4, 7, 9, 12, 13 is:", opts:["8","9","10","11"], ans:1, exp:"Sum = 45. Mean = 45/5 = 9." },
+    { q:"Convert 110₂ to base 10:", opts:["5","6","7","8"], ans:1, exp:"1×4 + 1×2 + 0×1 = 4+2 = 6." },
+    { q:"What is the gradient of the line y = 3x - 5?", opts:["−5","3","5","−3"], ans:1, exp:"In y = mx + c, the gradient (m) = 3." },
+    { q:"A car travels 240km in 3 hours. What is its average speed?", opts:["60km/h","70km/h","80km/h","90km/h"], ans:2, exp:"Speed = Distance/Time = 240/3 = 80km/h." },
+    { q:"Factorize: x² - 9", opts:["(x-3)(x-3)","(x+3)(x+3)","(x-3)(x+3)","(x-9)(x+1)"], ans:2, exp:"Difference of squares: a²-b² = (a-b)(a+b). x²-9 = (x-3)(x+3)." },
+    { q:"If P = {2,3,5,7} and Q = {1,3,5,9}, find P∩Q:", opts:["{3,5}","{1,2,3,5,7,9}","{2,7}","{1,9}"], ans:0, exp:"Intersection contains elements common to both sets: 3 and 5." },
+    { q:"What is the value of log₁₀(1000)?", opts:["2","3","4","10"], ans:1, exp:"log₁₀(1000) = log₁₀(10³) = 3." },
+    { q:"A bag contains 4 red and 6 blue balls. If one ball is picked at random, what is the probability it is red?", opts:["2/5","3/5","1/4","1/10"], ans:0, exp:"P(red) = 4/(4+6) = 4/10 = 2/5." },
+  ],
+  biology: [
+    { q:"Which organelle is known as the 'powerhouse of the cell'?", opts:["Nucleus","Ribosome","Mitochondria","Golgi apparatus"], ans:2, exp:"Mitochondria produce ATP through cellular respiration, providing energy for the cell." },
+    { q:"Osmosis is defined as:", opts:["Movement of solute from high to low concentration","Movement of water from high to low water potential across a semi-permeable membrane","Active transport of molecules","Diffusion of gases"], ans:1, exp:"Osmosis is the passive movement of water through a semi-permeable membrane from a region of high water potential to low water potential." },
+    { q:"Which blood group is the universal donor?", opts:["A","B","AB","O"], ans:3, exp:"Blood group O negative is the universal donor as it lacks A, B, and Rh antigens." },
+    { q:"The process by which plants make food is called:", opts:["Respiration","Digestion","Photosynthesis","Transpiration"], ans:2, exp:"Photosynthesis uses sunlight, CO₂ and water to produce glucose and oxygen." },
+    { q:"DNA stands for:", opts:["Deoxyribonucleic Acid","Diribonucleic Acid","Deoxyribonitrogen Acid","Diphenylnucleic Acid"], ans:0, exp:"DNA stands for Deoxyribonucleic Acid — the molecule that carries genetic information." },
+    { q:"Which part of the brain controls balance and coordination?", opts:["Cerebrum","Cerebellum","Medulla oblongata","Hypothalamus"], ans:1, exp:"The cerebellum coordinates voluntary movements and maintains balance." },
+    { q:"The process of converting glucose to pyruvate is called:", opts:["Krebs cycle","Glycolysis","Oxidative phosphorylation","Fermentation"], ans:1, exp:"Glycolysis is the first step of cellular respiration, breaking down glucose into pyruvate." },
+    { q:"Which hormone regulates blood sugar levels?", opts:["Adrenaline","Thyroxine","Insulin","Oestrogen"], ans:2, exp:"Insulin, produced by the pancreas, lowers blood glucose by facilitating its uptake into cells." },
+    { q:"The nitrogen base NOT found in DNA is:", opts:["Adenine","Guanine","Thymine","Uracil"], ans:3, exp:"Uracil is found in RNA, not DNA. DNA contains Adenine, Guanine, Cytosine and Thymine." },
+    { q:"Which type of tissue connects muscle to bone?", opts:["Ligament","Tendon","Cartilage","Areolar tissue"], ans:1, exp:"Tendons are tough bands of fibrous connective tissue that connect muscles to bones." },
+    { q:"Meiosis results in:", opts:["2 diploid cells","4 haploid cells","2 haploid cells","4 diploid cells"], ans:1, exp:"Meiosis produces 4 genetically distinct haploid daughter cells (gametes)." },
+    { q:"The outer layer of the skin is the:", opts:["Dermis","Epidermis","Subcutaneous layer","Hypodermis"], ans:1, exp:"The epidermis is the outermost layer of the skin, providing a waterproof barrier." },
+    { q:"Which gas is released during photosynthesis?", opts:["Carbon dioxide","Nitrogen","Oxygen","Hydrogen"], ans:2, exp:"Photosynthesis releases oxygen as a by-product when water molecules are split." },
+    { q:"The functional unit of the kidney is called:", opts:["Alveolus","Nephron","Neuron","Villus"], ans:1, exp:"The nephron is the microscopic structural and functional unit of the kidney." },
+    { q:"Which vitamin is synthesized by the skin upon exposure to sunlight?", opts:["Vitamin A","Vitamin B","Vitamin C","Vitamin D"], ans:3, exp:"UV rays from sunlight trigger the synthesis of Vitamin D in the skin." },
+  ],
+  chemistry: [
+    { q:"What is the atomic number of Carbon?", opts:["6","8","12","14"], ans:0, exp:"Carbon has 6 protons, giving it an atomic number of 6." },
+    { q:"Which of the following is an alkali metal?", opts:["Calcium","Magnesium","Sodium","Aluminium"], ans:2, exp:"Sodium (Na) is in Group 1 — the alkali metals." },
+    { q:"The chemical formula of water is:", opts:["H₂O","HO₂","H₂O₂","OH"], ans:0, exp:"Water consists of 2 hydrogen atoms bonded to 1 oxygen atom: H₂O." },
+    { q:"What type of bond is present in NaCl?", opts:["Covalent","Ionic","Metallic","Hydrogen"], ans:1, exp:"NaCl forms an ionic bond — Na donates an electron to Cl." },
+    { q:"The pH of a neutral solution is:", opts:["0","7","14","1"], ans:1, exp:"A neutral solution has a pH of exactly 7 at 25°C." },
+    { q:"Avogadro's number is approximately:", opts:["6.02 × 10²³","3.0 × 10⁸","6.67 × 10⁻¹¹","1.38 × 10⁻²³"], ans:0, exp:"Avogadro's number (6.02 × 10²³) is the number of particles in one mole of a substance." },
+    { q:"Which gas is produced when zinc reacts with dilute HCl?", opts:["Oxygen","Carbon dioxide","Hydrogen","Chlorine"], ans:2, exp:"Zn + 2HCl → ZnCl₂ + H₂↑. Hydrogen gas is produced." },
+    { q:"The process of converting a liquid to gas at its boiling point is called:", opts:["Evaporation","Condensation","Vaporisation","Sublimation"], ans:2, exp:"Vaporisation (or boiling) is the phase transition from liquid to gas at the boiling point." },
+    { q:"An atom with 17 protons and 18 neutrons has a mass number of:", opts:["17","18","35","36"], ans:2, exp:"Mass number = protons + neutrons = 17 + 18 = 35. This is Chlorine-35." },
+    { q:"Which of the following is a reducing agent in a reaction?", opts:["The substance that gains electrons","The substance that loses electrons","The substance that gains protons","The oxidised substance"], ans:1, exp:"A reducing agent donates electrons to another substance (and is itself oxidised)." },
+    { q:"The IUPAC name of CH₃CH₂OH is:", opts:["Methanol","Propanol","Ethanol","Butanol"], ans:2, exp:"CH₃CH₂OH has 2 carbons with an -OH group: ethanol." },
+    { q:"What is the oxidation state of oxygen in H₂O?", opts:["−2","−1","0","+2"], ans:0, exp:"Oxygen almost always has an oxidation state of −2 in compounds." },
+    { q:"Which of these is a noble gas?", opts:["Nitrogen","Fluorine","Argon","Chlorine"], ans:2, exp:"Argon (Ar) is in Group 18 — the noble gases with full outer electron shells." },
+    { q:"The rate of a chemical reaction is NOT affected by:", opts:["Temperature","Concentration","Catalyst","Colour of reactants"], ans:3, exp:"Colour of reactants does not affect reaction rate. Temperature, concentration, and catalysts do." },
+    { q:"Rusting of iron is an example of:", opts:["Physical change","Reduction","Oxidation","Neutralisation"], ans:2, exp:"Rusting is an oxidation process: iron reacts with oxygen and water to form iron oxide." },
+  ],
+  physics: [
+    { q:"The SI unit of force is:", opts:["Joule","Pascal","Newton","Watt"], ans:2, exp:"The Newton (N) is the SI unit of force, defined as kg·m/s²." },
+    { q:"Which of Newton's laws states that every action has an equal and opposite reaction?", opts:["First law","Second law","Third law","Law of gravitation"], ans:2, exp:"Newton's Third Law: For every action, there is an equal and opposite reaction." },
+    { q:"The speed of light in a vacuum is approximately:", opts:["3 × 10⁶ m/s","3 × 10⁸ m/s","3 × 10¹⁰ m/s","3 × 10⁴ m/s"], ans:1, exp:"The speed of light in a vacuum (c) ≈ 3 × 10⁸ m/s." },
+    { q:"What is the formula for kinetic energy?", opts:["KE = mgh","KE = ½mv²","KE = mv","KE = Fd"], ans:1, exp:"Kinetic energy = ½ × mass × velocity². KE = ½mv²." },
+    { q:"Which type of mirror is used in car rear-view mirrors?", opts:["Concave","Convex","Plane","Parabolic"], ans:1, exp:"Convex mirrors give a wider field of view, making them ideal for rear-view mirrors." },
+    { q:"Ohm's Law states that:", opts:["V = IR","P = IV","E = mc²","F = ma"], ans:0, exp:"Ohm's Law: Voltage = Current × Resistance (V = IR)." },
+    { q:"The unit of electrical resistance is:", opts:["Ampere","Volt","Ohm","Watt"], ans:2, exp:"The Ohm (Ω) is the SI unit of electrical resistance." },
+    { q:"Which electromagnetic wave has the shortest wavelength?", opts:["Radio waves","Microwaves","X-rays","Gamma rays"], ans:3, exp:"Gamma rays have the shortest wavelength (and highest frequency/energy) in the EM spectrum." },
+    { q:"A body is in equilibrium when:", opts:["Its velocity is zero","The net force on it is zero","It is at rest","Its acceleration is constant"], ans:1, exp:"A body is in equilibrium when the net force (and net torque) acting on it is zero." },
+    { q:"The frequency of mains electricity supply in Nigeria is:", opts:["50 Hz","60 Hz","100 Hz","25 Hz"], ans:0, exp:"Nigeria's national grid operates at 50 Hz (same as UK and most of Europe)." },
+    { q:"What does a transformer do?", opts:["Converts AC to DC","Changes the frequency of AC","Steps voltage up or down","Stores electrical energy"], ans:2, exp:"Transformers use electromagnetic induction to step AC voltage up or down." },
+    { q:"The phenomenon where light bends around corners is:", opts:["Reflection","Refraction","Diffraction","Dispersion"], ans:2, exp:"Diffraction is the bending of waves around obstacles or through openings." },
+    { q:"Pressure = ?", opts:["Force × Area","Force / Area","Mass × Gravity","Force × Distance"], ans:1, exp:"Pressure = Force divided by Area (P = F/A). Unit is Pascal (Pa)." },
+    { q:"Which of these is NOT a scalar quantity?", opts:["Mass","Speed","Temperature","Velocity"], ans:3, exp:"Velocity has both magnitude AND direction — making it a vector quantity, not scalar." },
+    { q:"The half-life of a radioactive substance is:", opts:["The time for all atoms to decay","The time for half the atoms to decay","The energy released per decay","The number of decays per second"], ans:1, exp:"Half-life is the time required for half the radioactive nuclei in a sample to decay." },
+  ],
+  commerce: [
+    { q:"Which of the following is NOT a function of money?", opts:["Medium of exchange","Store of value","Unit of account","Source of production"], ans:3, exp:"The four functions of money are: medium of exchange, store of value, unit of account, and standard of deferred payment." },
+    { q:"A wholesaler sells goods to:", opts:["Consumers","Retailers","Manufacturers","Exporters"], ans:1, exp:"Wholesalers buy in bulk from manufacturers and sell in smaller quantities to retailers." },
+    { q:"Which document is sent by the seller to inform the buyer that goods have been dispatched?", opts:["Invoice","Advice note","Debit note","Statement of account"], ans:1, exp:"An advice note informs the buyer that goods have been sent and what to expect." },
+    { q:"The term 'caveat emptor' means:", opts:["Let the seller beware","Let the buyer beware","Price agreed","Goods returned"], ans:1, exp:"Caveat emptor is a Latin term meaning 'let the buyer beware' — buyer buys at own risk." },
+    { q:"An indent is a document used in:", opts:["Home trade","Retail trade","Foreign trade","Wholesale trade"], ans:2, exp:"An indent is an order placed by an importer with an agent for goods from a foreign country." },
+    { q:"Which of the following is a negotiable instrument?", opts:["Invoice","Bill of lading","Cheque","Insurance policy"], ans:2, exp:"A cheque is a negotiable instrument that can be transferred from one person to another." },
+    { q:"FOB means:", opts:["Freight on Board","Free on Board","Fixed on Board","Full on Board"], ans:1, exp:"FOB (Free on Board) means the seller pays all costs until goods are loaded onto the ship." },
+    { q:"Which type of business has unlimited liability?", opts:["Public limited company","Private limited company","Partnership","Cooperative"], ans:2, exp:"In a partnership, partners have unlimited personal liability for the firm's debts." },
+    { q:"Entrepôt trade involves:", opts:["Producing goods for export","Re-exporting imported goods","Importing for home use","Retail selling"], ans:1, exp:"Entrepôt trade is the import of goods for re-export (usually after processing or repackaging)." },
+    { q:"A bonded warehouse is used for storing:", opts:["Perishable goods","Goods on which duty has not been paid","Manufactured goods","Seasonal goods"], ans:1, exp:"Bonded warehouses store imported goods on which customs duty has not yet been paid." },
+    { q:"Which insurance covers ships and their cargo?", opts:["Fire insurance","Marine insurance","Motor insurance","Life insurance"], ans:1, exp:"Marine insurance covers losses associated with shipping, including damage to ships and cargo." },
+    { q:"The process of insuring the same risk with more than one insurer is called:", opts:["Reinsurance","Double insurance","Subrogation","Contribution"], ans:1, exp:"Double insurance is when the same risk is insured with more than one insurer." },
+    { q:"A sole trader is different from other business organizations because:", opts:["It has many shareholders","The owner has limited liability","The owner provides all capital and bears all risks","It has a board of directors"], ans:2, exp:"A sole trader is owned and run by one person who provides all capital and bears unlimited risk." },
+    { q:"Which of the following is a direct tax?", opts:["VAT","Customs duty","Income tax","Excise duty"], ans:2, exp:"Income tax is levied directly on individuals' earnings — a direct tax." },
+    { q:"The concept of 'division of labour' means:", opts:["Workers being paid equally","Sharing profits among workers","Splitting production into specialized tasks","Employing workers part-time"], ans:2, exp:"Division of labour splits production into specialized tasks, increasing efficiency." },
+  ],
+  economics: [
+    { q:"Economics is defined as:", opts:["The study of money and banking","The science of unlimited wants and scarce resources","The study of government spending","The science of production only"], ans:1, exp:"Economics studies how individuals, firms, and governments allocate scarce resources to satisfy unlimited wants." },
+    { q:"The law of diminishing returns states that:", opts:["Adding more units of a variable factor to fixed factors eventually reduces marginal output","Total output always increases","Fixed factors always cause losses","All firms make losses eventually"], ans:0, exp:"After a point, adding more variable inputs (e.g. labour) to fixed inputs reduces marginal productivity." },
+    { q:"Which of the following is an example of a free good?", opts:["Bread","Air","Water","Books"], ans:1, exp:"A free good is one that is unlimited in supply and has no opportunity cost — like air." },
+    { q:"Price elasticity of demand measures:", opts:["How price affects supply","How responsive demand is to a change in price","The income of consumers","The cost of production"], ans:1, exp:"PED = % change in quantity demanded ÷ % change in price." },
+    { q:"If demand for a product increases while supply remains constant, the equilibrium price will:", opts:["Fall","Rise","Remain the same","First rise then fall"], ans:1, exp:"Increased demand with constant supply pushes the equilibrium price upward." },
+    { q:"An inferior good is one whose demand:", opts:["Rises as income rises","Falls as income rises","Is unaffected by income","Is perfectly elastic"], ans:1, exp:"For inferior goods, as consumer income increases, demand decreases — e.g. cheap noodles." },
+    { q:"GDP stands for:", opts:["Gross Domestic Price","Gross Domestic Product","General Domestic Product","Gross Demand Price"], ans:1, exp:"GDP (Gross Domestic Product) measures the total value of goods and services produced in a country." },
+    { q:"Which of the following is a characteristic of monopoly?", opts:["Many sellers","Homogeneous products","Price taker","Single seller and price maker"], ans:3, exp:"A monopoly has one seller who controls the market and acts as a price maker." },
+    { q:"Opportunity cost is defined as:", opts:["The monetary cost of a good","The next best alternative forgone","The cost of producing all goods","The cost of raw materials"], ans:1, exp:"Opportunity cost is the value of the next best alternative sacrificed when a choice is made." },
+    { q:"Barter is a system of trade where:", opts:["Money is used as medium","Goods are exchanged for goods","Credit is used","Government controls prices"], ans:1, exp:"In a barter system, goods and services are exchanged directly without money." },
+    { q:"Which of the following best describes inflation?", opts:["A decrease in price levels","A sustained rise in the general price level","A reduction in the money supply","An increase in real income"], ans:1, exp:"Inflation is a sustained general increase in the price level of goods and services." },
+    { q:"Fiscal policy refers to:", opts:["Central bank control of money supply","Government use of taxation and spending","Exchange rate policy","Trade policy"], ans:1, exp:"Fiscal policy involves government decisions on taxation and public expenditure to influence the economy." },
+    { q:"Which market structure has the most competition?", opts:["Monopoly","Oligopoly","Duopoly","Perfect competition"], ans:3, exp:"Perfect competition has many sellers, identical products, and no barriers — the most competitive market." },
+    { q:"The circular flow of income shows:", opts:["How money circulates between households and firms","The flow of goods only","Government spending patterns","International trade flows"], ans:0, exp:"The circular flow shows how income flows between households (factors) and firms (goods/services)." },
+    { q:"A budget deficit occurs when:", opts:["Government revenue exceeds expenditure","Government expenditure exceeds revenue","Imports equal exports","National debt is zero"], ans:1, exp:"A budget deficit occurs when a government spends more than it collects in revenue." },
+  ],
+  government: [
+    { q:"Nigeria's independence was gained on:", opts:["1 October 1960","1 January 1960","1 October 1963","1 June 1960"], ans:0, exp:"Nigeria gained independence from Britain on 1 October 1960." },
+    { q:"The principle of separation of powers was propounded by:", opts:["John Locke","Thomas Hobbes","Baron de Montesquieu","Jean-Jacques Rousseau"], ans:2, exp:"Baron de Montesquieu, in 'The Spirit of the Laws' (1748), developed the doctrine of separation of powers." },
+    { q:"Federalism is a system of government where:", opts:["All power rests with the central government","Power is shared between central and regional governments","The regions are independent states","Power rests solely with regional governments"], ans:1, exp:"Federalism divides powers between a central (federal) government and constituent (state/regional) units." },
+    { q:"The executive arm of government is responsible for:", opts:["Making laws","Implementing laws","Interpreting laws","All of the above"], ans:1, exp:"The executive implements and enforces laws passed by the legislature." },
+    { q:"ECOWAS was established in:", opts:["1963","1975","1980","1991"], ans:1, exp:"The Economic Community of West African States (ECOWAS) was established on 28 May 1975 in Lagos." },
+    { q:"A referendum is:", opts:["An election for political parties","A vote by the electorate on a specific issue","A meeting of parliament","The appointment of a president"], ans:1, exp:"A referendum is a direct vote where the electorate decides on a specific public question." },
+    { q:"The Nigerian constitution that introduced federalism was the:", opts:["1946 Richards Constitution","1951 Macpherson Constitution","1954 Lyttleton Constitution","1960 Independence Constitution"], ans:2, exp:"The 1954 Lyttleton Constitution introduced true federalism to Nigeria with a three-region structure." },
+    { q:"Totalitarianism is a political system where:", opts:["Power is shared equally","Citizens have maximum freedom","The state controls every aspect of life","Regional governments are supreme"], ans:2, exp:"Totalitarianism is a system in which the state recognizes no limits to its authority." },
+    { q:"The United Nations was established in:", opts:["1919","1939","1945","1963"], ans:2, exp:"The United Nations was established on 24 October 1945 after World War II." },
+    { q:"Which of the following is NOT a function of the legislature?", opts:["Law-making","Representation of constituents","Enforcement of laws","Approval of the budget"], ans:2, exp:"Enforcement of laws is the function of the executive, not the legislature." },
+    { q:"Press freedom is a feature of:", opts:["Autocracy","Liberal democracy","Military dictatorship","Totalitarianism"], ans:1, exp:"Liberal democracy guarantees fundamental rights including freedom of the press." },
+    { q:"Checks and balances in government means:", opts:["Financial auditing","Each arm of government can limit the others","The president controls all arms","Courts approve all legislation"], ans:1, exp:"Checks and balances ensure that each branch of government can limit the powers of the others." },
+    { q:"Which is the highest court in Nigeria?", opts:["Federal High Court","Court of Appeal","Supreme Court","Magistrate Court"], ans:2, exp:"The Supreme Court of Nigeria is the apex court and final arbiter of legal disputes." },
+    { q:"Proportional representation is an electoral system where:", opts:["Winner takes all","Seats are allocated based on vote proportions","The president is elected directly","Only two parties can contest"], ans:1, exp:"In proportional representation, parties receive seats in proportion to their share of the total vote." },
+    { q:"The OAU was transformed into the African Union (AU) in:", opts:["1990","1999","2002","2005"], ans:2, exp:"The Organisation of African Unity (OAU) was dissolved and replaced by the African Union (AU) in 2002." },
+  ]
+};
+
+// Flatten with subject tag
+const allQuestions = {};
+Object.entries(builtInQuestions).forEach(([sub, qs]) => {
+  allQuestions[sub] = qs.map((q,i) => ({...q, id:`${sub}_${i}`, subject:sub}));
+});
+
+// ── STATE ──
+let currentUser = null;
+let currentSubject = null;
+let sessionQuestions = [];
+let userAnswers = [];
+let currentQ = 0;
+let timerInterval = null;
+let timeLeft = 0;
+let totalTime = 0;
+let quizSubmitted = false;
+let lastScore = null;
+
+// ── SUBJECTS CONFIG ──
+const subjects = [
+  { key:'english', label:'Use of English', icon:'📖', color:'#1a3fa8' },
+  { key:'maths',   label:'Mathematics',    icon:'🔢', color:'#16a34a' },
+  { key:'biology', label:'Biology',        icon:'🧬', color:'#059669' },
+  { key:'chemistry',label:'Chemistry',     icon:'⚗️', color:'#7c3aed' },
+  { key:'physics', label:'Physics',        icon:'⚡', color:'#dc2626' },
+  { key:'commerce',label:'Commerce',       icon:'🏪', color:'#b45309' },
+  { key:'economics',label:'Economics',     icon:'📈', color:'#0284c7' },
+  { key:'government',label:'Government',   icon:'🏛️', color:'#6d28d9' },
+];
+
+// ── AUTH STATE ──
+onAuthStateChanged(auth, user => {
+  currentUser = user;
+  updateUserUI();
+});
+
+function updateUserUI() {
+  const guestBanner = document.getElementById('guestBanner');
+  const profileGuest = document.getElementById('profileGuest');
+  const profileUser = document.getElementById('profileUser');
+  if (currentUser) {
+    guestBanner.style.display = 'none';
+    profileGuest.style.display = 'none';
+    profileUser.style.display = 'block';
+    const initials = (currentUser.displayName || currentUser.email || '?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    document.getElementById('profileName').textContent = currentUser.displayName || 'Student';
+    document.getElementById('profileEmail').textContent = currentUser.email;
+    const av = document.getElementById('profileAvatar');
+    if (currentUser.photoURL) { av.innerHTML = `<img src="${currentUser.photoURL}" alt="">`; }
+    else { av.textContent = initials; }
+    loadUserStats();
+  } else {
+    guestBanner.style.display = 'flex';
+    profileGuest.style.display = 'block';
+    profileUser.style.display = 'none';
+  }
+}
+
+async function loadUserStats() {
+  if (!currentUser) return;
+  try {
+    const q = query(collection(db,'scores'), where('uid','==',currentUser.uid), orderBy('createdAt','desc'), limit(20));
+    const snap = await getDocs(q);
+    const attempts = snap.docs.map(d => d.data());
+    document.getElementById('pStatTotal').textContent = attempts.length;
+    if (attempts.length > 0) {
+      const avg = attempts.reduce((a,b) => a + b.pct, 0) / attempts.length;
+      const best = Math.max(...attempts.map(a => a.pct));
+      document.getElementById('pStatAvg').textContent = Math.round(avg) + '%';
+      document.getElementById('pStatBest').textContent = best + '%';
+    }
+    const recentEl = document.getElementById('recentAttempts');
+    recentEl.innerHTML = attempts.slice(0,5).map(a => {
+      const subj = subjects.find(s => s.key === a.subject);
+      const col = a.pct >= 70 ? '#16a34a' : a.pct >= 50 ? '#f97316' : '#dc2626';
+      return `<div style="display:flex;align-items:center;gap:10px;background:var(--light);border-radius:8px;padding:10px 12px;">
+        <span style="font-size:1.2rem;">${subj?.icon||'📝'}</span>
+        <div style="flex:1;"><div style="font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;color:var(--blue-dk);">${subj?.label||a.subject}</div><div style="font-size:0.7rem;color:var(--muted);">${a.totalQ} questions</div></div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:${col};">${a.pct}%</div>
+      </div>`;
+    }).join('');
+  } catch(e) { console.warn('loadUserStats:', e); }
+}
+
+// ── AUTH FUNCTIONS (exposed to window) ──
+window.openAuth = () => { document.getElementById('authScreen').classList.add('show'); };
+window.closeAuth = () => { document.getElementById('authScreen').classList.remove('show'); };
+window.switchAuthTab = (tab) => {
+  document.querySelectorAll('.auth-tab').forEach((t,i) => t.classList.toggle('active',(i===0&&tab==='login')||(i===1&&tab==='register')));
+  document.getElementById('authLogin').classList.toggle('active', tab==='login');
+  document.getElementById('authRegister').classList.toggle('active', tab==='register');
+};
+
+window.signInEmail = async () => {
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass  = document.getElementById('loginPassword').value;
+  const errEl = document.getElementById('loginError');
+  const btn   = document.getElementById('loginBtn');
+  errEl.classList.remove('show');
+  if (!email || !pass) { errEl.textContent = 'Please enter your email and password.'; errEl.classList.add('show'); return; }
+  btn.disabled = true; btn.textContent = 'Signing in…';
+  try {
+    await signInWithEmailAndPassword(auth, email, pass);
+    closeAuth(); showToast('✅ Welcome back!');
+  } catch(e) {
+    errEl.textContent = e.code === 'auth/invalid-credential' ? 'Invalid email or password.' : e.message;
+    errEl.classList.add('show');
+  }
+  btn.disabled = false; btn.textContent = 'Sign In';
+};
+
+window.registerEmail = async () => {
+  const name  = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass  = document.getElementById('regPassword').value;
+  const errEl = document.getElementById('registerError');
+  const btn   = document.getElementById('registerBtn');
+  errEl.classList.remove('show');
+  if (!name || !email || !pass) { errEl.textContent = 'Please fill in all fields.'; errEl.classList.add('show'); return; }
+  if (pass.length < 6) { errEl.textContent = 'Password must be at least 6 characters.'; errEl.classList.add('show'); return; }
+  btn.disabled = true; btn.textContent = 'Creating account…';
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    await updateProfile(cred.user, { displayName: name });
+    closeAuth(); showToast('🎉 Account created! Welcome to CBT Practice!');
+  } catch(e) {
+    errEl.textContent = e.code === 'auth/email-already-in-use' ? 'Email already registered. Sign in instead.' : e.message;
+    errEl.classList.add('show');
+  }
+  btn.disabled = false; btn.textContent = 'Create Account';
+};
+
+window.signInGoogle = async () => {
+  try {
+    await signInWithPopup(auth, googleProvider);
+    closeAuth(); showToast('✅ Signed in with Google!');
+  } catch(e) {
+    showToast('Google sign-in failed. Try email instead.');
+  }
+};
+
+window.signOut = async () => {
+  await fbSignOut(auth);
+  showToast('You have been signed out.');
+};
+
+// ── QUIZ LOGIC ──
+window.startQuiz = () => {
+  if (!currentSubject) return;
+  const count = parseInt(document.getElementById('qCount').value);
+  const tpq   = parseInt(document.getElementById('timePerQ').value);
+  const pool  = [...allQuestions[currentSubject]];
+  // Shuffle
+  for (let i = pool.length-1; i > 0; i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [pool[i],pool[j]] = [pool[j],pool[i]];
+  }
+  sessionQuestions = pool.slice(0, Math.min(count, pool.length));
+  userAnswers = new Array(sessionQuestions.length).fill(null);
+  currentQ = 0;
+  quizSubmitted = false;
+  totalTime = tpq * sessionQuestions.length;
+
+  document.getElementById('setupScreen').style.display = 'none';
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('quizScreen').style.display = 'block';
+
+  renderQuestion();
+  if (tpq > 0) startTimer(totalTime);
+  else document.getElementById('timerDisplay').textContent = '⏱ No limit';
+};
+
+function renderQuestion() {
+  const q = sessionQuestions[currentQ];
+  const total = sessionQuestions.length;
+  document.getElementById('questionNum').textContent = `Question ${currentQ+1} of ${total}`;
+  document.getElementById('questionText').textContent = q.q;
+  document.getElementById('quizSubjectTag').textContent = subjects.find(s=>s.key===currentSubject)?.label || currentSubject;
+  document.getElementById('quizProgressText').textContent = `Q ${currentQ+1} / ${total}`;
+  document.getElementById('quizProgressFill').style.width = ((currentQ+1)/total*100)+'%';
+
+  const opts = ['A','B','C','D'];
+  const ol = document.getElementById('optionsList');
+  ol.innerHTML = q.opts.map((opt,i) => `
+    <button class="opt-btn${userAnswers[currentQ]===i?' selected':''}" onclick="selectAnswer(${i})" ${quizSubmitted?'disabled':''}>
+      <span class="opt-letter">${opts[i]}</span> ${opt}
+    </button>`).join('');
+
+  // If answered and submitted, show correct/wrong
+  if (quizSubmitted) markAnswered();
+
+  const expEl = document.getElementById('explanation');
+  if (quizSubmitted && q.exp) {
+    const correct = userAnswers[currentQ] === q.ans;
+    expEl.textContent = '💡 ' + q.exp;
+    expEl.className = 'explanation show' + (correct ? '' : ' wrong-exp');
+  } else { expEl.className = 'explanation'; }
+
+  // Nav
+  document.getElementById('prevBtn').disabled = currentQ === 0;
+  document.getElementById('nextBtn').style.display = currentQ < total-1 ? 'block' : 'none';
+  document.getElementById('submitBtn').style.display = currentQ === total-1 && !quizSubmitted ? 'block' : 'none';
+  if (quizSubmitted) { document.getElementById('nextBtn').style.display = currentQ < total-1 ? 'block' : 'none'; document.getElementById('submitBtn').style.display = 'none'; }
+
+  renderQNav();
+}
+
+function markAnswered() {
+  const q = sessionQuestions[currentQ];
+  const btns = document.querySelectorAll('.opt-btn');
+  btns.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.ans) btn.classList.add('correct');
+    else if (i === userAnswers[currentQ] && userAnswers[currentQ] !== q.ans) btn.classList.add('wrong');
+  });
+}
+
+window.selectAnswer = (i) => {
+  if (quizSubmitted) return;
+  userAnswers[currentQ] = i;
+  document.querySelectorAll('.opt-btn').forEach((b,j) => {
+    b.classList.toggle('selected', j===i);
+  });
+  renderQNav();
+  if (currentQ < sessionQuestions.length-1) {
+    setTimeout(() => navigate(1), 500);
+  } else {
+    document.getElementById('submitBtn').style.display = 'block';
+  }
+};
+
+window.navigate = (dir) => {
+  currentQ = Math.max(0, Math.min(sessionQuestions.length-1, currentQ+dir));
+  renderQuestion();
+};
+
+function renderQNav() {
+  const grid = document.getElementById('qNavGrid');
+  grid.innerHTML = sessionQuestions.map((_,i) => {
+    let cls = 'q-nav-btn';
+    if (i === currentQ) cls += ' current';
+    else if (quizSubmitted) {
+      if (userAnswers[i] === sessionQuestions[i].ans) cls += ' correct';
+      else if (userAnswers[i] !== null) cls += ' wrong';
+    } else if (userAnswers[i] !== null) cls += ' answered';
+    return `<button class="${cls}" onclick="jumpTo(${i})">${i+1}</button>`;
+  }).join('');
+}
+
+window.jumpTo = (i) => { currentQ = i; renderQuestion(); };
+
+function startTimer(seconds) {
+  clearInterval(timerInterval);
+  timeLeft = seconds;
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+    if (timeLeft <= 0) { clearInterval(timerInterval); submitQuiz(); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const el = document.getElementById('timerDisplay');
+  const m = Math.floor(timeLeft/60);
+  const s = timeLeft % 60;
+  el.textContent = `⏱ ${m}:${s.toString().padStart(2,'0')}`;
+  el.className = 'timer-display' + (timeLeft <= 30 ? ' danger' : timeLeft <= 60 ? ' warning' : '');
+}
+
+window.submitQuiz = async () => {
+  clearInterval(timerInterval);
+  quizSubmitted = true;
+  const correct = sessionQuestions.filter((_,i) => userAnswers[i] === sessionQuestions[i].ans).length;
+  const wrong   = sessionQuestions.filter((_,i) => userAnswers[i] !== null && userAnswers[i] !== sessionQuestions[i].ans).length;
+  const skipped = sessionQuestions.filter((_,i) => userAnswers[i] === null).length;
+  const pct = Math.round((correct / sessionQuestions.length) * 100);
+  lastScore = { correct, wrong, skipped, pct, total: sessionQuestions.length, subject: currentSubject };
+
+  // Save to Firestore if signed in and score >= 50%
+  if (currentUser && pct >= 50) {
+    try {
+      await addDoc(collection(db,'scores'), {
+        uid: currentUser.uid,
+        name: currentUser.displayName || 'Anonymous',
+        photoURL: currentUser.photoURL || null,
+        subject: currentSubject,
+        correct, wrong, skipped, pct,
+        totalQ: sessionQuestions.length,
+        createdAt: serverTimestamp()
+      });
+    } catch(e) { console.warn('Save score:', e); }
+  }
+
+  showResultScreen(correct, wrong, skipped, pct);
+};
+
+function showResultScreen(correct, wrong, skipped, pct) {
+  document.getElementById('quizScreen').style.display = 'none';
+  document.getElementById('resultScreen').classList.add('show');
+
+  const subj = subjects.find(s => s.key === currentSubject);
+  document.getElementById('resultTitle').textContent = pct >= 70 ? '🎉 Excellent Work!' : pct >= 50 ? '👍 Good Effort!' : '📚 Keep Practising!';
+  document.getElementById('resultSubject').textContent = `${subj?.label} — ${sessionQuestions.length} Questions`;
+  document.getElementById('statCorrect').textContent = correct;
+  document.getElementById('statWrong').textContent = wrong;
+  document.getElementById('statSkipped').textContent = skipped;
+  document.getElementById('scorePct').textContent = pct + '%';
+
+  // Ring animation
+  const ringFill = document.getElementById('scoreRingFill');
+  const circ = 2 * Math.PI * 68;
+  const color = pct >= 70 ? '#16a34a' : pct >= 50 ? '#f97316' : '#dc2626';
+  ringFill.style.stroke = color;
+  setTimeout(() => { ringFill.style.strokeDashoffset = circ - (circ * pct / 100); }, 100);
+
+  // Review
+  const reviewList = document.getElementById('reviewList');
+  reviewList.innerHTML = sessionQuestions.map((q,i) => {
+    const opts = ['A','B','C','D'];
+    const ua = userAnswers[i];
+    const correct2 = ua === q.ans;
+    return `<div class="review-item">
+      <div class="review-item-q">${i+1}. ${q.q}</div>
+      <div class="review-item-ans">
+        ${ua !== null ? `<span class="ans-tag ans-your${correct2?' correct':''}">Your answer: ${opts[ua]}. ${q.opts[ua]}</span>` : '<span class="ans-tag" style="background:#f1f5f9;color:#64748b;">Skipped</span>'}
+        ${!correct2 ? `<span class="ans-tag ans-correct">Correct: ${opts[q.ans]}. ${q.opts[q.ans]}</span>` : ''}
+      </div>
+      ${q.exp ? `<div style="font-size:0.76rem;color:#475569;margin-top:6px;line-height:1.5;">💡 ${q.exp}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+window.retryQuiz = () => {
+  document.getElementById('resultScreen').classList.remove('show');
+  startQuiz();
+};
+
+window.newQuiz = () => {
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('setupScreen').style.display = 'block';
+  document.getElementById('quizScreen').style.display = 'none';
+};
+
+window.shareScore = () => {
+  if (!lastScore) return;
+  const subj = subjects.find(s => s.key === lastScore.subject);
+  const emoji = lastScore.pct >= 70 ? '🎉' : lastScore.pct >= 50 ? '👍' : '📚';
+  const text = `${emoji} I just scored ${lastScore.pct}% on a ${subj?.label} CBT practice on Big Quams Media!\n\n✅ Correct: ${lastScore.correct}/${lastScore.total}\n\nPractise JAMB CBT for free 👇\nhttps://big-quams-educational-hub.github.io/cbt.html`;
+  if (navigator.share) navigator.share({ title: 'My CBT Score', text });
+  else window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+};
+
+// ── LEADERBOARD ──
+window.loadLeaderboard = async () => {
+  const subjectFilter = document.getElementById('lbSubjectFilter').value;
+  const list = document.getElementById('leaderboardList');
+  list.innerHTML = '<div class="lb-loading">⏳ Loading…</div>';
+  try {
+    let q;
+    if (subjectFilter === 'all') {
+      q = query(collection(db,'scores'), orderBy('pct','desc'), limit(30));
+    } else {
+      q = query(collection(db,'scores'), where('subject','==',subjectFilter), orderBy('pct','desc'), limit(30));
+    }
+    const snap = await getDocs(q);
+    if (snap.empty) { list.innerHTML = '<div class="lb-loading">No scores yet. Be the first to practice!</div>'; return; }
+    const medals = ['🥇','🥈','🥉'];
+    list.innerHTML = snap.docs.map((doc, i) => {
+      const d = doc.data();
+      const subj = subjects.find(s => s.key === d.subject);
+      const initials = (d.name || '?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+      const isMe = currentUser && d.uid === currentUser.uid;
+      return `<div class="leaderboard-row" style="${isMe?'background:rgba(249,115,22,0.07);':''}">
+        <div class="lb-rank ${i<3?'top':''}">${medals[i]||'#'+(i+1)}</div>
+        <div class="lb-avatar">${d.photoURL?`<img src="${d.photoURL}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`:`<span>${initials}</span>`}</div>
+        <div class="lb-info">
+          <div class="lb-name">${d.name||'Student'}${isMe?' (You)':''}</div>
+          <div class="lb-subject">${subj?.icon||'📝'} ${subj?.label||d.subject} · ${d.totalQ}Q</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="lb-score">${d.pct}%</div>
+          <div class="lb-date">${d.createdAt?.toDate?d.createdAt.toDate().toLocaleDateString('en-NG',{day:'numeric',month:'short'}):'—'}</div>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) { list.innerHTML = `<div class="lb-loading">⚠️ Could not load leaderboard.</div>`; }
+};
+
+// ── SETUP UI ──
+function renderSubjectGrid() {
+  const grid = document.getElementById('subjectGrid');
+  grid.innerHTML = subjects.map(s => {
+    const count = allQuestions[s.key]?.length || 0;
+    return `<div class="subject-card" onclick="selectSubject('${s.key}',this)" id="sc-${s.key}">
+      <div class="subject-icon">${s.icon}</div>
+      <h4>${s.label}</h4>
+      <div class="subject-count">${count} questions</div>
+    </div>`;
+  }).join('');
+  document.getElementById('heroQCount').textContent = Object.values(allQuestions).flat().length + '+';
+}
+
+window.selectSubject = (key, el) => {
+  document.querySelectorAll('.subject-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  currentSubject = key;
+  document.getElementById('startBtn').disabled = false;
+  document.getElementById('startHint').textContent = `Ready to practice ${subjects.find(s=>s.key===key)?.label}. Click Start!`;
+};
+
+// ── TAB SWITCHING ──
+window.switchTab = (tab) => {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active',
+    (i===0&&tab==='practice')||(i===1&&tab==='leaderboard')||(i===2&&tab==='profile')));
+  document.getElementById('tab-practice').style.display   = tab==='practice'   ? 'block' : 'none';
+  document.getElementById('tab-leaderboard').style.display = tab==='leaderboard' ? 'block' : 'none';
+  document.getElementById('tab-profile').style.display    = tab==='profile'    ? 'block' : 'none';
+  if (tab === 'leaderboard') loadLeaderboard();
+};
+
+// ── DARK MODE ──
+const darkToggle = document.getElementById('darkToggle');
+const savedTheme = localStorage.getItem('bqm-theme');
+if (savedTheme === 'dark') { document.body.classList.add('dark'); darkToggle.textContent = '☀️'; }
+darkToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  darkToggle.textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('bqm-theme', isDark ? 'dark' : 'light');
+});
+
+// ── HAMBURGER ──
+document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mainNav').classList.toggle('open'));
+document.getElementById('mainNav').querySelectorAll('a').forEach(a => a.addEventListener('click', () => document.getElementById('mainNav').classList.remove('open')));
+
+// ── TOAST ──
+window.showToast = (msg) => {
+  const t = document.createElement('div'); t.className = 'toast'; t.innerText = msg;
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(() => t.classList.add('show'), 50);
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 400); }, 2500);
+};
+
+// ── PWA ──
+if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+
+// ── INIT ──
+renderSubjectGrid();
+</script>
+</body>
+</html>
