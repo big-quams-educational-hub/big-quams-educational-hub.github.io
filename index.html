@@ -1171,6 +1171,121 @@ body.dark #notifications-section { background: var(--bg); }
 .upcoming-event-row.ue-active { background: rgba(249,115,22,0.15); border-color: rgba(249,115,22,0.3); }
 @media(max-width:480px) { .cd-num { font-size: 1.9rem; } .cd-unit { padding: 14px 16px; min-width: 64px; } .cd-sep { font-size: 1.5rem; } }
 
+/* NEWS TICKER */
+.news-ticker-wrap {
+  background: var(--blue-dk);
+  color: white;
+  overflow: hidden;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid var(--orange);
+}
+.ticker-label {
+  background: var(--orange);
+  color: white;
+  padding: 0 14px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+.ticker-track {
+  display: flex;
+  animation: ticker-scroll 40s linear infinite;
+  gap: 0;
+}
+.ticker-track:hover { animation-play-state: paused; }
+.ticker-item {
+  white-space: nowrap;
+  padding: 0 28px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #bfdbfe;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.ticker-item:hover { color: white; }
+.ticker-item::after {
+  content: '|';
+  color: rgba(255,255,255,0.2);
+  padding-left: 28px;
+}
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* BQM SERVICES SECTION */
+#bqm-services { background: var(--light); }
+body.dark #bqm-services { background: var(--bg); }
+.bqm-service-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media(min-width:600px) { .bqm-service-grid { grid-template-columns: repeat(3,1fr); } }
+@media(min-width:900px) { .bqm-service-grid { grid-template-columns: repeat(4,1fr); } }
+.bqm-svc-card {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  padding: 18px 14px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+body.dark .bqm-svc-card { background: var(--card); border-color: var(--border); }
+.bqm-svc-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.bqm-svc-icon { font-size: 1.8rem; }
+.bqm-svc-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--blue-dk);
+  line-height: 1.3;
+}
+body.dark .bqm-svc-name { color: #bfdbfe; }
+.bqm-svc-cta {
+  font-size: 0.68rem;
+  color: var(--orange);
+  font-weight: 600;
+  margin-top: 2px;
+}
+.bqm-promo-banner {
+  background: linear-gradient(135deg, var(--blue-dk), var(--blue));
+  border-radius: 16px;
+  padding: 24px;
+  color: white;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.bqm-promo-banner p { font-size: 0.84rem; color: #bfdbfe; flex: 1; min-width: 200px; line-height: 1.5; }
+.bqm-promo-banner a {
+  background: var(--orange); color: white;
+  padding: 11px 20px; border-radius: 9px;
+  text-decoration: none; font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 0.84rem; white-space: nowrap; transition: 0.2s;
+}
+.bqm-promo-banner a:hover { background: #ea6c0a; }
+                         
 </style>
 </head>
 <body>
@@ -1211,6 +1326,12 @@ body.dark #notifications-section { background: var(--bg); }
       <a href="#dyk-section">DYK</a>
       <a href="results.html">Results Checker</a>
       <a href="postutme-calculator.html">Post UTME Calc</a>
+        <a href="cbt.html">CBT Practice</a>
+      <a href="scholarship.html">Scholarships</a>
+      <a href="subject-combo.html">Subject Combo</a>
+      <a href="results.html">Results</a>
+      <a href="community.html">Community</a>
+      
       <a href="#reviews">Reviews</a>
       <a href="#notifications-section">🔔 Notifications</a>
       <a href="#contact" class="nav-cta">Contact</a>
@@ -1218,7 +1339,16 @@ body.dark #notifications-section { background: var(--bg); }
     </nav>
   </div>
 </header>
-
+  
+<div class="news-ticker-wrap" id="newsTicker" style="display:none;">
+  <div class="ticker-label">📰 BREAKING</div>
+  <div style="overflow:hidden;flex:1;">
+    <div class="ticker-track" id="tickerTrack">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+  
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-badge">🎓 #1 Student Media Platform</div>
@@ -2745,6 +2875,95 @@ async function initCountdown() {
   const ticker = setInterval(tick, 1000);
 }
 initCountdown();
+
+  
+// ── LAZY-LOADED JSON FETCHES ──
+// Replace your current fetchNewsData(), loadCalendar(), etc.
+// with IntersectionObserver-triggered versions below.
+
+function lazyLoadSection(sectionId, loadFn) {
+  const section = document.getElementById(sectionId);
+  if (!section) { loadFn(); return; }
+  const obs = new IntersectionObserver((entries, o) => {
+    if (entries[0].isIntersecting) { o.disconnect(); loadFn(); }
+  }, { rootMargin: '200px' });
+  obs.observe(section);
+}
+
+// Stagger all JSON fetches so they don't fire simultaneously on load
+document.addEventListener('DOMContentLoaded', () => {
+  // Ticker loads immediately (small payload)
+  initTicker();
+  // Others lazy-loaded as sections come into view
+  lazyLoadSection('news-updates',     fetchNewsData);
+  lazyLoadSection('dyk-section',      fetchDykPreview);
+  lazyLoadSection('calendar-section', loadCalendar);
+  lazyLoadSection('spotlight-section',fetchSpotlightPreview);
+  lazyLoadSection('reviews',          loadReviews);
+  lazyLoadSection('qa-section',       loadQA);
+  lazyLoadSection('countdown-section',initCountdown);
+});
+
+// ── NEWS TICKER ──
+async function initTicker() {
+  try {
+    const res = await fetch('news.json?v=' + Date.now());
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    if (!data.length) return;
+
+    const pinned = data.filter(n => n.pinned);
+    const items  = [...pinned, ...data.filter(n => !n.pinned)].slice(0, 8);
+
+    const makeItems = () => items.map(item =>
+      `<div class="ticker-item" onclick="window.location='newsroom.html'">
+        📌 ${item.title}
+       </div>`
+    ).join('');
+
+    // Duplicate for seamless loop
+    document.getElementById('tickerTrack').innerHTML = makeItems() + makeItems();
+    document.getElementById('newsTicker').style.display = 'flex';
+  } catch { /* no ticker if news.json fails */ }
+}
+
+// ── ACADEMIC CALENDAR PDF DOWNLOAD ──
+// Attach this to any button with id="calendarPdfBtn" if you add one
+function downloadCalendarPDF() {
+  const grid = document.getElementById('calendarGrid');
+  if (!grid) return;
+  const cards = Array.from(grid.querySelectorAll('.cal-card'));
+  if (!cards.length) { showToast('Calendar not loaded yet.'); return; }
+
+  const rows = cards.map(card => {
+    const month = card.querySelector('.cal-month')?.textContent || '';
+    const day   = card.querySelector('.cal-day')?.textContent   || '';
+    const title = card.querySelector('.cal-title')?.textContent || '';
+    const desc  = card.querySelector('.cal-desc')?.textContent  || '';
+    const badge = card.querySelector('.cal-badge')?.textContent || '';
+    return `<tr>
+      <td style="font-family:'Montserrat',sans-serif;font-weight:800;text-align:center;padding:8px;background:#f0f5ff;border-radius:4px;white-space:nowrap;">${month} ${day}</td>
+      <td style="padding:8px 12px;font-weight:700;">${title}</td>
+      <td style="padding:8px 12px;color:#64748b;font-size:0.85rem;">${desc}</td>
+      <td style="padding:8px;text-align:center;"><span style="background:#dbeafe;color:#1d4ed8;padding:2px 8px;border-radius:20px;font-size:0.72rem;font-weight:700;">${badge}</span></td>
+    </tr>`;
+  }).join('');
+
+  const now = new Date().toLocaleDateString('en-NG',{day:'numeric',month:'long',year:'numeric'});
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
+  <style>body{font-family:'Roboto',sans-serif;padding:32px;color:#0f172a;}.header{display:flex;align-items:center;gap:14px;border-bottom:3px solid #f97316;padding-bottom:16px;margin-bottom:20px;}.logo{width:52px;height:52px;border-radius:50%;border:2px solid #f97316;}.brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.1rem;color:#102880;}.sub{font-size:0.7rem;color:#64748b;}h2{font-family:'Montserrat',sans-serif;color:#102880;margin:0 0 4px;}table{width:100%;border-collapse:collapse;}td{border-bottom:1px solid #e2e8f0;vertical-align:top;}th{font-family:'Montserrat',sans-serif;font-size:0.75rem;font-weight:700;text-transform:uppercase;color:#64748b;padding:8px 12px;border-bottom:2px solid #e2e8f0;text-align:left;}.footer{margin-top:24px;font-size:0.72rem;color:#94a3b8;text-align:center;border-top:1px solid #e2e8f0;padding-top:14px;}</style></head><body>
+  <div class="header"><img class="logo" src="https://i.imgur.com/lYJXUyY.jpeg"><div><div class="brand">BIG QUAMS MEDIA®</div><div class="sub">Simplifying Campus Life for Every Student</div></div></div>
+  <h2>Academic Calendar 2026</h2><p style="font-size:0.82rem;color:#64748b;margin-bottom:16px;">Generated: ${now} — Dates are approximate. Verify with JAMB or your institution.</p>
+  <table><thead><tr><th>Date</th><th>Event</th><th>Description</th><th>Category</th></tr></thead><tbody>${rows}</tbody></table>
+  <div class="footer">Big Quams Media® — big-quams-educational-hub.github.io — All dates subject to change.</div>
+  </body></html>`;
+
+  const win = window.open('','_blank');
+  win.document.write(html);
+  win.document.close();
+  win.focus();
+  setTimeout(() => win.print(), 600);
+  }
   
 </script>
 
