@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Community Hub | BIG QUAMS MEDIA®</title>
+<meta name="description" content="Join Big Quams Media WhatsApp groups and channels for JAMB updates, scholarships, campus news, and student support communities.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#102880">
+<link rel="icon" type="image/jpeg" href="https://i.imgur.com/lYJXUyY.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1a3fa8;--blue-dk:#102880;--orange:#f97316;--green:#16a34a;--wa:#25d366;--muted:#64748b;--light:#f0f5ff;--card:#ffffff;--text:#0f172a;--border:#e2e8f0;--bg:#f8faff;}
+body.dark{--muted:#94a3b8;--light:#1e2a4a;--card:#1a2540;--text:#e2e8f0;--border:#2d3f6b;--bg:#0f172a;background:var(--bg);color:var(--text);}
+body.dark header{background:linear-gradient(135deg,#080f20,#102880);}
+body.dark .comm-card{background:var(--card);border-color:var(--border);}
+body.dark .comm-card h3{color:#bfdbfe;}
+body.dark .comm-card p{color:var(--muted);}
+body.dark h2.section-title{color:#bfdbfe;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Roboto',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+.dark-toggle{background:rgba(255,255,255,0.12);border:none;color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;}
+header{background:linear-gradient(135deg,var(--blue-dk),var(--blue));color:white;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(26,63,168,0.25);}
+.header-inner{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.logo-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-circle{width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--orange);flex-shrink:0;}
+.logo-circle img{width:100%;height:100%;object-fit:cover;}
+.brand-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;line-height:1.2;}
+.brand-sub{font-size:0.65rem;color:#bfdbfe;}
+.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;margin-left:auto;padding:6px;}
+.menu-toggle span{display:block;width:24px;height:2px;background:white;border-radius:2px;}
+nav{display:flex;flex-wrap:wrap;gap:6px 18px;margin-left:auto;align-items:center;}
+nav a{color:#dbeafe;text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s;}
+nav a:hover{color:var(--orange);}
+.nav-cta{background:var(--orange)!important;color:white!important;padding:7px 16px;border-radius:6px;font-weight:700!important;font-size:0.85rem!important;}
+@media(max-width:600px){.menu-toggle{display:flex;}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:0;background:var(--blue-dk);margin-left:0;padding:8px 0 12px;border-top:1px solid rgba(255,255,255,0.1);}nav.open{display:flex;}nav a{padding:10px 16px;width:100%;font-size:0.95rem;}nav a:hover{background:rgba(255,255,255,0.08);color:var(--orange);}.nav-cta{margin:8px 16px 0;width:calc(100% - 32px);text-align:center;border-radius:6px;}}
+
+/* HERO */
+.hero{background:linear-gradient(145deg,#064e3b 0%,#065f46 50%,#047857 100%);padding:56px 16px 48px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(37,211,102,0.15) 0%,transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-block;background:rgba(37,211,102,0.2);color:#6ee7b7;border:1px solid rgba(37,211,102,0.3);padding:4px 14px;border-radius:20px;font-size:0.76rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:16px;animation:fadeUp 0.5s ease both;}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;color:white;line-height:1.15;margin-bottom:14px;animation:fadeUp 0.6s 0.1s ease both;}
+.hero h1 span{color:#6ee7b7;}
+.hero p{color:#a7f3d0;font-size:1rem;max-width:560px;margin:0 auto 24px;animation:fadeUp 0.6s 0.2s ease both;}
+.hero-stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.6s 0.3s ease both;}
+.hero-stat{text-align:center;}
+.hero-stat-num{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:800;color:#6ee7b7;}
+.hero-stat-lbl{font-size:0.72rem;color:#a7f3d0;text-transform:uppercase;letter-spacing:0.5px;}
+
+.container{max-width:1100px;margin:0 auto;padding:40px 16px;}
+@media(min-width:600px){.container{padding:56px 24px;}}
+.section-label{display:inline-block;background:rgba(249,115,22,0.1);color:var(--orange);padding:3px 12px;border-radius:20px;font-size:0.74rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+h2.section-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.4rem,4vw,1.9rem);font-weight:800;color:var(--blue-dk);margin-bottom:8px;}
+.section-divider{width:48px;height:4px;background:var(--orange);border-radius:2px;margin-bottom:28px;}
+
+/* CHANNEL CARD (big feature) */
+.channel-feature{background:linear-gradient(135deg,#064e3b,#065f46);border-radius:20px;padding:28px 24px;color:white;display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-bottom:32px;}
+.channel-feature-icon{width:72px;height:72px;background:rgba(37,211,102,0.2);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;flex-shrink:0;border:2px solid rgba(37,211,102,0.3);}
+.channel-feature-text{flex:1;min-width:200px;}
+.channel-feature-text h3{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:5px;}
+.channel-feature-text p{font-size:0.82rem;color:#a7f3d0;line-height:1.5;margin-bottom:12px;}
+.channel-feature-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(37,211,102,0.15);border:1px solid rgba(37,211,102,0.3);padding:3px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;color:#6ee7b7;margin-bottom:10px;}
+.wa-join-btn{display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:white;padding:12px 22px;border-radius:10px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.88rem;transition:0.2s;}
+.wa-join-btn:hover{background:#20bd5a;transform:translateY(-1px);}
+
+/* COMMUNITY GRID */
+.comm-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:560px){.comm-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:900px){.comm-grid{grid-template-columns:1fr 1fr 1fr;}}
+.comm-card{background:white;border-radius:16px;border:1px solid var(--border);padding:22px;display:flex;flex-direction:column;gap:12px;transition:transform 0.25s,box-shadow 0.25s;box-shadow:0 2px 10px rgba(0,0,0,0.04);}
+.comm-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.comm-card-top{display:flex;gap:12px;align-items:flex-start;}
+.comm-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
+.comm-card h3{font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:800;color:var(--blue-dk);margin-bottom:3px;}
+.comm-type{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;padding:2px 8px;border-radius:20px;display:inline-block;}
+.comm-card p{font-size:0.8rem;color:#475569;line-height:1.5;flex:1;}
+.comm-features{display:flex;flex-direction:column;gap:4px;}
+.comm-feat{font-size:0.75rem;color:#475569;display:flex;align-items:center;gap:6px;}
+.comm-feat::before{content:'✓';color:var(--wa);font-weight:800;flex-shrink:0;}
+body.dark .comm-feat{color:var(--muted);}
+.comm-join-btn{display:flex;align-items:center;justify-content:center;gap:7px;background:var(--wa);color:white;padding:11px;border-radius:9px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.82rem;transition:0.2s;margin-top:auto;}
+.comm-join-btn:hover{background:#20bd5a;}
+.comm-join-btn.channel-btn{background:var(--blue);}
+.comm-join-btn.channel-btn:hover{background:var(--blue-dk);}
+
+/* RULES SECTION */
+.rules-card{background:white;border-radius:14px;border:1px solid var(--border);padding:24px;}
+body.dark .rules-card{background:var(--card);}
+.rules-list{display:flex;flex-direction:column;gap:10px;}
+.rule-item{display:flex;gap:12px;align-items:flex-start;font-size:0.83rem;color:#334155;line-height:1.5;}
+body.dark .rule-item{color:#cbd5e1;}
+.rule-num{width:24px;height:24px;border-radius:50%;background:var(--light);color:var(--blue);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:0.72rem;font-weight:800;flex-shrink:0;}
+
+#whatsapp-float{position:fixed;width:56px;height:56px;bottom:28px;right:24px;background:#25d366;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;z-index:999;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.45);transition:transform 0.2s;}
+#whatsapp-float:hover{transform:scale(1.1);}
+footer{background:var(--blue-dk);color:#bfdbfe;text-align:center;padding:28px 24px;font-size:0.88rem;}
+footer a{color:var(--orange);text-decoration:none;font-weight:600;}
+.footer-inner{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px 16px 22px;}
+.footer-brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:white;}
+.footer-tagline{font-size:0.78rem;color:#94a3b8;}
+.footer-links{display:flex;gap:8px 16px;flex-wrap:wrap;justify-content:center;}
+.footer-links a{color:#94a3b8;text-decoration:none;font-size:0.78rem;transition:color 0.2s;}
+.footer-links a:hover{color:var(--orange);}
+.footer-copy{font-size:0.75rem;color:#64748b;text-align:center;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);width:100%;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <div class="logo-circle"><img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Big Quams Media"></div>
+      <div><div class="brand-text">BIG QUAMS MEDIA®</div><div class="brand-sub">Simplifying Campus Life</div></div>
+    </div>
+    <button class="dark-toggle" id="darkToggle">🌙</button>
+    <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="newsroom.html">News</a>
+      <a href="elibrary.html">eLibrary</a>
+      <a href="cbt.html">CBT Practice</a>
+      <a href="scholarship.html">Scholarships</a>
+      <a href="community.html" style="color:#6ee7b7;">Community</a>
+      <a href="index.html#contact" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-badge">💬 Student Communities</div>
+  <h1>Join the<br><span>BQM Community</span></h1>
+  <p>Connect with thousands of Nigerian students. Get instant updates, ask questions, share opportunities, and grow together.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">10K+</div><div class="hero-stat-lbl">Members</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">5+</div><div class="hero-stat-lbl">Communities</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">24/7</div><div class="hero-stat-lbl">Active</div></div>
+  </div>
+</section>
+
+<section style="background:var(--bg);">
+  <div class="container">
+
+    <!-- FEATURED CHANNEL -->
+    <div class="section-label">Featured</div>
+    <h2 class="section-title">Our Official WhatsApp Channel</h2>
+    <div class="section-divider"></div>
+
+    <div class="channel-feature">
+      <div class="channel-feature-icon">📢</div>
+      <div class="channel-feature-text">
+        <div class="channel-feature-badge">📡 Broadcast Channel</div>
+        <h3>BIG QUAMS MEDIA® Official Channel</h3>
+        <p>Our main broadcast channel for breaking news, JAMB updates, scholarship alerts, new eLibrary additions, and campus announcements. One-way broadcast — no spam, only value.</p>
+        <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="wa-join-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.847L.073 23.927l6.241-1.635A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.71.972.99-3.614-.234-.373A9.818 9.818 0 0112 2.182c5.427 0 9.818 4.391 9.818 9.818 0 5.428-4.391 9.818-9.818 9.818z"/></svg>
+          Join Official Channel →
+        </a>
+      </div>
+    </div>
+
+    <!-- COMMUNITIES -->
+    <div class="section-label" style="margin-top:8px;">All Communities</div>
+    <h2 class="section-title">Groups & Channels</h2>
+    <div class="section-divider"></div>
+
+    <div class="comm-grid">
+
+      <div class="comm-card">
+        <div class="comm-card-top">
+          <div class="comm-icon" style="background:#f0fdf4;">👥</div>
+          <div>
+            <span class="comm-type" style="background:#dcfce7;color:#15803d;">WhatsApp Group</span>
+            <h3>Brainy Buddies Student Group</h3>
+          </div>
+        </div>
+        <p>Our flagship student community. Ask questions, share resources, discuss JAMB, admissions, scholarships, and campus life with thousands of Nigerian students.</p>
+        <div class="comm-features">
+          <div class="comm-feat">JAMB & Post-UTME discussions</div>
+          <div class="comm-feat">Scholarship & opportunity alerts</div>
+          <div class="comm-feat">Peer-to-peer learning</div>
+          <div class="comm-feat">Admin-moderated & spam-free</div>
+        </div>
+        <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="comm-join-btn">💬 Join Brainy Buddies</a>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-top">
+          <div class="comm-icon" style="background:#fff7ed;">📰</div>
+          <div>
+            <span class="comm-type" style="background:#fed7aa;color:#9a3412;">Broadcast Channel</span>
+            <h3>JAMB & Admission Updates</h3>
+          </div>
+        </div>
+        <p>Get real-time JAMB registration updates, CAPS changes, Post-UTME dates, and admission news — delivered directly to your WhatsApp before anywhere else.</p>
+        <div class="comm-features">
+          <div class="comm-feat">JAMB portal announcements</div>
+          <div class="comm-feat">Admission offer alerts</div>
+          <div class="comm-feat">Post-UTME schedules</div>
+          <div class="comm-feat">Direct from JAMB official sources</div>
+        </div>
+        <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="comm-join-btn channel-btn">📡 Join Channel</a>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-top">
+          <div class="comm-icon" style="background:#fdf4ff;">💰</div>
+          <div>
+            <span class="comm-type" style="background:#ede9fe;color:#7c3aed;">Broadcast Channel</span>
+            <h3>Scholarship Alerts Channel</h3>
+          </div>
+        </div>
+        <p>Never miss a scholarship deadline again. We broadcast federal, state, corporate, and international scholarship opportunities as soon as they open.</p>
+        <div class="comm-features">
+          <div class="comm-feat">BEA, MTN, NNPC, Shell alerts</div>
+          <div class="comm-feat">Chevening, Commonwealth, Fulbright</div>
+          <div class="comm-feat">State government scholarships</div>
+          <div class="comm-feat">Deadline reminders before closing</div>
+        </div>
+        <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="comm-join-btn channel-btn">📡 Join Channel</a>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-top">
+          <div class="comm-icon" style="background:#eff6ff;">📚</div>
+          <div>
+            <span class="comm-type" style="background:#bfdbfe;color:#1d4ed8;">Broadcast Channel</span>
+            <h3>eLibrary New Books Alert</h3>
+          </div>
+        </div>
+        <p>Get notified immediately whenever we add new books, past questions, or study materials to the Big Quams Media eLibrary — completely free.</p>
+        <div class="comm-features">
+          <div class="comm-feat">New JAMB past questions</div>
+          <div class="comm-feat">University textbooks & notes</div>
+          <div class="comm-feat">Scholarship guides & e-books</div>
+          <div class="comm-feat">Instant notification on upload</div>
+        </div>
+        <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="comm-join-btn channel-btn">📡 Join Channel</a>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-top">
+          <div class="comm-icon" style="background:#f0fdf4;">🤝</div>
+          <div>
+            <span class="comm-type" style="background:#dcfce7;color:#15803d;">Direct Chat</span>
+            <h3>1-on-1 Support (WhatsApp)</h3>
+          </div>
+        </div>
+        <p>Need personal guidance? Chat directly with the Big Quams Media team for JAMB help, scratch cards, result checking, NIN services, and admission support.</p>
+        <div class="comm-features">
+          <div class="comm-feat">JAMB login & registration help</div>
+          <div class="comm-feat">Scratch card procurement</div>
+          <div class="comm-feat">Result checking & PDF delivery</div>
+          <div class="comm-feat">Admission letter download</div>
+        </div>
+        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="comm-join-btn">💬 Chat Directly</a>
+      </div>
+
+      <div class="comm-card">
+        <div class="comm-card-top">
+          <div class="comm-icon" style="background:#fef3c7;">📱</div>
+          <div>
+            <span class="comm-type" style="background:#fde68a;color:#92400e;">Social Media</span>
+            <h3>Follow Us Everywhere</h3>
+          </div>
+        </div>
+        <p>Stay connected with Big Quams Media across all platforms for tips, DYK facts, student spotlights, and live campus updates throughout the day.</p>
+        <div class="comm-features">
+          <div class="comm-feat">Instagram: @bigquamsmedia</div>
+          <div class="comm-feat">X (Twitter): @big_quams</div>
+          <div class="comm-feat">Facebook: bigquamsmedia024</div>
+          <div class="comm-feat">TikTok: @bigquamsmedia</div>
+        </div>
+        <a href="https://www.instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" class="comm-join-btn" style="background:linear-gradient(135deg,#e1306c,#833ab4);">📸 Follow on Instagram</a>
+      </div>
+
+    </div>
+
+    <!-- COMMUNITY RULES -->
+    <div style="margin-top:40px;">
+      <div class="section-label">House Rules</div>
+      <h2 class="section-title">Community Guidelines</h2>
+      <div class="section-divider"></div>
+      <div class="rules-card">
+        <div class="rules-list">
+          <div class="rule-item"><div class="rule-num">1</div><span><strong>Be respectful.</strong> Treat every member with dignity. Harassment, insults, or discrimination of any kind will result in immediate removal.</span></div>
+          <div class="rule-item"><div class="rule-num">2</div><span><strong>No spam or adverts.</strong> Do not post unsolicited advertisements, chain messages, or irrelevant content. Violators are removed without warning.</span></div>
+          <div class="rule-item"><div class="rule-num">3</div><span><strong>Share verified information only.</strong> Do not spread unconfirmed JAMB news, fake scholarship links, or misleading admission information.</span></div>
+          <div class="rule-item"><div class="rule-num">4</div><span><strong>Stay on topic.</strong> Keep discussions relevant to education, JAMB, admissions, scholarships, and campus life.</span></div>
+          <div class="rule-item"><div class="rule-num">5</div><span><strong>No adult or offensive content.</strong> This is a student platform. Explicit, violent, or politically inflammatory content is strictly prohibited.</span></div>
+          <div class="rule-item"><div class="rule-num">6</div><span><strong>Help each other.</strong> If you know the answer to a question, share it. The community grows when everyone contributes positively.</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-brand">BIG QUAMS MEDIA®</div><div class="footer-tagline">Simplifying Campus Life for Every Nigerian Student</div></div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="newsroom.html">News</a><a href="elibrary.html">eLibrary</a>
+      <a href="results.html">Results</a><a href="cbt.html">CBT</a><a href="community.html">Community</a>
+    </div>
+    <div class="footer-copy">&copy; 2025 Big Quams Media®. All rights reserved. | Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a></div>
+  </div>
+</footer>
+<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float">💬</a>
+
+<script>
+const darkToggle = document.getElementById('darkToggle');
+if (localStorage.getItem('bqm-theme') === 'dark') { document.body.classList.add('dark'); darkToggle.textContent = '☀️'; }
+darkToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  darkToggle.textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('bqm-theme', isDark ? 'dark' : 'light');
+});
+document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mainNav').classList.toggle('open'));
+document.getElementById('mainNav').querySelectorAll('a').forEach(a => a.addEventListener('click', () => document.getElementById('mainNav').classList.remove('open')));
+if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
+</body>
+</html>

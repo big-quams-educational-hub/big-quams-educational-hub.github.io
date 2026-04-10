@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JAMB Subject Combination Checker | BIG QUAMS MEDIA®</title>
+<meta name="description" content="Find the correct JAMB subject combination for your course and university. Over 100 courses covered for UTME candidates.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://big-quams-educational-hub.github.io/subject-combo.html">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#102880">
+<link rel="icon" type="image/jpeg" href="https://i.imgur.com/lYJXUyY.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1a3fa8;--blue-dk:#102880;--orange:#f97316;--green:#16a34a;--muted:#64748b;--light:#f0f5ff;--card:#ffffff;--text:#0f172a;--border:#e2e8f0;--bg:#f8faff;}
+body.dark{--muted:#94a3b8;--light:#1e2a4a;--card:#1a2540;--text:#e2e8f0;--border:#2d3f6b;--bg:#0f172a;background:var(--bg);color:var(--text);}
+body.dark header{background:linear-gradient(135deg,#080f20,#102880);}
+body.dark .hero{background:linear-gradient(145deg,#1a2540,#0f1a35,#1c2035);}
+body.dark .hero h1{color:#e2e8f0;} body.dark .hero p{color:#94a3b8;}
+body.dark h2.section-title{color:#bfdbfe;}
+body.dark .combo-card{background:var(--card);border-color:var(--border);}
+body.dark .result-card{background:var(--card);border-color:var(--border);}
+body.dark .result-card h3{color:#bfdbfe;}
+body.dark .search-box{background:#0f172a;color:var(--text);border-color:var(--border);}
+body.dark .cat-btn{background:var(--card);border-color:var(--border);color:var(--muted);}
+body.dark .course-item{border-color:var(--border);}
+body.dark .course-item:hover{background:#1a2540;}
+body.dark .subject-pill{background:#1a2540;}
+body.dark .req-row{border-color:var(--border);}
+body.dark .req-row p{color:#cbd5e1;}
+body.dark .olevel-req{background:#1a2540;border-color:var(--border);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Roboto',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+.dark-toggle{background:rgba(255,255,255,0.12);border:none;color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;}
+.dark-toggle:hover{background:rgba(255,255,255,0.22);}
+header{background:linear-gradient(135deg,var(--blue-dk) 0%,var(--blue) 100%);color:white;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(26,63,168,0.25);}
+.header-inner{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.logo-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-circle{width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--orange);flex-shrink:0;}
+.logo-circle img{width:100%;height:100%;object-fit:cover;}
+.brand-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;line-height:1.2;}
+.brand-sub{font-size:0.65rem;color:#bfdbfe;}
+.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;margin-left:auto;padding:6px;}
+.menu-toggle span{display:block;width:24px;height:2px;background:white;border-radius:2px;}
+nav{display:flex;flex-wrap:wrap;gap:6px 18px;margin-left:auto;align-items:center;}
+nav a{color:#dbeafe;text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s;}
+nav a:hover{color:var(--orange);}
+.nav-cta{background:var(--orange)!important;color:white!important;padding:7px 16px;border-radius:6px;font-weight:700!important;font-size:0.85rem!important;}
+@media(max-width:600px){.menu-toggle{display:flex;}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:0;background:var(--blue-dk);margin-left:0;padding:8px 0 12px;border-top:1px solid rgba(255,255,255,0.1);}nav.open{display:flex;}nav a{padding:10px 16px;width:100%;font-size:0.95rem;}nav a:hover{background:rgba(255,255,255,0.08);color:var(--orange);}.nav-cta{margin:8px 16px 0;width:calc(100% - 32px);text-align:center;border-radius:6px;}}
+.hero{background:linear-gradient(145deg,#dbeafe 0%,#eff6ff 60%,#fef3c7 100%);padding:48px 16px 44px;text-align:center;position:relative;overflow:hidden;}
+@media(min-width:600px){.hero{padding:64px 24px 56px;}}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(249,115,22,0.08) 0%,transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-block;background:rgba(26,63,168,0.1);color:var(--blue);border:1px solid rgba(26,63,168,0.2);padding:4px 14px;border-radius:20px;font-size:0.76rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:16px;animation:fadeUp 0.5s ease both;}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;color:var(--blue-dk);line-height:1.15;margin-bottom:14px;animation:fadeUp 0.6s 0.1s ease both;}
+.hero h1 span{color:var(--orange);}
+.hero p{color:var(--muted);font-size:1rem;max-width:580px;margin:0 auto 24px;animation:fadeUp 0.6s 0.2s ease both;}
+.container{max-width:1100px;margin:0 auto;padding:40px 16px;}
+@media(min-width:600px){.container{padding:56px 24px;}}
+.section-label{display:inline-block;background:rgba(249,115,22,0.1);color:var(--orange);padding:3px 12px;border-radius:20px;font-size:0.74rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+h2.section-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.4rem,4vw,1.9rem);font-weight:800;color:var(--blue-dk);margin-bottom:8px;}
+.section-divider{width:48px;height:4px;background:var(--orange);border-radius:2px;margin-bottom:28px;}
+
+/* MAIN LAYOUT */
+.checker-layout{display:grid;grid-template-columns:1fr;gap:24px;}
+@media(min-width:900px){.checker-layout{grid-template-columns:340px 1fr;}}
+
+/* LEFT: SEARCH PANEL */
+.combo-card{background:white;border-radius:16px;border:1px solid var(--border);padding:22px;box-shadow:0 4px 20px rgba(0,0,0,0.05);position:sticky;top:80px;}
+.combo-card h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--blue-dk);margin-bottom:6px;}
+body.dark .combo-card h3{color:#bfdbfe;}
+.combo-card p{font-size:0.8rem;color:var(--muted);margin-bottom:16px;}
+.search-box{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'Roboto',sans-serif;color:var(--text);background:white;transition:border-color 0.2s;margin-bottom:12px;}
+.search-box:focus{outline:none;border-color:var(--blue);}
+.cat-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.cat-btn{padding:5px 12px;border-radius:20px;border:1.5px solid var(--border);font-size:0.72rem;font-weight:700;cursor:pointer;background:white;color:var(--muted);transition:0.2s;font-family:'Roboto',sans-serif;}
+.cat-btn.active,.cat-btn:hover{background:var(--blue);color:white;border-color:var(--blue);}
+.course-list{display:flex;flex-direction:column;gap:2px;max-height:420px;overflow-y:auto;}
+.course-item{padding:10px 12px;border-radius:8px;cursor:pointer;transition:background 0.15s;border:1px solid transparent;font-size:0.85rem;color:var(--text);}
+.course-item:hover{background:var(--light);border-color:var(--border);}
+.course-item.active{background:var(--light);border-color:var(--orange);color:var(--orange);font-weight:700;}
+.course-count{font-size:0.7rem;color:var(--muted);margin-top:10px;text-align:center;}
+
+/* RIGHT: RESULT */
+.result-card{background:white;border-radius:16px;border:1px solid var(--border);padding:28px;box-shadow:0 4px 20px rgba(0,0,0,0.05);min-height:300px;}
+.result-empty{text-align:center;padding:48px 16px;color:var(--muted);}
+.result-empty .result-empty-icon{font-size:3rem;margin-bottom:12px;}
+.result-course-name{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:var(--blue-dk);margin-bottom:4px;}
+.result-faculty{font-size:0.82rem;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:6px;}
+.subjects-wrap{background:linear-gradient(135deg,var(--blue-dk),var(--blue));border-radius:14px;padding:20px;margin-bottom:18px;color:white;}
+.subjects-wrap h4{font-family:'Montserrat',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:12px;color:#bfdbfe;}
+.subjects-list{display:flex;flex-wrap:wrap;gap:8px;}
+.subject-pill{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:8px 14px;font-family:'Montserrat',sans-serif;font-size:0.82rem;font-weight:700;display:flex;align-items:center;gap:6px;}
+.subject-pill.compulsory{background:rgba(249,115,22,0.3);border-color:rgba(249,115,22,0.5);}
+.req-section h4{font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--orange);margin-bottom:10px;}
+.req-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);}
+.req-row:last-child{border-bottom:none;}
+.req-icon{font-size:1rem;flex-shrink:0;margin-top:2px;}
+.req-row p{font-size:0.83rem;color:#334155;line-height:1.5;flex:1;}
+.olevel-req{background:var(--light);border-radius:10px;padding:14px;margin-top:14px;border:1px solid var(--border);}
+.olevel-req h4{font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:800;text-transform:uppercase;color:var(--green);margin-bottom:8px;}
+.olevel-req p{font-size:0.82rem;color:#334155;line-height:1.5;}
+.result-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;}
+.ra-btn{padding:10px 18px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;border:none;transition:0.2s;display:flex;align-items:center;gap:6px;text-decoration:none;}
+.ra-btn-primary{background:var(--orange);color:white;}
+.ra-btn-primary:hover{background:#ea6c0a;}
+.ra-btn-secondary{background:var(--light);color:var(--blue);}
+body.dark .ra-btn-secondary{background:#1a2540;color:#93c5fd;}
+.ra-btn-secondary:hover{background:#dbeafe;}
+.ra-btn-wa{background:#25d366;color:white;}
+.ra-btn-wa:hover{background:#20bd5a;}
+
+/* DISCLAIMER */
+.disclaimer{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px 14px;font-size:0.76rem;color:#78350f;margin-top:14px;line-height:1.5;}
+body.dark .disclaimer{background:#1a2540;border-color:var(--border);color:var(--muted);}
+
+#toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;}
+.toast{background:var(--blue-dk);color:white;padding:12px 20px;border-radius:8px;margin-top:8px;font-weight:600;font-size:0.9rem;box-shadow:0 4px 12px rgba(0,0,0,0.2);opacity:0;transform:translateY(12px);transition:0.35s ease;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateY(0);}
+footer{background:var(--blue-dk);color:#bfdbfe;text-align:center;padding:28px 24px;font-size:0.88rem;}
+footer a{color:var(--orange);text-decoration:none;font-weight:600;}
+.footer-inner{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px 16px 22px;}
+.footer-brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:white;}
+.footer-tagline{font-size:0.78rem;color:#94a3b8;}
+.footer-links{display:flex;gap:8px 16px;flex-wrap:wrap;justify-content:center;}
+.footer-links a{color:#94a3b8;text-decoration:none;font-size:0.78rem;transition:color 0.2s;}
+.footer-links a:hover{color:var(--orange);}
+.footer-copy{font-size:0.75rem;color:#64748b;text-align:center;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);width:100%;}
+#whatsapp-float{position:fixed;width:56px;height:56px;bottom:28px;right:24px;background:#25d366;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;z-index:999;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.45);transition:transform 0.2s;}
+#whatsapp-float:hover{transform:scale(1.1);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <div class="logo-circle"><img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Big Quams Media"></div>
+      <div><div class="brand-text">BIG QUAMS MEDIA®</div><div class="brand-sub">Simplifying Campus Life</div></div>
+    </div>
+    <button class="dark-toggle" id="darkToggle">🌙</button>
+    <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="elibrary.html">eLibrary</a>
+      <a href="newsroom.html">News</a>
+      <a href="results.html">Results</a>
+      <a href="cbt.html">CBT Practice</a>
+      <a href="subject-combo.html" style="color:var(--orange);">Subject Combo</a>
+      <a href="index.html#contact" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-badge">📚 100+ Courses Covered</div>
+  <h1>JAMB Subject<br><span>Combination Checker</span></h1>
+  <p>Find the exact JAMB subject combination required for your course. Avoid registration mistakes that could cost you your admission.</p>
+</section>
+
+<section style="background:var(--bg);">
+  <div class="container">
+    <div class="checker-layout">
+
+      <!-- LEFT -->
+      <div>
+        <div class="combo-card">
+          <h3>🔍 Search Your Course</h3>
+          <p>Type your course name or browse by faculty below.</p>
+          <input type="text" class="search-box" id="courseSearch" placeholder="e.g. Medicine, Law, Economics…" oninput="filterCourses()">
+          <div class="cat-row" id="catRow">
+            <button class="cat-btn active" onclick="setCategory('all',this)">All</button>
+            <button class="cat-btn" onclick="setCategory('medicine',this)">Medicine</button>
+            <button class="cat-btn" onclick="setCategory('engineering',this)">Engineering</button>
+            <button class="cat-btn" onclick="setCategory('sciences',this)">Sciences</button>
+            <button class="cat-btn" onclick="setCategory('arts',this)">Arts</button>
+            <button class="cat-btn" onclick="setCategory('social',this)">Social Sci</button>
+            <button class="cat-btn" onclick="setCategory('law',this)">Law</button>
+            <button class="cat-btn" onclick="setCategory('education',this)">Education</button>
+            <button class="cat-btn" onclick="setCategory('business',this)">Business</button>
+            <button class="cat-btn" onclick="setCategory('agriculture',this)">Agriculture</button>
+          </div>
+          <div class="course-list" id="courseList"></div>
+          <div class="course-count" id="courseCount"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div>
+        <div class="result-card" id="resultCard">
+          <div class="result-empty" id="resultEmpty">
+            <div class="result-empty-icon">📖</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--blue-dk);margin-bottom:6px;">Select a Course</div>
+            <p style="font-size:0.82rem;">Search or browse courses on the left, then tap any course to see its required JAMB subjects.</p>
+          </div>
+          <div id="resultContent" style="display:none;"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-brand">BIG QUAMS MEDIA®</div><div class="footer-tagline">Simplifying Campus Life for Every Nigerian Student</div></div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="newsroom.html">News</a><a href="elibrary.html">eLibrary</a>
+      <a href="results.html">Results</a><a href="cbt.html">CBT</a><a href="subject-combo.html">Subject Combo</a>
+    </div>
+    <div class="footer-copy">&copy; 2025 Big Quams Media®. All rights reserved. | Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a></div>
+  </div>
+</footer>
+<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float">💬</a>
+<div id="toast-container"></div>
+
+<script>
+const courses = [
+  // MEDICINE
+  {name:'Medicine & Surgery',faculty:'College of Medicine',cat:'medicine',subjects:['Use of English','Biology','Chemistry','Physics'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology, Chemistry, Physics',cutoff:300,note:'Most competitive course in Nigeria. Post-UTME is usually very rigorous.'},
+  {name:'Pharmacy',faculty:'College of Medicine',cat:'medicine',subjects:['Use of English','Biology','Chemistry','Physics'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology, Chemistry, Physics',cutoff:280,note:'Some universities accept Chemistry, Physics, Maths instead of Physics.'},
+  {name:'Nursing',faculty:'College of Medicine',cat:'medicine',subjects:['Use of English','Biology','Chemistry','Physics or Maths'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology, Chemistry, and one science',cutoff:200,note:''},
+  {name:'Medical Laboratory Science',faculty:'College of Medicine',cat:'medicine',subjects:['Use of English','Biology','Chemistry','Physics or Maths'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology, Chemistry, Physics',cutoff:200,note:''},
+  {name:'Physiotherapy',faculty:'College of Medicine',cat:'medicine',subjects:['Use of English','Biology','Chemistry','Physics or Maths'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology, Chemistry, Physics',cutoff:220,note:''},
+  {name:'Dentistry',faculty:'College of Medicine',cat:'medicine',subjects:['Use of English','Biology','Chemistry','Physics'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology, Chemistry, Physics',cutoff:280,note:'Offered in few Nigerian universities.'},
+  {name:'Radiography',faculty:'College of Medicine',cat:'medicine',subjects:['Use of English','Biology','Chemistry','Physics or Maths'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology, Chemistry, Physics',cutoff:200,note:''},
+  {name:'Veterinary Medicine',faculty:'College of Veterinary Medicine',cat:'medicine',subjects:['Use of English','Biology','Chemistry','Physics or Maths'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology, Chemistry, Physics',cutoff:200,note:''},
+
+  // ENGINEERING
+  {name:'Civil Engineering',faculty:'Faculty of Engineering',cat:'engineering',subjects:['Use of English','Mathematics','Physics','Chemistry'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Physics, Chemistry',cutoff:200,note:''},
+  {name:'Electrical/Electronic Engineering',faculty:'Faculty of Engineering',cat:'engineering',subjects:['Use of English','Mathematics','Physics','Chemistry'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Physics, Chemistry',cutoff:200,note:''},
+  {name:'Mechanical Engineering',faculty:'Faculty of Engineering',cat:'engineering',subjects:['Use of English','Mathematics','Physics','Chemistry'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Physics, Chemistry',cutoff:200,note:''},
+  {name:'Chemical Engineering',faculty:'Faculty of Engineering',cat:'engineering',subjects:['Use of English','Mathematics','Physics','Chemistry'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Physics, Chemistry',cutoff:200,note:''},
+  {name:'Computer Engineering',faculty:'Faculty of Engineering',cat:'engineering',subjects:['Use of English','Mathematics','Physics','Chemistry'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Physics, Chemistry',cutoff:200,note:'Some universities accept Further Maths in place of Chemistry.'},
+  {name:'Agricultural Engineering',faculty:'Faculty of Engineering',cat:'engineering',subjects:['Use of English','Mathematics','Physics','Chemistry or Biology'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Physics, Chemistry/Biology',cutoff:180,note:''},
+  {name:'Petroleum Engineering',faculty:'Faculty of Engineering',cat:'engineering',subjects:['Use of English','Mathematics','Physics','Chemistry'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Physics, Chemistry',cutoff:220,note:'Offered in UNIPORT, UNIBEN, and a few others.'},
+  {name:'Software Engineering',faculty:'Faculty of Engineering',cat:'engineering',subjects:['Use of English','Mathematics','Physics','Chemistry or Further Maths'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Physics, Chemistry',cutoff:200,note:''},
+
+  // SCIENCES
+  {name:'Computer Science',faculty:'Faculty of Science',cat:'sciences',subjects:['Use of English','Mathematics','Physics','Chemistry or Biology or Further Maths'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Physics, Chemistry',cutoff:180,note:'One of the most popular science courses in Nigeria.'},
+  {name:'Mathematics',faculty:'Faculty of Science',cat:'sciences',subjects:['Use of English','Mathematics','Physics','Chemistry or Biology or Further Maths'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Physics',cutoff:180,note:''},
+  {name:'Physics',faculty:'Faculty of Science',cat:'sciences',subjects:['Use of English','Mathematics','Physics','Chemistry or Biology'],compulsory:['Use of English','Mathematics','Physics'],olevel:'Credits in English, Maths, Physics, Chemistry',cutoff:180,note:''},
+  {name:'Chemistry',faculty:'Faculty of Science',cat:'sciences',subjects:['Use of English','Chemistry','Mathematics or Physics','Biology or Physics'],compulsory:['Use of English','Chemistry'],olevel:'Credits in English, Maths, Biology, Chemistry, Physics',cutoff:180,note:''},
+  {name:'Biology',faculty:'Faculty of Science',cat:'sciences',subjects:['Use of English','Biology','Chemistry','Physics or Maths'],compulsory:['Use of English','Biology'],olevel:'Credits in English, Maths, Biology, Chemistry',cutoff:160,note:''},
+  {name:'Microbiology',faculty:'Faculty of Science',cat:'sciences',subjects:['Use of English','Biology','Chemistry','Physics or Maths'],compulsory:['Use of English','Biology','Chemistry'],olevel:'Credits in English, Maths, Biology, Chemistry',cutoff:180,note:''},
+  {name:'Biochemistry',faculty:'Faculty of Science',cat:'sciences',subjects:['Use of English','Biology','Chemistry','Physics or Maths'],compulsory:['Use of English','Biology','Chemistry'],olevel:'Credits in English, Maths, Biology, Chemistry, Physics',cutoff:200,note:''},
+  {name:'Statistics',faculty:'Faculty of Science',cat:'sciences',subjects:['Use of English','Mathematics','Economics or Physics','Any other subject'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths',cutoff:160,note:''},
+  {name:'Geology',faculty:'Faculty of Science',cat:'sciences',subjects:['Use of English','Mathematics','Physics','Chemistry or Geography'],compulsory:['Use of English','Mathematics','Physics'],olevel:'Credits in English, Maths, Physics, Chemistry',cutoff:180,note:''},
+  {name:'Botany',faculty:'Faculty of Science',cat:'sciences',subjects:['Use of English','Biology','Chemistry','Physics or Maths'],compulsory:['Use of English','Biology'],olevel:'Credits in English, Maths, Biology, Chemistry',cutoff:160,note:''},
+  {name:'Zoology',faculty:'Faculty of Science',cat:'sciences',subjects:['Use of English','Biology','Chemistry','Physics or Maths'],compulsory:['Use of English','Biology'],olevel:'Credits in English, Maths, Biology, Chemistry',cutoff:160,note:''},
+
+  // ARTS
+  {name:'English Language',faculty:'Faculty of Arts',cat:'arts',subjects:['Use of English','Literature in English','Any two of: Government, History, CRS/IRS, French, Hausa/Igbo/Yoruba'],compulsory:['Use of English','Literature in English'],olevel:'Credits in English, Literature, and one other arts subject',cutoff:180,note:'Literature in English is compulsory for most universities.'},
+  {name:'History & International Studies',faculty:'Faculty of Arts',cat:'arts',subjects:['Use of English','History or Government','Literature in English or CRS/IRS','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English and History/Government',cutoff:160,note:''},
+  {name:'Philosophy',faculty:'Faculty of Arts',cat:'arts',subjects:['Use of English','Literature in English or Government or History','Any two subjects'],compulsory:['Use of English'],olevel:'Credits in English and any two Arts subjects',cutoff:160,note:''},
+  {name:'Linguistics',faculty:'Faculty of Arts',cat:'arts',subjects:['Use of English','Literature in English','Any two of: French, Hausa, Igbo, Yoruba, Arabic, Government, CRS'],compulsory:['Use of English'],olevel:'Credits in English, Literature',cutoff:160,note:''},
+  {name:'Theatre & Performing Arts',faculty:'Faculty of Arts',cat:'arts',subjects:['Use of English','Literature in English','Government or History','Any other subject'],compulsory:['Use of English','Literature in English'],olevel:'Credits in English, Literature',cutoff:160,note:''},
+  {name:'Music',faculty:'Faculty of Arts',cat:'arts',subjects:['Use of English','Music (if available)','Any three subjects'],compulsory:['Use of English'],olevel:'Credits in English and three other subjects',cutoff:160,note:'Aptitude/audition test is usually required in addition to JAMB.'},
+  {name:'Fine & Applied Arts',faculty:'Faculty of Arts',cat:'arts',subjects:['Use of English','Fine Arts or Literature in English','Any two subjects'],compulsory:['Use of English'],olevel:'Credits in English and Fine Arts if taken',cutoff:160,note:'Portfolio submission required at most universities.'},
+  {name:'Religious Studies / CRS',faculty:'Faculty of Arts',cat:'arts',subjects:['Use of English','CRS or IRS','Any two of: Government, History, Literature, Hausa/Igbo/Yoruba'],compulsory:['Use of English'],olevel:'Credits in English and CRS/IRS',cutoff:160,note:''},
+
+  // SOCIAL SCIENCES
+  {name:'Economics',faculty:'Faculty of Social Sciences',cat:'social',subjects:['Use of English','Mathematics','Economics','Any one of: Commerce, Government, Geography, Accounting'],compulsory:['Use of English','Economics','Mathematics'],olevel:'Credits in English, Maths, Economics',cutoff:180,note:''},
+  {name:'Political Science',faculty:'Faculty of Social Sciences',cat:'social',subjects:['Use of English','Government or History','Economics or Geography','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English, Government/History',cutoff:160,note:'Called Government at some universities.'},
+  {name:'Sociology',faculty:'Faculty of Social Sciences',cat:'social',subjects:['Use of English','Government or History','Economics or Geography','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English and three other subjects',cutoff:160,note:''},
+  {name:'Psychology',faculty:'Faculty of Social Sciences',cat:'social',subjects:['Use of English','Biology or Government','Economics or Maths','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English, Maths or Biology',cutoff:180,note:''},
+  {name:'Geography',faculty:'Faculty of Social Sciences',cat:'social',subjects:['Use of English','Geography','Mathematics or Economics','Any one subject'],compulsory:['Use of English','Geography'],olevel:'Credits in English, Geography, Maths',cutoff:160,note:''},
+  {name:'Mass Communication',faculty:'Faculty of Social Sciences',cat:'social',subjects:['Use of English','Government or History or Economics','Literature in English or CRS','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English, Literature, and two others',cutoff:180,note:'Post-UTME for Mass Comm often includes an essay/aptitude test.'},
+  {name:'Public Administration',faculty:'Faculty of Social Sciences',cat:'social',subjects:['Use of English','Government','Economics or Maths','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English, Government',cutoff:160,note:''},
+  {name:'Criminology & Security Studies',faculty:'Faculty of Social Sciences',cat:'social',subjects:['Use of English','Government or Sociology','Economics or History','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English and three others',cutoff:160,note:'Relatively new course offered in some universities.'},
+  {name:'International Relations',faculty:'Faculty of Social Sciences',cat:'social',subjects:['Use of English','Government or History','Economics or Geography','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English, Government',cutoff:170,note:''},
+
+  // LAW
+  {name:'Law (LLB)',faculty:'Faculty of Law',cat:'law',subjects:['Use of English','Literature in English or CRS/IRS','Government or History','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English, Literature, Government and two others',cutoff:200,note:'Law is one of the most competitive courses. Post-UTME usually has a strong reading component.'},
+
+  // EDUCATION
+  {name:'Education & Mathematics',faculty:'Faculty of Education',cat:'education',subjects:['Use of English','Mathematics','Physics or Chemistry','Any one subject'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths',cutoff:160,note:''},
+  {name:'Education & Biology',faculty:'Faculty of Education',cat:'education',subjects:['Use of English','Biology','Chemistry or Physics','Any one subject'],compulsory:['Use of English','Biology'],olevel:'Credits in English, Maths, Biology',cutoff:160,note:''},
+  {name:'Education & English',faculty:'Faculty of Education',cat:'education',subjects:['Use of English','Literature in English','Government or History','Any one subject'],compulsory:['Use of English','Literature in English'],olevel:'Credits in English, Literature',cutoff:160,note:''},
+  {name:'Education & Economics',faculty:'Faculty of Education',cat:'education',subjects:['Use of English','Economics','Mathematics or Government','Any one subject'],compulsory:['Use of English','Economics'],olevel:'Credits in English, Maths, Economics',cutoff:160,note:''},
+  {name:'Education & Computer Science',faculty:'Faculty of Education',cat:'education',subjects:['Use of English','Mathematics','Physics','Chemistry or Further Maths'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Physics',cutoff:160,note:''},
+  {name:'Early Childhood Education',faculty:'Faculty of Education',cat:'education',subjects:['Use of English','Any three subjects'],compulsory:['Use of English'],olevel:'Credits in English and three others',cutoff:140,note:'Usually one of the lower-cut off education courses.'},
+  {name:'Guidance & Counselling',faculty:'Faculty of Education',cat:'education',subjects:['Use of English','Any three of: Government, Economics, Biology, Psychology'],compulsory:['Use of English'],olevel:'Credits in English and three others',cutoff:160,note:''},
+  {name:'Library & Information Science',faculty:'Faculty of Education',cat:'education',subjects:['Use of English','Any three subjects'],compulsory:['Use of English'],olevel:'Credits in English and three others',cutoff:140,note:''},
+  {name:'Physical & Health Education',faculty:'Faculty of Education',cat:'education',subjects:['Use of English','Biology','Physics or Chemistry','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English, Biology',cutoff:140,note:''},
+
+  // BUSINESS
+  {name:'Accounting',faculty:'Faculty of Management Sciences',cat:'business',subjects:['Use of English','Mathematics','Economics','Any one of: Commerce, Government, Geography, Accounting'],compulsory:['Use of English','Mathematics','Economics'],olevel:'Credits in English, Maths, Economics or Accounting',cutoff:180,note:''},
+  {name:'Business Administration',faculty:'Faculty of Management Sciences',cat:'business',subjects:['Use of English','Mathematics','Economics','Any one subject'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Economics',cutoff:160,note:''},
+  {name:'Banking & Finance',faculty:'Faculty of Management Sciences',cat:'business',subjects:['Use of English','Mathematics','Economics','Any one subject'],compulsory:['Use of English','Mathematics','Economics'],olevel:'Credits in English, Maths, Economics',cutoff:180,note:''},
+  {name:'Marketing',faculty:'Faculty of Management Sciences',cat:'business',subjects:['Use of English','Mathematics','Economics','Any one subject'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Economics',cutoff:160,note:''},
+  {name:'Insurance',faculty:'Faculty of Management Sciences',cat:'business',subjects:['Use of English','Mathematics','Economics','Any one subject'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths, Economics',cutoff:160,note:''},
+  {name:'Human Resource Management',faculty:'Faculty of Management Sciences',cat:'business',subjects:['Use of English','Mathematics','Economics','Any one subject'],compulsory:['Use of English','Mathematics'],olevel:'Credits in English, Maths',cutoff:160,note:''},
+  {name:'Entrepreneurship',faculty:'Faculty of Management Sciences',cat:'business',subjects:['Use of English','Mathematics','Economics','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Economics',cutoff:160,note:''},
+  {name:'Cooperative Economics & Management',faculty:'Faculty of Management Sciences',cat:'business',subjects:['Use of English','Mathematics','Economics','Any one subject'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Economics',cutoff:160,note:''},
+
+  // AGRICULTURE
+  {name:'Agriculture',faculty:'Faculty of Agriculture',cat:'agriculture',subjects:['Use of English','Biology or Agricultural Science','Chemistry or Physics','Mathematics or Physics'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology/Agric Science, Chemistry',cutoff:160,note:''},
+  {name:'Animal Science',faculty:'Faculty of Agriculture',cat:'agriculture',subjects:['Use of English','Biology or Agricultural Science','Chemistry','Mathematics or Physics'],compulsory:['Use of English','Biology'],olevel:'Credits in English, Maths, Biology, Chemistry',cutoff:160,note:''},
+  {name:'Soil Science',faculty:'Faculty of Agriculture',cat:'agriculture',subjects:['Use of English','Biology or Agricultural Science','Chemistry','Mathematics or Physics'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology, Chemistry',cutoff:160,note:''},
+  {name:'Food Science & Technology',faculty:'Faculty of Agriculture',cat:'agriculture',subjects:['Use of English','Biology or Agricultural Science','Chemistry','Mathematics or Physics'],compulsory:['Use of English','Biology','Chemistry'],olevel:'Credits in English, Maths, Biology, Chemistry',cutoff:180,note:''},
+  {name:'Fisheries & Aquaculture',faculty:'Faculty of Agriculture',cat:'agriculture',subjects:['Use of English','Biology or Agricultural Science','Chemistry','Mathematics or Physics'],compulsory:['Use of English','Biology'],olevel:'Credits in English, Maths, Biology, Chemistry',cutoff:160,note:''},
+  {name:'Forestry & Wildlife',faculty:'Faculty of Agriculture',cat:'agriculture',subjects:['Use of English','Biology or Agricultural Science','Chemistry or Physics','Mathematics'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology, Chemistry',cutoff:160,note:''},
+  {name:'Agricultural Economics',faculty:'Faculty of Agriculture',cat:'agriculture',subjects:['Use of English','Agricultural Science or Biology','Mathematics or Economics','Chemistry or Geography'],compulsory:['Use of English'],olevel:'Credits in English, Maths, Biology/Agric',cutoff:160,note:''},
+];
+
+let activeCategory = 'all';
+let selectedCourse = null;
+
+function setCategory(cat, btn) {
+  activeCategory = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCourses();
+}
+
+function filterCourses() {
+  const q = document.getElementById('courseSearch').value.toLowerCase();
+  const filtered = courses.filter(c => {
+    const matchCat = activeCategory === 'all' || c.cat === activeCategory;
+    const matchQ = !q || c.name.toLowerCase().includes(q) || c.faculty.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+  renderCourseList(filtered);
+}
+
+function renderCourseList(list) {
+  const el = document.getElementById('courseList');
+  const count = document.getElementById('courseCount');
+  count.textContent = `${list.length} course${list.length !== 1 ? 's' : ''} found`;
+  if (list.length === 0) {
+    el.innerHTML = '<div style="padding:16px;text-align:center;color:var(--muted);font-size:0.82rem;">No courses match. Try a different search.</div>';
+    return;
+  }
+  el.innerHTML = list.map((c, i) => `
+    <div class="course-item${selectedCourse && selectedCourse.name === c.name ? ' active' : ''}" onclick="showCourse(${courses.indexOf(c)})">
+      ${c.name}
+    </div>`).join('');
+}
+
+function showCourse(idx) {
+  selectedCourse = courses[idx];
+  document.querySelectorAll('.course-item').forEach(el => el.classList.remove('active'));
+  // Find and mark active
+  const all = document.querySelectorAll('.course-item');
+  all.forEach(el => { if (el.textContent.trim() === selectedCourse.name) el.classList.add('active'); });
+
+  document.getElementById('resultEmpty').style.display = 'none';
+  const content = document.getElementById('resultContent');
+  content.style.display = 'block';
+
+  const c = selectedCourse;
+  const subjectIcons = { 'Use of English':'📖', 'Mathematics':'🔢', 'Biology':'🧬', 'Chemistry':'⚗️', 'Physics':'⚡', 'Economics':'📈', 'Government':'🏛️', 'History':'📜', 'Literature in English':'📚', 'Geography':'🗺️', 'Agricultural Science':'🌱', 'Commerce':'🏪', 'Further Maths':'➗', 'Accounting':'💼', 'CRS/IRS':'✝️', 'Music':'🎵', 'Fine Arts':'🎨' };
+
+  content.innerHTML = `
+    <div class="result-course-name">${c.name}</div>
+    <div class="result-faculty"><span style="background:var(--light);padding:2px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;color:var(--blue);">${c.faculty}</span></div>
+
+    <div class="subjects-wrap">
+      <h4>📝 Required JAMB Subjects</h4>
+      <div class="subjects-list">
+        ${c.subjects.map(s => {
+          const isComp = c.compulsory.some(x => s.toLowerCase().includes(x.toLowerCase()));
+          const icon = Object.entries(subjectIcons).find(([k]) => s.includes(k))?.[1] || '📌';
+          return `<div class="subject-pill${isComp ? ' compulsory' : ''}">${icon} ${s}</div>`;
+        }).join('')}
+      </div>
+      <div style="margin-top:10px;font-size:0.72rem;color:rgba(255,255,255,0.6);">🟠 Orange pills = compulsory subjects</div>
+    </div>
+
+    <div class="req-section">
+      <h4>Additional Requirements</h4>
+      <div class="req-row"><div class="req-icon">🎯</div><p><strong>Typical Cut-off:</strong> ${c.cutoff}+ in JAMB UTME</p></div>
+      ${c.note ? `<div class="req-row"><div class="req-icon">💡</div><p>${c.note}</p></div>` : ''}
+    </div>
+
+    <div class="olevel-req">
+      <h4>✅ O'Level Requirements (WAEC/NECO)</h4>
+      <p>${c.olevel}</p>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ Subject combinations may vary slightly between universities. Always verify with JAMB's brochure or your target institution's prospectus before registering.
+    </div>
+
+    <div class="result-actions">
+      <button class="ra-btn ra-btn-primary" onclick="shareCombo()">📤 Share This</button>
+      <a href="postutme-calculator.html" class="ra-btn ra-btn-secondary">🧮 Post UTME Calc</a>
+      <a href="https://wa.me/2349049871643?text=Hello%20Big%20Quams%20Media!%20I%20need%20JAMB%20registration%20help%20for%20${encodeURIComponent(c.name)}." target="_blank" rel="noopener noreferrer" class="ra-btn ra-btn-wa">💬 Get JAMB Help</a>
+    </div>`;
+
+  // Scroll to result on mobile
+  if (window.innerWidth < 900) {
+    document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+window.shareCombo = () => {
+  if (!selectedCourse) return;
+  const c = selectedCourse;
+  const text = `📚 JAMB Subject Combination for ${c.name}:\n\n${c.subjects.map((s,i)=>`${i+1}. ${s}`).join('\n')}\n\nO'Level: ${c.olevel}\n\nFind yours on Big Quams Media 👇\nhttps://big-quams-educational-hub.github.io/subject-combo.html`;
+  if (navigator.share) navigator.share({ title: 'JAMB Subject Combo', text });
+  else window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+};
+
+// Dark mode
+const darkToggle = document.getElementById('darkToggle');
+if (localStorage.getItem('bqm-theme') === 'dark') { document.body.classList.add('dark'); darkToggle.textContent = '☀️'; }
+darkToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  darkToggle.textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('bqm-theme', isDark ? 'dark' : 'light');
+});
+document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mainNav').classList.toggle('open'));
+document.getElementById('mainNav').querySelectorAll('a').forEach(a => a.addEventListener('click', () => document.getElementById('mainNav').classList.remove('open')));
+
+if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+filterCourses();
+</script>
+</body>
+</html>
