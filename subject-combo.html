@@ -419,5 +419,6 @@ document.getElementById('mainNav').querySelectorAll('a').forEach(a => a.addEvent
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
 filterCourses();
 </script>
+  <script type="module" src="fcm-init.js"></script>
 </body>
 </html>
