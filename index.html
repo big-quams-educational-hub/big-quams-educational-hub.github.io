@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="google-site-verification" content="3_4jrMfsptcTwVe5pHtg47IU3JyPCjeFZrfrUgGO6xU" />
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>BIG QUAMS MEDIA® | Simplifying Campus Life for Nigerian Students</title>
@@ -901,51 +902,101 @@ body.dark .elib-features li { color: #cbd5e1; }
 .elib-book span { font-size: 0.72rem; font-weight: 600; line-height: 1.3; opacity: 0.9; }
 
 
-/* WHATSAPP CHANNEL POPUP */
+/* ── WHATSAPP CHANNEL POPUP ── */
 .wa-popup-overlay {
-  position: fixed; inset: 0; background: rgba(10,20,60,0.45);
+  position: fixed; inset: 0;
+  background: rgba(10,20,60,0.55);
   z-index: 9998; display: flex; align-items: center;
   justify-content: center; padding: 16px;
+  backdrop-filter: blur(6px);
   animation: fadeIn 0.3s ease;
 }
 .wa-popup-overlay.hidden { display: none; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
 .wa-popup {
-  background: white; border-radius: 16px;
-  padding: 24px 20px 20px; max-width: 340px; width: 100%;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.2);
-  animation: popUp 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
-  position: relative; text-align: center;
+  background: white; border-radius: 20px;
+  padding: 0; max-width: 360px; width: 100%;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.25);
+  animation: popUp 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+  position: relative; overflow: hidden;
 }
-body.dark .wa-popup { background: #1a2540; color: #e2e8f0; }
-@keyframes popUp { from { opacity:0; transform:scale(0.85) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+body.dark .wa-popup { background: #1a2540; }
+@keyframes popUp { from { opacity:0; transform:scale(0.82) translateY(24px); } to { opacity:1; transform:scale(1) translateY(0); } }
+
+/* Green header band */
+.wa-popup-header {
+  background: linear-gradient(135deg, #064e3b, #065f46);
+  padding: 24px 20px 20px; text-align: center; position: relative;
+}
 .wa-popup-close {
-  position: absolute; top: 10px; right: 12px;
-  background: none; border: none; font-size: 1.1rem;
-  cursor: pointer; color: var(--muted); line-height: 1;
-  padding: 4px; transition: color 0.2s;
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(255,255,255,0.15); border: none;
+  color: white; width: 28px; height: 28px;
+  border-radius: 50%; font-size: 0.9rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
 }
-.wa-popup-close:hover { color: var(--red, #dc2626); }
-.wa-popup-icon { font-size: 2.4rem; margin-bottom: 10px; }
-.wa-popup h3 {
-  font-family: 'Montserrat', sans-serif; font-size: 1rem;
-  font-weight: 800; color: var(--blue-dk); margin-bottom: 6px;
+.wa-popup-close:hover { background: rgba(255,255,255,0.28); }
+.wa-popup-wa-icon { font-size: 2.8rem; margin-bottom: 8px; line-height: 1; }
+.wa-popup-header h3 {
+  font-family: 'Montserrat', sans-serif; font-size: 1.05rem;
+  font-weight: 800; color: white; margin-bottom: 4px;
 }
-body.dark .wa-popup h3 { color: #bfdbfe; }
-.wa-popup p { font-size: 0.82rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+.wa-popup-header p { font-size: 0.78rem; color: #a7f3d0; line-height: 1.4; }
+
+/* Body */
+.wa-popup-body { padding: 18px 20px 20px; }
+.wa-popup-perks { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+.wa-popup-perk {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.8rem; color: #334155; font-weight: 500;
+}
+body.dark .wa-popup-perk { color: #cbd5e1; }
+.wa-popup-perk::before {
+  content: '✓'; width: 18px; height: 18px; border-radius: 50%;
+  background: #dcfce7; color: #16a34a;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.62rem; font-weight: 800; flex-shrink: 0;
+}
 .wa-popup-btn {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: #25d366; color: white;
-  padding: 11px 20px; border-radius: 9px;
-  text-decoration: none; font-weight: 700;
-  font-size: 0.88rem; font-family: 'Montserrat', sans-serif;
-  transition: background 0.2s; width: 100%; justify-content: center;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; background: #25d366; color: white;
+  padding: 13px; border-radius: 10px; text-decoration: none;
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.92rem;
+  transition: background 0.2s, transform 0.15s; border: none; cursor: pointer;
+  margin-bottom: 8px;
 }
-.wa-popup-btn:hover { background: #20bd5a; }
+.wa-popup-btn:hover { background: #20bd5a; transform: translateY(-1px); }
 .wa-popup-skip {
-  display: block; margin-top: 10px; font-size: 0.75rem;
-  color: var(--muted); cursor: pointer; text-decoration: underline;
-  background: none; border: none; font-family: inherit;
+  display: block; width: 100%; text-align: center;
+  font-size: 0.74rem; color: var(--muted); cursor: pointer;
+  text-decoration: none; background: none; border: none;
+  font-family: 'Roboto', sans-serif; padding: 4px;
+  transition: color 0.2s;
+}
+.wa-popup-skip:hover { color: var(--text); }
+
+/* Pulse badge on channel icon */
+.wa-popup-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(37,211,102,0.2); border: 1px solid rgba(37,211,102,0.4);
+  color: #6ee7b7; padding: 3px 10px; border-radius: 20px;
+  font-size: 0.68rem; font-weight: 700; margin-bottom: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+.wa-pulse { width: 6px; height: 6px; border-radius: 50%; background: #25d366; animation: waPulse 1.2s infinite; }
+@keyframes waPulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.7);} }
+
+/* Nav scroll hint on mobile */
+.nav-scroll-hint {
+  display: none;
+  font-size: 0.62rem; color: rgba(255,255,255,0.45);
+  text-align: center; padding: 4px 0 2px;
+  letter-spacing: 0.3px;
+}
+@media(max-width:600px){
+  .nav-scroll-hint { display: block; }
 }
 
 
@@ -1318,8 +1369,7 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
 </style>
 </head>
 <body>
-<script type="module" src="fcm-init.js"></script>
-  
+
 <!-- NOTIFICATION BAR -->
 <div class="notif-bar" id="notifBar">
   <div class="notif-bar-text">🔔 <strong>Stay updated!</strong> Enable notifications to get news & new books directly on your phone</div>
@@ -1345,23 +1395,18 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
-    <nav id="mainNav">
+        <nav id="mainNav">
+      <div class="nav-scroll-hint">↕ Scroll to see all links</div>
       <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="elibrary.html">eLibrary</a>
       <a href="newsroom.html">News</a>
-      <a href="#calculator-section">Calculator</a>
-      <a href="#spotlight-section">Spotlight</a>
-      <a href="#dyk-section">DYK</a>
+      <a href="elibrary.html">eLibrary</a>
       <a href="cbt.html">🎯 CBT Practice</a>
       <a href="scholarship.html">💰 Scholarships</a>
-      <a href="subject-combo.html">📚 Subject Combo</a>
       <a href="results.html">📋 Results</a>
-      <a href="postutme-calculator.html">🧮 Post UTME</a>
+      <a href="postutme-calculator.html">🧮 Post UTME Calc</a>
+      <a href="postutme-prep.html">📖 Prep Guide</a>
+      <a href="subject-combo.html">📚 Subject Combo</a>
       <a href="community.html">👥 Community</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#notifications-section">🔔 Notifications</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
   </div>
@@ -1963,13 +2008,19 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       </a>
     </div>
-    <div class="footer-links">
-      <a href="#home">Home</a>
+        <div class="footer-links">
+      <a href="index.html">Home</a>
       <a href="newsroom.html">Newsroom</a>
       <a href="elibrary.html">eLibrary</a>
+      <a href="cbt.html">CBT Practice</a>
+      <a href="scholarship.html">Scholarships</a>
+      <a href="results.html">Results Checker</a>
+      <a href="postutme-calculator.html">Post UTME Calc</a>
+      <a href="postutme-prep.html">Prep Guide</a>
+      <a href="subject-combo.html">Subject Combo</a>
+      <a href="community.html">Community</a>
       <a href="dyk.html">DYK</a>
       <a href="spotlight.html">Spotlight</a>
-      <a href="#contact">Contact</a>
     </div>
     <div class="footer-copy">
       &copy; 2025 Big Quams Media®. All rights reserved. &nbsp;|&nbsp;
@@ -1981,16 +2032,33 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
 
 
 <!-- WHATSAPP CHANNEL POPUP -->
-<div class="wa-popup-overlay" id="waPopupOverlay">
+<div class="wa-popup-overlay hidden" id="waPopupOverlay">
   <div class="wa-popup">
-    <button class="wa-popup-close" onclick="closeWaPopup()" aria-label="Close">✕</button>
-    <div class="wa-popup-icon">📢</div>
-    <h3>Join Our WhatsApp Channel!</h3>
-    <p>Get the latest JAMB updates, scholarship alerts, campus news and admission guides delivered straight to your WhatsApp.</p>
-    <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="wa-popup-btn" onclick="closeWaPopup()">
-      📲 Join BIG QUAMS MEDIA Channel
-    </a>
-    <button class="wa-popup-skip" onclick="closeWaPopup()">Maybe later</button>
+    <!-- Header -->
+    <div class="wa-popup-header">
+      <button class="wa-popup-close" onclick="closeWaPopup()" aria-label="Close">✕</button>
+      <div class="wa-popup-badge"><span class="wa-pulse"></span> Live Channel</div>
+      <div class="wa-popup-wa-icon">📢</div>
+      <h3>Join Big Quams Media<br>WhatsApp Channel</h3>
+      <p>10,000+ Nigerian students already inside</p>
+    </div>
+    <!-- Body -->
+    <div class="wa-popup-body">
+      <div class="wa-popup-perks">
+        <div class="wa-popup-perk">Instant JAMB &amp; admission alerts</div>
+        <div class="wa-popup-perk">Scholarship deadlines &amp; opportunities</div>
+        <div class="wa-popup-perk">New eLibrary books as they drop</div>
+        <div class="wa-popup-perk">Campus news &amp; DYK facts daily</div>
+        <div class="wa-popup-perk">Free — no spam, no fees, ever</div>
+      </div>
+      <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q"
+         target="_blank" rel="noopener noreferrer"
+         class="wa-popup-btn" onclick="closeWaPopup()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.847L.073 23.927l6.241-1.635A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.71.972.99-3.614-.234-.373A9.818 9.818 0 0112 2.182c5.427 0 9.818 4.391 9.818 9.818 0 5.428-4.391 9.818-9.818 9.818z"/></svg>
+        Join Channel Now — It's Free
+      </a>
+      <button class="wa-popup-skip" onclick="closeWaPopup()">Maybe later</button>
+    </div>
   </div>
 </div>
 
