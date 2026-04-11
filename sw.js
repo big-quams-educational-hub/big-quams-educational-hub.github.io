@@ -1,11 +1,25 @@
-// BIG QUAMS MEDIA® Service Worker v3
-// Updated: 2026 — covers all new pages, stale-while-revalidate for JSON
+// BIG QUAMS MEDIA® Service Worker v4 — Firebase Cloud Messaging
+// Handles: offline caching (stale-while-revalidate) + FCM push notifications
 
-const CACHE_NAME = 'bqm-v3';
-const STATIC_CACHE = 'bqm-static-v3';
-const JSON_CACHE   = 'bqm-json-v3';
+importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js');
 
-// Core shell — always cached
+// ── FIREBASE CONFIG ──
+firebase.initializeApp({
+  apiKey:            'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',
+  authDomain:        'big-quams-media.firebaseapp.com',
+  projectId:         'big-quams-media',
+  storageBucket:     'big-quams-media.firebasestorage.app',
+  messagingSenderId: '383186323859',
+  appId:             '1:383186323859:web:826d6b9977cfa947730066'
+});
+
+const messaging = firebase.messaging();
+
+// ── CACHE CONFIG ──
+const STATIC_CACHE = 'bqm-static-v4';
+const JSON_CACHE   = 'bqm-json-v4';
+
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -20,10 +34,8 @@ const STATIC_ASSETS = [
   '/subject-combo.html',
   '/community.html',
   '/manifest.json',
-  'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap',
 ];
 
-// JSON data files — stale-while-revalidate
 const JSON_FILES = [
   '/news.json',
   '/books.json',
@@ -32,17 +44,16 @@ const JSON_FILES = [
   '/reviews.json',
   '/qa.json',
   '/calendar.json',
+  '/scholarships.json',
 ];
 
 // ── INSTALL ──
 self.addEventListener('install', event => {
   self.skipWaiting();
   event.waitUntil(
-    caches.open(STATIC_CACHE).then(cache => {
-      return Promise.allSettled(
-        STATIC_ASSETS.map(url => cache.add(url).catch(() => {}))
-      );
-    })
+    caches.open(STATIC_CACHE).then(cache =>
+      Promise.allSettled(STATIC_ASSETS.map(url => cache.add(url).catch(() => {})))
+    )
   );
 });
 
@@ -63,32 +74,30 @@ self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip non-GET and cross-origin (except fonts/Firebase)
   if (request.method !== 'GET') return;
+
+  // Skip Firebase & external APIs — never cache these
+  if (url.hostname.includes('firebaseapp.com') ||
+      url.hostname.includes('googleapis.com') ||
+      url.hostname.includes('firebasestorage.app') ||
+      url.hostname.includes('gstatic.com')) return;
+
+  // Skip cross-origin except fonts & imgur
   if (url.origin !== location.origin &&
       !url.hostname.includes('fonts.googleapis.com') &&
       !url.hostname.includes('fonts.gstatic.com') &&
       !url.hostname.includes('i.imgur.com')) return;
 
-  // JSON files: stale-while-revalidate (always fresh data when online)
-  if (JSON_FILES.some(f => url.pathname === f || url.pathname.startsWith(f.replace('.json','')))) {
+  // JSON: stale-while-revalidate (always fast, always fresh when online)
+  if (JSON_FILES.some(f => url.pathname === f || url.pathname.startsWith(f.replace('.json', '')))) {
     event.respondWith(staleWhileRevalidate(request, JSON_CACHE));
     return;
   }
 
-  // Firebase & external APIs: network only
-  if (url.hostname.includes('firebaseapp.com') ||
-      url.hostname.includes('googleapis.com') ||
-      url.hostname.includes('firebasestorage.app') ||
-      url.hostname.includes('gstatic.com') && url.pathname.includes('firebasejs')) {
-    return; // let browser handle
-  }
-
-  // Static assets: cache-first
+  // Static HTML/CSS/JS: cache-first
   event.respondWith(cacheFirst(request, STATIC_CACHE));
 });
 
-// ── STRATEGIES ──
 async function cacheFirst(request, cacheName) {
   const cached = await caches.match(request);
   if (cached) return cached;
@@ -107,67 +116,80 @@ async function cacheFirst(request, cacheName) {
 }
 
 async function staleWhileRevalidate(request, cacheName) {
-  const cache = await caches.open(cacheName);
+  const cache  = await caches.open(cacheName);
   const cached = await cache.match(request);
-
-  const networkFetch = fetch(request).then(response => {
-    if (response.ok) cache.put(request, response.clone());
-    return response;
+  const networkFetch = fetch(request).then(res => {
+    if (res.ok) cache.put(request, res.clone());
+    return res;
   }).catch(() => null);
-
   return cached || await networkFetch || new Response('[]', {
     headers: { 'Content-Type': 'application/json' }
   });
 }
 
-// ── PUSH NOTIFICATIONS ──
-self.addEventListener('push', event => {
-  let data = { title: 'Big Quams Media®', body: 'You have a new update!' };
-  try { data = { ...data, ...event.data.json() }; } catch {}
-  event.waitUntil(
-    self.registration.showNotification(data.title, {
-      body: data.body,
-      icon: 'https://i.imgur.com/lYJXUyY.jpeg',
-      badge: 'https://i.imgur.com/lYJXUyY.jpeg',
-      tag: data.tag || 'bqm-update',
-      data: { url: data.url || '/' },
-      actions: [
-        { action: 'open', title: 'View Now' },
-        { action: 'dismiss', title: 'Dismiss' }
-      ]
-    })
-  );
+// ── FCM: BACKGROUND MESSAGE HANDLER ──
+// Fires when the app is closed, in background, or device reconnects to data
+messaging.onBackgroundMessage(payload => {
+  const data = payload.data || {};
+  const notif = payload.notification || {};
+
+  const title = data.title || notif.title || 'Big Quams Media®';
+  const body  = data.body  || notif.body  || 'You have a new update!';
+  const icon  = data.icon  || notif.icon  || 'https://i.imgur.com/lYJXUyY.jpeg';
+  const url   = data.url   || 'https://big-quams-educational-hub.github.io/';
+  const tag   = data.tag   || 'bqm-update';
+  const image = data.image || notif.image || undefined;
+
+  return self.registration.showNotification(title, {
+    body,
+    icon,
+    badge:    'https://i.imgur.com/lYJXUyY.jpeg',
+    image,
+    tag,
+    renotify: true,
+    data:     { url },
+    actions:  [
+      { action: 'open',    title: '👀 View Now' },
+      { action: 'dismiss', title: 'Dismiss'     }
+    ],
+    vibrate:  [200, 100, 200],
+  });
 });
 
+// ── NOTIFICATION CLICK ──
 self.addEventListener('notificationclick', event => {
   event.notification.close();
   if (event.action === 'dismiss') return;
-  const url = event.notification.data?.url || '/';
+
+  const targetUrl = event.notification.data?.url ||
+                    'https://big-quams-educational-hub.github.io/';
+
   event.waitUntil(
-    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientList => {
-      for (const client of clientList) {
-        if (client.url.includes(self.location.origin) && 'focus' in client) {
-          client.navigate(url);
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
+      for (const client of list) {
+        if (client.url.includes('big-quams-educational-hub') && 'focus' in client) {
+          client.navigate(targetUrl);
           return client.focus();
         }
       }
-      return clients.openWindow(url);
+      return clients.openWindow(targetUrl);
     })
   );
 });
 
-// ── MESSAGE HANDLER (for welcome notification from page) ──
+// ── MESSAGE FROM PAGE ──
 self.addEventListener('message', event => {
   if (event.data?.type === 'SHOW_NOTIFICATION') {
-    self.registration.showNotification(event.data.title || 'Big Quams Media®', {
-      body: event.data.body || 'You have a new update!',
-      icon: 'https://i.imgur.com/lYJXUyY.jpeg',
-      badge: 'https://i.imgur.com/lYJXUyY.jpeg',
-      tag: 'bqm-welcome',
-      data: { url: event.data.url || '/' }
-    });
+    self.registration.showNotification(
+      event.data.title || 'Big Quams Media®',
+      {
+        body:  event.data.body || 'You have a new update!',
+        icon:  'https://i.imgur.com/lYJXUyY.jpeg',
+        badge: 'https://i.imgur.com/lYJXUyY.jpeg',
+        tag:   'bqm-manual',
+        data:  { url: event.data.url || '/' }
+      }
+    );
   }
-  // Skip waiting — force update
   if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
 });
-    
