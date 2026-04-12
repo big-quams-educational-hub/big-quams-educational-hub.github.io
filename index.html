@@ -901,32 +901,29 @@ body.dark .elib-features li { color: #cbd5e1; }
 .elib-book span { font-size: 0.72rem; font-weight: 600; line-height: 1.3; opacity: 0.9; }
 
 
-/* ── WHATSAPP CHANNEL POPUP ── */
+/* WHATSAPP CHANNEL POPUP */
 .wa-popup-overlay {
   position: fixed; inset: 0;
-  background: rgba(10,20,60,0.55);
+  background: rgba(10,20,60,0.6);
   z-index: 9998; display: flex; align-items: center;
   justify-content: center; padding: 16px;
   backdrop-filter: blur(6px);
   animation: fadeIn 0.3s ease;
 }
 .wa-popup-overlay.hidden { display: none; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
 .wa-popup {
   background: white; border-radius: 20px;
-  padding: 0; max-width: 360px; width: 100%;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.25);
+  max-width: 360px; width: 100%; overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.3);
   animation: popUp 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
-  position: relative; overflow: hidden;
+  position: relative;
 }
 body.dark .wa-popup { background: #1a2540; }
-@keyframes popUp { from { opacity:0; transform:scale(0.82) translateY(24px); } to { opacity:1; transform:scale(1) translateY(0); } }
-
-/* Green header band */
+@keyframes popUp { from{opacity:0;transform:scale(0.82) translateY(24px);} to{opacity:1;transform:scale(1) translateY(0);} }
 .wa-popup-header {
-  background: linear-gradient(135deg, #064e3b, #065f46);
-  padding: 24px 20px 20px; text-align: center; position: relative;
+  background: linear-gradient(135deg,#064e3b,#065f46);
+  padding: 24px 20px 18px; text-align: center; position: relative;
 }
 .wa-popup-close {
   position: absolute; top: 12px; right: 12px;
@@ -934,70 +931,46 @@ body.dark .wa-popup { background: #1a2540; }
   color: white; width: 28px; height: 28px;
   border-radius: 50%; font-size: 0.9rem; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  transition: background 0.2s;
 }
 .wa-popup-close:hover { background: rgba(255,255,255,0.28); }
-.wa-popup-wa-icon { font-size: 2.8rem; margin-bottom: 8px; line-height: 1; }
-.wa-popup-header h3 {
-  font-family: 'Montserrat', sans-serif; font-size: 1.05rem;
-  font-weight: 800; color: white; margin-bottom: 4px;
+.wa-popup-header h3 { font-family:"Montserrat",sans-serif; font-size:1rem; font-weight:800; color:white; margin-bottom:4px; }
+.wa-popup-header p { font-size:0.76rem; color:#a7f3d0; }
+.wa-popup-badge {
+  display: inline-flex; align-items: center; gap:5px;
+  background: rgba(37,211,102,0.2); border:1px solid rgba(37,211,102,0.4);
+  color:#6ee7b7; padding:3px 10px; border-radius:20px;
+  font-size:0.68rem; font-weight:700; margin-bottom:10px;
+  text-transform:uppercase; letter-spacing:0.5px;
 }
-.wa-popup-header p { font-size: 0.78rem; color: #a7f3d0; line-height: 1.4; }
-
-/* Body */
-.wa-popup-body { padding: 18px 20px 20px; }
-.wa-popup-perks { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+.wa-pulse { width:6px; height:6px; border-radius:50%; background:#25d366; animation:waPulse 1.2s infinite; display:inline-block; }
+@keyframes waPulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.7);} }
+.wa-popup-body { padding: 16px 20px 20px; }
+.wa-popup-perks { display:flex; flex-direction:column; gap:7px; margin-bottom:16px; }
 .wa-popup-perk {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 0.8rem; color: #334155; font-weight: 500;
+  display:flex; align-items:center; gap:8px;
+  font-size:0.8rem; color:#334155; font-weight:500;
 }
-body.dark .wa-popup-perk { color: #cbd5e1; }
+body.dark .wa-popup-perk { color:#cbd5e1; }
 .wa-popup-perk::before {
-  content: '✓'; width: 18px; height: 18px; border-radius: 50%;
-  background: #dcfce7; color: #16a34a;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.62rem; font-weight: 800; flex-shrink: 0;
+  content:"✓"; width:18px; height:18px; border-radius:50%;
+  background:#dcfce7; color:#16a34a;
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.62rem; font-weight:800; flex-shrink:0;
 }
 .wa-popup-btn {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  width: 100%; background: #25d366; color: white;
-  padding: 13px; border-radius: 10px; text-decoration: none;
-  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 0.92rem;
-  transition: background 0.2s, transform 0.15s; border: none; cursor: pointer;
-  margin-bottom: 8px;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; background:#25d366; color:white;
+  padding:13px; border-radius:10px; text-decoration:none;
+  font-family:"Montserrat",sans-serif; font-weight:800; font-size:0.9rem;
+  transition:0.2s; border:none; cursor:pointer; margin-bottom:8px;
 }
-.wa-popup-btn:hover { background: #20bd5a; transform: translateY(-1px); }
+.wa-popup-btn:hover { background:#20bd5a; transform:translateY(-1px); }
 .wa-popup-skip {
-  display: block; width: 100%; text-align: center;
-  font-size: 0.74rem; color: var(--muted); cursor: pointer;
-  text-decoration: none; background: none; border: none;
-  font-family: 'Roboto', sans-serif; padding: 4px;
-  transition: color 0.2s;
+  display:block; width:100%; text-align:center;
+  font-size:0.74rem; color:var(--muted); cursor:pointer;
+  background:none; border:none; font-family:"Roboto",sans-serif; padding:4px;
 }
-.wa-popup-skip:hover { color: var(--text); }
-
-/* Pulse badge on channel icon */
-.wa-popup-badge {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: rgba(37,211,102,0.2); border: 1px solid rgba(37,211,102,0.4);
-  color: #6ee7b7; padding: 3px 10px; border-radius: 20px;
-  font-size: 0.68rem; font-weight: 700; margin-bottom: 10px;
-  text-transform: uppercase; letter-spacing: 0.5px;
-}
-.wa-pulse { width: 6px; height: 6px; border-radius: 50%; background: #25d366; animation: waPulse 1.2s infinite; }
-@keyframes waPulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.7);} }
-
-/* Nav scroll hint on mobile */
-.nav-scroll-hint {
-  display: none;
-  font-size: 0.62rem; color: rgba(255,255,255,0.45);
-  text-align: center; padding: 4px 0 2px;
-  letter-spacing: 0.3px;
-}
-@media(max-width:600px){
-  .nav-scroll-hint { display: block; }
-}
-
+.wa-popup-skip:hover { color:var(--text); }
 
 /* SPOTLIGHT SECTION */
 #spotlight-section { background: white; }
@@ -1048,53 +1021,34 @@ body.dark .spotlight-summary { color: var(--muted); }
 
 
 
-/* DYK PREVIEW SECTION */
-.dyk-preview-wrap {
-  display: grid; grid-template-columns: 1fr; gap: 16px;
-}
-@media(min-width:640px){ .dyk-preview-wrap { grid-template-columns: 1fr 1fr; } }
-@media(min-width:960px){ .dyk-preview-wrap { grid-template-columns: 1fr 1fr 1fr; } }
+/* DYK PREVIEW */
+.dyk-preview-wrap { display:grid; grid-template-columns:1fr; gap:16px; }
+@media(min-width:640px){.dyk-preview-wrap{grid-template-columns:1fr 1fr;}}
+@media(min-width:960px){.dyk-preview-wrap{grid-template-columns:1fr 1fr 1fr;}}
 .dyk-preview-card {
-  background: var(--card); border-radius: 14px;
-  border: 1px solid var(--border); overflow: hidden;
-  display: flex; flex-direction: column;
-  transition: transform 0.25s, box-shadow 0.25s;
+  background:var(--card); border-radius:14px; border:1px solid var(--border);
+  overflow:hidden; display:flex; flex-direction:column;
+  transition:transform 0.25s,box-shadow 0.25s;
 }
-.dyk-preview-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.09); }
-.dyk-preview-img-wrap { overflow: hidden; width: 100%; height: 150px; flex-shrink: 0; }
-.dyk-preview-img { width: 100%; height: 150px; object-fit: cover; display: block; }
-.dyk-preview-img-ph {
-  width: 100%; height: 120px; display: flex; align-items: center;
-  justify-content: center; font-size: 2.5rem; flex-shrink: 0;
-}
-.dyk-preview-body { padding: 14px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
-.dyk-meta { display: flex; align-items: center; justify-content: space-between; }
-.dyk-preview-cat {
-  font-size: 0.66rem; font-weight: 700; text-transform: uppercase;
-  padding: 2px 9px; border-radius: 20px; letter-spacing: 0.5px;
-}
-.dyk-cat-dyk     { background: #fef9c3; color: #854d0e; }
-.dyk-cat-history { background: #fce7f3; color: #9d174d; }
-.dyk-cat-affairs { background: #dcfce7; color: #15803d; }
-.dyk-preview-date { font-size: 0.7rem; color: var(--muted); }
-.dyk-preview-title {
-  font-family: "Montserrat", sans-serif; font-size: 0.9rem; font-weight: 700;
-  color: var(--blue-dk); line-height: 1.3;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-}
-body.dark .dyk-preview-title { color: #bfdbfe; }
-.dyk-preview-summary {
-  font-size: 0.8rem; color: #475569; line-height: 1.5; flex: 1;
-  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-}
-body.dark .dyk-preview-summary { color: var(--muted); }
-.dyk-card-actions { margin-top: auto; padding-top: 8px; }
-.dyk-read-more {
-  font-size: 0.78rem; font-weight: 700; color: var(--blue);
-  text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
-}
-body.dark .dyk-read-more { color: #93c5fd; }
-.dyk-read-more:hover { color: var(--orange); }
+.dyk-preview-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.09);}
+.dyk-preview-img-wrap{overflow:hidden;width:100%;height:150px;flex-shrink:0;}
+.dyk-preview-img{width:100%;height:150px;object-fit:cover;display:block;}
+.dyk-preview-img-ph{width:100%;height:120px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;}
+.dyk-preview-body{padding:14px;flex:1;display:flex;flex-direction:column;gap:6px;}
+.dyk-meta{display:flex;align-items:center;justify-content:space-between;}
+.dyk-preview-cat{font-size:0.66rem;font-weight:700;text-transform:uppercase;padding:2px 9px;border-radius:20px;letter-spacing:0.5px;}
+.dyk-cat-dyk{background:#fef9c3;color:#854d0e;}
+.dyk-cat-history{background:#fce7f3;color:#9d174d;}
+.dyk-cat-affairs{background:#dcfce7;color:#15803d;}
+.dyk-preview-date{font-size:0.7rem;color:var(--muted);}
+.dyk-preview-title{font-family:"Montserrat",sans-serif;font-size:0.9rem;font-weight:700;color:var(--blue-dk);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+body.dark .dyk-preview-title{color:#bfdbfe;}
+.dyk-preview-summary{font-size:0.8rem;color:#475569;line-height:1.5;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+body.dark .dyk-preview-summary{color:var(--muted);}
+.dyk-card-actions{margin-top:auto;padding-top:8px;}
+.dyk-read-more{font-size:0.78rem;font-weight:700;color:var(--blue);text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
+body.dark .dyk-read-more{color:#93c5fd;}
+.dyk-read-more:hover{color:var(--orange);}
 
 /* ACADEMIC CALENDAR */
 #calendar-section { background: var(--light); }
@@ -1327,32 +1281,6 @@ body.dark #notifications-section { background: var(--bg); }
 }
 
 /* BQM SERVICES SECTION */
-/* SCHOLARSHIP ALERTS SECTION */
-#scholarship-alerts { background: white; }
-body.dark #scholarship-alerts { background: var(--sec-bg); }
-.sch-preview-grid {
-  display: grid; grid-template-columns: 1fr; gap: 14px;
-}
-@media(min-width:560px){ .sch-preview-grid { grid-template-columns: 1fr 1fr; } }
-@media(min-width:900px){ .sch-preview-grid { grid-template-columns: 1fr 1fr 1fr; } }
-.sch-preview-card {
-  background: var(--card); border-radius: 14px; border: 1px solid var(--border);
-  padding: 18px; display: flex; flex-direction: column; gap: 10px;
-  transition: transform 0.25s, box-shadow 0.25s; overflow: hidden;
-}
-body.dark .sch-preview-card { background: var(--card); }
-.sch-preview-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.09); }
-.sch-preview-top { display: flex; gap: 10px; align-items: flex-start; }
-.sch-preview-icon { font-size: 1.6rem; flex-shrink: 0; }
-.sch-preview-badge { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 2px 8px; border-radius: 20px; display: inline-block; margin-bottom: 4px; }
-.sch-preview-name { font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 800; color: var(--blue-dk); line-height: 1.3; }
-body.dark .sch-preview-name { color: #bfdbfe; }
-.sch-preview-desc { font-size: 0.78rem; color: #475569; line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-body.dark .sch-preview-desc { color: var(--muted); }
-.sch-preview-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 8px; border-top: 1px solid var(--border); }
-.sch-deadline-tag { font-size: 0.7rem; font-weight: 600; color: var(--green); display: flex; align-items: center; gap: 4px; }
-.sch-amount-tag { font-size: 0.7rem; font-weight: 700; color: var(--orange); }
-
 #bqm-services { background: var(--light); }
 body.dark #bqm-services { background: var(--bg); }
 .bqm-service-grid {
@@ -1443,7 +1371,7 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
       <span></span><span></span><span></span>
     </button>
         <nav id="mainNav">
-      <div class="nav-scroll-hint">↕ Scroll to see all links</div>
+      <div style="display:none;font-size:0.62rem;color:rgba(255,255,255,0.45);text-align:center;padding:4px 0 2px;letter-spacing:0.3px;" class="nav-scroll-hint">↕ Scroll to see all links</div>
       <a href="#home">Home</a>
       <a href="newsroom.html">News</a>
       <a href="elibrary.html">eLibrary</a>
@@ -1454,6 +1382,8 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
       <a href="postutme-prep.html">📖 Prep Guide</a>
       <a href="subject-combo.html">📚 Subject Combo</a>
       <a href="community.html">👥 Community</a>
+      <a href="#about">About</a>
+      <a href="#notifications-section">🔔 Notifications</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
   </div>
@@ -1758,12 +1688,12 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
 </section>
   
 <!-- SCHOLARSHIP ALERTS -->
-<section id="scholarship-alerts">
+<section id="scholarship-alerts" style="background:white;">
   <div class="container">
     <div class="section-label">Opportunities</div>
     <h2 class="section-title">Scholarship Alerts</h2>
     <div class="section-divider"></div>
-    <div id="scholarship-preview-grid" class="sch-preview-grid">
+    <div id="scholarship-preview-grid" style="display:grid;grid-template-columns:1fr;gap:16px;">
       <div class="news-loading">⏳ Loading scholarships…</div>
     </div>
     <div style="text-align:center;margin-top:28px;">
@@ -1771,6 +1701,7 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
     </div>
   </div>
 </section>
+
 
 <!-- BQM SERVICES & TOOLS -->
 <section id="bqm-services">
@@ -1794,7 +1725,7 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
       <a href="scholarship.html" class="bqm-svc-card">
         <div class="bqm-svc-icon">💰</div>
         <div class="bqm-svc-name">Scholarship Finder</div>
-        <div class="bqm-svc-cta">Browse all →</div>
+        <div class="bqm-svc-cta">Browse →</div>
       </a>
       <a href="subject-combo.html" class="bqm-svc-card">
         <div class="bqm-svc-icon">📚</div>
@@ -1804,27 +1735,27 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
       <a href="results.html" class="bqm-svc-card">
         <div class="bqm-svc-icon">📋</div>
         <div class="bqm-svc-name">Results Checker</div>
-        <div class="bqm-svc-cta">WAEC · NECO · JAMB →</div>
+        <div class="bqm-svc-cta">Check WAEC/NECO →</div>
       </a>
       <a href="postutme-calculator.html" class="bqm-svc-card">
         <div class="bqm-svc-icon">🧮</div>
         <div class="bqm-svc-name">Post UTME Calculator</div>
-        <div class="bqm-svc-cta">20+ schools →</div>
+        <div class="bqm-svc-cta">Calculate →</div>
       </a>
       <a href="elibrary.html" class="bqm-svc-card">
         <div class="bqm-svc-icon">📖</div>
         <div class="bqm-svc-name">Free eLibrary</div>
-        <div class="bqm-svc-cta">Read & download →</div>
+        <div class="bqm-svc-cta">Read free →</div>
       </a>
       <a href="community.html" class="bqm-svc-card">
         <div class="bqm-svc-icon">👥</div>
         <div class="bqm-svc-name">Join Community</div>
-        <div class="bqm-svc-cta">WhatsApp groups →</div>
+        <div class="bqm-svc-cta">Connect →</div>
       </a>
-      <a href="results.html#waec-section" class="bqm-svc-card">
+      <a href="https://wa.me/2349049871643?text=Hello%20Big%20Quams%20Media!%20I%20need%20a%20scratch%20card%20or%20result%20checking%20service." target="_blank" rel="noopener noreferrer" class="bqm-svc-card">
         <div class="bqm-svc-icon">💳</div>
         <div class="bqm-svc-name">Get Scratch Cards</div>
-        <div class="bqm-svc-cta">WAEC · NECO · NABTEB →</div>
+        <div class="bqm-svc-cta">WhatsApp us →</div>
       </a>
     </div>
   </div>
@@ -2051,23 +1982,17 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
       <a href="https://t.me/bigquamsmedia024" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0a12 12 0 00-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
       </a>
-      <a href="/cdn-cgi/l/email-protection#ea88838d9b9f8b8799878f8e838bdad8deaa8d878b8386c4898587" title="Email" aria-label="Email">
+      <a href="/cdn-cgi/l/email-protection#bad8d3ddcbcfdbd7c9d7dfded3db8a888efaddd7dbd3d694d9d5d7" title="Email" aria-label="Email">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       </a>
     </div>
-        <div class="footer-links">
-      <a href="index.html">Home</a>
+    <div class="footer-links">
+      <a href="#home">Home</a>
       <a href="newsroom.html">Newsroom</a>
       <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">CBT Practice</a>
-      <a href="scholarship.html">Scholarships</a>
-      <a href="results.html">Results Checker</a>
-      <a href="postutme-calculator.html">Post UTME Calc</a>
-      <a href="postutme-prep.html">Prep Guide</a>
-      <a href="subject-combo.html">Subject Combo</a>
-      <a href="community.html">Community</a>
       <a href="dyk.html">DYK</a>
       <a href="spotlight.html">Spotlight</a>
+      <a href="#contact">Contact</a>
     </div>
     <div class="footer-copy">
       &copy; 2025 Big Quams Media®. All rights reserved. &nbsp;|&nbsp;
@@ -2081,15 +2006,13 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
 <!-- WHATSAPP CHANNEL POPUP -->
 <div class="wa-popup-overlay hidden" id="waPopupOverlay">
   <div class="wa-popup">
-    <!-- Header -->
     <div class="wa-popup-header">
       <button class="wa-popup-close" onclick="closeWaPopup()" aria-label="Close">✕</button>
       <div class="wa-popup-badge"><span class="wa-pulse"></span> Live Channel</div>
-      <div class="wa-popup-wa-icon">📢</div>
+      <div style="font-size:2.8rem;line-height:1;margin-bottom:8px;">📢</div>
       <h3>Join Big Quams Media<br>WhatsApp Channel</h3>
       <p>10,000+ Nigerian students already inside</p>
     </div>
-    <!-- Body -->
     <div class="wa-popup-body">
       <div class="wa-popup-perks">
         <div class="wa-popup-perk">Instant JAMB &amp; admission alerts</div>
@@ -2101,7 +2024,7 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
       <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q"
          target="_blank" rel="noopener noreferrer"
          class="wa-popup-btn" onclick="closeWaPopup()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.847L.073 23.927l6.241-1.635A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.71.972.99-3.614-.234-.373A9.818 9.818 0 0112 2.182c5.427 0 9.818 4.391 9.818 9.818 0 5.428-4.391 9.818-9.818 9.818z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.847L.073 23.927l6.241-1.635A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.71.972.99-3.614-.234-.373A9.818 9.818 0 0112 2.182c5.427 0 9.818 4.391 9.818 9.818 0 5.428-4.391 9.818-9.818 9.818z"/></svg>
         Join Channel Now — It's Free
       </a>
       <button class="wa-popup-skip" onclick="closeWaPopup()">Maybe later</button>
@@ -2109,7 +2032,7 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
   </div>
 </div>
 
-<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float" title="Chat on WhatsApp">💬</a>
+<a href=<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float" title="Chat on WhatsApp">💬</a>
 <div id="toast-container"></div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
@@ -2154,715 +2077,6 @@ document.addEventListener('keydown', e => {
 });
 
 function switchTab(tab) {
-  document.querySelectorAll('.calc-tab').forEach((t,i) => t.classList.toggle('active', (i===0&&tab==='jamb')||(i===1&&tab==='screening')));
-  document.getElementById('tab-jamb').classList.toggle('active', tab === 'jamb');
-  document.getElementById('tab-screening').classList.toggle('active', tab === 'screening');
-}
-
-// ── JAMB CALCULATOR ──
-function computeJamb() {
-  const ids = ['j1','j2','j3','j4'];
-  const vals = ids.map(id => { const v = parseInt(document.getElementById(id).value); return isNaN(v)?null:Math.min(100,Math.max(0,v)); });
-  if (vals.some(v => v === null)) { document.getElementById('jResult').classList.remove('show'); return; }
-  const total = vals.reduce((a,b) => a+b, 0);
-  const aggregate = (total / 8).toFixed(2);
-  document.getElementById('jTotal').textContent = total;
-  document.getElementById('jBreakdown').textContent = `JAMB Aggregate (÷8): ${aggregate} / 50`;
-  const msg = document.getElementById('jMsg');
-  if (total >= 300) { msg.textContent = '🎉 Excellent score!'; msg.className = 'crb-msg good'; }
-  else if (total >= 250) { msg.textContent = '👍 Good score — many institutions in reach'; msg.className = 'crb-msg good'; }
-  else if (total >= 200) { msg.textContent = '⚠️ Fair — explore more options'; msg.className = 'crb-msg fair'; }
-  else { msg.textContent = '❌ Below average — chat with us for guidance'; msg.className = 'crb-msg low'; }
-  document.getElementById('jResult').classList.add('show');
-}
-
-// ── SCREENING CALCULATOR ──
-let activeFormula = '50-50';
-function setFormula(el) {
-  document.querySelectorAll('.formula-opt').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-  activeFormula = el.dataset.formula;
-  computeScreening();
-}
-
-function addSubject() {
-  const list = document.getElementById('oLevelList');
-  const row = document.createElement('div');
-  row.className = 'subject-row';
-  row.innerHTML = `
-    <input type="text" placeholder="Subject name" oninput="computeScreening()">
-    <select onchange="computeScreening()">
-      <option value="">Grade</option>
-      <option value="6">A1</option><option value="5">B2</option><option value="4">B3</option>
-      <option value="3">C4</option><option value="2">C5</option><option value="1">C6</option>
-      <option value="0">F9</option>
-    </select>
-    <button class="remove-subj" onclick="this.parentElement.remove(); computeScreening()">✕</button>
-  `;
-  list.appendChild(row);
-}
-
-function computeScreening() {
-  const jambRaw = parseInt(document.getElementById('sJamb').value);
-  if (isNaN(jambRaw) || jambRaw < 0 || jambRaw > 400) {
-    document.getElementById('sResult').classList.remove('show'); return;
-  }
-
-  // Collect O'level grades
-  const rows = document.querySelectorAll('#oLevelList .subject-row');
-  const grades = [];
-  rows.forEach(row => {
-    const sel = row.querySelector('select');
-    if (sel && sel.value !== '') grades.push(parseInt(sel.value));
-  });
-  if (grades.length === 0) { document.getElementById('sResult').classList.remove('show'); return; }
-
-  // O'level score: each grade out of 6, total out of (grades.length × 6), scaled to 50
-  const oTotal = grades.reduce((a,b) => a+b, 0);
-  const oMax   = grades.length * 6;
-  const oScore = (oTotal / oMax) * 50;
-
-  // JAMB score scaled to 50
-  const jScore = (jambRaw / 400) * 50;
-
-  let aggregate, breakdown;
-  if (activeFormula === '50-50') {
-    aggregate = (jScore + oScore).toFixed(2);
-    breakdown = `JAMB (50%): ${jScore.toFixed(2)} + O'level (50%): ${oScore.toFixed(2)}`;
-  } else {
-    const jPart = jScore * 0.8;  // 40% of 100
-    const oPart = oScore * 1.2;  // 60% of 100
-    aggregate = (jPart + oPart).toFixed(2);
-    breakdown = `JAMB (40%): ${jPart.toFixed(2)} + O'level (60%): ${oPart.toFixed(2)}`;
-  }
-
-  document.getElementById('sTotal').textContent = aggregate;
-  document.getElementById('sBreakdown').textContent = breakdown;
-  const msg = document.getElementById('sMsg');
-  const agg = parseFloat(aggregate);
-  if (agg >= 70) { msg.textContent = '🎉 Very competitive score!'; msg.className = 'crb-msg good'; }
-  else if (agg >= 55) { msg.textContent = '👍 Good — many programmes within reach'; msg.className = 'crb-msg good'; }
-  else if (agg >= 45) { msg.textContent = '⚠️ Fair — consider more programme options'; msg.className = 'crb-msg fair'; }
-  else { msg.textContent = '❌ Low score — chat with us for guidance'; msg.className = 'crb-msg low'; }
-  document.getElementById('sResult').classList.add('show');
-}
-
-// ── PDF DOWNLOAD ──
-function downloadPDF(type) {
-  const logo = 'https://i.imgur.com/lYJXUyY.jpeg';
-  const now = new Date().toLocaleDateString('en-NG', { day:'numeric', month:'long', year:'numeric' });
-
-  let name, title, lines, score, label;
-
-  if (type === 'jamb') {
-    name  = document.getElementById('jName').value.trim() || 'Student';
-    score = document.getElementById('jTotal').textContent;
-    label = 'Total JAMB Score (out of 400)';
-    const breakdown = document.getElementById('jBreakdown').textContent;
-    const msg = document.getElementById('jMsg').textContent;
-    title = 'JAMB Score Result';
-    const subjects = ['Use of English','Subject 2','Subject 3','Subject 4'];
-    lines = subjects.map((s,i) => {
-      const v = document.getElementById('j'+(i+1)).value;
-      return `<tr><td>${s}</td><td><strong>${v || '—'}</strong></td></tr>`;
-    }).join('');
-    lines += `<tr style="border-top:2px solid #e2e8f0;"><td>JAMB Aggregate (÷8)</td><td><strong>${breakdown.split(': ')[1]}</strong></td></tr>`;
-    lines += `<tr><td colspan="2" style="color:#f97316;font-weight:700;">${msg}</td></tr>`;
-  } else {
-    name  = document.getElementById('sName').value.trim() || 'Student';
-    score = document.getElementById('sTotal').textContent;
-    label = 'Screening Aggregate (out of 100)';
-    const breakdown = document.getElementById('sBreakdown').textContent;
-    const msg = document.getElementById('sMsg').textContent;
-    title = 'Screening Points Result';
-    const rows = document.querySelectorAll('#oLevelList .subject-row');
-    const gradeMap = {'6':'A1','5':'B2','4':'B3','3':'C4','2':'C5','1':'C6','0':'F9'};
-    lines = `<tr><td>JAMB Score</td><td><strong>${document.getElementById('sJamb').value}</strong></td></tr>`;
-    rows.forEach(row => {
-      const subj = row.querySelector('input').value || '—';
-      const sel  = row.querySelector('select');
-      const grade = sel.value ? gradeMap[sel.value] : '—';
-      lines += `<tr><td>${subj}</td><td><strong>${grade}</strong></td></tr>`;
-    });
-    lines += `<tr style="border-top:2px solid #e2e8f0;"><td colspan="2" style="font-size:0.8rem;color:#64748b;">${breakdown}</td></tr>`;
-    lines += `<tr><td colspan="2" style="color:#f97316;font-weight:700;">${msg}</td></tr>`;
-  }
-
-  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap');
-    body { font-family: 'Roboto', sans-serif; margin: 0; padding: 32px; background: white; color: #0f172a; }
-    .header { display: flex; align-items: center; gap: 14px; border-bottom: 3px solid #f97316; padding-bottom: 16px; margin-bottom: 20px; }
-    .logo { width: 54px; height: 54px; border-radius: 50%; border: 2px solid #f97316; object-fit: cover; }
-    .brand { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.1rem; color: #102880; }
-    .sub { font-size: 0.7rem; color: #64748b; }
-    h2 { font-family: 'Montserrat', sans-serif; color: #102880; margin: 0 0 4px; }
-    .student { font-size: 0.88rem; color: #64748b; margin-bottom: 20px; }
-    .score-box { background: linear-gradient(135deg, #102880, #1a3fa8); color: white; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 20px; }
-    .score-num { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 800; }
-    .score-lbl { font-size: 0.82rem; color: #bfdbfe; margin-top: 4px; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-    td { padding: 9px 12px; border-bottom: 1px solid #e2e8f0; }
-    td:last-child { text-align: right; }
-    .footer { margin-top: 28px; text-align: center; font-size: 0.75rem; color: #94a3b8; border-top: 1px solid #e2e8f0; padding-top: 14px; }
-  </style></head><body>
-  <div class="header">
-    <img class="logo" src="${logo}" alt="Logo">
-    <div><div class="brand">BIG QUAMS MEDIA®</div><div class="sub">Simplifying Campus Life for Every Student</div></div>
-  </div>
-  <h2>${title}</h2>
-  <div class="student">Student: <strong>${name}</strong> &nbsp;|&nbsp; Date: ${now}</div>
-  <div class="score-box">
-    <div class="score-num">${score}</div>
-    <div class="score-lbl">${label}</div>
-  </div>
-  <table><tbody>${lines}</tbody></table>
-  <div class="footer">Generated by Big Quams Media® &mdash; big-quams-educational-hub.github.io &mdash; This result is for guidance purposes only.</div>
-  
-
-</body></html>`;
-
-  const win = window.open('', '_blank');
-  win.document.write(html);
-  win.document.close();
-  win.focus();
-  setTimeout(() => { win.print(); }, 600);
-}
-
-// ── ANIMATED COUNTERS (fixed) ──
-function animateCounters() {
-  document.querySelectorAll('.stat-num').forEach(el => {
-    const raw = el.getAttribute('data-target') || el.textContent.trim();
-    el.setAttribute('data-target', raw);
-    // Skip animation for values like 24/7 that aren't simple numbers
-    if (raw.includes('/')) return;
-    const num    = parseInt(raw.replace(/\D/g, ''));
-    const suffix = raw.replace(/[0-9]/g, '');
-    if (isNaN(num) || num === 0) return;
-    el.textContent = '0' + suffix;
-    const duration = 1800;
-    const steps    = 60;
-    const increment = num / steps;
-    let count = 0;
-    const timer = setInterval(() => {
-      count++;
-      const current = Math.min(Math.round(increment * count), num);
-      el.textContent = current + suffix;
-      if (count >= steps) clearInterval(timer);
-    }, duration / steps);
-  });
-}
-
-let countersRan = false;
-const aboutSection = document.getElementById('about');
-if (aboutSection) {
-  const counterObserver = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && !countersRan) {
-      countersRan = true;
-      animateCounters();
-    }
-  }, { threshold: 0.2 });
-  counterObserver.observe(aboutSection);
-}
-
-// ── HAMBURGER MENU ──
-const menuToggle = document.getElementById('menuToggle');
-const mainNav = document.getElementById('mainNav');
-menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
-mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('open')));
-
-// ── SERVICE MODAL DATA ──
-const WA = 'https://wa.me/2349049871643?text=';
-const services = {
-  jamb: {
-    icon: '📝',
-    title: 'JAMB (UTME & DE) Advisory',
-    desc: 'Full guidance from registration to exam day — we make JAMB stress-free.',
-    items: [
-      'JAMB profile creation & NIN linking assistance',
-      'Profile code generation (email & phone)',
-      'Mock UTME preparation & past question drill',
-      'CBT practice tips and time management strategy',
-      'Post-exam result interpretation & next steps',
-      'Direct support via WhatsApp for urgent issues',
-    ],
-    msg: 'Hello Big Quams Media! I need help with JAMB (UTME & DE) Advisory. Please guide me.'
-  },
-  admission: {
-    icon: '🎓',
-    title: 'Admission Support',
-    desc: 'From Post-UTME to your final admission letter — we guide every step.',
-    items: [
-      'Post-UTME registration & preparation coaching',
-      'JAMB CAPS portal guidance (accept/reject offer)',
-      'Understanding "Admission in Progress" status',
-      'Change of course / institution processing',
-      'Direct Entry (DE) application support',
-      'School clearance & matriculation guidance',
-    ],
-    msg: 'Hello Big Quams Media! I need Admission Support. Please assist me.'
-  },
-  scholarship: {
-    icon: '🚨',
-    title: 'Scholarship Alerts',
-    desc: 'Never miss a funded opportunity — local and international alerts delivered to you.',
-    items: [
-      'Federal Government BEA Scholarship alerts',
-      'State government scholarship notifications',
-      'International undergraduate & postgraduate alerts',
-      'Application deadline reminders',
-      'Document checklist & application guidance',
-      'Essay & personal statement tips',
-    ],
-    msg: 'Hello Big Quams Media! I want to receive Scholarship Alerts. How do I get started?'
-  },
-  digital: {
-    icon: '💻',
-    title: 'Digital Services',
-    desc: 'Your one-stop digital hub — from payments to branding, we handle it all.',
-    items: [
-      'School fee payment & e-receipt assistance',
-      'Student result & transcript checking',
-      'NIN digital slip retrieval & ID card printing',
-      'NIN modification (name, DOB, phone corrections)',
-      'Graphic design & business brand customization',
-      'Website creation & social media setup',
-    ],
-    msg: 'Hello Big Quams Media! I need Digital Services. Please tell me more.'
-  },
-  news: {
-    icon: '📰',
-    title: 'Campus News',
-    desc: 'Stay informed on everything happening in Nigerian campuses and beyond.',
-    items: [
-      'Yabatech & university regulation updates',
-      'Academic calendar & exam timetable alerts',
-      'ASUU strike & resumption news',
-      'Student union & campus event coverage',
-      'Federal Ministry of Education announcements',
-      'Breaking education news delivered first',
-    ],
-    msg: 'Hello Big Quams Media! I want to stay updated with Campus News. How can I subscribe?'
-  },
-  elibrary: {
-    icon: '📚',
-    title: 'eLibrary',
-    desc: 'Every material you need to study smarter — all in one digital library.',
-    items: [
-      'JAMB & Post-UTME past questions (all subjects)',
-      'University course textbooks & lecture notes',
-      'Novels, fiction & non-fiction books',
-      'Professional certification study materials',
-      'Research papers & project templates',
-      'Free & premium material access options',
-    ],
-    msg: 'Hello Big Quams Media! I want to access the eLibrary. What materials do you have?'
-  },
-  coaching: {
-    icon: '🧠',
-    title: 'Academic Coaching',
-    desc: 'Personalized coaching to help you study smarter and perform at your best.',
-    items: [
-      'Personalized study plan creation',
-      'Subject-by-subject past question analysis',
-      'CBT exam techniques & answer strategies',
-      'Time management during exams',
-      '1-on-1 tutoring sessions via WhatsApp/call',
-      'Post-exam performance review & feedback',
-    ],
-    msg: 'Hello Big Quams Media! I need Academic Coaching. Please tell me more.'
-  }
-};
-
-function openModal(key) {
-  const s = services[key];
-  if (!s) return;
-  document.getElementById('modalIcon').textContent  = s.icon;
-  document.getElementById('modalTitle').textContent = s.title;
-  document.getElementById('modalDesc').textContent  = s.desc;
-  const ul = document.getElementById('modalList');
-  ul.innerHTML = s.items.map(i => `<li>${i}</li>`).join('');
-  document.getElementById('modalCta').href = WA + encodeURIComponent(s.msg);
-
-  // Show eLibrary button only for elibrary service
-  const libBtn = document.getElementById('modalCtaLib');
-  if (key === 'elibrary') {
-    document.getElementById('modalCta').textContent = '💬 Ask on WhatsApp';
-    libBtn.style.display = 'flex';
-  } else {
-    document.getElementById('modalCta').textContent = '🚀 Get Started Now';
-    libBtn.style.display = 'none';
-  }
-
-  const overlay = document.getElementById('serviceModal');
-  overlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('serviceModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('serviceModal')) closeModal();
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-// News loader (homepage — 5 items only)
-async function fetchNewsData() {
-  const container = document.getElementById('news-container');
-  try {
-    const response = await fetch('news.json?v=' + Date.now());
-    if (!response.ok) throw new Error('Bad response');
-    const newsData = await response.json();
-    container.innerHTML = '';
-    // Pinned first, then rest, limit to 5
-    const pinned = newsData.filter(n => n.pinned);
-    const normal = newsData.filter(n => !n.pinned);
-    const preview = [...pinned, ...normal].slice(0, 5);
-    preview.forEach((item, i) => {
-      const card = document.createElement('div');
-      card.className = 'news-card';
-      card.style.animationDelay = (i * 0.07) + 's';
-      const newsroomUrl = 'newsroom.html#news-' + i;
-      card.innerHTML = `
-        ${item.image ? `<div style="margin:-16px -16px 12px;overflow:hidden;border-radius:8px 8px 0 0;"><img src="${item.image}" alt="${item.title}" style="width:100%;height:160px;object-fit:cover;display:block;"></div>` : ''}
-        <div class="news-meta">
-          <span class="category-label">${item.category || 'News'}</span>
-          <span class="date-label">${item.date || ''}</span>
-        </div>
-        <h3>${item.title}</h3>
-        <p>${item.summary || item.description}</p>
-        ${item.author ? `<div style="font-size:0.72rem;color:var(--muted);margin-bottom:8px;font-weight:500;">✍️ ${item.author}</div>` : ''}
-        <div class="news-actions">
-          <a href="newsroom.html" target="_blank" rel="noopener noreferrer">Read More</a>
-          <button onclick="shareNews('${encodeURIComponent(item.title)}')">🔗 Share</button>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-  } catch (err) {
-    container.innerHTML = '<div class="news-loading">⚠️ Latest news currently unavailable. Please check back soon.</div>';
-  }
-}
-
-function shareNews(encodedTitle) {
-  const title = decodeURIComponent(encodedTitle);
-  const text = title + '\n\nRead more on Big Quams Media Newsroom: https://big-quams-educational-hub.github.io/newsroom.html';
-  if (navigator.share) {
-    navigator.share({ title: 'Big Quams Media', text, url: 'https://big-quams-educational-hub.github.io/newsroom.html' });
-  } else {
-    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
-  }
-}
-
-function copyLink(url) {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(url).then(() => showToast('🔗 Link copied!'));
-  } else {
-    const el = document.createElement('textarea');
-    el.value = url;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    showToast('🔗 Link copied!');
-  }
-}
-
-function showToast(msg) {
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.innerText = msg;
-  document.getElementById('toast-container').appendChild(toast);
-  setTimeout(() => toast.classList.add('show'), 50);
-  setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => toast.remove(), 400);
-  }, 2500);
-}
-
-// DYK PREVIEW LOADER
-async function fetchDykPreview() {
-  const container = document.getElementById('dyk-preview-container');
-  try {
-    const res = await fetch('dyk.json?v=' + Date.now());
-    if (!res.ok) throw new Error();
-    const data = await res.json();
-    if (!data.length) {
-      container.innerHTML = '<div class="news-loading">No items yet. Check back soon!</div>';
-      return;
-    }
-    const catClass = { 'DYK Fact':'dyk-cat-dyk','Today in History':'dyk-cat-history','Current Affairs':'dyk-cat-affairs' };
-    const catIcon  = { 'DYK Fact':'💡','Today in History':'📅','Current Affairs':'🌍' };
-    const preview  = data.slice(0, 3);
-    container.innerHTML = preview.map(item => `
-      <div class="dyk-preview-card">
-        ${item.image
-          ? `<div class="dyk-preview-img-wrap"><img class="dyk-preview-img" src="${item.image}" alt="${item.title}" loading="lazy"></div>`
-          : `<div class="dyk-preview-img-ph">${catIcon[item.category]||'💡'}</div>`}
-        <div class="dyk-preview-body">
-          <div class="dyk-meta">
-            <span class="dyk-preview-cat ${catClass[item.category]||'dyk-cat-dyk'}">${item.category||'DYK'}</span>
-            <span class="dyk-preview-date">${item.date||''}</span>
-          </div>
-          <div class="dyk-preview-title">${item.title}</div>
-          <div class="dyk-preview-summary">${item.summary||''}</div>
-          <div class="dyk-card-actions">
-            <a href="dyk.html" class="dyk-read-more">Read More </a>
-          </div>
-        </div>
-      </div>`).join('');
-  } catch {
-    container.innerHTML = '<div class="news-loading">Content coming soon.</div>';
-  }
-}
-fetchDykPreview();
-
-// ── ACADEMIC CALENDAR LOADER ──
-async function loadCalendar() {
-  const grid = document.getElementById('calendarGrid');
-  if (!grid) return;
-  const catBadge = {jamb:'cal-badge-jamb',exam:'cal-badge-exam',admission:'cal-badge-admission',school:'cal-badge-school',scholarship:'cal-badge-scholarship'};
-  const catLabel = {jamb:'JAMB',exam:'Exam',admission:'Admission',school:'School',scholarship:'Scholarship'};
-  try {
-    const res = await fetch('calendar.json?v=' + Date.now());
-    if (!res.ok) throw new Error();
-    const data = await res.json();
-    if (!data.length) { grid.innerHTML = '<div class="news-loading">Calendar coming soon.</div>'; return; }
-    const sorted = [...data].sort((a,b) => new Date(a.date) - new Date(b.date));
-    grid.innerHTML = sorted.map(item => {
-      const d = new Date(item.date);
-      const month = d.toLocaleString('en-US',{month:'short'});
-      const day   = d.getDate();
-      return `<div class="cal-card">
-        <div class="cal-date-box" style="background:${item.color||'#1a3fa8'};">
-          <div class="cal-month">${month}</div>
-          <div class="cal-day">${day}</div>
-        </div>
-        <div class="cal-info">
-          <div class="cal-title">${item.title}</div>
-          <div class="cal-desc">${item.description}</div>
-          <span class="cal-badge ${catBadge[item.category]||'cal-badge-jamb'}">${catLabel[item.category]||item.category||'Event'}</span>
-        </div>
-      </div>`;
-    }).join('');
-  } catch {
-    // Fallback hardcoded calendar
-    grid.innerHTML = `
-      <div class="cal-card"><div class="cal-date-box" style="background:#1a3fa8;"><div class="cal-month">Feb</div><div class="cal-day">03</div></div><div class="cal-info"><div class="cal-title">JAMB Registration Opens</div><div class="cal-desc">2026 UTME registration begins at accredited CBT centres nationwide</div><span class="cal-badge cal-badge-jamb">JAMB</span></div></div>
-      <div class="cal-card"><div class="cal-date-box" style="background:#7c3aed;"><div class="cal-month">Mar</div><div class="cal-day">28</div></div><div class="cal-info"><div class="cal-title">JAMB Mock-UTME</div><div class="cal-desc">Optional mock examination for registered candidates</div><span class="cal-badge cal-badge-jamb">JAMB</span></div></div>
-      <div class="cal-card"><div class="cal-date-box" style="background:#dc2626;"><div class="cal-month">Apr</div><div class="cal-day">24</div></div><div class="cal-info"><div class="cal-title">UTME 2026 Begins</div><div class="cal-desc">Main Unified Tertiary Matriculation Examination commences nationwide</div><span class="cal-badge cal-badge-exam">Exam</span></div></div>
-      <div class="cal-card"><div class="cal-date-box" style="background:#16a34a;"><div class="cal-month">Jun</div><div class="cal-day">15</div></div><div class="cal-info"><div class="cal-title">Post-UTME Screening</div><div class="cal-desc">Universities begin Post-UTME screening exercises</div><span class="cal-badge cal-badge-admission">Admission</span></div></div>
-      <div class="cal-card"><div class="cal-date-box" style="background:#f97316;"><div class="cal-month">Jul</div><div class="cal-day">01</div></div><div class="cal-info"><div class="cal-title">CAPS Admission Opens</div><div class="cal-desc">JAMB CAPS portal opens for admission offers</div><span class="cal-badge cal-badge-admission">Admission</span></div></div>
-      <div class="cal-card"><div class="cal-date-box" style="background:#0891b2;"><div class="cal-month">Sep</div><div class="cal-day">01</div></div><div class="cal-info"><div class="cal-title">New Academic Session</div><div class="cal-desc">2026/2027 academic session begins for Nigerian institutions</div><span class="cal-badge cal-badge-school">School</span></div></div>`;
-  }
-}
-loadCalendar();
-
-
-// SPOTLIGHT PREVIEW LOADER
-async function fetchSpotlightPreview() {
-  const container = document.getElementById('spotlight-preview-container');
-  if (!container) return;
-  try {
-    const res = await fetch('spotlight.json?v=' + Date.now());
-    if (!res.ok) throw new Error();
-    const data = await res.json();
-    if (!data.length) { container.innerHTML = '<div class="news-loading">Spotlights coming soon!</div>'; return; }
-    const badgeClass = { 'Student Achievement':'student','Birthday':'birthday','Celebration':'celebrate' };
-    const preview = data.slice(0, 3);
-    container.innerHTML = preview.map(item => `
-      <div class="spotlight-card">
-        ${item.image
-          ? `<div class="spotlight-img-wrap"><img class="spotlight-img" src="${item.image}" alt="${item.title}" loading="lazy"></div>`
-          : `<div class="spotlight-img-ph">🌟</div>`}
-        <div class="spotlight-body">
-          <span class="spotlight-badge ${badgeClass[item.category]||'celebrate'}">${item.category||'Spotlight'}</span>
-          <div class="spotlight-title">${item.title}</div>
-          <div class="spotlight-summary">${item.summary||''}</div>
-          <div class="spotlight-date">${item.date||''}</div>
-        </div>
-      </div>`).join('');
-  } catch {
-    container.innerHTML = '<div class="news-loading">Spotlights coming soon!</div>';
-  }
-}
-fetchSpotlightPreview();
-
-
-
-// ── WHATSAPP CHANNEL POPUP ──
-function closeWaPopup() {
-  const el = document.getElementById('waPopupOverlay');
-  if (el) el.classList.add('hidden');
-  sessionStorage.setItem('wa_popup_closed', '1');
-}
-(function() {
-  if (!sessionStorage.getItem('wa_popup_closed')) {
-    setTimeout(function() {
-      const el = document.getElementById('waPopupOverlay');
-      if (el) el.classList.remove('hidden');
-    }, 3000);
-  } else {
-    const el = document.getElementById('waPopupOverlay');
-    if (el) el.classList.add('hidden');
-  }
-})();
-
-
-
-
-// ── REVIEWS FROM JSON ──
-async function loadReviews() {
-  const grid = document.getElementById('reviews-dynamic-grid');
-  if (!grid) return;
-  try {
-    const res = await fetch('reviews.json?v=' + Date.now());
-    if (!res.ok) throw new Error();
-    const reviews = await res.json();
-    grid.innerHTML = reviews.map(r => {
-      const stars = '★'.repeat(r.stars || 5) + '☆'.repeat(5 - (r.stars || 5));
-      const initials = r.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-      return `<div class="review-card">
-        <div class="review-stars">${stars}</div>
-        <div class="review-msg">${r.message}</div>
-        <div class="review-footer">
-          <div class="review-avatar">${initials}</div>
-          <div>
-            <div class="review-name">${r.name}</div>
-            <div class="review-location">${r.location||''}</div>
-          </div>
-        </div>
-      </div>`;
-    }).join('');
-  } catch {
-    // Fallback to hardcoded reviews if JSON not found
-    grid.innerHTML = `
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <div class="review-msg">I was totally lost before I found Big Quams Media. They helped me sort my Post-UTME and I got admitted into Unilorin!</div>
-        <div class="review-footer"><div class="review-avatar">AA</div><div><div class="review-name">Abdulrahmon Aisha</div><div class="review-location">Lagos State</div></div></div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★☆</div>
-        <div class="review-msg">I passed my JAMB at once after following their guide. You won't regret working with them!</div>
-        <div class="review-footer"><div class="review-avatar">FO</div><div><div class="review-name">Festus Oluwadare</div><div class="review-location">Kwara State</div></div></div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★☆</div>
-        <div class="review-msg">Best consultant of all time — fast, reliable, and always helpful. Big Quams Media truly supports students at every step.</div>
-        <div class="review-footer"><div class="review-avatar">AR</div><div><div class="review-name">Aderemi Rasheedah</div><div class="review-location">Osun State</div></div></div>
-      </div>`;
-  }
-}
-loadReviews();
-
-// ── Q&A ──
-async function loadQA() {
-  const list = document.getElementById('qaList');
-  if (!list) return;
-  try {
-    const res = await fetch('qa.json?v=' + Date.now());
-    if (!res.ok) throw new Error();
-    const items = await res.json();
-    if (!items.length) return;
-    list.innerHTML = items.map(qa => `
-      <div class="qa-card">
-        <div class="qa-question"><span class="qa-q-icon">❓</span>${qa.question}</div>
-        ${qa.answer ? `<div class="qa-answer"><div class="qa-answer-label">✅ BIG QUAMS MEDIA</div>${qa.answer}</div>` : ''}
-      </div>`).join('');
-  } catch { /* no qa.json yet */ }
-}
-loadQA();
-
-function submitQA() {
-  const name = document.getElementById('qaName').value.trim();
-  const question = document.getElementById('qaQuestion').value.trim();
-  if (!question) { showToast('Please type your question first!'); return; }
-  const text = (name ? name + ' asks: ' : 'Student question: ') + question;
-  const url = 'https://wa.me/2349049871643?text=' + encodeURIComponent(text);
-  window.open(url, '_blank');
-  document.getElementById('qaQuestion').value = '';
-  document.getElementById('qaName').value = '';
-  showToast('✅ Opening WhatsApp with your question!');
-}
-
-// ── CUTOFF CHECKER (add as 3rd tab to calculator) ──
-// Injected into calc modal dynamically
-(function addCutoffTab() {
-  const tabBar = document.querySelector('.calc-tabs');
-  if (!tabBar) return;
-  const btn = document.createElement('button');
-  btn.className = 'calc-tab';
-  btn.textContent = '🎯 Cut-off Checker';
-  btn.onclick = () => switchTab('cutoff');
-  tabBar.appendChild(btn);
-
-  const calcModal = document.getElementById('calcModal');
-  if (!calcModal) return;
-  const panel = document.createElement('div');
-  panel.className = 'calc-panel';
-  panel.id = 'tab-cutoff';
-  panel.innerHTML = `
-    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:14px;">Enter your JAMB score to see if you meet common cut-off marks for Nigerian universities.</p>
-    <div class="ci-group" style="margin-bottom:12px;">
-      <label>Your JAMB Score *</label>
-      <input type="number" id="coScore" min="0" max="400" placeholder="e.g. 260" oninput="checkCutoff()">
-    </div>
-    <div class="ci-group" style="margin-bottom:14px;">
-      <label>Your Course Area</label>
-      <select id="coCourse" onchange="checkCutoff()">
-        <option value="">— Select course type —</option>
-        <option value="medicine">Medicine / Pharmacy / Nursing</option>
-        <option value="engineering">Engineering / Technology</option>
-        <option value="science">Sciences (Biology, Chemistry, Physics)</option>
-        <option value="law">Law</option>
-        <option value="arts">Arts / Humanities / Social Sciences</option>
-        <option value="education">Education</option>
-        <option value="business">Business / Accounting / Economics</option>
-        <option value="mass">Mass Communication / Journalism</option>
-      </select>
-    </div>
-    <div class="cutoff-result" id="cutoffResult">
-      <div class="score" id="coScoreDisplay">—</div>
-      <div class="verdict" id="coVerdict"></div>
-    </div>`;
-  calcModal.appendChild(panel);
-})();
-
-const cutoffMap = {
-  medicine:    { min: 280, federal: 300, private: 200, msg: 'Medicine/Pharmacy/Nursing' },
-  engineering: { min: 200, federal: 220, private: 180, msg: 'Engineering/Technology' },
-  science:     { min: 180, federal: 200, private: 160, msg: 'Sciences' },
-  law:         { min: 200, federal: 220, private: 180, msg: 'Law' },
-  arts:        { min: 160, federal: 180, private: 140, msg: 'Arts/Humanities' },
-  education:   { min: 160, federal: 180, private: 140, msg: 'Education' },
-  business:    { min: 180, federal: 200, private: 160, msg: 'Business/Accounting' },
-  mass:        { min: 180, federal: 200, private: 160, msg: 'Mass Communication' },
-};
-
-function checkCutoff() {
-  const score = parseInt(document.getElementById('coScore').value);
-  const course = document.getElementById('coCourse').value;
-  const result = document.getElementById('cutoffResult');
-  if (!score || !course) { result.classList.remove('show'); return; }
-  const co = cutoffMap[course];
-  document.getElementById('coScoreDisplay').textContent = score + ' / 400';
-  let verdict = '';
-  if (score >= co.federal) verdict = `✅ <strong>Qualifies</strong> for most Federal & State universities offering ${co.msg}`;
-  else if (score >= co.private) verdict = `🟡 <strong>Qualifies</strong> for some State universities & private institutions. Consider polytechnics too.`;
-  else if (score >= co.min) verdict = `⚠️ <strong>May qualify</strong> for some private universities & polytechnics. Improve for better options.`;
-  else verdict = `❌ <strong>Below common cut-offs</strong> for ${co.msg}. Consider JUPEB, Direct Entry, or retaking JAMB.`;
-  document.getElementById('coVerdict').innerHTML = verdict;
-  result.classList.add('show');
-}
-
-// Extend switchTab for cutoff
-const _origSwitchCalcTab = switchTab;
-function switchTab(tab) {
   const tabs = document.querySelectorAll('.calc-tab');
   const panels = document.querySelectorAll('.calc-panel');
   tabs.forEach((t,i) => t.classList.toggle('active',
@@ -2881,130 +2095,27 @@ if ('serviceWorker' in navigator) {
 
 
 // ── PUSH NOTIFICATIONS ──
-const NOTIF_DISMISSED_KEY = 'bqm_notif_dismissed';
-const NOTIF_ENABLED_KEY   = 'bqm_notif_enabled';
-
-function dismissNotifBar() {
+// ── PUSH NOTIFICATIONS — FCM (logic in fcm-init.js) ──
+window.enableNotifications = window.enableNotifications || function() {
+  if (window.BQM_enableNotifications) { window.BQM_enableNotifications(); }
+  else { setTimeout(() => window.BQM_enableNotifications && window.BQM_enableNotifications(), 600); }
+};
+window.dismissNotifBar = window.dismissNotifBar || function() {
   const bar = document.getElementById('notifBar');
   if (bar) bar.classList.remove('show');
-  sessionStorage.setItem(NOTIF_DISMISSED_KEY, '1');
-}
-
-function updateNotifUI(granted) {
-  const btn = document.getElementById('notifEnableBtn');
-  const msg = document.getElementById('notifEnabledMsg');
-  const bar = document.getElementById('notifBar');
-  if (granted) {
-    if (btn) btn.style.display = 'none';
-    if (msg) msg.classList.add('show');
-    if (bar) bar.classList.remove('show');
-    localStorage.setItem(NOTIF_ENABLED_KEY, '1');
-  }
-}
-
-async function sendWelcomeNotification() {
-  // Use service worker to send the notification (works on all platforms)
-  if ('serviceWorker' in navigator) {
-    try {
-      const reg = await navigator.serviceWorker.ready;
-      // Post message to SW to show the notification
-      if (reg.active) {
-        reg.active.postMessage({
-          type: 'SHOW_NOTIFICATION',
-          title: '🎓 Big Quams Media® — Notifications On!',
-          body: 'Thanks for turning on notifications! You will receive the latest news updates, new eBooks, scholarships and campus information from Big Quams Media. Stay tuned!',
-          url: '/'
-        });
-      } else {
-        // Fallback: direct Notification API
-        new Notification('🎓 Big Quams Media® — Notifications On!', {
-          body: 'Thanks for turning on notifications! You will receive news updates, new eBooks and scholarship alerts from Big Quams Media. Stay tuned!',
-          icon: 'https://i.imgur.com/lYJXUyY.jpeg',
-          badge: 'https://i.imgur.com/lYJXUyY.jpeg',
-          tag: 'bqm-welcome'
-        });
-      }
-    } catch(e) {
-      // Final fallback
-      try {
-        new Notification('🎓 Big Quams Media® — Notifications On!', {
-          body: 'Thanks for turning on notifications! You will receive news, eBooks, and scholarship alerts from Big Quams Media. Stay tuned!',
-          icon: 'https://i.imgur.com/lYJXUyY.jpeg'
-        });
-      } catch {}
-    }
-  }
-}
-
-async function enableNotifications() {
-  // Check browser support
-  if (!('Notification' in window)) {
-    showToast('⚠️ Your browser does not support notifications. Try Chrome or Firefox.');
-    return;
-  }
-
-  // iOS Safari special case — must be PWA
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  const isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-  if (isIOS && !isStandalone) {
-    showToast('📱 On iPhone: First add this site to your Home Screen, then enable notifications from the app.');
-    return;
-  }
-
-  if (Notification.permission === 'granted') {
-    updateNotifUI(true);
-    showToast('✅ Notifications are already enabled!');
-    await sendWelcomeNotification();
-    return;
-  }
-
-  if (Notification.permission === 'denied') {
-    showToast('❌ Notifications are blocked. Go to your browser settings → Site Settings → Notifications and allow this site.');
-    return;
-  }
-
-  // Request permission
-  try {
-    const perm = await Notification.requestPermission();
-    if (perm === 'granted') {
-      updateNotifUI(true);
-      showToast('✅ Notifications enabled!');
-      // Register service worker first then send welcome
-      if ('serviceWorker' in navigator) {
-        await navigator.serviceWorker.register('sw.js');
-        await navigator.serviceWorker.ready;
-      }
-      // Small delay then send welcome notification
-      setTimeout(sendWelcomeNotification, 800);
-      // Store counts so SW knows baseline
-      try {
-        const [nr, br] = await Promise.all([
-          fetch('news.json?v='+Date.now()), fetch('books.json?v='+Date.now())
-        ]);
-        const [news, books] = await Promise.all([nr.json(), br.json()]);
-        localStorage.setItem('bqm_news_count', news.length);
-        localStorage.setItem('bqm_books_count', books.length);
-      } catch {}
-    } else {
-      showToast('Notification permission not granted. You can enable it anytime.');
-    }
-  } catch(err) {
-    showToast('Could not enable notifications: ' + err.message);
-  }
-}
-
-// Check & show notification bar
-(function initNotifBar() {
-  if (localStorage.getItem(NOTIF_ENABLED_KEY) === '1' || Notification.permission === 'granted') {
-    updateNotifUI(true);
-    return;
-  }
-  if (!('Notification' in window)) return; // Not supported
-  if (!sessionStorage.getItem(NOTIF_DISMISSED_KEY)) {
-    setTimeout(() => {
-      const bar = document.getElementById('notifBar');
-      if (bar) bar.classList.add('show');
-    }, 5000);
+  sessionStorage.setItem('bqm_notif_bar_dismissed','1');
+};
+// Check if already enabled
+(function(){
+  if (localStorage.getItem('bqm_notif_enabled')==='1' || (typeof Notification!=='undefined' && Notification.permission==='granted')) {
+    const btn=document.getElementById('notifEnableBtn');
+    const msg=document.getElementById('notifEnabledMsg');
+    const bar=document.getElementById('notifBar');
+    if(btn) btn.style.display='none';
+    if(msg) msg.classList.add('show');
+    if(bar) bar.classList.remove('show');
+  } else if (!sessionStorage.getItem('bqm_notif_bar_dismissed')) {
+    setTimeout(()=>{ const bar=document.getElementById('notifBar'); if(bar) bar.classList.add('show'); },8000);
   }
 })();
 
@@ -3086,6 +2197,40 @@ initCountdown();
 // Replace your current fetchNewsData(), loadCalendar(), etc.
 // with IntersectionObserver-triggered versions below.
 
+
+// ── SCHOLARSHIP PREVIEW ──
+async function loadScholarshipPreview() {
+  const grid = document.getElementById('scholarship-preview-grid');
+  if (!grid) return;
+  const fallback = [
+    {icon:'🇳🇬',name:'Federal Government BEA Scholarship',org:'Federal Ministry of Education',type:'federal',desc:'Funds Nigerian students to study abroad under bilateral agreements with Russia, China, Hungary, Morocco and more.',deadline:'Usually Aug–Oct annually',amount:'Full tuition + stipend'},
+    {icon:'📡',name:'MTN Foundation Scholarship',org:'MTN Nigeria Foundation',type:'corporate',desc:'Awards outstanding Nigerian STEM undergraduates in accredited Nigerian universities annually.',deadline:'Usually April–June annually',amount:'₦200,000 per year'},
+    {icon:'🌍',name:'Commonwealth Scholarship (UK)',org:'Commonwealth Scholarship Commission',type:'international',desc:'Funds Nigerian students for Masters and PhD at UK universities — tuition, flights and living allowance included.',deadline:'Usually December annually',amount:'Fully funded'},
+  ];
+  const typeColors={federal:'#dbeafe:#1d4ed8',state:'#dcfce7:#15803d',international:'#ede9fe:#7c3aed',corporate:'#fff7ed:#c2410c'};
+  function renderPreview(items){
+    const top3=items.filter(s=>!s.hidden).slice(0,3);
+    if(!top3.length){grid.innerHTML='<div class="news-loading">Scholarship alerts coming soon!</div>';return;}
+    grid.innerHTML=top3.map(s=>{
+      const [bg,tx]=(typeColors[s.type]||'#f0f5ff:#1a3fa8').split(':');
+      return `<div class="sch-preview-card" onclick="window.location='scholarship.html'">
+        <div class="sch-preview-top"><div class="sch-preview-icon">${s.icon||'💰'}</div>
+        <div><span class="sch-preview-badge" style="background:${bg};color:${tx};">${s.type}</span>
+        <div class="sch-preview-name">${s.name}</div></div></div>
+        <div class="sch-preview-desc">${s.desc||''}</div>
+        <div class="sch-preview-footer">
+          <span class="sch-deadline-tag">📅 ${s.deadline||''}</span>
+          <span class="sch-amount-tag">${(s.amount||'').split(' ').slice(0,3).join(' ')}</span>
+        </div></div>`;
+    }).join('');
+  }
+  renderPreview(fallback);
+  try{
+    const res=await fetch('scholarships.json?v='+Date.now());
+    if(res.ok){const data=await res.json();if(Array.isArray(data)&&data.length){const sorted=[...data].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));renderPreview(sorted);}}
+  }catch{}
+}
+
 function lazyLoadSection(sectionId, loadFn) {
   const section = document.getElementById(sectionId);
   if (!section) { loadFn(); return; }
@@ -3100,14 +2245,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // Ticker loads immediately (small payload)
   initTicker();
   // Others lazy-loaded as sections come into view
-  lazyLoadSection('news-updates',       fetchNewsData);
-  lazyLoadSection('dyk-section',        fetchDykPreview);
-  lazyLoadSection('calendar-section',   loadCalendar);
-  lazyLoadSection('spotlight-section',  fetchSpotlightPreview);
-  lazyLoadSection('reviews',            loadReviews);
-  lazyLoadSection('qa-section',         loadQA);
-  lazyLoadSection('countdown-section',  initCountdown);
-  lazyLoadSection('scholarship-alerts', loadScholarshipPreview);
+  lazyLoadSection('news-updates',     fetchNewsData);
+  lazyLoadSection('dyk-section',      fetchDykPreview);
+  lazyLoadSection('calendar-section', loadCalendar);
+  lazyLoadSection('spotlight-section',fetchSpotlightPreview);
+  lazyLoadSection('reviews',          loadReviews);
+  lazyLoadSection('qa-section',       loadQA);
+  lazyLoadSection('countdown-section',initCountdown);
 });
 
 // ── NEWS TICKER ──
@@ -3135,48 +2279,6 @@ async function initTicker() {
 
 // ── ACADEMIC CALENDAR PDF DOWNLOAD ──
 // Attach this to any button with id="calendarPdfBtn" if you add one
-// ── SCHOLARSHIP PREVIEW ──
-async function loadScholarshipPreview() {
-  const grid = document.getElementById('scholarship-preview-grid');
-  if (!grid) return;
-  const fallback = [
-    { icon:'🇳🇬', name:'Federal Government BEA Scholarship', org:'Federal Ministry of Education', type:'federal', desc:'Funds Nigerian students to study abroad under bilateral agreements with Russia, China, Hungary, Morocco and more.', deadline:'Usually Aug–Oct annually', amount:'Full tuition + stipend', status:'ongoing' },
-    { icon:'📡', name:'MTN Foundation Scholarship', org:'MTN Nigeria Foundation', type:'corporate', desc:'Awards outstanding Nigerian STEM undergraduates in accredited Nigerian universities.', deadline:'Usually April–June annually', amount:'₦200,000 per year', status:'open' },
-    { icon:'🌍', name:'Commonwealth Scholarship (UK)', org:'Commonwealth Scholarship Commission', type:'international', desc:'Funds Nigerian students for Masters and PhD programmes at UK universities — tuition, flights and living allowance included.', deadline:'Usually December annually', amount:'Fully funded', status:'open' },
-  ];
-  const typeColors = { federal:'#dbeafe:#1d4ed8', state:'#dcfce7:#15803d', international:'#ede9fe:#7c3aed', corporate:'#fff7ed:#c2410c' };
-  function renderPreview(items) {
-    const top3 = items.filter(s => !s.hidden).slice(0, 3);
-    if (!top3.length) { grid.innerHTML = '<div class="news-loading">Scholarship alerts coming soon!</div>'; return; }
-    grid.innerHTML = top3.map(s => {
-      const [bg, tx] = (typeColors[s.type] || '#f0f5ff:#1a3fa8').split(':');
-      return `<div class="sch-preview-card" onclick="window.location='scholarship.html'" style="cursor:pointer;">
-        <div class="sch-preview-top">
-          <div class="sch-preview-icon">${s.icon||'💰'}</div>
-          <div><span class="sch-preview-badge" style="background:${bg};color:${tx};">${s.type||'scholarship'}</span>
-          <div class="sch-preview-name">${s.name}</div></div>
-        </div>
-        <div class="sch-preview-desc">${s.desc||''}</div>
-        <div class="sch-preview-footer">
-          <span class="sch-deadline-tag">📅 ${s.deadline||'Check portal'}</span>
-          <span class="sch-amount-tag">${(s.amount||'').split(' ').slice(0,3).join(' ')}</span>
-        </div>
-      </div>`;
-    }).join('');
-  }
-  renderPreview(fallback);
-  try {
-    const res = await fetch('scholarships.json?v=' + Date.now());
-    if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data) && data.length > 0) {
-        const sorted = [...data].sort((a,b) => (b.featured?1:0) - (a.featured?1:0));
-        renderPreview(sorted);
-      }
-    }
-  } catch { /* keep fallback */ }
-}
-
 function downloadCalendarPDF() {
   const grid = document.getElementById('calendarGrid');
   if (!grid) return;
@@ -3206,4 +2308,402 @@ function downloadCalendarPDF() {
   <div class="footer">Big Quams Media® — big-quams-educational-hub.github.io — All dates subject to change.</div>
   </body></html>`;
 
-  const win = window.op
+  const win = window.open('', '_blank');
+  win.document.write(html);
+  win.document.close();
+  win.focus();
+  setTimeout(() => { win.print(); }, 600);
+}
+
+// ── PWA SERVICE WORKER ──
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+
+// ── PUSH NOTIFICATIONS — FCM ──
+window.enableNotifications = window.enableNotifications || function() {
+  window.BQM_enableNotifications
+    ? window.BQM_enableNotifications()
+    : setTimeout(() => window.BQM_enableNotifications && window.BQM_enableNotifications(), 600);
+};
+window.dismissNotifBar = window.dismissNotifBar || function() {
+  const bar = document.getElementById('notifBar');
+  if (bar) bar.classList.remove('show');
+  sessionStorage.setItem('bqm_notif_bar_dismissed', '1');
+};
+
+
+// ── DARK MODE ──
+// (already present above)
+
+// ── HAMBURGER MENU ──
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+if(menuToggle) menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
+if(mainNav) mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mainNav.classList.remove('open')));
+
+// ── SERVICE MODAL DATA ──
+const WA = 'https://wa.me/2349049871643?text=';
+const services = {
+  jamb:{icon:'📝',title:'JAMB (UTME & DE) Advisory',desc:'Full guidance from registration to exam day.',
+    items:['JAMB profile creation & NIN linking','Profile code generation','Mock UTME preparation & past question drill','CBT practice tips and time management','Post-exam result interpretation','Direct WhatsApp support'],
+    msg:'Hello Big Quams Media! I need help with JAMB (UTME & DE) Advisory. Please guide me.'},
+  admission:{icon:'🎓',title:'Admission Support',desc:'From Post-UTME to your final admission letter.',
+    items:['Post-UTME registration & preparation coaching','JAMB CAPS portal guidance','Understanding admission status','Change of course / institution processing','Direct Entry (DE) application support','School clearance & matriculation guidance'],
+    msg:'Hello Big Quams Media! I need Admission Support. Please assist me.'},
+  scholarship:{icon:'🚨',title:'Scholarship Alerts',desc:'Never miss a funded opportunity.',
+    items:['Federal Government BEA Scholarship alerts','State government scholarship notifications','International undergraduate & postgraduate alerts','Application deadline reminders','Document checklist & application guidance','Essay & personal statement tips'],
+    msg:'Hello Big Quams Media! I want to receive Scholarship Alerts. How do I get started?'},
+  digital:{icon:'💻',title:'Digital Services',desc:'Your one-stop digital hub.',
+    items:['School fee payment & e-receipt assistance','Student result & transcript checking','NIN digital slip retrieval & ID card printing','NIN modification services','Graphic design & business brand customization','Website creation & social media setup'],
+    msg:'Hello Big Quams Media! I need Digital Services. Please tell me more.'},
+  news:{icon:'📰',title:'Campus News',desc:'Stay informed on everything happening in Nigerian campuses.',
+    items:['University regulation updates','Academic calendar & exam timetable alerts','ASUU strike & resumption news','Student union & campus event coverage','Federal Ministry of Education announcements','Breaking education news delivered first'],
+    msg:'Hello Big Quams Media! I want to stay updated with Campus News.'},
+  coaching:{icon:'🧠',title:'Academic Coaching',desc:'Personalized coaching to help you study smarter.',
+    items:['Personalized study plan creation','Subject-by-subject past question analysis','CBT exam techniques & answer strategies','Time management during exams','1-on-1 tutoring sessions via WhatsApp','Post-exam performance review & feedback'],
+    msg:'Hello Big Quams Media! I need Academic Coaching. Please tell me more.'}
+};
+
+function openModal(key) {
+  const s = services[key]; if(!s) return;
+  document.getElementById('modalIcon').textContent  = s.icon;
+  document.getElementById('modalTitle').textContent = s.title;
+  document.getElementById('modalDesc').textContent  = s.desc;
+  const ul = document.getElementById('modalList');
+  ul.innerHTML = s.items.map(i => `<li>${i}</li>`).join('');
+  document.getElementById('modalCta').href = WA + encodeURIComponent(s.msg);
+  const libBtn = document.getElementById('modalCtaLib');
+  if(key === 'elibrary') {
+    document.getElementById('modalCta').textContent = '💬 Ask on WhatsApp';
+    if(libBtn) libBtn.style.display='flex';
+  } else {
+    document.getElementById('modalCta').textContent = '🚀 Get Started Now';
+    if(libBtn) libBtn.style.display='none';
+  }
+  document.getElementById('serviceModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('serviceModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function handleOverlayClick(e) {
+  if(e.target === document.getElementById('serviceModal')) closeModal();
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeCalc(); closeModal(); }});
+
+// ── NEWS LOADER ──
+async function fetchNewsData() {
+  const container = document.getElementById('news-container');
+  if(!container) return;
+  try {
+    const res = await fetch('news.json?v=' + Date.now());
+    if(!res.ok) throw new Error();
+    const newsData = await res.json();
+    container.innerHTML = '';
+    const pinned = newsData.filter(n=>n.pinned);
+    const normal = newsData.filter(n=>!n.pinned);
+    const preview = [...pinned,...normal].slice(0,5);
+    preview.forEach((item,i) => {
+      const card = document.createElement('div');
+      card.className = 'news-card';
+      card.style.animationDelay = (i*0.07)+'s';
+      card.innerHTML = `
+        ${item.image?`<div style="margin:-16px -16px 12px;overflow:hidden;border-radius:8px 8px 0 0;"><img src="${item.image}" alt="${item.title}" style="width:100%;height:160px;object-fit:cover;display:block;" loading="lazy"></div>`:''}
+        <div class="news-meta"><span class="category-label">${item.category||'News'}</span><span class="date-label">${item.date||''}</span></div>
+        <h3>${item.title}</h3>
+        <p>${item.summary||item.description||''}</p>
+        ${item.author?`<div style="font-size:0.72rem;color:var(--muted);margin-bottom:8px;font-weight:500;">✍️ ${item.author}</div>`:''}
+        <div class="news-actions">
+          <a href="newsroom.html" target="_blank" rel="noopener noreferrer">Read More</a>
+          <button onclick="shareNews('${encodeURIComponent(item.title)}')">🔗 Share</button>
+        </div>`;
+      container.appendChild(card);
+    });
+  } catch {
+    if(container) container.innerHTML = '<div class="news-loading">⚠️ Latest news currently unavailable. Please check back soon.</div>';
+  }
+}
+
+function shareNews(encodedTitle) {
+  const title = decodeURIComponent(encodedTitle);
+  const text = title+'\n\nRead more on Big Quams Media: https://big-quams-educational-hub.github.io/newsroom.html';
+  if(navigator.share){ navigator.share({title:'Big Quams Media',text,url:'https://big-quams-educational-hub.github.io/newsroom.html'}); }
+  else { window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank'); }
+}
+
+// ── DYK PREVIEW ──
+async function fetchDykPreview() {
+  const container = document.getElementById('dyk-preview-container');
+  if(!container) return;
+  try {
+    const res = await fetch('dyk.json?v='+Date.now());
+    if(!res.ok) throw new Error();
+    const data = await res.json();
+    if(!data.length){ container.innerHTML='<div class="news-loading">No items yet.</div>'; return; }
+    const catClass={'DYK Fact':'dyk-cat-dyk','Today in History':'dyk-cat-history','Current Affairs':'dyk-cat-affairs'};
+    const catIcon={'DYK Fact':'💡','Today in History':'📅','Current Affairs':'🌍'};
+    container.innerHTML = data.slice(0,3).map(item=>`
+      <div class="dyk-preview-card">
+        ${item.image?`<div class="dyk-preview-img-wrap"><img class="dyk-preview-img" src="${item.image}" alt="${item.title}" loading="lazy"></div>`
+          :`<div class="dyk-preview-img-ph" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">${catIcon[item.category]||'💡'}</div>`}
+        <div class="dyk-preview-body">
+          <div class="dyk-meta">
+            <span class="dyk-preview-cat ${catClass[item.category]||'dyk-cat-dyk'}">${item.category||'DYK'}</span>
+            <span class="dyk-preview-date">${item.date||''}</span>
+          </div>
+          <div class="dyk-preview-title">${item.title}</div>
+          <div class="dyk-preview-summary">${item.summary||''}</div>
+          <div class="dyk-card-actions"><a href="dyk.html" class="dyk-read-more">Read More →</a></div>
+        </div>
+      </div>`).join('');
+  } catch { if(container) container.innerHTML='<div class="news-loading">Content coming soon.</div>'; }
+}
+
+// ── CALENDAR ──
+async function loadCalendar() {
+  const grid = document.getElementById('calendarGrid'); if(!grid) return;
+  const catBadge={jamb:'cal-badge-jamb',exam:'cal-badge-exam',admission:'cal-badge-admission',school:'cal-badge-school',scholarship:'cal-badge-scholarship'};
+  const catLabel={jamb:'JAMB',exam:'Exam',admission:'Admission',school:'School',scholarship:'Scholarship'};
+  try {
+    const res = await fetch('calendar.json?v='+Date.now());
+    if(!res.ok) throw new Error();
+    const data = await res.json();
+    if(!data.length){grid.innerHTML='<div class="news-loading">Calendar coming soon.</div>';return;}
+    const sorted = [...data].sort((a,b)=>new Date(a.date)-new Date(b.date));
+    grid.innerHTML = sorted.map(item=>{
+      const d=new Date(item.date);
+      return `<div class="cal-card">
+        <div class="cal-date-box" style="background:${item.color||'#1a3fa8'};">
+          <div class="cal-month">${d.toLocaleString('en-US',{month:'short'})}</div>
+          <div class="cal-day">${d.getDate()}</div>
+        </div>
+        <div class="cal-info">
+          <div class="cal-title">${item.title}</div>
+          <div class="cal-desc">${item.description}</div>
+          <span class="cal-badge ${catBadge[item.category]||'cal-badge-jamb'}">${catLabel[item.category]||item.category||'Event'}</span>
+        </div></div>`;
+    }).join('');
+  } catch {
+    grid.innerHTML=`
+      <div class="cal-card"><div class="cal-date-box" style="background:#dc2626;"><div class="cal-month">Apr</div><div class="cal-day">24</div></div><div class="cal-info"><div class="cal-title">UTME 2026 Begins</div><div class="cal-desc">Main UTME examination commences nationwide</div><span class="cal-badge cal-badge-exam">Exam</span></div></div>
+      <div class="cal-card"><div class="cal-date-box" style="background:#16a34a;"><div class="cal-month">Jun</div><div class="cal-day">15</div></div><div class="cal-info"><div class="cal-title">Post-UTME Screening</div><div class="cal-desc">Universities begin Post-UTME screening exercises</div><span class="cal-badge cal-badge-admission">Admission</span></div></div>
+      <div class="cal-card"><div class="cal-date-box" style="background:#f97316;"><div class="cal-month">Jul</div><div class="cal-day">01</div></div><div class="cal-info"><div class="cal-title">CAPS Admission Opens</div><div class="cal-desc">JAMB CAPS portal opens for admission offers</div><span class="cal-badge cal-badge-admission">Admission</span></div></div>`;
+  }
+}
+
+// ── SPOTLIGHT PREVIEW ──
+async function fetchSpotlightPreview() {
+  const container = document.getElementById('spotlight-preview-container'); if(!container) return;
+  try {
+    const res = await fetch('spotlight.json?v='+Date.now());
+    if(!res.ok) throw new Error();
+    const data = await res.json();
+    if(!data.length){container.innerHTML='<div class="news-loading">Spotlights coming soon!</div>';return;}
+    const badgeClass={'Student Achievement':'student','Birthday':'birthday','Celebration':'celebrate'};
+    container.innerHTML = data.slice(0,3).map(item=>`
+      <div class="spotlight-card">
+        ${item.image?`<div class="spotlight-img-wrap"><img class="spotlight-img" src="${item.image}" alt="${item.title}" loading="lazy"></div>`
+          :`<div class="spotlight-img-ph">🌟</div>`}
+        <div class="spotlight-body">
+          <span class="spotlight-badge ${badgeClass[item.category]||'celebrate'}">${item.category||'Spotlight'}</span>
+          <div class="spotlight-title">${item.title}</div>
+          <div class="spotlight-summary">${item.summary||''}</div>
+          <div class="spotlight-date">${item.date||''}</div>
+        </div>
+      </div>`).join('');
+  } catch { if(container) container.innerHTML='<div class="news-loading">Spotlights coming soon!</div>'; }
+}
+
+// ── REVIEWS ──
+async function loadReviews() {
+  const grid = document.getElementById('reviews-dynamic-grid'); if(!grid) return;
+  try {
+    const res = await fetch('reviews.json?v='+Date.now());
+    if(!res.ok) throw new Error();
+    const reviews = await res.json();
+    grid.innerHTML = reviews.map(r=>{
+      const stars='★'.repeat(r.stars||5)+'☆'.repeat(5-(r.stars||5));
+      const initials=r.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+      return `<div class="review-card">
+        <div class="review-stars">${stars}</div>
+        <div class="review-msg">${r.message}</div>
+        <div class="review-footer">
+          <div class="review-avatar">${initials}</div>
+          <div><div class="review-name">${r.name}</div><div class="review-location">${r.location||''}</div></div>
+        </div></div>`;
+    }).join('');
+  } catch {
+    grid.innerHTML=`
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-msg">I was totally lost before I found Big Quams Media. They helped me sort my Post-UTME and I got admitted into Unilorin!</div><div class="review-footer"><div class="review-avatar">AA</div><div><div class="review-name">Abdulrahmon Aisha</div><div class="review-location">Lagos State</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★☆</div><div class="review-msg">I passed my JAMB at once after following their guide. You won't regret working with them!</div><div class="review-footer"><div class="review-avatar">FO</div><div><div class="review-name">Festus Oluwadare</div><div class="review-location">Kwara State</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★☆</div><div class="review-msg">Best consultant of all time — fast, reliable, and always helpful. Big Quams Media truly supports students.</div><div class="review-footer"><div class="review-avatar">AR</div><div><div class="review-name">Aderemi Rasheedah</div><div class="review-location">Osun State</div></div></div></div>`;
+  }
+}
+
+// ── Q&A ──
+async function loadQA() {
+  const list = document.getElementById('qaList'); if(!list) return;
+  try {
+    const res = await fetch('qa.json?v='+Date.now());
+    if(!res.ok) throw new Error();
+    const items = await res.json();
+    if(!items.length) return;
+    list.innerHTML = items.map(qa=>`
+      <div class="qa-card">
+        <div class="qa-question"><span class="qa-q-icon">❓</span>${qa.question}</div>
+        ${qa.answer?`<div class="qa-answer"><div class="qa-answer-label">✅ BIG QUAMS MEDIA</div>${qa.answer}</div>`:''}
+      </div>`).join('');
+  } catch {}
+}
+
+function submitQA() {
+  const name = document.getElementById('qaName').value.trim();
+  const question = document.getElementById('qaQuestion').value.trim();
+  if(!question){showToast('Please type your question first!');return;}
+  const text=(name?name+' asks: ':'Student question: ')+question;
+  window.open('https://wa.me/2349049871643?text='+encodeURIComponent(text),'_blank');
+  document.getElementById('qaQuestion').value='';
+  document.getElementById('qaName').value='';
+  showToast('✅ Opening WhatsApp with your question!');
+}
+
+// ── ANIMATED COUNTERS ──
+function animateCounters() {
+  document.querySelectorAll('.stat-num').forEach(el=>{
+    const raw=el.getAttribute('data-target')||el.textContent.trim();
+    el.setAttribute('data-target',raw);
+    if(raw.includes('/')) return;
+    const num=parseInt(raw.replace(/\D/g,''));
+    const suffix=raw.replace(/[0-9]/g,'');
+    if(isNaN(num)||num===0) return;
+    el.textContent='0'+suffix;
+    const steps=60,duration=1800,increment=num/steps;
+    let count=0;
+    const timer=setInterval(()=>{
+      count++;const current=Math.min(Math.round(increment*count),num);
+      el.textContent=current+suffix;if(count>=steps) clearInterval(timer);
+    },duration/steps);
+  });
+}
+let countersRan=false;
+const aboutSection=document.getElementById('about');
+if(aboutSection){
+  const obs=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting&&!countersRan){countersRan=true;animateCounters();}
+  },{threshold:0.2});
+  obs.observe(aboutSection);
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const toast=document.createElement('div');
+  toast.className='toast';toast.innerText=msg;
+  document.getElementById('toast-container').appendChild(toast);
+  setTimeout(()=>toast.classList.add('show'),50);
+  setTimeout(()=>{toast.classList.remove('show');setTimeout(()=>toast.remove(),400);},2500);
+}
+
+// ── CALCULATOR TABS ──
+const cutoffMap={
+  medicine:{min:280,federal:300,private:200,msg:'Medicine/Pharmacy/Nursing'},
+  engineering:{min:200,federal:220,private:180,msg:'Engineering/Technology'},
+  science:{min:180,federal:200,private:160,msg:'Sciences'},
+  law:{min:200,federal:220,private:180,msg:'Law'},
+  arts:{min:160,federal:180,private:140,msg:'Arts/Humanities'},
+  education:{min:160,federal:180,private:140,msg:'Education'},
+  business:{min:180,federal:200,private:160,msg:'Business/Accounting'},
+  mass:{min:180,federal:200,private:160,msg:'Mass Communication'},
+};
+
+function checkCutoff() {
+  const score=parseInt(document.getElementById('coScore').value);
+  const course=document.getElementById('coCourse').value;
+  const result=document.getElementById('cutoffResult');
+  if(!score||!course){result.classList.remove('show');return;}
+  const co=cutoffMap[course];
+  document.getElementById('coScoreDisplay').textContent=score+' / 400';
+  let verdict='';
+  if(score>=co.federal) verdict=`✅ <strong>Qualifies</strong> for most Federal & State universities offering ${co.msg}`;
+  else if(score>=co.private) verdict=`🟡 <strong>Qualifies</strong> for some State universities & private institutions.`;
+  else if(score>=co.min) verdict=`⚠️ <strong>May qualify</strong> for some private universities & polytechnics.`;
+  else verdict=`❌ <strong>Below common cut-offs</strong> for ${co.msg}.`;
+  document.getElementById('coVerdict').innerHTML=verdict;
+  result.classList.add('show');
+}
+
+// ── JAMB CALCULATOR ──
+function computeJamb() {
+  const ids=['j1','j2','j3','j4'];
+  const vals=ids.map(id=>{const v=parseInt(document.getElementById(id).value);return isNaN(v)?null:Math.min(100,Math.max(0,v));});
+  if(vals.some(v=>v===null)){document.getElementById('jResult').classList.remove('show');return;}
+  const total=vals.reduce((a,b)=>a+b,0);
+  const aggregate=(total/8).toFixed(2);
+  document.getElementById('jTotal').textContent=total;
+  document.getElementById('jBreakdown').textContent=`JAMB Aggregate (÷8): ${aggregate} / 50`;
+  const msg=document.getElementById('jMsg');
+  if(total>=300){msg.textContent='🎉 Excellent score!';msg.className='crb-msg good';}
+  else if(total>=250){msg.textContent='👍 Good score — many institutions in reach';msg.className='crb-msg good';}
+  else if(total>=200){msg.textContent='⚠️ Fair — explore more options';msg.className='crb-msg fair';}
+  else{msg.textContent='❌ Below average — chat with us for guidance';msg.className='crb-msg low';}
+  document.getElementById('jResult').classList.add('show');
+}
+
+let activeFormula='50-50';
+function setFormula(el){
+  document.querySelectorAll('.formula-opt').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');activeFormula=el.dataset.formula;computeScreening();
+}
+function addSubject(){
+  const list=document.getElementById('oLevelList');
+  const row=document.createElement('div');row.className='subject-row';
+  row.innerHTML=`<input type="text" placeholder="Subject name" oninput="computeScreening()">
+    <select onchange="computeScreening()">
+      <option value="">Grade</option><option value="6">A1</option><option value="5">B2</option>
+      <option value="4">B3</option><option value="3">C4</option><option value="2">C5</option>
+      <option value="1">C6</option><option value="0">F9</option>
+    </select>
+    <button class="remove-subj" onclick="this.parentElement.remove();computeScreening()">✕</button>`;
+  list.appendChild(row);
+}
+function computeScreening(){
+  const jambRaw=parseInt(document.getElementById('sJamb').value);
+  if(isNaN(jambRaw)||jambRaw<0||jambRaw>400){document.getElementById('sResult').classList.remove('show');return;}
+  const rows=document.querySelectorAll('#oLevelList .subject-row');
+  const grades=[];
+  rows.forEach(row=>{const sel=row.querySelector('select');if(sel&&sel.value!=='') grades.push(parseInt(sel.value));});
+  if(!grades.length){document.getElementById('sResult').classList.remove('show');return;}
+  const oTotal=grades.reduce((a,b)=>a+b,0),oMax=grades.length*6,oScore=(oTotal/oMax)*50;
+  const jScore=(jambRaw/400)*50;
+  let aggregate,breakdown;
+  if(activeFormula==='50-50'){aggregate=(jScore+oScore).toFixed(2);breakdown=`JAMB (50%): ${jScore.toFixed(2)} + O'level (50%): ${oScore.toFixed(2)}`;}
+  else{const jPart=jScore*0.8,oPart=oScore*1.2;aggregate=(jPart+oPart).toFixed(2);breakdown=`JAMB (40%): ${jPart.toFixed(2)} + O'level (60%): ${oPart.toFixed(2)}`;}
+  document.getElementById('sTotal').textContent=aggregate;
+  document.getElementById('sBreakdown').textContent=breakdown;
+  const msg=document.getElementById('sMsg'),agg=parseFloat(aggregate);
+  if(agg>=70){msg.textContent='🎉 Very competitive score!';msg.className='crb-msg good';}
+  else if(agg>=55){msg.textContent='👍 Good — many programmes within reach';msg.className='crb-msg good';}
+  else if(agg>=45){msg.textContent='⚠️ Fair — consider more programme options';msg.className='crb-msg fair';}
+  else{msg.textContent='❌ Low score — chat with us for guidance';msg.className='crb-msg low';}
+  document.getElementById('sResult').classList.add('show');
+}
+
+// ── WA POPUP INIT ──
+function closeWaPopup(){
+  const el=document.getElementById('waPopupOverlay');
+  if(el) el.classList.add('hidden');
+  sessionStorage.setItem('wa_popup_closed','1');
+}
+(function(){
+  if(!sessionStorage.getItem('wa_popup_closed')){
+    setTimeout(()=>{const el=document.getElementById('waPopupOverlay');if(el) el.classList.remove('hidden');},3000);
+  }
+})();
+
+</script>
+<script type="module" src="fcm-init.js"></script>
+</body>
+</html>
