@@ -239,70 +239,90 @@ nav a:hover { color: var(--orange); }
   .nav-cta { margin: 8px 16px 0; width: calc(100% - 32px); text-align: center; border-radius: 6px; }
 }
 
-/* HERO REDESIGN */
-.hero-float-badges { position: absolute; top: 16px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 16px; pointer-events: none; }
-.hfb { background: white; border-radius: 20px; padding: 5px 12px; font-size: 0.72rem; font-weight: 700; color: var(--blue-dk); box-shadow: 0 2px 12px rgba(0,0,0,0.1); border: 1px solid var(--border); animation: floatBadge 3s ease-in-out infinite; }
-.hfb-right { animation-delay: 1.5s; }
-body.dark .hfb { background: #1e293b; color: #bfdbfe; border-color: #2d3f6b; }
-@keyframes floatBadge { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);} }
-
-.hero-quick-stats { display: flex; align-items: center; justify-content: center; gap: 0; background: white; border: 1px solid var(--border); border-radius: 14px; padding: 12px 20px; margin: 20px auto 0; max-width: 380px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-body.dark .hero-quick-stats { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.1); }
-.hqs { display: flex; flex-direction: column; align-items: center; flex: 1; }
-.hqs-num { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--blue-dk); }
-.hqs-lbl { font-size: 0.62rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-.hqs-divider { width: 1px; height: 28px; background: var(--border); margin: 0 4px; }
-
-.hero-tool-strip { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 20px 0 0; }
-.hero-tool { display: flex; flex-direction: column; align-items: center; gap: 4px; background: white; border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; text-decoration: none; color: var(--blue-dk); font-size: 1.2rem; min-width: 64px; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
-.hero-tool span { font-size: 0.62rem; font-weight: 700; color: var(--muted); text-align: center; white-space: nowrap; }
-.hero-tool:hover { background: var(--blue); color: white; transform: translateY(-2px); box-shadow: 0 4px 14px rgba(26,63,168,0.2); }
-.hero-tool:hover span { color: #bfdbfe; }
-
-.hero-secondary-actions { display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
-.hero-secondary-btn { background: none; border: none; color: var(--muted); font-size: 0.8rem; cursor: pointer; font-family: 'Roboto', sans-serif; padding: 4px 6px; text-decoration: none; transition: color 0.2s; }
-.hero-secondary-btn:hover { color: var(--blue-dk); }
-.hero-sep { color: var(--border); font-size: 0.7rem; }
-
 /* HERO */
 .hero {
-  background: linear-gradient(145deg, #102880 0%, #1a3fa8 55%, #1d4ed8 100%);
-  padding: 48px 16px 44px;
+  background: linear-gradient(145deg, #0f1a35 0%, #102880 55%, #1a3fa8 100%);
+  padding: 72px 24px 64px;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
-@media (min-width: 600px) { .hero { padding: 72px 24px 64px; } }
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(249,115,22,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-badge {
-  display: inline-block;
-  background: rgba(255,255,255,0.15);
-  color: #bfdbfe;
-  border: 1px solid rgba(255,255,255,0.25);
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-bottom: 18px;
+@media(max-width:600px){ .hero { padding: 52px 20px 48px; } }
+
+.hero-inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #93c5fd;
+  padding: 5px 16px; border-radius: 20px;
+  font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.3px;
+  margin-bottom: 22px;
   animation: fadeUp 0.5s ease both;
 }
+
 .hero h1 {
-  color: white;
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 6vw, 3.2rem);
   font-weight: 800;
+  color: white;
   line-height: 1.15;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   animation: fadeUp 0.6s 0.1s ease both;
 }
 .hero h1 span { color: var(--orange); }
+
+.hero p {
+  color: #93c5fd;
+  font-size: 1.02rem;
+  max-width: 520px;
+  margin: 0 auto 32px;
+  line-height: 1.65;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+
+.hero-btns {
+  display: flex; gap: 12px;
+  justify-content: center; flex-wrap: wrap;
+  margin-bottom: 28px;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+@media(max-width:480px){ .hero-btns { flex-direction: column; align-items: center; } }
+@media(max-width:480px){ .hero-btns .btn { width: 100%; max-width: 300px; } }
+
+.hero-tools-row {
+  display: flex; gap: 8px;
+  justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.4s ease both;
+}
+.htool {
+  color: rgba(255,255,255,0.55);
+  font-size: 0.78rem; font-weight: 500;
+  text-decoration: none;
+  padding: 4px 2px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  transition: color 0.2s, border-color 0.2s;
+}
+.htool:hover { color: white; border-color: var(--orange); }
+
+/* Decorative rings */
+.hero-deco { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+.hero-deco-ring {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.hero-deco-ring1 { width: 500px; height: 500px; top: -200px; right: -150px; }
+.hero-deco-ring2 { width: 350px; height: 350px; bottom: -180px; left: -100px; }
+
+/* Dark mode hero — same gradient, slightly deeper */
+body.dark .hero {
+  background: linear-gradient(145deg, #080f20 0%, #0c1a40 55%, #102880 100%);
+}
+body.dark .hero h1 { color: #e2e8f0; }
+body.dark .hero p  { color: #93c5fd; }
+body.dark .hero-eyebrow { background: rgba(255,255,255,0.06); color: #93c5fd; }
 .hero p {
   color: #bfdbfe;
   font-size: 1.05rem;
@@ -1555,48 +1575,25 @@ body.dark .sch-card-footer { border-color: var(--border); }
   
 <!-- HERO -->
 <section class="hero" id="home">
-  <!-- Floating badges -->
-  <div class="hero-float-badges">
-    <div class="hfb hfb-left">🔥 JAMB 2026 Updates</div>
-    <div class="hfb hfb-right">💰 New Scholarships</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">🎓 Nigeria's #1 Free Student Platform</div>
+    <h1>Your Admission<br>Journey <span>Starts Here</span></h1>
+    <p>JAMB updates, scholarships, CBT practice, results checking, Post UTME prep and more — all free, all in one place.</p>
+    <div class="hero-btns">
+      <a href="cbt.html" class="btn">🎯 Start CBT Practice</a>
+      <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="btn btn-wa">💬 Chat on WhatsApp</a>
+    </div>
+    <div class="hero-tools-row">
+      <a href="scholarship.html" class="htool">💰 Scholarships</a>
+      <a href="results.html" class="htool">📋 Results</a>
+      <a href="postutme-calculator.html" class="htool">🧮 Post UTME Calc</a>
+      <a href="subject-combo.html" class="htool">📚 Subject Combo</a>
+      <a href="elibrary.html" class="htool">📖 eLibrary</a>
+    </div>
   </div>
-
-  <div class="hero-badge">🎓 Nigeria's #1 Student Platform</div>
-  <h1>Everything You Need<br>to <span>Succeed in School</span></h1>
-  <p>JAMB updates, scholarship alerts, free CBT practice, eLibrary, results checker and more — all in one place, completely free.</p>
-
-  <!-- Quick stats -->
-  <div class="hero-quick-stats">
-    <div class="hqs"><span class="hqs-num">10K+</span><span class="hqs-lbl">Students</span></div>
-    <div class="hqs-divider"></div>
-    <div class="hqs"><span class="hqs-num">8</span><span class="hqs-lbl">Free Tools</span></div>
-    <div class="hqs-divider"></div>
-    <div class="hqs"><span class="hqs-num">24/7</span><span class="hqs-lbl">Support</span></div>
-    <div class="hqs-divider"></div>
-    <div class="hqs"><span class="hqs-num">Free</span><span class="hqs-lbl">Always</span></div>
-  </div>
-
-  <!-- Quick tool shortcuts -->
-  <div class="hero-tool-strip">
-    <a href="cbt.html" class="hero-tool">🎯<span>CBT Practice</span></a>
-    <a href="scholarship.html" class="hero-tool">💰<span>Scholarships</span></a>
-    <a href="results.html" class="hero-tool">📋<span>Results</span></a>
-    <a href="subject-combo.html" class="hero-tool">📚<span>Subject Combo</span></a>
-    <a href="postutme-prep.html" class="hero-tool">📖<span>Prep Guide</span></a>
-    <a href="elibrary.html" class="hero-tool">📖<span>eLibrary</span></a>
-  </div>
-
-  <!-- CTA buttons -->
-  <div class="hero-btns">
-    <a href="cbt.html" class="btn">🎯 Start CBT Practice</a>
-    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="btn btn-wa">💬 Chat on WhatsApp</a>
-  </div>
-  <div class="hero-secondary-actions">
-    <button onclick="openCalc()" class="hero-secondary-btn">🧮 Score Calculator</button>
-    <span class="hero-sep">·</span>
-    <button onclick="sharePage()" class="hero-secondary-btn">📤 Share this site</button>
-    <span class="hero-sep">·</span>
-    <a href="#news-updates" class="hero-secondary-btn">📰 Latest News</a>
+  <div class="hero-deco" aria-hidden="true">
+    <div class="hero-deco-ring hero-deco-ring1"></div>
+    <div class="hero-deco-ring hero-deco-ring2"></div>
   </div>
 </section>
 
