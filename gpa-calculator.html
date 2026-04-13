@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GPA & CGPA Calculator | BIG QUAMS MEDIA®</title>
+<meta name="description" content="Calculate your semester GPA and cumulative CGPA instantly. Supports both 4.0 and 5.0 grading scales used by Nigerian universities.">
+<link rel="canonical" href="https://big-quams-educational-hub.github.io/gpa-calculator.html">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#102880">
+<link rel="icon" type="image/jpeg" href="https://i.imgur.com/lYJXUyY.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1a3fa8;--blue-dk:#102880;--orange:#f97316;--green:#16a34a;--muted:#64748b;--light:#f0f5ff;--card:#ffffff;--text:#0f172a;--border:#e2e8f0;--bg:#f8faff;--sec-bg:#ffffff;}
+body.dark{--muted:#94a3b8;--light:#1e2a4a;--card:#1a2540;--text:#e2e8f0;--border:#2d3f6b;--bg:#0f172a;--sec-bg:#141f38;}
+body.dark header{background:linear-gradient(135deg,#080f20,#102880);}
+body.dark .hero{background:linear-gradient(145deg,#080f20 0%,#0c1a40 55%,#102880 100%);}
+body.dark .calc-card{background:var(--card);border-color:var(--border);}
+body.dark .course-row{background:#0f172a;border-color:var(--border);}
+body.dark input,body.dark select{background:#0f172a;color:var(--text);border-color:var(--border);}
+body.dark .result-box{background:linear-gradient(135deg,#080f20,#102880);}
+body.dark .info-card{background:var(--card);border-color:var(--border);}
+body.dark .grade-table th{background:#1e293b;color:#bfdbfe;}
+body.dark .grade-table td{border-color:var(--border);color:var(--text);}
+body.dark .tab-btn{background:var(--card);border-color:var(--border);color:var(--muted);}
+body.dark .tab-btn.active{background:var(--blue);color:white;}
+body.dark .cgpa-sem-row{background:#0f172a;border-color:var(--border);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Roboto',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+img{max-width:100%;display:block;}
+
+/* HEADER */
+header{background:linear-gradient(135deg,var(--blue-dk) 0%,var(--blue) 100%);color:white;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(26,63,168,0.25);}
+.header-inner{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.logo-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-circle{width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--orange);flex-shrink:0;}
+.logo-circle img{width:100%;height:100%;object-fit:cover;}
+.brand-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;line-height:1.2;}
+.brand-sub{font-size:0.65rem;color:#bfdbfe;}
+.dark-toggle{background:rgba(255,255,255,0.12);border:none;color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;}
+.dark-toggle:hover{background:rgba(255,255,255,0.22);}
+.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;margin-left:auto;padding:6px;}
+.menu-toggle span{display:block;width:24px;height:2px;background:white;border-radius:2px;}
+nav{display:flex;flex-wrap:nowrap;gap:4px 14px;margin-left:auto;align-items:center;}
+nav a{color:#dbeafe;text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s;white-space:nowrap;}
+nav a:hover{color:var(--orange);}
+.nav-cta{background:var(--orange)!important;color:white!important;padding:7px 16px;border-radius:6px;font-weight:700!important;font-size:0.85rem!important;}
+@media(max-width:600px){
+  .menu-toggle{display:flex;}
+  nav{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:0;background:var(--blue-dk);margin-left:0;padding:8px 0 12px;border-top:1px solid rgba(255,255,255,0.1);max-height:70vh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
+  nav.open{display:flex;}
+  nav a{padding:10px 16px;width:100%;font-size:0.95rem;}
+  nav a:hover{background:rgba(255,255,255,0.08);}
+  .nav-cta{margin:8px 16px 0;width:calc(100% - 32px);text-align:center;border-radius:6px;}
+}
+
+/* HERO */
+.hero{background:linear-gradient(145deg,#0f1a35 0%,#102880 55%,#1a3fa8 100%);padding:56px 24px 48px;text-align:center;position:relative;overflow:hidden;}
+.hero-badge{display:inline-block;background:rgba(255,255,255,0.12);color:#bfdbfe;border:1px solid rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:0.76rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:16px;}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;color:white;line-height:1.15;margin-bottom:12px;}
+.hero h1 span{color:var(--orange);}
+.hero p{color:#93c5fd;font-size:0.98rem;max-width:520px;margin:0 auto 24px;line-height:1.6;}
+
+/* LAYOUT */
+.container{max-width:900px;margin:0 auto;padding:40px 16px;}
+@media(min-width:600px){.container{padding:52px 24px;}}
+.section-label{display:inline-block;background:rgba(249,115,22,0.1);color:var(--orange);padding:3px 12px;border-radius:20px;font-size:0.74rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+h2.section-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.3rem,3.5vw,1.8rem);font-weight:800;color:var(--blue-dk);margin-bottom:8px;}
+body.dark h2.section-title{color:#bfdbfe;}
+.section-divider{width:48px;height:4px;background:var(--orange);border-radius:2px;margin-bottom:24px;}
+
+/* TABS */
+.tab-row{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
+.tab-btn{padding:9px 20px;border-radius:8px;border:1.5px solid var(--border);font-size:0.85rem;font-weight:700;cursor:pointer;background:white;color:var(--muted);font-family:'Roboto',sans-serif;transition:0.2s;}
+.tab-btn.active{background:var(--blue);color:white;border-color:var(--blue);}
+.tab-btn:hover:not(.active){border-color:var(--blue);color:var(--blue);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* SCALE SELECTOR */
+.scale-row{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+.scale-opt{padding:8px 18px;border-radius:8px;border:1.5px solid var(--border);font-size:0.85rem;font-weight:700;cursor:pointer;background:white;color:var(--muted);font-family:'Roboto',sans-serif;transition:0.2s;}
+.scale-opt.active{background:var(--blue-dk);color:white;border-color:var(--blue-dk);}
+body.dark .scale-opt{background:var(--card);}
+
+/* CALC CARD */
+.calc-card{background:white;border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,0.05);}
+
+/* COURSE ROWS */
+.courses-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.course-row{display:grid;grid-template-columns:1fr 100px 120px 36px;gap:8px;align-items:center;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+@media(max-width:480px){.course-row{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;}}
+.course-row input,.course-row select{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:0.85rem;font-family:'Roboto',sans-serif;color:var(--text);background:white;transition:border-color 0.2s;}
+.course-row input:focus,.course-row select:focus{outline:none;border-color:var(--blue);}
+.course-row-label{font-size:0.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+.remove-course{background:#fee2e2;border:none;color:#dc2626;width:32px;height:32px;border-radius:7px;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;}
+.remove-course:hover{background:#fecaca;}
+.add-course-btn{background:var(--light);border:1.5px dashed var(--border);color:var(--blue);padding:10px;border-radius:10px;width:100%;font-size:0.85rem;font-weight:700;cursor:pointer;font-family:'Roboto',sans-serif;transition:0.2s;margin-bottom:16px;}
+.add-course-btn:hover{background:#dbeafe;border-color:var(--blue);}
+
+/* RESULT BOX */
+.result-box{background:linear-gradient(135deg,var(--blue-dk),var(--blue));border-radius:14px;padding:24px;color:white;text-align:center;margin-top:4px;display:none;}
+.result-box.show{display:block;}
+.result-gpa{font-family:'Montserrat',sans-serif;font-size:3.5rem;font-weight:800;line-height:1;}
+.result-label{font-size:0.82rem;color:#bfdbfe;margin-top:4px;}
+.result-class{display:inline-block;background:var(--orange);color:white;padding:4px 16px;border-radius:20px;font-size:0.8rem;font-weight:800;margin-top:10px;font-family:'Montserrat',sans-serif;}
+.result-breakdown{margin-top:16px;font-size:0.82rem;color:#93c5fd;line-height:1.7;}
+.calc-btn{background:var(--orange);color:white;border:none;padding:13px 28px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.92rem;cursor:pointer;width:100%;transition:background 0.2s;}
+.calc-btn:hover{background:#ea6c0a;}
+.clear-btn{background:none;border:1.5px solid var(--border);color:var(--muted);padding:11px 20px;border-radius:9px;font-family:'Roboto',sans-serif;font-weight:700;font-size:0.85rem;cursor:pointer;transition:0.2s;margin-top:8px;width:100%;}
+.clear-btn:hover{border-color:var(--blue);color:var(--blue);}
+.btn-row{display:flex;gap:10px;margin-top:16px;}
+.btn-row .calc-btn{flex:1;}
+.btn-row .clear-btn{flex:1;margin-top:0;}
+
+/* CGPA SEMESTERS */
+.cgpa-semesters{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.cgpa-sem-row{display:grid;grid-template-columns:1fr 120px 120px 36px;gap:8px;align-items:center;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px;}
+@media(max-width:480px){.cgpa-sem-row{grid-template-columns:1fr 1fr;}}
+.cgpa-sem-row input{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:0.85rem;font-family:'Roboto',sans-serif;color:var(--text);background:white;}
+.cgpa-sem-row input:focus{outline:none;border-color:var(--blue);}
+
+/* INFO CARDS */
+.info-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:600px){.info-grid{grid-template-columns:1fr 1fr;}}
+.info-card{background:white;border:1px solid var(--border);border-radius:14px;padding:20px;}
+.info-card-icon{font-size:1.6rem;margin-bottom:10px;}
+.info-card h3{font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:800;color:var(--blue-dk);margin-bottom:8px;}
+body.dark .info-card h3{color:#bfdbfe;}
+.info-card p,.info-card li{font-size:0.82rem;color:#475569;line-height:1.6;}
+body.dark .info-card p,body.dark .info-card li{color:var(--muted);}
+.info-card ul{margin-left:16px;display:flex;flex-direction:column;gap:4px;}
+
+/* GRADE TABLE */
+.grade-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+.grade-table th{background:#f0f5ff;color:var(--blue-dk);font-family:'Montserrat',sans-serif;font-size:0.72rem;font-weight:700;text-transform:uppercase;padding:8px 12px;text-align:left;border-bottom:2px solid var(--border);}
+.grade-table td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text);}
+.grade-table tr:last-child td{border-bottom:none;}
+.gp-a{color:#15803d;font-weight:700;}
+.gp-b{color:#1d4ed8;font-weight:700;}
+.gp-c{color:#f97316;font-weight:700;}
+.gp-f{color:#dc2626;font-weight:700;}
+
+/* CLASS TABLE */
+.class-table{width:100%;border-collapse:collapse;font-size:0.84rem;margin-top:4px;}
+.class-table th{background:#f0f5ff;color:var(--blue-dk);font-family:'Montserrat',sans-serif;font-size:0.72rem;font-weight:700;text-transform:uppercase;padding:8px 12px;text-align:left;}
+body.dark .class-table th{background:#1e293b;color:#bfdbfe;}
+.class-table td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text);}
+body.dark .class-table td{border-color:var(--border);}
+.class-first{color:#15803d;font-weight:800;}
+.class-2-1{color:#1d4ed8;font-weight:700;}
+.class-2-2{color:#f97316;font-weight:700;}
+.class-3rd{color:#6d28d9;font-weight:700;}
+.class-pass{color:var(--muted);font-weight:600;}
+
+/* NOTICE BOX */
+.notice-box{background:#fef9c3;border:1px solid #fde68a;border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;}
+body.dark .notice-box{background:#1e1a00;border-color:#854d0e;}
+.notice-box p{font-size:0.82rem;color:#78350f;line-height:1.6;}
+body.dark .notice-box p{color:#fde68a;}
+
+#toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;}
+.toast{background:var(--blue-dk);color:white;padding:12px 20px;border-radius:8px;margin-top:8px;font-weight:600;font-size:0.9rem;opacity:0;transform:translateY(12px);transition:0.35s ease;}
+.toast.show{opacity:1;transform:translateY(0);}
+footer{background:var(--blue-dk);color:#bfdbfe;padding:28px 24px;font-size:0.88rem;}
+.footer-inner{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;}
+.footer-brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:white;}
+.footer-tagline{font-size:0.78rem;color:#94a3b8;}
+.footer-links{display:flex;gap:8px 16px;flex-wrap:wrap;justify-content:center;}
+.footer-links a{color:#94a3b8;text-decoration:none;font-size:0.78rem;transition:color 0.2s;}
+.footer-links a:hover{color:var(--orange);}
+.footer-copy{font-size:0.75rem;color:#64748b;text-align:center;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);width:100%;}
+#whatsapp-float{position:fixed;width:56px;height:56px;bottom:28px;right:24px;background:#25d366;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;z-index:999;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.45);transition:transform 0.2s;}
+#whatsapp-float:hover{transform:scale(1.1);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <div class="logo-circle"><img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Big Quams Media Logo"></div>
+      <div><div class="brand-text">BIG QUAMS MEDIA®</div><div class="brand-sub">Simplifying Campus Life</div></div>
+    </div>
+    <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">🌙</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="newsroom.html">News</a>
+      <a href="elibrary.html">eLibrary</a>
+      <a href="cbt.html">CBT Practice</a>
+      <a href="scholarship.html">Scholarships</a>
+      <a href="results.html">Results</a>
+      <a href="gpa-calculator.html" style="color:var(--orange);">GPA Calculator</a>
+      <a href="student-loan.html">Student Loan</a>
+      <a href="postutme-calculator.html">Post UTME Calc</a>
+      <a href="community.html">Community</a>
+      <a href="index.html#contact" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-badge">🎓 For Students in Tertiary Institutions</div>
+  <h1>GPA & CGPA<br><span>Calculator</span></h1>
+  <p>Calculate your semester GPA or cumulative CGPA instantly. Supports both the 4.0 and 5.0 grading scales used across Nigerian universities.</p>
+</section>
+
+<div class="container">
+
+  <!-- NOTICE -->
+  <div class="notice-box" style="margin-bottom:28px;">
+    <span style="font-size:1.2rem;flex-shrink:0;">ℹ️</span>
+    <p><strong>Note:</strong> Most Nigerian federal and state universities use the <strong>5.0 scale</strong>. Some private universities use the <strong>4.0 scale</strong>. If you're unsure which scale your school uses, check your student handbook or ask your department. This calculator supports both.</p>
+  </div>
+
+  <!-- TABS -->
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="switchCalcTab('gpa')">📊 Semester GPA</button>
+    <button class="tab-btn" onclick="switchCalcTab('cgpa')">📈 Cumulative CGPA</button>
+    <button class="tab-btn" onclick="switchCalcTab('guide')">📖 Grading Guide</button>
+  </div>
+
+  <!-- ═══ TAB 1: SEMESTER GPA ═══ -->
+  <div class="tab-panel active" id="panel-gpa">
+    <div class="calc-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+        <div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:var(--blue-dk);">Semester GPA Calculator</div>
+          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Enter each course, its credit unit and your grade</div>
+        </div>
+        <div class="scale-row" style="margin-bottom:0;">
+          <button class="scale-opt active" id="gpa-scale-5" onclick="setScale('gpa',5)">5.0 Scale</button>
+          <button class="scale-opt" id="gpa-scale-4" onclick="setScale('gpa',4)">4.0 Scale</button>
+        </div>
+      </div>
+
+      <!-- Column labels -->
+      <div style="display:grid;grid-template-columns:1fr 100px 120px 36px;gap:8px;padding:0 12px;margin-bottom:6px;">
+        <span class="course-row-label">Course Title</span>
+        <span class="course-row-label">Units</span>
+        <span class="course-row-label">Grade</span>
+        <span></span>
+      </div>
+
+      <div class="courses-list" id="gpa-courses-list">
+        <!-- rows added by JS -->
+      </div>
+
+      <button class="add-course-btn" onclick="addGPACourse()">+ Add Course</button>
+
+      <div class="btn-row">
+        <button class="calc-btn" onclick="calculateGPA()">Calculate GPA</button>
+        <button class="clear-btn" onclick="clearGPA()">Clear All</button>
+      </div>
+
+      <div class="result-box" id="gpa-result">
+        <div class="result-gpa" id="gpa-value">—</div>
+        <div class="result-label" id="gpa-scale-label">out of 5.0</div>
+        <div class="result-class" id="gpa-class">—</div>
+        <div class="result-breakdown" id="gpa-breakdown"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB 2: CUMULATIVE CGPA ═══ -->
+  <div class="tab-panel" id="panel-cgpa">
+    <div class="calc-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+        <div>
+          <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:var(--blue-dk);">Cumulative CGPA Calculator</div>
+          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Enter your GPA and total credit units for each semester</div>
+        </div>
+        <div class="scale-row" style="margin-bottom:0;">
+          <button class="scale-opt active" id="cgpa-scale-5" onclick="setScale('cgpa',5)">5.0 Scale</button>
+          <button class="scale-opt" id="cgpa-scale-4" onclick="setScale('cgpa',4)">4.0 Scale</button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 120px 120px 36px;gap:8px;padding:0 12px;margin-bottom:6px;">
+        <span class="course-row-label">Semester</span>
+        <span class="course-row-label">GPA</span>
+        <span class="course-row-label">Total Units</span>
+        <span></span>
+      </div>
+
+      <div class="cgpa-semesters" id="cgpa-list"></div>
+
+      <button class="add-course-btn" onclick="addCGPASem()">+ Add Semester</button>
+
+      <div class="btn-row">
+        <button class="calc-btn" onclick="calculateCGPA()">Calculate CGPA</button>
+        <button class="clear-btn" onclick="clearCGPA()">Clear All</button>
+      </div>
+
+      <div class="result-box" id="cgpa-result">
+        <div class="result-gpa" id="cgpa-value">—</div>
+        <div class="result-label" id="cgpa-scale-label">Cumulative GPA (out of 5.0)</div>
+        <div class="result-class" id="cgpa-class">—</div>
+        <div class="result-breakdown" id="cgpa-breakdown"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB 3: GRADING GUIDE ═══ -->
+  <div class="tab-panel" id="panel-guide">
+    <div class="info-grid">
+
+      <div class="info-card">
+        <div class="info-card-icon">📊</div>
+        <h3>5.0 Scale (Most Nigerian Universities)</h3>
+        <table class="grade-table">
+          <tr><th>Score (%)</th><th>Grade</th><th>Grade Point</th></tr>
+          <tr><td>70 – 100</td><td>A</td><td class="gp-a">5.0</td></tr>
+          <tr><td>60 – 69</td><td>B</td><td class="gp-b">4.0</td></tr>
+          <tr><td>50 – 59</td><td>C</td><td class="gp-c">3.0</td></tr>
+          <tr><td>45 – 49</td><td>D</td><td style="color:#f59e0b;font-weight:700;">2.0</td></tr>
+          <tr><td>40 – 44</td><td>E</td><td style="color:#ea580c;font-weight:700;">1.0</td></tr>
+          <tr><td>0 – 39</td><td>F</td><td class="gp-f">0.0</td></tr>
+        </table>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-icon">📊</div>
+        <h3>4.0 Scale (Some Private Universities)</h3>
+        <table class="grade-table">
+          <tr><th>Score (%)</th><th>Grade</th><th>Grade Point</th></tr>
+          <tr><td>70 – 100</td><td>A</td><td class="gp-a">4.0</td></tr>
+          <tr><td>60 – 69</td><td>B+</td><td class="gp-b">3.5</td></tr>
+          <tr><td>55 – 59</td><td>B</td><td class="gp-b">3.0</td></tr>
+          <tr><td>50 – 54</td><td>C+</td><td class="gp-c">2.5</td></tr>
+          <tr><td>45 – 49</td><td>C</td><td class="gp-c">2.0</td></tr>
+          <tr><td>40 – 44</td><td>D</td><td style="color:#f59e0b;font-weight:700;">1.0</td></tr>
+          <tr><td>0 – 39</td><td>F</td><td class="gp-f">0.0</td></tr>
+        </table>
+      </div>
+
+      <div class="info-card" style="grid-column:1/-1;">
+        <div class="info-card-icon">🎓</div>
+        <h3>Degree Classification (5.0 Scale)</h3>
+        <table class="class-table">
+          <tr><th>CGPA Range</th><th>Class of Degree</th></tr>
+          <tr><td class="class-first">4.50 – 5.00</td><td class="class-first">First Class Honours</td></tr>
+          <tr><td class="class-2-1">3.50 – 4.49</td><td class="class-2-1">Second Class Upper (2:1)</td></tr>
+          <tr><td class="class-2-2">2.40 – 3.49</td><td class="class-2-2">Second Class Lower (2:2)</td></tr>
+          <tr><td class="class-3rd">1.50 – 2.39</td><td class="class-3rd">Third Class</td></tr>
+          <tr><td class="class-pass">1.00 – 1.49</td><td class="class-pass">Pass</td></tr>
+        </table>
+        <div class="notice-box" style="margin-top:16px;">
+          <span style="font-size:1rem;flex-shrink:0;">⚠️</span>
+          <p>Degree classification ranges can vary slightly between institutions. This table reflects the NUC standard used by most Nigerian federal and state universities. Always confirm with your school's student handbook.</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-icon">🔢</div>
+        <h3>How GPA is Calculated</h3>
+        <p style="margin-bottom:8px;">GPA = Total Quality Points ÷ Total Credit Units</p>
+        <p style="margin-bottom:8px;"><strong>Quality Points</strong> = Credit Units × Grade Point</p>
+        <p><strong>Example:</strong> If you took a 3-unit course and scored a B (4.0 on 5.0 scale):<br>Quality Points = 3 × 4.0 = 12.0</p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-icon">💡</div>
+        <h3>Common Terms Explained</h3>
+        <ul>
+          <li><strong>GPA</strong> — Grade Point Average for one semester</li>
+          <li><strong>CGPA</strong> — Cumulative GPA across all semesters</li>
+          <li><strong>Credit Unit</strong> — The weight assigned to a course (usually 1–4)</li>
+          <li><strong>Carry-over</strong> — A failed course you must retake</li>
+          <li><strong>Probation</strong> — Academic warning when CGPA falls below your school's minimum (usually 1.0–1.5)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="background:linear-gradient(135deg,var(--blue-dk),var(--blue));border-radius:16px;padding:28px 24px;color:white;display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:40px;">
+    <span style="font-size:2rem;">💬</span>
+    <div style="flex:1;min-width:180px;">
+      <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;margin-bottom:4px;">Need Academic Advice?</div>
+      <p style="font-size:0.84rem;color:#bfdbfe;line-height:1.5;">Struggling with courses, carry-overs or your CGPA? Chat with Big Quams Media — we'll point you in the right direction.</p>
+    </div>
+    <a href="https://wa.me/2349049871643?text=Hello%20Big%20Quams%20Media!%20I%20need%20academic%20advice." target="_blank" rel="noopener noreferrer" style="background:#25d366;color:white;padding:12px 22px;border-radius:9px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.88rem;white-space:nowrap;transition:0.2s;" onmouseover="this.style.background='#20bd5a'" onmouseout="this.style.background='#25d366'">💬 Chat on WhatsApp</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div><div class="footer-brand">BIG QUAMS MEDIA®</div><div class="footer-tagline">Simplifying Campus Life for Every Nigerian Student</div></div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="newsroom.html">Newsroom</a><a href="elibrary.html">eLibrary</a>
+      <a href="cbt.html">CBT Practice</a><a href="scholarship.html">Scholarships</a>
+      <a href="results.html">Results</a><a href="gpa-calculator.html">GPA Calculator</a>
+      <a href="student-loan.html">Student Loan</a><a href="postutme-calculator.html">Post UTME Calc</a>
+      <a href="community.html">Community</a><a href="dyk.html">DYK</a><a href="spotlight.html">Spotlight</a>
+    </div>
+    <div class="footer-copy">&copy; 2025 Big Quams Media®. All rights reserved. | Built with ❤️ by <a href="https://wa.me/+2349049871643" style="color:var(--orange);">Big Quams Media</a></div>
+  </div>
+</footer>
+<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float" title="Chat on WhatsApp">💬</a>
+<div id="toast-container"></div>
+
+<script>
+// ── DARK MODE ──
+const darkToggle = document.getElementById('darkToggle');
+if(localStorage.getItem('bqm-theme')==='dark'){document.body.classList.add('dark');darkToggle.textContent='☀️';}
+darkToggle.addEventListener('click',()=>{
+  document.body.classList.toggle('dark');
+  const d=document.body.classList.contains('dark');
+  darkToggle.textContent=d?'☀️':'🌙';
+  localStorage.setItem('bqm-theme',d?'dark':'light');
+});
+document.getElementById('menuToggle').addEventListener('click',()=>document.getElementById('mainNav').classList.toggle('open'));
+document.getElementById('mainNav').querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mainNav').classList.remove('open')));
+
+// ── STATE ──
+let gpaScale=5, cgpaScale=5;
+
+// ── TABS ──
+function switchCalcTab(name){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',['gpa','cgpa','guide'][i]===name));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+}
+
+// ── SCALE ──
+function setScale(type, scale){
+  if(type==='gpa'){
+    gpaScale=scale;
+    document.getElementById('gpa-scale-5').classList.toggle('active',scale===5);
+    document.getElementById('gpa-scale-4').classList.toggle('active',scale===4);
+    document.getElementById('gpa-result').classList.remove('show');
+    rebuildGradeOptions();
+  } else {
+    cgpaScale=scale;
+    document.getElementById('cgpa-scale-5').classList.toggle('active',scale===5);
+    document.getElementById('cgpa-scale-4').classList.toggle('active',scale===4);
+    document.getElementById('cgpa-result').classList.remove('show');
+  }
+}
+
+// ── GRADE OPTIONS ──
+function gradeOptions5(){
+  return `<option value="">Grade</option>
+    <option value="5">A (5.0)</option>
+    <option value="4">B (4.0)</option>
+    <option value="3">C (3.0)</option>
+    <option value="2">D (2.0)</option>
+    <option value="1">E (1.0)</option>
+    <option value="0">F (0.0)</option>`;
+}
+function gradeOptions4(){
+  return `<option value="">Grade</option>
+    <option value="4">A (4.0)</option>
+    <option value="3.5">B+ (3.5)</option>
+    <option value="3">B (3.0)</option>
+    <option value="2.5">C+ (2.5)</option>
+    <option value="2">C (2.0)</option>
+    <option value="1">D (1.0)</option>
+    <option value="0">F (0.0)</option>`;
+}
+function currentGradeOptions(){ return gpaScale===5 ? gradeOptions5() : gradeOptions4(); }
+
+function rebuildGradeOptions(){
+  document.querySelectorAll('#gpa-courses-list .course-row select').forEach(sel=>{
+    const val=sel.value;
+    sel.innerHTML=currentGradeOptions();
+    sel.value=val;
+  });
+}
+
+// ── GPA COURSES ──
+let gpaCount=0;
+function addGPACourse(title='', units='', grade=''){
+  gpaCount++;
+  const id=`course-${gpaCount}`;
+  const row=document.createElement('div');
+  row.className='course-row';
+  row.id=id;
+  row.innerHTML=`
+    <input type="text" placeholder="e.g. Use of English" value="${title}">
+    <input type="number" placeholder="Units" min="1" max="6" value="${units}" oninput="validateUnits(this)">
+    <select>${currentGradeOptions()}</select>
+    <button class="remove-course" onclick="removeRow('${id}')" title="Remove">✕</button>`;
+  if(grade) row.querySelector('select').value=grade;
+  document.getElementById('gpa-courses-list').appendChild(row);
+}
+function validateUnits(el){ if(el.value<1)el.value=1; if(el.value>6)el.value=6; }
+function removeRow(id){
+  const el=document.getElementById(id);
+  if(el && document.querySelectorAll('#gpa-courses-list .course-row').length>1) el.remove();
+  else showToast('You need at least one course.');
+}
+function clearGPA(){
+  document.getElementById('gpa-courses-list').innerHTML='';
+  gpaCount=0;
+  addGPACourse(); addGPACourse(); addGPACourse();
+  document.getElementById('gpa-result').classList.remove('show');
+}
+
+// ── CALCULATE GPA ──
+function calculateGPA(){
+  const rows=document.querySelectorAll('#gpa-courses-list .course-row');
+  let totalQP=0, totalUnits=0, details=[];
+  let hasError=false;
+  rows.forEach(row=>{
+    const units=parseFloat(row.querySelectorAll('input')[1].value);
+    const grade=parseFloat(row.querySelector('select').value);
+    const title=row.querySelector('input').value.trim()||'Course';
+    if(!units||isNaN(units)||isNaN(grade)){hasError=true;return;}
+    const qp=units*grade;
+    totalQP+=qp; totalUnits+=units;
+    details.push(`${title}: ${units} units × ${grade} = ${qp.toFixed(1)}`);
+  });
+  if(hasError||totalUnits===0){showToast('Please fill in units and grade for all courses.');return;}
+  const gpa=(totalQP/totalUnits).toFixed(2);
+  const max=gpaScale;
+  document.getElementById('gpa-value').textContent=gpa;
+  document.getElementById('gpa-scale-label').textContent=`out of ${max}.0`;
+  document.getElementById('gpa-class').textContent=classifyGPA(parseFloat(gpa),max);
+  document.getElementById('gpa-breakdown').innerHTML=
+    `Total Quality Points: ${totalQP.toFixed(1)} ÷ Total Units: ${totalUnits}<br>${details.join('<br>')}`;
+  document.getElementById('gpa-result').classList.add('show');
+  document.getElementById('gpa-result').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function classifyGPA(gpa, scale){
+  if(scale===5){
+    if(gpa>=4.5) return '🥇 First Class';
+    if(gpa>=3.5) return '🥈 Second Class Upper';
+    if(gpa>=2.4) return '🥉 Second Class Lower';
+    if(gpa>=1.5) return 'Third Class';
+    if(gpa>=1.0) return 'Pass';
+    return 'Fail';
+  } else {
+    if(gpa>=3.6) return '🥇 First Class';
+    if(gpa>=3.0) return '🥈 Second Class Upper';
+    if(gpa>=2.0) return '🥉 Second Class Lower';
+    if(gpa>=1.0) return 'Third Class / Pass';
+    return 'Fail';
+  }
+}
+
+// ── CGPA SEMESTERS ──
+let semCount=0;
+function addCGPASem(label='', gpa='', units=''){
+  semCount++;
+  const id=`sem-${semCount}`;
+  const row=document.createElement('div');
+  row.className='cgpa-sem-row';
+  row.id=id;
+  row.innerHTML=`
+    <input type="text" placeholder="e.g. 100L 1st Semester" value="${label}">
+    <input type="number" placeholder="GPA" min="0" max="5" step="0.01" value="${gpa}">
+    <input type="number" placeholder="Units" min="1" max="60" value="${units}">
+    <button class="remove-course" onclick="removeRow('${id}')" title="Remove">✕</button>`;
+  document.getElementById('cgpa-list').appendChild(row);
+}
+function clearCGPA(){
+  document.getElementById('cgpa-list').innerHTML='';
+  semCount=0;
+  addCGPASem('100L 1st Semester'); addCGPASem('100L 2nd Semester');
+  document.getElementById('cgpa-result').classList.remove('show');
+}
+
+// ── CALCULATE CGPA ──
+function calculateCGPA(){
+  const rows=document.querySelectorAll('#cgpa-list .cgpa-sem-row');
+  let totalWQP=0, totalUnits=0, details=[];
+  let hasError=false;
+  rows.forEach(row=>{
+    const inputs=row.querySelectorAll('input');
+    const label=inputs[0].value.trim()||'Semester';
+    const gpa=parseFloat(inputs[1].value);
+    const units=parseFloat(inputs[2].value);
+    if(isNaN(gpa)||isNaN(units)||units<=0){hasError=true;return;}
+    if(gpa<0||gpa>cgpaScale){hasError=true;return;}
+    const wqp=gpa*units;
+    totalWQP+=wqp; totalUnits+=units;
+    details.push(`${label}: GPA ${gpa} × ${units} units = ${wqp.toFixed(2)}`);
+  });
+  if(hasError||totalUnits===0){showToast('Please fill in valid GPA and units for all semesters.');return;}
+  const cgpa=(totalWQP/totalUnits).toFixed(2);
+  document.getElementById('cgpa-value').textContent=cgpa;
+  document.getElementById('cgpa-scale-label').textContent=`Cumulative GPA (out of ${cgpaScale}.0)`;
+  document.getElementById('cgpa-class').textContent=classifyGPA(parseFloat(cgpa),cgpaScale);
+  document.getElementById('cgpa-breakdown').innerHTML=
+    `Total Weighted Points: ${totalWQP.toFixed(2)} ÷ Total Units: ${totalUnits}<br>${details.join('<br>')}`;
+  document.getElementById('cgpa-result').classList.add('show');
+  document.getElementById('cgpa-result').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── TOAST ──
+function showToast(msg){
+  const t=document.createElement('div');
+  t.className='toast';t.textContent=msg;
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(()=>t.classList.add('show'),50);
+  setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),400);},2800);
+}
+
+// ── INIT ──
+addGPACourse(); addGPACourse(); addGPACourse();
+addCGPASem('100L 1st Semester'); addCGPASem('100L 2nd Semester');
+if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
+<script type="module" src="fcm-init.js"></script>
+</body>
+</html>
