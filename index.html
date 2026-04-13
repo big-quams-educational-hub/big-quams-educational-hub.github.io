@@ -76,9 +76,17 @@ body.dark .hqs-divider { background: rgba(255,255,255,0.15); }
 body.dark .hero-tool { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: white; }
 body.dark .hero-tool span { color: #94a3b8; }
 body.dark .hero-tool:hover { background: var(--blue); }
-body.dark .hero-secondary-btn { color: #94a3b8; }
+body.dark .hero-secondary-btn {
+  background: none; border: none;
+  color: rgba(255,255,255,0.65);
+  font-size: 0.82rem; cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  padding: 4px 8px; text-decoration: none;
+  transition: color 0.2s; border-radius: 6px;
+}
+.hero-secondary-btn:hover { color: white; background: rgba(255,255,255,0.1); }
 body.dark .hero-secondary-btn:hover { color: white; }
-body.dark .hero-sep { color: rgba(255,255,255,0.2); }
+body.dark .hero-sep { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
 body.dark .hfb { background: #1e293b; color: #bfdbfe; border-color: #2d3f6b; }
 
 body.dark #about  { background: var(--sec-bg); }
@@ -273,9 +281,9 @@ body.dark .hero-quick-stats { background: rgba(255,255,255,0.06); border-color: 
 }
 .hero-badge {
   display: inline-block;
-  background: rgba(255,255,255,0.12);
-  color: var(--blue);
-  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.15);
+  color: #bfdbfe;
+  border: 1px solid rgba(255,255,255,0.25);
   padding: 4px 14px;
   border-radius: 20px;
   font-size: 0.76rem;
@@ -1389,6 +1397,102 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
 }
 .bqm-promo-banner a:hover { background: #ea6c0a; }
                          
+
+/* SCHOLARSHIP PREVIEW CARDS */
+.sch-preview-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media(min-width:560px){ .sch-preview-grid { grid-template-columns: 1fr 1fr; } }
+@media(min-width:900px){ .sch-preview-grid { grid-template-columns: 1fr 1fr 1fr; } }
+
+.sch-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+}
+.sch-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+
+.sch-card-header {
+  padding: 18px 18px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.sch-card-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.sch-card-meta { flex: 1; min-width: 0; }
+.sch-card-type {
+  font-size: 0.65rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.8px;
+  padding: 2px 8px; border-radius: 20px;
+  display: inline-block; margin-bottom: 5px;
+}
+.sch-card-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.92rem; font-weight: 800;
+  color: var(--blue-dk); line-height: 1.3;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
+body.dark .sch-card-name { color: #bfdbfe; }
+.sch-card-org {
+  font-size: 0.72rem; color: var(--muted);
+  margin-top: 3px; font-weight: 500;
+}
+
+.sch-card-body {
+  padding: 0 18px 14px;
+  flex: 1;
+}
+.sch-card-desc {
+  font-size: 0.8rem; color: #475569;
+  line-height: 1.55;
+  display: -webkit-box; -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; overflow: hidden;
+  margin-bottom: 12px;
+}
+body.dark .sch-card-desc { color: var(--muted); }
+
+.sch-card-footer {
+  padding: 12px 18px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 8px;
+  flex-wrap: wrap;
+}
+.sch-card-deadline {
+  font-size: 0.72rem; font-weight: 600;
+  color: var(--green); display: flex;
+  align-items: center; gap: 4px;
+}
+.sch-card-amount {
+  font-size: 0.72rem; font-weight: 800;
+  color: var(--orange);
+}
+.sch-card-status {
+  font-size: 0.65rem; font-weight: 700;
+  padding: 2px 8px; border-radius: 20px;
+}
+.sch-status-open     { background: #dcfce7; color: #15803d; }
+.sch-status-ongoing  { background: #dbeafe; color: #1d4ed8; }
+.sch-status-soon     { background: #fef9c3; color: #854d0e; }
+.sch-status-closed   { background: #fee2e2; color: #dc2626; }
+
+body.dark .sch-card-footer { border-color: var(--border); }
+
 </style>
 </head>
 <body>
@@ -1426,15 +1530,15 @@ body.dark .bqm-svc-name { color: #bfdbfe; }
       <a href="#home">Home</a>
       <a href="newsroom.html">News</a>
       <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">🎯 CBT Practice</a>
-      <a href="scholarship.html">💰 Scholarships</a>
-      <a href="results.html">📋 Results</a>
-      <a href="postutme-calculator.html">🧮 Post UTME Calc</a>
-      <a href="postutme-prep.html">📖 Prep Guide</a>
-      <a href="subject-combo.html">📚 Subject Combo</a>
-      <a href="community.html">👥 Community</a>
+      <a href="cbt.html">CBT Practice</a>
+      <a href="scholarship.html">Scholarships</a>
+      <a href="results.html">Results</a>
+      <a href="postutme-calculator.html">Post UTME Calc</a>
+      <a href="postutme-prep.html">Prep Guide</a>
+      <a href="subject-combo.html">Subject Combo</a>
+      <a href="community.html">Community</a>
       <a href="#about">About</a>
-      <a href="#notifications-section">🔔 Notifications</a>
+      <a href="#notifications-section">Notifications</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
   </div>
@@ -2327,17 +2431,36 @@ async function loadScholarshipPreview() {
   function renderPreview(items){
     const top3=items.filter(s=>!s.hidden).slice(0,3);
     if(!top3.length){grid.innerHTML='<div class="news-loading">Scholarship alerts coming soon!</div>';return;}
+    const iconBg={federal:'#dbeafe',state:'#dcfce7',international:'#ede9fe',corporate:'#fff7ed'};
+    const typeBg={federal:'#dbeafe',state:'#dcfce7',international:'#ede9fe',corporate:'#fff7ed'};
+    const typeTx={federal:'#1d4ed8',state:'#15803d',international:'#7c3aed',corporate:'#c2410c'};
+    const statusCls={open:'sch-status-open',ongoing:'sch-status-ongoing',soon:'sch-status-soon',closed:'sch-status-closed'};
+    const statusLabel={open:'🟢 Open',ongoing:'🔵 Ongoing',soon:'🟡 Soon',closed:'🔴 Closed'};
     grid.innerHTML=top3.map(s=>{
-      const [bg,tx]=(typeColors[s.type]||'#f0f5ff:#1a3fa8').split(':');
-      return `<div class="sch-preview-card" onclick="window.location='scholarship.html'">
-        <div class="sch-preview-top"><div class="sch-preview-icon">${s.icon||'💰'}</div>
-        <div><span class="sch-preview-badge" style="background:${bg};color:${tx};">${s.type}</span>
-        <div class="sch-preview-name">${s.name}</div></div></div>
-        <div class="sch-preview-desc">${s.desc||''}</div>
-        <div class="sch-preview-footer">
-          <span class="sch-deadline-tag">📅 ${s.deadline||''}</span>
-          <span class="sch-amount-tag">${(s.amount||'').split(' ').slice(0,3).join(' ')}</span>
-        </div></div>`;
+      const type=s.type||'federal';
+      const bg=iconBg[type]||'#f0f5ff';
+      const tbg=typeBg[type]||'#f0f5ff';
+      const ttx=typeTx[type]||'#1a3fa8';
+      const sc=statusCls[s.status]||'sch-status-ongoing';
+      const sl=statusLabel[s.status]||'🔵 Ongoing';
+      return `<div class="sch-card" onclick="window.location='scholarship.html'">
+        <div class="sch-card-header">
+          <div class="sch-card-icon" style="background:${bg};">${s.icon||'💰'}</div>
+          <div class="sch-card-meta">
+            <span class="sch-card-type" style="background:${tbg};color:${ttx};">${type.toUpperCase()}</span>
+            <div class="sch-card-name">${s.name}</div>
+            <div class="sch-card-org">${s.org||''}</div>
+          </div>
+        </div>
+        <div class="sch-card-body">
+          <div class="sch-card-desc">${s.desc||''}</div>
+        </div>
+        <div class="sch-card-footer">
+          <span class="sch-card-deadline">📅 ${s.deadline||'Check portal'}</span>
+          <span class="sch-card-amount">${(s.amount||'').split(' ').slice(0,3).join(' ')}</span>
+          <span class="sch-card-status ${sc}">${sl}</span>
+        </div>
+      </div>`;
     }).join('');
   }
   renderPreview(fallback);
