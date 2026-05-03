@@ -681,27 +681,7 @@ body.dark .modal{background:#161b27;border:1px solid var(--border)}
 .modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.1);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:.2s}
 .modal-close:hover{background:rgba(255,255,255,.22)}
 
-body.dark 
-
-body.dark 
-body.dark 
-
-@media(max-width:480px){}
-
-@media(max-width:420px){}
-@media(max-width:340px){.subj-row select,.subj-row }
-
-body.dark 
-
-body.dark 
-
-
-body.dark 
 .add-subj:hover{background:#dbeafe}
-
-@media(max-width:480px){}
-
-body.dark 
 
 /* ══════════════════════════════
    GENERIC MODAL
@@ -1840,7 +1820,6 @@ function toggleDarkMode() {
     document.body.classList.add('dark');
     if (btn) btn.textContent = '☀️';
   }
-  if (btn) btn.addEventListener('click', toggleDarkMode);
 })();
 
 /* ── NAV TOGGLE ── */
@@ -1960,8 +1939,6 @@ function showToast(msg) {
 }
 
 /* ── OVERLAYS / MODALS ── */
- }
-
 
 function openModal(title, html) {
   document.getElementById('modalTitle').textContent = title;
@@ -1973,7 +1950,7 @@ function closeModal() { document.getElementById('genericModal').classList.remove
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCalc(); closeModal(); } });
 
 /* ── CALCULATOR TABS ── */
-);
+function switchTab(name) {
   document.querySelectorAll('.mpanel').forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
   const panel = document.getElementById('tab-' + name);
   if (panel) { panel.classList.add('active'); panel.style.display = 'block'; }
@@ -2050,7 +2027,7 @@ async function loadScholarships() {
         <div class="sch-foot"><span class="sch-deadline">📅 ${s.deadline||'Check portal'}</span>
         <span class="sch-amount">${(s.amount||'').split(' ').slice(0,3).join(' ')}</span>
         <span class="sch-status ${statusCls[s.status]||'ss-ongoing'}">${statusLabel[s.status]||'🔵 Ongoing'}</span></div>
-        <a href="https://wa.me/2349049871643?text="+encodeURIComponent('Hello BQM, I need help applying for: '+s.name)+"" target="_blank" rel="noopener noreferrer" class="sch-apply-btn">💬 Get Help Applying →</a>
+        <a href="https://wa.me/2349049871643?text=${encodeURIComponent('Hello BQM, I need help applying for: '+s.name)}" target="_blank" rel="noopener noreferrer" class="sch-apply-btn">💬 Get Help Applying →</a>
         </div>`;
     }).join('');
   }
