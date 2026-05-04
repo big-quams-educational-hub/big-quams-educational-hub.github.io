@@ -681,7 +681,27 @@ body.dark .modal{background:#161b27;border:1px solid var(--border)}
 .modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.1);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:.9rem;display:flex;align-items:center;justify-content:center;transition:.2s}
 .modal-close:hover{background:rgba(255,255,255,.22)}
 
+body.dark 
+
+body.dark 
+body.dark 
+
+@media(max-width:480px){}
+
+@media(max-width:420px){}
+@media(max-width:340px){.subj-row select,.subj-row }
+
+body.dark 
+
+body.dark 
+
+
+body.dark 
 .add-subj:hover{background:#dbeafe}
+
+@media(max-width:480px){}
+
+body.dark 
 
 /* ══════════════════════════════
    GENERIC MODAL
@@ -701,37 +721,24 @@ body.dark .gmodal-body ul li{border-color:var(--border)}
 #wa-float:hover{transform:scale(1.1)}
 
 /* WA Channel Popup */
-/* ══════════════════════════════
-   WHATSAPP CHANNEL POPUP MODAL
-══════════════════════════════ */
-.wa-overlay{position:fixed;inset:0;background:rgba(5,10,30,.75);z-index:450;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .3s ease}
-.wa-overlay.show{opacity:1;pointer-events:auto}
+.wa-overlay{position:fixed;inset:0;background:rgba(5,10,30,.6);z-index:450;display:flex;align-items:flex-end;justify-content:flex-end;padding:16px}
 .wa-overlay.hidden{display:none}
-.wa-popup{background:var(--surface);border-radius:var(--radius-lg);width:100%;max-width:360px;overflow:hidden;box-shadow:0 24px 72px rgba(0,0,0,.45);animation:popIn .35s cubic-bezier(.34,1.56,.64,1) both;position:relative}
+.wa-popup{background:var(--surface);border-radius:var(--radius-lg);width:290px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:slideUp .3s ease}
 body.dark .wa-popup{background:#1a2236;border:1px solid var(--border)}
-/* X close button — top right edge */
-.wa-popup-x{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.18);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:.9rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:.18s;line-height:1}
-.wa-popup-x:hover{background:rgba(255,255,255,.32)}
-/* Header */
-.wa-popup-hd{background:linear-gradient(150deg,#064e3b 0%,#047857 60%,#059669 100%);padding:28px 20px 22px;text-align:center;position:relative}
-.wa-popup-logo{width:58px;height:58px;border-radius:50%;border:3px solid rgba(255,255,255,.35);object-fit:cover;margin:0 auto 14px;display:block}
-.wa-popup-hd h3{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:6px;line-height:1.3}
-.wa-popup-hd p{font-size:.75rem;color:rgba(255,255,255,.72);line-height:1.5}
-/* Live badge */
-.wa-live-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(37,211,102,.2);border:1px solid rgba(37,211,102,.4);color:#6ee7b7;padding:3px 10px;border-radius:20px;font-size:.6rem;font-weight:800;margin-bottom:10px;text-transform:uppercase;letter-spacing:.6px}
-.wa-dot{width:5px;height:5px;border-radius:50%;background:#25d366;animation:blink 1.2s infinite;flex-shrink:0}
-/* Body */
-.wa-popup-bd{padding:18px 20px 20px}
-.wa-perks{display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
-.wa-perk{font-size:.8rem;color:var(--text-muted);display:flex;align-items:flex-start;gap:10px;line-height:1.45}
-.wa-perk-check{width:18px;height:18px;border-radius:50%;background:#dcfce7;color:#16a34a;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;flex-shrink:0;margin-top:1px}
-/* Join button with inline SVG WhatsApp icon */
-.wa-join-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#25d366;color:#fff;padding:14px;border-radius:12px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;border:none;cursor:pointer;transition:all .2s;margin-bottom:10px;box-shadow:0 4px 16px rgba(37,211,102,.35);text-decoration:none}
-.wa-join-btn:hover{background:#1db954;transform:translateY(-1px);box-shadow:0 6px 22px rgba(37,211,102,.45)}
-.wa-join-btn svg{flex-shrink:0}
-/* Dismiss link */
-.wa-skip{display:block;width:100%;text-align:center;font-size:.73rem;color:var(--text-faint);background:none;border:none;cursor:pointer;padding:4px;transition:color .18s}
-.wa-skip:hover{color:var(--text-muted)}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.wa-popup-hd{background:linear-gradient(135deg,#064e3b,#047857);padding:22px 16px;text-align:center;position:relative}
+.wa-popup-x{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.15);border:none;color:#fff;width:26px;height:26px;border-radius:50%;font-size:.82rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.wa-live-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(37,211,102,.2);border:1px solid rgba(37,211,102,.35);color:#6ee7b7;padding:3px 10px;border-radius:20px;font-size:.62rem;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.wa-dot{width:5px;height:5px;border-radius:50%;background:#25d366;animation:blink 1.2s infinite}
+.wa-popup-hd h3{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:#fff;margin-bottom:3px}
+.wa-popup-hd p{font-size:.7rem;color:#a7f3d0}
+.wa-popup-bd{padding:14px 16px 16px}
+.wa-perks{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.wa-perk{font-size:.76rem;color:var(--text-muted);display:flex;align-items:center;gap:8px}
+.wa-perk::before{content:'✓';width:15px;height:15px;border-radius:50%;background:#dcfce7;color:#16a34a;display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:800;flex-shrink:0}
+.wa-join-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#25d366;color:#fff;padding:11px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;border:none;cursor:pointer;transition:.2s;margin-bottom:7px}
+.wa-join-btn:hover{background:#1db954}
+.wa-skip{display:block;width:100%;text-align:center;font-size:.7rem;color:#94a3b8;background:none;border:none;cursor:pointer;padding:3px}
 
 /* ══════════════════════════════
    TOAST
@@ -811,7 +818,7 @@ body.dark .view-all:hover{background:#1a2236}
 
     <div class="hdr-right">
       <button class="hdr-btn" id="darkToggle" onclick="toggleDarkMode()" aria-label="Toggle dark/light mode" title="Toggle dark mode">🌙</button>
-      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+      <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open navigation menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -1725,32 +1732,6 @@ body.dark .view-all:hover{background:#1a2236}
   </div>
 </section>
 
-<!-- ══════════ WHATSAPP CHANNEL POPUP ══════════ -->
-<div class="wa-overlay hidden" id="waOverlay" role="dialog" aria-modal="true" aria-labelledby="waPopupTitle">
-  <div class="wa-popup">
-    <button class="wa-popup-x" onclick="closeWaPopup()" aria-label="Close popup">✕</button>
-    <div class="wa-popup-hd">
-      <img class="wa-popup-logo" src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="Big Quams Media">
-      <div class="wa-live-badge"><span class="wa-dot"></span> 10K+ Students</div>
-      <h3 id="waPopupTitle">Never Miss a Single Update Again</h3>
-      <p>Join Nigeria's most trusted free student channel — JAMB, admission & scholarship alerts delivered instantly.</p>
-    </div>
-    <div class="wa-popup-bd">
-      <div class="wa-perks">
-        <div class="wa-perk"><div class="wa-perk-check">✓</div>Breaking JAMB & UTME news as it happens</div>
-        <div class="wa-perk"><div class="wa-perk-check">✓</div>Post-UTME dates & cut-off mark updates</div>
-        <div class="wa-perk"><div class="wa-perk-check">✓</div>Scholarship deadlines before they close</div>
-        <div class="wa-perk"><div class="wa-perk-check">✓</div>100% free — no spam, unsubscribe anytime</div>
-      </div>
-      <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="wa-join-btn" onclick="onWaJoin()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Join Free on WhatsApp
-      </a>
-      <button class="wa-skip" onclick="closeWaPopup()">Maybe later — I'll miss out</button>
-    </div>
-  </div>
-</div>
-
 <!-- ══════════ FOOTER ══════════ -->
 </main>
 <footer>
@@ -1820,6 +1801,7 @@ function toggleDarkMode() {
     document.body.classList.add('dark');
     if (btn) btn.textContent = '☀️';
   }
+  if (btn) btn.addEventListener('click', toggleDarkMode);
 })();
 
 /* ── NAV TOGGLE ── */
@@ -1869,22 +1851,24 @@ document.addEventListener('keydown', e => {
 });
 
 /* ── TOOLS DROPDOWN ── */
-document.querySelectorAll('.nav-drop-btn').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.stopPropagation();
-    const menu = btn.nextElementSibling;
-    const isOpen = menu.classList.contains('open');
-    // Close all other dropdowns
-    document.querySelectorAll('.nav-drop-menu.open').forEach(m => {
-      m.classList.remove('open');
-      m.previousElementSibling?.classList.remove('active');
-      m.previousElementSibling?.setAttribute('aria-expanded','false');
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.nav-drop-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const menu = btn.nextElementSibling;
+      const isOpen = menu.classList.contains('open');
+      // Close all other dropdowns first
+      document.querySelectorAll('.nav-drop-menu.open').forEach(m => {
+        m.classList.remove('open');
+        m.previousElementSibling?.classList.remove('active');
+        m.previousElementSibling?.setAttribute('aria-expanded','false');
+      });
+      if (!isOpen) {
+        menu.classList.add('open');
+        btn.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+      }
     });
-    if (!isOpen) {
-      menu.classList.add('open');
-      btn.classList.add('active');
-      btn.setAttribute('aria-expanded','true');
-    }
   });
 });
 // Close dropdown on outside click
@@ -1911,9 +1895,6 @@ function enableNotifications() {
       document.getElementById('notifEnableBtn').style.display = 'none';
       document.getElementById('notifEnabledMsg').classList.add('show');
       document.getElementById('topBar').classList.remove('show');
-      // Also permanently dismiss the WA popup since they're now subscribed
-      markPopupSeen();
-      closeWaPopup();
       showToast('✅ Notifications enabled!');
     } else { showToast('⚠️ Please allow notifications in your browser settings'); }
   });
@@ -1923,8 +1904,9 @@ function enableNotifications() {
   if (enabled) {
     document.getElementById('notifEnableBtn').style.display = 'none';
     document.getElementById('notifEnabledMsg').classList.add('show');
+  } else if (!sessionStorage.getItem('bqm_topbar_dismissed')) {
+    setTimeout(() => document.getElementById('topBar').classList.add('show'), 6000);
   }
-  // Top bar timing is now handled by initTopBar() below
 })();
 
 /* ── PWA ── */
@@ -1939,6 +1921,8 @@ function showToast(msg) {
 }
 
 /* ── OVERLAYS / MODALS ── */
+ }
+
 
 function openModal(title, html) {
   document.getElementById('modalTitle').textContent = title;
@@ -1950,7 +1934,7 @@ function closeModal() { document.getElementById('genericModal').classList.remove
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCalc(); closeModal(); } });
 
 /* ── CALCULATOR TABS ── */
-function switchTab(name) {
+);
   document.querySelectorAll('.mpanel').forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
   const panel = document.getElementById('tab-' + name);
   if (panel) { panel.classList.add('active'); panel.style.display = 'block'; }
@@ -2027,7 +2011,7 @@ async function loadScholarships() {
         <div class="sch-foot"><span class="sch-deadline">📅 ${s.deadline||'Check portal'}</span>
         <span class="sch-amount">${(s.amount||'').split(' ').slice(0,3).join(' ')}</span>
         <span class="sch-status ${statusCls[s.status]||'ss-ongoing'}">${statusLabel[s.status]||'🔵 Ongoing'}</span></div>
-        <a href="https://wa.me/2349049871643?text=${encodeURIComponent('Hello BQM, I need help applying for: '+s.name)}" target="_blank" rel="noopener noreferrer" class="sch-apply-btn">💬 Get Help Applying →</a>
+        <a href="https://wa.me/2349049871643?text="+encodeURIComponent('Hello BQM, I need help applying for: '+s.name)+"" target="_blank" rel="noopener noreferrer" class="sch-apply-btn">💬 Get Help Applying →</a>
         </div>`;
     }).join('');
   }
@@ -2294,95 +2278,8 @@ function openSvcModal(key) {
 }
 
 
-/* ══════════════════════════════
-   WHATSAPP CHANNEL POPUP — Firebase-backed
-   Shows on first visit only.
-   Permanently dismissed once notifications are enabled (same Firebase flag).
-   Falls back to localStorage if Firebase is unavailable.
-══════════════════════════════ */
-const BQM_POPUP_KEY = 'bqm_wa_popup_seen'; // Firestore field name + localStorage key
-
-function showWaPopup() {
-  const overlay = document.getElementById('waOverlay');
-  if (!overlay) return;
-  overlay.classList.remove('hidden');
-  requestAnimationFrame(() => overlay.classList.add('show'));
-  // Close on backdrop click
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeWaPopup(); }, { once: true });
-}
-
-function closeWaPopup() {
-  const overlay = document.getElementById('waOverlay');
-  if (!overlay) return;
-  overlay.classList.remove('show');
-  setTimeout(() => overlay.classList.add('hidden'), 300);
-  // Persist dismiss to Firebase if available, else localStorage
-  markPopupSeen();
-}
-
-function onWaJoin() {
-  // User tapped Join — mark as seen and close after brief delay
-  markPopupSeen();
-  setTimeout(closeWaPopup, 400);
-}
-
-function markPopupSeen() {
-  localStorage.setItem(BQM_POPUP_KEY, '1');
-  // Write to Firestore if Firebase is loaded
-  try {
-    if (window.firebase && firebase.firestore) {
-      const uid = getOrCreateAnonId();
-      firebase.firestore().collection('popup_seen').doc(uid).set({ seen: true, ts: Date.now() });
-    }
-  } catch(e) {}
-}
-
-function getOrCreateAnonId() {
-  let id = localStorage.getItem('bqm_anon_id');
-  if (!id) { id = 'u_' + Math.random().toString(36).slice(2) + Date.now(); localStorage.setItem('bqm_anon_id', id); }
-  return id;
-}
-
-async function initWaPopup() {
-  // If notifications already enabled — never show popup
-  const notifEnabled = localStorage.getItem('bqm_notif_enabled') === '1'
-    || (typeof Notification !== 'undefined' && Notification.permission === 'granted');
-  if (notifEnabled) return;
-
-  // Check localStorage first (fast, no network)
-  if (localStorage.getItem(BQM_POPUP_KEY)) return;
-
-  // Check Firestore if Firebase available
-  try {
-    if (window.firebase && firebase.firestore) {
-      const uid = getOrCreateAnonId();
-      const doc = await firebase.firestore().collection('popup_seen').doc(uid).get();
-      if (doc.exists && doc.data().seen) {
-        localStorage.setItem(BQM_POPUP_KEY, '1'); // cache locally
-        return;
-      }
-    }
-  } catch(e) {}
-
-  // First visit confirmed — show after 3.5s
-  setTimeout(showWaPopup, 3500);
-}
-
-// Top notification bar: show after 6s (only if popup not already open)
-function initTopBar() {
-  const notifEnabled = localStorage.getItem('bqm_notif_enabled') === '1'
-    || (typeof Notification !== 'undefined' && Notification.permission === 'granted');
-  if (notifEnabled) return;
-  if (sessionStorage.getItem('bqm_topbar_dismissed')) return;
-  setTimeout(() => {
-    // Don't stack on top of popup
-    const popupOpen = document.getElementById('waOverlay')?.classList.contains('show');
-    if (!popupOpen) document.getElementById('topBar')?.classList.add('show');
-  }, 6000);
-}
-
-initWaPopup();
-initTopBar();
+function closeWaPopup() { document.getElementById('waOverlay').classList.add('hidden'); sessionStorage.setItem('wa_closed','1'); }
+if (!sessionStorage.getItem('wa_closed')) setTimeout(() => document.getElementById('waOverlay')?.classList.remove('hidden'), 4000);
 
 /* ── INIT ── */
 /* ── STAT COUNTERS ── */
