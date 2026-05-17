@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1779059048999,
+    "icon": "🟨",
+    "name": "MTN Foundation Scholarship 2026",
+    "org": "MTN Foundation",
+    "type": "corporate",
+    "level": "undergraduate",
+    "desc": "Annual scholarship for undergraduates in Nigerian public tertiary institutions to cover academic and living costs through graduation.\n\n\nCovers tuition, books, and living expenses. Renewable annually until graduation provided academic requirements are met.",
+    "amount": "₦300,000 per year",
+    "deadline": "28th May 2026",
+    "status": "open",
+    "eligibility": [
+      "- Must be a student in a Nigerian public university, polytechnic, or college of education",
+      "- Must be in 200L, 300L, or 400L depending on the scholarship category"
+    ],
+    "howToApply": [
+      "1. Visit the official MTN Foundation scholarship portal",
+      "2. Complete the online application form with required academic details",
+      "3. Upload necessary documents as specified on the portal",
+      "4. Submit before the deadline and await shortlisting"
+    ],
+    "applyUrl": "https://www.mtn.ng/scholarships/",
+    "tags": [
+      "MTN Foundation",
+      "undergraduate scholarship",
+      "Nigeria",
+      "STEM scholarship",
+      "financial aid",
+      "2026 scholarship"
+    ],
+    "featured": true
+  }
+]
