@@ -33,5 +33,12 @@
     "date": "2026-05-25",
     "color": "#dc2626",
     "description": "Last day for schools to complete candidate entries, make payments, and upload data from the offline app to the NECO online portal without penalty."
+  },
+  {
+    "title": "Commencement of 2026 NECO SSCE Internal Examination",
+    "category": "exam",
+    "date": "2026-06-23",
+    "color": "#7c3aed",
+    "description": "Start of the paper-and-pen National Examination Council (NECO) Senior School Certificate Examination for school candidates nationwide."
   }
 ]
