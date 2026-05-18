@@ -1841,7 +1841,6 @@ body.dark .view-all:hover{background:#1a2236}
 <button id="backToTop" aria-label="Back to top" style="position:fixed;bottom:88px;right:18px;width:42px;height:42px;border-radius:50%;background:var(--blue-main);color:#fff;border:none;font-size:1.1rem;cursor:pointer;z-index:350;opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s;pointer-events:none;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(26,63,168,.4)">↑</button>
 <style>#backToTop.show{opacity:1;transform:translateY(0);pointer-events:auto}#backToTop:hover{background:var(--orange)}</style>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 'use strict';
 
@@ -2028,8 +2027,29 @@ function lazyLoad(id, fn) {
 }
 
 /* ── NEWS DATA ── */
+function renderNewsFallback(grid) {
+  const fallbackNews = [
+    {tag:'JAMB',emoji:'📰',title:'JAMB Releases 2026 UTME Results — Check Yours Now',excerpt:'JAMB has officially released the 2026 UTME results. Candidates can check their scores on the JAMB portal or use our Results Checker on this page.',date:'Apr 2026'},
+    {tag:'Admission',emoji:'🎓',title:'Post-UTME Screening: 15 Universities Confirm Dates',excerpt:'Universities including UNILAG, UI, OAU and ABU have announced their 2026/2027 Post-UTME screening schedules. Check your school\'s date now.',date:'Apr 2026'},
+    {tag:'Student Loan',emoji:'💳',title:'NELFUND Loan Portal Open — Apply Before Deadline',excerpt:'The NELFUND student loan portal is currently open for applications. All enrolled students in federal and state institutions are eligible to apply.',date:'Apr 2026'},
+    {tag:'Scholarship',emoji:'💰',title:'MTN Foundation Scholarship 2026 — Applications Open',excerpt:'MTN Nigeria Foundation has opened applications for its annual scholarship for outstanding STEM undergraduates. Apply before the June deadline.',date:'May 2026'},
+    {tag:'WAEC',emoji:'📋',title:'WAEC 2026 Results Expected in August — Prepare Now',excerpt:'The West African Examinations Council has confirmed that 2026 WASSCE results will be released in August. Use our Results Checker to stay updated.',date:'May 2026'},
+    {tag:'Campus',emoji:'🏫',title:'New Academic Session 2026/2027 Begins September',excerpt:'Most federal and state universities have confirmed the new academic session will commence in September 2026 following JAMB admission procedures.',date:'May 2026'},
+  ];
+  grid.innerHTML = fallbackNews.map(n => `
+    <a class="news-card" href="newsroom.html">
+      <div class="news-img-ph">${n.emoji}</div>
+      <div class="news-body">
+        <span class="news-tag">${n.tag}</span>
+        <div class="news-title">${n.title}</div>
+        <div class="news-excerpt">${n.excerpt}</div>
+        <div class="news-foot"><span class="news-date">${n.date}</span><span class="news-more">Read →</span></div>
+      </div>
+    </a>`).join('');
+}
 async function loadNews() {
   const grid = document.getElementById('newsGrid'); if (!grid) return;
+  renderNewsFallback(grid); // show content immediately
   try {
     const r = await fetch('news.json?v=' + Date.now()); if (!r.ok) throw 0;
     const data = await r.json();
@@ -2044,23 +2064,7 @@ async function loadNews() {
           <div class="news-foot"><span class="news-date">${n.date||''}</span><span class="news-more">Read →</span></div>
         </div>
       </div>`).join('');
-  } catch {
-    const fallbackNews = [
-      {tag:'JAMB',emoji:'📰',title:'JAMB Releases 2026 UTME Results — Check Yours Now',excerpt:'JAMB has officially released the 2026 UTME results. Candidates can check their scores on the JAMB portal or use our Results Checker on this page.',date:'Apr 2026'},
-      {tag:'Admission',emoji:'🎓',title:'Post-UTME Screening: 15 Universities Confirm Dates',excerpt:'Universities including UNILAG, UI, OAU and ABU have announced their 2026/2027 Post-UTME screening schedules. Check your school's date now.',date:'Apr 2026'},
-      {tag:'Student Loan',emoji:'💳',title:'NELFUND Loan Portal Open — Apply Before Deadline',excerpt:'The NELFUND student loan portal is currently open for applications. All enrolled students in federal and state institutions are eligible to apply.',date:'Apr 2026'},
-    ];
-    grid.innerHTML = fallbackNews.map(n => `
-      <a class="news-card" href="newsroom.html">
-        <div class="news-img-ph">${n.emoji}</div>
-        <div class="news-body">
-          <span class="news-tag">${n.tag}</span>
-          <div class="news-title">${n.title}</div>
-          <div class="news-excerpt">${n.excerpt}</div>
-          <div class="news-foot"><span class="news-date">${n.date}</span><span class="news-more">Read →</span></div>
-        </div>
-      </a>`).join('');
-  }
+  } catch { /* fallback already rendered */ }
 }
 
 /* ── SCHOLARSHIP PREVIEW ── */
@@ -2094,13 +2098,23 @@ async function loadScholarships() {
         </div>`;
     }).join('');
   }
-  render(fallback);
+  render(fallback); // show content immediately
   try { const r = await fetch('scholarships.json?v='+Date.now()); if(r.ok){const d=await r.json();if(d.length) render([...d].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)));} } catch {}
 }
 
 /* ── SPOTLIGHT PREVIEW ── */
 async function loadSpotlight() {
   const c = document.getElementById('spotlight-preview-container'); if (!c) return;
+  const spotlightFallback = [
+    {e:'🌟',name:'Chidera Okafor',sch:'University of Lagos',achievement:'Graduated top of class in Computer Science with a 4.9 CGPA — now at Google Nigeria.',date:'2026'},
+    {e:'🎓',name:'Fatima Al-Rasheed',sch:'ABU Zaria',achievement:'Won the Commonwealth Scholarship and is studying Medicine at UCL, London.',date:'2026'},
+    {e:'📚',name:'Emeka Nwachukwu',sch:'OAU Ile-Ife',achievement:'Authored 3 research papers as an undergraduate and bagged a full PhD scholarship.',date:'2025'},
+  ];
+  c.innerHTML = spotlightFallback.map(s => `<div class="content-card"><div class="cc-img-ph">${s.e}</div>
+    <div class="cc-body"><span class="cc-badge cc-badge-orange">${s.sch}</span>
+    <div class="cc-title">${s.name}</div>
+    <div class="cc-summary">${s.achievement}</div>
+    <div class="cc-date">${s.date}</div></div></div>`).join('');
   try {
     const r = await fetch('spotlight.json?v='+Date.now()); if (!r.ok) throw 0;
     const data = await r.json(); if (!data.length) { c.innerHTML='<div class="loading-state">Spotlights coming soon!</div>'; return; }
@@ -2115,22 +2129,27 @@ async function loadSpotlight() {
           <div class="cc-date">${item.date||''}</div>
         </div>
       </div>`).join('');
-  } catch {
-    c.innerHTML = [
-      {e:'🌟',name:'Chidera Okafor',sch:'University of Lagos',achievement:'Graduated top of class in Computer Science with a 4.9 CGPA — now at Google Nigeria.',date:'2026'},
-      {e:'🎓',name:'Fatima Al-Rasheed',sch:'ABU Zaria',achievement:'Won the Commonwealth Scholarship and is studying Medicine at UCL, London.',date:'2026'},
-      {e:'📚',name:'Emeka Nwachukwu',sch:'OAU Ile-Ife',achievement:'Authored 3 research papers as an undergraduate and bagged a full PhD scholarship.',date:'2025'},
-    ].map(s => `<div class="content-card"><div class="cc-img-ph">${s.e}</div>
-      <div class="cc-body"><span class="cc-badge cc-badge-orange">${s.sch}</span>
-      <div class="cc-title">${s.name}</div>
-      <div class="cc-summary">${s.achievement}</div>
-      <div class="cc-date">${s.date}</div></div></div>`).join('');
-  }
+  } catch { /* fallback already rendered */ }
 }
 
 /* ── DYK PREVIEW ── */
 async function loadDyk() {
   const c = document.getElementById('dyk-preview-container'); if (!c) return;
+  const dykFallback = [
+    {emoji:'🤔',category:'DYK',title:'JAMB Was Established in 1978',summary:'The Joint Admissions and Matriculation Board was established by Decree No. 2 of 1978 to conduct the University Matriculation Examination for entry into Nigerian universities.'},
+    {emoji:'🏛',category:'History',title:'Nigeria Has Over 170 Accredited Universities',summary:'As of 2025, Nigeria has over 170 accredited universities — federal, state and private — making it one of Africa\'s largest higher education systems.'},
+    {emoji:'📊',category:'Current Affairs',title:'NELFUND Has Disbursed Over ₦50 Billion in Student Loans',summary:'The Nigerian Education Loan Fund has disbursed billions of naira to students across federal and state institutions since the scheme launched in 2024.'},
+  ];
+  c.innerHTML = dykFallback.map(item => `
+    <div class="content-card">
+      <div class="cc-img-ph">${item.emoji}</div>
+      <div class="cc-body">
+        <span class="cc-badge cc-badge-orange">${item.category}</span>
+        <div class="cc-title">${item.title}</div>
+        <div class="cc-summary">${item.summary}</div>
+        <div class="cc-date" style="margin-top:8px"><a href="dyk.html" class="cc-link">Read More →</a></div>
+      </div>
+    </div>`).join('');
   try {
     const r = await fetch('dyk.json?v='+Date.now()); if (!r.ok) throw 0;
     const data = await r.json(); if (!data.length) { c.innerHTML='<div class="loading-state">Facts coming soon!</div>'; return; }
@@ -2148,23 +2167,7 @@ async function loadDyk() {
           <div class="cc-date" style="margin-top:8px;"><a href="dyk.html" class="cc-link">Read More →</a></div>
         </div>
       </div>`).join('');
-  } catch {
-    const dykFallback = [
-      {emoji:'🤔',category:'DYK',title:'JAMB Was Established in 1978',summary:'The Joint Admissions and Matriculation Board was established by Decree No. 2 of 1978 to conduct the University Matriculation Examination for entry into Nigerian universities.'},
-      {emoji:'🏛',category:'History',title:'Nigeria Has Over 170 Accredited Universities',summary:'As of 2025, Nigeria has over 170 accredited universities — federal, state and private — making it one of Africa's largest higher education systems.'},
-      {emoji:'📊',category:'Current Affairs',title:'NELFUND Has Disbursed Over ₦50 Billion in Student Loans',summary:'The Nigerian Education Loan Fund has disbursed billions of naira to students across federal and state institutions since the scheme launched in 2024.'},
-    ];
-    c.innerHTML = dykFallback.map(item => `
-      <div class="content-card">
-        <div class="cc-img-ph">${item.emoji}</div>
-        <div class="cc-body">
-          <span class="cc-badge cc-badge-orange">${item.category}</span>
-          <div class="cc-title">${item.title}</div>
-          <div class="cc-summary">${item.summary}</div>
-          <div class="cc-date" style="margin-top:8px"><a href="dyk.html" class="cc-link">Read More →</a></div>
-        </div>
-      </div>`).join('');
-  }
+  } catch { /* fallback already rendered */ }
 }
 
 /* ── CALENDAR ── */
@@ -2172,6 +2175,25 @@ async function loadCalendar() {
   const grid = document.getElementById('calendarGrid'); if (!grid) return;
   const catCls = {jamb:'ct-jamb',exam:'ct-exam',admission:'ct-admission',school:'ct-school',scholarship:'ct-scholarship'};
   const catLabel = {jamb:'JAMB',exam:'Exam',admission:'Admission',school:'School',scholarship:'Scholarship'};
+  function renderCalFallback() {
+    grid.innerHTML = [
+      {bg:'#16a34a',iso:'2026-06-15',mo:'Jun',day:'15',title:'Post-UTME Screening Begins',desc:'Universities begin Post-UTME exercises nationwide',cls:'ct-admission',lbl:'Admission'},
+      {bg:'#f97316',iso:'2026-07-01',mo:'Jul',day:'01',title:'CAPS Admission Portal Opens',desc:'JAMB CAPS portal opens for admission offers',cls:'ct-admission',lbl:'Admission'},
+      {bg:'#1a3fa8',iso:'2026-08-20',mo:'Aug',day:'20',title:'WAEC 2026 Results Release',desc:'West African Examinations Council releases 2026 WASSCE results',cls:'ct-exam',lbl:'Exam'},
+      {bg:'#0284c7',iso:'2026-09-01',mo:'Sep',day:'01',title:'New Academic Session 2026/2027',desc:'New academic session begins across Nigerian institutions',cls:'ct-school',lbl:'School'},
+      {bg:'#7c3aed',iso:'2026-11-01',mo:'Nov',day:'01',title:'JAMB 2027 Registration Opens',desc:'JAMB opens registration for 2027 UTME candidates',cls:'ct-jamb',lbl:'JAMB'},
+    ].map(e => {
+      const gcDate = e.iso.replace(/-/g,'');
+      const gcUrl  = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(e.title)+'&dates='+gcDate+'/'+gcDate+'&details='+encodeURIComponent('BQM — '+e.desc)+'&sf=true&output=xml';
+      return '<div class="cal-card"><div class="cal-date" style="background:'+e.bg+'"><div class="cal-mo">'+e.mo+'</div><div class="cal-day">'+e.day+'</div></div>'
+        +'<div class="cal-info"><div class="cal-ev-title">'+e.title+'</div><div class="cal-desc">'+e.desc+'</div>'
+        +'<div style="display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap">'
+        +'<span class="cal-tag '+e.cls+'">'+e.lbl+'</span>'
+        +'<a href="'+gcUrl+'" target="_blank" rel="noopener noreferrer" style="font-size:.6rem;font-weight:700;color:#1a3fa8;background:#dbeafe;padding:3px 8px;border-radius:10px;text-decoration:none;white-space:nowrap" aria-label="Add to Google Calendar">📅 Add to Calendar</a>'
+        +'</div></div></div>';
+    }).join('');
+  }
+  renderCalFallback(); // show content immediately
   try {
     const r = await fetch('calendar.json?v='+Date.now()); if (!r.ok) throw 0;
     const data = await r.json();
@@ -2186,27 +2208,26 @@ async function loadCalendar() {
           <a href="${gcUrl}" target="_blank" rel="noopener noreferrer" style="font-size:.6rem;font-weight:700;color:#1a3fa8;background:#dbeafe;padding:3px 8px;border-radius:10px;text-decoration:none;white-space:nowrap" aria-label="Add to Google Calendar">📅 Add to Calendar</a>
         </div></div></div>`;
     }).join('');
-  } catch {
-    grid.innerHTML = [
-      {bg:'#16a34a',iso:'2026-06-15',mo:'Jun',day:'15',title:'Post-UTME Screening Begins',desc:'Universities begin Post-UTME exercises nationwide',cls:'ct-admission',lbl:'Admission'},
-      {bg:'#f97316',iso:'2026-07-01',mo:'Jul',day:'01',title:'CAPS Admission Portal Opens',desc:'JAMB CAPS portal opens for admission offers',cls:'ct-admission',lbl:'Admission'},
-      {bg:'#1a3fa8',iso:'2026-09-01',mo:'Sep',day:'01',title:'New Academic Session 2026/2027',desc:'New academic session begins across Nigerian institutions',cls:'ct-school',lbl:'School'},
-    ].map(e => {
-      const gcDate = e.iso.replace(/-/g,'');
-      const gcUrl  = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(e.title)+'&dates='+gcDate+'/'+gcDate+'&details='+encodeURIComponent('BQM — '+e.desc)+'&sf=true&output=xml';
-      return '<div class="cal-card"><div class="cal-date" style="background:'+e.bg+'"><div class="cal-mo">'+e.mo+'</div><div class="cal-day">'+e.day+'</div></div>'
-        +'<div class="cal-info"><div class="cal-ev-title">'+e.title+'</div><div class="cal-desc">'+e.desc+'</div>'
-        +'<div style="display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap">'
-        +'<span class="cal-tag '+e.cls+'">'+e.lbl+'</span>'
-        +'<a href="'+gcUrl+'" target="_blank" rel="noopener noreferrer" style="font-size:.6rem;font-weight:700;color:#1a3fa8;background:#dbeafe;padding:3px 8px;border-radius:10px;text-decoration:none;white-space:nowrap" aria-label="Add to Google Calendar">📅 Add to Calendar</a>'
-        +'</div></div></div>';
-    }).join('');
-  }
+  } catch { /* fallback already rendered */ }
 }
 
 /* ── REVIEWS ── */
 async function loadReviews() {
   const grid = document.getElementById('reviews-dynamic-grid'); if (!grid) return;
+  const realReviews = [
+    {stars:5, msg:'I was confused about my Post-UTME aggregate until I found this calculator. Calculated everything in seconds and got admitted into Unilorin! Thank you BQM.', name:'Abdulrahmon Aisha', loc:'Lagos State', course:'Nursing Science'},
+    {stars:5, msg:'Big Quams Media helped me understand JAMB subject combinations for Engineering. Their CBT practice tool is the best I have used — completely free!', name:'Chukwuemeka Festus', loc:'Anambra State', course:'Civil Engineering'},
+    {stars:5, msg:'I found my scholarship through BQM. The scholarship finder is updated regularly and the WhatsApp support team replied me within minutes.', name:'Aderemi Rasheedah', loc:'Osun State', course:'Economics'},
+    {stars:4, msg:'The NELFUND student loan guide on this site is the clearest I have read. Step by step, no confusion. I applied successfully!', name:'Hadiza Musa Usman', loc:'Kano State', course:'Mass Communication'},
+    {stars:5, msg:'From checking my WAEC result to calculating my Post-UTME score — I did everything here for free. This platform is a lifesaver for Nigerian students.', name:'Olawale Babatunde', loc:'Ogun State', course:'Computer Science'},
+    {stars:4, msg:'The Did You Know section keeps me learning something new every day. The countdown timer kept me on track for my JAMB date. Amazing work!', name:'Ngozi Chidinma', loc:'Imo State', course:'Biochemistry'},
+  ];
+  grid.innerHTML = realReviews.map(rv => {
+    const stars = '★'.repeat(rv.stars) + '☆'.repeat(5-rv.stars);
+    const initials = rv.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    return `<div class="rev-card"><div class="rev-stars">${stars}</div><div class="rev-msg">"${rv.msg}"</div>
+      <div class="rev-foot"><div class="rev-av">${initials}</div><div><div class="rev-name">${rv.name}</div><div class="rev-loc">${rv.loc} · ${rv.course}</div></div></div></div>`;
+  }).join('');
   try {
     const r = await fetch('reviews.json?v='+Date.now()); if (!r.ok) throw 0;
     const reviews = await r.json();
@@ -2216,48 +2237,30 @@ async function loadReviews() {
       return `<div class="rev-card"><div class="rev-stars">${stars}</div><div class="rev-msg">"${rv.message}"</div>
         <div class="rev-foot"><div class="rev-av">${initials}</div><div><div class="rev-name">${rv.name}</div><div class="rev-loc">${rv.location||''}</div></div></div></div>`;
     }).join('');
-  } catch {
-    const realReviews = [
-      {stars:5, msg:'I was confused about my Post-UTME aggregate until I found this calculator. Calculated everything in seconds and got admitted into Unilorin! Thank you BQM.', name:'Abdulrahmon Aisha', loc:'Lagos State', course:'Nursing Science'},
-      {stars:5, msg:'Big Quams Media helped me understand JAMB subject combinations for Engineering. Their CBT practice tool is the best I have used — completely free!', name:'Chukwuemeka Festus', loc:'Anambra State', course:'Civil Engineering'},
-      {stars:5, msg:'I found my scholarship through BQM. The scholarship finder is updated regularly and the WhatsApp support team replied me within minutes.', name:'Aderemi Rasheedah', loc:'Osun State', course:'Economics'},
-      {stars:4, msg:'The NELFUND student loan guide on this site is the clearest I have read. Step by step, no confusion. I applied successfully!', name:'Hadiza Musa Usman', loc:'Kano State', course:'Mass Communication'},
-      {stars:5, msg:'From checking my WAEC result to calculating my Post-UTME score — I did everything here for free. This platform is a lifesaver for Nigerian students.', name:'Olawale Babatunde', loc:'Ogun State', course:'Computer Science'},
-      {stars:4, msg:'The Did You Know section keeps me learning something new every day. The countdown timer kept me on track for my JAMB date. Amazing work!', name:'Ngozi Chidinma', loc:'Imo State', course:'Biochemistry'},
-    ];
-    grid.innerHTML = realReviews.map(rv => {
-      const stars = '★'.repeat(rv.stars) + '☆'.repeat(5-rv.stars);
-      const initials = rv.name.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
-      return `<div class="rev-card"><div class="rev-stars">${stars}</div><div class="rev-msg">"${rv.msg}"</div>
-        <div class="rev-foot"><div class="rev-av">${initials}</div><div><div class="rev-name">${rv.name}</div><div class="rev-loc">${rv.loc} · ${rv.course}</div></div></div></div>`;
-    }).join('');
-  }
+  } catch { /* fallback already rendered */ }
 }
 
 /* ── Q&A ── */
 async function loadQA() {
   const list = document.getElementById('qaList'); if (!list) return;
+  const seed = [
+    { question: "What is the cut-off mark for Medicine and Surgery in UNILAG?", answer: "UNILAG typically requires a minimum JAMB score of 280 and a Post-UTME aggregate of around 70+ for Medicine. Always verify on the JAMB CAPS portal as cut-offs change yearly." },
+    { question: "How do I calculate my Post-UTME aggregate score?", answer: "Most universities use: (JAMB Score ÷ 8) + (Post-UTME Score ÷ 2). Use our free Post UTME Calculator on this page for instant results." },
+    { question: "Is the NELFUND student loan available for all Nigerian universities?", answer: "Yes — NELFUND covers students in all federal and state universities, polytechnics and colleges of education. Visit our Student Loan Guide page for the full application steps." },
+    { question: "Where can I get free JAMB past questions?", answer: "Right here! Use our free CBT Practice tool — it has 120+ past questions across all subjects in real JAMB exam format, completely free with no sign-up." },
+  ];
+  list.innerHTML = seed.map(q => `
+    <div class="qa-item">
+      <div class="qa-q"><span>❓</span>${q.question}</div>
+      <div class="qa-a"><div class="qa-a-label">✅ Big Quams Media</div>${q.answer}</div>
+    </div>`).join('');
   try {
     const r = await fetch('qa.json?v='+Date.now()); if (!r.ok) throw 0;
     const items = await r.json(); if (!items.length) return;
     list.innerHTML = items.map(qa => `<div class="qa-item">
       <div class="qa-q"><span>❓</span>${qa.question}</div>
       ${qa.answer ? `<div class="qa-a"><div class="qa-a-label">✅ Big Quams Media</div>${qa.answer}</div>` : ''}</div>`).join('');
-  } catch {
-    // Fallback seed Q&As shown when qa.json is unavailable
-    const seed = [
-      { question: "What is the cut-off mark for Medicine and Surgery in UNILAG?", answer: "UNILAG typically requires a minimum JAMB score of 280 and a Post-UTME aggregate of around 70+ for Medicine. Always verify on the JAMB CAPS portal as cut-offs change yearly." },
-      { question: "How do I calculate my Post-UTME aggregate score?", answer: "Most universities use: (JAMB Score ÷ 8) + (Post-UTME Score ÷ 2). Use our free Post UTME Calculator on this page for instant results." },
-      { question: "Is the NELFUND student loan available for all Nigerian universities?", answer: "Yes — NELFUND covers students in all federal and state universities, polytechnics and colleges of education. Visit our Student Loan Guide page for the full application steps." },
-      { question: "Where can I get free JAMB past questions?", answer: "Right here! Use our free CBT Practice tool — it has 120+ past questions across all subjects in real JAMB exam format, completely free with no sign-up." },
-    ];
-    const list = document.getElementById('qaList');
-    if (list) list.innerHTML = seed.map(q => `
-      <div class="qa-item">
-        <div class="qa-q"><span>❓</span>${q.question}</div>
-        <div class="qa-a"><div class="qa-a-label">✅ Big Quams Media</div>${q.answer}</div>
-      </div>`).join('');
-  }
+  } catch { /* fallback already rendered */ }
 }
 function submitQA() {
   const q = document.getElementById('qaQuestion').value.trim();
@@ -2370,8 +2373,40 @@ function openSvcModal(key) {
 function closeWaPopup() { document.getElementById('waOverlay').classList.add('hidden'); sessionStorage.setItem('wa_closed','1'); }
 if (!sessionStorage.getItem('wa_closed')) setTimeout(() => document.getElementById('waOverlay')?.classList.remove('hidden'), 4000);
 
-/* ── INIT ── */
-/* ── STAT COUNTERS ── */
+/* ── TICKER ── */
+function initTicker() {
+  const track = document.getElementById('tickerTrack');
+  const bar   = document.getElementById('tickerBar');
+  if (!track || !bar) return;
+  const fallbackItems = [
+    '📢 JAMB 2026 UTME Results Released — Check yours now on the JAMB portal',
+    '🎓 Post-UTME Screening begins June 2026 — 15 universities confirmed dates',
+    '💳 NELFUND Student Loan portal is open — Apply before the deadline',
+    '💰 MTN Foundation Scholarship 2026 now accepting applications',
+    '📰 WAEC 2026 Results expected August — stay updated on BQM',
+    '🏫 New Academic Session 2026/2027 commences September across Nigeria',
+    '🔔 Monitor your JAMB CAPS portal daily for admission updates',
+    '📚 Free eLibrary: 100+ textbooks available — no sign-up required',
+  ];
+  function renderTicker(items) {
+    // Duplicate items for seamless infinite scroll
+    const allItems = [...items, ...items];
+    track.innerHTML = allItems.map(t => `<span class="ticker-item">${t}</span>`).join('');
+    bar.classList.add('show');
+  }
+  renderTicker(fallbackItems);
+  fetch('news.json?v='+Date.now())
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (data && data.length) {
+        const liveItems = data.slice(0, 8).map(n => (n.emoji||'📰') + ' ' + n.title);
+        renderTicker(liveItems);
+      }
+    })
+    .catch(() => {});
+}
+
+
 function runCounters() {
   document.querySelectorAll('[data-target]').forEach(el => {
     const target  = parseInt(el.getAttribute('data-target'));
