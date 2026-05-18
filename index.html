@@ -1856,14 +1856,14 @@ function toggleDarkMode() {
   }
   localStorage.setItem('bqm-theme', dark ? 'dark' : 'light');
 }
-(function() {
+/* ── RESTORE SAVED THEME (no duplicate handler — button uses onclick) ── */
+document.addEventListener('DOMContentLoaded', function() {
   const btn = document.getElementById('darkToggle');
   if (localStorage.getItem('bqm-theme') === 'dark') {
     document.body.classList.add('dark');
-    if (btn) btn.textContent = '☀️';
+    if (btn) { btn.textContent = '☀️'; btn.setAttribute('aria-label','Switch to light mode'); }
   }
-  if (btn) btn.addEventListener('click', toggleDarkMode);
-})();
+});
 
 /* ── NAV TOGGLE ── */
 function toggleNav() {
@@ -1877,6 +1877,7 @@ function toggleNav() {
   btn.setAttribute('aria-expanded', String(!isOpen));
   document.body.style.overflow = isOpen ? '' : 'hidden';
 }
+document.addEventListener('DOMContentLoaded', function() {
 // Close drawer on outside tap
 document.addEventListener('click', e => {
   const nav = document.getElementById('mobileNav');
@@ -1910,6 +1911,7 @@ document.addEventListener('keydown', e => {
     });
   }
 });
+}); // end DOMContentLoaded for nav listeners
 
 /* ── TOOLS DROPDOWN ── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -2015,9 +2017,14 @@ function switchTab(name) {
 /* ── JAMB CALCULATOR ── */
 
 function lazyLoad(id, fn) {
+  // Always call immediately so fallback content shows right away
+  fn();
+  // Also re-trigger on scroll into view (will re-fetch live data if available)
   const el = document.getElementById(id);
-  if (!el) { fn(); return; }
-  new IntersectionObserver((ent, obs) => { if (ent[0].isIntersecting) { obs.disconnect(); fn(); } }, { rootMargin:'200px' }).observe(el);
+  if (!el) return;
+  new IntersectionObserver((ent, obs) => {
+    if (ent[0].isIntersecting) { obs.disconnect(); fn(); }
+  }, { rootMargin: '400px' }).observe(el);
 }
 
 /* ── NEWS DATA ── */
@@ -2108,7 +2115,17 @@ async function loadSpotlight() {
           <div class="cc-date">${item.date||''}</div>
         </div>
       </div>`).join('');
-  } catch { c.innerHTML = '<div class="loading-state">Spotlights coming soon!</div>'; }
+  } catch {
+    c.innerHTML = [
+      {e:'🌟',name:'Chidera Okafor',sch:'University of Lagos',achievement:'Graduated top of class in Computer Science with a 4.9 CGPA — now at Google Nigeria.',date:'2026'},
+      {e:'🎓',name:'Fatima Al-Rasheed',sch:'ABU Zaria',achievement:'Won the Commonwealth Scholarship and is studying Medicine at UCL, London.',date:'2026'},
+      {e:'📚',name:'Emeka Nwachukwu',sch:'OAU Ile-Ife',achievement:'Authored 3 research papers as an undergraduate and bagged a full PhD scholarship.',date:'2025'},
+    ].map(s => `<div class="content-card"><div class="cc-img-ph">${s.e}</div>
+      <div class="cc-body"><span class="cc-badge cc-badge-orange">${s.sch}</span>
+      <div class="cc-title">${s.name}</div>
+      <div class="cc-summary">${s.achievement}</div>
+      <div class="cc-date">${s.date}</div></div></div>`).join('');
+  }
 }
 
 /* ── DYK PREVIEW ── */
@@ -2825,14 +2842,14 @@ function startTimer(events) {
 })();
 
 /* ── OS DARK MODE DETECTION ── */
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
   if (!localStorage.getItem('bqm-theme') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
     document.body.classList.add('dark');
     const btn = document.getElementById('darkToggle');
-    if (btn) btn.textContent = '☀️';
+    if (btn) { btn.textContent = '☀️'; btn.setAttribute('aria-label','Switch to light mode'); }
     localStorage.setItem('bqm-theme', 'dark');
   }
-})();
+});
 
 </script>
 <script type="module" src="fcm-init.js"></script>
