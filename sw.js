@@ -17,8 +17,8 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 // ── CACHE CONFIG ──
-const STATIC_CACHE = 'bqm-static-v4';
-const JSON_CACHE   = 'bqm-json-v4';
+const STATIC_CACHE = 'bqm-static-v5';
+const JSON_CACHE   = 'bqm-json-v5';
 
 const STATIC_ASSETS = [
   '/',
@@ -94,7 +94,13 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Static HTML/CSS/JS: cache-first
+  // HTML pages: network-first (always serve fresh, fall back to cache if offline)
+  if (url.pathname.endsWith('.html') || url.pathname === '/' || url.pathname === '') {
+    event.respondWith(networkFirst(request, STATIC_CACHE));
+    return;
+  }
+
+  // Static assets (CSS, JS, fonts, images): cache-first
   event.respondWith(cacheFirst(request, STATIC_CACHE));
 });
 
@@ -111,6 +117,23 @@ async function cacheFirst(request, cacheName) {
   } catch {
     return new Response('Offline — please check your connection.', {
       status: 503, headers: { 'Content-Type': 'text/plain' }
+    });
+  }
+}
+
+// Network-first: try live network, fall back to cache if offline
+async function networkFirst(request, cacheName) {
+  try {
+    const response = await fetch(request);
+    if (response.ok) {
+      const cache = await caches.open(cacheName);
+      cache.put(request, response.clone());
+    }
+    return response;
+  } catch {
+    const cached = await caches.match(request);
+    return cached || new Response('<h1>You are offline</h1><p>Please check your connection and refresh.</p>', {
+      status: 503, headers: { 'Content-Type': 'text/html' }
     });
   }
 }

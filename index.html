@@ -320,6 +320,96 @@ footer{background:#0a1228;padding:40px 16px 24px}
 #wa-float:hover{transform:scale(1.1)}
 .center{text-align:center}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ══ SUCCESS TICKER (7) ══ */
+.success-bar{background:linear-gradient(90deg,#064e3b,#065f46);height:34px;overflow:hidden;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.06)}
+.success-tag{background:#10b981;color:#fff;padding:0 14px;height:100%;display:flex;align-items:center;font-size:.65rem;font-weight:800;white-space:nowrap;letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
+.success-track{display:flex;animation:scroll-ticker 55s linear infinite;width:max-content}
+.success-track:hover{animation-play-state:paused}
+.success-item{padding:0 28px;font-size:.72rem;color:rgba(255,255,255,.75);white-space:nowrap;line-height:34px}
+.success-item::after{content:'🎉';margin-left:12px}
+
+/* ══ STAGE SELECTOR (8) ══ */
+.stage-bar{background:var(--surface);border-bottom:2px solid var(--border);padding:14px 16px}
+body.dark .stage-bar{background:#161b27}
+.stage-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.stage-label{font-size:.75rem;font-weight:700;color:var(--text-muted);white-space:nowrap}
+.stage-btns{display:flex;gap:8px;flex-wrap:wrap}
+.stage-btn{padding:8px 16px;border-radius:20px;font-size:.78rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface-alt);color:var(--text-muted);cursor:pointer;transition:all .2s;white-space:nowrap}
+body.dark .stage-btn{background:#1a2236;border-color:var(--border)}
+.stage-btn:hover,.stage-btn.active{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
+.stage-btn.active{background:var(--orange);border-color:var(--orange)}
+
+/* ══ TOOLS GRID (1,2,3,4) ══ */
+.tools-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:600px){.tools-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){.tools-grid{grid-template-columns:repeat(4,1fr)}}
+.tool-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column;transition:all .22s}
+body.dark .tool-card{background:#1a2236;border-color:var(--border)}
+.tool-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#c7d9ff}
+.tool-card-hd{padding:16px 16px 10px;display:flex;align-items:center;gap:10px}
+.tool-card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.tool-card-title{font-family:'Montserrat',sans-serif;font-size:.83rem;font-weight:800;color:var(--text-main);line-height:1.3}
+.tool-card-sub{font-size:.7rem;color:var(--text-muted);margin-top:2px}
+.tool-card-body{padding:0 16px 14px;flex:1;display:flex;flex-direction:column;gap:8px}
+.tool-select{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:.82rem;background:var(--surface-alt);color:var(--text-main);font-family:inherit}
+body.dark .tool-select{background:#111624;border-color:var(--border)}
+.tool-input{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:.82rem;background:var(--surface-alt);color:var(--text-main);font-family:inherit}
+body.dark .tool-input{background:#111624;border-color:var(--border)}
+.tool-input:focus,.tool-select:focus{outline:none;border-color:var(--blue-main)}
+.tool-btn{width:100%;padding:9px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;border-radius:var(--radius-sm);font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;cursor:pointer;transition:.2s;margin-top:auto}
+.tool-btn:hover{background:linear-gradient(135deg,#0a1a5c,#1534a0)}
+.tool-result{background:#f0f5ff;border:1.5px solid #c7d9ff;border-radius:var(--radius-sm);padding:12px;display:none;margin-top:4px;animation:fadeUp .2s ease}
+body.dark .tool-result{background:#111d36;border-color:#1e3060}
+.tool-result.show{display:block}
+.tool-result-title{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:var(--text-main);margin-bottom:6px}
+.tool-result-item{font-size:.78rem;color:var(--text-muted);padding:3px 0;display:flex;align-items:center;gap:6px}
+.tool-result-item::before{content:'✅';font-size:.7rem}
+
+/* Probability meter */
+.prob-meter{margin-top:6px}
+.prob-bar-wrap{background:var(--border);border-radius:20px;height:10px;overflow:hidden;margin:6px 0}
+.prob-bar-fill{height:100%;border-radius:20px;transition:width .8s ease;background:linear-gradient(90deg,#10b981,#059669)}
+.prob-pct{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:800;color:var(--blue-main);line-height:1}
+body.dark .prob-pct{color:#93c5fd}
+.prob-verdict{font-size:.78rem;font-weight:700;margin-top:4px}
+
+/* Results checker tabs */
+.res-tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px}
+.res-tab{padding:5px 12px;border-radius:6px;font-size:.72rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface-alt);color:var(--text-muted);cursor:pointer;transition:.18s}
+body.dark .res-tab{background:#111624}
+.res-tab.active{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
+.res-links{display:flex;flex-direction:column;gap:6px}
+.res-link-btn{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--surface-alt);border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:.78rem;font-weight:600;color:var(--text-main);transition:.18s;cursor:pointer}
+body.dark .res-link-btn{background:#111624;border-color:var(--border)}
+.res-link-btn:hover{border-color:#c7d9ff;background:#f0f5ff;color:var(--blue-main)}
+body.dark .res-link-btn:hover{background:#1a2236;color:#93c5fd}
+
+/* ══ GOOGLE REVIEW CTA (5) ══ */
+.review-cta-sec{background:linear-gradient(135deg,#fefce8,#fff7ed);border-top:1px solid #fde68a;border-bottom:1px solid #fde68a;padding:36px 16px}
+body.dark .review-cta-sec{background:linear-gradient(135deg,#1a1500,#1a0e00);border-color:#2a2000}
+.review-cta-inner{max-width:700px;margin:0 auto;text-align:center}
+.review-cta-stars{font-size:1.6rem;color:#FBBC05;letter-spacing:2px;margin-bottom:10px}
+.review-cta-title{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text-main);margin-bottom:6px}
+.review-cta-sub{font-size:.83rem;color:var(--text-muted);max-width:480px;margin:0 auto 18px;line-height:1.6}
+.review-cta-btn{display:inline-flex;align-items:center;gap:10px;background:#fff;border:2px solid #e2e8f0;border-radius:12px;padding:12px 24px;font-weight:800;font-size:.88rem;color:#1e2749;box-shadow:0 2px 12px rgba(0,0,0,.08);transition:all .2s;cursor:pointer}
+body.dark .review-cta-btn{background:#1a2236;border-color:#2a3550;color:var(--text-main)}
+.review-cta-btn:hover{border-color:#4285F4;box-shadow:0 4px 18px rgba(66,133,244,.2);transform:translateY(-1px)}
+.review-count{font-size:.72rem;color:var(--text-muted);margin-top:10px}
+
+/* ══ WA COMMUNITY (6) ══ */
+.wa-community{background:linear-gradient(135deg,#064e3b,#065f46);padding:36px 16px;text-align:center}
+.wa-comm-inner{max-width:600px;margin:0 auto}
+.wa-comm-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.4);color:#6ee7b7;padding:5px 14px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:14px}
+.wa-comm-badge-dot{width:7px;height:7px;border-radius:50%;background:#10b981;animation:blink 1.4s ease infinite}
+.wa-comm-title{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:8px}
+.wa-comm-sub{font-size:.84rem;color:rgba(255,255,255,.6);margin-bottom:20px;line-height:1.6}
+.wa-comm-count{display:inline-flex;align-items:center;gap:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-md);padding:14px 24px;margin-bottom:20px}
+.wa-comm-num{font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:800;color:#fff;line-height:1}
+.wa-comm-lbl{font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.wa-comm-divider{width:1px;height:36px;background:rgba(255,255,255,.15)}
+.wa-join-btn{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff;padding:14px 28px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.92rem;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 18px rgba(37,211,102,.3)}
+.wa-join-btn:hover{background:#1db954;transform:translateY(-2px);box-shadow:0 6px 24px rgba(37,211,102,.4)}
 </style>
 </head>
 <body>
@@ -401,7 +491,25 @@ footer{background:#0a1228;padding:40px 16px 24px}
   <div class="ticker-scroll-wrap"><div class="ticker-track" id="tickerTrack"></div></div>
 </div>
 
+<!-- SUCCESS TICKER -->
+<div class="success-bar" id="successBar">
+  <div class="success-tag">🎉 Admissions</div>
+  <div style="flex:1;overflow:hidden"><div class="success-track" id="successTrack"></div></div>
+</div>
+
 <main id="main-content">
+
+<!-- STAGE SELECTOR -->
+<div class="stage-bar">
+  <div class="stage-inner">
+    <span class="stage-label">📍 Where are you?</span>
+    <div class="stage-btns">
+      <button class="stage-btn active" onclick="setStage('pre-jamb',this)">Pre-JAMB</button>
+      <button class="stage-btn" onclick="setStage('post-utme',this)">Post-UTME</button>
+      <button class="stage-btn" onclick="setStage('in-school',this)">In School</button>
+    </div>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -445,6 +553,165 @@ footer{background:#0a1228;padding:40px 16px 24px}
       <a href="newsroom.html" class="sec-link">View All →</a>
     </div>
     <div class="news-grid" id="newsGrid"><div class="loading-state">⏳ Loading…</div></div>
+  </div>
+</section>
+
+<!-- QUICK TOOLS (1-4) -->
+<section class="sec" id="quick-tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-label">Instant Tools</div><h2 class="sec-title">Find Your <span>Answer Fast</span></h2></div>
+    </div>
+    <div class="tools-grid">
+
+      <!-- 1. SUBJECT COMBO FINDER -->
+      <div class="tool-card">
+        <div class="tool-card-hd">
+          <div class="tool-card-icon" style="background:#dbeafe">📚</div>
+          <div><div class="tool-card-title">Subject Combo Finder</div><div class="tool-card-sub">Get your 4 JAMB subjects</div></div>
+        </div>
+        <div class="tool-card-body">
+          <select class="tool-select" id="sc_course" onchange="findSubjectCombo()">
+            <option value="">Select your course…</option>
+            <optgroup label="Medicine &amp; Health">
+              <option value="medicine">Medicine &amp; Surgery</option>
+              <option value="pharmacy">Pharmacy</option>
+              <option value="nursing">Nursing Science</option>
+              <option value="dentistry">Dentistry</option>
+              <option value="medical_lab">Medical Laboratory Science</option>
+              <option value="physio">Physiotherapy</option>
+              <option value="optometry">Optometry</option>
+            </optgroup>
+            <optgroup label="Engineering">
+              <option value="civil_eng">Civil Engineering</option>
+              <option value="mech_eng">Mechanical Engineering</option>
+              <option value="elec_eng">Electrical Engineering</option>
+              <option value="computer_eng">Computer Engineering</option>
+              <option value="petroleum_eng">Petroleum Engineering</option>
+              <option value="chem_eng">Chemical Engineering</option>
+            </optgroup>
+            <optgroup label="Sciences">
+              <option value="computer_sci">Computer Science</option>
+              <option value="mathematics">Mathematics</option>
+              <option value="physics">Physics</option>
+              <option value="chemistry">Chemistry</option>
+              <option value="biology">Biology</option>
+              <option value="microbiology">Microbiology</option>
+              <option value="biochemistry">Biochemistry</option>
+            </optgroup>
+            <optgroup label="Social Sciences &amp; Arts">
+              <option value="law">Law</option>
+              <option value="economics">Economics</option>
+              <option value="accounting">Accounting</option>
+              <option value="mass_comm">Mass Communication</option>
+              <option value="english">English Language</option>
+              <option value="poli_sci">Political Science</option>
+              <option value="sociology">Sociology</option>
+              <option value="psychology">Psychology</option>
+              <option value="business_admin">Business Administration</option>
+              <option value="banking_finance">Banking &amp; Finance</option>
+              <option value="marketing">Marketing</option>
+            </optgroup>
+            <optgroup label="Agriculture &amp; Environment">
+              <option value="agriculture">Agriculture</option>
+              <option value="forestry">Forestry</option>
+              <option value="fisheries">Fisheries &amp; Aquaculture</option>
+            </optgroup>
+            <optgroup label="Education">
+              <option value="edu_english">Education / English</option>
+              <option value="edu_maths">Education / Mathematics</option>
+              <option value="edu_biology">Education / Biology</option>
+              <option value="edu_chemistry">Education / Chemistry</option>
+            </optgroup>
+          </select>
+          <div class="tool-result" id="sc_result">
+            <div class="tool-result-title" id="sc_title"></div>
+            <div id="sc_subjects"></div>
+            <a href="subject-combo.html" style="display:block;font-size:.72rem;font-weight:700;color:var(--blue-main);margin-top:8px">See full guide →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. ADMISSION PROBABILITY -->
+      <div class="tool-card">
+        <div class="tool-card-hd">
+          <div class="tool-card-icon" style="background:#dcfce7">🎯</div>
+          <div><div class="tool-card-title">Admission Probability</div><div class="tool-card-sub">What are your chances?</div></div>
+        </div>
+        <div class="tool-card-body">
+          <input class="tool-input" type="number" id="ap_score" min="0" max="400" placeholder="JAMB score (e.g. 260)" oninput="calcAdmissionProb()">
+          <select class="tool-select" id="ap_course" onchange="calcAdmissionProb()">
+            <option value="">Select course…</option>
+            <option value="medicine">Medicine &amp; Surgery</option>
+            <option value="law">Law</option>
+            <option value="pharmacy">Pharmacy</option>
+            <option value="computer_sci">Computer Science</option>
+            <option value="computer_eng">Computer Engineering</option>
+            <option value="petroleum_eng">Petroleum Engineering</option>
+            <option value="accounting">Accounting</option>
+            <option value="economics">Economics</option>
+            <option value="mass_comm">Mass Communication</option>
+            <option value="nursing">Nursing Science</option>
+            <option value="biology">Biology</option>
+            <option value="mathematics">Mathematics</option>
+            <option value="english">English Language</option>
+            <option value="edu_maths">Education / Mathematics</option>
+          </select>
+          <div class="tool-result" id="ap_result">
+            <div class="prob-pct" id="ap_pct">0%</div>
+            <div class="prob-meter"><div class="prob-bar-wrap"><div class="prob-bar-fill" id="ap_bar" style="width:0%"></div></div></div>
+            <div class="prob-verdict" id="ap_verdict"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. UNIVERSITY SEARCH -->
+      <div class="tool-card">
+        <div class="tool-card-hd">
+          <div class="tool-card-icon" style="background:#fce7f3">🏫</div>
+          <div><div class="tool-card-title">University Info</div><div class="tool-card-sub">Cut-off, format &amp; fees</div></div>
+        </div>
+        <div class="tool-card-body">
+          <select class="tool-select" id="uni_search" onchange="searchUniversity()">
+            <option value="">Search university…</option>
+            <option value="unilag">University of Lagos (UNILAG)</option>
+            <option value="ui">University of Ibadan (UI)</option>
+            <option value="oau">Obafemi Awolowo University (OAU)</option>
+            <option value="abu">Ahmadu Bello University (ABU)</option>
+            <option value="unn">University of Nigeria Nsukka (UNN)</option>
+            <option value="uniben">University of Benin (UNIBEN)</option>
+            <option value="uniport">University of Port Harcourt (UNIPORT)</option>
+            <option value="futa">Federal Univ. of Tech. Akure (FUTA)</option>
+            <option value="lasu">Lagos State University (LASU)</option>
+            <option value="babcock">Babcock University</option>
+            <option value="covenant">Covenant University</option>
+            <option value="pan_atlantic">Pan-Atlantic University</option>
+          </select>
+          <div class="tool-result" id="uni_result">
+            <div class="tool-result-title" id="uni_name"></div>
+            <div id="uni_details"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. RESULTS CHECKER -->
+      <div class="tool-card">
+        <div class="tool-card-hd">
+          <div class="tool-card-icon" style="background:#fef3c7">📋</div>
+          <div><div class="tool-card-title">Results Checker</div><div class="tool-card-sub">Check JAMB, WAEC &amp; more</div></div>
+        </div>
+        <div class="tool-card-body">
+          <div class="res-tabs">
+            <button class="res-tab active" onclick="switchResTab('jamb',this)">JAMB</button>
+            <button class="res-tab" onclick="switchResTab('waec',this)">WAEC</button>
+            <button class="res-tab" onclick="switchResTab('neco',this)">NECO</button>
+            <button class="res-tab" onclick="switchResTab('nabteb',this)">NABTEB</button>
+          </div>
+          <div class="res-links" id="resLinks"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -605,6 +872,45 @@ footer{background:#0a1228;padding:40px 16px 24px}
     </div>
     <div class="event-list" id="upcomingEventsList"></div>
     <div class="center"><a href="explore.html#calendar" class="btn-orange">📅 Full Academic Calendar</a></div>
+  </div>
+</section>
+
+<!-- GOOGLE REVIEW CTA (5) -->
+<section class="review-cta-sec" id="reviews">
+  <div class="review-cta-inner">
+    <div class="review-cta-stars">★★★★★</div>
+    <div class="review-cta-title">Helped by Big Quams Media?</div>
+    <p class="review-cta-sub">A quick Google review goes a long way in helping more Nigerian students find us. It takes less than 60 seconds and means the world to our team. 🙏</p>
+    <a href="https://g.page/r/CQ9XKGb_WgKgEAE/review" target="_blank" rel="noopener noreferrer" class="review-cta-btn">
+      <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.5 3.1 29.6 1 24 1 14.8 1 7 6.7 3.7 14.6l7 5.4C12.5 13.8 17.8 9.5 24 9.5z"/>
+        <path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.8-2.1 5.2-4.5 6.8l7 5.4C43.1 36.8 46.1 31.1 46.1 24.5z"/>
+        <path fill="#FBBC05" d="M10.7 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7-5.4C2.2 17.1 1 20.4 1 24s1.2 6.9 3.7 9.9l7-5.3z"/>
+        <path fill="#34A853" d="M24 47c5.6 0 10.4-1.9 13.8-5.1l-7-5.4c-1.9 1.3-4.2 2-6.8 2-6.2 0-11.5-4.3-13.3-10l-7 5.4C7 41.3 14.8 47 24 47z"/>
+      </svg>
+      Rate Us on Google
+    </a>
+    <div class="review-count">⭐ Join 100+ students who've left us a review</div>
+  </div>
+</section>
+
+<!-- WA COMMUNITY (6) -->
+<section class="wa-community" id="community">
+  <div class="wa-comm-inner">
+    <div class="wa-comm-badge"><span class="wa-comm-badge-dot"></span>Live Community</div>
+    <div class="wa-comm-title">Join 10,000+ Nigerian Students</div>
+    <p class="wa-comm-sub">Get instant admission alerts, scholarship updates, exam tips and connect with students across Nigeria — all in one free WhatsApp community.</p>
+    <div class="wa-comm-count">
+      <div><div class="wa-comm-num" id="waCount">10,000+</div><div class="wa-comm-lbl">Members</div></div>
+      <div class="wa-comm-divider"></div>
+      <div><div class="wa-comm-num">Free</div><div class="wa-comm-lbl">Always</div></div>
+      <div class="wa-comm-divider"></div>
+      <div><div class="wa-comm-num">24/7</div><div class="wa-comm-lbl">Support</div></div>
+    </div>
+    <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="wa-join-btn">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Join the Community — Free
+    </a>
   </div>
 </section>
 
@@ -901,12 +1207,168 @@ function ciCheckCutoff(){
   res.classList.add('show');
 }
 
+/* ══ SUCCESS TICKER (7) ══ */
+function initSuccessTicker(){
+  const track=document.getElementById('successTrack');if(!track)return;
+  const items=['Chidera O. just got admitted to UNILAG — Medicine & Surgery','Fatima A. secured the Commonwealth Scholarship to UCL London','Emeka N. scored 312 in JAMB — Computer Engineering, OAU','Blessing I. got full NELFUND loan approval — UNIBEN','David K. admitted to LASU Law after scoring 64 aggregate','Aisha M. won the MTN Foundation Scholarship 2026','Olawale B. scored 290 JAMB and admitted to Covenant University','Ngozi C. cleared Post-UTME at UI — Pharmacy','Hassan U. scored A1 in 7 WAEC subjects — now at ABU','Adaeze P. received FUTA admission offer — Chemical Engineering'];
+  track.innerHTML=[...items,...items].map(t=>`<span class="success-item">${t}</span>`).join('');
+}
+
+/* ══ STAGE SELECTOR ══ */
+function setStage(stage,btn){
+  document.querySelectorAll('.stage-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const map={
+    'pre-jamb':'#quick-tools',
+    'post-utme':'#calculator-section',
+    'in-school':'#scholarship-preview'
+  };
+  const target=document.querySelector(map[stage]);
+  if(target)setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+
+/* ══ SUBJECT COMBO (1) ══ */
+const SC_DATA={
+  medicine:{title:'Medicine & Surgery',subjects:['English Language','Biology','Chemistry','Physics']},
+  pharmacy:{title:'Pharmacy',subjects:['English Language','Chemistry','Biology','Physics or Mathematics']},
+  nursing:{title:'Nursing Science',subjects:['English Language','Biology','Chemistry','Physics or Mathematics']},
+  dentistry:{title:'Dentistry',subjects:['English Language','Biology','Chemistry','Physics']},
+  medical_lab:{title:'Medical Laboratory Science',subjects:['English Language','Biology','Chemistry','Physics or Mathematics']},
+  physio:{title:'Physiotherapy',subjects:['English Language','Biology','Chemistry','Physics']},
+  optometry:{title:'Optometry',subjects:['English Language','Biology','Chemistry','Physics']},
+  civil_eng:{title:'Civil Engineering',subjects:['English Language','Mathematics','Physics','Chemistry']},
+  mech_eng:{title:'Mechanical Engineering',subjects:['English Language','Mathematics','Physics','Chemistry']},
+  elec_eng:{title:'Electrical Engineering',subjects:['English Language','Mathematics','Physics','Chemistry']},
+  computer_eng:{title:'Computer Engineering',subjects:['English Language','Mathematics','Physics','Chemistry']},
+  petroleum_eng:{title:'Petroleum Engineering',subjects:['English Language','Mathematics','Physics','Chemistry']},
+  chem_eng:{title:'Chemical Engineering',subjects:['English Language','Mathematics','Chemistry','Physics']},
+  computer_sci:{title:'Computer Science',subjects:['English Language','Mathematics','Physics','Chemistry or Biology']},
+  mathematics:{title:'Mathematics',subjects:['English Language','Mathematics','Physics','Chemistry or Biology']},
+  physics:{title:'Physics',subjects:['English Language','Physics','Mathematics','Chemistry']},
+  chemistry:{title:'Chemistry',subjects:['English Language','Chemistry','Biology','Mathematics or Physics']},
+  biology:{title:'Biology',subjects:['English Language','Biology','Chemistry','Physics or Mathematics']},
+  microbiology:{title:'Microbiology',subjects:['English Language','Biology','Chemistry','Physics or Mathematics']},
+  biochemistry:{title:'Biochemistry',subjects:['English Language','Biology','Chemistry','Mathematics or Physics']},
+  law:{title:'Law',subjects:['English Language','Literature in English','Government or History','Any Social Science/Art']},
+  economics:{title:'Economics',subjects:['English Language','Mathematics','Economics','Government or Geography']},
+  accounting:{title:'Accounting',subjects:['English Language','Mathematics','Economics','Any other Social Science']},
+  mass_comm:{title:'Mass Communication',subjects:['English Language','Literature or Government','Economics or History','Any Art or Social Science']},
+  english:{title:'English Language',subjects:['English Language','Literature in English','Government or History','Any Art subject']},
+  poli_sci:{title:'Political Science',subjects:['English Language','Government','Economics or History','Any Social Science']},
+  sociology:{title:'Sociology',subjects:['English Language','Government','Economics','Any Social Science']},
+  psychology:{title:'Psychology',subjects:['English Language','Biology','Chemistry or Mathematics','Any Science/Social Science']},
+  business_admin:{title:'Business Administration',subjects:['English Language','Mathematics','Economics','Any Social Science']},
+  banking_finance:{title:'Banking & Finance',subjects:['English Language','Mathematics','Economics','Any Social Science']},
+  marketing:{title:'Marketing',subjects:['English Language','Mathematics','Economics','Any Social Science']},
+  agriculture:{title:'Agriculture',subjects:['English Language','Biology or Agriculture','Chemistry','Physics or Mathematics']},
+  forestry:{title:'Forestry',subjects:['English Language','Biology','Chemistry','Mathematics or Physics']},
+  fisheries:{title:'Fisheries & Aquaculture',subjects:['English Language','Biology','Chemistry','Mathematics or Physics']},
+  edu_english:{title:'Education / English',subjects:['English Language','Literature in English','Government or History','Any Art subject']},
+  edu_maths:{title:'Education / Mathematics',subjects:['English Language','Mathematics','Physics','Chemistry or Biology']},
+  edu_biology:{title:'Education / Biology',subjects:['English Language','Biology','Chemistry','Physics']},
+  edu_chemistry:{title:'Education / Chemistry',subjects:['English Language','Chemistry','Biology','Physics or Mathematics']},
+};
+function findSubjectCombo(){
+  const v=document.getElementById('sc_course').value,res=document.getElementById('sc_result');
+  if(!v){res.classList.remove('show');return;}
+  const d=SC_DATA[v];if(!d){res.classList.remove('show');return;}
+  document.getElementById('sc_title').textContent=d.title+' — JAMB Subjects:';
+  document.getElementById('sc_subjects').innerHTML=d.subjects.map(s=>`<div class="tool-result-item">${s}</div>`).join('');
+  res.classList.add('show');
+}
+
+/* ══ ADMISSION PROBABILITY (2) ══ */
+const AP_CUTOFFS={medicine:300,law:240,pharmacy:260,computer_sci:200,computer_eng:200,petroleum_eng:240,accounting:180,economics:180,mass_comm:180,nursing:220,biology:180,mathematics:180,english:180,edu_maths:160};
+function calcAdmissionProb(){
+  const score=parseFloat(document.getElementById('ap_score').value)||0;
+  const course=document.getElementById('ap_course').value;
+  const res=document.getElementById('ap_result');
+  if(!score||!course){res.classList.remove('show');return;}
+  const cutoff=AP_CUTOFFS[course]||200;
+  let pct=0,verdict='',color='';
+  if(score<cutoff-40){pct=10;verdict='⚠️ Very low chances. A re-sit is strongly advised.';color='#ef4444';}
+  else if(score<cutoff-20){pct=30;verdict='😐 Slim chances. Consider less competitive schools.';color='#f97316';}
+  else if(score<cutoff){pct=52;verdict='🤞 Borderline. Strong Post-UTME performance needed.';color='#eab308';}
+  else if(score<cutoff+20){pct=72;verdict='👍 Good chances. Prepare well for Post-UTME.';color='#22c55e';}
+  else if(score<cutoff+40){pct=88;verdict='🎯 Very good! Stay focused on Post-UTME.';color='#10b981';}
+  else{pct=97;verdict='🎉 Excellent chances! You are very competitive.';color='#059669';}
+  document.getElementById('ap_pct').textContent=pct+'%';
+  document.getElementById('ap_pct').style.color=color;
+  document.getElementById('ap_bar').style.width=pct+'%';
+  document.getElementById('ap_bar').style.background=`linear-gradient(90deg,${color},${color}dd)`;
+  document.getElementById('ap_verdict').textContent=verdict;
+  document.getElementById('ap_verdict').style.color=color;
+  res.classList.add('show');
+}
+
+/* ══ UNIVERSITY SEARCH (3) ══ */
+const UNI_DATA={
+  unilag:{name:'University of Lagos (UNILAG)',cutoff:'180–300 (course-dependent)',format:'Online CBT — 50 questions, 30 mins',fees:'₦80,000–₦180,000/yr (course-dependent)',type:'Federal'},
+  ui:{name:'University of Ibadan (UI)',cutoff:'180–280 (course-dependent)',format:'Written/CBT Post-UTME — varies by faculty',fees:'₦15,000–₦60,000/yr (subsidised)',type:'Federal'},
+  oau:{name:'Obafemi Awolowo University (OAU)',cutoff:'180–280 (course-dependent)',format:'Online CBT Post-UTME',fees:'₦50,000–₦150,000/yr',type:'Federal'},
+  abu:{name:'Ahmadu Bello University (ABU)',cutoff:'180–260',format:'Post-UTME CBT — 60 questions',fees:'₦40,000–₦120,000/yr',type:'Federal'},
+  unn:{name:'University of Nigeria Nsukka (UNN)',cutoff:'180–260',format:'Online Post-UTME screening',fees:'₦50,000–₦130,000/yr',type:'Federal'},
+  uniben:{name:'University of Benin (UNIBEN)',cutoff:'180–250',format:'CBT Post-UTME',fees:'₦55,000–₦140,000/yr',type:'Federal'},
+  uniport:{name:'University of Port Harcourt (UNIPORT)',cutoff:'180–260',format:'Computer-based Post-UTME',fees:'₦60,000–₦160,000/yr',type:'Federal'},
+  futa:{name:'Federal Univ. of Technology Akure (FUTA)',cutoff:'180–260',format:'CBT Post-UTME — Science/Tech focus',fees:'₦50,000–₦120,000/yr',type:'Federal'},
+  lasu:{name:'Lagos State University (LASU)',cutoff:'180–260',format:'Online Post-UTME screening',fees:'₦80,000–₦200,000/yr',type:'State'},
+  babcock:{name:'Babcock University',cutoff:'180–280',format:'Written exam + interview',fees:'₦700,000–₦2,500,000/yr',type:'Private'},
+  covenant:{name:'Covenant University',cutoff:'200–300',format:'Post-UTME CBT + personality test',fees:'₦800,000–₦2,800,000/yr',type:'Private'},
+  pan_atlantic:{name:'Pan-Atlantic University',cutoff:'200+',format:'Entrance exam + interview',fees:'₦1,200,000–₦3,000,000/yr',type:'Private'},
+};
+function searchUniversity(){
+  const v=document.getElementById('uni_search').value,res=document.getElementById('uni_result');
+  if(!v){res.classList.remove('show');return;}
+  const d=UNI_DATA[v];if(!d){res.classList.remove('show');return;}
+  document.getElementById('uni_name').textContent=d.name;
+  document.getElementById('uni_details').innerHTML=
+    `<div class="tool-result-item" style="--before:'🎯'">Cut-off: ${d.cutoff}</div>
+     <div class="tool-result-item" style="--before:'📝'">Post-UTME: ${d.format}</div>
+     <div class="tool-result-item" style="--before:'💰'">School Fees: ${d.fees}</div>
+     <div class="tool-result-item" style="--before:'🏛'">Type: ${d.type} University</div>`;
+  res.classList.add('show');
+}
+
+/* ══ RESULTS CHECKER (4) ══ */
+const RES_LINKS={
+  jamb:[
+    {label:'Check JAMB UTME Result',url:'https://www.jamb.gov.ng/efacility/'},
+    {label:'Print JAMB Result Slip',url:'https://www.jamb.gov.ng/efacility/'},
+    {label:'Check CAPS Admission Status',url:'https://www.jamb.gov.ng/efacility/'},
+  ],
+  waec:[
+    {label:'Check WAEC Result (Scratch Card)',url:'https://www.waecdirect.org/'},
+    {label:'Check WAEC Result (Token)',url:'https://www.waecdirect.org/'},
+    {label:'WAEC Certificate Verification',url:'https://www.waecdirect.org/'},
+  ],
+  neco:[
+    {label:'Check NECO SSCE Result',url:'https://result.neco.gov.ng/'},
+    {label:'NECO Certificate Verification',url:'https://neco.gov.ng/'},
+  ],
+  nabteb:[
+    {label:'Check NABTEB Result',url:'https://www.nabteb.gov.ng/'},
+    {label:'NABTEB Certificate Verification',url:'https://www.nabteb.gov.ng/'},
+  ],
+};
+let currentResTab='jamb';
+function switchResTab(tab,btn){
+  document.querySelectorAll('.res-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');currentResTab=tab;renderResLinks();
+}
+function renderResLinks(){
+  const wrap=document.getElementById('resLinks');if(!wrap)return;
+  const links=RES_LINKS[currentResTab]||[];
+  wrap.innerHTML=links.map(l=>`<a href="${l.url}" target="_blank" rel="noopener noreferrer" class="res-link-btn">🔗 ${l.label}</a>`).join('');
+}
+
 /* INIT */
 document.addEventListener('DOMContentLoaded',()=>{
   initTicker();
+  initSuccessTicker();
   initCountdown();
   loadNews();
   loadScholarships();
+  renderResLinks();
   document.getElementById('footer-year').textContent=new Date().getFullYear();
   const about=document.getElementById('about');
   if(about)new IntersectionObserver((entries,obs)=>{if(entries[0].isIntersecting){obs.disconnect();runCounters();}},{threshold:.25}).observe(about);
