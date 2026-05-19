@@ -89,7 +89,7 @@ header{background:linear-gradient(135deg,#0c1f6e 0%,#1a3fa8 100%);position:stick
 .ticker-bar.show{display:flex}
 .ticker-tag{background:#f97316;color:#fff;padding:0 14px;height:100%;display:flex;align-items:center;font-size:.65rem;font-weight:800;white-space:nowrap;letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
 .ticker-scroll-wrap{flex:1;overflow:hidden}
-.ticker-track{display:flex;animation:scroll-ticker 45s linear infinite;width:max-content}
+.ticker-track{display:flex;animation:scroll-ticker 70s linear infinite;width:max-content}
 .ticker-track:hover{animation-play-state:paused}
 .ticker-item{padding:0 32px;font-size:.73rem;color:rgba(255,255,255,.7);white-space:nowrap;line-height:34px}
 .ticker-item::after{content:'•';margin-left:32px;color:rgba(255,255,255,.2)}
@@ -487,13 +487,13 @@ body.dark .review-cta-btn{background:#1a2236;border-color:#2a3550;color:var(--te
 
 <!-- TICKER -->
 <div class="ticker-bar" id="tickerBar">
-  <div class="ticker-tag">📢 Live</div>
+  <div class="ticker-tag">⚡ Live</div>
   <div class="ticker-scroll-wrap"><div class="ticker-track" id="tickerTrack"></div></div>
 </div>
 
 <!-- SUCCESS TICKER -->
 <div class="success-bar" id="successBar">
-  <div class="success-tag">🎉 Admissions</div>
+  <div class="success-tag">🎉 Students</div>
   <div style="flex:1;overflow:hidden"><div class="success-track" id="successTrack"></div></div>
 </div>
 
@@ -1064,30 +1064,47 @@ function initCountdown(){
     {title:'New Academic Session 2026/2027',dateObj:new Date('2026-09-01')},
     {title:'JAMB 2027 Registration Opens',dateObj:new Date('2026-11-01')},
   ];
+  let cdInterval=null;
   function startTimer(evs){
-    const now=new Date(),upcoming=evs.filter(e=>e.dateObj>=now),target=upcoming[0];
+    // Clear any previous interval
+    if(cdInterval)clearInterval(cdInterval);
+    const now=new Date();
+    // Sort ascending and filter to only future events
+    const upcoming=[...evs].sort((a,b)=>a.dateObj-b.dateObj).filter(e=>e.dateObj>now);
     const nameEl=document.getElementById('countdownEventName');
-    if(!target){if(nameEl)nameEl.textContent='No upcoming events — check back soon!';return;}
-    if(nameEl)nameEl.innerHTML='⏳ Counting down to: <strong>'+target.title+'</strong>';
     const listEl=document.getElementById('upcomingEventsList');
+    if(!upcoming.length){
+      if(nameEl)nameEl.textContent='No upcoming events — check back soon!';
+      if(listEl)listEl.innerHTML='';
+      return;
+    }
+    // Target is strictly the NEXT upcoming event only
+    const target=upcoming[0];
+    if(nameEl)nameEl.innerHTML='⏳ Counting down to: <strong>'+target.title+'</strong>';
+    // Show next 4 upcoming events in the list
     if(listEl)listEl.innerHTML=upcoming.slice(0,4).map((e,i)=>{
-      const d=e.dateObj,mo=d.toLocaleString('en-US',{month:'short'}),day=d.getDate();
+      const d=e.dateObj;
+      const mo=d.toLocaleString('en-US',{month:'short'}),day=d.getDate();
       const diff=Math.ceil((d-new Date())/864e5);
-      return`<div class="event-row${i===0?' active':''}"><div class="ev-date">${mo} ${day}</div><div class="ev-title" style="flex:1">${e.title}</div><div class="ev-days">${diff===0?'Today':diff===1?'Tomorrow':diff+' days'}</div></div>`;
+      return`<div class="event-row${i===0?' active':''}"><div class="ev-date">${mo} ${day}</div><div class="ev-title" style="flex:1">${e.title}</div><div class="ev-days">${diff<=0?'Today':diff===1?'Tomorrow':diff+' days'}</div></div>`;
     }).join('');
     function tick(){
-      const diff=target.dateObj-new Date();if(diff<=0)return;
+      const diff=target.dateObj-new Date();
+      if(diff<=0){clearInterval(cdInterval);['cdDays','cdHours','cdMins','cdSecs'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='00';});return;}
       const pad=n=>String(n).padStart(2,'0');
       document.getElementById('cdDays').textContent=pad(Math.floor(diff/864e5));
       document.getElementById('cdHours').textContent=pad(Math.floor((diff%864e5)/36e5));
       document.getElementById('cdMins').textContent=pad(Math.floor((diff%36e5)/6e4));
       document.getElementById('cdSecs').textContent=pad(Math.floor((diff%6e4)/1e3));
     }
-    tick();setInterval(tick,1000);
+    tick();cdInterval=setInterval(tick,1000);
   }
   startTimer(defaultEvents);
   fetch('calendar.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
-    if(d&&d.length){const p=d.map(e=>({...e,dateObj:new Date(e.date)})).filter(e=>!isNaN(e.dateObj)).sort((a,b)=>a.dateObj-b.dateObj);if(p.length)startTimer(p);}
+    if(d&&d.length){
+      const parsed=d.map(e=>({...e,dateObj:new Date(e.date||e.dateObj)})).filter(e=>e.dateObj&&!isNaN(e.dateObj));
+      if(parsed.length)startTimer(parsed);
+    }
   }).catch(()=>{});
 }
 
