@@ -670,14 +670,17 @@ function linkifyText(text) {
   return text.replace(/(https?:\/\/[^\s<>"]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
 }
 
+// Para state — module level, declared before openArticle so assignments work
+let _currentPara = 0;
+let _totalParas  = 0;
+
 function openArticle(index) {
-  // Use direct allNews index for reliability (avoids pin/filter mismatch)
   const item = allNews[index];
   if (!item) return;
 
-  document.getElementById('artCat').textContent   = item.category || 'News';
-  document.getElementById('artTitle').textContent = item.title;
-  document.getElementById('artMeta').textContent  = item.date || '';
+  document.getElementById('artCat').textContent    = item.category || 'News';
+  document.getElementById('artTitle').textContent  = item.title;
+  document.getElementById('artMeta').textContent   = item.date || '';
   document.getElementById('artAuthor').textContent = item.author ? '✍️ ' + item.author : '';
 
   // Image
@@ -690,6 +693,10 @@ function openArticle(index) {
   const paragraphs = fullText.split('\n').map(p => p.trim()).filter(Boolean);
   const artBody = document.getElementById('artBody');
 
+  // Always reset state before setting new content
+  _currentPara = 0;
+  _totalParas  = paragraphs.length;
+
   if (paragraphs.length <= 1) {
     artBody.innerHTML = `<p>${linkifyText(paragraphs[0] || fullText)}</p>`;
   } else {
@@ -697,50 +704,40 @@ function openArticle(index) {
     paragraphs.forEach((p, i) => {
       html += `<p class="art-para${i === 0 ? ' visible' : ''}" data-para="${i}">${linkifyText(p)}</p>`;
     });
-    // Read more button + progress indicator
     html += `<div class="art-read-more-wrap" id="artReadMoreWrap">
-      <button class="btn-art-read-more" id="btnArtReadMore" onclick="showNextPara()">Read More ▼</button>
+      <button class="btn-art-read-more" onclick="showNextPara()">Read More ▼</button>
       <span class="art-progress" id="artProgress">Paragraph 1 of ${paragraphs.length}</span>
     </div>`;
     artBody.innerHTML = html;
-    artBody._currentPara = 0;
-    artBody._totalParas = paragraphs.length;
   }
 
-  // Action buttons (view + download only — share is always shown separately)
+  // Action buttons
   const actionBtns = document.getElementById('artActionBtns');
   const acts = item.actions || {};
   let btns = '';
-  if (acts.viewUrl) btns += `<a href="${acts.viewUrl}" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-view">👁️ View</a>`;
+  if (acts.viewUrl)     btns += `<a href="${acts.viewUrl}"     target="_blank" rel="noopener noreferrer" class="action-btn action-btn-view">👁️ View</a>`;
   if (acts.downloadUrl) btns += `<a href="${acts.downloadUrl}" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-download">⬇️ Download</a>`;
   actionBtns.innerHTML = btns;
 
   const idx = allNews.indexOf(item);
-  // Share button — native share sheet on mobile, custom on desktop
   document.getElementById('artShareBtn').onclick = () => shareArticle(idx);
 
   updatePageMeta(item);
-  // Update OG meta + URL for sharing
-  updateOGMeta(item, allNews.indexOf(item));
   document.getElementById('articleOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
 function showNextPara() {
+  _currentPara++;
   const artBody = document.getElementById('artBody');
-  const next = (artBody._currentPara || 0) + 1;
-  const para = artBody.querySelector(`[data-para="${next}"]`);
+  const para = artBody.querySelector(`[data-para="${_currentPara}"]`);
   if (para) {
     para.classList.add('visible');
-    artBody._currentPara = next;
-    // Update progress label
-    const prog = document.getElementById('artProgress');
-    if (prog) prog.textContent = `Paragraph ${next + 1} of ${artBody._totalParas}`;
-    // Smooth scroll to new paragraph inside modal
     para.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const prog = document.getElementById('artProgress');
+    if (prog) prog.textContent = `Paragraph ${_currentPara + 1} of ${_totalParas}`;
   }
-  // Hide button if all paragraphs shown
-  if (next >= (artBody._totalParas || 0) - 1) {
+  if (_currentPara >= _totalParas - 1) {
     const wrap = document.getElementById('artReadMoreWrap');
     if (wrap) wrap.style.display = 'none';
   }
