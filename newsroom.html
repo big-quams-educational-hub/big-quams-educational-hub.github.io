@@ -254,7 +254,108 @@ footer a { color: var(--orange); text-decoration: none; font-weight: 600; }
 .news-card-img-wrap { margin: -16px -16px 12px; overflow: hidden; border-radius: 12px 12px 0 0; }
 @media(min-width:600px) { .news-card-img-wrap { margin: -20px -20px 14px; } }
 .news-card-img-wrap img { width: 100%; height: 160px; object-fit: cover; display: block; }
-.news-card-img-ph { width: 100%; height: 100px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #f0f5ff, #dbeafe); font-size: 2rem; }
+
+/* NO-IMAGE CARD PLACEHOLDER — brand logo banner */
+.news-card-img-ph {
+  margin: -16px -16px 12px; border-radius: 12px 12px 0 0; overflow: hidden;
+  height: 110px; display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 60%, #2563eb 100%);
+  position: relative;
+}
+@media(min-width:600px) { .news-card-img-ph { margin: -20px -20px 14px; } }
+.news-card-img-ph img {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 2.5px solid rgba(255,255,255,0.35); object-fit: cover;
+}
+.news-card-img-ph span {
+  font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 800;
+  color: rgba(255,255,255,0.75); letter-spacing: 0.3px; max-width: 120px; line-height: 1.3;
+}
+.news-card-img-ph::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 80% 50%, rgba(249,115,22,0.15), transparent 60%);
+}
+
+/* NATIVE / CUSTOM SHARE SHEET */
+.share-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(10,20,60,0.5); backdrop-filter: blur(4px);
+  z-index: 900; align-items: flex-end; justify-content: center;
+}
+.share-overlay.open { display: flex; }
+.share-sheet {
+  background: white; width: 100%; max-width: 480px;
+  border-radius: 20px 20px 0 0;
+  padding: 12px 0 32px;
+  animation: sheetUp 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+  box-shadow: 0 -8px 40px rgba(10,20,60,0.2);
+}
+@keyframes sheetUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.share-sheet-handle {
+  width: 40px; height: 4px; background: #e2e8f0; border-radius: 4px;
+  margin: 0 auto 14px;
+}
+.share-sheet-title {
+  font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px;
+  padding: 0 20px 10px; border-bottom: 1px solid var(--border);
+}
+/* URL preview row */
+.share-url-row {
+  display: flex; align-items: center; gap: 8px;
+  margin: 12px 16px 4px;
+  background: #f8faff; border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 9px 12px;
+}
+.share-url-row span {
+  flex: 1; font-size: 0.78rem; color: var(--muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: 'Roboto', sans-serif;
+}
+.share-url-copy {
+  background: var(--blue); color: white; border: none;
+  padding: 6px 14px; border-radius: 7px; font-size: 0.76rem;
+  font-weight: 700; cursor: pointer; font-family: 'Roboto', sans-serif;
+  flex-shrink: 0; transition: 0.2s;
+}
+.share-url-copy:hover { background: var(--blue-dk); }
+/* Platform grid */
+.share-platforms {
+  display: flex; gap: 0; padding: 16px 8px 4px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.share-platform-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  min-width: 72px; padding: 8px 6px; background: none; border: none;
+  cursor: pointer; border-radius: 12px; transition: background 0.15s;
+  font-family: 'Roboto', sans-serif;
+}
+.share-platform-btn:hover { background: var(--light); }
+.share-platform-icon {
+  width: 46px; height: 46px; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.45rem;
+}
+.share-platform-label { font-size: 0.69rem; font-weight: 600; color: var(--text); }
+.share-cancel {
+  display: block; width: calc(100% - 32px); margin: 10px 16px 0;
+  padding: 12px; background: #f1f5f9; border: none; border-radius: 12px;
+  font-size: 0.9rem; font-weight: 700; font-family: 'Montserrat', sans-serif;
+  color: var(--muted); cursor: pointer; transition: 0.2s;
+}
+.share-cancel:hover { background: #e2e8f0; }
+
+/* dark mode share sheet */
+body.dark .share-sheet { background: #1a2540; }
+body.dark .share-sheet-title { color: #64748b; border-color: #2d3f6b; }
+body.dark .share-url-row { background: #0f172a; border-color: #2d3f6b; }
+body.dark .share-url-row span { color: #64748b; }
+body.dark .share-platform-label { color: #e2e8f0; }
+body.dark .share-platform-btn:hover { background: rgba(255,255,255,0.07); }
+body.dark .share-cancel { background: #0f172a; color: #64748b; }
 
 /* ARTICLE IMAGE */
 .article-img { width: 100%; max-height: 240px; object-fit: cover; display: block; }
@@ -280,14 +381,6 @@ footer a { color: var(--orange); text-decoration: none; font-weight: 600; }
 /* ARTICLE FOOTER */
 .article-footer { padding: 10px 16px 18px; display: flex; gap: 8px; flex-wrap: wrap; }
 @media(min-width:500px) { .article-footer { padding: 12px 22px 22px; } }
-.btn-share-article {
-  flex: 1; background: #25d366; color: white; border: none;
-  padding: 11px; border-radius: 8px;
-  font-family: 'Montserrat', sans-serif; font-weight: 700;
-  font-size: 0.88rem; cursor: pointer; transition: 0.2s;
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-}
-.btn-share-article:hover { background: #20bd5a; }
 
 
 /* DARK MODE (synced with homepage) */
@@ -312,6 +405,61 @@ body.dark .back-btn-link, body.dark .page-nav-link { background: rgba(255,255,25
 .nb-allow:hover { background: #20bd5a; }
 .nb-dismiss { background: rgba(255,255,255,0.15); color: white; border: none; padding: 7px 10px; border-radius: 7px; font-size: 0.78rem; cursor: pointer; }
 
+/* READ MORE IN MODAL */
+.art-para { display: none; }
+.art-para.visible { display: block; }
+.art-read-more-wrap { padding: 4px 0 12px; display: flex; align-items: center; gap: 12px; }
+.btn-art-read-more {
+  background: none; border: 1.5px solid var(--blue); color: var(--blue);
+  padding: 7px 18px; border-radius: 20px; font-size: 0.82rem;
+  font-weight: 700; cursor: pointer; font-family: 'Roboto', sans-serif;
+  transition: 0.2s;
+}
+.btn-art-read-more:hover { background: var(--blue); color: white; }
+
+/* PARAGRAPH PROGRESS INDICATOR */
+.art-progress {
+  font-size: 0.74rem; color: var(--muted); font-weight: 600;
+  white-space: nowrap; font-family: 'Roboto', sans-serif;
+}
+
+/* SHARE BUTTONS IN ARTICLE FOOTER */
+.btn-share-article {
+  flex: 1; background: #1a3fa8; color: white; border: none;
+  padding: 11px; border-radius: 8px;
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 0.88rem; cursor: pointer; transition: 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btn-share-article:hover { background: #102880; }
+.btn-wa-share {
+  flex: 1; background: #25d366; color: white; border: none;
+  padding: 11px; border-radius: 8px;
+  font-family: 'Montserrat', sans-serif; font-weight: 700;
+  font-size: 0.88rem; cursor: pointer; transition: 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.btn-wa-share:hover { background: #20bd5a; }
+body.dark .art-progress { color: #64748b; }
+
+/* LINKS IN ARTICLE BODY */
+.article-body a { color: var(--blue); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: var(--orange); }
+
+/* COPY TOAST */
+#copyToast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: #0f172a; color: white; padding: 10px 22px; border-radius: 30px;
+  font-size: 0.85rem; font-weight: 600; font-family: 'Roboto', sans-serif;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25); z-index: 9999;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s;
+}
+#copyToast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* SHARE BUTTON UPDATED STYLE */
+.btn-share-news { background: var(--light); color: var(--blue); }
+.btn-share-news:hover { background: #dbeafe; }
+
 </style>
 
   <!-- Dynamic OG meta for news sharing -->
@@ -323,16 +471,6 @@ body.dark .back-btn-link, body.dark .page-nav-link { background: rgba(255,255,25
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" id="twTitle" content="BIG QUAMS MEDIA® Newsroom">
   <meta name="twitter:description" id="twDesc" content="Latest news for Nigerian students.">
-  <meta name="twitter:image" id="twImage" content="https://i.imgur.com/lYJXUyY.jpeg">
-  <!-- Dynamic OG meta (updated per article) -->
-  <meta property="og:title" id="ogTitle" content="BIG QUAMS MEDIA® Newsroom">
-  <meta property="og:description" id="ogDesc" content="Latest news and updates for Nigerian students">
-  <meta property="og:image" id="ogImage" content="https://i.imgur.com/lYJXUyY.jpeg">
-  <meta property="og:url" id="ogUrl" content="https://big-quams-educational-hub.github.io/newsroom.html">
-  <meta property="og:type" content="article">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" id="twTitle" content="BIG QUAMS MEDIA® Newsroom">
-  <meta name="twitter:description" id="twDesc" content="Latest news for Nigerian students">
   <meta name="twitter:image" id="twImage" content="https://i.imgur.com/lYJXUyY.jpeg">
 </head>
 <body>
@@ -409,8 +547,25 @@ body.dark .back-btn-link, body.dark .page-nav-link { background: rgba(255,255,25
     <div class="article-body" id="artBody"></div>
     <div class="article-action-btns" id="artActionBtns"></div>
     <div class="article-footer">
-      <button class="btn-share-article" id="artShareBtn">📤 Share this Article</button>
+      <button class="btn-share-article" id="artShareBtn">↑ Share Article</button>
     </div>
+  </div>
+</div>
+
+<!-- COPY TOAST -->
+<div id="copyToast">✅ Link copied!</div>
+
+<!-- CUSTOM SHARE SHEET (desktop fallback) -->
+<div class="share-overlay" id="shareOverlay" onclick="if(event.target===this)closeShareSheet()">
+  <div class="share-sheet" id="shareSheet">
+    <div class="share-sheet-handle"></div>
+    <div class="share-sheet-title">Share Article</div>
+    <div class="share-url-row">
+      <span id="shareUrlText"></span>
+      <button class="share-url-copy" onclick="copyShareUrl()">Copy</button>
+    </div>
+    <div class="share-platforms" id="sharePlatforms"></div>
+    <button class="share-cancel" onclick="closeShareSheet()">Cancel</button>
   </div>
 </div>
 
@@ -466,22 +621,29 @@ function renderNews(items) {
 
   grid.innerHTML = sorted.map(item => {
     const realIdx = allNews.indexOf(item); // stable index into allNews
+    // Show only first paragraph as card summary
+    const fullText = item.summary || item.description || '';
+    const firstPara = fullText.split('\n').map(p => p.trim()).filter(Boolean)[0] || fullText;
+    const cardSummary = firstPara.length > 160 ? firstPara.slice(0, 157) + '…' : firstPara;
     return `
     <div class="news-card${item.pinned ? ' pinned-card' : ''}" onclick="openArticle(${realIdx === -1 ? "'"+item.title.replace(/'/g,"\'"  )+"'" : realIdx})">
       ${item.pinned ? '<div class="pin-label">📌 Pinned</div>' : ''}
       ${item.image
         ? `<div class="news-card-img-wrap"><img src="${item.image}" alt="${item.title}" loading="lazy"></div>`
-        : ''}
+        : `<div class="news-card-img-ph">
+            <img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Big Quams Media">
+            <span>BIG QUAMS MEDIA®</span>
+           </div>`}
       <div class="news-meta">
         <span class="category-label">${item.category || 'News'}</span>
         <span class="date-label">${item.date || ''}</span>
       </div>
       <h3>${item.title}</h3>
-      <div class="summary">${item.summary || item.description}</div>
+      <div class="summary">${cardSummary}</div>
       ${item.author ? `<div style="font-size:0.71rem;color:var(--muted);margin-bottom:8px;font-weight:500;">✍️ ${item.author}</div>` : ''}
       <div class="news-actions">
         <button class="btn-read-full" onclick="event.stopPropagation(); openArticle(${realIdx})">Read More</button>
-        <button class="btn-share-news" onclick="event.stopPropagation(); shareArticle(${realIdx})">🔗 Share</button>
+        <button class="btn-share-news" onclick="event.stopPropagation(); shareArticle(${realIdx})">↑ Share</button>
       </div>
     </div>`;
   }).join('');
@@ -503,6 +665,11 @@ function filterNews() {
   renderNews(filtered);
 }
 
+function linkifyText(text) {
+  // Convert URLs in plain text to clickable anchor tags
+  return text.replace(/(https?:\/\/[^\s<>"]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+}
+
 function openArticle(index) {
   // Use direct allNews index for reliability (avoids pin/filter mismatch)
   const item = allNews[index];
@@ -518,11 +685,27 @@ function openArticle(index) {
   if (item.image) { artImg.src = item.image; artImg.style.display = 'block'; }
   else { artImg.style.display = 'none'; }
 
-  // Full content
+  // Full content — paragraph-by-paragraph progressive reveal
   const fullText = item.fullContent || item.description || 'Full article coming soon.';
-  document.getElementById('artBody').innerHTML = fullText
-    .split('\n').filter(p => p.trim())
-    .map(p => `<p>${p.trim()}</p>`).join('');
+  const paragraphs = fullText.split('\n').map(p => p.trim()).filter(Boolean);
+  const artBody = document.getElementById('artBody');
+
+  if (paragraphs.length <= 1) {
+    artBody.innerHTML = `<p>${linkifyText(paragraphs[0] || fullText)}</p>`;
+  } else {
+    let html = '';
+    paragraphs.forEach((p, i) => {
+      html += `<p class="art-para${i === 0 ? ' visible' : ''}" data-para="${i}">${linkifyText(p)}</p>`;
+    });
+    // Read more button + progress indicator
+    html += `<div class="art-read-more-wrap" id="artReadMoreWrap">
+      <button class="btn-art-read-more" id="btnArtReadMore" onclick="showNextPara()">Read More ▼</button>
+      <span class="art-progress" id="artProgress">Paragraph 1 of ${paragraphs.length}</span>
+    </div>`;
+    artBody.innerHTML = html;
+    artBody._currentPara = 0;
+    artBody._totalParas = paragraphs.length;
+  }
 
   // Action buttons (view + download only — share is always shown separately)
   const actionBtns = document.getElementById('artActionBtns');
@@ -532,14 +715,35 @@ function openArticle(index) {
   if (acts.downloadUrl) btns += `<a href="${acts.downloadUrl}" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-download">⬇️ Download</a>`;
   actionBtns.innerHTML = btns;
 
-  // Share button
-  document.getElementById('artShareBtn').onclick = () => shareArticle(allNews.indexOf(item));
+  const idx = allNews.indexOf(item);
+  // Share button — native share sheet on mobile, custom on desktop
+  document.getElementById('artShareBtn').onclick = () => shareArticle(idx);
 
   updatePageMeta(item);
   // Update OG meta + URL for sharing
   updateOGMeta(item, allNews.indexOf(item));
   document.getElementById('articleOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
+}
+
+function showNextPara() {
+  const artBody = document.getElementById('artBody');
+  const next = (artBody._currentPara || 0) + 1;
+  const para = artBody.querySelector(`[data-para="${next}"]`);
+  if (para) {
+    para.classList.add('visible');
+    artBody._currentPara = next;
+    // Update progress label
+    const prog = document.getElementById('artProgress');
+    if (prog) prog.textContent = `Paragraph ${next + 1} of ${artBody._totalParas}`;
+    // Smooth scroll to new paragraph inside modal
+    para.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  // Hide button if all paragraphs shown
+  if (next >= (artBody._totalParas || 0) - 1) {
+    const wrap = document.getElementById('artReadMoreWrap');
+    if (wrap) wrap.style.display = 'none';
+  }
 }
 
 function closeArticle() {
@@ -553,18 +757,90 @@ function handleArticleOverlay(e) {
   if (e.target === document.getElementById('articleOverlay')) closeArticle();
 }
 
+const BRAND_LOGO = 'https://i.imgur.com/lYJXUyY.jpeg';
+
+function getArticleUrl(item) {
+  const slug = encodeURIComponent(item.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''));
+  return 'https://big-quams-educational-hub.github.io/newsroom.html#' + slug;
+}
+
 function shareArticle(index) {
   const item = allNews[index];
   if (!item) return;
-  // Generate slug from title for unique URL
-  const slug = encodeURIComponent(item.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''));
-  const articleUrl = 'https://big-quams-educational-hub.github.io/newsroom.html#' + slug;
-  const text = item.title + '\n\n' + (item.summary || '').slice(0, 120) + '…\n\nRead full article: ' + articleUrl;
+  const url = getArticleUrl(item);
+  const title = item.title;
+  const text = (item.summary || '').split('\n')[0].slice(0, 100);
+
+  // On mobile, try native share sheet first
   if (navigator.share) {
-    navigator.share({ title: item.title, text, url: articleUrl });
-  } else {
-    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+    navigator.share({ title, text, url }).catch(() => {});
+    return;
   }
+  // Desktop: open custom share sheet
+  openShareSheet(url, title, text, item.image || BRAND_LOGO);
+}
+
+let _shareUrl = '';
+
+function openShareSheet(url, title, text, img) {
+  _shareUrl = url;
+  document.getElementById('shareUrlText').textContent = url;
+
+  const platforms = [
+    { label: 'WhatsApp', icon: '🟢', color: '#25d366',
+      href: `https://wa.me/?text=${encodeURIComponent(title+'\n\n'+text+'\n\n'+url)}` },
+    { label: 'Telegram', icon: '✈️', color: '#229ED9',
+      href: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}` },
+    { label: 'X / Twitter', icon: '✖', color: '#000',
+      href: `https://x.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}` },
+    { label: 'Facebook', icon: '🔵', color: '#1877F2',
+      href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}` },
+    { label: 'LinkedIn', icon: '💼', color: '#0A66C2',
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}` },
+    { label: 'Email', icon: '📧', color: '#6366f1',
+      href: `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(text+'\n\n'+url)}` },
+  ];
+
+  document.getElementById('sharePlatforms').innerHTML = platforms.map(p => `
+    <button class="share-platform-btn" onclick="window.open('${p.href}','_blank');closeShareSheet()">
+      <div class="share-platform-icon" style="background:${p.color}20;color:${p.color}">${p.icon}</div>
+      <span class="share-platform-label">${p.label}</span>
+    </button>
+  `).join('');
+
+  document.getElementById('shareOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeShareSheet() {
+  document.getElementById('shareOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function copyShareUrl() {
+  if (!_shareUrl) return;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(_shareUrl).then(() => showCopyToast()).catch(() => fallbackCopy(_shareUrl));
+  } else {
+    fallbackCopy(_shareUrl);
+  }
+}
+
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+  document.body.appendChild(ta);
+  ta.focus(); ta.select();
+  try { document.execCommand('copy'); showCopyToast(); } catch {}
+  document.body.removeChild(ta);
+}
+
+function showCopyToast() {
+  const toast = document.getElementById('copyToast');
+  if (!toast) return;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2400);
 }
 
 function updatePageMeta(item) {
