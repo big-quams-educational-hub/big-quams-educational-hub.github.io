@@ -294,6 +294,52 @@ footer a{color:var(--orange);text-decoration:none;font-weight:600;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 @keyframes modalIn{from{opacity:0;transform:scale(0.88) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
 
+/* LANDING AUTH PANEL */
+.landing-auth{background:white;border:1.5px solid var(--border);border-radius:16px;padding:24px;margin-bottom:24px;box-shadow:0 4px 20px rgba(26,63,168,0.07);}
+body.dark .landing-auth{background:#1a2540;border-color:#2d3f6b;}
+.landing-auth-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--blue-dk);margin-bottom:4px;}
+body.dark .landing-auth-title{color:#bfdbfe;}
+.landing-auth-sub{font-size:0.8rem;color:var(--muted);margin-bottom:16px;}
+.landing-auth-row{display:grid;grid-template-columns:1fr;gap:10px;}
+@media(min-width:540px){.landing-auth-row{grid-template-columns:1fr 1fr;}}
+.landing-auth-input{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:8px;font-size:0.88rem;font-family:'Roboto',sans-serif;color:var(--text);background:#fafafa;transition:border-color 0.2s;box-sizing:border-box;}
+body.dark .landing-auth-input{background:#0f172a;color:var(--text);border-color:#2d3f6b;}
+.landing-auth-input:focus{outline:none;border-color:var(--blue);background:white;}
+.landing-auth-btns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;}
+.landing-signin-btn{flex:1;min-width:120px;background:var(--blue);color:white;border:none;border-radius:8px;padding:11px 16px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.85rem;cursor:pointer;transition:0.2s;}
+.landing-signin-btn:hover{background:var(--blue-dk);}
+.landing-signin-btn:disabled{opacity:0.6;cursor:not-allowed;}
+.landing-google-btn{flex:1;min-width:120px;background:white;color:#374151;border:1.5px solid #dadce0;border-radius:8px;padding:10px 14px;font-family:'Roboto',sans-serif;font-weight:700;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:0.2s;}
+body.dark .landing-google-btn{background:#1e3a6e;color:#e2e8f0;border-color:#2d3f6b;}
+.landing-google-btn:hover{box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+.landing-auth-toggle{font-size:0.76rem;color:var(--muted);text-align:center;margin-top:10px;}
+.landing-auth-toggle button{background:none;border:none;color:var(--blue);font-weight:600;cursor:pointer;font-size:0.76rem;font-family:'Roboto',sans-serif;}
+.landing-auth-error{font-size:0.76rem;color:#dc2626;margin-bottom:8px;display:none;}
+.landing-auth-error.show{display:block;}
+.landing-auth-success{font-size:0.76rem;color:#16a34a;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:7px 10px;margin-bottom:8px;display:none;}
+.landing-auth-success.show{display:block;}
+/* PREVIEW MODE */
+.preview-banner{background:linear-gradient(135deg,#eff6ff,#dbeafe);border:1.5px solid #bfdbfe;border-radius:12px;padding:14px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+body.dark .preview-banner{background:#1e3a6e;border-color:#2d3f6b;}
+.preview-banner-text{flex:1;font-size:0.82rem;color:var(--blue-dk);line-height:1.5;}
+body.dark .preview-banner-text{color:#bfdbfe;}
+.preview-banner-text strong{font-family:'Montserrat',sans-serif;font-weight:800;display:block;margin-bottom:2px;}
+.preview-cta-btn{background:var(--blue);color:white;border:none;padding:9px 15px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.78rem;cursor:pointer;white-space:nowrap;}
+.preview-gate-msg{font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:800;color:var(--blue-dk);margin-bottom:6px;}
+body.dark .preview-gate-msg{color:#bfdbfe;}
+.preview-gate-sub{font-size:0.78rem;color:var(--muted);margin-bottom:14px;}
+.preview-gate-btn{background:var(--blue);color:white;border:none;padding:12px 28px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.9rem;cursor:pointer;transition:0.2s;}
+.preview-gate-btn:hover{background:var(--blue-dk);}
+/* AUTH ATTENTION PULSE */
+@keyframes authPulse {
+  0%   { box-shadow: 0 4px 20px rgba(26,63,168,0.07); transform: scale(1); }
+  30%  { box-shadow: 0 0 0 6px rgba(26,63,168,0.18), 0 8px 32px rgba(26,63,168,0.18); transform: scale(1.012); }
+  60%  { box-shadow: 0 0 0 3px rgba(26,63,168,0.10), 0 6px 24px rgba(26,63,168,0.12); transform: scale(1.005); }
+  100% { box-shadow: 0 4px 20px rgba(26,63,168,0.07); transform: scale(1); }
+}
+.landing-auth.attract { animation: authPulse 0.9s ease-out forwards; }
+.landing-auth-title.attract-title { color: var(--blue); }
+
 /* SETUP SCREEN HIDDEN STATE */
 #setupScreen.hidden { display: none; }
 
@@ -416,11 +462,42 @@ footer a{color:var(--orange);text-decoration:none;font-weight:600;}
 <section style="background:var(--bg);">
   <div class="container">
 
-    <!-- LOGIN PROMPT FOR GUESTS -->
-    <div class="login-banner" id="guestBanner" style="display:none;">
-      <span style="font-size:1.4rem;">🔒</span>
-      <p>Sign in to save your scores to the leaderboard and track your progress over time.</p>
-      <button onclick="openAuth()">Sign In</button>
+    <!-- LANDING AUTH PANEL — guests only -->
+    <div id="guestBanner">
+      <div class="landing-auth" id="landingAuthPanel">
+        <div class="landing-auth-title">🎓 Sign in to unlock full access</div>
+        <div class="landing-auth-sub">Save scores · Appear on leaderboard · Track your progress</div>
+        <button class="landing-google-btn" style="width:100%;margin-bottom:10px;" onclick="signInGoogle()">
+          <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z"/><path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z"/><path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 010-3.04V5.41H1.83a8 8 0 000 7.18l2.67-2.07z"/><path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 001.83 5.4L4.5 7.49a4.77 4.77 0 014.48-3.3z"/></svg>
+          Continue with Google
+        </button>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+          <span style="font-size:0.72rem;color:var(--muted);">or email</span>
+          <div style="flex:1;height:1px;background:var(--border);"></div>
+        </div>
+        <div class="landing-auth-error" id="landingError"></div>
+        <div class="landing-auth-success" id="landingSuccess"></div>
+        <div id="landingRegName" style="display:none;margin-bottom:8px;">
+          <input type="text" class="landing-auth-input" id="landingName" placeholder="Your full name" autocomplete="name">
+        </div>
+        <div class="landing-auth-row">
+          <input type="email" class="landing-auth-input" id="landingEmail" placeholder="Email address" autocomplete="email">
+          <div style="position:relative;">
+            <input type="password" class="landing-auth-input" id="landingPassword" placeholder="Password" autocomplete="current-password" style="padding-right:38px;">
+            <button type="button" onclick="togglePwd('landingPassword',this)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:0.9rem;color:var(--muted);">👁</button>
+          </div>
+        </div>
+        <div class="landing-auth-btns">
+          <button class="landing-signin-btn" id="landingSubmitBtn" onclick="landingAuth()">Sign In</button>
+        </div>
+        <div class="landing-auth-toggle">
+          <span id="landingToggleText">No account?</span>
+          <button onclick="toggleLandingMode()" id="landingToggleBtn">Register free</button>
+          &nbsp;·&nbsp;
+          <button onclick="landingForgot()" id="landingForgotBtn">Forgot password?</button>
+        </div>
+      </div>
     </div>
 
     <!-- TAB BAR -->
@@ -437,7 +514,15 @@ footer a{color:var(--orange);text-decoration:none;font-weight:600;}
       <div id="setupScreen">
         <div class="section-label" style="margin-bottom:8px;">Choose Your Subject</div>
         <h2 class="section-title" style="font-size:1.3rem;margin-bottom:6px;">What are you practicing today?</h2>
-        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:20px;">Select a subject to begin. New questions are added regularly by Big Quams Media.</p>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px;">Select a subject to begin. New questions are added regularly by Big Quams Media.</p>
+        <div class="preview-banner" id="previewBanner">
+          <span style="font-size:1.5rem;">👀</span>
+          <div class="preview-banner-text">
+            <strong>Preview Mode</strong>
+            You're viewing 3 sample questions. Sign in for full timed sessions, score saving &amp; the leaderboard.
+          </div>
+          <button class="preview-cta-btn" onclick="scrollToAuth()">Sign In ↑</button>
+        </div>
 
         <div class="subject-grid" id="subjectGrid">
           <!-- Rendered by JS -->
@@ -479,6 +564,10 @@ footer a{color:var(--orange);text-decoration:none;font-weight:600;}
           <span class="timer-display" id="timerDisplay">⏱ —</span>
           <button class="quiz-exit-btn" onclick="exitQuiz()" title="Exit quiz">✕ Exit</button>
         </div>
+        <div id="quizPreviewIndicator" style="display:none;background:#fff7ed;border-bottom:1px solid #fed7aa;padding:7px 16px;font-size:0.76rem;font-weight:700;color:#92400e;align-items:center;gap:8px;">
+          <span>👀 Preview — 3 questions only.</span>
+          <button onclick="exitQuiz();setTimeout(scrollToAuth,300);" style="background:var(--orange);color:white;border:none;padding:4px 12px;border-radius:6px;font-size:0.72rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;">Sign in for full access</button>
+        </div>
         <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill" style="width:0%"></div></div>
         <div class="quiz-body">
           <div class="question-num" id="questionNum">Question 1</div>
@@ -495,6 +584,18 @@ footer a{color:var(--orange);text-decoration:none;font-weight:600;}
           <div class="q-nav-title">Question Navigator</div>
           <div class="q-nav-grid" id="qNavGrid"></div>
         </div>
+      </div>
+
+      <!-- PREVIEW GATE OVERLAY — shown to guests after preview quiz -->
+      <div id="previewGateOverlay" style="display:none;padding:32px 16px;text-align:center;">
+        <div style="font-size:3rem;margin-bottom:12px;">🔒</div>
+        <div class="preview-gate-msg">Want to see your full score and review?</div>
+        <p id="previewScoreTeaser" style="font-size:0.82rem;color:var(--muted);margin-bottom:6px;"></p>
+        <p class="preview-gate-sub">Create a free account to unlock full timed sessions, score saving, and the leaderboard.</p>
+        <button class="preview-gate-btn" onclick="document.getElementById('previewGateOverlay').style.display='none';scrollToAuth();">🎓 Create Free Account</button>
+        <p style="margin-top:12px;font-size:0.76rem;color:var(--muted);">Already have an account?
+          <button onclick="document.getElementById('previewGateOverlay').style.display='none';scrollToAuth();" style="background:none;border:none;color:var(--blue);cursor:pointer;font-weight:600;font-size:0.76rem;">Sign in →</button>
+        </p>
       </div>
 
       <!-- RESULT SCREEN (shown after quiz) -->
@@ -608,44 +709,9 @@ footer a{color:var(--orange);text-decoration:none;font-weight:600;}
 <div id="toast-container"></div>
 
 <!-- FIREBASE -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
-         GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult,
-         sendEmailVerification, sendPasswordResetEmail,
-         signOut as fbSignOut, onAuthStateChanged, updateProfile
-       } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, collection, addDoc, getDocs, query, orderBy,
-         limit, where, doc, getDoc, setDoc, updateDoc, increment,
-         serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ",
-  authDomain: "big-quams-media.firebaseapp.com",
-  projectId: "big-quams-media",
-  storageBucket: "big-quams-media.firebasestorage.app",
-  messagingSenderId: "383186323859",
-  appId: "1:383186323859:web:826d6b9977cfa947730066"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const googleProvider = new GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: 'select_account' });
-
-// Handle redirect result on page load (mobile/blocked-popup fallback)
-getRedirectResult(auth).then(result => {
-  if (result?.user) {
-    closeAuth();
-    showToast('✅ Signed in with Google!');
-  }
-}).catch(e => {
-  if (e.code !== 'auth/no-auth-event') console.warn('Redirect result error:', e);
-});
-
+<script>
 // ── QUESTION BANK (built-in fallback + Firestore) ──
-const builtInQuestions = {
+var builtInQuestions = {
   english: [
     { q:"Which of the following sentences is grammatically correct?", opts:["The news are bad today","Each of the boys have done their work","The cattle is grazing in the field","The scissors are on the table"], ans:3, exp:"'Scissors' is a plural noun with no singular form and always takes a plural verb. 'News', 'cattle' are treated differently — news is singular, cattle is plural." },
     { q:"Choose the word that is closest in meaning to 'EPHEMERAL':", opts:["Permanent","Fleeting","Ancient","Significant"], ans:1, exp:"Ephemeral means lasting for only a short time — synonymous with 'fleeting'." },
@@ -785,25 +851,25 @@ const builtInQuestions = {
 };
 
 // Flatten with subject tag
-const allQuestions = {};
+var allQuestions = {};
 Object.entries(builtInQuestions).forEach(([sub, qs]) => {
   allQuestions[sub] = qs.map((q,i) => ({...q, id:`${sub}_${i}`, subject:sub}));
 });
 
 // ── STATE ──
-let currentUser = null;
-let currentSubject = null;
-let sessionQuestions = [];
-let userAnswers = [];
-let currentQ = 0;
-let timerInterval = null;
-let timeLeft = 0;
-let totalTime = 0;
-let quizSubmitted = false;
-let lastScore = null;
+var currentUser = null;
+var currentSubject = null;
+var sessionQuestions = [];
+var userAnswers = [];
+var currentQ = 0;
+var timerInterval = null;
+var timeLeft = 0;
+var totalTime = 0;
+var quizSubmitted = false;
+var lastScore = null;
 
 // ── SUBJECTS CONFIG ──
-const subjects = [
+var subjects = [
   { key:'english', label:'Use of English', icon:'📖', color:'#1a3fa8' },
   { key:'maths',   label:'Mathematics',    icon:'🔢', color:'#16a34a' },
   { key:'biology', label:'Biology',        icon:'🧬', color:'#059669' },
@@ -813,6 +879,64 @@ const subjects = [
   { key:'economics',label:'Economics',     icon:'📈', color:'#0284c7' },
   { key:'government',label:'Government',   icon:'🏛️', color:'#6d28d9' },
 ];
+
+// ── RENDER SUBJECT GRID IMMEDIATELY (no Firebase needed) ──
+function renderSubjectGrid() {
+  var grid = document.getElementById('subjectGrid');
+  if (!grid) return;
+  grid.innerHTML = subjects.map(function(s) {
+    var count = allQuestions[s.key] ? allQuestions[s.key].length : 0;
+    return '<div class="subject-card" onclick="selectSubject(\''+s.key+'\',this)" id="sc-'+s.key+'">'
+      + '<div class="subject-icon">'+s.icon+'</div>'
+      + '<h4>'+s.label+'</h4>'
+      + '<div class="subject-count">'+count+' questions</div>'
+      + '</div>';
+  }).join('');
+  var hq = document.getElementById('heroQCount');
+  if (hq) hq.textContent = Object.values(allQuestions).reduce(function(a,b){return a+b.length;},0)+'+';
+}
+document.addEventListener('DOMContentLoaded', function() {
+  renderSubjectGrid();
+});
+var landingMode = 'login';
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
+         GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult,
+         sendEmailVerification, sendPasswordResetEmail,
+         signOut as fbSignOut, onAuthStateChanged, updateProfile
+       } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy,
+         limit, where, doc, getDoc, setDoc, updateDoc, increment,
+         serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ",
+  authDomain: "big-quams-media.firebaseapp.com",
+  projectId: "big-quams-media",
+  storageBucket: "big-quams-media.firebasestorage.app",
+  messagingSenderId: "383186323859",
+  appId: "1:383186323859:web:826d6b9977cfa947730066"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({ prompt: 'select_account' });
+
+// Handle redirect result on page load (mobile/blocked-popup fallback)
+getRedirectResult(auth).then(result => {
+  if (result?.user) {
+    closeAuth();
+    showToast('✅ Signed in with Google!');
+  }
+}).catch(e => {
+  if (e.code !== 'auth/no-auth-event') console.warn('Redirect result error:', e);
+});
+
 
 // ── AUTH STATE ──
 onAuthStateChanged(auth, user => {
@@ -828,6 +952,10 @@ function updateUserUI() {
     guestBanner.style.display = 'none';
     profileGuest.style.display = 'none';
     profileUser.style.display = 'block';
+    const pBanner = document.getElementById('previewBanner');
+    if (pBanner) pBanner.style.display = 'none';
+    const gateEl = document.getElementById('previewGateOverlay');
+    if (gateEl) gateEl.style.display = 'none';
     const initials = (currentUser.displayName || currentUser.email || '?').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
     document.getElementById('profileName').textContent = currentUser.displayName || 'Student';
     document.getElementById('profileEmail').textContent = currentUser.email;
@@ -836,9 +964,28 @@ function updateUserUI() {
     else { av.textContent = initials; }
     loadUserStats();
   } else {
-    guestBanner.style.display = 'flex';
+    guestBanner.style.display = 'block';
     profileGuest.style.display = 'block';
     profileUser.style.display = 'none';
+    const pBanner = document.getElementById('previewBanner');
+    if (pBanner) pBanner.style.display = 'flex';
+    // First-visit attention tap — scroll to auth panel and pulse it once
+    if (!sessionStorage.getItem('bqm-auth-attracted')) {
+      sessionStorage.setItem('bqm-auth-attracted', '1');
+      setTimeout(() => {
+        const panel = document.getElementById('landingAuthPanel');
+        if (!panel) return;
+        panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Wait for scroll to land before pulsing
+        setTimeout(() => {
+          panel.classList.add('attract');
+          panel.querySelector('.landing-auth-title').classList.add('attract-title');
+          panel.addEventListener('animationend', () => {
+            panel.classList.remove('attract');
+          }, { once: true });
+        }, 500);
+      }, 1200); // slight delay so page settles first
+    }
   }
 }
 
@@ -869,6 +1016,96 @@ async function loadUserStats() {
 }
 
 // ── AUTH FUNCTIONS (exposed to window) ──
+// ── LANDING PAGE AUTH ──
+window.toggleLandingMode = () => {
+  landingMode = landingMode === 'login' ? 'register' : 'login';
+  const isReg = landingMode === 'register';
+  document.getElementById('landingRegName').style.display = isReg ? 'block' : 'none';
+  document.getElementById('landingSubmitBtn').textContent = isReg ? 'Create Account' : 'Sign In';
+  document.getElementById('landingToggleText').textContent = isReg ? 'Already registered?' : 'No account?';
+  document.getElementById('landingToggleBtn').textContent = isReg ? 'Sign in instead' : 'Register free';
+  document.getElementById('landingForgotBtn').style.display = isReg ? 'none' : '';
+  document.getElementById('landingPassword').autocomplete = isReg ? 'new-password' : 'current-password';
+  document.getElementById('landingError').classList.remove('show');
+  document.getElementById('landingSuccess').classList.remove('show');
+};
+
+window.landingAuth = async () => {
+  const email = document.getElementById('landingEmail').value.trim();
+  const pass  = document.getElementById('landingPassword').value;
+  const errEl = document.getElementById('landingError');
+  const sucEl = document.getElementById('landingSuccess');
+  const btn   = document.getElementById('landingSubmitBtn');
+  errEl.classList.remove('show'); sucEl.classList.remove('show');
+  if (!email) { errEl.textContent = 'Please enter your email address.'; errEl.classList.add('show'); return; }
+  if (!pass)  { errEl.textContent = 'Please enter your password.'; errEl.classList.add('show'); return; }
+  const errorMsgs = {
+    'auth/invalid-credential':    'Incorrect email or password.',
+    'auth/user-not-found':        'No account found. Click "Register free" to create one.',
+    'auth/wrong-password':        'Incorrect password. Try again or use Forgot password.',
+    'auth/email-already-in-use':  'Email already registered. Sign in instead.',
+    'auth/weak-password':         'Password must be at least 6 characters.',
+    'auth/invalid-email':         'Please enter a valid email address.',
+    'auth/too-many-requests':     'Too many attempts. Please wait a moment.',
+    'auth/network-request-failed':'No internet connection.',
+  };
+  btn.disabled = true;
+  btn.textContent = landingMode === 'login' ? 'Signing in…' : 'Creating account…';
+  try {
+    if (landingMode === 'login') {
+      await signInWithEmailAndPassword(auth, email, pass);
+      showToast('Welcome back!');
+    } else {
+      const name = document.getElementById('landingName').value.trim();
+      if (!name) { errEl.textContent = 'Please enter your full name.'; errEl.classList.add('show'); btn.disabled=false; btn.textContent='Create Account'; return; }
+      if (pass.length < 6) { errEl.textContent = 'Password must be at least 6 characters.'; errEl.classList.add('show'); btn.disabled=false; btn.textContent='Create Account'; return; }
+      const cred = await createUserWithEmailAndPassword(auth, email, pass);
+      await updateProfile(cred.user, { displayName: name });
+      currentUser = auth.currentUser;
+      await sendEmailVerification(cred.user);
+      updateUserUI();
+      showToast('Welcome! Check your email to verify your account.');
+    }
+  } catch(e) {
+    errEl.textContent = errorMsgs[e.code] || 'Something went wrong. Please try again.';
+    errEl.classList.add('show');
+  }
+  btn.disabled = false;
+  btn.textContent = landingMode === 'login' ? 'Sign In' : 'Create Account';
+};
+
+window.landingForgot = async () => {
+  const email = document.getElementById('landingEmail').value.trim();
+  const errEl = document.getElementById('landingError');
+  const sucEl = document.getElementById('landingSuccess');
+  errEl.classList.remove('show'); sucEl.classList.remove('show');
+  if (!email) {
+    errEl.textContent = 'Enter your email address above first.';
+    errEl.classList.add('show');
+    document.getElementById('landingEmail').focus();
+    return;
+  }
+  try {
+    await sendPasswordResetEmail(auth, email);
+    sucEl.textContent = 'Reset email sent! Check your inbox (and spam folder).';
+    sucEl.classList.add('show');
+  } catch(e) {
+    errEl.textContent = e.code === 'auth/user-not-found' ? 'No account found with this email.' : 'Could not send reset email. Try again.';
+    errEl.classList.add('show');
+  }
+};
+
+window.scrollToAuth = () => {
+  const el = document.getElementById('guestBanner');
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  const panel = document.getElementById('landingAuthPanel');
+  if (panel) {
+    panel.style.transition = 'box-shadow 0.4s';
+    panel.style.boxShadow = '0 0 0 3px rgba(26,63,168,0.4)';
+    setTimeout(() => { panel.style.boxShadow = ''; }, 1400);
+  }
+};
+
 window.togglePwd = (id, btn) => {
   const inp = document.getElementById(id);
   const show = inp.type === 'password';
@@ -1020,8 +1257,9 @@ window.signOut = async () => {
 // ── QUIZ LOGIC ──
 window.startQuiz = () => {
   if (!currentSubject) return;
-  const count = parseInt(document.getElementById('qCount').value);
-  const tpq   = parseInt(document.getElementById('timePerQ').value);
+  const isGuest = !currentUser;
+  const count = isGuest ? 3 : parseInt(document.getElementById('qCount').value);
+  const tpq   = isGuest ? 0 : parseInt(document.getElementById('timePerQ').value);
   const pool  = [...allQuestions[currentSubject]];
   // Shuffle
   for (let i = pool.length-1; i > 0; i--) {
@@ -1039,9 +1277,18 @@ window.startQuiz = () => {
   document.getElementById('quizScreen').classList.add('show');
 
   renderQuestion();
-  document.getElementById('whatsapp-float').style.display = 'none'; // hide during quiz
-  if (tpq > 0) startTimer(totalTime);
-  else document.getElementById('timerDisplay').textContent = '⏱ No limit';
+  document.getElementById('whatsapp-float').style.display = 'none';
+  const previewInd = document.getElementById('quizPreviewIndicator');
+  if (isGuest) {
+    if (previewInd) previewInd.style.display = 'flex';
+    document.getElementById('timerDisplay').textContent = '👀 Preview';
+    document.getElementById('timerDisplay').style.color = '#f97316';
+  } else {
+    if (previewInd) previewInd.style.display = 'none';
+    document.getElementById('timerDisplay').style.color = '';
+    if (tpq > 0) startTimer(totalTime);
+    else document.getElementById('timerDisplay').textContent = '⏱ No limit';
+  }
 };
 
 function renderQuestion() {
@@ -1173,6 +1420,18 @@ window.submitQuiz = async (force = false) => {
     } catch(e) { console.warn('Save score:', e); }
   }
 
+  // GUEST: show gate overlay instead of full result screen
+  if (!currentUser) {
+    document.getElementById('quizScreen').classList.remove('show');
+    document.getElementById('whatsapp-float').style.display = 'flex';
+    const gateEl = document.getElementById('previewGateOverlay');
+    if (gateEl) {
+      gateEl.style.display = 'block';
+      document.getElementById('previewScoreTeaser').textContent =
+        `You scored ${correct}/${sessionQuestions.length} on the preview — sign in to attempt the full session!`;
+    }
+    return;
+  }
   showResultScreen(correct, wrong, skipped, pct);
 };
 
@@ -1279,18 +1538,8 @@ window.loadLeaderboard = async () => {
 };
 
 // ── SETUP UI ──
-function renderSubjectGrid() {
-  const grid = document.getElementById('subjectGrid');
-  grid.innerHTML = subjects.map(s => {
-    const count = allQuestions[s.key]?.length || 0;
-    return `<div class="subject-card" onclick="selectSubject('${s.key}',this)" id="sc-${s.key}">
-      <div class="subject-icon">${s.icon}</div>
-      <h4>${s.label}</h4>
-      <div class="subject-count">${count} questions</div>
-    </div>`;
-  }).join('');
-  document.getElementById('heroQCount').textContent = Object.values(allQuestions).flat().length + '+';
-}
+// renderSubjectGrid defined in plain script above — call after Firestore merge
+function refreshSubjectGrid() { renderSubjectGrid(); }
 
 function updateTimeLimitHint() {
   const tpq = parseInt(document.getElementById('timePerQ').value);
@@ -1311,7 +1560,9 @@ window.selectSubject = (key, el) => {
   currentSubject = key;
   document.getElementById('startBtn').disabled = false;
   const available = allQuestions[key]?.length || 0;
-  document.getElementById('startHint').textContent = `Ready to practice ${subjects.find(s=>s.key===key)?.label} — ${available} questions available. Click Start!`;
+  const guestNote = !currentUser ? ' (preview: 3 questions)' : '';
+  document.getElementById('startHint').textContent = `Ready to practice ${subjects.find(s=>s.key===key)?.label} — ${available} questions available. Click Start!${guestNote}`;
+  document.getElementById('startBtn').textContent = !currentUser ? '👀 Preview 3 Questions' : '🚀 Start Practice Session';
   // Disable Q-count options that exceed available questions
   document.querySelectorAll('#qCount option').forEach(opt => {
     const val = parseInt(opt.value);
@@ -1382,7 +1633,7 @@ window.showToast = (msg) => {
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
 
 // ── INIT ──
-renderSubjectGrid();
+// (renderSubjectGrid called in DOMContentLoaded above)
 
 // Load additional questions from Firestore and merge with built-in
 (async function loadFirestoreQuestions() {
@@ -1402,7 +1653,7 @@ renderSubjectGrid();
     });
 
     // Refresh subject grid to show updated counts
-    renderSubjectGrid();
+    refreshSubjectGrid();
   } catch(e) {
     // Silently fail — built-in questions still work
     console.warn('[CBT] Firestore load skipped:', e.message);
