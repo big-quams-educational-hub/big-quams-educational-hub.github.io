@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Big Quams Media® | Your Admission Success Starts Here</title>
+<meta name="description" content="Big Quams Media® — Nigeria's #1 free student platform. JAMB prep, Post-UTME calculator, scholarship finder, free eLibrary and admission guides. Trusted by 10,000+ Nigerian students.">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<link rel="canonical" href="https://big-quams-educational-hub.github.io/">
+<meta property="og:title" content="Big Quams Media® | Your Admission Success Starts Here">
+<meta property="og:description" content="Nigeria's #1 free student hub — JAMB CBT, Post-UTME calculator, scholarships, eLibrary and campus news.">
+<meta property="og:image" content="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png">
+<meta property="og:url" content="https://big-quams-educational-hub.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Big Quams Media® | Your Admission Success Starts Here">
+<meta name="twitter:image" content="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a3fa8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png">
+<link rel="icon" type="image/jpeg" href="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--orange-dark:#e56b0f;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--text-faint:#94a3b8;--radius-sm:8px;--radius-md:14px;--radius-lg:20px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
+body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e;--text-faint:#64748b}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Roboto',sans-serif;background:#f5f7ff;color:var(--text-main);line-height:1.6;overflow-x:hidden}
+body.dark{background:#0d1117}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+
+/* NOTIFICATION BAR */
+.top-bar{background:#1a3fa8;color:#fff;padding:9px 16px;display:none;align-items:center;justify-content:space-between;gap:10px;font-size:.8rem;flex-wrap:wrap}
+.top-bar.show{display:flex}
+.top-bar-btns{display:flex;gap:8px}
+.top-bar-allow{background:#fff;color:#1a3fa8;border:none;padding:4px 12px;border-radius:4px;font-size:.75rem;font-weight:700;cursor:pointer}
+.top-bar-dismiss{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);padding:4px 10px;border-radius:4px;font-size:.75rem;cursor:pointer}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#0c1f6e 0%,#1a3fa8 100%);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4)}
+.header-bar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:62px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:38px;height:38px;border-radius:50%;border:2.5px solid #f97316;object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff;letter-spacing:.4px;text-transform:uppercase;display:block;line-height:1}
+.logo-sub{font-size:.55rem;color:rgba(255,255,255,.48);letter-spacing:.3px;white-space:nowrap;display:block;margin-top:1px}
+.main-nav{display:flex;align-items:center;gap:2px;margin-right:12px}
+.main-nav>a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:all .18s}
+.main-nav>a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.nav-cta{background:#f97316;color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important;margin-left:4px}
+.nav-cta:hover{background:#e56b0f!important}
+.hdr-right{display:flex;align-items:center;gap:8px}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;transition:all .18s;cursor:pointer}
+.hdr-btn:hover{background:rgba(255,255,255,.18);color:#fff}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center;padding:0}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s ease}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:900px){.main-nav{display:none!important}.hamburger{display:flex}.logo-sub{display:none}.hdr-right{margin-left:auto}}
+@media(min-width:901px){.hamburger{display:none!important}.mobile-nav{visibility:hidden!important}.nav-overlay{display:none!important}}
+
+/* MOBILE NAV */
+.mobile-nav{visibility:hidden;pointer-events:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1),visibility 0s linear .3s}
+.mobile-nav.open{visibility:visible;pointer-events:auto;transform:translateX(0);transition:transform .3s cubic-bezier(.4,0,.2,1),visibility 0s}
+.mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:62px}
+.mnav-logo{width:36px;height:36px;border-radius:50%;border:2px solid #f97316;object-fit:cover}
+.mnav-brand{display:flex;align-items:center;gap:10px}
+.mnav-bname{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.mnav-bsub{font-size:.58rem;color:rgba(255,255,255,.45);margin-top:1px}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav-quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px 16px;background:#0d1630;border-bottom:1px solid rgba(255,255,255,.06)}
+.mnav-quick-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 4px;text-align:center;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8);display:flex;flex-direction:column;align-items:center;gap:4px;line-height:1.2;transition:.18s}
+.mnav-quick-btn:hover{background:rgba(249,115,22,.18);color:#fff}
+.mnav-section{padding:14px 20px 6px;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1.6px;color:rgba(255,255,255,.22)}
+.mobile-nav>a{display:flex;align-items:center;gap:13px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.92rem;font-weight:500;border-bottom:1px solid rgba(255,255,255,.04);transition:all .18s}
+.mobile-nav>a:hover{background:rgba(255,255,255,.06);color:#fff;padding-left:26px}
+.mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px 20px!important;border-bottom:none!important;font-size:.9rem;gap:10px}
+.nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+
+/* TICKER */
+.ticker-bar{background:#1a3fa8;height:34px;overflow:hidden;display:none;align-items:center;border-bottom:1px solid rgba(255,255,255,.08)}
+.ticker-bar.show{display:flex}
+.ticker-tag{background:#f97316;color:#fff;padding:0 14px;height:100%;display:flex;align-items:center;font-size:.65rem;font-weight:800;white-space:nowrap;letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
+.ticker-scroll-wrap{flex:1;overflow:hidden}
+.ticker-track{display:flex;animation:scroll-ticker 70s linear infinite;width:max-content}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{padding:0 32px;font-size:.73rem;color:rgba(255,255,255,.7);white-space:nowrap;line-height:34px}
+.ticker-item::after{content:'•';margin-left:32px;color:rgba(255,255,255,.2)}
+@keyframes scroll-ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* HERO */
+.hero{background:linear-gradient(150deg,#081530 0%,#0f2060 40%,#1a3fa8 100%);padding:56px 16px 64px;position:relative;overflow:hidden;text-align:center}
+.hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+.hero-blob1{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.14) 0%,transparent 65%);top:-150px;right:-150px;pointer-events:none}
+.hero-blob2{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(26,63,168,.3) 0%,transparent 70%);bottom:-80px;left:-80px;pointer-events:none}
+.hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 14px;border-radius:30px;font-size:.75rem;font-weight:600;margin-bottom:20px}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:#f97316;animation:blink 1.4s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:14px;letter-spacing:-.5px}
+.hero h1 span{color:#f97316}
+.hero-desc{font-size:clamp(.88rem,2vw,1rem);color:rgba(255,255,255,.65);max-width:560px;margin:0 auto 28px;font-weight:300;line-height:1.75}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;justify-content:center}
+.btn-orange{background:#f97316;color:#fff;padding:12px 22px;border-radius:8px;font-weight:700;font-size:.88rem;border:none;display:inline-flex;align-items:center;gap:7px;transition:all .2s;white-space:nowrap}
+.btn-orange:hover{background:#e56b0f;transform:translateY(-1px);box-shadow:0 6px 20px rgba(249,115,22,.35)}
+.btn-wa{background:#25d366;color:#fff;padding:12px 20px;border-radius:8px;font-weight:700;font-size:.88rem;border:none;display:inline-flex;align-items:center;gap:7px;transition:all .2s;white-space:nowrap}
+.btn-wa:hover{background:#1db954;transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);padding:11px 18px;border-radius:8px;font-weight:600;font-size:.88rem;border:1.5px solid rgba(255,255,255,.2);display:inline-flex;align-items:center;gap:7px;transition:all .2s;white-space:nowrap}
+.btn-ghost:hover{background:rgba(255,255,255,.14)}
+.hero-stats{display:flex;flex-wrap:wrap;border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-md);overflow:hidden;background:rgba(255,255,255,.05);width:100%;max-width:600px}
+.hero-stat{flex:1;min-width:90px;padding:14px 16px;text-align:center;border-right:1px solid rgba(255,255,255,.08)}
+.hero-stat:last-child{border-right:none}
+.hero-stat-num{font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;line-height:1}
+.hero-stat-lbl{font-size:.65rem;color:rgba(255,255,255,.45);margin-top:3px}
+@media(max-width:480px){.hero-stat-num{font-size:1.1rem}.hero-stat{padding:12px 10px}}
+
+/* TOOLS BAR */
+.tools-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;position:relative}
+body.dark .tools-bar{background:#161b27;border-color:var(--border)}
+.tools-bar::-webkit-scrollbar{display:none}
+.tools-bar::after{content:'';position:absolute;right:0;top:0;bottom:0;width:36px;background:linear-gradient(to left,var(--surface),transparent);pointer-events:none;z-index:2}
+body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transparent)}
+.tools-scroll{display:flex;min-width:max-content;max-width:1200px;margin:0 auto}
+.tool-tab{display:flex;align-items:center;gap:6px;padding:14px 18px;font-size:.8rem;font-weight:600;color:var(--text-muted);border-bottom:2.5px solid transparent;white-space:nowrap;transition:all .18s;background:none;border-top:none;border-left:none;border-right:none;cursor:pointer}
+.tool-tab:hover{color:var(--blue-main);background:#f0f5ff}
+body.dark .tool-tab:hover{color:#93c5fd;background:#1a2236}
+.tool-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+
+/* SECTIONS */
+.sec{padding:52px 16px}
+@media(max-width:600px){.sec{padding:40px 12px}}
+.sec-alt{background:var(--surface-alt)}
+body.dark .sec-alt{background:#111624}
+.wrap{max-width:1100px;margin:0 auto}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.sec-label{font-size:.65rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.sec-label::before{content:'';width:16px;height:2px;background:var(--orange);display:block}
+.sec-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.3rem,3vw,1.85rem);font-weight:800;color:var(--text-main);line-height:1.2}
+.sec-title span{color:var(--orange)}
+.sec-link{font-size:.8rem;font-weight:700;color:var(--blue-main);display:flex;align-items:center;gap:5px;flex-shrink:0;white-space:nowrap}
+body.dark .sec-link{color:#93c5fd}
+.sec-link:hover{color:var(--orange)}
+.loading-state{padding:40px;text-align:center;color:var(--text-faint);font-size:.85rem}
+
+/* NEWS */
+.news-grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:500px){.news-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:860px){.news-grid{grid-template-columns:repeat(3,1fr)}}
+.news-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column;transition:all .22s;cursor:pointer}
+body.dark .news-card{background:#1a2236;border-color:var(--border)}
+.news-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.news-img{width:100%;height:140px;object-fit:cover}
+.news-img-ph{height:90px;display:flex;align-items:center;justify-content:center;font-size:2rem;background:linear-gradient(135deg,#eef3ff,#dde9ff)}
+body.dark .news-img-ph{background:linear-gradient(135deg,#111d36,#142040)}
+.news-body{padding:13px;flex:1;display:flex;flex-direction:column;gap:5px}
+.news-tag{display:inline-block;background:#dbeafe;color:#1d4ed8;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;padding:2px 8px;border-radius:10px;align-self:flex-start}
+body.dark .news-tag{background:#1e3060;color:#93c5fd}
+.news-title{font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;color:var(--text-main);line-height:1.35}
+.news-excerpt{font-size:.78rem;color:var(--text-muted);line-height:1.5;flex:1}
+.news-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px;border-top:1px solid var(--border)}
+.news-date{font-size:.68rem;color:var(--text-faint)}
+.news-more{font-size:.72rem;font-weight:700;color:var(--blue-main)}
+
+/* SCHOLARSHIPS */
+.sch-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:500px){.sch-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:860px){.sch-grid{grid-template-columns:repeat(3,1fr)}}
+.sch-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column;transition:all .22s;cursor:pointer}
+body.dark .sch-card{background:#1a2236;border-color:var(--border)}
+.sch-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.sch-top{padding:16px 16px 10px;display:flex;gap:10px;align-items:flex-start}
+.sch-icon-box{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.sch-meta{flex:1;min-width:0}
+.sch-type-tag{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:4px}
+.sch-name{font-family:'Montserrat',sans-serif;font-size:.83rem;font-weight:800;color:var(--text-main);line-height:1.3}
+.sch-org{font-size:.7rem;color:var(--text-muted);margin-top:2px}
+.sch-body{padding:0 16px 10px;flex:1}
+.sch-desc{font-size:.77rem;color:var(--text-muted);line-height:1.5}
+.sch-foot{padding:10px 16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.sch-deadline{font-size:.68rem;font-weight:600;color:#16a34a}
+.sch-amount{font-size:.7rem;font-weight:800;color:var(--orange)}
+.sch-status{font-size:.6rem;font-weight:800;padding:3px 9px;border-radius:20px}
+.ss-open{background:#dcfce7;color:#15803d}.ss-ongoing{background:#dbeafe;color:#1d4ed8}.ss-soon{background:#fef9c3;color:#854d0e}.ss-closed{background:#fee2e2;color:#dc2626}
+.sch-apply-btn{display:block;text-align:center;padding:10px;background:#f0fdf4;color:#15803d;font-size:.75rem;font-weight:700;border-top:1px solid #dcfce7;transition:.2s}
+.sch-apply-btn:hover{background:#dcfce7}
+body.dark .sch-apply-btn{background:#071a12;color:#6ee7b7;border-color:#134e2a}
+
+/* EXPLORE BANNER */
+.explore-banner{background:linear-gradient(135deg,#f97316,#e56b0f);border-radius:var(--radius-lg);padding:28px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:28px}
+.explore-banner h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:4px}
+.explore-banner p{font-size:.82rem;color:rgba(255,255,255,.75);line-height:1.4}
+.explore-btn{background:#fff;color:#e56b0f;padding:11px 22px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;white-space:nowrap;transition:.2s;border:none;cursor:pointer;display:inline-block}
+.explore-btn:hover{background:#fff7ed;transform:translateY(-1px)}
+
+/* COUNTDOWN */
+.countdown-sec{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:52px 16px;text-align:center}
+.countdown-sec .sec-label{color:rgba(255,255,255,.5);justify-content:center}
+.countdown-sec .sec-label::before{background:rgba(255,255,255,.3)}
+.countdown-sec .sec-title{color:#fff;margin-bottom:6px}
+.countdown-sec .sec-title span{color:#fdba74}
+.countdown-sec>div>p{font-size:.85rem;color:rgba(255,255,255,.55);margin:10px auto 24px;max-width:440px}
+.cd-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:20px 0 24px}
+.cd-box{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius-md);padding:16px 20px;min-width:72px;text-align:center}
+.cd-num{font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:800;color:#fff;display:block;line-height:1}
+.cd-lbl{font-size:.62rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-top:4px;display:block}
+.event-list{display:flex;flex-direction:column;gap:8px;max-width:540px;margin:0 auto 24px}
+.event-row{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);padding:10px 14px;text-align:left}
+.event-row.active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.35)}
+.ev-date{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);min-width:40px;white-space:nowrap}
+.ev-title{font-size:.8rem;font-weight:600;color:#fff}
+.ev-days{font-size:.7rem;font-weight:700;color:#fdba74;white-space:nowrap;margin-left:auto}
+
+/* ABOUT */
+.about-layout{display:grid;grid-template-columns:1fr;gap:36px}
+@media(min-width:700px){.about-layout{grid-template-columns:1fr 1fr;align-items:center}}
+.about-text p{font-size:.88rem;color:var(--text-muted);line-height:1.8;margin-bottom:12px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-box{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:20px;text-align:center}
+body.dark .stat-box{background:#1a2236;border-color:var(--border)}
+.stat-num{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:800;color:var(--blue-main);line-height:1}
+body.dark .stat-num{color:#93c5fd}
+.stat-lbl{font-size:.7rem;color:var(--text-muted);margin-top:4px;line-height:1.3}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:700px){.contact-grid{grid-template-columns:1fr 1fr}}
+.contact-form-box{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:24px}
+body.dark .contact-form-box{background:#1a2236;border-color:var(--border)}
+.contact-form-box h3{font-family:'Montserrat',sans-serif;font-size:.92rem;font-weight:800;color:var(--text-main);margin-bottom:16px}
+.form-row{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.form-row label{font-size:.72rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.form-row input,.form-row textarea{padding:9px 11px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:.85rem;background:var(--surface-alt);color:var(--text-main);font-family:inherit;transition:.2s;resize:vertical}
+body.dark .form-row input,body.dark .form-row textarea{background:#111624;border-color:var(--border)}
+.form-row input:focus,.form-row textarea:focus{outline:none;border-color:var(--blue-main)}
+.form-row textarea{min-height:90px}
+.form-submit{width:100%;padding:12px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;border-radius:var(--radius-sm);font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;cursor:pointer;transition:.2s}
+.form-submit:hover{background:linear-gradient(135deg,#0a1a5c,#1534a0)}
+.contact-channels{display:flex;flex-direction:column;gap:10px}
+.ch-card{display:flex;align-items:center;gap:14px;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;transition:all .2s}
+body.dark .ch-card{background:#1a2236;border-color:var(--border)}
+.ch-card:hover{border-color:#c7d9ff;transform:translateX(3px)}
+.ch-icon{font-size:1.4rem;flex-shrink:0}
+.ch-label{font-size:.82rem;font-weight:700;color:var(--text-main)}
+.ch-sub{font-size:.72rem;color:var(--text-muted);margin-top:1px}
+
+/* FOOTER */
+footer{background:#0a1228;padding:40px 16px 24px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.07)}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-logo{width:38px;height:38px;border-radius:50%;border:2px solid #f97316;object-fit:cover}
+.footer-bname{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.4px}
+.footer-bsub{font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px}
+.footer-socials{display:flex;gap:10px}
+.footer-socials a{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);transition:.2s}
+.footer-socials a:hover{background:rgba(249,115,22,.2);color:#f97316;border-color:rgba(249,115,22,.4)}
+.footer-links{display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:20px}
+.footer-links a{font-size:.77rem;color:rgba(255,255,255,.4);transition:color .2s}
+.footer-links a:hover{color:#f97316}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.22)}
+.footer-copy a{color:#f97316}
+
+/* UTILS */
+#toast-wrap{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.toast{background:var(--blue-main);color:#fff;padding:10px 18px;border-radius:var(--radius-sm);font-size:.83rem;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.25);opacity:0;transform:translateY(8px);transition:.28s ease;white-space:nowrap;border-left:3px solid var(--orange);pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+#backToTop{position:fixed;bottom:88px;right:18px;width:42px;height:42px;border-radius:50%;background:var(--blue-main);color:#fff;border:none;font-size:1.1rem;cursor:pointer;z-index:350;opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s;pointer-events:none;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(26,63,168,.4)}
+#backToTop.show{opacity:1;transform:translateY(0);pointer-events:auto}
+#backToTop:hover{background:var(--orange)}
+#wa-float{position:fixed;bottom:22px;right:18px;width:54px;height:54px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;z-index:400;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s}
+#wa-float:hover{transform:scale(1.1)}
+.center{text-align:center}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* ══ SUCCESS TICKER (7) ══ */
+.success-bar{background:linear-gradient(90deg,#064e3b,#065f46);height:34px;overflow:hidden;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.06)}
+.success-tag{background:#10b981;color:#fff;padding:0 14px;height:100%;display:flex;align-items:center;font-size:.65rem;font-weight:800;white-space:nowrap;letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
+.success-track{display:flex;animation:scroll-ticker 55s linear infinite;width:max-content}
+.success-track:hover{animation-play-state:paused}
+.success-item{padding:0 28px;font-size:.72rem;color:rgba(255,255,255,.75);white-space:nowrap;line-height:34px}
+.success-item::after{content:'🎉';margin-left:12px}
+
+/* EXPLORE BANNER used in quick-access strip below hero */
+</style>
+</head>
+<body>
+<a href="#main-content" style="position:absolute;left:-9999px;top:4px;background:#f97316;color:#fff;padding:8px 16px;border-radius:6px;font-weight:700;font-size:.85rem;z-index:9999" onfocus="this.style.left='16px'" onblur="this.style.left='-9999px'">Skip to main content</a>
+
+<!-- TOP BAR -->
+<div class="top-bar" id="topBar">
+  <div>🔔 <strong>Stay updated!</strong> Enable notifications for instant JAMB, scholarship &amp; admission alerts.</div>
+  <div class="top-bar-btns">
+    <button class="top-bar-allow" onclick="enableNotifications()">Enable</button>
+    <button class="top-bar-dismiss" onclick="dismissTopBar()">✕</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-bar">
+    <a class="logo-link" href="#home">
+      <img class="logo-img" src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="Big Quams Media" loading="eager" fetchpriority="high">
+      <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Your Admission Success Starts Here</span></div>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="elibrary.html">eLibrary</a>
+      <a href="scholarship.html">Scholarships</a>
+      <a href="#contact" class="nav-cta">💬 Contact</a>
+    </nav>
+    <div class="hdr-right">
+      <button class="hdr-btn" id="darkToggle" onclick="toggleDarkMode()" aria-label="Switch to dark mode">🌙</button>
+      <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+  <div class="mnav-header">
+    <div class="mnav-brand">
+      <img src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="BQM" class="mnav-logo">
+      <div><div class="mnav-bname">Big Quams Media®</div><div class="mnav-bsub">Your Admission Success Starts Here</div></div>
+    </div>
+    <button class="mnav-close" onclick="toggleNav()">✕</button>
+  </div>
+  <div class="mnav-quick">
+    <a href="cbt.html" class="mnav-quick-btn">🎯<span>CBT</span></a>
+    <a href="postutme-calculator.html" class="mnav-quick-btn">🧮<span>Calc</span></a>
+    <a href="scholarship.html" class="mnav-quick-btn">💰<span>Grants</span></a>
+    <a href="elibrary.html" class="mnav-quick-btn">📗<span>Books</span></a>
+  </div>
+  <div class="mnav-section">Navigation</div>
+  <a href="#home" onclick="toggleNav()">🏠 Home</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="elibrary.html" onclick="toggleNav()">📗 Free eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <a href="#contact" onclick="toggleNav()">✉️ Contact Us</a>
+  <div class="mnav-section">Quick Links</div>
+  <a href="cbt.html" onclick="toggleNav()">🎯 JAMB CBT Practice</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Post-UTME Calculator</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 News &amp; Updates</a>
+  <a href="results.html" onclick="toggleNav()">📋 Results Checker</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA / CGPA Calculator</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 NELFUND Student Loan</a>
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="mnav-cta">💬 Chat on WhatsApp — Free</a>
+</nav>
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+
+<!-- TICKER -->
+<div class="ticker-bar" id="tickerBar">
+  <div class="ticker-tag">⚡ Live</div>
+  <div class="ticker-scroll-wrap"><div class="ticker-track" id="tickerTrack"></div></div>
+</div>
+
+<!-- SUCCESS TICKER -->
+<div class="success-bar" id="successBar">
+  <div class="success-tag">🎉 Students</div>
+  <div style="flex:1;overflow:hidden"><div class="success-track" id="successTrack"></div></div>
+</div>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-blob1"></div><div class="hero-blob2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="hero-badge-dot"></span>Nigeria's #1 Free Student Platform — Since 2023</div>
+    <h1>Your Admission <span>Success</span><br>Starts Here</h1>
+    <p class="hero-desc">JAMB prep, Post-UTME calculator, scholarships, free textbooks and live campus news — everything you need, completely free.</p>
+    <div class="hero-ctas">
+      <a href="cbt.html" class="btn-orange">🎯 Start CBT Practice</a>
+      <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="btn-wa">💬 Chat on WhatsApp</a>
+      <a href="explore.html" class="btn-ghost">🗂 Explore All Tools</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">10K+</div><div class="hero-stat-lbl">Students Reached</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">500+</div><div class="hero-stat-lbl">News Articles</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">100+</div><div class="hero-stat-lbl">Free eBooks</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">50+</div><div class="hero-stat-lbl">Scholarships</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS BAR -->
+<div class="tools-bar">
+  <div class="tools-scroll">
+    <button class="tool-tab active" onclick="document.getElementById('news-updates').scrollIntoView({behavior:'smooth'})">📰 Latest News</button>
+    <button class="tool-tab" onclick="location.href='cbt.html'">📝 CBT Practice</button>
+    <button class="tool-tab" onclick="document.getElementById('scholarship-preview').scrollIntoView({behavior:'smooth'})">💰 Scholarships</button>
+    <button class="tool-tab" onclick="location.href='elibrary.html'">📖 eLibrary</button>
+    <button class="tool-tab" onclick="document.getElementById('countdown-section').scrollIntoView({behavior:'smooth'})">📅 Calendar</button>
+    <button class="tool-tab" onclick="location.href='explore.html'">🗂 All Tools</button>
+  </div>
+</div>
+
+<!-- NEWS -->
+<section class="sec sec-alt" id="news-updates">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-label">Latest Updates</div><h2 class="sec-title">Campus <span>News</span></h2></div>
+      <a href="newsroom.html" class="sec-link">View All →</a>
+    </div>
+    <div class="news-grid" id="newsGrid"><div class="loading-state">⏳ Loading…</div></div>
+  </div>
+</section>
+
+<!-- SCHOLARSHIPS -->
+<section class="sec" id="scholarship-preview">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-label">Opportunities</div><h2 class="sec-title">Scholarship <span>Alerts</span></h2></div>
+      <a href="scholarship.html" class="sec-link">View All →</a>
+    </div>
+    <div class="sch-grid" id="scholarship-preview-grid"><div class="loading-state">⏳ Loading…</div></div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="countdown-sec" id="countdown-section">
+  <div class="wrap">
+    <div class="sec-label" style="justify-content:center">Important Dates</div>
+    <h2 class="sec-title">Academic <span>Countdown</span></h2>
+    <p id="countdownEventName"></p>
+    <div class="cd-row">
+      <div class="cd-box"><span class="cd-num" id="cdDays">--</span><span class="cd-lbl">Days</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdHours">--</span><span class="cd-lbl">Hours</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdMins">--</span><span class="cd-lbl">Mins</span></div>
+      <div class="cd-box"><span class="cd-num" id="cdSecs">--</span><span class="cd-lbl">Secs</span></div>
+    </div>
+    <div class="event-list" id="upcomingEventsList"></div>
+    <div class="center"><a href="explore.html#calendar" class="btn-orange">📅 Full Academic Calendar</a></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="about-layout">
+      <div class="about-text">
+        <div class="sec-label">About Us</div>
+        <h2 class="sec-title">Bridging the <span>Information Gap</span></h2>
+        <p><strong>Big Quams Media®</strong> is a trusted, student-focused digital platform dedicated to simplifying campus life for Nigerian students — providing timely, reliable information and free tools for every student.</p>
+        <p>From JAMB / Post-UTME guidance to scholarship alerts and free academic resources, we empower learners at every level — whether you're preparing for admission or already in school.</p>
+        <p><em>…Your Admission Success Starts Here — Big Quams Media, to the world.</em></p>
+        <br>
+        <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="btn-wa" style="display:inline-flex;">💬 Chat with Us</a>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-num" data-target="10000" data-suffix="+" data-divisor="1000">10K+</div><div class="stat-lbl">Students Reached</div></div>
+        <div class="stat-box"><div class="stat-num" data-target="500" data-suffix="+">500+</div><div class="stat-lbl">News Articles Published</div></div>
+        <div class="stat-box"><div class="stat-num" data-target="100" data-suffix="+">100+</div><div class="stat-lbl">Free eBooks in Library</div></div>
+        <div class="stat-box"><div class="stat-num" data-target="50" data-suffix="+">50+</div><div class="stat-lbl">Active Scholarships Tracked</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec sec-alt" id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-label">Get in Touch</div><h2 class="sec-title">Contact &amp; <span>Feedback</span></h2></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-form-box">
+        <h3>Send Us a Message</h3>
+        <form id="contactForm" onsubmit="submitContactForm(event)">
+          <div class="form-row"><label>Your Name</label><input type="text" id="cf_name" placeholder="e.g. Anthony Daniel" required></div>
+          <div class="form-row"><label>Email Address</label><input type="email" id="cf_email" placeholder="yourname@gmail.com" required></div>
+          <div class="form-row"><label>Message</label><textarea id="cf_message" placeholder="How can we help you?" required></textarea></div>
+          <button type="submit" class="form-submit" id="cf_submit">Send Message →</button>
+          <div id="cf_feedback" style="display:none;padding:12px 14px;border-radius:var(--radius-sm);font-size:.85rem;font-weight:600;margin-top:10px;text-align:center"></div>
+        </form>
+      </div>
+      <div class="contact-channels">
+        <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon">💬</span><div><div class="ch-label">Chat on WhatsApp</div><div class="ch-sub">Direct message — fastest response</div></div></a>
+        <a href="mailto:bigquamsmedia@gmail.com" class="ch-card"><span class="ch-icon">📧</span><div><div class="ch-label">Send an Email</div><div class="ch-sub">bigquamsmedia@gmail.com</div></div></a>
+        <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon">👥</span><div><div class="ch-label">Join Brainy Buddies Group</div><div class="ch-sub">Community of Nigerian students</div></div></a>
+        <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon">📢</span><div><div class="ch-label">Join Our WhatsApp Channel</div><div class="ch-sub">10K+ students already subscribed</div></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img class="footer-logo" src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="Big Quams Media">
+        <div><div class="footer-bname">BIG QUAMS MEDIA®</div><div class="footer-bsub">Your Admission Success Starts Here</div></div>
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a href="https://www.instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://t.me/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.2l-2 9.4c-.1.6-.5.8-1 .5l-2.8-2.1-1.3 1.3c-.2.2-.4.3-.7.3l.2-2.9 5.1-4.6c.2-.2 0-.3-.3-.1L6.6 14.4 4 13.6c-.6-.2-.6-.6.1-.9l11.5-4.4c.6-.2 1.1.1.3.9z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="#home">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a>
+      <a href="scholarship.html">Scholarships</a><a href="newsroom.html">Newsroom</a><a href="cbt.html">CBT Practice</a>
+      <a href="postutme-calculator.html">Post-UTME Calc</a><a href="gpa-calculator.html">GPA Calculator</a><a href="student-loan.html">Student Loan</a>
+      <a href="results.html">Results</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </div>
+    <div class="footer-copy">© <span id="footer-year">2026</span> Big Quams Media®. All rights reserved. Built with ❤️ for Nigerian students — <a href="#contact">Big Quams Media</a>, to the world.</div>
+  </div>
+</footer>
+
+<a id="wa-float" href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬</a>
+<button id="backToTop" aria-label="Back to top">↑</button>
+<div id="toast-wrap"></div>
+
+<script>
+'use strict';
+
+/* DARK MODE */
+function toggleDarkMode(){
+  const btn=document.getElementById('darkToggle');
+  document.body.classList.toggle('dark');
+  const dark=document.body.classList.contains('dark');
+  if(btn){btn.textContent=dark?'☀️':'🌙';btn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');}
+  localStorage.setItem('bqm-theme',dark?'dark':'light');
+}
+(function(){
+  const btn=document.getElementById('darkToggle');
+  const saved=localStorage.getItem('bqm-theme');
+  const sys=!saved&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+  if(saved==='dark'||sys){document.body.classList.add('dark');if(btn){btn.textContent='☀️';btn.setAttribute('aria-label','Switch to light mode');}if(sys)localStorage.setItem('bqm-theme','dark');}
+})();
+
+/* NAV */
+function toggleNav(){
+  const nav=document.getElementById('mobileNav'),btn=document.getElementById('hamburger'),ov=document.getElementById('navOverlay');
+  const open=nav.classList.toggle('open');
+  btn.classList.toggle('open',open);
+  if(ov)ov.classList.toggle('show',open);
+  btn.setAttribute('aria-expanded',String(open));
+  document.body.style.overflow=open?'hidden':'';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.getElementById('mobileNav');if(nav&&nav.classList.contains('open'))toggleNav();}});
+
+/* TOP BAR */
+function dismissTopBar(){document.getElementById('topBar').classList.remove('show');sessionStorage.setItem('bqm_tb','1');}
+function enableNotifications(){
+  if(!('Notification'in window)){showToast('⚠️ Notifications not supported');return;}
+  Notification.requestPermission().then(p=>{
+    if(p==='granted'){localStorage.setItem('bqm_notif','1');document.getElementById('topBar').classList.remove('show');showToast('✅ Notifications enabled!');}
+    else if(p==='denied')showToast('⚠️ Notifications blocked in browser settings');
+  });
+}
+(function(){
+  const on=localStorage.getItem('bqm_notif')==='1'||(typeof Notification!=='undefined'&&Notification.permission==='granted');
+  if(!on&&!sessionStorage.getItem('bqm_tb'))setTimeout(()=>document.getElementById('topBar').classList.add('show'),5000);
+})();
+
+/* TOAST */
+function showToast(msg){
+  const t=document.createElement('div');t.className='toast';t.textContent=msg;
+  document.getElementById('toast-wrap').appendChild(t);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('show')));
+  setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),350);},2800);
+}
+
+/* TICKER */
+function initTicker(){
+  const track=document.getElementById('tickerTrack'),bar=document.getElementById('tickerBar');
+  if(!track||!bar)return;
+  const seed=['📢 JAMB 2026 UTME Results Released — Check yours on the JAMB portal','🎓 Post-UTME Screening begins June 2026 — 15 universities confirmed','💳 NELFUND Student Loan portal is open — Apply before the deadline','💰 MTN Foundation Scholarship 2026 now accepting applications','📰 WAEC 2026 Results expected August — stay updated on BQM','🔔 Monitor your JAMB CAPS portal daily for admission updates'];
+  function render(items){track.innerHTML=[...items,...items].map(t=>`<span class="ticker-item">${t}</span>`).join('');bar.classList.add('show');}
+  render(seed);
+  fetch('news.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.length)render(d.slice(0,8).map(n=>(n.emoji||'📰')+' '+n.title));}).catch(()=>{});
+}
+
+/* COUNTDOWN */
+function initCountdown(){
+  const defaultEvents=[
+    {title:'Post-UTME Screening Begins',dateObj:new Date('2026-06-15')},
+    {title:'CAPS Admission Portal Opens',dateObj:new Date('2026-07-01')},
+    {title:'WAEC 2026 Results Release',dateObj:new Date('2026-08-20')},
+    {title:'New Academic Session 2026/2027',dateObj:new Date('2026-09-01')},
+    {title:'JAMB 2027 Registration Opens',dateObj:new Date('2026-11-01')},
+  ];
+  let cdInterval=null;
+  function startTimer(evs){
+    // Clear any previous interval
+    if(cdInterval)clearInterval(cdInterval);
+    const now=new Date();
+    // Sort ascending and filter to only future events
+    const upcoming=[...evs].sort((a,b)=>a.dateObj-b.dateObj).filter(e=>e.dateObj>now);
+    const nameEl=document.getElementById('countdownEventName');
+    const listEl=document.getElementById('upcomingEventsList');
+    if(!upcoming.length){
+      if(nameEl)nameEl.textContent='No upcoming events — check back soon!';
+      if(listEl)listEl.innerHTML='';
+      return;
+    }
+    // Target is strictly the NEXT upcoming event only
+    const target=upcoming[0];
+    if(nameEl)nameEl.innerHTML='⏳ Counting down to: <strong>'+target.title+'</strong>';
+    // Show next 4 upcoming events in the list
+    if(listEl)listEl.innerHTML=upcoming.slice(0,4).map((e,i)=>{
+      const d=e.dateObj;
+      const mo=d.toLocaleString('en-US',{month:'short'}),day=d.getDate();
+      const diff=Math.ceil((d-new Date())/864e5);
+      return`<div class="event-row${i===0?' active':''}"><div class="ev-date">${mo} ${day}</div><div class="ev-title" style="flex:1">${e.title}</div><div class="ev-days">${diff<=0?'Today':diff===1?'Tomorrow':diff+' days'}</div></div>`;
+    }).join('');
+    function tick(){
+      const diff=target.dateObj-new Date();
+      if(diff<=0){clearInterval(cdInterval);['cdDays','cdHours','cdMins','cdSecs'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='00';});return;}
+      const pad=n=>String(n).padStart(2,'0');
+      document.getElementById('cdDays').textContent=pad(Math.floor(diff/864e5));
+      document.getElementById('cdHours').textContent=pad(Math.floor((diff%864e5)/36e5));
+      document.getElementById('cdMins').textContent=pad(Math.floor((diff%36e5)/6e4));
+      document.getElementById('cdSecs').textContent=pad(Math.floor((diff%6e4)/1e3));
+    }
+    tick();cdInterval=setInterval(tick,1000);
+  }
+  startTimer(defaultEvents);
+  fetch('calendar.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
+    if(d&&d.length){
+      const parsed=d.map(e=>({...e,dateObj:new Date(e.date||e.dateObj)})).filter(e=>e.dateObj&&!isNaN(e.dateObj));
+      if(parsed.length)startTimer(parsed);
+    }
+  }).catch(()=>{});
+}
+
+/* NEWS */
+function loadNews(){
+  const grid=document.getElementById('newsGrid');if(!grid)return;
+  const fb=[
+    {tag:'JAMB',emoji:'📰',title:'JAMB Releases 2026 UTME Results — Check Yours Now',excerpt:'JAMB has officially released the 2026 UTME results. Check your scores on the JAMB portal.',date:'Apr 2026'},
+    {tag:'Admission',emoji:'🎓',title:'Post-UTME Screening: 15 Universities Confirm Dates',excerpt:'UNILAG, UI, OAU and ABU have announced 2026/2027 Post-UTME screening schedules.',date:'Apr 2026'},
+    {tag:'Student Loan',emoji:'💳',title:'NELFUND Loan Portal Open — Apply Before Deadline',excerpt:'The NELFUND student loan portal is open. All enrolled students in federal and state institutions are eligible.',date:'Apr 2026'},
+  ];
+  grid.innerHTML=fb.map(n=>`<a class="news-card" href="newsroom.html"><div class="news-img-ph">${n.emoji}</div><div class="news-body"><span class="news-tag">${n.tag}</span><div class="news-title">${n.title}</div><div class="news-excerpt">${n.excerpt}</div><div class="news-foot"><span class="news-date">${n.date}</span><span class="news-more">Read →</span></div></div></a>`).join('');
+  fetch('news.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
+    if(!d||!d.length)return;
+    const items=[...d.filter(n=>n.pinned),...d.filter(n=>!n.pinned)].slice(0,3);
+    grid.innerHTML=items.map(n=>`<div class="news-card" onclick="location.href='newsroom.html'">${n.image?`<img class="news-img" src="${n.image}" alt="${n.title}" loading="lazy">`:`<div class="news-img-ph">${n.emoji||'📰'}</div>`}<div class="news-body">${n.category?`<span class="news-tag">${n.category}</span>`:''}<div class="news-title">${n.title}</div><div class="news-excerpt">${n.summary||n.excerpt||''}</div><div class="news-foot"><span class="news-date">${n.date||''}</span><span class="news-more">Read →</span></div></div></div>`).join('');
+  }).catch(()=>{});
+}
+
+/* SCHOLARSHIPS */
+function loadScholarships(){
+  const grid=document.getElementById('scholarship-preview-grid');if(!grid)return;
+  const fb=[
+    {icon:'🇳🇬',name:'Federal Government BEA Scholarship',org:'Federal Ministry of Education',type:'federal',desc:'Funds Nigerian students to study abroad under bilateral agreements with Russia, China, Hungary and more.',deadline:'Aug–Oct annually',amount:'Full tuition + stipend',status:'soon'},
+    {icon:'📡',name:'MTN Foundation Scholarship',org:'MTN Nigeria Foundation',type:'corporate',desc:'Awards outstanding Nigerian STEM undergraduates in accredited universities annually.',deadline:'April–June annually',amount:'₦200,000/year',status:'soon'},
+    {icon:'🌍',name:'Commonwealth Scholarship (UK)',org:'Commonwealth Scholarship Commission',type:'international',desc:'Funds Nigerian students for Masters and PhD at UK universities — tuition, flights and living allowance.',deadline:'December annually',amount:'Fully funded',status:'ongoing'},
+  ];
+  const tM={federal:['#dbeafe','#1d4ed8','#eff6ff'],corporate:['#fff7ed','#c2410c','#fff7ed'],international:['#ede9fe','#7c3aed','#f5f3ff'],state:['#dcfce7','#15803d','#f0fdf4']};
+  const sC={open:'ss-open',ongoing:'ss-ongoing',soon:'ss-soon',closed:'ss-closed'};
+  const sL={open:'🟢 Open',ongoing:'🔵 Ongoing',soon:'🟡 Soon',closed:'🔴 Closed'};
+  function render(items){
+    grid.innerHTML=items.slice(0,3).map(s=>{
+      const[tc,tx,ic]=tM[s.type||'federal']||tM.federal;
+      return`<div class="sch-card" onclick="location.href='scholarship.html'"><div class="sch-top"><div class="sch-icon-box" style="background:${ic}">${s.icon||'💰'}</div><div class="sch-meta"><span class="sch-type-tag" style="background:${tc};color:${tx}">${(s.type||'federal').toUpperCase()}</span><div class="sch-name">${s.name}</div><div class="sch-org">${s.org||''}</div></div></div><div class="sch-body"><div class="sch-desc">${s.desc||''}</div></div><div class="sch-foot"><span class="sch-deadline">📅 ${s.deadline||'Check portal'}</span><span class="sch-amount">${s.amount||''}</span><span class="sch-status ${sC[s.status]||'ss-ongoing'}">${sL[s.status]||'🔵 Ongoing'}</span></div><a href="https://wa.me/2349049871643?text=${encodeURIComponent('Hello BQM, I need help applying for: '+s.name)}" target="_blank" rel="noopener noreferrer" class="sch-apply-btn">💬 Get Help Applying →</a></div>`;
+    }).join('');
+  }
+  render(fb);
+  fetch('scholarships.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.length)render([...d].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)));}).catch(()=>{});
+}
+
+/* SUCCESS TICKER */
+function initSuccessTicker(){
+  const track=document.getElementById('successTrack');if(!track)return;
+  const items=['Chidera O. just got admitted to UNILAG — Medicine & Surgery','Fatima A. secured the Commonwealth Scholarship to UCL London','Emeka N. scored 312 in JAMB — Computer Engineering, OAU','Blessing I. got full NELFUND loan approval — UNIBEN','David K. admitted to LASU Law after scoring 64 aggregate','Aisha M. won the MTN Foundation Scholarship 2026','Olawale B. scored 290 JAMB and admitted to Covenant University','Ngozi C. cleared Post-UTME at UI — Pharmacy','Hassan U. scored A1 in 7 WAEC subjects — now at ABU','Adaeze P. received FUTA admission offer — Chemical Engineering'];
+  track.innerHTML=[...items,...items].map(t=>`<span class="success-item">${t}</span>`).join('');
+}
+
+/* STAT COUNTERS */
+function runCounters(){
+  document.querySelectorAll('[data-target]').forEach(el=>{
+    const target=parseInt(el.getAttribute('data-target')),suffix=el.getAttribute('data-suffix')||'+',divisor=parseInt(el.getAttribute('data-divisor')||'1');
+    if(isNaN(target))return;let count=0;const steps=60;
+    const t=setInterval(()=>{count++;const raw=Math.min(Math.round((target/steps)*count),target);el.textContent=divisor>1?Math.round(raw/divisor)+'K+':raw+suffix;if(count>=steps)clearInterval(t);},1800/steps);
+  });
+}
+
+/* BACK TO TOP */
+(function(){
+  const btn=document.getElementById('backToTop');if(!btn)return;
+  window.addEventListener('scroll',()=>btn.classList.toggle('show',scrollY>400),{passive:true});
+  btn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+})();
+
+/* CONTACT FORM */
+function submitContactForm(e){
+  e.preventDefault();
+  const name=document.getElementById('cf_name').value.trim(),email=document.getElementById('cf_email').value.trim(),msg=document.getElementById('cf_message').value.trim();
+  const btn=document.getElementById('cf_submit');
+  if(!name||!email||!msg){showFb('⚠ Please fill in all fields.','error');return;}
+  btn.textContent='Sending…';btn.disabled=true;
+  fetch('https://formspree.io/f/mqegznag',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name,email,message:msg})})
+    .then(r=>{if(r.ok){showFb('✅ Message sent! We\'ll reply within 24 hours.','success');document.getElementById('contactForm').reset();}else throw 0;})
+    .catch(()=>{showFb('📱 Opening WhatsApp instead…','warn');setTimeout(()=>open('https://wa.me/2349049871643?text='+encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nMessage: '+msg),'_blank'),1200);})
+    .finally(()=>{btn.textContent='Send Message →';btn.disabled=false;});
+}
+function showFb(msg,type){
+  const fb=document.getElementById('cf_feedback');if(!fb)return;
+  const s={success:'background:#dcfce7;color:#15803d',error:'background:#fee2e2;color:#dc2626',warn:'background:#fef9c3;color:#854d0e'};
+  fb.style.cssText=(s[type]||s.warn)+';display:block;padding:12px 14px;border-radius:8px;font-size:.85rem;font-weight:600;margin-top:10px;text-align:center';
+  fb.textContent=msg;if(type==='success')setTimeout(()=>{fb.style.display='none';},6000);
+}
+
+/* INIT */
+document.addEventListener('DOMContentLoaded',()=>{
+  initTicker();
+  initSuccessTicker();
+  initCountdown();
+  loadNews();
+  loadScholarships();
+  document.getElementById('footer-year').textContent=new Date().getFullYear();
+  const about=document.getElementById('about');
+  if(about)new IntersectionObserver((entries,obs)=>{if(entries[0].isIntersecting){obs.disconnect();runCounters();}},{threshold:.25}).observe(about);
+});
+
+/* SERVICE WORKER */
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
