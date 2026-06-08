@@ -1,34 +1,62 @@
 [
   {
-    "id": 1779059048999,
-    "icon": "🟨",
-    "name": "MTN Foundation Scholarship 2026",
-    "org": "MTN Foundation",
+    "name": "MTN Foundation Scholarship",
+    "org": "MTN Nigeria Foundation",
     "type": "corporate",
-    "level": "undergraduate",
-    "desc": "Annual scholarship for undergraduates in Nigerian public tertiary institutions to cover academic and living costs through graduation.\n\n\nCovers tuition, books, and living expenses. Renewable annually until graduation provided academic requirements are met.",
-    "amount": "₦300,000 per year",
-    "deadline": "28th May 2026",
+    "description": "The MTN Foundation Science & Technology Scholarship is open to undergraduate students studying STEM or Social Sciences in accredited Nigerian universities. Award covers tuition and provides a monthly stipend. Candidates must have a minimum CGPA of 3.5 on a 5.0 scale and be in 200 or 300 level.",
     "status": "open",
-    "eligibility": [
-      "- Must be a student in a Nigerian public university, polytechnic, or college of education",
-      "- Must be in 200L, 300L, or 400L depending on the scholarship category"
-    ],
-    "howToApply": [
-      "1. Visit the official MTN Foundation scholarship portal",
-      "2. Complete the online application form with required academic details",
-      "3. Upload necessary documents as specified on the portal",
-      "4. Submit before the deadline and await shortlisting"
-    ],
-    "applyUrl": "https://www.mtn.ng/scholarships/",
-    "tags": [
-      "MTN Foundation",
-      "undergraduate scholarship",
-      "Nigeria",
-      "STEM scholarship",
-      "financial aid",
-      "2026 scholarship"
-    ],
+    "deadline": "August 31 annually",
+    "amount": "₦200,000/year + stipend",
+    "link": "https://mtnfoundation.com.ng",
+    "icon": "📡",
     "featured": true
+  },
+  {
+    "name": "Federal Government Scholarship (Bilateral Education Agreement)",
+    "org": "Federal Ministry of Education",
+    "type": "federal",
+    "description": "The BEA Scholarship funds Nigerian students to study abroad in countries with bilateral agreements including Russia, China, Hungary, Cuba and others. Open to fresh O'Level holders and undergraduates in public tertiary institutions.",
+    "status": "open",
+    "deadline": "Check scholarship.gov.ng annually",
+    "amount": "Fully Funded (tuition + accommodation + stipend)",
+    "link": "https://scholarship.gov.ng",
+    "icon": "🇳🇬",
+    "featured": true
+  },
+  {
+    "name": "NNPC/SNEPCo National Merit Scholarship",
+    "org": "Nigerian National Petroleum Corporation",
+    "type": "corporate",
+    "description": "Open to 100-level students in federal universities studying Engineering, Geosciences, Law, Accounting or Computer Science. Requires minimum JAMB score of 200 and First Class or Second Class Upper O'Level grades.",
+    "status": "open",
+    "deadline": "June–September annually",
+    "amount": "₦300,000/year",
+    "link": "https://www.nnpcgroup.com",
+    "icon": "⛽",
+    "featured": false
+  },
+  {
+    "name": "Commonwealth Scholarship (Masters & PhD)",
+    "org": "Commonwealth Scholarship Commission",
+    "type": "international",
+    "description": "The Commonwealth Scholarship funds postgraduate study at UK universities. Open to Nigerian graduates with a First Class or strong Second Class Upper degree who have a clear development impact plan. Covers tuition, flight, living allowance and more.",
+    "status": "open",
+    "deadline": "December annually",
+    "amount": "Fully Funded",
+    "link": "https://cscuk.fcdo.gov.uk",
+    "icon": "🌍",
+    "featured": false
+  },
+  {
+    "name": "Dangote Foundation Scholarship",
+    "org": "Aliko Dangote Foundation",
+    "type": "corporate",
+    "description": "Annual scholarship for undergraduate students in Nigerian public universities. Open to students studying Science, Technology, Engineering, Mathematics, Agriculture and related fields with minimum CGPA of 3.0.",
+    "status": "soon",
+    "deadline": "Watch dangote.com for announcement",
+    "amount": "₦250,000/year",
+    "link": "https://dangote.com/foundation",
+    "icon": "🏭",
+    "featured": false
   }
 ]

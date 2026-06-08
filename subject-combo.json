@@ -1,0 +1,123 @@
+[
+  {
+    "course": "Medicine & Surgery",
+    "dept": "Medicine & Health",
+    "s2": "Biology",
+    "s3": "Chemistry",
+    "s4": "Physics",
+    "olevel": "5 O'Level credits including English Language, Mathematics, Biology, Chemistry and Physics in not more than 2 sittings",
+    "cutoff": "300",
+    "duration": "6 years (MBBS)",
+    "notes": "One of the most competitive courses in Nigeria. Only accredited federal universities offer MBBS. Physics may be replaced by Mathematics at some schools — verify with your institution."
+  },
+  {
+    "course": "Pharmacy",
+    "dept": "Medicine & Health",
+    "s2": "Chemistry",
+    "s3": "Biology",
+    "s4": "Physics or Mathematics",
+    "olevel": "5 O'Level credits including English Language, Mathematics, Biology, Chemistry and Physics",
+    "cutoff": "260",
+    "duration": "5 years (B.Pharm)",
+    "notes": "Some universities accept Mathematics instead of Physics as the 4th subject. Check your school's specific requirements."
+  },
+  {
+    "course": "Nursing Science",
+    "dept": "Medicine & Health",
+    "s2": "Biology",
+    "s3": "Chemistry",
+    "s4": "Physics or Mathematics",
+    "olevel": "5 O'Level credits including English Language, Mathematics, Biology, Chemistry and Physics",
+    "cutoff": "220",
+    "duration": "5 years (BNSc)",
+    "notes": "Offered in both universities and Schools of Nursing. University-based nursing leads to a BNSc degree."
+  },
+  {
+    "course": "Computer Science",
+    "dept": "Sciences",
+    "s2": "Mathematics",
+    "s3": "Physics",
+    "s4": "Chemistry or Biology",
+    "olevel": "5 O'Level credits including English Language, Mathematics and Physics",
+    "cutoff": "200",
+    "duration": "4 years (B.Sc)",
+    "notes": "Mathematics and Physics are compulsory. Some schools accept Economics as a 4th subject — confirm with your institution."
+  },
+  {
+    "course": "Law",
+    "dept": "Law",
+    "s2": "Literature in English",
+    "s3": "Government",
+    "s4": "Any Arts or Social Science subject",
+    "olevel": "5 O'Level credits including English Language and Literature in English",
+    "cutoff": "240",
+    "duration": "5 years (LLB)",
+    "notes": "Literature in English and Government are strongly recommended. Some schools accept History in place of Government."
+  },
+  {
+    "course": "Electrical Engineering",
+    "dept": "Engineering",
+    "s2": "Mathematics",
+    "s3": "Physics",
+    "s4": "Chemistry",
+    "olevel": "5 O'Level credits including English Language, Mathematics, Physics and Chemistry",
+    "cutoff": "200",
+    "duration": "5 years (B.Eng)",
+    "notes": "All engineering courses require Mathematics, Physics and Chemistry. JAMB Use of English is the compulsory 1st subject."
+  },
+  {
+    "course": "Economics",
+    "dept": "Social Sciences",
+    "s2": "Mathematics",
+    "s3": "Economics",
+    "s4": "Government or Geography or Commerce",
+    "olevel": "5 O'Level credits including English Language, Mathematics and Economics",
+    "cutoff": "180",
+    "duration": "4 years (B.Sc)",
+    "notes": "Mathematics and Economics are compulsory. The 4th subject varies by school — Government, Geography or Commerce are commonly accepted."
+  },
+  {
+    "course": "Accounting",
+    "dept": "Management",
+    "s2": "Mathematics",
+    "s3": "Economics",
+    "s4": "Commerce or Government or any Social Science",
+    "olevel": "5 O'Level credits including English Language, Mathematics and Economics",
+    "cutoff": "180",
+    "duration": "4 years (B.Sc)",
+    "notes": "Also known as Accountancy at some institutions. Financial Accounting at O'Level is an advantage."
+  },
+  {
+    "course": "Mass Communication",
+    "dept": "Arts & Humanities",
+    "s2": "Literature in English or Government",
+    "s3": "Economics or History",
+    "s4": "Any Arts or Social Science",
+    "olevel": "5 O'Level credits including English Language",
+    "cutoff": "180",
+    "duration": "4 years (B.Sc)",
+    "notes": "Flexibility in subject choices exists. Strong English Language performance is essential for this course."
+  },
+  {
+    "course": "Agricultural Science",
+    "dept": "Agriculture",
+    "s2": "Biology or Agriculture",
+    "s3": "Chemistry",
+    "s4": "Physics or Mathematics",
+    "olevel": "5 O'Level credits including English Language, Mathematics, Biology or Agriculture, and Chemistry",
+    "cutoff": "180",
+    "duration": "4 years (B.Agric)",
+    "notes": "Students with O'Level Agricultural Science have an advantage. Some schools accept Geography or Economics as an additional subject."
+  },
+  {
+    "course": "Education / Mathematics",
+    "dept": "Education",
+    "s2": "Mathematics",
+    "s3": "Physics",
+    "s4": "Chemistry or Biology",
+    "olevel": "5 O'Level credits including English Language and Mathematics",
+    "cutoff": "160",
+    "duration": "4 years (B.Ed)",
+    "notes": "Lower cut-off than pure Mathematics. Education courses generally have lower minimum JAMB requirements across Nigerian universities."
+  }
+]

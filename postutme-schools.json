@@ -1,0 +1,112 @@
+[
+  {
+    "name": "University of Lagos",
+    "abbr": "UNILAG",
+    "formula": "50-50",
+    "type": "federal",
+    "location": "Lagos State",
+    "cutoff": "200",
+    "notes": "Online CBT — 50 questions, 30 minutes. Covers Use of English and 2 subject areas. Result is based on 50% JAMB + 50% O'Level grades.",
+    "fees": "₦80,000–₦180,000/yr (course-dependent)",
+    "link": "https://unilag.edu.ng"
+  },
+  {
+    "name": "University of Ibadan",
+    "abbr": "UI",
+    "formula": "50-50",
+    "type": "federal",
+    "location": "Oyo State",
+    "cutoff": "200",
+    "notes": "Written/CBT Post-UTME varies by faculty. Check the UI portal for your faculty's specific format and subject areas.",
+    "fees": "₦15,000–₦60,000/yr (highly subsidised)",
+    "link": "https://ui.edu.ng"
+  },
+  {
+    "name": "Obafemi Awolowo University",
+    "abbr": "OAU",
+    "formula": "50-50",
+    "type": "federal",
+    "location": "Osun State",
+    "cutoff": "200",
+    "notes": "Online CBT Post-UTME — 40 questions, 30 minutes. Covers English and relevant subject areas. Score combined with JAMB at 50/50.",
+    "fees": "₦50,000–₦150,000/yr",
+    "link": "https://oauife.edu.ng"
+  },
+  {
+    "name": "University of Nigeria Nsukka",
+    "abbr": "UNN",
+    "formula": "50-50",
+    "type": "federal",
+    "location": "Enugu State",
+    "cutoff": "200",
+    "notes": "Online Post-UTME screening — CBT format. Covers English and 2 subjects relevant to your course of study.",
+    "fees": "₦50,000–₦130,000/yr",
+    "link": "https://unn.edu.ng"
+  },
+  {
+    "name": "Ahmadu Bello University",
+    "abbr": "ABU",
+    "formula": "50-50",
+    "type": "federal",
+    "location": "Kaduna State",
+    "cutoff": "200",
+    "notes": "CBT Post-UTME — 60 questions across English and relevant subjects. JAMB and O'Level weighted equally.",
+    "fees": "₦40,000–₦120,000/yr",
+    "link": "https://abu.edu.ng"
+  },
+  {
+    "name": "University of Benin",
+    "abbr": "UNIBEN",
+    "formula": "50-50",
+    "type": "federal",
+    "location": "Edo State",
+    "cutoff": "200",
+    "notes": "CBT Post-UTME — covers Use of English and subject areas. Results combined at 50/50 with JAMB score.",
+    "fees": "₦55,000–₦140,000/yr",
+    "link": "https://uniben.edu.ng"
+  },
+  {
+    "name": "Lagos State University",
+    "abbr": "LASU",
+    "formula": "40-60",
+    "type": "state",
+    "location": "Lagos State",
+    "cutoff": "200",
+    "notes": "Online Post-UTME screening — 40 questions. JAMB weighted at 40%, O'Level at 60%. Score your best in O'Level subjects.",
+    "fees": "₦80,000–₦200,000/yr",
+    "link": "https://lasu.edu.ng"
+  },
+  {
+    "name": "Covenant University",
+    "abbr": "CU",
+    "formula": "50-50",
+    "type": "private",
+    "location": "Ogun State",
+    "cutoff": "200",
+    "notes": "Post-UTME CBT + personality assessment. Admission is highly competitive. Strong O'Level performance is essential.",
+    "fees": "₦800,000–₦2,800,000/yr",
+    "link": "https://covenantuniversity.edu.ng"
+  },
+  {
+    "name": "Federal University of Technology Akure",
+    "abbr": "FUTA",
+    "formula": "50-50",
+    "type": "federal",
+    "location": "Ondo State",
+    "cutoff": "200",
+    "notes": "CBT Post-UTME focused on Science and Technology subjects. Only science-based courses offered.",
+    "fees": "₦50,000–₦120,000/yr",
+    "link": "https://futa.edu.ng"
+  },
+  {
+    "name": "University of Port Harcourt",
+    "abbr": "UNIPORT",
+    "formula": "50-50",
+    "type": "federal",
+    "location": "Rivers State",
+    "cutoff": "200",
+    "notes": "Computer-based Post-UTME screening. Covers English and 2 relevant subjects. Aggregate calculated at 50/50.",
+    "fees": "₦60,000–₦160,000/yr",
+    "link": "https://uniport.edu.ng"
+  }
+]

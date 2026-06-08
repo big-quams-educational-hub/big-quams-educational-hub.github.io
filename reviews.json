@@ -1,20 +1,30 @@
 [
   {
-    "name": "Daniel Samson",
-    "location": "Lagos state",
+    "name": "Blessing Ihejirika",
+    "location": "Owerri, Imo State",
     "stars": 5,
-    "message": "I was totally lost before I found Big Quams Media. They helped me sort my Post-UTME and I got admitted into Unilorin!"
+    "message": "Big Quams Media literally changed my life. I used the CBT practice tool every day for 3 months and scored 287 in JAMB. The scholarship section also helped me find funding I never knew existed. 100% free and 100% helpful!",
+    "date": "March 2026"
   },
   {
-    "name": "Johnson David",
-    "location": "Kwara State",
-    "stars": 4,
-    "message": "I passed my JAMB at once after following their guide. You won't regret working with them!"
+    "name": "Yusuf Abdullahi",
+    "location": "Kaduna State",
+    "stars": 5,
+    "message": "The Post-UTME calculator is accurate and very easy to use. I calculated my aggregate for ABU and it matched exactly what the school portal showed. The subject combination checker also saved me from making a big mistake with my course selection.",
+    "date": "January 2026"
   },
   {
-    "name": "Aderemi Rasheedah",
-    "location": "Osun State",
-    "stars": 4,
-    "message": "Best consultant of all time — fast, reliable, and always helpful. Big Quams Media truly supports students at every step."
+    "name": "Adaeze Nnaji",
+    "location": "Enugu State",
+    "stars": 5,
+    "message": "I downloaded 4 free textbooks from the eLibrary and they were all exactly what I needed for my Post-UTME prep. No registration, no payment — just download. I wish I had known about this platform earlier!",
+    "date": "February 2026"
+  },
+  {
+    "name": "Hassan Musa",
+    "location": "Abuja, FCT",
+    "stars": 5,
+    "message": "The NELFUND student loan guide on BQM was so clear and detailed. I followed every step and my loan was approved in less than a month. Very trustworthy platform — I recommend it to every Nigerian student.",
+    "date": "April 2026"
   }
 ]
