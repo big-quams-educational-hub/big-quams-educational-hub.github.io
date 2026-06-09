@@ -1,0 +1,13 @@
+[
+  {
+    "jamb_link": "https://www.jamb.gov.ng/efacility/",
+    "jamb_caps": "https://www.jamb.gov.ng/efacility/",
+    "jamb_steps": "1. Visit the JAMB eFacility portal at jamb.gov.ng/efacility\n2. Click \"Check UTME/DE Result\"\n3. Login with your registered email and JAMB registration number\n4. Your result and CAPS admission status will appear on your dashboard\n5. Download or screenshot your result slip for future reference",
+    "waec_link": "https://www.waecdirect.org/",
+    "waec_steps": "1. Go to waecdirect.org\n2. Enter your Examination Number (7 digits/year/type e.g. 1234567/2026/SSCE)\n3. Enter your Card Serial Number and PIN from your scratch card\n4. Select the exam type (WASSCE or GCE) and year\n5. Click \"Check Result\" to view your grades\n6. Print or screenshot your result for records",
+    "neco_link": "https://result.neco.gov.ng/",
+    "neco_steps": "1. Visit result.neco.gov.ng\n2. Enter your Examination Number\n3. Enter your token/PIN purchased from NECO or an authorised vendor\n4. Select your exam type (SSCE or GCE) and year\n5. Click \"Submit\" to view your result",
+    "nabteb_link": "https://www.nabteb.gov.ng/",
+    "nabteb_steps": "1. Go to nabteb.gov.ng\n2. Click on \"Check Result\"\n3. Enter your Registration Number\n4. Select your Exam Year and Exam Type (NBC or NBT)\n5. Enter your token/PIN\n6. Submit to view your NABTEB result"
+  }
+]

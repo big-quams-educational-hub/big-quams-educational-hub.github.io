@@ -4,17 +4,8 @@
     "badgeColor": "#f97316",
     "headline": "Your Admission Success Starts Here",
     "desc": "JAMB prep, Post-UTME calculator, scholarships, free textbooks and live campus news — everything you need, completely free.",
-    "cta1": {
-      "label": "👨🏽‍💻 Start CBT Practice",
-      "link": "cbt.html"
-    },
-    "cta2": {
-      "label": "💬 Chat on WhatsApp",
-      "link": "https://wa.me/message/OVCVEDHU3I2PH1"
-    },
-    "cta3": {
-      "label": "🗂 Explore All Tools",
-      "link": "explore.html"
-    }
+    "cta1": { "label": "🎯 Start CBT Practice", "link": "cbt.html" },
+    "cta2": { "label": "💬 Chat on WhatsApp", "link": "https://wa.me/message/OVCVEDHU3I2PH1" },
+    "cta3": { "label": "🗂 Explore All Tools", "link": "explore.html" }
   }
 ]
