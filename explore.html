@@ -3,309 +3,725 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Explore All Tools — Big Quams Media®</title>
-<meta name="description" content="Explore all free tools on Big Quams Media® — JAMB CBT practice, Post-UTME calculator, GPA calculator, scholarship finder, eLibrary, results checker and more.">
-<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<link rel="canonical" href="https://big-quams-educational-hub.github.io/explore.html">
+<title>Explore All Tools | Big Quams Media®</title>
+<meta name="description" content="Explore all free tools on Big Quams Media® — CBT practice, Post-UTME calculator, subject combo checker, eLibrary, scholarships, GPA calculator and more.">
 <link rel="icon" type="image/jpeg" href="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--orange:#f97316;--orange-dark:#e56b0f;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--text-faint:#94a3b8;--radius-sm:8px;--radius-md:14px;--radius-lg:20px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
-body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e;--text-faint:#64748b}
+:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-sm:8px;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
+body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Roboto',sans-serif;background:#f5f7ff;color:var(--text-main);line-height:1.6;overflow-x:hidden}
 body.dark{background:#0d1117}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;font-family:inherit}
+img{max-width:100%;display:block}
 
 /* HEADER */
 header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4)}
-.header-bar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:62px;gap:12px}
+.header-bar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
 .logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
-.logo-img{width:38px;height:38px;border-radius:50%;border:2.5px solid #f97316;object-fit:cover}
-.logo-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.4px;display:block;line-height:1}
-.logo-sub{font-size:.55rem;color:rgba(255,255,255,.48);display:block;margin-top:1px}
-.hdr-back{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);padding:7px 14px;border-radius:7px;font-size:.8rem;font-weight:600;transition:.18s}
-.hdr-back:hover{background:rgba(255,255,255,.18);color:#fff}
-.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;transition:.18s;cursor:pointer}
-.hdr-btn:hover{background:rgba(255,255,255,.18);color:#fff}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.logo-sub{font-size:.55rem;color:rgba(255,255,255,.45);display:block}
+.main-nav{display:flex;align-items:center;gap:2px}
+.main-nav>a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
+.main-nav>a:hover,.main-nav>a.active{color:#fff;background:rgba(255,255,255,.12)}
+.nav-cta{background:var(--orange);color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important}
+.nav-cta:hover{background:#e56b0f!important}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.18s}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center;padding:0}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:860px){.main-nav{display:none}.hamburger{display:flex}}
 
-/* PAGE HERO */
-.page-hero{background:linear-gradient(150deg,#081530,#0f2060,#1a3fa8);padding:48px 16px 52px;text-align:center;position:relative;overflow:hidden}
+/* MOBILE NAV */
+.mobile-nav{visibility:hidden;position:fixed;inset:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s ease,visibility 0s linear .3s}
+.mobile-nav.open{visibility:visible;transform:translateX(0);transition:transform .3s ease}
+.mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:60px}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav-section-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
+.mobile-nav>a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
+.mobile-nav>a:hover{background:rgba(255,255,255,.06);color:#fff}
+.mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
+.nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+
+/* HERO */
+.page-hero{background:linear-gradient(135deg,#081530,#0f2060,#1a3fa8);padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
 .page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
-.page-hero-inner{max-width:640px;margin:0 auto;position:relative;z-index:2}
-.page-hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.3);color:#fdba74;padding:5px 14px;border-radius:20px;font-size:.72rem;font-weight:600;margin-bottom:16px}
-.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:10px}
-.page-hero h1 span{color:#f97316}
-.page-hero p{font-size:.88rem;color:rgba(255,255,255,.6);max-width:480px;margin:0 auto}
+.page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:16px}
+.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px}
+.page-hero h1 span{color:var(--orange)}
+.page-hero p{font-size:clamp(.85rem,2.5vw,1rem);color:rgba(255,255,255,.65);max-width:520px;margin:0 auto}
 
-/* SEARCH */
-.search-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 16px;position:sticky;top:62px;z-index:200}
-body.dark .search-bar{background:#161b27;border-color:var(--border)}
-.search-inner{max-width:700px;margin:0 auto;position:relative}
-.search-input{width:100%;padding:10px 14px 10px 40px;border:1.5px solid var(--border);border-radius:var(--radius-md);font-size:.88rem;background:var(--surface-alt);color:var(--text-main);font-family:inherit;transition:.2s}
-body.dark .search-input{background:#111624;border-color:var(--border)}
-.search-input:focus{outline:none;border-color:var(--blue-main);box-shadow:0 0 0 3px rgba(26,63,168,.1)}
-.search-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:1rem;pointer-events:none;color:var(--text-faint)}
+/* SEARCH BAR */
+.search-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 16px;position:sticky;top:60px;z-index:200}
+body.dark .search-wrap{background:#161b27;border-color:var(--border)}
+.search-inner{max-width:1100px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search-box{flex:1;min-width:200px;display:flex;align-items:center;gap:8px;background:var(--surface-alt);border:1.5px solid var(--border);border-radius:10px;padding:0 14px;height:44px}
+body.dark .search-box{background:#111624;border-color:var(--border)}
+.search-box input{flex:1;border:none;background:transparent;font-size:.9rem;color:var(--text-main);outline:none;font-family:'Roboto',sans-serif}
+.search-box input::placeholder{color:var(--text-muted)}
+.stage-btns{display:flex;gap:6px;flex-wrap:wrap}
+.stage-btn{padding:8px 14px;border-radius:8px;font-size:.76rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface-alt);color:var(--text-muted);cursor:pointer;transition:.18s;white-space:nowrap}
+body.dark .stage-btn{background:#1a2236;border-color:var(--border)}
+.stage-btn:hover,.stage-btn.active{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
 
 /* FILTER TABS */
-.filter-bar{background:var(--surface);padding:0 16px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
-body.dark .filter-bar{background:#161b27;border-color:var(--border)}
-.filter-bar::-webkit-scrollbar{display:none}
-.filter-scroll{display:flex;min-width:max-content;max-width:1200px;margin:0 auto}
-.filter-tab{padding:12px 18px;font-size:.8rem;font-weight:600;color:var(--text-muted);border-bottom:2.5px solid transparent;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;cursor:pointer;transition:.18s}
-.filter-tab:hover{color:var(--blue-main)}
-.filter-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+.filter-bar{max-width:1100px;margin:0 auto;padding:14px 16px 0;display:flex;gap:7px;flex-wrap:wrap}
+.filter-tab{padding:7px 16px;border-radius:20px;font-size:.76rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface);color:var(--text-muted);cursor:pointer;transition:.18s;white-space:nowrap}
+body.dark .filter-tab{background:#1a2236;border-color:var(--border)}
+.filter-tab.active{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
+.filter-tab:hover:not(.active){border-color:var(--blue-main);color:var(--blue-main)}
 
-/* TOOL CARDS GRID */
-.wrap{max-width:1100px;margin:0 auto}
-.sec{padding:40px 16px}
-.sec-head{margin-bottom:24px}
-.sec-label{font-size:.65rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
-.sec-label::before{content:'';width:16px;height:2px;background:var(--orange);display:block}
-.sec-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:800;color:var(--text-main)}
+/* SECTIONS */
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.sec{padding:44px 0}
+.sec-alt{background:var(--surface)}
+body.dark .sec-alt{background:#111624}
+.sec-label{display:inline-block;background:var(--blue-light);color:var(--blue-main);font-size:.65rem;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px}
+body.dark .sec-label{background:#1a2d5a;color:#93c5fd}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:24px;flex-wrap:wrap}
+.sec-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.2rem,4vw,1.6rem);font-weight:800;color:var(--text-main);line-height:1.2}
 .sec-title span{color:var(--orange)}
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-.tool-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:18px;display:flex;flex-direction:column;gap:10px;transition:all .22s;cursor:pointer;position:relative}
-body.dark .tool-card{background:#1a2236;border-color:var(--border)}
-.tool-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#c7d9ff}
-body.dark .tool-card:hover{border-color:#3b5bdb}
-.tool-card.featured{border-color:var(--orange);background:linear-gradient(135deg,#fff7ed,#fffbf5)}
-body.dark .tool-card.featured{background:linear-gradient(135deg,#1a1000,#1a0e00);border-color:#c2410c}
-.tool-badge{position:absolute;top:12px;right:12px;background:var(--orange);color:#fff;font-size:.58rem;font-weight:800;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.6px}
-.tool-badge.new{background:#10b981}
-.tool-badge.hot{background:#ef4444}
-.tool-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
-.tool-name{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text-main);line-height:1.3}
-.tool-desc{font-size:.78rem;color:var(--text-muted);line-height:1.5;flex:1}
-.tool-footer{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
-.tool-tag{font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:10px}
-.tag-admission{background:#dbeafe;color:#1d4ed8}
-.tag-exam{background:#dcfce7;color:#15803d}
-.tag-inschool{background:#ede9fe;color:#7c3aed}
-.tag-resource{background:#fef3c7;color:#92400e}
-.tag-news{background:#fee2e2;color:#dc2626}
-body.dark .tag-admission{background:#1e3060;color:#93c5fd}
-body.dark .tag-exam{background:#052e16;color:#6ee7b7}
-body.dark .tag-inschool{background:#2e1065;color:#c4b5fd}
-body.dark .tag-resource{background:#1c1000;color:#fbbf24}
-body.dark .tag-news{background:#1c0000;color:#fca5a5}
-.tool-arrow{font-size:.8rem;font-weight:700;color:var(--blue-main)}
-body.dark .tool-arrow{color:#93c5fd}
+.view-all{font-size:.78rem;font-weight:700;color:var(--blue-main);white-space:nowrap;display:flex;align-items:center;gap:4px}
+.view-all:hover{text-decoration:underline}
 
-/* NO RESULTS */
-.no-results{text-align:center;padding:60px 16px;color:var(--text-faint)}
-.no-results-icon{font-size:2.5rem;margin-bottom:12px}
-.no-results-text{font-size:.88rem}
+/* TOOLS GRID */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+@media(max-width:480px){.tools-grid{grid-template-columns:1fr}}
+.tool-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:18px;display:flex;flex-direction:column;gap:10px;transition:all .22s;cursor:pointer}
+body.dark .tool-card{background:#161b27;border-color:var(--border)}
+.tool-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--blue-light)}
+.tool-card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.tool-card-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text-main)}
+.tool-card-desc{font-size:.76rem;color:var(--text-muted);line-height:1.5;flex:1}
+.tool-card-tag{font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:20px;align-self:flex-start}
+.tool-card-btn{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:10px;border-top:1px solid var(--border)}
+.tool-card-link{font-size:.76rem;font-weight:700;color:var(--blue-main)}
+.tool-card-arrow{font-size:.8rem;color:var(--text-muted)}
+.no-results{text-align:center;padding:60px 20px;color:var(--text-muted)}
+.no-results .ei{font-size:2.5rem;margin-bottom:10px}
+
+/* QUICK TOOLS */
+.quick-tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.qt-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:18px;transition:.2s}
+body.dark .qt-card{background:#161b27;border-color:var(--border)}
+.qt-card:hover{box-shadow:var(--shadow-md)}
+.qt-title{font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:var(--text-main);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.qt-select,.qt-input{width:100%;padding:9px 11px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:.84rem;background:var(--surface-alt);color:var(--text-main);margin-bottom:8px;font-family:'Roboto',sans-serif}
+body.dark .qt-select,body.dark .qt-input{background:#111624;border-color:var(--border)}
+.qt-select:focus,.qt-input:focus{outline:none;border-color:var(--blue-main)}
+.qt-btn{width:100%;padding:10px;background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff;border:none;border-radius:var(--radius-sm);font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer;transition:.18s}
+.qt-btn:hover{opacity:.9}
+.qt-result{background:#f0f5ff;border:1.5px solid #c7d9ff;border-radius:var(--radius-sm);padding:12px;display:none;margin-top:8px;font-size:.78rem;line-height:1.6}
+body.dark .qt-result{background:#111d36;border-color:#1e3060;color:var(--text-main)}
+.qt-result.show{display:block;animation:fadeUp .2s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* DYK */
+.dyk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.dyk-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:20px;transition:.2s}
+body.dark .dyk-card{background:#161b27;border-color:var(--border)}
+.dyk-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.dyk-emoji{font-size:1.8rem;margin-bottom:10px}
+.dyk-fact{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text-main);margin-bottom:8px}
+.dyk-body{font-size:.78rem;color:var(--text-muted);line-height:1.6}
+.dyk-cat{font-size:.62rem;font-weight:700;background:var(--blue-light);color:var(--blue-main);padding:3px 9px;border-radius:20px;display:inline-block;margin-top:10px}
+body.dark .dyk-cat{background:#1a2d5a;color:#93c5fd}
+
+/* SPOTLIGHT */
+.spotlight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.sp-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;transition:.2s}
+body.dark .sp-card{background:#161b27;border-color:var(--border)}
+.sp-card:hover{box-shadow:var(--shadow-md)}
+.sp-header{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));padding:20px;display:flex;align-items:center;gap:12px}
+.sp-avatar{width:48px;height:48px;border-radius:50%;border:2.5px solid rgba(255,255,255,.4);object-fit:cover;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;flex-shrink:0}
+.sp-name{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;color:#fff}
+.sp-achieve{font-size:.72rem;color:rgba(255,255,255,.7);margin-top:2px}
+.sp-body{padding:16px}
+.sp-story{font-size:.78rem;color:var(--text-muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.sp-meta{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.sp-pill{font-size:.62rem;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--surface-alt);color:var(--text-muted)}
+body.dark .sp-pill{background:#1a2236}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.rev-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:18px;transition:.2s}
+body.dark .rev-card{background:#161b27;border-color:var(--border)}
+.rev-stars{color:#f59e0b;font-size:1rem;margin-bottom:8px}
+.rev-msg{font-size:.8rem;color:var(--text-muted);line-height:1.6;font-style:italic;margin-bottom:12px}
+.rev-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:var(--text-main)}
+.rev-loc{font-size:.68rem;color:var(--text-faint)}
+
+/* WA COMMUNITY */
+.wa-community{background:linear-gradient(135deg,#064e3b,#065f46);padding:48px 16px;text-align:center}
+.wa-comm-inner{max-width:600px;margin:0 auto}
+.wa-comm-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.4);color:#6ee7b7;padding:5px 14px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:14px}
+.wa-dot{width:7px;height:7px;border-radius:50%;background:#10b981;animation:blink 1.4s ease infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.wa-comm-title{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:8px}
+.wa-comm-sub{font-size:.84rem;color:rgba(255,255,255,.6);margin-bottom:22px;line-height:1.6}
+.wa-stats{display:inline-flex;align-items:center;gap:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-md);padding:14px 24px;margin-bottom:22px}
+.wa-stat-num{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;line-height:1}
+.wa-stat-lbl{font-size:.62rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.wa-divider{width:1px;height:34px;background:rgba(255,255,255,.15)}
+.wa-join-btn{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff;padding:14px 28px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.92rem;border:none;cursor:pointer;transition:.2s;box-shadow:0 4px 18px rgba(37,211,102,.3)}
+.wa-join-btn:hover{background:#1db954;transform:translateY(-2px)}
+
+/* GOOGLE REVIEW CTA */
+.review-cta{background:linear-gradient(135deg,#fefce8,#fff7ed);border-top:1px solid #fde68a;border-bottom:1px solid #fde68a;padding:40px 16px;text-align:center}
+body.dark .review-cta{background:linear-gradient(135deg,#1a1500,#1a0e00);border-color:#2a2000}
+.review-cta-inner{max-width:600px;margin:0 auto}
+.stars-row{font-size:1.6rem;color:#FBBC05;margin-bottom:10px}
+.review-cta h3{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:6px}
+.review-cta p{font-size:.83rem;color:var(--text-muted);margin-bottom:18px;line-height:1.6}
+.google-btn{display:inline-flex;align-items:center;gap:10px;background:#fff;border:2px solid #e2e8f0;border-radius:12px;padding:12px 24px;font-weight:800;font-size:.88rem;color:#1e2749;box-shadow:0 2px 12px rgba(0,0,0,.08);transition:.2s;cursor:pointer}
+body.dark .google-btn{background:#1a2236;border-color:#2a3550;color:var(--text-main)}
+.google-btn:hover{border-color:#4285F4;box-shadow:0 4px 18px rgba(66,133,244,.2);transform:translateY(-1px)}
+
+/* COUNTDOWN */
+.countdown-sec{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));padding:36px 16px;text-align:center}
+.countdown-inner{max-width:700px;margin:0 auto}
+.countdown-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.countdown-event{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:20px}
+.countdown-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cd-box{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 18px;min-width:70px}
+.cd-num{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:800;color:#fff;line-height:1}
+.cd-lbl{font-size:.6rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
 
 /* FOOTER */
-footer{background:#0a1228;padding:28px 16px;margin-top:40px}
-.footer-copy{max-width:1100px;margin:0 auto;font-size:.75rem;color:rgba(255,255,255,.3);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.footer-copy a{color:#f97316}
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:40px 16px 24px;margin-top:auto}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.footer-brand img{width:34px;height:34px;border-radius:50%;border:2px solid var(--orange)}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:16px}
+.footer-links a{font-size:.75rem;color:rgba(255,255,255,.45);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.7rem;border-top:1px solid rgba(255,255,255,.08);padding-top:16px;margin-top:8px}
 
-/* BACK TO TOP */
-#backToTop{position:fixed;bottom:22px;right:18px;width:42px;height:42px;border-radius:50%;background:var(--blue-main);color:#fff;border:none;font-size:1.1rem;cursor:pointer;z-index:350;opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s;pointer-events:none;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(26,63,168,.4)}
-#backToTop.show{opacity:1;transform:translateY(0);pointer-events:auto}
-#backToTop:hover{background:var(--orange)}
-
-@media(max-width:480px){.tools-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:360px){.tools-grid{grid-template-columns:1fr}}
+/* LOADING */
+.loader{text-align:center;padding:40px;color:var(--text-muted);font-size:.84rem}
+.loader-spin{width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="header-bar">
-    <a class="logo-link" href="index.html">
-      <img class="logo-img" src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="Big Quams Media" loading="eager">
-      <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Your Admission Success Starts Here</span></div>
+    <a href="index.html" class="logo-link">
+      <img class="logo-img" src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's #1 Free Student Platform</span></div>
     </a>
-    <a href="index.html" class="hdr-back">← Back to Home</a>
-    <button class="hdr-btn" id="darkToggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">🌙</button>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="explore.html" class="active">Explore</a>
+      <a href="elibrary.html">eLibrary</a>
+      <a href="scholarship.html">Scholarships</a>
+      <a href="index.html#contact" class="nav-cta">💬 Contact</a>
+    </nav>
+    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()" title="Toggle dark mode">🌙</button>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<div class="page-hero">
+<!-- MOBILE NAV -->
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <div class="mnav-header">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <div><div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div></div>
+    </div>
+    <button class="mnav-close" onclick="toggleNav()">✕</button>
+  </div>
+  <div class="mnav-section-lbl">Navigation</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="elibrary.html" onclick="toggleNav()">📚 Free eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <div class="mnav-section-lbl">Quick Links</div>
+  <a href="cbt.html" onclick="toggleNav()">🎯 JAMB CBT Practice</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Post-UTME Calculator</a>
+  <a href="results.html" onclick="toggleNav()">📋 Results Checker</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA/CGPA Calculator</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 NELFUND Student Loan</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="mnav-cta">💬 Chat on WhatsApp — Free</a>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
   <div class="page-hero-inner">
-    <div class="page-hero-badge">🗂 All Tools & Resources</div>
-    <h1>Everything You Need, <span>In One Place</span></h1>
-    <p>Free admission tools, study resources, scholarship finder, results checkers and more — built for every Nigerian student.</p>
+    <div class="hero-badge">🗂 Everything in One Place</div>
+    <h1>All Tools &amp; <span>Resources</span></h1>
+    <p>JAMB prep, Post-UTME calculator, scholarships, free books, student loan guide and more — all free, all here.</p>
   </div>
-</div>
+</section>
 
-<div class="search-bar">
+<!-- SEARCH + STAGE SELECTOR -->
+<div class="search-wrap">
   <div class="search-inner">
-    <span class="search-icon">🔍</span>
-    <input class="search-input" id="toolSearch" type="search" placeholder="Search tools, e.g. 'GPA calculator', 'scholarship', 'JAMB'…" oninput="filterTools()" autocomplete="off">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="Search tools, resources, topics…" oninput="filterTools()" autocomplete="off">
+    </div>
+    <div class="stage-btns">
+      <button class="stage-btn active" onclick="setStage('all',this)">All</button>
+      <button class="stage-btn" onclick="setStage('pre-jamb',this)">Pre-JAMB</button>
+      <button class="stage-btn" onclick="setStage('post-utme',this)">Post-UTME</button>
+      <button class="stage-btn" onclick="setStage('in-school',this)">In School</button>
+    </div>
   </div>
 </div>
 
-<div class="filter-bar">
-  <div class="filter-scroll">
-    <button class="filter-tab active" onclick="setFilter('all',this)">All Tools</button>
-    <button class="filter-tab" onclick="setFilter('admission',this)">🎓 Admission</button>
-    <button class="filter-tab" onclick="setFilter('exam',this)">📝 Exam Prep</button>
-    <button class="filter-tab" onclick="setFilter('inschool',this)">🏫 In School</button>
-    <button class="filter-tab" onclick="setFilter('resource',this)">📚 Resources</button>
-    <button class="filter-tab" onclick="setFilter('news',this)">📰 News</button>
-  </div>
-</div>
-
-<main>
-<div class="sec">
+<!-- FILTER TABS -->
 <div class="wrap">
-  <div id="toolsContainer"></div>
-  <div id="noResults" class="no-results" style="display:none">
-    <div class="no-results-icon">🔍</div>
-    <div class="no-results-text">No tools found for "<span id="noResultsQuery"></span>".<br>Try a different keyword.</div>
+  <div class="filter-bar" id="filterTabs">
+    <button class="filter-tab active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-tab" onclick="setFilter('admission',this)">Admission</button>
+    <button class="filter-tab" onclick="setFilter('exam',this)">Exam Prep</button>
+    <button class="filter-tab" onclick="setFilter('inschool',this)">In School</button>
+    <button class="filter-tab" onclick="setFilter('resources',this)">Resources</button>
+    <button class="filter-tab" onclick="setFilter('news',this)">News</button>
   </div>
 </div>
-</div>
-</main>
 
+<!-- FEATURED TOOLS -->
+<section class="sec" id="featured-tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-label">Top Picks</div><h2 class="sec-title">Featured <span>Tools</span></h2></div>
+    </div>
+    <div class="tools-grid" id="featuredGrid"></div>
+  </div>
+</section>
+
+<!-- ALL TOOLS -->
+<section class="sec sec-alt" id="all-tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-label">Full Directory</div><h2 class="sec-title">All <span>Tools &amp; Resources</span></h2></div>
+    </div>
+    <div class="tools-grid" id="allToolsGrid"></div>
+  </div>
+</section>
+
+<!-- QUICK TOOLS -->
+<section class="sec" id="quick-tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-label">Instant Answers</div><h2 class="sec-title">Quick <span>Tools</span></h2></div>
+    </div>
+    <div class="quick-tools-grid">
+
+      <!-- Subject Combo -->
+      <div class="qt-card">
+        <div class="qt-title">📚 Subject Combo Finder</div>
+        <select class="qt-select" id="qt_course" onchange="qtSubjectCombo()">
+          <option value="">Select your course…</option>
+        </select>
+        <div class="qt-result" id="qt_comboResult"></div>
+        <a href="subject-combo.html" style="font-size:.72rem;font-weight:700;color:var(--blue-main);margin-top:6px;display:block">Full guide →</a>
+      </div>
+
+      <!-- Admission Probability -->
+      <div class="qt-card">
+        <div class="qt-title">🎯 Admission Probability</div>
+        <input class="qt-input" type="number" id="qt_score" placeholder="Your JAMB score (e.g. 260)" oninput="qtAdmissionProb()" min="0" max="400">
+        <select class="qt-select" id="qt_course2" onchange="qtAdmissionProb()">
+          <option value="">Select course…</option>
+          <option value="300">Medicine &amp; Surgery (min. 300)</option>
+          <option value="260">Pharmacy (min. 260)</option>
+          <option value="240">Law (min. 240)</option>
+          <option value="240">Petroleum Engineering (min. 240)</option>
+          <option value="220">Nursing Science (min. 220)</option>
+          <option value="200">Computer Science (min. 200)</option>
+          <option value="200">Engineering (min. 200)</option>
+          <option value="180">Economics (min. 180)</option>
+          <option value="180">Accounting (min. 180)</option>
+          <option value="180">Biology (min. 180)</option>
+          <option value="160">Education (min. 160)</option>
+        </select>
+        <div class="qt-result" id="qt_probResult"></div>
+      </div>
+
+      <!-- Results Checker -->
+      <div class="qt-card">
+        <div class="qt-title">📋 Results Checker</div>
+        <select class="qt-select" id="qt_resultType" onchange="qtShowResult()">
+          <option value="">Select exam body…</option>
+          <option value="jamb">JAMB UTME Result</option>
+          <option value="waec">WAEC SSCE Result</option>
+          <option value="neco">NECO Result</option>
+          <option value="nabteb">NABTEB Result</option>
+          <option value="caps">JAMB CAPS Admission</option>
+        </select>
+        <div class="qt-result" id="qt_resultOut"></div>
+        <a href="results.html" style="font-size:.72rem;font-weight:700;color:var(--blue-main);margin-top:6px;display:block">Full instructions →</a>
+      </div>
+
+      <!-- GPA Calculator -->
+      <div class="qt-card">
+        <div class="qt-title">🎓 Quick GPA Check</div>
+        <select class="qt-select" id="qt_gpaScale">
+          <option value="5">University (5.0 scale)</option>
+          <option value="4">Polytechnic (4.0 scale)</option>
+        </select>
+        <input class="qt-input" type="number" id="qt_gpaInput" placeholder="Your current GPA (e.g. 4.2)" step="0.01" min="0" max="5" oninput="qtCheckGPA()">
+        <div class="qt-result" id="qt_gpaResult"></div>
+        <a href="gpa-calculator.html" style="font-size:.72rem;font-weight:700;color:var(--blue-main);margin-top:6px;display:block">Full calculator →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="countdown-sec" id="countdown-section">
+  <div class="countdown-inner">
+    <div class="countdown-title">⏳ Next Academic Milestone</div>
+    <div class="countdown-event" id="cd_event">Loading…</div>
+    <div class="countdown-row">
+      <div class="cd-box"><div class="cd-num" id="cd_days">--</div><div class="cd-lbl">Days</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd_hours">--</div><div class="cd-lbl">Hours</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd_mins">--</div><div class="cd-lbl">Mins</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd_secs">--</div><div class="cd-lbl">Secs</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DYK SECTION -->
+<section class="sec" id="dyk">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-label">Fun Facts</div><h2 class="sec-title">Did You <span>Know?</span></h2></div>
+      <a href="dyk.html" class="view-all">View All →</a>
+    </div>
+    <div class="dyk-grid" id="dykGrid"><div class="loader"><div class="loader-spin"></div>Loading facts…</div></div>
+  </div>
+</section>
+
+<!-- SPOTLIGHT -->
+<section class="sec sec-alt" id="spotlight">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-label">Success Stories</div><h2 class="sec-title">Student <span>Spotlight</span></h2></div>
+      <a href="spotlight.html" class="view-all">View All →</a>
+    </div>
+    <div class="spotlight-grid" id="spotlightGrid"><div class="loader"><div class="loader-spin"></div>Loading stories…</div></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec" id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-label">What Students Say</div><h2 class="sec-title">Student <span>Reviews</span></h2></div>
+    </div>
+    <div class="reviews-grid" id="reviewsGrid"><div class="loader"><div class="loader-spin"></div>Loading reviews…</div></div>
+  </div>
+</section>
+
+<!-- WA COMMUNITY -->
+<div class="wa-community" id="community">
+  <div class="wa-comm-inner">
+    <div class="wa-comm-badge"><span class="wa-dot"></span>Live Community</div>
+    <div class="wa-comm-title">Join 10,000+ Nigerian Students</div>
+    <p class="wa-comm-sub">Get instant admission alerts, scholarship updates, exam tips and connect with students across Nigeria — all in one free WhatsApp community.</p>
+    <div class="wa-stats">
+      <div><div class="wa-stat-num">10K+</div><div class="wa-stat-lbl">Members</div></div>
+      <div class="wa-divider"></div>
+      <div><div class="wa-stat-num">Free</div><div class="wa-stat-lbl">Always</div></div>
+      <div class="wa-divider"></div>
+      <div><div class="wa-stat-num">24/7</div><div class="wa-stat-lbl">Active</div></div>
+    </div>
+    <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" class="wa-join-btn">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Join the Community — Free
+    </a>
+  </div>
+</div>
+
+<!-- GOOGLE REVIEW CTA -->
+<div class="review-cta">
+  <div class="review-cta-inner">
+    <div class="stars-row">★★★★★</div>
+    <h3>Helped by Big Quams Media®?</h3>
+    <p>A quick Google review helps more Nigerian students find us. It takes 30 seconds and means everything to our team. 🙏</p>
+    <a href="https://g.page/r/CQ9XKGb_WgKgEAE/review" target="_blank" rel="noopener" class="google-btn">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.5 3.1 29.6 1 24 1 14.8 1 7 6.7 3.7 14.6l7 5.4C12.5 13.8 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.8-2.1 5.2-4.5 6.8l7 5.4C43.1 36.8 46.1 31.1 46.1 24.5z"/><path fill="#FBBC05" d="M10.7 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7-5.4C2.2 17.1 1 20.4 1 24s1.2 6.9 3.7 9.9l7-5.3z"/><path fill="#34A853" d="M24 47c5.6 0 10.4-1.9 13.8-5.1l-7-5.4c-1.9 1.3-4.2 2-6.8 2-6.2 0-11.5-4.3-13.3-10l-7 5.4C7 41.3 14.8 47 24 47z"/></svg>
+      Rate Us on Google
+    </a>
+    <div style="font-size:.7rem;color:var(--text-muted);margin-top:10px">⭐ Join 100+ students who've left us a review</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-copy">
-    <span>© <span id="footer-year">2026</span> Big Quams Media®. All rights reserved.</span>
-    <span>Built with ❤️ for Nigerian students — <a href="index.html">Back to Homepage</a></span>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <div><div class="footer-brand-name">Big Quams Media®</div><div style="font-size:.65rem">Nigeria's #1 Free Student Platform</div></div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a>
+      <a href="scholarship.html">Scholarships</a><a href="cbt.html">CBT Practice</a>
+      <a href="postutme-calculator.html">Post-UTME Calc</a><a href="results.html">Results</a>
+      <a href="gpa-calculator.html">GPA Calculator</a><a href="student-loan.html">Student Loan</a>
+      <a href="dyk.html">Did You Know?</a><a href="spotlight.html">Spotlight</a>
+      <a href="newsroom.html">Newsroom</a><a href="community.html">Community</a>
+    </div>
+    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · big-quams-educational-hub.github.io · For Nigerian Students, By Nigerian Students</div>
   </div>
 </footer>
 
-<button id="backToTop" aria-label="Back to top">↑</button>
-
 <script>
-'use strict';
+// ── Dark mode ──
+(function(){const s=localStorage.getItem('bqm-theme');const sys=!s&&window.matchMedia('(prefers-color-scheme:dark)').matches;if(s==='dark'||sys)document.body.classList.add('dark');})();
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';});
 
-/* DARK MODE */
-function toggleDarkMode(){
-  const btn=document.getElementById('darkToggle');
-  document.body.classList.toggle('dark');
-  const dark=document.body.classList.contains('dark');
-  if(btn){btn.textContent=dark?'☀️':'🌙';}
-  localStorage.setItem('bqm-theme',dark?'dark':'light');
-}
-(function(){
-  const saved=localStorage.getItem('bqm-theme');
-  const sys=!saved&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
-  if(saved==='dark'||sys){document.body.classList.add('dark');const btn=document.getElementById('darkToggle');if(btn)btn.textContent='☀️';}
-})();
+// ── Nav ──
+function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
 
-/* BACK TO TOP */
-(function(){
-  const btn=document.getElementById('backToTop');if(!btn)return;
-  window.addEventListener('scroll',()=>btn.classList.toggle('show',scrollY>300),{passive:true});
-  btn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
-})();
+// ── Footer year ──
+document.getElementById('yr').textContent=new Date().getFullYear();
 
-/* ALL TOOLS DATA */
-const ALL_TOOLS = [
-  // ── ADMISSION ──
-  { name:'JAMB CBT Practice', desc:'Practice with real JAMB past questions in timed CBT format. 120+ questions across all subjects. Completely free.', icon:'🎯', bg:'#dbeafe', url:'cbt.html', tag:'admission', tagLabel:'Admission', tagClass:'tag-admission', featured:true, badge:'Hot', badgeClass:'hot', keywords:'jamb cbt practice utme past questions' },
-  { name:'Post-UTME Calculator', desc:'Calculate your Post-UTME aggregate using JAMB score and O\'level grades with different school formulas.', icon:'🧮', bg:'#dcfce7', url:'postutme-calculator.html', tag:'admission', tagLabel:'Admission', tagClass:'tag-admission', keywords:'post utme aggregate calculator score' },
-  { name:'Cut-off Mark Checker', desc:'Check if your JAMB score meets the minimum cut-off for any Nigerian university and course.', icon:'🎯', bg:'#ede9fe', url:'index.html#calculator-section', tag:'admission', tagLabel:'Admission', tagClass:'tag-admission', keywords:'cutoff mark jamb score checker' },
-  { name:'Admission Probability Meter', desc:'Enter your JAMB score and course to get an instant % probability of getting admission.', icon:'📊', bg:'#fce7f3', url:'index.html#quick-tools', tag:'admission', tagLabel:'Admission', tagClass:'tag-admission', badge:'New', badgeClass:'new', keywords:'admission probability chance percentage' },
-  { name:'Subject Combination Finder', desc:'Type your course and get the exact 4 JAMB subjects required. Covers 35+ courses across all faculties.', icon:'📚', bg:'#fef3c7', url:'subject-combo.html', tag:'admission', tagLabel:'Admission', tagClass:'tag-admission', keywords:'subject combination jamb course finder' },
-  { name:'University Info Search', desc:'Search any Nigerian university and get cut-off marks, Post-UTME format and estimated school fees.', icon:'🏫', bg:'#dbeafe', url:'index.html#quick-tools', tag:'admission', tagLabel:'Admission', tagClass:'tag-admission', keywords:'university search info cutoff fees unilag ui oau' },
-  { name:'Post-UTME Prep Guide', desc:'Comprehensive guides on how to prepare for Post-UTME screening in Nigerian universities.', icon:'📖', bg:'#dcfce7', url:'postutme-prep.html', tag:'admission', tagLabel:'Admission', tagClass:'tag-admission', keywords:'post utme prep guide preparation' },
-  { name:'CAPS Admission Portal', desc:'Track your JAMB CAPS admission status. Direct links to accept, reject or print your admission letter.', icon:'🔗', bg:'#ede9fe', url:'results.html', tag:'admission', tagLabel:'Admission', tagClass:'tag-admission', keywords:'caps admission portal jamb status' },
-
-  // ── EXAM PREP ──
-  { name:'JAMB Past Questions (CBT)', desc:'Access over 120 JAMB past questions in real CBT exam format with instant marking and explanations.', icon:'📝', bg:'#fef3c7', url:'cbt.html', tag:'exam', tagLabel:'Exam Prep', tagClass:'tag-exam', featured:true, badge:'Free', keywords:'jamb past questions cbt exam prep utme' },
-  { name:'WAEC Result Checker', desc:'Check your WAEC WASSCE result online. Direct link to the official WAEC result portal.', icon:'📋', bg:'#dcfce7', url:'results.html', tag:'exam', tagLabel:'Exam Prep', tagClass:'tag-exam', keywords:'waec result checker wassce' },
-  { name:'NECO Result Checker', desc:'Check your NECO SSCE result directly on the official NECO portal.', icon:'📋', bg:'#dbeafe', url:'results.html', tag:'exam', tagLabel:'Exam Prep', tagClass:'tag-exam', keywords:'neco result checker ssce' },
-  { name:'NABTEB Result Checker', desc:'Check your NABTEB result via the official portal. Useful for technical and vocational students.', icon:'📋', bg:'#fce7f3', url:'results.html', tag:'exam', tagLabel:'Exam Prep', tagClass:'tag-exam', keywords:'nabteb result checker' },
-  { name:'JAMB Score Calculator', desc:'Add your 4 subject raw scores and instantly get your total JAMB score out of 400.', icon:'🔢', bg:'#ede9fe', url:'index.html#calculator-section', tag:'exam', tagLabel:'Exam Prep', tagClass:'tag-exam', keywords:'jamb score calculator total 400' },
-
-  // ── IN SCHOOL ──
-  { name:'GPA / CGPA Calculator', desc:'Calculate your semester GPA or cumulative CGPA for 4.0 and 5.0 grading scales. Used by all Nigerian universities.', icon:'🎓', bg:'#ede9fe', url:'gpa-calculator.html', tag:'inschool', tagLabel:'In School', tagClass:'tag-inschool', featured:true, badge:'Popular', keywords:'gpa cgpa calculator grade university' },
-  { name:'NELFUND Student Loan Guide', desc:'Step-by-step guide to applying for the NELFUND federal student loan. Eligibility, application steps and repayment.', icon:'💳', bg:'#dbeafe', url:'student-loan.html', tag:'inschool', tagLabel:'In School', tagClass:'tag-inschool', badge:'New', badgeClass:'new', keywords:'nelfund student loan guide federal apply' },
-  { name:'Academic Calendar', desc:'Stay on top of JAMB, WAEC, Post-UTME and school session dates. Never miss an important deadline.', icon:'📅', bg:'#dcfce7', url:'index.html#countdown-section', tag:'inschool', tagLabel:'In School', tagClass:'tag-inschool', keywords:'academic calendar dates countdown deadline' },
-  { name:'Student Spotlight', desc:'Read inspiring stories of Nigerian students who excelled in their exams, won scholarships or achieved great things.', icon:'🌟', bg:'#fef3c7', url:'spotlight.html', tag:'inschool', tagLabel:'In School', tagClass:'tag-inschool', keywords:'student spotlight success stories inspiration' },
-  { name:'Community — Brainy Buddies', desc:'Join 10,000+ Nigerian students on WhatsApp. Share resources, ask questions and get support from peers.', icon:'👥', bg:'#fce7f3', url:'community.html', tag:'inschool', tagLabel:'In School', tagClass:'tag-inschool', keywords:'community whatsapp brainy buddies group' },
-
-  // ── RESOURCES ──
-  { name:'Free eLibrary', desc:'Download 100+ free academic textbooks, past question PDFs and study guides. No registration needed.', icon:'📗', bg:'#dcfce7', url:'elibrary.html', tag:'resource', tagLabel:'Resource', tagClass:'tag-resource', featured:true, badge:'100+ Books', keywords:'elibrary free books textbooks download pdf' },
-  { name:'Scholarship Finder', desc:'Browse 50+ active scholarships for Nigerian students — federal, state, international and corporate. Updated regularly.', icon:'💰', bg:'#fef3c7', url:'scholarship.html', tag:'resource', tagLabel:'Resource', tagClass:'tag-resource', badge:'Hot', badgeClass:'hot', keywords:'scholarship finder nigeria federal international mtn' },
-  { name:'Did You Know? (DYK)', desc:'Interesting facts about Nigerian universities, exams, history and current affairs. New facts added regularly.', icon:'🤔', bg:'#dbeafe', url:'dyk.html', tag:'resource', tagLabel:'Resource', tagClass:'tag-resource', keywords:'did you know facts history education nigeria' },
-  { name:'WhatsApp Channel', desc:'Subscribe to our WhatsApp channel for instant updates on JAMB, WAEC, scholarships and admission news.', icon:'📢', bg:'#fce7f3', url:'https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q', tag:'resource', tagLabel:'Resource', tagClass:'tag-resource', external:true, keywords:'whatsapp channel updates news alerts' },
-
-  // ── NEWS ──
-  { name:'Newsroom', desc:'Latest campus news, JAMB updates, WAEC announcements, university news and education policy changes in Nigeria.', icon:'📰', bg:'#fee2e2', url:'newsroom.html', tag:'news', tagLabel:'News', tagClass:'tag-news', featured:true, keywords:'news newsroom campus jamb waec updates' },
-  { name:'JAMB Updates', desc:'All official JAMB news — registration dates, cut-off marks, CAPS updates, policy changes and UTME timetables.', icon:'🔔', bg:'#fef3c7', url:'newsroom.html', tag:'news', tagLabel:'News', tagClass:'tag-news', keywords:'jamb updates news registration' },
-  { name:'Scholarship Alerts', desc:'New scholarship opportunities announced as soon as they open. Never miss a funding deadline again.', icon:'🏆', bg:'#dcfce7', url:'scholarship.html', tag:'news', tagLabel:'News', tagClass:'tag-news', keywords:'scholarship alerts new opportunities' },
+// ── ALL TOOLS DATA ──
+const ALL_TOOLS=[
+  {title:'JAMB CBT Practice',desc:'Timed CBT exam with 120+ past questions across all JAMB subjects. Practice in real exam conditions.',icon:'🎯',bg:'#fee2e2',tag:'Exam Prep',tagBg:'#fee2e2',tagColor:'#b91c1c',link:'cbt.html',stage:['pre-jamb'],filter:'exam',featured:true},
+  {title:'Post-UTME Calculator',desc:'Select your school, enter JAMB and O\'Level scores, get your aggregate instantly. Download result as PDF.',icon:'🧮',bg:'#dbeafe',tag:'Admission',tagBg:'#dbeafe',tagColor:'#1d4ed8',link:'postutme-calculator.html',stage:['post-utme'],filter:'admission',featured:true},
+  {title:'Subject Combination Checker',desc:'Find the correct 4 JAMB subjects for any course. Instant results with O\'Level requirements.',icon:'📋',bg:'#dcfce7',tag:'Admission',tagBg:'#dcfce7',tagColor:'#15803d',link:'subject-combo.html',stage:['pre-jamb'],filter:'admission',featured:true},
+  {title:'Free eLibrary',desc:'Download free JAMB past questions, textbooks and academic PDFs — no registration needed.',icon:'📚',bg:'#fef3c7',tag:'Resources',tagBg:'#fef3c7',tagColor:'#92400e',link:'elibrary.html',stage:['pre-jamb','post-utme','in-school'],filter:'resources',featured:true},
+  {title:'Scholarships',desc:'Browse federal, state, corporate and international scholarships available to Nigerian students.',icon:'💰',bg:'#dcfce7',tag:'Resources',tagBg:'#dcfce7',tagColor:'#15803d',link:'scholarship.html',stage:['pre-jamb','post-utme','in-school'],filter:'resources',featured:true},
+  {title:'Results Checker',desc:'Step-by-step guides to check JAMB, WAEC, NECO and NABTEB results with direct portal links.',icon:'📊',bg:'#e0f2fe',tag:'Exam Prep',tagBg:'#e0f2fe',tagColor:'#0369a1',link:'results.html',stage:['pre-jamb','post-utme'],filter:'exam',featured:false},
+  {title:'GPA / CGPA Calculator',desc:'Calculate your GPA and CGPA for both the 5.0 (University) and 4.0 (Polytechnic) scales.',icon:'🎓',bg:'#dcfce7',tag:'In School',tagBg:'#dcfce7',tagColor:'#15803d',link:'gpa-calculator.html',stage:['in-school'],filter:'inschool',featured:false},
+  {title:'NELFUND Student Loan',desc:'Everything about the Nigerian federal interest-free student loan — eligibility, how to apply and repayment.',icon:'💳',bg:'#ede9fe',tag:'In School',tagBg:'#ede9fe',tagColor:'#6d28d9',link:'student-loan.html',stage:['in-school'],filter:'inschool',featured:true},
+  {title:'Post-UTME Prep Guide',desc:'School-specific preparation guides, tips and strategies for Post-UTME screening at Nigerian universities.',icon:'📖',bg:'#fef9c3',tag:'Admission',tagBg:'#fef9c3',tagColor:'#92400e',link:'postutme-prep.html',stage:['post-utme'],filter:'admission',featured:false},
+  {title:'Did You Know?',desc:'Fun educational facts about JAMB, Nigerian universities, scholarships and academic history.',icon:'💡',bg:'#fef9c3',tag:'Resources',tagBg:'#fef9c3',tagColor:'#92400e',link:'dyk.html',stage:['pre-jamb','post-utme','in-school'],filter:'resources',featured:false},
+  {title:'Student Spotlight',desc:'Real success stories from Nigerian students who used BQM to get admitted, win scholarships and thrive.',icon:'🌟',bg:'#fce7f3',tag:'Resources',tagBg:'#fce7f3',tagColor:'#9d174d',link:'spotlight.html',stage:['pre-jamb','post-utme','in-school'],filter:'resources',featured:false},
+  {title:'Newsroom',desc:'Latest news on JAMB updates, campus news, scholarship announcements and admission guides.',icon:'📰',bg:'#dbeafe',tag:'News',tagBg:'#dbeafe',tagColor:'#1d4ed8',link:'newsroom.html',stage:['pre-jamb','post-utme','in-school'],filter:'news',featured:false},
+  {title:'Brainy Buddies Community',desc:'Join 10,000+ Nigerian students on the free WhatsApp community for instant alerts and peer support.',icon:'👥',bg:'#dcfce7',tag:'Community',tagBg:'#dcfce7',tagColor:'#15803d',link:'community.html',stage:['pre-jamb','post-utme','in-school'],filter:'resources',featured:false},
 ];
 
-let currentFilter='all';
+let currentStage='all', currentFilter='all', searchQuery='';
 
-function renderTools(tools){
-  const container=document.getElementById('toolsContainer');
-  const noResults=document.getElementById('noResults');
-  if(!tools.length){container.innerHTML='';noResults.style.display='block';return;}
-  noResults.style.display='none';
-  // Group featured first
-  const featured=tools.filter(t=>t.featured);
-  const regular=tools.filter(t=>!t.featured);
-  let html='';
-  if(featured.length){
-    html+=`<div class="sec-head"><div class="sec-label">Featured</div><h2 class="sec-title">Most <span>Popular</span></h2></div>`;
-    html+=`<div class="tools-grid" style="margin-bottom:36px">${featured.map(renderCard).join('')}</div>`;
+function renderTools(){
+  const q=searchQuery.toLowerCase();
+  let filtered=ALL_TOOLS.filter(t=>{
+    const matchSearch=!q||(t.title+t.desc).toLowerCase().includes(q);
+    const matchStage=currentStage==='all'||t.stage.includes(currentStage);
+    const matchFilter=currentFilter==='all'||t.filter===currentFilter;
+    return matchSearch&&matchStage&&matchFilter;
+  });
+  const featured=filtered.filter(t=>t.featured);
+  const all=filtered;
+  const fg=document.getElementById('featuredGrid');
+  const ag=document.getElementById('allToolsGrid');
+  const fs=document.getElementById('featured-tools');
+  if(featured.length&&!q&&currentFilter==='all'&&currentStage==='all'){
+    fs.style.display='block';
+    fg.innerHTML=featured.map(toolCard).join('');
+  } else {
+    fs.style.display='none';
   }
-  if(regular.length){
-    html+=`<div class="sec-head"><div class="sec-label">${currentFilter==='all'?'All Tools':tools[0]?.tagLabel||'Tools'}</div><h2 class="sec-title">All <span>Available Tools</span></h2></div>`;
-    html+=`<div class="tools-grid">${regular.map(renderCard).join('')}</div>`;
+  if(all.length){
+    ag.innerHTML=all.map(toolCard).join('');
+  } else {
+    ag.innerHTML='<div class="no-results"><div class="ei">🔍</div><p>No tools match your search. Try different keywords.</p></div>';
   }
-  container.innerHTML=html;
 }
 
-function renderCard(t){
-  return`<div class="tool-card${t.featured?' featured':''}" onclick="location.href='${t.url}'" ${t.external?'target="_blank" rel="noopener noreferrer"':''}>
-    ${t.badge?`<div class="tool-badge ${t.badgeClass||''}">${t.badge}</div>`:''}
-    <div style="display:flex;align-items:center;gap:12px">
-      <div class="tool-icon" style="background:${t.bg}">${t.icon}</div>
-      <div class="tool-name">${t.name}</div>
+function toolCard(t){
+  return`<a href="${t.link}" class="tool-card">
+    <div class="tool-card-icon" style="background:${t.bg}">${t.icon}</div>
+    <div class="tool-card-title">${t.title}</div>
+    <div class="tool-card-desc">${t.desc}</div>
+    <div class="tool-card-btn">
+      <span class="tool-card-tag" style="background:${t.tagBg};color:${t.tagColor}">${t.tag}</span>
+      <span class="tool-card-arrow">→</span>
     </div>
-    <div class="tool-desc">${t.desc}</div>
-    <div class="tool-footer">
-      <span class="tool-tag ${t.tagClass}">${t.tagLabel}</span>
-      <span class="tool-arrow">${t.external?'↗':'→'}</span>
-    </div>
-  </div>`;
+  </a>`;
 }
 
+function setStage(stage,btn){
+  currentStage=stage;
+  document.querySelectorAll('.stage-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTools();
+}
 function setFilter(filter,btn){
   currentFilter=filter;
   document.querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  applyFilters();
+  renderTools();
 }
-
 function filterTools(){
-  applyFilters();
+  searchQuery=document.getElementById('searchInput').value;
+  renderTools();
 }
 
-function applyFilters(){
-  const query=document.getElementById('toolSearch').value.toLowerCase().trim();
-  const noResultsQ=document.getElementById('noResultsQuery');
-  let tools=ALL_TOOLS;
-  if(currentFilter!=='all') tools=tools.filter(t=>t.tag===currentFilter);
-  if(query){
-    tools=tools.filter(t=>
-      t.name.toLowerCase().includes(query)||
-      t.desc.toLowerCase().includes(query)||
-      (t.keywords||'').toLowerCase().includes(query)
-    );
-    if(noResultsQ)noResultsQ.textContent=query;
-  }
-  renderTools(tools);
+// ── Populate combo dropdown from JSON ──
+async function loadComboDropdown(){
+  try{
+    const r=await fetch('subject-combo.json?v='+Date.now());
+    const data=await r.json();
+    const sel=document.getElementById('qt_course');
+    data.forEach(c=>{const opt=document.createElement('option');opt.value=c.course;opt.textContent=c.course;sel.appendChild(opt);});
+    sel._data=data;
+  }catch(e){console.warn('combo json',e);}
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  renderTools(ALL_TOOLS);
-  document.getElementById('footer-year').textContent=new Date().getFullYear();
-});
+function qtSubjectCombo(){
+  const sel=document.getElementById('qt_course');
+  const course=sel.value;
+  const res=document.getElementById('qt_comboResult');
+  if(!course){res.classList.remove('show');return;}
+  const data=sel._data||[];
+  const item=data.find(c=>c.course===course);
+  if(!item){res.innerHTML='<strong>Not found.</strong> Contact us for guidance.';res.classList.add('show');return;}
+  res.innerHTML=`<strong>${item.course}</strong><br>1. English Language<br>2. ${item.s2}<br>3. ${item.s3}<br>4. ${item.s4}${item.olevel?`<br><br><em>${item.olevel}</em>`:''}`;
+  res.classList.add('show');
+}
+
+function qtAdmissionProb(){
+  const score=parseFloat(document.getElementById('qt_score').value)||0;
+  const cutoffVal=document.getElementById('qt_course2').value;
+  const res=document.getElementById('qt_probResult');
+  if(!score||!cutoffVal){res.classList.remove('show');return;}
+  const cutoff=parseInt(cutoffVal);
+  let pct,verdict,color;
+  if(score<cutoff-40){pct=10;verdict='⚠️ Very low chances. Re-sit advised.';color='#ef4444';}
+  else if(score<cutoff-20){pct=30;verdict='😐 Slim chances — try less competitive schools.';color='#f97316';}
+  else if(score<cutoff){pct=52;verdict='🤞 Borderline — strong Post-UTME needed.';color='#eab308';}
+  else if(score<cutoff+20){pct=72;verdict='👍 Good chances — prepare for Post-UTME.';color='#22c55e';}
+  else{pct=90;verdict='🎉 Excellent chances! Stay focused.';color='#10b981';}
+  res.innerHTML=`<div style="font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;color:${color}">${pct}%</div><div style="background:${color}22;border-radius:8px;height:8px;margin:6px 0"><div style="background:${color};height:100%;border-radius:8px;width:${pct}%"></div></div><div style="font-size:.76rem">${verdict}</div>`;
+  res.classList.add('show');
+}
+
+const RESULT_LINKS={jamb:{label:'JAMB UTME Result',url:'https://www.jamb.gov.ng/efacility/'},waec:{label:'WAEC SSCE Result',url:'https://www.waecdirect.org/'},neco:{label:'NECO Result',url:'https://result.neco.gov.ng/'},nabteb:{label:'NABTEB Result',url:'https://www.nabteb.gov.ng/'},caps:{label:'JAMB CAPS Admission',url:'https://www.jamb.gov.ng/efacility/'}};
+function qtShowResult(){
+  const type=document.getElementById('qt_resultType').value;
+  const res=document.getElementById('qt_resultOut');
+  if(!type){res.classList.remove('show');return;}
+  const r=RESULT_LINKS[type];
+  res.innerHTML=`<a href="${r.url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue-main);color:#fff;padding:8px 14px;border-radius:7px;font-size:.78rem;font-weight:700">🔗 Check ${r.label} →</a><br><a href="results.html" style="font-size:.7rem;color:var(--blue-main);margin-top:6px;display:block">See step-by-step instructions →</a>`;
+  res.classList.add('show');
+}
+
+const GPA5={4.5:'First Class Honours',3.5:'Second Class Upper (2:1)',2.4:'Second Class Lower (2:2)',1.5:'Third Class',1.0:'Pass',0:'Fail'};
+const GPA4={3.5:'Distinction',2.5:'Upper Credit',1.5:'Lower Credit',1.0:'Pass',0:'Fail'};
+function qtCheckGPA(){
+  const scale=parseInt(document.getElementById('qt_gpaScale').value);
+  const gpa=parseFloat(document.getElementById('qt_gpaInput').value);
+  const res=document.getElementById('qt_gpaResult');
+  if(isNaN(gpa)||gpa<0||gpa>scale){res.classList.remove('show');return;}
+  const map=scale===5?GPA5:GPA4;
+  let cls='Fail';
+  Object.keys(map).sort((a,b)=>b-a).forEach(k=>{if(gpa>=parseFloat(k))cls=map[k];});
+  const pct=Math.round((gpa/scale)*100);
+  const color=pct>=90?'#10b981':pct>=70?'#22c55e':pct>=50?'#f59e0b':'#ef4444';
+  res.innerHTML=`<div style="font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:${color}">${gpa.toFixed(2)} / ${scale}.00</div><div style="font-size:.78rem;font-weight:700;color:${color};margin-top:4px">${cls}</div>`;
+  res.classList.add('show');
+}
+
+// ── Load DYK, Spotlight, Reviews from JSON ──
+async function loadJSON(file){
+  const r=await fetch(file+'?v='+Date.now());
+  return r.json();
+}
+
+async function loadDYK(){
+  const el=document.getElementById('dykGrid');
+  try{
+    const data=await loadJSON('dyk.json');
+    el.innerHTML=data.slice(0,3).map(d=>`
+      <div class="dyk-card">
+        <div class="dyk-emoji">${d.emoji||'💡'}</div>
+        <div class="dyk-fact">${d.fact}</div>
+        <div class="dyk-body">${d.body}</div>
+        ${d.category?`<span class="dyk-cat">${d.category}</span>`:''}
+      </div>`).join('');
+  }catch(e){el.innerHTML='<div style="color:var(--text-muted);font-size:.84rem">Could not load facts.</div>';}
+}
+
+async function loadSpotlight(){
+  const el=document.getElementById('spotlightGrid');
+  try{
+    const data=await loadJSON('spotlight.json');
+    el.innerHTML=data.slice(0,3).map(s=>`
+      <div class="sp-card">
+        <div class="sp-header">
+          <div class="sp-avatar">${s.photo?`<img src="${s.photo}" style="width:100%;height:100%;border-radius:50%;object-fit:cover">`:'🎓'}</div>
+          <div><div class="sp-name">${s.name}</div><div class="sp-achieve">${s.achievement||''}</div></div>
+        </div>
+        <div class="sp-body">
+          <div class="sp-story">${s.story||''}</div>
+          <div class="sp-meta">
+            ${s.state?`<span class="sp-pill">📍 ${s.state}</span>`:''}
+            ${s.year?`<span class="sp-pill">📅 ${s.year}</span>`:''}
+          </div>
+        </div>
+      </div>`).join('');
+  }catch(e){el.innerHTML='<div style="color:var(--text-muted);font-size:.84rem">Could not load spotlights.</div>';}
+}
+
+async function loadReviews(){
+  const el=document.getElementById('reviewsGrid');
+  try{
+    const data=await loadJSON('reviews.json');
+    el.innerHTML=data.slice(0,4).map(r=>`
+      <div class="rev-card">
+        <div class="rev-stars">${'★'.repeat(r.stars||5)}</div>
+        <div class="rev-msg">"${r.message}"</div>
+        <div class="rev-name">${r.name}</div>
+        <div class="rev-loc">${r.location||''} ${r.date?' · '+r.date:''}</div>
+      </div>`).join('');
+  }catch(e){el.innerHTML='<div style="color:var(--text-muted);font-size:.84rem">Could not load reviews.</div>';}
+}
+
+// ── Countdown ──
+async function initCountdown(){
+  try{
+    const data=await loadJSON('calendar.json');
+    const now=new Date();
+    const upcoming=data.map(e=>({...e,_d:new Date(e.date||e.dateObj)})).filter(e=>e._d>now).sort((a,b)=>a._d-b._d);
+    if(!upcoming.length){document.getElementById('cd_event').textContent='No upcoming events';return;}
+    const next=upcoming[0];
+    document.getElementById('cd_event').textContent=next.title;
+    function tick(){
+      const diff=next._d-new Date();
+      if(diff<=0){document.getElementById('cd_event').textContent='🎉 Event is today!';return;}
+      const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+      document.getElementById('cd_days').textContent=String(d).padStart(2,'0');
+      document.getElementById('cd_hours').textContent=String(h).padStart(2,'0');
+      document.getElementById('cd_mins').textContent=String(m).padStart(2,'0');
+      document.getElementById('cd_secs').textContent=String(s).padStart(2,'0');
+    }
+    tick(); setInterval(tick,1000);
+  }catch(e){document.getElementById('cd_event').textContent='Calendar loading…';}
+}
+
+// ── Init ──
+renderTools();
+loadComboDropdown();
+loadDYK();
+loadSpotlight();
+loadReviews();
+initCountdown();
 </script>
 </body>
 </html>

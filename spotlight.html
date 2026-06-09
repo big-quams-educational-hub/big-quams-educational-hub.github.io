@@ -1,353 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Spotlight | BIG QUAMS MEDIA®</title>
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Student Spotlight | Big Quams Media®</title>
+<meta name="description" content="Real success stories from Nigerian students — JAMB wins, scholarship victories, NELFUND approvals and university admissions. Big Quams Media®.">
+<link rel="icon" type="image/jpeg" href="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-
-/* GLOBAL IMAGE OVERFLOW FIX */
-img { max-width: 100%; height: auto; display: block; }
-.news-card, .dyk-card, .dyk-preview-card, .spotlight-card, .book-card, .review-card { overflow: hidden; }
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{--blue:#1a3fa8;--blue-dk:#102880;--orange:#f97316;--green:#16a34a;--muted:#64748b;--light:#f0f5ff;--border:#e2e8f0;--text:#0f172a;}
-html{scroll-behavior:smooth;}
-body{font-family:'Roboto',sans-serif;background:#f8faff;color:var(--text);line-height:1.6;overflow-x:hidden;}
-
-header{background:linear-gradient(135deg,var(--blue-dk),var(--blue));color:white;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(26,63,168,0.25);}
-.header-inner{max-width:1100px;margin:0 auto;padding:12px 14px;display:flex;align-items:center;gap:10px;}
-.logo-wrap{display:flex;align-items:center;gap:9px;flex-shrink:0;text-decoration:none;}
-.logo-circle{width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid var(--orange);}
-.logo-circle img{width:100%;height:100%;object-fit:cover;}
-.brand-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.95rem;color:white;}
-.brand-sub{font-size:0.62rem;color:#bfdbfe;}
-.page-nav{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
-.page-nav-link{background:rgba(255,255,255,0.13);color:white;text-decoration:none;padding:6px 11px;border-radius:6px;font-size:0.78rem;font-weight:600;transition:0.2s;white-space:nowrap;}
-.page-nav-link:hover{background:rgba(255,255,255,0.25);}
-.back-home{background:var(--orange)!important;}
-@media(max-width:400px){.page-nav-link{font-size:0.7rem;padding:5px 8px;}}
-
-.sp-hero{background:linear-gradient(135deg,var(--blue-dk),#d97706 80%,var(--orange));color:white;text-align:center;padding:32px 14px 26px;position:relative;overflow:hidden;}
-@media(min-width:600px){.sp-hero{padding:46px 24px 36px;}}
-.sp-hero::before{content:'🌟';position:absolute;font-size:12rem;opacity:0.06;right:-10px;top:-20px;pointer-events:none;}
-.hero-badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);padding:4px 14px;border-radius:20px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:12px;}
-.sp-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,4vw,2.3rem);font-weight:800;margin-bottom:8px;line-height:1.2;}
-.sp-hero h1 span{color:#fbbf24;}
-.sp-hero p{color:#fde68a;font-size:0.9rem;max-width:480px;margin:0 auto;}
-
-.back-wrap{max-width:1100px;margin:0 auto;padding:14px 14px 0;}
-.back-btn-link{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:white;text-decoration:none;padding:8px 16px;border-radius:7px;font-size:0.82rem;font-weight:600;font-family:'Montserrat',sans-serif;transition:0.2s;}
-
-.sp-section{max-width:1100px;margin:0 auto;padding:14px 14px 50px;}
-.sp-grid{display:grid;grid-template-columns:1fr;gap:16px;}
-@media(min-width:540px){.sp-grid{grid-template-columns:1fr 1fr;}}
-@media(min-width:860px){.sp-grid{grid-template-columns:1fr 1fr 1fr;}}
-
-.sp-card{background:white;border-radius:12px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform 0.25s,box-shadow 0.25s;}
-.sp-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.1);}
-.sp-img-wrap{width:100%;height:200px;overflow:hidden;flex-shrink:0;}
-.sp-img{width:100%;height:200px;object-fit:cover;display:block;}
-.sp-img-ph{width:100%;height:140px;display:flex;align-items:center;justify-content:center;font-size:3rem;background:linear-gradient(135deg,#fef3c7,#fde68a);flex-shrink:0;}
-.sp-body{padding:16px;flex:1;display:flex;flex-direction:column;gap:5px;}
-.sp-badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:0.66rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;align-self:flex-start;}
-.sp-badge-student{background:#dcfce7;color:var(--green);}
-.sp-badge-birthday{background:#fef9c3;color:#92400e;}
-.sp-badge-celebrate{background:#fce7f3;color:#9d174d;}
-.sp-date{font-size:0.7rem;color:var(--muted);}
-.sp-title{font-family:'Montserrat',sans-serif;font-size:0.92rem;font-weight:700;color:var(--blue-dk);line-height:1.3;}
-.sp-summary{font-size:0.83rem;color:#475569;line-height:1.5;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
-.sp-read-btn{background:var(--orange);color:white;border:none;padding:8px 14px;border-radius:7px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Roboto',sans-serif;transition:0.2s;align-self:flex-start;margin-top:8px;}
-.sp-read-btn:hover{background:#ea6c0a;}
-
-.empty-state{text-align:center;padding:48px 20px;color:var(--muted);}
-.empty-state .ei{font-size:2.5rem;margin-bottom:10px;}
-.empty-state h3{font-family:'Montserrat',sans-serif;font-size:1rem;color:var(--blue-dk);margin-bottom:5px;}
-
-/* MODAL */
-.sp-overlay{display:none;position:fixed;inset:0;background:rgba(10,20,60,0.6);backdrop-filter:blur(5px);z-index:500;align-items:flex-start;justify-content:center;padding:10px;overflow-y:auto;}
-.sp-overlay.open{display:flex;}
-.sp-modal{background:white;border-radius:14px;width:100%;max-width:600px;max-height:96vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,0.3);animation:popIn 0.28s cubic-bezier(0.34,1.56,0.64,1) both;margin:auto;}
-@keyframes popIn{from{opacity:0;transform:scale(0.9) translateY(16px);}to{opacity:1;transform:scale(1) translateY(0);}}
-.sp-modal-header{background:linear-gradient(135deg,var(--blue-dk),#d97706);color:white;padding:18px;border-radius:14px 14px 0 0;position:relative;}
-.sp-modal-header .badge{font-size:0.68rem;font-weight:700;text-transform:uppercase;color:#fbbf24;margin-bottom:5px;}
-.sp-modal-header h2{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;line-height:1.3;padding-right:32px;}
-.sp-modal-header .meta{font-size:0.74rem;color:#fde68a;margin-top:4px;}
-.sp-modal-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.15);border:none;color:white;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;transition:0.2s;}
-.sp-modal-close:hover{background:rgba(255,255,255,0.3);}
-.sp-modal-img{width:100%;max-height:240px;object-fit:cover;display:block;}
-.sp-modal-body{padding:18px;font-size:0.92rem;color:#334155;line-height:1.75;}
-.sp-modal-body p{margin-bottom:14px;}
-.sp-modal-footer{padding:0 18px 18px;display:flex;gap:8px;}
-.sp-share-btn{flex:1;background:#25d366;color:white;border:none;padding:11px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.88rem;cursor:pointer;transition:0.2s;display:flex;align-items:center;justify-content:center;gap:6px;}
-.sp-share-btn:hover{background:#20bd5a;}
-
-footer{background:var(--blue-dk);color:#bfdbfe;text-align:center;padding:22px 16px;font-size:0.85rem;}
-footer a{color:var(--orange);text-decoration:none;font-weight:600;}
-
-/* DARK MODE (synced with homepage) */
-body.dark { background: #0f172a; color: #e2e8f0; }
-body.dark header { background: linear-gradient(135deg, #080f20, #102880); }
-body.dark footer { background: #080f20; }
-body.dark .news-card, body.dark .dyk-card, body.dark .spotlight-card,
-body.dark .book-card, body.dark .review-card, body.dark .qa-card,
-body.dark .article-modal, body.dark .sp-modal, body.dark .dyk-preview-card { background: #1a2540; border-color: #2d3f6b; }
-body.dark .news-card h3, body.dark .dyk-preview-title, body.dark .sp-title { color: #bfdbfe; }
-body.dark .news-card p, body.dark .summary, body.dark .dyk-preview-summary,
-body.dark .sp-summary, body.dark .article-body, body.dark .sp-modal-body { color: #94a3b8; }
-body.dark .category-label { background: #1e3a6e; }
-body.dark .controls, body.dark .search-wrap input, body.dark .filter-tab {
-  background: #1a2540; border-color: #2d3f6b; color: #94a3b8;
-}
-body.dark .filter-tab.active { background: #1a3fa8; color: white; }
-body.dark .back-btn-link, body.dark .page-nav-link { background: rgba(255,255,255,0.1); }
-
-
-.nb-allow { background: #25d366; color: white; border: none; padding: 7px 14px; border-radius: 7px; font-weight: 700; font-size: 0.78rem; cursor: pointer; transition: 0.2s; white-space: nowrap; }
-.nb-allow:hover { background: #20bd5a; }
-.nb-dismiss { background: rgba(255,255,255,0.15); color: white; border: none; padding: 7px 10px; border-radius: 7px; font-size: 0.78rem; cursor: pointer; }
-
+:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-sm:8px;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
+body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;background:#f5f7ff;color:var(--text-main);line-height:1.6;overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+img{max-width:100%;display:block}
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4)}
+.header-bar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.logo-sub{font-size:.55rem;color:rgba(255,255,255,.45);display:block}
+.main-nav{display:flex;align-items:center;gap:2px}
+.main-nav>a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
+.main-nav>a:hover{color:#fff;background:rgba(255,255,255,.12)}
+.nav-cta{background:var(--orange);color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:860px){.main-nav{display:none}.hamburger{display:flex}}
+.mobile-nav{visibility:hidden;position:fixed;inset:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s ease,visibility 0s linear .3s}
+.mobile-nav.open{visibility:visible;transform:translateX(0);transition:transform .3s ease}
+.mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:60px}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
+.mobile-nav>a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04)}
+.mobile-nav>a:hover{background:rgba(255,255,255,.06);color:#fff}
+.mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
+.nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+.page-hero{background:linear-gradient(135deg,#7c3aed,#1a3fa8,#0c1f6e);padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+.page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:16px}
+.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px}
+.page-hero h1 span{color:#c4b5fd}
+.page-hero p{font-size:.9rem;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.sec{padding:36px 0}
+.spotlight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+@media(max-width:480px){.spotlight-grid{grid-template-columns:1fr}}
+.sp-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;transition:all .22s}
+body.dark .sp-card{background:#161b27;border-color:var(--border)}
+.sp-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.sp-header{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));padding:22px 20px;display:flex;align-items:center;gap:14px}
+.sp-avatar{width:54px;height:54px;border-radius:50%;border:2.5px solid rgba(255,255,255,.4);object-fit:cover;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff;flex-shrink:0;overflow:hidden}
+.sp-name{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;color:#fff}
+.sp-achieve{font-size:.74rem;color:rgba(255,255,255,.72);margin-top:3px;line-height:1.4}
+.sp-body{padding:18px 20px}
+.sp-story{font-size:.82rem;color:var(--text-muted);line-height:1.7}
+.sp-expand-btn{font-size:.74rem;font-weight:700;color:var(--blue-main);margin-top:8px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;border:none;background:none;padding:0}
+.sp-full{display:none;margin-top:8px;font-size:.82rem;color:var(--text-muted);line-height:1.7}
+.sp-full.open{display:block}
+.sp-meta{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.sp-pill{font-size:.62rem;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--surface-alt);color:var(--text-muted)}
+body.dark .sp-pill{background:#1a2236}
+.share-row{padding:12px 20px;border-top:1px solid var(--border);display:flex;gap:8px}
+body.dark .share-row{border-color:var(--border)}
+.share-btn{font-size:.72rem;font-weight:700;color:var(--text-muted);border:1px solid var(--border);background:var(--surface-alt);padding:5px 12px;border-radius:6px;cursor:pointer;transition:.18s}
+body.dark .share-btn{background:#1a2236;border-color:var(--border)}
+.share-btn:hover{color:var(--blue-main);border-color:var(--blue-main)}
+.empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
+.empty .ei{font-size:2.5rem;margin-bottom:10px}
+.loader{text-align:center;padding:60px;color:var(--text-muted)}
+.loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.your-story{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:44px 16px;text-align:center}
+.your-story h2{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:8px}
+.your-story p{font-size:.84rem;color:rgba(255,255,255,.65);margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:#f97316;color:#fff;padding:13px 26px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;transition:.2s}
+.cta-btn:hover{background:#e56b0f;transform:translateY(-1px)}
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.footer-brand img{width:32px;height:32px;border-radius:50%;border:2px solid var(--orange)}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:14px}
+.footer-links a{font-size:.74rem;color:rgba(255,255,255,.45);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.7rem;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
 </style>
 </head>
 <body>
 <header>
-  <div class="header-inner">
-    <a href="index.html" class="logo-wrap">
-      <div class="logo-circle"><img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Logo"></div>
-      <div><div class="brand-text">BIG QUAMS MEDIA®</div><div class="brand-sub">Simplifying Campus Life</div></div>
+  <div class="header-bar">
+    <a href="index.html" class="logo-link">
+      <img class="logo-img" src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's #1 Free Student Platform</span></div>
     </a>
-    <nav class="page-nav">
-      <a href="index.html" class="page-nav-link back-home">← Home</a>
-      <a href="newsroom.html" class="page-nav-link">News</a>
-      <a href="dyk.html" class="page-nav-link">DYK</a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a><a href="scholarship.html">Scholarships</a><a href="index.html#contact" class="nav-cta">💬 Contact</a>
     </nav>
+    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
   </div>
 </header>
-</div>
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <div class="mnav-header"><div style="display:flex;align-items:center;gap:10px"><img src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316"><div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div></div><button class="mnav-close" onclick="toggleNav()">✕</button></div>
+  <div class="mnav-lbl">Navigation</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know?</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="community.html" onclick="toggleNav()">👥 Community</a>
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="mnav-cta">💬 Share Your Story</a>
+</nav>
 
-
-<div class="sp-hero">
-  <div class="hero-badge">🌟 Celebrating Excellence</div>
-  <h1>Student <span>Spotlight</span></h1>
-  <p>Celebrating achievements, birthdays, and milestones in the Big Quams Media community.</p>
-</div>
-
-<div class="back-wrap">
-  <a href="index.html" class="back-btn-link">← Back to Home</a>
-</div>
-
-<div class="sp-section">
-  <div class="sp-grid" id="spGrid">
-    <div class="empty-state"><div class="ei">⏳</div><h3>Loading…</h3></div>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">🌟 Real Student Wins</div>
+    <h1>Student <span>Spotlight</span></h1>
+    <p>Inspiring success stories from Nigerian students who used Big Quams Media® to get admitted, win scholarships and change their lives.</p>
   </div>
-</div>
+</section>
 
-<!-- MODAL -->
-<div class="sp-overlay" id="spOverlay" onclick="if(event.target===this)closeSpotlight()">
-  <div class="sp-modal">
-    <div class="sp-modal-header">
-      <button class="sp-modal-close" onclick="closeSpotlight()">✕</button>
-      <div class="badge" id="spModalCat"></div>
-      <h2 id="spModalTitle"></h2>
-      <div class="meta" id="spModalDate"></div>
-    </div>
-    <img id="spModalImg" class="sp-modal-img" alt="" style="display:none;">
-    <div class="sp-modal-body" id="spModalBody"></div>
-    <div class="sp-modal-footer">
-      <button class="sp-share-btn" id="spShareBtn">📤 Share this Spotlight</button>
-    </div>
+<section class="sec">
+  <div class="wrap">
+    <div id="spotlightGrid" class="spotlight-grid"><div class="loader"><div class="loader-spin"></div>Loading stories…</div></div>
   </div>
+</section>
+
+<div class="your-story">
+  <h2>🌟 Got a Win to Share?</h2>
+  <p>Did BQM help you get admitted, win a scholarship or navigate student life? We'd love to feature your story and inspire others.</p>
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener" class="cta-btn">💬 Share Your Story on WhatsApp →</a>
 </div>
 
 <footer>
-  <p>&copy; 2025 Big Quams Media®. All rights reserved.</p>
-  <p style="margin-top:6px;">Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a></p>
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
+    <div class="footer-links"><a href="index.html">Home</a><a href="explore.html">Explore</a><a href="dyk.html">Did You Know?</a><a href="newsroom.html">Newsroom</a><a href="community.html">Community</a><a href="scholarship.html">Scholarships</a></div>
+    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved</div>
+  </div>
 </footer>
-
 <script>
-
-// ── DARK MODE SYNC FROM HOMEPAGE ──
-(function syncDarkMode() {
-  const theme = localStorage.getItem('bqm-theme');
-  if (theme === 'dark') {
-    document.body.classList.add('dark');
-  } else {
-    document.body.classList.remove('dark');
-  }
-})();
-
-let allSpotlights = [];
-const badgeClass = { 'Student Achievement':'sp-badge-student','Birthday':'sp-badge-birthday','Celebration':'sp-badge-celebrate' };
-
-async function load() {
-  return new Promise(async (resolve) => {
-  try {
-    const res = await fetch('spotlight.json?v=' + Date.now());
-    if (!res.ok) throw new Error();
-    allSpotlights = await res.json();
-    render();
-  } catch {
-    document.getElementById('spGrid').innerHTML = '<div class="empty-state"><div class="ei">📭</div><h3>Spotlights coming soon!</h3></div>';
-  }
-  resolve();
-  });
+(function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';document.getElementById('yr').textContent=new Date().getFullYear();});
+function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
+async function load(){
+  const el=document.getElementById('spotlightGrid');
+  try{
+    const r=await fetch('spotlight.json?v='+Date.now());
+    const data=await r.json();
+    if(!data.length){el.innerHTML='<div class="empty"><div class="ei">🌟</div><p>No spotlights yet. Check back soon!</p></div>';return;}
+    el.innerHTML=data.map((s,i)=>`
+      <div class="sp-card">
+        <div class="sp-header">
+          <div class="sp-avatar">${s.photo?`<img src="${s.photo}" alt="${s.name}" style="width:100%;height:100%;object-fit:cover">`:'🎓'}</div>
+          <div><div class="sp-name">${s.name}</div><div class="sp-achieve">${s.achievement||''}</div></div>
+        </div>
+        <div class="sp-body">
+          <div class="sp-story">${(s.story||'').slice(0,180)}${s.story&&s.story.length>180?'…':''}</div>
+          ${s.story&&s.story.length>180?`<div class="sp-full" id="sf-${i}">${s.story}</div><button class="sp-expand-btn" onclick="toggle(${i},this)">Read full story ↓</button>`:''}
+          <div class="sp-meta">
+            ${s.state?`<span class="sp-pill">📍 ${s.state}</span>`:''}
+            ${s.year?`<span class="sp-pill">📅 ${s.year}</span>`:''}
+          </div>
+        </div>
+        <div class="share-row">
+          <button class="share-btn" onclick="shareStory('${encodeURIComponent(s.name)}','${encodeURIComponent(s.achievement||'')}')">🔗 Share Story</button>
+        </div>
+      </div>`).join('');
+  }catch(e){el.innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load spotlights. Please try again.</p></div>';}
 }
-
-function render() {
-  const grid = document.getElementById('spGrid');
-  if (!allSpotlights.length) { grid.innerHTML = '<div class="empty-state"><div class="ei">🌟</div><h3>No spotlights yet</h3><p>Check back soon!</p></div>'; return; }
-  grid.innerHTML = allSpotlights.map((item, i) => `
-    <div class="sp-card" onclick="openSpotlight(${i})">
-      ${item.image
-        ? `<div class="sp-img-wrap"><img class="sp-img" src="${item.image}" alt="${item.title}" loading="lazy"></div>`
-        : `<div class="sp-img-ph">🌟</div>`}
-      <div class="sp-body">
-        <span class="sp-badge ${badgeClass[item.category]||'sp-badge-celebrate'}">${item.category||'Spotlight'}</span>
-        <div class="sp-date">${item.date||''}</div>
-        <div class="sp-title">${item.title}</div>
-        <div class="sp-summary">${item.summary||''}</div>
-        <button class="sp-read-btn" onclick="event.stopPropagation();openSpotlight(${i})">Read More →</button>
-      </div>
-    </div>`).join('');
+function toggle(i,btn){const el=document.getElementById('sf-'+i);el.classList.toggle('open');btn.textContent=el.classList.contains('open')?'Show less ↑':'Read full story ↓';}
+function shareStory(nameEnc,achieveEnc){
+  const name=decodeURIComponent(nameEnc),achieve=decodeURIComponent(achieveEnc);
+  const text=`🌟 Inspiring story from Big Quams Media®: ${name} — ${achieve} ${location.href}`;
+  if(navigator.share){navigator.share({text});}
+  else{navigator.clipboard&&navigator.clipboard.writeText(text).then(()=>alert('Copied!'));}
 }
-
-function openSpotlight(idx) {
-  const item = allSpotlights[idx];
-  if (!item) return;
-  document.getElementById('spModalCat').textContent   = item.category||'Spotlight';
-  document.getElementById('spModalTitle').textContent = item.title;
-  document.getElementById('spModalDate').textContent  = item.date||'';
-  const img = document.getElementById('spModalImg');
-  if (item.image) { img.src = item.image; img.style.display = 'block'; } else { img.style.display = 'none'; }
-  document.getElementById('spModalBody').innerHTML = (item.content||item.summary||'')
-    .split('\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('');
-  document.getElementById('spShareBtn').onclick = () => {
-    const text = item.title + '\n\n' + (item.summary||'') + '\n\nSee more on Big Quams Media: https://big-quams-educational-hub.github.io/spotlight.html';
-    if (navigator.share) navigator.share({ title: item.title, text, url: 'https://big-quams-educational-hub.github.io/spotlight.html' });
-    else window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
-  };
-  const sIdx = allSpotlights.indexOf(item);
-  try { history.pushState({}, '', '?item=' + sIdx); } catch {}
-  document.title = item.title + ' | BIG QUAMS MEDIA®';
-  document.getElementById('spOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeSpotlight() {
-  document.getElementById('spOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-  document.title = 'Spotlight | BIG QUAMS MEDIA®';
-  try { history.pushState({}, '', 'spotlight.html'); } catch {}
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSpotlight(); });
-load().then(() => {
-  const p = new URLSearchParams(window.location.search);
-  const idx = p.get('item');
-  if (idx !== null) setTimeout(() => openSpotlight(parseInt(idx)), 300);
-});
-
-
-
-
-
-// ── Firebase Notification Bar (sub-pages) ──
-// Firebase config — same as index.html
-const FIREBASE_CONFIG = {
-  apiKey:            "AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ",
-  authDomain:        "big-quams-media.firebaseapp.com",
-  projectId:         "big-quams-media",
-  storageBucket:     "big-quams-media.firebasestorage.app",
-  messagingSenderId: "383186323859",
-  appId:             "1:383186323859:web:826d6b9977cfa947730066"
-};
-const VAPID_KEY = "BBb1Kl0U1VL2p1Buf6HsxIOxRaiEqyyBKO3KuNpJupif027umU-WzgZRWGHI4FANB3w0aBo5k3tQ8lGu7LC57mo";
-
-if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
-const _messaging = firebase.messaging();
-const _db        = firebase.firestore();
-
-function subDismissNotif() {
-  const bar = document.getElementById('notifBarSub');
-  if (bar) bar.classList.remove('show');
-  sessionStorage.setItem('bqm_notif_bar_dismissed', '1');
-}
-
-async function subEnableNotif() {
-  if (!('Notification' in window)) {
-    alert('Notifications not supported. Try Chrome or Firefox.');
-    return;
-  }
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  const isPWA = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-  if (isIOS && !isPWA) {
-    alert('On iPhone: tap Share → Add to Home Screen, then open the app and enable notifications.');
-    return;
-  }
-  if (Notification.permission === 'denied') {
-    alert('Notifications are blocked. Go to browser Settings and allow this site.');
-    return;
-  }
-  let permission = Notification.permission;
-  if (permission !== 'granted') {
-    try { permission = await Notification.requestPermission(); } catch {}
-  }
-  if (permission !== 'granted') return;
-
-  try {
-    const swReg = await navigator.serviceWorker.register('firebase-messaging-sw.js');
-    const token = await _messaging.getToken({ vapidKey: VAPID_KEY, serviceWorkerRegistration: swReg });
-    if (token) {
-      await _db.collection('subscribers').doc(token).set({
-        token, subscribedAt: firebase.firestore.FieldValue.serverTimestamp(),
-        platform: navigator.userAgent.includes('Mobile') ? 'mobile' : 'desktop', active: true
-      }, { merge: true });
-      localStorage.setItem('bqm_notif_enabled', '1');
-      const bar = document.getElementById('notifBarSub');
-      if (bar) bar.classList.remove('show');
-      setTimeout(() => {
-        try {
-          new Notification('BIG QUAMS MEDIA® — Notifications On!', {
-            body: 'Thanks for subscribing! You will receive news, new books and scholarship alerts. Stay tuned!',
-            icon: 'https://i.imgur.com/lYJXUyY.jpeg'
-          });
-        } catch {}
-      }, 600);
-    }
-  } catch(e) { console.error('FCM sub-page error:', e); }
-}
-
-// Also register cache SW
-(async function() {
-  if ('serviceWorker' in navigator) {
-    try { await navigator.serviceWorker.register('sw.js'); } catch {}
-  }
-})();
-
-// Show bar after 4s if not enabled
-(function() {
-  if (!('Notification' in window)) return;
-  if (localStorage.getItem('bqm_notif_enabled') === '1' || Notification.permission === 'granted') return;
-  if (sessionStorage.getItem('bqm_notif_bar_dismissed') === '1') return;
-  setTimeout(() => {
-    const bar = document.getElementById('notifBarSub');
-    if (bar) bar.classList.add('show');
-  }, 4000);
-})();
-
-// ── DARK MODE SYNC ──
-(function() {
-  const saved = localStorage.getItem('bqm-theme');
-  if (saved === 'dark') document.body.classList.add('dark');
-})();
-
-
+load();
 </script>
-  <script type="module" src="fcm-init.js"></script>
 </body>
 </html>
