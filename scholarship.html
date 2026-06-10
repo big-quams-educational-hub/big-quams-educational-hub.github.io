@@ -1,386 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Scholarship Finder | BIG QUAMS MEDIA®</title>
-<meta name="description" content="Find Nigerian and international scholarships for students. Filter by type, level, and deadline. BEA, MTN, NNPC, Commonwealth and more.">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://big-quams-educational-hub.github.io/scholarship.html">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#102880">
-<link rel="icon" type="image/jpeg" href="https://i.imgur.com/lYJXUyY.jpeg">
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Scholarships | Big Quams Media®</title>
+<meta name="description" content="Browse federal, state, corporate and international scholarships available to Nigerian students. Updated regularly — Big Quams Media®.">
+<link rel="icon" type="image/jpeg" href="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#1a3fa8;--blue-dk:#102880;--orange:#f97316;--green:#16a34a;--muted:#64748b;--light:#f0f5ff;--card:#ffffff;--text:#0f172a;--border:#e2e8f0;--bg:#f8faff;}
-body.dark{--muted:#94a3b8;--light:#1e2a4a;--card:#1a2540;--text:#e2e8f0;--border:#2d3f6b;--bg:#0f172a;background:var(--bg);color:var(--text);}
-body.dark header{background:linear-gradient(135deg,#080f20,#102880);}
-body.dark .hero{background:linear-gradient(145deg,#1a2540,#0f1a35,#1c2035);}
-body.dark .hero h1{color:#e2e8f0;} body.dark .hero p{color:#94a3b8;}
-body.dark .hero-badge{background:rgba(255,255,255,0.07);color:#93c5fd;border-color:rgba(255,255,255,0.1);}
-body.dark h2.section-title{color:#bfdbfe;}
-body.dark .sch-card{background:var(--card);border-color:var(--border);}
-body.dark .sch-card h3{color:#bfdbfe;}
-body.dark .sch-card p{color:var(--muted);}
-body.dark .filter-btn{background:var(--card);border-color:var(--border);color:var(--muted);}
-body.dark .search-input{background:#0f172a;color:var(--text);border-color:var(--border);}
-body.dark .modal-box{background:#1a2540;}
-body.dark .modal-detail-label{color:#94a3b8;}
-body.dark .modal-detail-value{color:#e2e8f0;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:'Roboto',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
-img{max-width:100%;height:auto;display:block;}
-.dark-toggle{background:rgba(255,255,255,0.12);border:none;color:white;width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;}
-.dark-toggle:hover{background:rgba(255,255,255,0.22);}
-header{background:linear-gradient(135deg,var(--blue-dk) 0%,var(--blue) 100%);color:white;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(26,63,168,0.25);}
-.header-inner{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.logo-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.logo-circle{width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--orange);flex-shrink:0;}
-.logo-circle img{width:100%;height:100%;object-fit:cover;}
-.brand-text{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;line-height:1.2;}
-.brand-sub{font-size:0.65rem;color:#bfdbfe;}
-.menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;margin-left:auto;padding:6px;}
-.menu-toggle span{display:block;width:24px;height:2px;background:white;border-radius:2px;}
-nav{display:flex;flex-wrap:wrap;gap:6px 18px;margin-left:auto;align-items:center;}
-nav a{color:#dbeafe;text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s;}
-nav a:hover{color:var(--orange);}
-.nav-cta{background:var(--orange)!important;color:white!important;padding:7px 16px;border-radius:6px;font-weight:700!important;font-size:0.85rem!important;}
-@media(max-width:600px){.menu-toggle{display:flex;}nav{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:0;background:var(--blue-dk);margin-left:0;padding:8px 0 12px;border-top:1px solid rgba(255,255,255,0.1);}nav.open{display:flex;}nav a{padding:10px 16px;width:100%;font-size:0.95rem;}nav a:hover{background:rgba(255,255,255,0.08);color:var(--orange);}.nav-cta{margin:8px 16px 0;width:calc(100% - 32px);text-align:center;border-radius:6px;}}
-.hero{background:linear-gradient(145deg,#dbeafe 0%,#eff6ff 60%,#fef3c7 100%);padding:48px 16px 44px;text-align:center;position:relative;overflow:hidden;}
-@media(min-width:600px){.hero{padding:64px 24px 56px;}}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(249,115,22,0.08) 0%,transparent 70%);pointer-events:none;}
-.hero-badge{display:inline-block;background:rgba(26,63,168,0.1);color:var(--blue);border:1px solid rgba(26,63,168,0.2);padding:4px 14px;border-radius:20px;font-size:0.76rem;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:16px;animation:fadeUp 0.5s ease both;}
-.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);font-weight:800;color:var(--blue-dk);line-height:1.15;margin-bottom:14px;animation:fadeUp 0.6s 0.1s ease both;}
-.hero h1 span{color:var(--orange);}
-.hero p{color:var(--muted);font-size:1rem;max-width:580px;margin:0 auto 24px;animation:fadeUp 0.6s 0.2s ease both;}
-.container{max-width:1100px;margin:0 auto;padding:40px 16px;}
-@media(min-width:600px){.container{padding:56px 24px;}}
-.section-label{display:inline-block;background:rgba(249,115,22,0.1);color:var(--orange);padding:3px 12px;border-radius:20px;font-size:0.74rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
-h2.section-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.4rem,4vw,1.9rem);font-weight:800;color:var(--blue-dk);margin-bottom:8px;}
-.section-divider{width:48px;height:4px;background:var(--orange);border-radius:2px;margin-bottom:28px;}
-
-/* SEARCH & FILTERS */
-.search-bar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
-.search-input{flex:1;min-width:200px;padding:11px 16px;border:1.5px solid var(--border);border-radius:10px;font-size:0.92rem;font-family:'Roboto',sans-serif;color:var(--text);background:white;transition:border-color 0.2s;}
-.search-input:focus{outline:none;border-color:var(--blue);}
-.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
-.filter-btn{padding:7px 14px;border-radius:20px;border:1.5px solid var(--border);font-size:0.78rem;font-weight:700;cursor:pointer;background:white;color:var(--muted);transition:0.2s;font-family:'Roboto',sans-serif;}
-.filter-btn.active,.filter-btn:hover{background:var(--blue);color:white;border-color:var(--blue);}
-.results-count{font-size:0.82rem;color:var(--muted);margin-bottom:16px;}
-.results-count strong{color:var(--text);}
-
-/* SCHOLARSHIP GRID */
-.sch-grid{display:grid;grid-template-columns:1fr;gap:18px;}
-@media(min-width:560px){.sch-grid{grid-template-columns:1fr 1fr;}}
-@media(min-width:900px){.sch-grid{grid-template-columns:1fr 1fr 1fr;}}
-.sch-card{background:white;border-radius:16px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;transition:transform 0.25s,box-shadow 0.25s;cursor:pointer;}
-.sch-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.1);}
-.sch-card-top{padding:18px 18px 0;display:flex;gap:12px;align-items:flex-start;}
-.sch-logo{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;}
-.sch-meta{flex:1;}
-.sch-type-badge{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:4px;}
-.sch-card h3{font-family:'Montserrat',sans-serif;font-size:0.9rem;font-weight:800;color:var(--blue-dk);line-height:1.3;}
-.sch-body{padding:12px 18px 16px;flex:1;display:flex;flex-direction:column;gap:8px;}
-.sch-card p{font-size:0.78rem;color:#475569;line-height:1.5;flex:1;}
-.sch-tags{display:flex;gap:6px;flex-wrap:wrap;}
-.sch-tag{font-size:0.66rem;font-weight:600;padding:2px 8px;border-radius:20px;background:var(--light);color:var(--muted);}
-.sch-footer{display:flex;align-items:center;justify-content:space-between;padding:10px 18px 14px;border-top:1px solid var(--border);}
-.sch-deadline{font-size:0.72rem;font-weight:600;display:flex;align-items:center;gap:4px;}
-.sch-deadline.urgent{color:#dc2626;}
-.sch-deadline.soon{color:#f97316;}
-.sch-deadline.open{color:var(--green);}
-.sch-deadline.ongoing{color:var(--blue);}
-.learn-more-link{font-size:0.76rem;font-weight:700;color:var(--blue);display:flex;align-items:center;gap:4px;}
-body.dark .learn-more-link{color:#93c5fd;}
-.no-results{text-align:center;padding:48px 16px;color:var(--muted);}
-.no-results div{font-size:2.5rem;margin-bottom:12px;}
-
-/* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,20,60,0.55);backdrop-filter:blur(4px);z-index:500;align-items:center;justify-content:center;padding:16px;}
-.modal-overlay.open{display:flex;}
-.modal-box{background:white;border-radius:18px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 64px rgba(10,20,60,0.25);animation:modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;position:relative;}
-@keyframes modalIn{from{opacity:0;transform:scale(0.88) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
-.modal-header{padding:24px 24px 18px;border-radius:18px 18px 0 0;position:relative;}
-.modal-close{position:absolute;top:14px;right:14px;background:rgba(0,0,0,0.08);border:none;color:var(--text);width:30px;height:30px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:0.2s;}
-body.dark .modal-close{background:rgba(255,255,255,0.1);color:white;}
-.modal-close:hover{background:rgba(0,0,0,0.15);}
-.modal-body{padding:0 24px 24px;}
-.modal-detail-row{display:flex;gap:8px;margin-bottom:10px;align-items:flex-start;}
-.modal-detail-label{font-size:0.74rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;min-width:90px;padding-top:1px;}
-.modal-detail-value{font-size:0.84rem;color:var(--text);line-height:1.5;flex:1;}
-.modal-apply-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--orange);color:white;padding:13px;border-radius:10px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.95rem;margin-top:16px;transition:0.2s;}
-.modal-apply-btn:hover{background:#ea6c0a;transform:translateY(-1px);}
-.modal-wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#25d366;color:white;padding:11px;border-radius:10px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.88rem;margin-top:8px;transition:0.2s;}
-.modal-wa-btn:hover{background:#20bd5a;}
-
-/* ALERT PROMO */
-.alert-card{background:linear-gradient(135deg,var(--blue-dk),var(--blue));border-radius:14px;padding:20px;color:white;margin-bottom:24px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
-.alert-card p{font-size:0.82rem;color:#bfdbfe;line-height:1.5;flex:1;min-width:200px;}
-.alert-card a{background:var(--orange);color:white;padding:10px 18px;border-radius:8px;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.82rem;white-space:nowrap;transition:0.2s;}
-.alert-card a:hover{background:#ea6c0a;}
-
-#toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;}
-.toast{background:var(--blue-dk);color:white;padding:12px 20px;border-radius:8px;margin-top:8px;font-weight:600;font-size:0.9rem;box-shadow:0 4px 12px rgba(0,0,0,0.2);opacity:0;transform:translateY(12px);transition:0.35s ease;white-space:nowrap;}
-.toast.show{opacity:1;transform:translateY(0);}
-footer{background:var(--blue-dk);color:#bfdbfe;text-align:center;padding:28px 24px;font-size:0.88rem;}
-footer a{color:var(--orange);text-decoration:none;font-weight:600;}
-.footer-inner{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;padding:28px 16px 22px;}
-.footer-brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:white;}
-.footer-tagline{font-size:0.78rem;color:#94a3b8;}
-.footer-links{display:flex;gap:8px 16px;flex-wrap:wrap;justify-content:center;}
-.footer-links a{color:#94a3b8;text-decoration:none;font-size:0.78rem;transition:color 0.2s;}
-.footer-links a:hover{color:var(--orange);}
-.footer-copy{font-size:0.75rem;color:#64748b;text-align:center;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);width:100%;}
-#whatsapp-float{position:fixed;width:56px;height:56px;bottom:28px;right:24px;background:#25d366;color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;z-index:999;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.45);transition:transform 0.2s;}
-#whatsapp-float:hover{transform:scale(1.1);}
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-sm:8px;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
+body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;background:#f5f7ff;color:var(--text-main);line-height:1.6;overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+img{max-width:100%;display:block}
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4)}
+.header-bar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.logo-sub{font-size:.55rem;color:rgba(255,255,255,.45);display:block}
+.main-nav{display:flex;align-items:center;gap:2px}
+.main-nav>a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
+.main-nav>a:hover,.main-nav>a.active{color:#fff;background:rgba(255,255,255,.12)}
+.nav-cta{background:var(--orange)!important;color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:860px){.main-nav{display:none}.hamburger{display:flex}}
+.mobile-nav{visibility:hidden;position:fixed;inset:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s ease,visibility 0s linear .3s}
+.mobile-nav.open{visibility:visible;transform:translateX(0);transition:transform .3s ease}
+.mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:60px}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.mnav-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
+.mobile-nav>a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
+.mobile-nav>a:hover{background:rgba(255,255,255,.06);color:#fff}
+.mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
+.nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+.page-hero{background:linear-gradient(135deg,#064e3b,#065f46,#047857);padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+.page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.4);color:#6ee7b7;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:16px}
+.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px}
+.page-hero h1 span{color:#6ee7b7}
+.page-hero p{font-size:.9rem;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto}
+.filter-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;position:sticky;top:60px;z-index:200}
+body.dark .filter-wrap{background:#161b27;border-color:var(--border)}
+.filter-inner{max-width:1100px;margin:0 auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cat-btn{padding:7px 16px;border-radius:20px;font-size:.76rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface-alt);color:var(--text-muted);cursor:pointer;transition:.18s;white-space:nowrap}
+body.dark .cat-btn{background:#1a2236;border-color:var(--border)}
+.cat-btn.active,.cat-btn:hover{background:#065f46;color:#fff;border-color:#065f46}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--surface-alt);border:1.5px solid var(--border);border-radius:10px;padding:0 12px;height:40px;margin-left:auto;flex:1;max-width:260px;min-width:0}
+body.dark .search-box{background:#111624;border-color:var(--border)}
+.search-box input{flex:1;border:none;background:transparent;font-size:.84rem;color:var(--text-main);outline:none;min-width:0;font-family:'Roboto',sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.sec{padding:36px 0}
+.sch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+@media(max-width:480px){.sch-grid{grid-template-columns:1fr}}
+.sch-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:20px;display:flex;flex-direction:column;gap:10px;transition:all .22s;position:relative;overflow:hidden}
+body.dark .sch-card{background:#161b27;border-color:var(--border)}
+.sch-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.sch-card.featured{border-color:#10b981}
+.sch-card.featured::before{content:'⭐ Featured';position:absolute;top:0;right:0;background:#10b981;color:#fff;font-size:.58rem;font-weight:800;padding:4px 12px;border-radius:0 14px 0 10px}
+.sch-header{display:flex;align-items:flex-start;gap:12px}
+.sch-icon{width:44px;height:44px;border-radius:12px;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+body.dark .sch-icon{background:#1a2236}
+.sch-name{font-family:'Montserrat',sans-serif;font-size:.92rem;font-weight:800;color:var(--text-main);line-height:1.3}
+.sch-org{font-size:.72rem;color:var(--text-muted);margin-top:2px}
+.status-badge{display:inline-flex;align-items:center;gap:5px;font-size:.64rem;font-weight:700;padding:3px 10px;border-radius:20px;align-self:flex-start}
+.status-open{background:#dcfce7;color:#15803d}
+.status-soon{background:#fef9c3;color:#92400e}
+.status-ongoing{background:#dbeafe;color:#1d4ed8}
+.status-closed{background:#fee2e2;color:#b91c1c}
+body.dark .status-open{background:#052e16;color:#86efac}
+body.dark .status-soon{background:#1a1200;color:#fcd34d}
+body.dark .status-ongoing{background:#0c1a3a;color:#93c5fd}
+body.dark .status-closed{background:#1a0000;color:#fca5a5}
+.sch-desc{font-size:.78rem;color:var(--text-muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sch-details{display:flex;flex-direction:column;gap:5px}
+.sch-detail{display:flex;align-items:flex-start;gap:7px;font-size:.76rem;color:var(--text-muted)}
+.sch-detail-label{font-weight:700;min-width:64px;flex-shrink:0;color:var(--text-main)}
+.sch-expand{display:none;font-size:.78rem;color:var(--text-muted);line-height:1.6;margin-top:4px;border-top:1px solid var(--border);padding-top:10px}
+body.dark .sch-expand{border-color:var(--border)}
+.sch-expand.open{display:block}
+.sch-actions{display:flex;gap:8px;margin-top:auto;padding-top:10px;border-top:1px solid var(--border);flex-wrap:wrap}
+body.dark .sch-actions{border-color:var(--border)}
+.apply-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#064e3b,#10b981);color:#fff;padding:10px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;border:none;cursor:pointer;transition:.18s;text-decoration:none;min-height:40px}
+.apply-btn:hover{opacity:.9}
+.apply-btn.disabled{background:#9ca3af;cursor:not-allowed}
+.expand-btn{display:flex;align-items:center;justify-content:center;background:var(--surface-alt);border:1.5px solid var(--border);color:var(--text-muted);width:40px;height:40px;border-radius:8px;font-size:.84rem;flex-shrink:0;cursor:pointer;transition:.18s}
+body.dark .expand-btn{background:#1a2236;border-color:var(--border)}
+.expand-btn:hover{background:var(--blue-light);border-color:var(--blue-main);color:var(--blue-main)}
+.empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
+.empty .ei{font-size:2.5rem;margin-bottom:10px}
+.loader{text-align:center;padding:60px;color:var(--text-muted)}
+.loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:#10b981;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.alert-cta{background:linear-gradient(135deg,#064e3b,#065f46);border-radius:var(--radius-md);padding:28px 24px;text-align:center;margin-top:32px}
+.alert-cta h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:8px}
+.alert-cta p{font-size:.8rem;color:rgba(255,255,255,.65);margin-bottom:16px;line-height:1.6}
+.alert-btn{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 22px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.86rem;transition:.2s}
+.alert-btn:hover{background:#1db954}
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.footer-brand img{width:32px;height:32px;border-radius:50%;border:2px solid var(--orange)}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:14px}
+.footer-links a{font-size:.74rem;color:rgba(255,255,255,.45);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.7rem;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
 </style>
 </head>
 <body>
 <header>
-  <div class="header-inner">
-    <div class="logo-wrap">
-      <div class="logo-circle"><img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Big Quams Media"></div>
-      <div><div class="brand-text">BIG QUAMS MEDIA®</div><div class="brand-sub">Simplifying Campus Life</div></div>
-    </div>
-    <button class="dark-toggle" id="darkToggle" title="Toggle dark mode">🌙</button>
-    <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
-        <nav id="mainNav">
+  <div class="header-bar">
+    <a href="index.html" class="logo-link">
+      <img class="logo-img" src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's #1 Free Student Platform</span></div>
+    </a>
+    <nav class="main-nav">
       <a href="index.html">Home</a>
-      <a href="newsroom.html">News</a>
+      <a href="explore.html">Explore</a>
       <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">🎯 CBT Practice</a>
-      <a href="scholarship.html" style="color:var(--orange);">💰 Scholarships</a>
-      <a href="results.html">📋 Results</a>
-      <a href="postutme-calculator.html">🧮 Post UTME Calc</a>
-      <a href="postutme-prep.html">📖 Prep Guide</a>
-      <a href="subject-combo.html">📚 Subject Combo</a>
-      <a href="community.html">👥 Community</a>
-      <a href="index.html#contact" class="nav-cta">Contact</a>
+      <a href="scholarship.html" class="active">Scholarships</a>
+      <a href="index.html#contact" class="nav-cta">💬 Contact</a>
     </nav>
+    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
   </div>
 </header>
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <div class="mnav-header"><div style="display:flex;align-items:center;gap:10px"><img src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316"><div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div></div><button class="mnav-close" onclick="toggleNav()">✕</button></div>
+  <div class="mnav-lbl">Navigation</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="elibrary.html" onclick="toggleNav()">📚 Free eLibrary</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan</a>
+  <a href="cbt.html" onclick="toggleNav()">🎯 CBT Practice</a>
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="mnav-cta">💬 Get Scholarship Alerts</a>
+</nav>
 
-<section class="hero">
-  <div class="hero-badge">💰 Free Scholarship Database</div>
-  <h1>Find Your<br><span>Scholarship</span></h1>
-  <p>Browse Nigerian federal, state, and international scholarship opportunities. Filter by type and level — updated regularly by Big Quams Media.</p>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">💰 Free Money — No Repayment</div>
+    <h1>Find Your <span>Scholarship</span></h1>
+    <p>Browse federal, state, corporate and international scholarships available to Nigerian students. Updated regularly.</p>
+  </div>
 </section>
 
-<section style="background:var(--bg);">
-  <div class="container">
-
-    <div class="alert-card">
-      <span style="font-size:2rem;">🔔</span>
-      <p><strong>Never miss a scholarship deadline!</strong> Join our WhatsApp channel to get instant alerts when new scholarships open. We monitor all major opportunities for you.</p>
-      <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer">Join for Alerts 📢</a>
+<div class="filter-wrap">
+  <div class="filter-inner">
+    <button class="cat-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="cat-btn" onclick="setFilter('open',this)">🟢 Open Now</button>
+    <button class="cat-btn" onclick="setFilter('federal',this)">Federal</button>
+    <button class="cat-btn" onclick="setFilter('corporate',this)">Corporate</button>
+    <button class="cat-btn" onclick="setFilter('international',this)">International</button>
+    <button class="cat-btn" onclick="setFilter('state',this)">State</button>
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="schSearch" placeholder="Search scholarships…" oninput="render()" autocomplete="off">
     </div>
+  </div>
+</div>
 
-    <div class="section-label">Opportunities</div>
-    <h2 class="section-title">Scholarship Finder</h2>
-    <div class="section-divider"></div>
-
-    <!-- SEARCH -->
-    <div class="search-bar">
-      <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search scholarships, organisations…" oninput="filterScholarships()">
+<section class="sec">
+  <div class="wrap">
+    <div id="schGrid" class="sch-grid"><div class="loader"><div class="loader-spin"></div>Loading scholarships…</div></div>
+    <div class="alert-cta">
+      <h3>🔔 Never Miss a Scholarship</h3>
+      <p>Join the Brainy Buddies WhatsApp community to get instant alerts the moment a new scholarship opens. 10,000+ students already subscribed.</p>
+      <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" class="alert-btn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Get Scholarship Alerts — Free
+      </a>
     </div>
-
-    <!-- FILTERS -->
-    <div class="filter-row" id="typeFilters">
-      <button class="filter-btn active" onclick="setFilter('type','all',this)">All Types</button>
-      <button class="filter-btn" onclick="setFilter('type','federal',this)">🇳🇬 Federal</button>
-      <button class="filter-btn" onclick="setFilter('type','state',this)">🏛️ State</button>
-      <button class="filter-btn" onclick="setFilter('type','international',this)">🌍 International</button>
-      <button class="filter-btn" onclick="setFilter('type','corporate',this)">🏢 Corporate</button>
-    </div>
-    <div class="filter-row" id="levelFilters">
-      <button class="filter-btn active" onclick="setFilter('level','all',this)">All Levels</button>
-      <button class="filter-btn" onclick="setFilter('level','undergraduate',this)">🎓 Undergraduate</button>
-      <button class="filter-btn" onclick="setFilter('level','postgraduate',this)">📚 Postgraduate</button>
-      <button class="filter-btn" onclick="setFilter('level','secondary',this)">🏫 Secondary School</button>
-    </div>
-
-    <div class="results-count" id="resultsCount"></div>
-    <div class="sch-grid" id="schGrid"></div>
   </div>
 </section>
 
 <footer>
   <div class="footer-inner">
-    <div><div class="footer-brand">BIG QUAMS MEDIA®</div><div class="footer-tagline">Simplifying Campus Life for Every Nigerian Student</div></div>
-        <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="newsroom.html">Newsroom</a>
-      <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">CBT Practice</a>
-      <a href="scholarship.html">Scholarships</a>
-      <a href="results.html">Results Checker</a>
-      <a href="postutme-calculator.html">Post UTME Calc</a>
-      <a href="postutme-prep.html">Prep Guide</a>
-      <a href="subject-combo.html">Subject Combo</a>
-      <a href="community.html">Community</a>
-      <a href="dyk.html">DYK</a>
-      <a href="spotlight.html">Spotlight</a>
-    </div>
-    <div class="footer-copy">&copy; 2025 Big Quams Media®. All rights reserved. | Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a></div>
+    <div class="footer-brand"><img src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
+    <div class="footer-links"><a href="index.html">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a><a href="student-loan.html">Student Loan</a><a href="cbt.html">CBT Practice</a><a href="postutme-calculator.html">Post-UTME Calc</a><a href="newsroom.html">Newsroom</a><a href="community.html">Community</a></div>
+    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved</div>
   </div>
 </footer>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="schModal" onclick="handleModalClick(event)">
-  <div class="modal-box">
-    <div class="modal-header" id="modalHeader">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div style="font-size:2rem;margin-bottom:8px;" id="modalIcon"></div>
-      <div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue-dk);" id="modalTitle"></div>
-      <div style="font-size:0.8rem;color:var(--muted);margin-top:3px;" id="modalOrg"></div>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-  </div>
-</div>
-
-<a href="https://wa.me/message/OVCVEDHU3I2PH1" id="whatsapp-float">💬</a>
-<div id="toast-container"></div>
-
 <script>
-  
-const scholarships = []; // Managed via admin panel → scholarships.json
+(function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';document.getElementById('yr').textContent=new Date().getFullYear();});
+function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
 
-let activeFilters = { type: 'all', level: 'all' };
-let searchQuery = '';
-let selectedScholarship = null;
+let allSch=[], currentFilter='all';
+const STATUS_LABELS={open:'🟢 Open Now',soon:'🟡 Opening Soon',ongoing:'🔵 Ongoing',closed:'🔴 Closed'};
+const STATUS_CLASS={open:'status-open',soon:'status-soon',ongoing:'status-ongoing',closed:'status-closed'};
 
-function setFilter(key, val, btn) {
-  activeFilters[key] = val;
-  const rowId = key === 'type' ? 'typeFilters' : 'levelFilters';
-  document.querySelectorAll(`#${rowId} .filter-btn`).forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  filterScholarships();
-}
-
-function filterScholarships() {
-  searchQuery = document.getElementById('searchInput').value.toLowerCase();
-  const filtered = scholarships.filter(s => {
-    const matchType  = activeFilters.type  === 'all' || s.type  === activeFilters.type;
-    const matchLevel = activeFilters.level === 'all' || s.level === activeFilters.level;
-    const matchSearch = !searchQuery ||
-      s.name.toLowerCase().includes(searchQuery) ||
-      s.org.toLowerCase().includes(searchQuery) ||
-      s.desc.toLowerCase().includes(searchQuery) ||
-      s.tags.some(t => t.toLowerCase().includes(searchQuery));
-    return matchType && matchLevel && matchSearch;
-  });
-  renderGrid(filtered);
-}
-
-function renderGrid(list) {
-  const grid = document.getElementById('schGrid');
-  const countEl = document.getElementById('resultsCount');
-  countEl.innerHTML = `Showing <strong>${list.length}</strong> of ${scholarships.length} scholarships`;
-  if (list.length === 0) {
-    grid.innerHTML = '<div class="no-results"><div>🔍</div><p>No scholarships match your filters. Try adjusting your search.</p></div>';
-    return;
+async function init(){
+  try{
+    const r=await fetch('scholarships.json?v='+Date.now());
+    allSch=await r.json();
+    allSch.sort((a,b)=>{
+      const order={open:0,soon:1,ongoing:2,closed:3};
+      return (order[a.status]||2)-(order[b.status]||2);
+    });
+    render();
+  }catch(e){
+    document.getElementById('schGrid').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load scholarships. Please try again.</p></div>';
   }
-  const typeColors = { federal:'#dbeafe:#1d4ed8', state:'#dcfce7:#15803d', international:'#ede9fe:#7c3aed', corporate:'#fff7ed:#c2410c' };
-  const statusConfig = { open:'open', ongoing:'ongoing', urgent:'urgent', soon:'soon' };
-  grid.innerHTML = list.map(s => {
-    const [bgCol, txCol] = (typeColors[s.type] || 'var(--light):var(--muted)').split(':');
-    const deadlineClass = s.status;
-    const deadlineIcon = s.status === 'urgent' ? '🔴' : s.status === 'soon' ? '🟡' : s.status === 'open' ? '🟢' : '🔵';
-    return `<div class="sch-card" onclick="openScholarship(${s.id})">
-      <div class="sch-card-top">
-        <div class="sch-logo" style="background:${bgCol};">${s.icon}</div>
-        <div class="sch-meta">
-          <span class="sch-type-badge" style="background:${bgCol};color:${txCol};">${s.type}</span>
-          <h3>${s.name}</h3>
+}
+
+function setFilter(f,btn){
+  currentFilter=f;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  render();
+}
+
+function render(){
+  const q=(document.getElementById('schSearch').value||'').toLowerCase();
+  const filtered=allSch.filter(s=>{
+    const matchFilter=currentFilter==='all'||(currentFilter==='open'?s.status==='open':s.type===currentFilter);
+    const matchQ=!q||((s.name||'')+(s.org||'')+(s.description||'')).toLowerCase().includes(q);
+    return matchFilter&&matchQ;
+  });
+  const el=document.getElementById('schGrid');
+  if(!filtered.length){el.innerHTML='<div class="empty"><div class="ei">🔍</div><p>No scholarships match your filter.</p></div>';return;}
+  el.innerHTML=filtered.map((s,i)=>`
+    <div class="sch-card${s.featured?' featured':''}">
+      <div class="sch-header">
+        <div class="sch-icon">${s.icon||'💰'}</div>
+        <div style="flex:1;min-width:0">
+          <div class="sch-name">${s.name}</div>
+          <div class="sch-org">${s.org||''}</div>
         </div>
+        <span class="status-badge ${STATUS_CLASS[s.status]||'status-ongoing'}">${STATUS_LABELS[s.status]||s.status}</span>
       </div>
-      <div class="sch-body">
-        <p>${s.desc.substring(0,120)}…</p>
-        <div class="sch-tags">${s.tags.map(t=>`<span class="sch-tag">${t}</span>`).join('')}</div>
+      <div class="sch-desc">${s.description||''}</div>
+      <div class="sch-details">
+        ${s.amount?`<div class="sch-detail"><span class="sch-detail-label">💵 Award:</span><span>${s.amount}</span></div>`:''}
+        ${s.deadline?`<div class="sch-detail"><span class="sch-detail-label">📅 Deadline:</span><span>${s.deadline}</span></div>`:''}
+        ${s.type?`<div class="sch-detail"><span class="sch-detail-label">🏷 Type:</span><span style="text-transform:capitalize">${s.type}</span></div>`:''}
       </div>
-      <div class="sch-footer">
-        <div class="sch-deadline ${deadlineClass}">${deadlineIcon} ${s.deadline}</div>
-        <div class="learn-more-link">View Details →</div>
+      <div class="sch-expand" id="se-${i}">${s.description||''}</div>
+      <div class="sch-actions">
+        ${s.link&&s.status!=='closed'?`<a href="${s.link}" target="_blank" rel="noopener" class="apply-btn">🔗 Apply Now →</a>`:`<span class="apply-btn disabled">${s.status==='closed'?'🔴 Closed':'No Link'}</span>`}
+        <button class="expand-btn" onclick="toggleExpand(${i},this)" title="More details">ℹ️</button>
       </div>
-    </div>`;
-  }).join('');
+    </div>`).join('');
 }
 
-function openScholarship(id) {
-  const s = scholarships.find(sc => sc.id === id);
-  if (!s) return;
-  selectedScholarship = s;
-  document.getElementById('modalIcon').textContent = s.icon;
-  document.getElementById('modalTitle').textContent = s.name;
-  document.getElementById('modalOrg').textContent = '🏢 ' + s.org;
-  document.getElementById('modalHeader').style.background = '#f8faff';
-  const isWALink = s.applyUrl.includes('wa.me');
-  document.getElementById('modalBody').innerHTML = `
-    <div style="margin-top:12px;">
-      <div class="modal-detail-row"><div class="modal-detail-label">Type</div><div class="modal-detail-value">${s.type.charAt(0).toUpperCase()+s.type.slice(1)} · ${s.level}</div></div>
-      <div class="modal-detail-row"><div class="modal-detail-label">Amount</div><div class="modal-detail-value" style="font-weight:700;color:var(--green);">${s.amount}</div></div>
-      <div class="modal-detail-row"><div class="modal-detail-label">Deadline</div><div class="modal-detail-value">${s.deadline}</div></div>
-      <div class="modal-detail-row"><div class="modal-detail-label">Description</div><div class="modal-detail-value">${s.desc}</div></div>
-      <div style="margin:14px 0 8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:800;color:var(--blue-dk);">✅ Eligibility</div>
-      <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:14px;">${s.eligibility.map(e=>`<li style="font-size:0.82rem;color:#334155;display:flex;gap:8px;"><span style="color:var(--green);font-weight:700;flex-shrink:0;">✓</span>${e}</li>`).join('')}</ul>
-      <div style="margin-bottom:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:800;color:var(--blue-dk);">📋 How to Apply</div>
-      <ol style="margin-left:18px;display:flex;flex-direction:column;gap:6px;margin-bottom:4px;">${s.howToApply.map(h=>`<li style="font-size:0.82rem;color:#334155;line-height:1.5;">${h}</li>`).join('')}</ol>
-    </div>
-    <a href="${s.applyUrl}" target="_blank" rel="noopener noreferrer" class="modal-apply-btn">${isWALink?'💬 Get Help Applying':'🚀 Apply / Visit Official Page'}</a>
-    <a href="https://wa.me/2349049871643?text=Hello%20Big%20Quams%20Media!%20I%20need%20guidance%20on%20applying%20for%20the%20${encodeURIComponent(s.name)}%20scholarship." target="_blank" rel="noopener noreferrer" class="modal-wa-btn">💬 Need Application Help? Chat with Us</a>`;
-  document.getElementById('schModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+function toggleExpand(i,btn){
+  const el=document.getElementById('se-'+i);
+  el.classList.toggle('open');
+  btn.textContent=el.classList.contains('open')?'✕':'ℹ️';
 }
 
-function closeModal() {
-  document.getElementById('schModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function handleModalClick(e) { if (e.target === document.getElementById('schModal')) closeModal(); }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-// Dark mode
-const darkToggle = document.getElementById('darkToggle');
-if (localStorage.getItem('bqm-theme') === 'dark') { document.body.classList.add('dark'); darkToggle.textContent = '☀️'; }
-darkToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-  const isDark = document.body.classList.contains('dark');
-  darkToggle.textContent = isDark ? '☀️' : '🌙';
-  localStorage.setItem('bqm-theme', isDark ? 'dark' : 'light');
-});
-document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mainNav').classList.toggle('open'));
-document.getElementById('mainNav').querySelectorAll('a').forEach(a => a.addEventListener('click', () => document.getElementById('mainNav').classList.remove('open')));
-
-function showToast(msg) {
-  const t = document.createElement('div'); t.className = 'toast'; t.innerText = msg;
-  document.getElementById('toast-container').appendChild(t);
-  setTimeout(() => t.classList.add('show'), 50);
-  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 400); }, 2500);
-}
-
-if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
-
-// ── INIT: load from scholarships.json, fallback to hardcoded ──
-async function initScholarships() {
-  // Show loading state
-  document.getElementById('schGrid').innerHTML = '<div class="no-results" style="padding:32px;"><div>⏳</div><p>Loading scholarships…</p></div>';
-  try {
-    const res = await fetch('scholarships.json?v=' + Date.now());
-    if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data) && data.length > 0) {
-        // Merge: admin-managed data takes priority, hardcoded fills the rest
-        // If admin has added items, show those; if empty, fall back to built-in
-        scholarships.splice(0, scholarships.length, ...data);
-      }
-    }
-  } catch { /* silently fall back to hardcoded */ }
-  filterScholarships();
-}
-initScholarships();
+init();
 </script>
 </body>
 </html>

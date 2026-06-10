@@ -1,675 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>eLibrary | BIG QUAMS MEDIA®</title>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Free eLibrary | Big Quams Media®</title>
+<meta name="description" content="Download free JAMB past questions, textbooks and academic PDFs. No registration needed — Big Quams Media® Free eLibrary.">
+<link rel="icon" type="image/jpeg" href="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --blue:    #1a3fa8;
-  --blue-dk: #102880;
-  --orange:  #f97316;
-  --green:   #16a34a;
-  --muted:   #64748b;
-  --light:   #f0f5ff;
-  --border:  #e2e8f0;
-  --text:    #0f172a;
-}
-
-/* GLOBAL IMAGE OVERFLOW FIX */
-img { max-width: 100%; height: auto; display: block; }
-.news-card, .dyk-card, .dyk-preview-card, .spotlight-card, .book-card, .review-card { overflow: hidden; }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: 'Roboto', sans-serif; background: #f8faff; color: var(--text); line-height: 1.6; overflow-x: hidden; }
-
-/* HEADER */
-header {
-  background: linear-gradient(135deg, var(--blue-dk), var(--blue));
-  color: white; position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 2px 16px rgba(26,63,168,0.25);
-}
-.header-inner {
-  max-width: 1100px; margin: 0 auto;
-  padding: 12px 16px; display: flex;
-  align-items: center; gap: 12px; flex-wrap: wrap;
-}
-.logo-wrap { display: flex; align-items: center; gap: 10px; flex-shrink: 0; text-decoration: none; }
-.logo-circle { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; border: 2px solid var(--orange); flex-shrink: 0; }
-.logo-circle img { width: 100%; height: 100%; object-fit: cover; }
-.brand-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: white; line-height: 1.2; }
-.brand-sub  { font-size: 0.65rem; color: #bfdbfe; }
-.lib-nav {
-  margin-left: auto; display: flex; gap: 6px; align-items: center;
-}
-.lib-nav-link {
-  background: rgba(255,255,255,0.13); color: white;
-  text-decoration: none; padding: 6px 12px;
-  border-radius: 6px; font-size: 0.8rem; font-weight: 600;
-  transition: 0.2s; white-space: nowrap;
-}
-.lib-nav-link:hover { background: rgba(255,255,255,0.25); }
-@media (max-width: 400px) { .lib-nav-link { font-size: 0.73rem; padding: 5px 9px; } }
-
-/* HERO BANNER */
-.lib-hero {
-  background: linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 60%, #2563eb 100%);
-  color: white; text-align: center; padding: 32px 14px 26px;
-  position: relative; overflow: hidden;
-}
-@media (min-width: 600px) { .lib-hero { padding: 48px 20px 38px; } }
-.lib-hero::before {
-  content: '📚';
-  position: absolute; font-size: 14rem; opacity: 0.04;
-  top: -30px; right: -20px; pointer-events: none; line-height: 1;
-}
-.lib-hero-badge {
-  display: inline-block; background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
-  padding: 4px 14px; border-radius: 20px;
-  font-size: 0.74rem; font-weight: 700; letter-spacing: 0.5px;
-  text-transform: uppercase; margin-bottom: 14px;
-}
-.lib-hero h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: clamp(1.7rem, 5vw, 2.6rem);
-  font-weight: 800; margin-bottom: 10px; line-height: 1.15;
-}
-.lib-hero h1 span { color: #fbbf24; }
-.lib-hero p { color: #bfdbfe; font-size: 1rem; max-width: 520px; margin: 0 auto; }
-
-/* CONTROLS */
-.controls {
-  max-width: 1100px; margin: 0 auto;
-  padding: 20px 16px 0;
-  display: flex; flex-direction: column; gap: 10px;
-}
-@media (min-width: 580px) { .controls { flex-direction: row; flex-wrap: wrap; align-items: center; } }
-.search-wrap {
-  flex: 1; min-width: 200px;
-  position: relative;
-}
-.search-wrap input {
-  width: 100%; padding: 11px 16px 11px 40px;
-  border: 1.5px solid var(--border); border-radius: 10px;
-  font-size: 0.95rem; font-family: 'Roboto', sans-serif;
-  background: white; color: var(--text); transition: border-color 0.2s;
-}
-.search-wrap input:focus { outline: none; border-color: var(--blue); }
-.search-wrap::before {
-  content: '🔍'; position: absolute;
-  left: 12px; top: 50%; transform: translateY(-50%);
-  font-size: 0.9rem; pointer-events: none;
-}
-.filter-tabs {
-  display: flex; flex-wrap: wrap; gap: 8px;
-}
-@media (max-width: 480px) {
-  .filter-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
-  .filter-tab { flex-shrink: 0; }
-}
-.filter-tab {
-  padding: 8px 14px; border-radius: 20px;
-  border: 1.5px solid var(--border);
-  background: white; color: var(--muted);
-  font-size: 0.8rem; font-weight: 600; cursor: pointer;
-  font-family: 'Roboto', sans-serif; transition: 0.2s;
-  white-space: nowrap;
-}
-.filter-tab:hover { border-color: var(--blue); color: var(--blue); }
-.filter-tab.active { background: var(--blue); color: white; border-color: var(--blue); }
-
-.results-info {
-  max-width: 1100px; margin: 0 auto;
-  padding: 14px 16px 0;
-  font-size: 0.85rem; color: var(--muted); font-weight: 500;
-}
-
-/* BOOKS GRID */
-.books-section { max-width: 1100px; margin: 0 auto; padding: 16px 16px 60px; }
-.books-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-@media (min-width: 500px)  { .books-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; } }
-@media (min-width: 800px)  { .books-grid { grid-template-columns: repeat(4, 1fr); } }
-@media (min-width: 1050px) { .books-grid { grid-template-columns: repeat(5, 1fr); } }
-@media (max-width: 320px)  { .books-grid { grid-template-columns: 1fr; } }
-
-/* BOOK CARD */
-.book-card {
-  background: white; border-radius: 14px;
-  border: 1px solid var(--border);
-  overflow: hidden; cursor: pointer;
-  transition: transform 0.25s, box-shadow 0.25s;
-  display: flex; flex-direction: column;
-}
-.book-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.1); }
-
-.book-cover {
-  width: 100%; aspect-ratio: 3/4;
-  object-fit: cover; background: var(--light);
-  display: block;
-}
-.book-cover-placeholder {
-  width: 100%; aspect-ratio: 3/4;
-  background: linear-gradient(135deg, var(--light), #dbeafe);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 8px; color: var(--blue);
-}
-.book-cover-placeholder .ph-icon { font-size: 2.5rem; }
-.book-cover-placeholder .ph-title {
-  font-family: 'Montserrat', sans-serif; font-size: 0.72rem;
-  font-weight: 700; text-align: center;
-  padding: 0 8px; line-height: 1.3; color: var(--blue-dk);
-}
-
-.book-info { padding: 10px; flex: 1; display: flex; flex-direction: column; gap: 3px; }
-@media (min-width: 500px) { .book-info { padding: 12px; } }
-.book-cat {
-  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.5px; color: var(--orange);
-}
-.book-title {
-  font-family: 'Montserrat', sans-serif; font-size: 0.78rem;
-  font-weight: 700; color: var(--blue-dk);
-  line-height: 1.3; display: -webkit-box;
-  -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-}
-.book-author { font-size: 0.75rem; color: var(--muted); }
-
-/* EMPTY STATE */
-.empty-state {
-  grid-column: 1 / -1; text-align: center;
-  padding: 60px 20px; color: var(--muted);
-}
-.empty-state .es-icon { font-size: 3rem; margin-bottom: 12px; }
-.empty-state h3 { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; color: var(--blue-dk); margin-bottom: 6px; }
-.empty-state p { font-size: 0.9rem; }
-
-/* BOOK MODAL */
-.modal-overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(10,20,60,0.55);
-  backdrop-filter: blur(4px);
-  z-index: 500; align-items: center; justify-content: center;
-  padding: 16px;
-}
-.modal-overlay.open { display: flex; }
-.modal-box {
-  background: white; border-radius: 20px;
-  width: 100%; max-width: 560px;
-  max-height: 92vh; overflow-y: auto;
-  box-shadow: 0 24px 64px rgba(10,20,60,0.25);
-  animation: modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
-}
-@keyframes modalIn {
-  from { opacity: 0; transform: scale(0.88) translateY(20px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.modal-inner {
-  display: flex; flex-direction: column;
-}
-@media (min-width: 480px) {
-  .modal-inner { flex-direction: row; }
-}
-
-.modal-cover-wrap {
-  flex-shrink: 0; width: 100%; background: var(--light);
-  border-radius: 14px 14px 0 0;
-  overflow: hidden; max-height: 180px;
-  display: flex; align-items: center; justify-content: center;
-}
-@media (min-width: 440px) {
-  .modal-cover-wrap {
-    width: 140px; max-height: none;
-    border-radius: 14px 0 0 14px;
-  }
-}
-.modal-cover-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.modal-cover-wrap .modal-ph {
-  width: 100%; height: 100%; min-height: 200px;
-  background: linear-gradient(135deg, var(--light), #dbeafe);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 8px; padding: 16px;
-}
-.modal-ph .ph-icon { font-size: 3rem; }
-.modal-ph .ph-title {
-  font-family: 'Montserrat', sans-serif; font-size: 0.8rem;
-  font-weight: 700; text-align: center; color: var(--blue-dk);
-}
-
-.modal-details {
-  padding: 14px 14px 18px; flex: 1;
-  display: flex; flex-direction: column; gap: 0;
-  position: relative; min-width: 0;
-}
-@media (min-width: 440px) { .modal-details { padding: 18px 20px 22px; } }
-.modal-close {
-  position: absolute; top: 14px; right: 14px;
-  background: var(--light); border: none;
-  width: 30px; height: 30px; border-radius: 50%;
-  font-size: 1rem; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--muted); transition: 0.2s;
-}
-.modal-close:hover { background: #fee2e2; color: #dc2626; }
-
-.modal-cat {
-  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.8px; color: var(--orange); margin-bottom: 6px;
-}
-.modal-title {
-  font-family: 'Montserrat', sans-serif; font-size: 1.15rem;
-  font-weight: 800; color: var(--blue-dk); line-height: 1.25;
-  margin-bottom: 4px; padding-right: 28px;
-}
-.modal-author { font-size: 0.82rem; color: var(--muted); margin-bottom: 12px; }
-.modal-desc {
-  font-size: 0.88rem; color: #475569; line-height: 1.6;
-  margin-bottom: 18px; flex: 1;
-}
-
-.modal-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
-.btn-read {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 12px; border-radius: 9px;
-  background: var(--blue); color: white;
-  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.92rem;
-  text-decoration: none; border: none; cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-}
-.btn-read:hover { background: var(--blue-dk); transform: translateY(-1px); }
-.btn-download {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 12px; border-radius: 9px;
-  background: var(--light); color: var(--blue);
-  border: 1.5px solid var(--blue);
-  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.92rem;
-  text-decoration: none; cursor: pointer;
-  transition: 0.2s;
-}
-.btn-download:hover { background: var(--blue); color: white; }
-
-/* FOOTER */
-footer {
-  background: var(--blue-dk); color: #bfdbfe;
-  text-align: center; padding: 24px 16px; font-size: 0.88rem;
-}
-footer a { color: var(--orange); text-decoration: none; font-weight: 600; }
-
-/* DARK MODE (synced with homepage) */
-body.dark { background: #0f172a; color: #e2e8f0; }
-body.dark header { background: linear-gradient(135deg, #080f20, #102880); }
-body.dark footer { background: #080f20; }
-body.dark .news-card, body.dark .dyk-card, body.dark .spotlight-card,
-body.dark .book-card, body.dark .review-card, body.dark .qa-card,
-body.dark .article-modal, body.dark .sp-modal, body.dark .dyk-preview-card { background: #1a2540; border-color: #2d3f6b; }
-body.dark .news-card h3, body.dark .dyk-preview-title, body.dark .sp-title { color: #bfdbfe; }
-body.dark .news-card p, body.dark .summary, body.dark .dyk-preview-summary,
-body.dark .sp-summary, body.dark .article-body, body.dark .sp-modal-body { color: #94a3b8; }
-body.dark .category-label { background: #1e3a6e; }
-body.dark .controls, body.dark .search-wrap input, body.dark .filter-tab {
-  background: #1a2540; border-color: #2d3f6b; color: #94a3b8;
-}
-body.dark .filter-tab.active { background: #1a3fa8; color: white; }
-body.dark .back-btn-link, body.dark .page-nav-link { background: rgba(255,255,255,0.1); }
-
-
-.nb-allow { background: #25d366; color: white; border: none; padding: 7px 14px; border-radius: 7px; font-weight: 700; font-size: 0.78rem; cursor: pointer; transition: 0.2s; white-space: nowrap; }
-.nb-allow:hover { background: #20bd5a; }
-.nb-dismiss { background: rgba(255,255,255,0.15); color: white; border: none; padding: 7px 10px; border-radius: 7px; font-size: 0.78rem; cursor: pointer; }
-
+:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-sm:8px;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
+body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;background:#f5f7ff;color:var(--text-main);line-height:1.6;overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+img{max-width:100%;display:block}
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4)}
+.header-bar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.logo-sub{font-size:.55rem;color:rgba(255,255,255,.45);display:block}
+.main-nav{display:flex;align-items:center;gap:2px}
+.main-nav>a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
+.main-nav>a:hover,.main-nav>a.active{color:#fff;background:rgba(255,255,255,.12)}
+.nav-cta{background:var(--orange)!important;color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:860px){.main-nav{display:none}.hamburger{display:flex}}
+.mobile-nav{visibility:hidden;position:fixed;inset:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s ease,visibility 0s linear .3s}
+.mobile-nav.open{visibility:visible;transform:translateX(0);transition:transform .3s ease}
+.mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:60px}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
+.mobile-nav>a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
+.mobile-nav>a:hover{background:rgba(255,255,255,.06);color:#fff}
+.mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
+.nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+.page-hero{background:linear-gradient(135deg,#0c1f6e,#1a3fa8,#92400e);padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+.page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:16px}
+.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px}
+.page-hero h1 span{color:#fcd34d}
+.page-hero p{font-size:.9rem;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto}
+.hero-stats{display:flex;justify-content:center;gap:24px;margin-top:20px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;color:#fff}
+.hero-stat-lbl{font-size:.62rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px}
+.filter-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;position:sticky;top:60px;z-index:200}
+body.dark .filter-wrap{background:#161b27;border-color:var(--border)}
+.filter-inner{max-width:1100px;margin:0 auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cat-btn{padding:7px 16px;border-radius:20px;font-size:.76rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface-alt);color:var(--text-muted);cursor:pointer;transition:.18s;white-space:nowrap}
+body.dark .cat-btn{background:#1a2236;border-color:var(--border)}
+.cat-btn.active,.cat-btn:hover{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--surface-alt);border:1.5px solid var(--border);border-radius:10px;padding:0 12px;height:40px;margin-left:auto;flex:1;max-width:260px;min-width:0}
+body.dark .search-box{background:#111624;border-color:var(--border)}
+.search-box input{flex:1;border:none;background:transparent;font-size:.84rem;color:var(--text-main);outline:none;min-width:0;font-family:'Roboto',sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.sec{padding:36px 0}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+@media(max-width:480px){.books-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+.book-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column;transition:all .22s}
+body.dark .book-card{background:#161b27;border-color:var(--border)}
+.book-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.book-cover{width:100%;height:160px;object-fit:cover;background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.6);flex-shrink:0}
+.book-cover img{width:100%;height:100%;object-fit:cover}
+.book-body{padding:14px;flex:1;display:flex;flex-direction:column;gap:6px}
+.book-cat{font-size:.6rem;font-weight:800;padding:2px 9px;border-radius:20px;background:var(--blue-light);color:var(--blue-main);align-self:flex-start}
+body.dark .book-cat{background:#1a2d5a;color:#93c5fd}
+.book-title{font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:var(--text-main);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.book-author{font-size:.7rem;color:var(--text-muted)}
+.book-desc{font-size:.72rem;color:var(--text-muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.book-actions{display:flex;gap:7px;margin-top:auto;padding-top:10px;border-top:1px solid var(--border)}
+.dl-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff;padding:9px 10px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;border:none;cursor:pointer;transition:.18s;text-decoration:none}
+.dl-btn:hover{opacity:.9}
+.view-btn{display:flex;align-items:center;justify-content:center;background:var(--surface-alt);color:var(--blue-main);border:1.5px solid var(--border);width:36px;height:36px;border-radius:8px;font-size:.9rem;flex-shrink:0;transition:.18s;text-decoration:none}
+.view-btn:hover{background:var(--blue-light);border-color:var(--blue-main)}
+.featured-badge{position:absolute;top:8px;right:8px;background:var(--orange);color:#fff;font-size:.58rem;font-weight:800;padding:3px 8px;border-radius:20px}
+.book-wrap{position:relative}
+.empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
+.empty .ei{font-size:2.5rem;margin-bottom:10px}
+.loader{text-align:center;padding:60px;color:var(--text-muted)}
+.loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.suggest-box{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:var(--radius-md);padding:28px 24px;text-align:center;margin-top:32px}
+.suggest-box h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:8px}
+.suggest-box p{font-size:.8rem;color:rgba(255,255,255,.65);margin-bottom:16px;line-height:1.6}
+.suggest-btn{display:inline-flex;align-items:center;gap:8px;background:#f97316;color:#fff;padding:11px 22px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.86rem;transition:.2s}
+.suggest-btn:hover{background:#e56b0f}
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.footer-brand img{width:32px;height:32px;border-radius:50%;border:2px solid var(--orange)}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:14px}
+.footer-links a{font-size:.74rem;color:rgba(255,255,255,.45);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.7rem;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
 <header>
-  <div class="header-inner">
-    <a href="index.html" class="logo-wrap">
-      <div class="logo-circle">
-        <img src="https://i.imgur.com/lYJXUyY.jpeg" alt="Big Quams Media Logo">
-      </div>
-      <div>
-        <div class="brand-text">BIG QUAMS MEDIA®</div>
-        <div class="brand-sub">Simplifying Campus Life</div>
-      </div>
+  <div class="header-bar">
+    <a href="index.html" class="logo-link">
+      <img class="logo-img" src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's #1 Free Student Platform</span></div>
     </a>
-    <nav class="lib-nav">
-      <a href="index.html" class="lib-nav-link">🏠 Home</a>
-      <a href="newsroom.html" class="lib-nav-link">📰 News</a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="elibrary.html" class="active">eLibrary</a>
+      <a href="scholarship.html">Scholarships</a>
+      <a href="index.html#contact" class="nav-cta">💬 Contact</a>
     </nav>
+    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
   </div>
 </header>
-</div>
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <div class="mnav-header"><div style="display:flex;align-items:center;gap:10px"><img src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316"><div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div></div><button class="mnav-close" onclick="toggleNav()">✕</button></div>
+  <div class="mnav-lbl">Navigation</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <a href="cbt.html" onclick="toggleNav()">🎯 CBT Practice</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Post-UTME Calc</a>
+  <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="mnav-cta">💬 Chat on WhatsApp</a>
+</nav>
 
-
-<!-- HERO -->
-<div class="lib-hero">
-  <div class="lib-hero-badge">📚 Free Learning Resources</div>
-  <h1>Big Quams <span>eLibrary</span></h1>
-  <p>Download and read JAMB past questions, textbooks, novels, and more — completely free.</p>
-</div>
-
-<div style="max-width:1100px;margin:0 auto;padding:14px 14px 0;">
-  <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:white;text-decoration:none;padding:8px 16px;border-radius:7px;font-size:0.82rem;font-weight:600;font-family:'Montserrat',sans-serif;transition:0.2s;">← Back to Home</a>
-</div>
-<!-- CONTROLS -->
-<div class="controls">
-  <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="Search by title, author or subject…" oninput="filterBooks()">
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-badge">📚 100% Free — No Registration</div>
+    <h1>Free <span>eLibrary</span></h1>
+    <p>Download JAMB past questions, textbooks, scholarship guides and academic PDFs completely free. No sign-up, no payment — ever.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num" id="bookCount">—</div><div class="hero-stat-lbl">Books Available</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">Free</div><div class="hero-stat-lbl">Always</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">PDF</div><div class="hero-stat-lbl">Instant Download</div></div>
+    </div>
   </div>
-  <div class="filter-tabs" id="filterTabs">
-    <button class="filter-tab active" data-cat="All" onclick="setFilter('All')">All</button>
-    <button class="filter-tab" data-cat="JAMB (UTME & DE)" onclick="setFilter('JAMB (UTME & DE)')">JAMB (UTME & DE)</button>
-    <button class="filter-tab" data-cat="University" onclick="setFilter('University')">University</button>
-    <button class="filter-tab" data-cat="Novels & Fiction" onclick="setFilter('Novels & Fiction')">Novels</button>
-    <button class="filter-tab" data-cat="Secondary School" onclick="setFilter('Secondary School')">Secondary</button>
-    <button class="filter-tab" data-cat="Scholarship" onclick="setFilter('Scholarship')">Scholarship</button>
-  </div>
-</div>
+</section>
 
-<div class="results-info" id="resultsInfo"></div>
-
-<!-- BOOKS GRID -->
-<div class="books-section">
-  <div class="books-grid" id="booksGrid">
-    <div class="empty-state">
-      <div class="es-icon">⏳</div>
-      <h3>Loading books…</h3>
-      <p>Please wait while we fetch the library.</p>
+<div class="filter-wrap">
+  <div class="filter-inner">
+    <button class="cat-btn active" onclick="setCategory('',this)">All</button>
+    <button class="cat-btn" onclick="setCategory('JAMB (UTME & DE)',this)">JAMB</button>
+    <button class="cat-btn" onclick="setCategory('Secondary School',this)">Secondary</button>
+    <button class="cat-btn" onclick="setCategory('University',this)">University</button>
+    <button class="cat-btn" onclick="setCategory('Scholarship',this)">Scholarship</button>
+    <button class="cat-btn" onclick="setCategory('Novels & Fiction',this)">Novels</button>
+    <button class="cat-btn" onclick="setCategory('Professional',this)">Professional</button>
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="bookSearch" placeholder="Search books…" oninput="render()" autocomplete="off">
     </div>
   </div>
 </div>
 
-<!-- BOOK DETAIL MODAL -->
-<div class="modal-overlay" id="bookModal" onclick="handleOverlayClick(event)">
-  <div class="modal-box" id="modalBox">
-    <div class="modal-inner">
-      <div class="modal-cover-wrap" id="modalCoverWrap"></div>
-      <div class="modal-details">
-        <button class="modal-close" onclick="closeModal()">✕</button>
-        <div class="modal-cat"  id="modalCat"></div>
-        <div class="modal-title" id="modalTitle"></div>
-        <div class="modal-author" id="modalAuthor"></div>
-        <div class="modal-desc"  id="modalDesc"></div>
-        <div class="modal-actions">
-          <a class="btn-read" id="modalRead" href="#" target="_blank" rel="noopener noreferrer">👁️ Read Online</a>
-          <a class="btn-download" id="modalDownload" href="#" target="_blank" rel="noopener noreferrer">⬇️ Download PDF</a>
-        </div>
-      </div>
+<section class="sec">
+  <div class="wrap">
+    <div id="booksGrid" class="books-grid"><div class="loader"><div class="loader-spin"></div>Loading books…</div></div>
+    <div class="suggest-box">
+      <h3>📖 Don't see the book you need?</h3>
+      <p>Send us a message on WhatsApp and tell us what you're looking for. We'll try to add it to the library.</p>
+      <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener" class="suggest-btn">💬 Request a Book →</a>
     </div>
   </div>
-</div>
+</section>
 
-<!-- FOOTER -->
 <footer>
-  <p>&copy; 2025 Big Quams Media®. All rights reserved.</p>
-  <p style="margin-top:6px;">Built with ❤️ by <a href="https://wa.me/+2349049871643">Big Quams Media</a></p>
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
+    <div class="footer-links"><a href="index.html">Home</a><a href="explore.html">Explore</a><a href="scholarship.html">Scholarships</a><a href="cbt.html">CBT Practice</a><a href="postutme-calculator.html">Post-UTME Calc</a><a href="results.html">Results</a><a href="newsroom.html">Newsroom</a></div>
+    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All resources are free for personal educational use</div>
+  </div>
 </footer>
 
 <script>
+(function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';document.getElementById('yr').textContent=new Date().getFullYear();});
+function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
 
-// ── DARK MODE SYNC FROM HOMEPAGE ──
-(function syncDarkMode() {
-  const theme = localStorage.getItem('bqm-theme');
-  if (theme === 'dark') {
-    document.body.classList.add('dark');
-  } else {
-    document.body.classList.remove('dark');
-  }
-})();
+let allBooks=[], currentCat='';
 
-let allBooks = [];
-let activeFilter = 'All';
-
-// ── LOAD BOOKS ──
-async function loadBooks() {
-  try {
-    const res = await fetch('books.json?v=' + Date.now());
-    if (!res.ok) throw new Error('Failed to load');
-    allBooks = await res.json();
-    renderBooks(allBooks);
-  } catch (e) {
-    document.getElementById('booksGrid').innerHTML = `
-      <div class="empty-state">
-        <div class="es-icon">📭</div>
-        <h3>Library coming soon</h3>
-        <p>Books are being uploaded. Check back shortly!</p>
-      </div>`;
+async function init(){
+  try{
+    const r=await fetch('books.json?v='+Date.now());
+    allBooks=await r.json();
+    document.getElementById('bookCount').textContent=allBooks.length+'+';
+    render();
+  }catch(e){
+    document.getElementById('booksGrid').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load books. Please try again.</p></div>';
   }
 }
 
-// ── RENDER ──
-function renderBooks(books) {
-  const grid = document.getElementById('booksGrid');
-  const info = document.getElementById('resultsInfo');
-  info.textContent = `Showing ${books.length} book${books.length !== 1 ? 's' : ''}`;
+function setCategory(cat,btn){
+  currentCat=cat;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  render();
+}
 
-  if (books.length === 0) {
-    grid.innerHTML = `
-      <div class="empty-state">
-        <div class="es-icon">🔍</div>
-        <h3>No books found</h3>
-        <p>Try a different search or category.</p>
-      </div>`;
-    return;
-  }
-
-  grid.innerHTML = books.map((b, i) => `
-    <div class="book-card" onclick="openBook(${i})" title="${b.title}">
-      ${b.cover
-        ? `<img class="book-cover" src="${b.cover}" alt="${b.title}" loading="lazy">`
-        : `<div class="book-cover-placeholder">
-             <span class="ph-icon">📖</span>
-             <span class="ph-title">${b.title}</span>
-           </div>`
-      }
-      <div class="book-info">
-        <div class="book-cat">${b.category}</div>
-        <div class="book-title">${b.title}</div>
-        <div class="book-author">${b.author || ''}</div>
+function render(){
+  const q=(document.getElementById('bookSearch').value||'').toLowerCase();
+  const featured=allBooks.filter(b=>b.featured&&!currentCat&&!q);
+  let filtered=allBooks.filter(b=>{
+    const matchCat=!currentCat||(b.category||'')=== currentCat;
+    const matchQ=!q||((b.title||'')+(b.description||'')+(b.author||'')).toLowerCase().includes(q);
+    return matchCat&&matchQ;
+  });
+  const el=document.getElementById('booksGrid');
+  if(!filtered.length){el.innerHTML='<div class="empty"><div class="ei">🔍</div><p>No books match your search. Try different keywords.</p></div>';return;}
+  el.innerHTML=filtered.map(b=>`
+    <div class="book-wrap">
+      ${b.featured&&!currentCat&&!q?'<span class="featured-badge">⭐ Featured</span>':''}
+      <div class="book-card">
+        <div class="book-cover">
+          ${b.cover?`<img src="${b.cover}" alt="${b.title}">`:`📖`}
+        </div>
+        <div class="book-body">
+          <span class="book-cat">${b.category||'General'}</span>
+          <div class="book-title">${b.title}</div>
+          ${b.author?`<div class="book-author">✍️ ${b.author}${b.year?' · '+b.year:''}</div>`:''}
+          <div class="book-desc">${b.description||''}</div>
+          <div class="book-actions">
+            ${b.downloadUrl?`<a href="${b.downloadUrl}" target="_blank" rel="noopener" class="dl-btn">📥 Download Free</a>`:'<span class="dl-btn" style="opacity:.5;cursor:not-allowed">Coming Soon</span>'}
+            ${b.viewUrl?`<a href="${b.viewUrl}" target="_blank" rel="noopener" class="view-btn" title="Preview">👁</a>`:''}
+          </div>
+        </div>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
 
-// ── FILTER ──
-function setFilter(cat) {
-  activeFilter = cat;
-  document.querySelectorAll('.filter-tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.cat === cat);
-  });
-  filterBooks();
-}
-
-function filterBooks() {
-  const q = document.getElementById('searchInput').value.toLowerCase().trim();
-  const filtered = allBooks.filter(b => {
-    const matchCat = activeFilter === 'All' || b.category === activeFilter;
-    const matchQ   = !q ||
-      b.title.toLowerCase().includes(q) ||
-      (b.author || '').toLowerCase().includes(q) ||
-      (b.description || '').toLowerCase().includes(q);
-    return matchCat && matchQ;
-  });
-  renderBooks(filtered);
-}
-
-// ── OPEN BOOK MODAL ──
-function openBook(index) {
-  // Re-find from filtered list
-  const q = document.getElementById('searchInput').value.toLowerCase().trim();
-  const filtered = allBooks.filter(b => {
-    const matchCat = activeFilter === 'All' || b.category === activeFilter;
-    const matchQ   = !q ||
-      b.title.toLowerCase().includes(q) ||
-      (b.author || '').toLowerCase().includes(q) ||
-      (b.description || '').toLowerCase().includes(q);
-    return matchCat && matchQ;
-  });
-  const b = filtered[index];
-  if (!b) return;
-
-  // Cover
-  const coverWrap = document.getElementById('modalCoverWrap');
-  if (b.cover) {
-    coverWrap.innerHTML = `<img src="${b.cover}" alt="${b.title}">`;
-  } else {
-    coverWrap.innerHTML = `
-      <div class="modal-ph">
-        <span class="ph-icon">📖</span>
-        <span class="ph-title">${b.title}</span>
-      </div>`;
-  }
-
-  document.getElementById('modalCat').textContent    = b.category;
-  document.getElementById('modalTitle').textContent  = b.title;
-  document.getElementById('modalAuthor').textContent = b.author ? `by ${b.author}` : '';
-  document.getElementById('modalDesc').textContent   = b.description || 'No description available.';
-
-  // Google Drive: convert share link → preview / download
-  const readUrl     = b.readUrl     || toPreviewUrl(b.driveId);
-  const downloadUrl = b.downloadUrl || toDownloadUrl(b.driveId);
-  document.getElementById('modalRead').href     = readUrl;
-  document.getElementById('modalDownload').href = downloadUrl;
-
-  document.getElementById('bookModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function toPreviewUrl(id)  { return id ? `https://drive.google.com/file/d/${id}/preview` : '#'; }
-function toDownloadUrl(id) { return id ? `https://drive.google.com/uc?export=download&id=${id}` : '#'; }
-
-function closeModal() {
-  document.getElementById('bookModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('bookModal')) closeModal();
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-loadBooks();
-// Auto-open book from URL param
-setTimeout(() => {
-  const p = new URLSearchParams(window.location.search);
-  const idx = p.get('book');
-  if (idx !== null) {
-    const allBooks = document.querySelectorAll('.book-card');
-    if (allBooks[parseInt(idx)]) allBooks[parseInt(idx)].click();
-  }
-}, 800);
-
-
-
-
-// ── Firebase Notification Bar (sub-pages) ──
-// Firebase config — same as index.html
-const FIREBASE_CONFIG = {
-  apiKey:            "AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ",
-  authDomain:        "big-quams-media.firebaseapp.com",
-  projectId:         "big-quams-media",
-  storageBucket:     "big-quams-media.firebasestorage.app",
-  messagingSenderId: "383186323859",
-  appId:             "1:383186323859:web:826d6b9977cfa947730066"
-};
-const VAPID_KEY = "BBb1Kl0U1VL2p1Buf6HsxIOxRaiEqyyBKO3KuNpJupif027umU-WzgZRWGHI4FANB3w0aBo5k3tQ8lGu7LC57mo";
-
-if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
-const _messaging = firebase.messaging();
-const _db        = firebase.firestore();
-
-function subDismissNotif() {
-  const bar = document.getElementById('notifBarSub');
-  if (bar) bar.classList.remove('show');
-  sessionStorage.setItem('bqm_notif_bar_dismissed', '1');
-}
-
-async function subEnableNotif() {
-  if (!('Notification' in window)) {
-    alert('Notifications not supported. Try Chrome or Firefox.');
-    return;
-  }
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  const isPWA = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
-  if (isIOS && !isPWA) {
-    alert('On iPhone: tap Share → Add to Home Screen, then open the app and enable notifications.');
-    return;
-  }
-  if (Notification.permission === 'denied') {
-    alert('Notifications are blocked. Go to browser Settings and allow this site.');
-    return;
-  }
-  let permission = Notification.permission;
-  if (permission !== 'granted') {
-    try { permission = await Notification.requestPermission(); } catch {}
-  }
-  if (permission !== 'granted') return;
-
-  try {
-    const swReg = await navigator.serviceWorker.register('firebase-messaging-sw.js');
-    const token = await _messaging.getToken({ vapidKey: VAPID_KEY, serviceWorkerRegistration: swReg });
-    if (token) {
-      await _db.collection('subscribers').doc(token).set({
-        token, subscribedAt: firebase.firestore.FieldValue.serverTimestamp(),
-        platform: navigator.userAgent.includes('Mobile') ? 'mobile' : 'desktop', active: true
-      }, { merge: true });
-      localStorage.setItem('bqm_notif_enabled', '1');
-      const bar = document.getElementById('notifBarSub');
-      if (bar) bar.classList.remove('show');
-      setTimeout(() => {
-        try {
-          new Notification('BIG QUAMS MEDIA® — Notifications On!', {
-            body: 'Thanks for subscribing! You will receive news, new books and scholarship alerts. Stay tuned!',
-            icon: 'https://i.imgur.com/lYJXUyY.jpeg'
-          });
-        } catch {}
-      }, 600);
-    }
-  } catch(e) { console.error('FCM sub-page error:', e); }
-}
-
-// Also register cache SW
-(async function() {
-  if ('serviceWorker' in navigator) {
-    try { await navigator.serviceWorker.register('sw.js'); } catch {}
-  }
-})();
-
-// Show bar after 4s if not enabled
-(function() {
-  if (!('Notification' in window)) return;
-  if (localStorage.getItem('bqm_notif_enabled') === '1' || Notification.permission === 'granted') return;
-  if (sessionStorage.getItem('bqm_notif_bar_dismissed') === '1') return;
-  setTimeout(() => {
-    const bar = document.getElementById('notifBarSub');
-    if (bar) bar.classList.add('show');
-  }, 4000);
-})();
-
-// ── DARK MODE SYNC ──
-(function() {
-  const saved = localStorage.getItem('bqm-theme');
-  if (saved === 'dark') document.body.classList.add('dark');
-})();
-
+init();
 </script>
-<script type="module" src="fcm-init.js"></script>
 </body>
 </html>
