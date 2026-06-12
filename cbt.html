@@ -168,6 +168,44 @@ body.dark .review-exp{background:#052e16;border-color:#166534;color:#86efac}
 .loader{text-align:center;padding:60px;color:var(--text-muted)}
 .loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
+/* AUTH OVERLAY */
+.auth-overlay{position:fixed;inset:0;background:rgba(10,20,60,.7);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)}
+.auth-card{background:#fff;border-radius:20px;padding:28px 24px;width:100%;max-width:400px;box-shadow:0 32px 80px rgba(0,0,0,.3);animation:authPop .3s cubic-bezier(.34,1.56,.64,1)}
+body.dark .auth-card{background:#1e293b}
+@keyframes authPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.auth-logo{width:60px;height:60px;border-radius:50%;border:3px solid var(--orange);margin:0 auto 12px;overflow:hidden}
+.auth-logo img{width:100%;height:100%;object-fit:cover}
+.auth-title{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text-main);text-align:center;margin-bottom:4px}
+body.dark .auth-title{color:#bfdbfe}
+.auth-sub{font-size:.76rem;color:var(--text-muted);text-align:center;margin-bottom:20px;line-height:1.5}
+.auth-tabs{display:flex;gap:0;margin-bottom:18px;border-radius:9px;overflow:hidden;border:1.5px solid var(--border)}
+.auth-tab-btn{flex:1;padding:9px;font-family:'Montserrat',sans-serif;font-size:.76rem;font-weight:800;border:none;cursor:pointer;background:var(--surface-alt);color:var(--text-muted);transition:.2s}
+body.dark .auth-tab-btn{background:#1a2236;color:#94a3b8}
+.auth-tab-btn.active{background:var(--blue-main);color:#fff}
+.auth-input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:.92rem;font-family:'Roboto',sans-serif;color:var(--text-main);background:var(--surface-alt);margin-bottom:10px;transition:.2s}
+body.dark .auth-input{background:#0f172a;border-color:#334155;color:#e2e8f0}
+.auth-input:focus{outline:none;border-color:var(--blue-main);box-shadow:0 0 0 3px rgba(26,63,168,.08)}
+.auth-btn{width:100%;padding:13px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer;transition:.2s;margin-bottom:10px}
+.auth-btn:hover{opacity:.9}
+.auth-btn:disabled{opacity:.5;cursor:not-allowed}
+.google-auth-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;border:1.5px solid var(--border);border-radius:9px;padding:11px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.86rem;color:#1e2749;cursor:pointer;transition:.2s;margin-bottom:10px}
+body.dark .google-auth-btn{background:#1a2236;border-color:#334155;color:#e2e8f0}
+.google-auth-btn:hover{border-color:#4285F4;box-shadow:0 2px 10px rgba(66,133,244,.2)}
+.auth-divider{display:flex;align-items:center;gap:8px;margin:8px 0;color:var(--text-muted);font-size:.7rem}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.auth-error{color:#b91c1c;font-size:.76rem;background:#fee2e2;border-radius:7px;padding:8px 12px;margin-bottom:10px;display:none}
+.auth-link-btn{background:none;border:none;color:var(--blue-main);font-size:.74rem;font-weight:700;cursor:pointer;padding:2px;display:block;margin:0 auto;text-align:center}
+.auth-skip{background:none;border:none;color:var(--text-muted);font-size:.72rem;cursor:pointer;padding:4px;display:block;margin:8px auto 0;text-align:center;text-decoration:underline}
+/* USER BADGE in setup screen */
+.user-banner{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #bbf7d0;border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+body.dark .user-banner{background:linear-gradient(135deg,#052e16,#064e3b);border-color:#166534}
+.user-banner img,.user-banner-avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid #10b981}
+.user-banner-avatar{background:#10b981;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff}
+.user-banner-name{font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:#15803d;flex:1}
+body.dark .user-banner-name{color:#86efac}
+.user-banner-sub{font-size:.66rem;color:#16a34a;margin-top:1px}
+body.dark .user-banner-sub{color:#4ade80}
+.sign-out-link{font-size:.7rem;font-weight:700;color:#dc2626;cursor:pointer;border:none;background:none;flex-shrink:0}
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 .footer-inner{max-width:860px;margin:0 auto}
 .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
@@ -204,6 +242,47 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
   <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 
+<!-- AUTH OVERLAY -->
+<div class="auth-overlay" id="authOverlay" style="display:none">
+  <div class="auth-card">
+    <div class="auth-logo"><img src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="BQM"></div>
+    <div class="auth-title">Sign In to Practice</div>
+    <div class="auth-sub">Create a free account or sign in to access the full JAMB CBT practice exam and track your progress.</div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab-btn active" onclick="switchCbtTab('signin',this)">Sign In</button>
+      <button class="auth-tab-btn" onclick="switchCbtTab('register',this)">Create Account</button>
+    </div>
+
+    <!-- GOOGLE -->
+    <button class="google-auth-btn" onclick="cbtGoogleSignIn()">
+      <svg width="17" height="17" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.5 3.1 29.6 1 24 1 14.8 1 7 6.7 3.7 14.6l7 5.4C12.5 13.8 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.8-2.1 5.2-4.5 6.8l7 5.4C43.1 36.8 46.1 31.1 46.1 24.5z"/><path fill="#FBBC05" d="M10.7 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7-5.4C2.2 17.1 1 20.4 1 24s1.2 6.9 3.7 9.9l7-5.3z"/><path fill="#34A853" d="M24 47c5.6 0 10.4-1.9 13.8-5.1l-7-5.4c-1.9 1.3-4.2 2-6.8 2-6.2 0-11.5-4.3-13.3-10l-7 5.4C7 41.3 14.8 47 24 47z"/></svg>
+      Continue with Google
+    </button>
+    <div class="auth-divider">or email</div>
+
+    <!-- SIGN IN FORM -->
+    <div id="cbtSigninForm">
+      <input class="auth-input" type="email" id="cbtEmail" placeholder="Email address" autocomplete="email">
+      <input class="auth-input" type="password" id="cbtPassword" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')cbtEmailSignIn()">
+      <div class="auth-error" id="cbtAuthError"></div>
+      <button class="auth-btn" id="cbtSignInBtn" onclick="cbtEmailSignIn()">Sign In →</button>
+      <button class="auth-link-btn" onclick="cbtForgotPw()">Forgot password?</button>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="cbtRegisterForm" style="display:none">
+      <input class="auth-input" type="text" id="cbtRegName" placeholder="Your name" autocomplete="name">
+      <input class="auth-input" type="email" id="cbtRegEmail" placeholder="Email address" autocomplete="email">
+      <input class="auth-input" type="password" id="cbtRegPw" placeholder="Password (min 6 chars)" autocomplete="new-password" onkeydown="if(event.key==='Enter')cbtCreateAccount()">
+      <div class="auth-error" id="cbtRegError"></div>
+      <button class="auth-btn" id="cbtRegBtn" onclick="cbtCreateAccount()">Create Free Account →</button>
+    </div>
+
+    <button class="auth-skip" onclick="closeAuthOverlay()">Skip for now — limited access</button>
+  </div>
+</div>
+
 <!-- SETUP SCREEN -->
 <div id="setupScreen">
   <div class="setup-hero">
@@ -214,6 +293,15 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
     </div>
   </div>
   <div class="wrap">
+    <!-- User banner (shown when signed in) -->
+    <div class="user-banner" id="userBanner" style="display:none;max-width:640px;margin:20px auto 0">
+      <div class="user-banner-avatar" id="userAvatarWrap">👤</div>
+      <div style="flex:1;min-width:0">
+        <div class="user-banner-name" id="userBannerName">Loading…</div>
+        <div class="user-banner-sub">✅ Signed in — full exam access unlocked</div>
+      </div>
+      <button class="sign-out-link" onclick="cbtSignOut()">Sign Out</button>
+    </div>
     <div class="setup-card">
       <div class="setup-title">📚 Select Your Subjects</div>
       <div class="subject-grid" id="subjectGrid">
@@ -260,8 +348,12 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
           <option value="hard">Hard Only</option>
         </select>
       </div>
-      <button class="start-btn" id="startBtn" onclick="startExam()">🎯 Start Practice Exam →</button>
+      <button class="start-btn" id="startBtn" onclick="checkAuthThenStart()">🎯 Start Practice Exam →</button>
       <div id="setupStatus" style="text-align:center;margin-top:12px;font-size:.8rem;color:var(--text-muted)">Select at least 1 subject to start</div>
+      <div id="guestNotice" style="display:none;text-align:center;margin-top:10px;padding:10px 14px;background:#fef9c3;border:1px solid #fde68a;border-radius:9px;font-size:.76rem;color:#92400e">
+        ⚠️ You're in guest mode — <strong>limited to 10 questions</strong>. 
+        <button onclick="showAuthOverlay()" style="background:none;border:none;color:var(--blue-main);font-weight:700;cursor:pointer;font-size:.76rem">Sign in for full access →</button>
+      </div>
     </div>
   </div>
 </div>
@@ -336,6 +428,168 @@ window._db=db;window._collection=collection;window._getDocs=getDocs;window._quer
 
 <script>
 (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
+
+// ── CBT AUTH ──
+let cbtUser = null;
+let isGuest = false;
+const GUEST_LIMIT = 10;
+
+// Watch Firebase auth state
+setTimeout(()=>{
+  if(window._onAuthStateChanged){
+    window._onAuthStateChanged(user=>{
+      cbtUser = user;
+      updateUserUI(user);
+    });
+  }
+}, 800);
+
+function updateUserUI(user){
+  const banner = document.getElementById('userBanner');
+  const notice = document.getElementById('guestNotice');
+  if(user){
+    // Signed in
+    isGuest = false;
+    if(banner){
+      banner.style.display = 'flex';
+      document.getElementById('userBannerName').textContent = user.displayName || user.email.split('@')[0];
+      const avatarWrap = document.getElementById('userAvatarWrap');
+      if(user.photoURL){
+        avatarWrap.innerHTML = `<img src="${user.photoURL}" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #10b981">`;
+      }
+    }
+    if(notice) notice.style.display = 'none';
+  } else {
+    // Guest
+    isGuest = true;
+    if(banner) banner.style.display = 'none';
+    if(notice) notice.style.display = 'block';
+  }
+}
+
+function showAuthOverlay(){
+  document.getElementById('authOverlay').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+window.showAuthOverlay = showAuthOverlay;
+
+function closeAuthOverlay(){
+  document.getElementById('authOverlay').style.display = 'none';
+  document.body.style.overflow = '';
+  isGuest = true;
+  updateUserUI(null);
+}
+window.closeAuthOverlay = closeAuthOverlay;
+
+function switchCbtTab(tab, btn){
+  document.querySelectorAll('.auth-tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('cbtSigninForm').style.display = tab==='signin'?'block':'none';
+  document.getElementById('cbtRegisterForm').style.display = tab==='register'?'block':'none';
+  document.getElementById('cbtAuthError').style.display = 'none';
+  document.getElementById('cbtRegError').style.display = 'none';
+}
+window.switchCbtTab = switchCbtTab;
+
+function showCbtError(id, msg){
+  const el = document.getElementById(id);
+  el.textContent = '❌ ' + msg;
+  el.style.display = 'block';
+  setTimeout(()=>el.style.display='none', 5000);
+}
+
+async function cbtEmailSignIn(){
+  const email = document.getElementById('cbtEmail').value.trim();
+  const pass = document.getElementById('cbtPassword').value;
+  if(!email||!pass){showCbtError('cbtAuthError','Enter your email and password.');return;}
+  const btn = document.getElementById('cbtSignInBtn');
+  btn.disabled=true; btn.textContent='Signing in…';
+  try{
+    if(!window._signInEmail) throw new Error('Auth not ready');
+    await window._signInEmail(email, pass);
+    closeAuthOverlay();
+  }catch(e){
+    showCbtError('cbtAuthError',
+      e.code==='auth/invalid-credential'||e.code==='auth/wrong-password'?'Incorrect email or password.':
+      e.code==='auth/user-not-found'?'No account found. Create one first.':
+      e.code==='auth/too-many-requests'?'Too many attempts. Try later.':e.message);
+  }
+  btn.disabled=false; btn.textContent='Sign In →';
+}
+window.cbtEmailSignIn = cbtEmailSignIn;
+
+async function cbtCreateAccount(){
+  const name = document.getElementById('cbtRegName').value.trim();
+  const email = document.getElementById('cbtRegEmail').value.trim();
+  const pass = document.getElementById('cbtRegPw').value;
+  if(!name||!email||!pass){showCbtError('cbtRegError','Fill in all fields.');return;}
+  if(pass.length<6){showCbtError('cbtRegError','Password must be at least 6 characters.');return;}
+  const btn = document.getElementById('cbtRegBtn');
+  btn.disabled=true; btn.textContent='Creating…';
+  try{
+    if(!window._createAccount) throw new Error('Auth not ready');
+    const cred = await window._createAccount(email, pass);
+    if(window._auth && cred.user){
+      const{updateProfile}= await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js');
+      await updateProfile(cred.user,{displayName:name});
+      cred.user.displayName = name;
+    }
+    closeAuthOverlay();
+  }catch(e){
+    showCbtError('cbtRegError',
+      e.code==='auth/email-already-in-use'?'Account already exists. Sign in instead.':
+      e.code==='auth/weak-password'?'Password too weak. Use at least 6 characters.':e.message);
+  }
+  btn.disabled=false; btn.textContent='Create Free Account →';
+}
+window.cbtCreateAccount = cbtCreateAccount;
+
+async function cbtGoogleSignIn(){
+  try{
+    if(!window._signInGoogle) throw new Error('Auth not ready');
+    await window._signInGoogle();
+    closeAuthOverlay();
+  }catch(e){
+    if(e.code!=='auth/popup-closed-by-user') showCbtError('cbtAuthError', e.message);
+  }
+}
+window.cbtGoogleSignIn = cbtGoogleSignIn;
+
+async function cbtForgotPw(){
+  const email = document.getElementById('cbtEmail').value.trim();
+  if(!email){showCbtError('cbtAuthError','Enter your email address first.');return;}
+  try{
+    await window._resetPw(email);
+    const el = document.getElementById('cbtAuthError');
+    el.textContent = '✅ Reset email sent to '+email;
+    el.style.color='#15803d';el.style.background='#dcfce7';
+    el.style.display='block';
+    setTimeout(()=>{el.style.display='none';el.style.color='';el.style.background='';},5000);
+  }catch(e){showCbtError('cbtAuthError', e.message);}
+}
+window.cbtForgotPw = cbtForgotPw;
+
+async function cbtSignOut(){
+  if(window._signOut) await window._signOut().catch(()=>{});
+  cbtUser = null;
+  updateUserUI(null);
+}
+window.cbtSignOut = cbtSignOut;
+
+// ── Check auth before starting exam ──
+function checkAuthThenStart(){
+  if(!cbtUser){
+    // Guest: show notice, allow limited access
+    showAuthOverlay();
+    return;
+  }
+  startExam();
+}
+window.checkAuthThenStart = checkAuthThenStart;
+
+// Override start to enforce guest limit
+const _originalStartExam = window.startExam;
+
 function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
 document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';document.getElementById('yr').textContent=new Date().getFullYear();});
 function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
@@ -364,6 +618,8 @@ async function startExam(){
   const btn=document.getElementById('startBtn');
   btn.disabled=true;btn.textContent='Loading questions…';
   document.getElementById('setupStatus').textContent='Fetching questions from database…';
+  // Guest limit
+  const maxQ = !cbtUser ? GUEST_LIMIT : parseInt(document.getElementById('qCount').value);
   try{
     if(!window._db){
       // wait for firebase
@@ -383,7 +639,12 @@ async function startExam(){
       return;
     }
     // Shuffle and pick
+    const qCount = !cbtUser ? Math.min(GUEST_LIMIT, parseInt(document.getElementById('qCount').value)) : parseInt(document.getElementById('qCount').value);
     pool=pool.sort(()=>Math.random()-.5).slice(0,Math.min(qCount,pool.length));
+    // Show guest notice if limited
+    if(!cbtUser && pool.length>=GUEST_LIMIT){
+      document.getElementById('setupStatus').textContent=`⚠️ Guest mode: limited to ${GUEST_LIMIT} questions. Sign in for full access.`;
+    }
     examQuestions=pool;
     userAnswers={};currentQ=0;
     // Timer
