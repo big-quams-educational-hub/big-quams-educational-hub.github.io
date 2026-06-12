@@ -93,6 +93,10 @@ body.dark .news-card-cat{background:#1a2d5a;color:#93c5fd}
 .news-card-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text-main);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .news-card-summary{font-size:.76rem;color:var(--text-muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .news-card-meta{font-size:.68rem;color:var(--text-muted);margin-top:auto;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.card-share-btn{margin-left:auto;background:none;border:none;color:var(--text-muted);font-size:.72rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:4px;padding:3px 8px;border-radius:6px;transition:.18s;flex-shrink:0}
+.card-share-btn:hover{background:var(--blue-light);color:var(--blue-main)}
+.share-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1e2749;color:#fff;padding:10px 20px;border-radius:30px;font-size:.8rem;font-weight:700;z-index:600;opacity:0;pointer-events:none;transition:opacity .25s;white-space:nowrap}
+.share-toast.show{opacity:1}
 /* SIDEBAR */
 .sidebar-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:18px;margin-bottom:16px}
 body.dark .sidebar-card{background:#161b27;border-color:var(--border)}
@@ -243,7 +247,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   <div class="modal-box" id="modalBox">
     <div id="modalContent"></div>
     <div class="modal-close-btn">
-      <a id="modalWaLink" href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener" class="btn btn-primary">💬 Discuss on WhatsApp</a>
+      <button class="btn btn-primary" id="modalShareBtn" onclick="shareArticle()">🔗 Share Article</button>
       <button class="btn btn-ghost" onclick="closeModal()">✕ Close</button>
     </div>
   </div>
@@ -262,6 +266,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   </div>
 </footer>
 
+<!-- SHARE TOAST -->
+<div class="share-toast" id="shareToast">✅ Link copied!</div>
+
 <script>
 (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
 function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
@@ -269,7 +276,7 @@ document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.con
 function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
 
 const PER_PAGE=10;
-let allNews=[],filteredNews=[],currentCat='',currentPage=0;
+let allNews=[],filteredNews=[],currentCat='',currentPage=0,currentArticleIdx=-1;
 
 const CAT_COLORS={
   'JAMB Update':'#dbeafe,#1d4ed8',
@@ -283,6 +290,57 @@ const CAT_COLORS={
 };
 function catStyle(c){const v=CAT_COLORS[c]||'#f0f4ff,#1a3fa8';const[bg,col]=v.split(',');return`background:${bg};color:${col}`;}
 
+// ── Reading time estimate ──
+function readingTime(text){
+  const words=(text||'').split(/\s+/).filter(Boolean).length;
+  return Math.max(1,Math.round(words/200));
+}
+
+// ── Make URLs in content clickable ──
+function linkify(text){
+  if(!text) return '';
+  // Escape HTML first
+  const escaped=text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // Convert URLs to clickable links
+  const urlRegex=/(https?:\/\/[^\s<>"']+)/g;
+  return escaped.replace(urlRegex,url=>`<a href="${url}" target="_blank" rel="noopener" style="color:var(--blue-main);text-decoration:underline;word-break:break-all">${url}</a>`);
+}
+
+// ── Share article ──
+function shareArticle(){
+  if(currentArticleIdx<0) return;
+  const n=allNews[currentArticleIdx];
+  const url=window.location.href.split('?')[0]+'?article='+currentArticleIdx;
+  const text=`📰 ${n.title}\n\nRead on Big Quams Media®: ${url}`;
+  if(navigator.share){
+    navigator.share({title:n.title,text:`📰 ${n.title} — Big Quams Media®`,url}).catch(()=>{});
+  } else {
+    navigator.clipboard?navigator.clipboard.writeText(text).then(()=>showToast('🔗 Link copied to clipboard!')):showToast('🔗 '+url);
+  }
+}
+window.shareArticle=shareArticle;
+
+// ── Share from card ──
+function shareCard(e,idx){
+  e.stopPropagation();
+  const n=allNews[idx];
+  const url=window.location.href.split('?')[0]+'?article='+idx;
+  const text=`📰 ${n.title}\n\nRead on Big Quams Media®: ${url}`;
+  if(navigator.share){
+    navigator.share({title:n.title,text:`📰 ${n.title} — Big Quams Media®`,url}).catch(()=>{});
+  } else {
+    navigator.clipboard?navigator.clipboard.writeText(text).then(()=>showToast('🔗 Link copied!')):showToast('🔗 '+url);
+  }
+}
+window.shareCard=shareCard;
+
+// ── Toast notification ──
+function showToast(msg){
+  const t=document.getElementById('shareToast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
 async function init(){
   try{
     const r=await fetch('news.json?v='+Date.now());
@@ -290,20 +348,22 @@ async function init(){
     allNews.sort((a,b)=>{if(a.pinned&&!b.pinned)return-1;if(!a.pinned&&b.pinned)return 1;return 0;});
     buildSidebar();
     render();
+    // Check URL param for direct article link
+    const params=new URLSearchParams(location.search);
+    const articleIdx=params.get('article');
+    if(articleIdx!==null&&allNews[parseInt(articleIdx)]) openArticle(parseInt(articleIdx));
   }catch(e){
     document.getElementById('newsGrid').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load articles. Please try again later.</p></div>';
   }
 }
 
 function buildSidebar(){
-  // Recent
   const recent=document.getElementById('recentList');
   recent.innerHTML=allNews.slice(0,5).map((n,i)=>`
     <div class="sidebar-item" onclick="openArticle(${allNews.indexOf(n)})">
       <div class="sidebar-item-num">${i+1}</div>
       <div><div class="sidebar-item-title">${n.title}</div><div class="sidebar-item-cat">${n.category||''} · ${n.date||''}</div></div>
     </div>`).join('');
-  // Categories
   const cats={};
   allNews.forEach(n=>{const c=n.category||'General';cats[c]=(cats[c]||0)+1;});
   document.getElementById('catList').innerHTML=Object.entries(cats).map(([c,count])=>`
@@ -332,13 +392,14 @@ function render(){
   const pa=document.getElementById('pinnedArea');
   if(pinned.length&&!currentCat&&!q){
     const p=pinned[0];
-    pa.innerHTML=`<div class="pinned-card" onclick="openArticle(${allNews.indexOf(p)})">
+    const pidx=allNews.indexOf(p);
+    pa.innerHTML=`<div class="pinned-card" onclick="openArticle(${pidx})">
       ${p.image?`<img class="pinned-img" src="${p.image}" alt="${p.title}">`:`<div class="pinned-img-placeholder">📰</div>`}
       <div class="pinned-body">
         <span class="pinned-badge">📌 Featured</span>
         <div class="pinned-title">${p.title}</div>
         <div class="pinned-summary">${p.summary||''}</div>
-        <div class="pinned-meta">${p.category||''} · ${p.date||''} · ✍️ ${p.author||'BQM'}</div>
+        <div class="pinned-meta">${p.category||''} · ${p.date||''} · ✍️ ${p.author||'BQM'} · ⏱ ${readingTime(p.fullContent||p.summary)} min read</div>
       </div></div>`;
   } else { pa.innerHTML=''; }
   // Grid
@@ -346,13 +407,19 @@ function render(){
   if(!pageItems.length&&!pinned.length){grid.innerHTML='<div class="empty"><div class="ei">🔍</div><p>No articles match your search.</p></div>';document.getElementById('pagination').innerHTML='';return;}
   grid.innerHTML=pageItems.map(n=>{
     const idx=allNews.indexOf(n);
+    const mins=readingTime(n.fullContent||n.summary);
     return`<div class="news-card" onclick="openArticle(${idx})">
       ${n.image?`<img class="news-card-img" src="${n.image}" alt="${n.title}">`:`<div class="news-card-img-placeholder">📰</div>`}
       <div class="news-card-body">
         <span class="news-card-cat" style="${catStyle(n.category||'')}">${n.category||'News'}</span>
         <div class="news-card-title">${n.title}</div>
         <div class="news-card-summary">${n.summary||''}</div>
-        <div class="news-card-meta"><span>${n.date||''}</span>${n.author?`<span>· ✍️ ${n.author}</span>`:''}</div>
+        <div class="news-card-meta">
+          <span>${n.date||''}</span>
+          ${n.author?`<span>· ✍️ ${n.author}</span>`:''}
+          <span>· ⏱ ${mins} min</span>
+          <button class="card-share-btn" onclick="shareCard(event,${idx})" title="Share this article">🔗 Share</button>
+        </div>
       </div></div>`;
   }).join('');
   // Pagination
@@ -372,22 +439,57 @@ function goPage(p){currentPage=p;render();window.scrollTo({top:document.querySel
 
 function openArticle(idx){
   const n=allNews[idx];
+  currentArticleIdx=idx;
+  const mins=readingTime(n.fullContent||n.summary);
   const mc=document.getElementById('modalContent');
+  // Related articles (same category, exclude current)
+  const related=allNews.filter((x,i)=>i!==idx&&x.category===n.category).slice(0,3);
   mc.innerHTML=`
     ${n.image?`<img class="modal-img" src="${n.image}" alt="${n.title}">`:''}
     <div class="modal-body">
       <span class="modal-cat" style="${catStyle(n.category||'')}">${n.category||'News'}</span>
       <div class="modal-title">${n.title}</div>
-      <div class="modal-meta"><span>${n.date||''}</span>${n.author?`<span>· ✍️ ${n.author}</span>`:''}</div>
+      <div class="modal-meta">
+        <span>${n.date||''}</span>
+        ${n.author?`<span>· ✍️ ${n.author}</span>`:''}
+        <span>· ⏱ ${mins} min read</span>
+      </div>
       <div class="modal-divider"></div>
-      <div class="modal-content">${n.fullContent||n.summary||''}</div>
+      <div class="modal-content">${linkify(n.fullContent||n.summary)}</div>
+      ${related.length?`
+        <div style="margin-top:24px;padding-top:18px;border-top:2px solid var(--surface-alt)">
+          <div style="font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text-main);margin-bottom:12px">📰 Related Articles</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            ${related.map(r=>{
+              const ridx=allNews.indexOf(r);
+              return`<div onclick="openArticle(${ridx})" style="display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--surface-alt);border-radius:9px;cursor:pointer;transition:.18s" onmouseover="this.style.background='var(--blue-light)'" onmouseout="this.style.background='var(--surface-alt)'">
+                <span style="font-size:1rem;flex-shrink:0">📰</span>
+                <div>
+                  <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;color:var(--text-main);line-height:1.3">${r.title}</div>
+                  <div style="font-size:.68rem;color:var(--text-muted);margin-top:2px">${r.category||''} · ${r.date||''}</div>
+                </div>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>`:''}
     </div>`;
-  const waLink=document.getElementById('modalWaLink');
-  if(waLink) waLink.href=n.link||'https://wa.me/message/OVCVEDHU3I2PH1';
+  // Update URL without reload
+  const url=new URL(location.href);
+  url.searchParams.set('article',idx);
+  history.replaceState({},'',url);
   document.getElementById('articleModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
-function closeModal(){document.getElementById('articleModal').classList.remove('open');document.body.style.overflow='';}
+
+function closeModal(){
+  document.getElementById('articleModal').classList.remove('open');
+  document.body.style.overflow='';
+  currentArticleIdx=-1;
+  // Remove article param from URL
+  const url=new URL(location.href);
+  url.searchParams.delete('article');
+  history.replaceState({},'',url);
+}
 function handleOverlay(e){if(e.target===document.getElementById('articleModal'))closeModal();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
