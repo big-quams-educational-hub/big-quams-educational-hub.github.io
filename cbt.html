@@ -305,7 +305,50 @@ body.dark .nick-input{background:#0f172a;border-color:#334155;color:#e2e8f0}
 .streak-days{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:#fff}
 .streak-label{font-size:.66rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.5px}
 
-footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
+/* Referral count banner */
+.ref-count-banner{
+  background:linear-gradient(135deg,#0c1f6e,#1a3fa8);
+  border-radius:14px;padding:22px 16px;text-align:center;margin-bottom:12px;
+  position:relative;overflow:hidden;
+}
+.ref-count-banner::after{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.05)}
+.ref-count-big{
+  font-family:'Montserrat',sans-serif;font-size:3.5rem;font-weight:800;
+  color:#fff;line-height:1;margin-bottom:4px;
+  animation:countPop .4s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes countPop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.ref-count-label{font-size:.8rem;color:rgba(255,255,255,.65);margin-bottom:6px}
+.ref-count-sub{font-size:.7rem;color:rgba(255,255,255,.4)}
+/* Claim button */
+.claim-btn{
+  background:linear-gradient(135deg,var(--orange),#ea6c00);
+  color:#fff;border:none;border-radius:10px;padding:14px 28px;
+  font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;
+  cursor:pointer;transition:.2s;margin-bottom:14px;
+  box-shadow:0 4px 14px rgba(249,115,22,.35);
+}
+.claim-btn:hover{opacity:.9;transform:translateY(-1px)}
+.ref-tabs{display:flex;gap:0;border-radius:9px;overflow:hidden;border:1.5px solid var(--border);margin-bottom:14px}
+.ref-tab{flex:1;padding:9px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:800;border:none;cursor:pointer;background:var(--surface-alt);color:var(--text-muted);transition:.2s}
+body.dark .ref-tab{background:#1a2236;color:#94a3b8}
+.ref-tab.active{background:var(--blue-main);color:#fff}
+.ref-tab-panel{display:none}
+.ref-tab-panel.active{display:block}
+/* Referred users list */
+.referred-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.referred-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--surface-alt);border:1px solid var(--border);border-radius:9px}
+body.dark .referred-item{background:#1a2236;border-color:var(--border)}
+.referred-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--blue-main),var(--orange));display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;color:#fff;font-weight:800}
+.referred-name{font-size:.78rem;font-weight:700;color:var(--text-main);flex:1}
+.referred-date{font-size:.62rem;color:var(--text-muted)}
+/* Claim panel */
+.claim-panel{text-align:center;padding:28px 16px}
+.claim-icon{font-size:3rem;margin-bottom:10px}
+.claim-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--red);margin-bottom:8px}
+.claim-msg{font-size:.8rem;color:var(--text-muted);line-height:1.6;max-width:280px;margin:0 auto 16px}
+.claim-sorry-badge{display:flex;align-items:center;justify-content:center;gap:8px;background:#fee2e2;border:1.5px solid #fca5a5;border-radius:12px;padding:12px 18px;font-size:.8rem;font-weight:700;color:#b91c1c;margin:0 auto}
+body.dark .claim-sorry-badge{background:#1a0000;border-color:#7f1d1d;color:#fca5a5}color:rgba(255,255,255,.5);padding:36px 16px 24px}
 .footer-inner{max-width:860px;margin:0 auto}
 .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .footer-brand img{width:32px;height:32px;border-radius:50%;border:2px solid var(--orange)}
@@ -528,14 +571,53 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
     <!-- Referral -->
     <div class="dash-section">
       <div class="dash-sec-title">🔗 Refer & Grow</div>
+
+      <!-- Big referral count banner -->
+      <div class="ref-count-banner" id="refCountBanner">
+        <div class="ref-count-big" id="refCountBig">0</div>
+        <div class="ref-count-label">classmates referred so far</div>
+        <div class="ref-count-sub" id="refCountSub">Share your link below to get started!</div>
+      </div>
+
+      <!-- Share card -->
       <div class="ref-card">
-        <div class="ref-title">Share BQM with your classmates!</div>
-        <div class="ref-sub">Every student you bring to Big Quams Media® counts. Share your unique link and track how many join through you.</div>
+        <div class="ref-title">📤 Your Referral Link</div>
+        <div class="ref-sub">Anyone who signs up through your link is counted as your referral.</div>
         <div class="ref-link-box">
           <input class="ref-link-input" type="text" id="refLinkInput" readonly>
           <button class="ref-copy-btn" onclick="copyRefLink()">📋 Copy</button>
         </div>
-        <div class="ref-count" id="refCount">0<span>students referred</span></div>
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+          <button onclick="shareRefWhatsApp()" style="flex:1;padding:9px;background:#25d366;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">📱 Share on WhatsApp</button>
+          <button onclick="shareRefNative()" style="flex:1;padding:9px;background:var(--surface-alt);color:var(--text-main);border:1.5px solid var(--border);border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;cursor:pointer">↗️ Share</button>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="ref-tabs">
+        <button class="ref-tab active" onclick="switchRefTab('people',this)">👥 Who Joined (<span id="refTabCount">0</span>)</button>
+        <button class="ref-tab" onclick="switchRefTab('claim',this)">🎁 Claim Reward</button>
+      </div>
+
+      <!-- Who joined tab -->
+      <div class="ref-tab-panel active" id="refTab-people">
+        <div class="referred-list" id="referredList">
+          <div style="text-align:center;padding:24px;color:var(--text-muted);font-size:.78rem">No one has joined through your link yet.<br>Share it with your classmates! 🚀</div>
+        </div>
+      </div>
+
+      <!-- Claim tab -->
+      <div class="ref-tab-panel" id="refTab-claim">
+        <div class="claim-panel">
+          <div class="claim-icon">🎁</div>
+          <div class="claim-title">Claim Your Reward</div>
+          <div class="claim-msg">You've referred <strong id="claimRefCount">0</strong> student(s). Tap the button below to claim your referral reward.</div>
+          <button class="claim-btn" id="claimBtn" onclick="attemptClaim()">🎁 Claim Reward Now</button>
+          <div class="claim-sorry-badge" id="claimResult" style="display:none">
+            😔 Sorry, you're not eligible for this bonus/credit yet
+          </div>
+          <div style="margin-top:12px;font-size:.7rem;color:var(--text-muted)">Rewards will be activated soon. Your referral count is saved!</div>
+        </div>
       </div>
     </div>
   </div>
@@ -613,7 +695,7 @@ const gProvider=new GoogleAuthProvider();
 
 // Expose to global JS
 window._db=db; window._collection=collection; window._getDocs=getDocs;
-window._doc=doc; window._setDoc=setDoc; window._getDoc=getDoc;
+window._doc=doc; window._setDoc=(ref,data,opts)=>setDoc(ref,data,opts||{}); window._getDoc=getDoc;
 window._updateDoc=updateDoc; window._increment=increment;
 window._serverTimestamp=serverTimestamp; window._arrayUnion=arrayUnion;
 window._auth=auth;
@@ -683,10 +765,18 @@ async function loadUserProfile(user){
     const d=await window._getDoc(window._doc(window._db,'cbt_users',user.uid));
     if(d.exists()){
       userProfile=d.data();
+      // Ensure referralCode exists on old profiles
+      if(!userProfile.referralCode){
+        const code=user.uid.substring(0,8);
+        await window._updateDoc(window._doc(window._db,'cbt_users',user.uid),{referralCode:code});
+        userProfile.referralCode=code;
+        // Register in lookup index
+        await registerReferralCode(code,user.uid,user.email,user.displayName||user.email.split('@')[0]);
+      }
     } else {
-      // Create new profile
-      const ref=document.referrer;
-      const urlRef=new URLSearchParams(window.location.search).get('ref');
+      // New user — capture ref from URL BEFORE clearing it
+      const urlRef=new URLSearchParams(window.location.search).get('ref')||'';
+      const myCode=user.uid.substring(0,8);
       userProfile={
         uid:user.uid,
         email:user.email,
@@ -701,59 +791,86 @@ async function loadUserProfile(user){
         lastPracticeDate:'',
         subjectHistory:{},
         achievements:[],
-        referralCode:user.uid.substring(0,8),
-        referredBy:urlRef||'',
+        referralCode:myCode,
+        referredBy:urlRef,
         referralCount:0,
         joinDate:new Date().toISOString(),
         sessionHistory:[],
         subjectsPractised:[],
       };
       await window._setDoc(window._doc(window._db,'cbt_users',user.uid),userProfile);
-      // Credit referrer
-      if(urlRef && urlRef!==user.uid.substring(0,8)){
-        creditReferrer(urlRef,user.uid);
+      // Register this user's referral code in the lookup index
+      await registerReferralCode(myCode,user.uid,user.email,userProfile.nickname);
+      // Credit referrer if someone referred this new user
+      if(urlRef && urlRef!==myCode){
+        await creditReferrer(urlRef,user.uid,user.email,userProfile.nickname);
       }
     }
   }catch(e){console.warn('Profile load error',e);}
 }
 
-async function creditReferrer(refCode,newUid){
+// Store ref code → uid mapping so lookup is O(1), no full scan needed
+async function registerReferralCode(code,uid,email,name){
   try{
-    const snap=await window._getDocs(window._collection(window._db,'cbt_users'));
-    snap.forEach(async(docSnap)=>{
-      const d=docSnap.data();
-      if(d.referralCode===refCode && docSnap.id!==newUid){
-        await window._updateDoc(window._doc(window._db,'cbt_users',docSnap.id),{
-          referralCount:window._increment(1)
-        });
-        // Check referral achievements
-        const newCount=(d.referralCount||0)+1;
-        const achToGrant=[];
-        if(newCount>=1) achToGrant.push('referral_1');
-        if(newCount>=5) achToGrant.push('referral_5');
-        achToGrant.forEach(a=>grantAchievementToUser(docSnap.id,a));
-      }
+    await window._setDoc(
+      window._doc(window._db,'referral_codes',code),
+      {uid,email,name,code,createdAt:new Date().toISOString()},
+      {merge:true}
+    );
+  }catch(e){console.warn('Referral code register error',e);}
+}
+
+// Direct lookup by code — no full collection scan
+async function creditReferrer(refCode,newUserUid,newUserEmail,newUserName){
+  try{
+    // Look up referrer uid directly from the index
+    const codeDoc=await window._getDoc(window._doc(window._db,'referral_codes',refCode));
+    if(!codeDoc.exists()) return;
+    const referrerUid=codeDoc.data().uid;
+    if(!referrerUid||referrerUid===newUserUid) return;
+
+    // Increment referrer's count
+    await window._updateDoc(window._doc(window._db,'cbt_users',referrerUid),{
+      referralCount:window._increment(1),
+      referredUsers:window._arrayUnion({
+        uid:newUserUid,
+        email:newUserEmail||'',
+        name:newUserName||'Student',
+        joinedAt:new Date().toISOString(),
+      }),
     });
-  }catch(e){}
+
+    // Fetch updated profile to check achievements
+    const referrerDoc=await window._getDoc(window._doc(window._db,'cbt_users',referrerUid));
+    if(referrerDoc.exists()){
+      const rd=referrerDoc.data();
+      const newCount=(rd.referralCount||0);
+      const achToGrant=[];
+      if(newCount>=1) achToGrant.push('referral_1');
+      if(newCount>=5) achToGrant.push('referral_5');
+      for(const a of achToGrant) await grantAchievementToUser(referrerUid,a);
+    }
+  }catch(e){console.warn('Credit referrer error',e);}
 }
 
 async function grantAchievementToUser(uid,achId){
   try{
     const d=await window._getDoc(window._doc(window._db,'cbt_users',uid));
-    if(d.exists()){
-      const data=d.data();
-      if(!(data.achievements||[]).includes(achId)){
-        await window._updateDoc(window._doc(window._db,'cbt_users',uid),{
-          achievements:window._arrayUnion(achId)
-        });
-      }
+    if(d.exists()&&!(d.data().achievements||[]).includes(achId)){
+      await window._updateDoc(window._doc(window._db,'cbt_users',uid),{
+        achievements:window._arrayUnion(achId)
+      });
     }
   }catch(e){}
 }
 
 function checkReferralInURL(myUid){
-  const ref=new URLSearchParams(window.location.search).get('ref');
-  if(ref) window.history.replaceState({},'',window.location.pathname);
+  // Clean the URL after capturing ref so it doesn't re-trigger on refresh
+  const url=new URL(window.location.href);
+  if(url.searchParams.has('ref')){
+    url.searchParams.delete('ref');
+    window.history.replaceState({},'',url.pathname);
+  }
 }
 
 function updateUserUI(user){
@@ -780,12 +897,19 @@ function updateUserUI(user){
 }
 
 // ── DASHBOARD ──
-function showDashboard(){
+async function showDashboard(){
   hideAll();
   document.getElementById('dashboardScreen').style.display='block';
   document.getElementById('mainFooter').style.display='block';
-  populateDashboard();
   window.scrollTo({top:0,behavior:'smooth'});
+  // Always re-fetch fresh profile so referral count is always current
+  if(cbtUser){
+    try{
+      const snap=await window._getDoc(window._doc(window._db,'cbt_users',cbtUser.uid));
+      if(snap.exists()) userProfile=snap.data();
+    }catch(e){ console.warn('Profile refresh error',e); }
+  }
+  populateDashboard();
 }
 window.showDashboard=showDashboard;
 
@@ -825,10 +949,41 @@ function populateDashboard(){
     sb.style.display='flex';
     document.getElementById('streakDays').textContent=streak+' Day Streak! Keep it up! 🔥';
   }
-  // Referral link
+  // Referral
   const refCode=p.referralCode||cbtUser.uid.substring(0,8);
-  document.getElementById('refLinkInput').value=`${SITE_URL}?ref=${refCode}`;
-  document.getElementById('refCount').innerHTML=`${p.referralCount||0}<span>students referred so far</span>`;
+  const refLink=`${SITE_URL}?ref=${refCode}`;
+  const refCount=p.referralCount||0;
+  const referred=p.referredUsers||[];
+  document.getElementById('refLinkInput').value=refLink;
+  // Big count banner
+  document.getElementById('refCountBig').textContent=refCount;
+  document.getElementById('dReferrals').textContent=refCount;
+  document.getElementById('refTabCount').textContent=refCount;
+  document.getElementById('claimRefCount').textContent=refCount;
+  document.getElementById('refCountSub').textContent=
+    refCount===0?'Share your link below to get started! 🚀':
+    refCount===1?'🎉 1 classmate joined through your link! Keep going!':
+    `🎉 ${refCount} classmates have joined through your link!`;
+  // Referred users list
+  if(referred.length){
+    document.getElementById('referredList').innerHTML=referred.slice().reverse().map(u=>{
+      const initial=(u.name||'S').charAt(0).toUpperCase();
+      const joined=u.joinedAt?new Date(u.joinedAt).toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'}):'';
+      return`<div class="referred-item">
+        <div class="referred-avatar">${initial}</div>
+        <div style="flex:1;min-width:0">
+          <div class="referred-name">${u.name||'Student'}</div>
+          <div class="referred-date">${u.email||''}</div>
+        </div>
+        <div class="referred-date">📅 ${joined}</div>
+      </div>`;
+    }).join('');
+  } else {
+    document.getElementById('referredList').innerHTML='<div style="text-align:center;padding:24px;color:var(--text-muted);font-size:.78rem">No one has joined through your link yet.<br>Share it and watch this list grow! 🚀</div>';
+  }
+  // Reset claim tab state
+  document.getElementById('claimResult').style.display='none';
+  document.getElementById('claimBtn').style.display='inline-block';
   // Subjects
   buildSubjectCats(p);
   // History
@@ -950,6 +1105,38 @@ function copyRefLink(){
   });
 }
 window.copyRefLink=copyRefLink;
+
+function switchRefTab(tab,btn){
+  document.querySelectorAll('.ref-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.ref-tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('refTab-'+tab).classList.add('active');
+}
+window.switchRefTab=switchRefTab;
+
+function attemptClaim(){
+  // Always show not eligible — rewards not live yet
+  document.getElementById('claimBtn').style.display='none';
+  document.getElementById('claimResult').style.display='flex';
+}
+window.attemptClaim=attemptClaim;
+
+function shareRefWhatsApp(){
+  const link=document.getElementById('refLinkInput').value;
+  const msg=encodeURIComponent(`🎯 I've been using Big Quams Media® to practise for JAMB — it's completely free!\n\nJoin through my link and let's ace JAMB together: ${link}`);
+  window.open(`https://wa.me/?text=${msg}`,'_blank');
+}
+window.shareRefWhatsApp=shareRefWhatsApp;
+
+function shareRefNative(){
+  const link=document.getElementById('refLinkInput').value;
+  if(navigator.share){
+    navigator.share({title:'Big Quams Media® — Free JAMB Practice',text:'Join me on Big Quams Media® for free JAMB CBT practice!',url:link}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(link).then(()=>alert('Link copied! Share it with your classmates.'));
+  }
+}
+window.shareRefNative=shareRefNative;
 
 // ── AUTH UI ──
 function showAuthOverlay(){
