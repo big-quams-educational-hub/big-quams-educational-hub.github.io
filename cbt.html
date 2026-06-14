@@ -14,9 +14,7 @@ body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#
 html{scroll-behavior:smooth}
 body{font-family:'Roboto',sans-serif;background:#f5f7ff;color:var(--text-main);line-height:1.6;overflow-x:hidden}
 body.dark{background:#0d1117}
-a{color:inherit;text-decoration:none}
-button{cursor:pointer;font-family:inherit}
-img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}button{cursor:pointer;font-family:inherit}img{max-width:100%;display:block}
 header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4)}
 .header-bar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
 .logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
@@ -44,7 +42,8 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 .mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
 .nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
 .nav-overlay.show{opacity:1;pointer-events:auto}
-/* SETUP SCREEN */
+
+/* ── SETUP HERO ── */
 .setup-hero{background:linear-gradient(135deg,#081530,#0f2060,#1a3fa8);padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
 .setup-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
 .setup-hero-inner{position:relative;z-index:1;max-width:600px;margin:0 auto}
@@ -53,7 +52,8 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 .setup-hero h1 span{color:var(--orange)}
 .setup-hero p{font-size:.9rem;color:rgba(255,255,255,.65);max-width:480px;margin:0 auto}
 .wrap{max-width:860px;margin:0 auto;padding:0 16px}
-/* SETUP CARD */
+
+/* ── SETUP CARD ── */
 .setup-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:28px;margin:32px auto;max-width:640px;box-shadow:var(--shadow-md)}
 body.dark .setup-card{background:#161b27;border-color:var(--border)}
 .setup-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text-main);margin-bottom:20px;display:flex;align-items:center;gap:8px}
@@ -71,7 +71,8 @@ body.dark .option-group select{background:#111624;border-color:var(--border);col
 .start-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff;border:none;border-radius:var(--radius-sm);font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:.2s}
 .start-btn:hover{opacity:.9;transform:translateY(-1px)}
 .start-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-/* EXAM SCREEN */
+
+/* ── EXAM SCREEN ── */
 #examScreen{display:none}
 .exam-topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;position:sticky;top:60px;z-index:200}
 body.dark .exam-topbar{background:#161b27;border-color:var(--border)}
@@ -88,7 +89,8 @@ body.dark .timer-box{background:#1a2236}
 .timer-box.urgent .timer-num{color:var(--red)}
 .q-counter{font-size:.78rem;font-weight:700;color:var(--text-muted);white-space:nowrap}
 .submit-early-btn{background:var(--orange);color:#fff;border:none;padding:8px 14px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.76rem;cursor:pointer;white-space:nowrap}
-/* QUESTION CARD */
+
+/* ── QUESTION CARD ── */
 .q-wrap{max-width:860px;margin:0 auto;padding:20px 16px 100px}
 .q-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:24px;box-shadow:var(--shadow-md)}
 body.dark .q-card{background:#161b27;border-color:var(--border)}
@@ -97,9 +99,7 @@ body.dark .q-card{background:#161b27;border-color:var(--border)}
 .q-subj-badge{background:var(--blue-light);color:var(--blue-main);font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:20px}
 body.dark .q-subj-badge{background:#1a2d5a;color:#93c5fd}
 .q-diff-badge{font-size:.64rem;font-weight:700;padding:3px 8px;border-radius:20px}
-.diff-easy{background:#dcfce7;color:#15803d}
-.diff-medium{background:#fef9c3;color:#92400e}
-.diff-hard{background:#fee2e2;color:#b91c1c}
+.diff-easy{background:#dcfce7;color:#15803d}.diff-medium{background:#fef9c3;color:#92400e}.diff-hard{background:#fee2e2;color:#b91c1c}
 .q-text{font-size:.95rem;color:var(--text-main);line-height:1.7;margin-bottom:20px;font-weight:500}
 .options-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
 .opt-btn{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1.5px solid var(--border);border-radius:10px;background:var(--surface-alt);cursor:pointer;transition:all .18s;font-size:.88rem;color:var(--text-main);text-align:left;font-family:'Roboto',sans-serif;line-height:1.5}
@@ -126,7 +126,8 @@ body.dark .explanation{background:#052e16;border-color:#166534;color:#86efac}
 body.dark .btn-prev{background:#1a2236;border-color:var(--border)}
 .btn-next{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff}
 .btn-next:disabled{opacity:.5;cursor:not-allowed}
-/* Q GRID (bottom) */
+
+/* ── Q GRID ── */
 .q-grid-wrap{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);padding:10px 16px;z-index:200}
 body.dark .q-grid-wrap{background:#161b27;border-color:var(--border)}
 .q-grid{display:flex;flex-wrap:wrap;gap:5px;max-width:860px;margin:0 auto;overflow:hidden;max-height:52px;overflow-y:auto}
@@ -135,11 +136,11 @@ body.dark .q-dot{background:#1a2236;border-color:var(--border)}
 .q-dot.answered{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
 .q-dot.current{border-color:var(--orange);color:var(--orange)}
 .q-dot.current.answered{background:var(--orange);color:#fff;border-color:var(--orange)}
-/* RESULT SCREEN */
+
+/* ── RESULT SCREEN ── */
 #resultScreen{display:none}
 .result-hero{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));padding:44px 16px;text-align:center}
 .score-ring{width:140px;height:140px;border-radius:50%;border:6px solid rgba(255,255,255,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;position:relative}
-.score-ring-fill{position:absolute;inset:0;border-radius:50%;background:conic-gradient(#10b981 var(--pct,0%),transparent 0);padding:6px}
 .score-num{font-family:'Montserrat',sans-serif;font-size:2.4rem;font-weight:800;color:#fff;line-height:1;position:relative;z-index:1}
 .score-denom{font-size:.72rem;color:rgba(255,255,255,.55);position:relative;z-index:1}
 .result-grade{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:6px}
@@ -161,16 +162,17 @@ body.dark .review-opt.correct-answer{background:#052e16;color:#86efac}
 body.dark .review-opt.user-wrong{background:#1a0000;color:#fca5a5}
 .review-exp{font-size:.76rem;color:#15803d;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;padding:10px;margin-top:8px;line-height:1.5}
 body.dark .review-exp{background:#052e16;border-color:#166534;color:#86efac}
-.result-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 16px 40px;max-width:860px;margin:0 auto}
+.result-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 16px 24px;max-width:860px;margin:0 auto}
 .ra-btn{padding:13px 24px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;border:none;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:8px}
 .ra-btn-primary{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff}
 .ra-btn-wa{background:#25d366;color:#fff}
 .loader{text-align:center;padding:60px;color:var(--text-muted)}
 .loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
-/* AUTH OVERLAY */
+
+/* ── AUTH OVERLAY ── */
 .auth-overlay{position:fixed;inset:0;background:rgba(10,20,60,.7);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)}
-.auth-card{background:#fff;border-radius:20px;padding:28px 24px;width:100%;max-width:400px;box-shadow:0 32px 80px rgba(0,0,0,.3);animation:authPop .3s cubic-bezier(.34,1.56,.64,1)}
+.auth-card{background:#fff;border-radius:20px;padding:28px 24px;width:100%;max-width:400px;box-shadow:0 32px 80px rgba(0,0,0,.3);animation:authPop .3s cubic-bezier(.34,1.56,.64,1);max-height:90vh;overflow-y:auto}
 body.dark .auth-card{background:#1e293b}
 @keyframes authPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
 .auth-logo{width:60px;height:60px;border-radius:50%;border:3px solid var(--orange);margin:0 auto 12px;overflow:hidden}
@@ -196,7 +198,8 @@ body.dark .google-auth-btn{background:#1a2236;border-color:#334155;color:#e2e8f0
 .auth-error{color:#b91c1c;font-size:.76rem;background:#fee2e2;border-radius:7px;padding:8px 12px;margin-bottom:10px;display:none}
 .auth-link-btn{background:none;border:none;color:var(--blue-main);font-size:.74rem;font-weight:700;cursor:pointer;padding:2px;display:block;margin:0 auto;text-align:center}
 .auth-skip{background:none;border:none;color:var(--text-muted);font-size:.72rem;cursor:pointer;padding:4px;display:block;margin:8px auto 0;text-align:center;text-decoration:underline}
-/* USER BADGE in setup screen */
+
+/* ── USER BANNER ── */
 .user-banner{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #bbf7d0;border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
 body.dark .user-banner{background:linear-gradient(135deg,#052e16,#064e3b);border-color:#166534}
 .user-banner img,.user-banner-avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid #10b981}
@@ -206,6 +209,102 @@ body.dark .user-banner-name{color:#86efac}
 .user-banner-sub{font-size:.66rem;color:#16a34a;margin-top:1px}
 body.dark .user-banner-sub{color:#4ade80}
 .sign-out-link{font-size:.7rem;font-weight:700;color:#dc2626;cursor:pointer;border:none;background:none;flex-shrink:0}
+
+/* ── FULL USER DASHBOARD ── */
+#dashboardScreen{display:none}
+.dash-hero{background:linear-gradient(135deg,#081530,#0f2060,#1a3fa8);padding:28px 16px 32px;position:relative;overflow:hidden}
+.dash-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+.dash-hero-inner{max-width:860px;margin:0 auto;position:relative;z-index:1}
+.dash-profile{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.dash-avatar{width:56px;height:56px;border-radius:50%;border:3px solid var(--orange);object-fit:cover;flex-shrink:0}
+.dash-avatar-placeholder{width:56px;height:56px;border-radius:50%;border:3px solid var(--orange);background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.dash-profile-info{flex:1;min-width:0}
+.dash-nick{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:2px;display:flex;align-items:center;gap:8px}
+.nick-edit-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:.65rem;padding:3px 8px;border-radius:6px;cursor:pointer;font-weight:700}
+.nick-edit-btn:hover{background:rgba(255,255,255,.2)}
+.dash-email{font-size:.72rem;color:rgba(255,255,255,.5)}
+.dash-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:480px){.dash-stats-row{grid-template-columns:repeat(2,1fr)}}
+.dash-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px;text-align:center}
+.dash-stat-num{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff}
+.dash-stat-lbl{font-size:.6rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.dash-body{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+.dash-section{margin-bottom:28px}
+.dash-sec-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text-main);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+/* Subject category cards */
+.cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:540px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:800px){.cat-grid{grid-template-columns:repeat(4,1fr)}}
+.cat-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px 14px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;position:relative;overflow:hidden}
+body.dark .cat-card{background:#161b27;border-color:var(--border)}
+.cat-card:hover{border-color:var(--blue-main);transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,63,168,.12)}
+.cat-card-icon{font-size:1.8rem}
+.cat-card-name{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text-main)}
+.cat-card-count{font-size:.64rem;color:var(--text-muted);margin-top:1px}
+.cat-card-bar{position:absolute;bottom:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue-main),var(--orange));border-radius:0 0 12px 12px}
+.cat-card.has-score .cat-card-bar{display:block}
+.cat-card-score{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:800;color:var(--blue-main);background:var(--blue-light);border-radius:20px;padding:2px 8px;margin-top:2px}
+body.dark .cat-card-score{background:#1a2d5a;color:#93c5fd}
+/* Achievements */
+.ach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:540px){.ach-grid{grid-template-columns:repeat(3,1fr)}}
+.ach-badge{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 12px;text-align:center;transition:.2s;position:relative}
+body.dark .ach-badge{background:#161b27;border-color:var(--border)}
+.ach-badge.unlocked{border-color:#f59e0b;background:linear-gradient(135deg,#fffbeb,#fef9c3)}
+body.dark .ach-badge.unlocked{background:linear-gradient(135deg,#1c1400,#2a1e00);border-color:#b45309}
+.ach-icon{font-size:1.8rem;margin-bottom:6px;filter:grayscale(1);opacity:.35}
+.ach-badge.unlocked .ach-icon{filter:none;opacity:1;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{from{transform:scale(.7)}to{transform:scale(1)}}
+.ach-name{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;color:var(--text-muted)}
+.ach-badge.unlocked .ach-name{color:#92400e}
+body.dark .ach-badge.unlocked .ach-name{color:#fbbf24}
+.ach-desc{font-size:.62rem;color:var(--text-muted);margin-top:3px;line-height:1.4}
+.ach-badge.unlocked .ach-desc{color:#78350f}
+body.dark .ach-badge.unlocked .ach-desc{color:#d97706}
+.ach-new{position:absolute;top:6px;right:6px;background:#f59e0b;color:#fff;font-size:.52rem;font-weight:800;padding:2px 5px;border-radius:10px}
+/* Referral section */
+.ref-card{background:linear-gradient(135deg,#f0f4ff,#e0e9ff);border:1.5px solid #c7d8ff;border-radius:14px;padding:18px;margin-bottom:12px}
+body.dark .ref-card{background:linear-gradient(135deg,#111624,#141c30);border-color:#2a3550}
+.ref-title{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:var(--blue-main);margin-bottom:6px}
+body.dark .ref-title{color:#93c5fd}
+.ref-sub{font-size:.72rem;color:var(--text-muted);margin-bottom:12px}
+.ref-link-box{display:flex;gap:8px;align-items:center}
+.ref-link-input{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.78rem;font-family:'Roboto',sans-serif;color:var(--text-main);background:var(--surface);cursor:text}
+body.dark .ref-link-input{background:#0d1117;border-color:#2a3550;color:var(--text-main)}
+.ref-copy-btn{background:var(--blue-main);color:#fff;border:none;border-radius:8px;padding:9px 14px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.72rem;cursor:pointer;white-space:nowrap;transition:.18s}
+.ref-copy-btn:hover{opacity:.85}
+.ref-count{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:var(--blue-main);text-align:center;margin-top:12px}
+body.dark .ref-count{color:#93c5fd}
+.ref-count span{font-size:.7rem;font-weight:500;color:var(--text-muted);display:block;margin-top:2px}
+/* History list */
+.history-list{display:flex;flex-direction:column;gap:8px}
+.history-item{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px}
+body.dark .history-item{background:#161b27;border-color:var(--border)}
+.history-score-badge{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;flex-shrink:0}
+.history-info{flex:1;min-width:0}
+.history-subj{font-size:.74rem;font-weight:700;color:var(--text-main)}
+.history-meta{font-size:.64rem;color:var(--text-muted);margin-top:2px}
+.history-pct{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;flex-shrink:0}
+/* Nickname modal */
+.nick-modal{position:fixed;inset:0;background:rgba(10,20,60,.7);z-index:700;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)}
+.nick-modal-card{background:var(--surface);border-radius:16px;padding:24px;width:100%;max-width:340px;box-shadow:0 32px 80px rgba(0,0,0,.3);animation:authPop .3s cubic-bezier(.34,1.56,.64,1)}
+body.dark .nick-modal-card{background:#1e293b}
+.nick-modal-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text-main);margin-bottom:6px}
+.nick-modal-sub{font-size:.74rem;color:var(--text-muted);margin-bottom:14px}
+.nick-input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:.95rem;font-family:'Roboto',sans-serif;color:var(--text-main);background:var(--surface-alt);margin-bottom:12px}
+body.dark .nick-input{background:#0f172a;border-color:#334155;color:#e2e8f0}
+.nick-input:focus{outline:none;border-color:var(--blue-main)}
+.nick-save-btn{width:100%;padding:12px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;cursor:pointer}
+/* Achievement toast */
+.ach-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e293b;color:#fff;padding:12px 20px;border-radius:14px;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 8px 28px rgba(0,0,0,.4);z-index:800;opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap}
+.ach-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* Streak banner */
+.streak-banner{background:linear-gradient(135deg,#ff6b35,#f97316);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.streak-fire{font-size:1.6rem}
+.streak-info{flex:1}
+.streak-days{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:#fff}
+.streak-label{font-size:.66rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.5px}
+
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 .footer-inner{max-width:860px;margin:0 auto}
 .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
@@ -246,22 +345,17 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 <div class="auth-overlay" id="authOverlay" style="display:none">
   <div class="auth-card">
     <div class="auth-logo"><img src="https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png" alt="BQM"></div>
-    <div class="auth-title">Sign In to Practice</div>
-    <div class="auth-sub">Create a free account or sign in to access the full JAMB CBT practice exam and track your progress.</div>
-
+    <div class="auth-title">Unlock Full CBT Access</div>
+    <div class="auth-sub">Sign in or create a free account to practise all subjects, save your scores, earn achievements and track your progress.</div>
     <div class="auth-tabs">
       <button class="auth-tab-btn active" onclick="switchCbtTab('signin',this)">Sign In</button>
       <button class="auth-tab-btn" onclick="switchCbtTab('register',this)">Create Account</button>
     </div>
-
-    <!-- GOOGLE -->
     <button class="google-auth-btn" onclick="cbtGoogleSignIn()">
       <svg width="17" height="17" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.5 3.1 29.6 1 24 1 14.8 1 7 6.7 3.7 14.6l7 5.4C12.5 13.8 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.8-2.1 5.2-4.5 6.8l7 5.4C43.1 36.8 46.1 31.1 46.1 24.5z"/><path fill="#FBBC05" d="M10.7 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7-5.4C2.2 17.1 1 20.4 1 24s1.2 6.9 3.7 9.9l7-5.3z"/><path fill="#34A853" d="M24 47c5.6 0 10.4-1.9 13.8-5.1l-7-5.4c-1.9 1.3-4.2 2-6.8 2-6.2 0-11.5-4.3-13.3-10l-7 5.4C7 41.3 14.8 47 24 47z"/></svg>
       Continue with Google
     </button>
     <div class="auth-divider">or email</div>
-
-    <!-- SIGN IN FORM -->
     <div id="cbtSigninForm">
       <input class="auth-input" type="email" id="cbtEmail" placeholder="Email address" autocomplete="email">
       <input class="auth-input" type="password" id="cbtPassword" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')cbtEmailSignIn()">
@@ -269,8 +363,6 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
       <button class="auth-btn" id="cbtSignInBtn" onclick="cbtEmailSignIn()">Sign In →</button>
       <button class="auth-link-btn" onclick="cbtForgotPw()">Forgot password?</button>
     </div>
-
-    <!-- REGISTER FORM -->
     <div id="cbtRegisterForm" style="display:none">
       <input class="auth-input" type="text" id="cbtRegName" placeholder="Your name" autocomplete="name">
       <input class="auth-input" type="email" id="cbtRegEmail" placeholder="Email address" autocomplete="email">
@@ -278,12 +370,24 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
       <div class="auth-error" id="cbtRegError"></div>
       <button class="auth-btn" id="cbtRegBtn" onclick="cbtCreateAccount()">Create Free Account →</button>
     </div>
-
-    <button class="auth-skip" onclick="closeAuthOverlay()">Skip for now — limited access</button>
+    <button class="auth-skip" onclick="closeAuthAsGuest()">Skip — try 10 free questions</button>
   </div>
 </div>
 
-<!-- SETUP SCREEN -->
+<!-- NICKNAME MODAL -->
+<div class="nick-modal" id="nickModal" style="display:none">
+  <div class="nick-modal-card">
+    <div class="nick-modal-title">✏️ Set Your Nickname</div>
+    <div class="nick-modal-sub">This is how you'll appear on your dashboard. Choose something fun!</div>
+    <input class="nick-input" type="text" id="nickInput" placeholder="e.g. JAMB Slayer, Science King…" maxlength="24">
+    <button class="nick-save-btn" onclick="saveNickname()">Save Nickname →</button>
+  </div>
+</div>
+
+<!-- ACHIEVEMENT TOAST -->
+<div class="ach-toast" id="achToast"></div>
+
+<!-- ══════════════ SETUP SCREEN ══════════════ -->
 <div id="setupScreen">
   <div class="setup-hero">
     <div class="setup-hero-inner">
@@ -293,12 +397,11 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
     </div>
   </div>
   <div class="wrap">
-    <!-- User banner (shown when signed in) -->
     <div class="user-banner" id="userBanner" style="display:none;max-width:640px;margin:20px auto 0">
       <div class="user-banner-avatar" id="userAvatarWrap">👤</div>
       <div style="flex:1;min-width:0">
         <div class="user-banner-name" id="userBannerName">Loading…</div>
-        <div class="user-banner-sub">✅ Signed in — full exam access unlocked</div>
+        <div class="user-banner-sub">✅ Full access — scores saved automatically</div>
       </div>
       <button class="sign-out-link" onclick="cbtSignOut()">Sign Out</button>
     </div>
@@ -351,14 +454,94 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
       <button class="start-btn" id="startBtn" onclick="checkAuthThenStart()">🎯 Start Practice Exam →</button>
       <div id="setupStatus" style="text-align:center;margin-top:12px;font-size:.8rem;color:var(--text-muted)">Select at least 1 subject to start</div>
       <div id="guestNotice" style="display:none;text-align:center;margin-top:10px;padding:10px 14px;background:#fef9c3;border:1px solid #fde68a;border-radius:9px;font-size:.76rem;color:#92400e">
-        ⚠️ You're in guest mode — <strong>limited to 10 questions</strong>. 
+        ⚠️ Guest mode — <strong>limited to 10 questions</strong>. 
         <button onclick="showAuthOverlay()" style="background:none;border:none;color:var(--blue-main);font-weight:700;cursor:pointer;font-size:.76rem">Sign in for full access →</button>
+      </div>
+    </div>
+    <!-- Dashboard button for signed-in users -->
+    <div id="dashBtn" style="display:none;text-align:center;margin:-12px auto 32px;max-width:640px">
+      <button onclick="showDashboard()" style="background:none;border:1.5px solid var(--blue-main);color:var(--blue-main);padding:10px 20px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer">📊 View My Dashboard →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ DASHBOARD SCREEN ══════════════ -->
+<div id="dashboardScreen">
+  <div class="dash-hero">
+    <div class="dash-hero-inner">
+      <div class="dash-profile">
+        <div id="dashAvatarEl" class="dash-avatar-placeholder">👤</div>
+        <div class="dash-profile-info">
+          <div class="dash-nick" id="dashNick">Loading…
+            <button class="nick-edit-btn" onclick="openNickModal()">✏️ Edit</button>
+          </div>
+          <div class="dash-email" id="dashEmail"></div>
+        </div>
+        <button onclick="cbtSignOut()" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:.66rem;padding:6px 10px;border-radius:7px;cursor:pointer;font-weight:700;white-space:nowrap">Sign Out</button>
+      </div>
+      <div class="dash-stats-row">
+        <div class="dash-stat"><div class="dash-stat-num" id="dSessions">0</div><div class="dash-stat-lbl">Sessions</div></div>
+        <div class="dash-stat"><div class="dash-stat-num" id="dBestScore">0%</div><div class="dash-stat-lbl">Best Score</div></div>
+        <div class="dash-stat"><div class="dash-stat-num" id="dStreak">0🔥</div><div class="dash-stat-lbl">Day Streak</div></div>
+        <div class="dash-stat"><div class="dash-stat-num" id="dReferrals">0</div><div class="dash-stat-lbl">Referrals</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-body">
+    <!-- Streak Banner -->
+    <div class="streak-banner" id="streakBanner" style="display:none">
+      <div class="streak-fire">🔥</div>
+      <div class="streak-info">
+        <div class="streak-days" id="streakDays">3 Day Streak!</div>
+        <div class="streak-label">Keep practising daily to maintain your streak</div>
+      </div>
+    </div>
+
+    <!-- Start Practice from Dashboard -->
+    <div class="dash-section">
+      <button class="start-btn" onclick="backToSetup()" style="max-width:100%;margin-bottom:8px">🎯 Start New Practice Session →</button>
+    </div>
+
+    <!-- Subjects -->
+    <div class="dash-section">
+      <div class="dash-sec-title">📚 Practice by Subject</div>
+      <div class="cat-grid" id="catGrid">
+        <div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted);font-size:.8rem">Loading…</div>
+      </div>
+    </div>
+
+    <!-- Recent History -->
+    <div class="dash-section">
+      <div class="dash-sec-title">📋 Recent Sessions</div>
+      <div class="history-list" id="historyList">
+        <div style="text-align:center;padding:20px;color:var(--text-muted);font-size:.8rem">No sessions yet. Start practising!</div>
+      </div>
+    </div>
+
+    <!-- Achievements -->
+    <div class="dash-section">
+      <div class="dash-sec-title">🏆 Achievements</div>
+      <div class="ach-grid" id="achGrid"></div>
+    </div>
+
+    <!-- Referral -->
+    <div class="dash-section">
+      <div class="dash-sec-title">🔗 Refer & Grow</div>
+      <div class="ref-card">
+        <div class="ref-title">Share BQM with your classmates!</div>
+        <div class="ref-sub">Every student you bring to Big Quams Media® counts. Share your unique link and track how many join through you.</div>
+        <div class="ref-link-box">
+          <input class="ref-link-input" type="text" id="refLinkInput" readonly>
+          <button class="ref-copy-btn" onclick="copyRefLink()">📋 Copy</button>
+        </div>
+        <div class="ref-count" id="refCount">0<span>students referred</span></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- EXAM SCREEN -->
+<!-- ══════════════ EXAM SCREEN ══════════════ -->
 <div id="examScreen">
   <div class="exam-topbar">
     <div class="exam-topbar-inner">
@@ -367,8 +550,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
         <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
       </div>
       <div class="timer-box" id="timerBox">
-        <span>⏱</span>
-        <span class="timer-num" id="timerNum">30:00</span>
+        <span>⏱</span><span class="timer-num" id="timerNum">30:00</span>
       </div>
       <span class="q-counter" id="answeredCount">0/40 answered</span>
       <button class="submit-early-btn" onclick="confirmSubmit()">Submit →</button>
@@ -386,7 +568,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
   </div>
 </div>
 
-<!-- RESULT SCREEN -->
+<!-- ══════════════ RESULT SCREEN ══════════════ -->
 <div id="resultScreen">
   <div class="result-hero">
     <div class="score-ring" id="scoreRing">
@@ -399,8 +581,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
   </div>
   <div class="result-actions">
     <button class="ra-btn ra-btn-primary" onclick="restartExam()">🔄 Try Again</button>
-    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener" class="ra-btn ra-btn-wa">💬 Get Help on WhatsApp</a>
-    <a href="explore.html" class="ra-btn" style="background:var(--surface-alt);color:var(--text-muted)">🗂 Explore More Tools</a>
+    <button class="ra-btn ra-btn-primary" onclick="showDashboard()" id="dashFromResult" style="display:none;background:linear-gradient(135deg,#059669,#10b981)">📊 My Dashboard</button>
+    <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener" class="ra-btn ra-btn-wa">💬 Get Help</a>
+    <a href="explore.html" class="ra-btn" style="background:var(--surface-alt);color:var(--text-muted)">🗂 Explore More</a>
   </div>
   <div class="review-section">
     <div class="review-title">📋 Question Review</div>
@@ -416,97 +599,401 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
   </div>
 </footer>
 
+<!-- Firebase App + Firestore -->
 <script type="module">
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import{getFirestore,collection,getDocs,query,where}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import{getFirestore,collection,getDocs,doc,setDoc,getDoc,updateDoc,increment,serverTimestamp,arrayUnion}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,signOut,sendPasswordResetEmail,updateProfile}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
 const fbConfig={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media',storageBucket:'big-quams-media.firebasestorage.app',messagingSenderId:'383186323859',appId:'1:383186323859:web:826d6b9977cfa947730066',measurementId:'G-1FQ3TZXPV9'};
 const app=initializeApp(fbConfig);
 const db=getFirestore(app);
-window._db=db;window._collection=collection;window._getDocs=getDocs;window._query=query;window._where=where;
+const auth=getAuth(app);
+const gProvider=new GoogleAuthProvider();
+
+// Expose to global JS
+window._db=db; window._collection=collection; window._getDocs=getDocs;
+window._doc=doc; window._setDoc=setDoc; window._getDoc=getDoc;
+window._updateDoc=updateDoc; window._increment=increment;
+window._serverTimestamp=serverTimestamp; window._arrayUnion=arrayUnion;
+window._auth=auth;
+window._signInEmail=(e,p)=>signInWithEmailAndPassword(auth,e,p);
+window._createAccount=(e,p)=>createUserWithEmailAndPassword(auth,e,p);
+window._signInGoogle=()=>signInWithPopup(auth,gProvider);
+window._signOut=()=>signOut(auth);
+window._resetPw=(e)=>sendPasswordResetEmail(auth,e);
+window._updateProfile=updateProfile;
+window._onAuthStateChanged=(cb)=>onAuthStateChanged(auth,cb);
 </script>
 
 <script>
 (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
 
-// ── CBT AUTH ──
-let cbtUser = null;
-let isGuest = false;
-const GUEST_LIMIT = 10;
+// ── CONSTANTS ──
+const GUEST_LIMIT=10;
+const SITE_URL='https://big-quams-educational-hub.github.io/cbt.html';
+const SUBJ_LABELS={english:'Use of English',maths:'Mathematics',physics:'Physics',chemistry:'Chemistry',biology:'Biology',economics:'Economics',gov:'Government',literature:'Literature in English',geography:'Geography',agric:'Agricultural Science',crk:'CRK',accounts:'Financial Accounting',commerce:'Commerce',history:'History',ict:'ICT'};
+const SUBJ_ICONS={english:'📝',maths:'🔢',physics:'⚡',chemistry:'🧪',biology:'🌿',economics:'📊',gov:'🏛️',literature:'📖',geography:'🌍',agric:'🌾',crk:'✝️',accounts:'💼',commerce:'🛒',history:'🏺',ict:'💻'};
 
-// Watch Firebase auth state
+// ── ACHIEVEMENTS DEFINITION ──
+const ACHIEVEMENTS=[
+  {id:'first_session',icon:'🎯',name:'First Step',desc:'Complete your first practice session'},
+  {id:'score_80',icon:'🌟',name:'Star Performer',desc:'Score 80% or above in any session'},
+  {id:'score_100',icon:'💯',name:'Perfect Score',desc:'Score 100% in any session'},
+  {id:'sessions_5',icon:'🔥',name:'On Fire',desc:'Complete 5 practice sessions'},
+  {id:'sessions_10',icon:'⚡',name:'Dedicated',desc:'Complete 10 practice sessions'},
+  {id:'sessions_25',icon:'👑',name:'JAMB Champion',desc:'Complete 25 practice sessions'},
+  {id:'streak_3',icon:'📅',name:'3-Day Streak',desc:'Practise 3 days in a row'},
+  {id:'streak_7',icon:'🗓️',name:'Weekly Warrior',desc:'Practise 7 days in a row'},
+  {id:'referral_1',icon:'🤝',name:'Team Player',desc:'Refer your first classmate'},
+  {id:'referral_5',icon:'🚀',name:'BQM Ambassador',desc:'Refer 5 classmates'},
+  {id:'multi_subj',icon:'📚',name:'All-Rounder',desc:'Practice at least 4 different subjects'},
+  {id:'night_owl',icon:'🦉',name:'Night Owl',desc:'Complete a session after 10 PM'},
+];
+
+// ── STATE ──
+let cbtUser=null;
+let isGuest=false;
+let userProfile=null;
+let selectedSubjects=['english'];
+let allQuestions=[],examQuestions=[],userAnswers={},currentQ=0,timerInterval=null,secondsLeft=0;
+let examStartSubjects=[];
+
+// ── AUTH OBSERVER ──
 setTimeout(()=>{
   if(window._onAuthStateChanged){
-    window._onAuthStateChanged(user=>{
-      cbtUser = user;
-      updateUserUI(user);
+    window._onAuthStateChanged(async(user)=>{
+      cbtUser=user;
+      if(user){
+        isGuest=false;
+        await loadUserProfile(user);
+        updateUserUI(user);
+        // Check referral from URL
+        checkReferralInURL(user.uid);
+      } else {
+        userProfile=null;
+        updateUserUI(null);
+      }
     });
   }
-}, 800);
+},500);
 
-function updateUserUI(user){
-  const banner = document.getElementById('userBanner');
-  const notice = document.getElementById('guestNotice');
-  if(user){
-    // Signed in
-    isGuest = false;
-    if(banner){
-      banner.style.display = 'flex';
-      document.getElementById('userBannerName').textContent = user.displayName || user.email.split('@')[0];
-      const avatarWrap = document.getElementById('userAvatarWrap');
-      if(user.photoURL){
-        avatarWrap.innerHTML = `<img src="${user.photoURL}" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #10b981">`;
+async function loadUserProfile(user){
+  try{
+    const d=await window._getDoc(window._doc(window._db,'cbt_users',user.uid));
+    if(d.exists()){
+      userProfile=d.data();
+    } else {
+      // Create new profile
+      const ref=document.referrer;
+      const urlRef=new URLSearchParams(window.location.search).get('ref');
+      userProfile={
+        uid:user.uid,
+        email:user.email,
+        displayName:user.displayName||user.email.split('@')[0],
+        nickname:user.displayName||user.email.split('@')[0],
+        photoURL:user.photoURL||'',
+        sessions:0,
+        bestScore:0,
+        totalCorrect:0,
+        totalQuestions:0,
+        streak:0,
+        lastPracticeDate:'',
+        subjectHistory:{},
+        achievements:[],
+        referralCode:user.uid.substring(0,8),
+        referredBy:urlRef||'',
+        referralCount:0,
+        joinDate:new Date().toISOString(),
+        sessionHistory:[],
+        subjectsPractised:[],
+      };
+      await window._setDoc(window._doc(window._db,'cbt_users',user.uid),userProfile);
+      // Credit referrer
+      if(urlRef && urlRef!==user.uid.substring(0,8)){
+        creditReferrer(urlRef,user.uid);
       }
     }
-    if(notice) notice.style.display = 'none';
+  }catch(e){console.warn('Profile load error',e);}
+}
+
+async function creditReferrer(refCode,newUid){
+  try{
+    const snap=await window._getDocs(window._collection(window._db,'cbt_users'));
+    snap.forEach(async(docSnap)=>{
+      const d=docSnap.data();
+      if(d.referralCode===refCode && docSnap.id!==newUid){
+        await window._updateDoc(window._doc(window._db,'cbt_users',docSnap.id),{
+          referralCount:window._increment(1)
+        });
+        // Check referral achievements
+        const newCount=(d.referralCount||0)+1;
+        const achToGrant=[];
+        if(newCount>=1) achToGrant.push('referral_1');
+        if(newCount>=5) achToGrant.push('referral_5');
+        achToGrant.forEach(a=>grantAchievementToUser(docSnap.id,a));
+      }
+    });
+  }catch(e){}
+}
+
+async function grantAchievementToUser(uid,achId){
+  try{
+    const d=await window._getDoc(window._doc(window._db,'cbt_users',uid));
+    if(d.exists()){
+      const data=d.data();
+      if(!(data.achievements||[]).includes(achId)){
+        await window._updateDoc(window._doc(window._db,'cbt_users',uid),{
+          achievements:window._arrayUnion(achId)
+        });
+      }
+    }
+  }catch(e){}
+}
+
+function checkReferralInURL(myUid){
+  const ref=new URLSearchParams(window.location.search).get('ref');
+  if(ref) window.history.replaceState({},'',window.location.pathname);
+}
+
+function updateUserUI(user){
+  const banner=document.getElementById('userBanner');
+  const notice=document.getElementById('guestNotice');
+  const dashBtnEl=document.getElementById('dashBtn');
+  if(user){
+    isGuest=false;
+    if(banner){
+      banner.style.display='flex';
+      const nick=(userProfile&&userProfile.nickname)||user.displayName||user.email.split('@')[0];
+      document.getElementById('userBannerName').textContent=nick;
+      const avatarWrap=document.getElementById('userAvatarWrap');
+      if(user.photoURL) avatarWrap.innerHTML=`<img src="${user.photoURL}" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #10b981">`;
+    }
+    if(notice) notice.style.display='none';
+    if(dashBtnEl) dashBtnEl.style.display='block';
   } else {
-    // Guest
-    isGuest = true;
-    if(banner) banner.style.display = 'none';
-    if(notice) notice.style.display = 'block';
+    isGuest=true;
+    if(banner) banner.style.display='none';
+    if(notice) notice.style.display='block';
+    if(dashBtnEl) dashBtnEl.style.display='none';
   }
 }
 
-function showAuthOverlay(){
-  document.getElementById('authOverlay').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+// ── DASHBOARD ──
+function showDashboard(){
+  hideAll();
+  document.getElementById('dashboardScreen').style.display='block';
+  document.getElementById('mainFooter').style.display='block';
+  populateDashboard();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-window.showAuthOverlay = showAuthOverlay;
+window.showDashboard=showDashboard;
+
+function backToSetup(){
+  hideAll();
+  document.getElementById('setupScreen').style.display='block';
+  document.getElementById('mainFooter').style.display='block';
+}
+window.backToSetup=backToSetup;
+
+function hideAll(){
+  ['setupScreen','dashboardScreen','examScreen','resultScreen'].forEach(id=>{
+    document.getElementById(id).style.display='none';
+  });
+}
+
+function populateDashboard(){
+  if(!cbtUser||!userProfile) return;
+  const p=userProfile;
+  // Avatar
+  const avatarEl=document.getElementById('dashAvatarEl');
+  if(cbtUser.photoURL){
+    avatarEl.outerHTML=`<img id="dashAvatarEl" class="dash-avatar" src="${cbtUser.photoURL}" alt="">`;
+  }
+  // Nick & email
+  document.getElementById('dashNick').innerHTML=(p.nickname||p.displayName||'Student')+`<button class="nick-edit-btn" onclick="openNickModal()">✏️ Edit</button>`;
+  document.getElementById('dashEmail').textContent=cbtUser.email;
+  // Stats
+  document.getElementById('dSessions').textContent=p.sessions||0;
+  document.getElementById('dBestScore').textContent=(p.bestScore||0)+'%';
+  document.getElementById('dStreak').textContent=(p.streak||0)+'🔥';
+  document.getElementById('dReferrals').textContent=p.referralCount||0;
+  // Streak banner
+  const streak=p.streak||0;
+  const sb=document.getElementById('streakBanner');
+  if(streak>=2){
+    sb.style.display='flex';
+    document.getElementById('streakDays').textContent=streak+' Day Streak! Keep it up! 🔥';
+  }
+  // Referral link
+  const refCode=p.referralCode||cbtUser.uid.substring(0,8);
+  document.getElementById('refLinkInput').value=`${SITE_URL}?ref=${refCode}`;
+  document.getElementById('refCount').innerHTML=`${p.referralCount||0}<span>students referred so far</span>`;
+  // Subjects
+  buildSubjectCats(p);
+  // History
+  buildHistory(p);
+  // Achievements
+  buildAchievements(p.achievements||[]);
+}
+
+function buildSubjectCats(p){
+  const subjects=Object.keys(SUBJ_LABELS);
+  const history=p.subjectHistory||{};
+  let html='';
+  subjects.forEach(s=>{
+    const info=history[s]||null;
+    const bestPct=info?info.bestPct:null;
+    const sessions=info?info.sessions:0;
+    html+=`<div class="cat-card${info?' has-score':''}" onclick="quickStart('${s}')">
+      <div class="cat-card-icon">${SUBJ_ICONS[s]||'📚'}</div>
+      <div class="cat-card-name">${SUBJ_LABELS[s]}</div>
+      <div class="cat-card-count">${sessions?sessions+' session'+(sessions>1?'s':''):'Not started yet'}</div>
+      ${bestPct!==null?`<div class="cat-card-score">Best: ${bestPct}%</div>`:''}
+      ${info?'<div class="cat-card-bar" style="width:'+Math.min(bestPct,100)+'%"></div>':''}
+    </div>`;
+  });
+  document.getElementById('catGrid').innerHTML=html;
+}
+
+function quickStart(subj){
+  backToSetup();
+  // deselect all, select this one
+  document.querySelectorAll('.subj-btn').forEach(b=>{
+    b.classList.remove('selected');
+    if(b.getAttribute('data-subj')===subj) b.classList.add('selected');
+  });
+  selectedSubjects=[subj];
+  document.getElementById('setupStatus').textContent='1 subject selected — ready to start';
+}
+window.quickStart=quickStart;
+
+function buildHistory(p){
+  const hist=(p.sessionHistory||[]).slice().reverse().slice(0,8);
+  if(!hist.length){
+    document.getElementById('historyList').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-muted);font-size:.8rem">No sessions yet. Start practising!</div>';
+    return;
+  }
+  document.getElementById('historyList').innerHTML=hist.map(s=>{
+    const pct=s.pct||0;
+    const color=pct>=80?'#10b981':pct>=65?'#3b82f6':pct>=50?'#f59e0b':'#ef4444';
+    const subj=s.subjects?s.subjects.map(x=>SUBJ_LABELS[x]||x).join(', '):'Mixed';
+    return`<div class="history-item">
+      <div class="history-score-badge" style="background:${color}22;border:2px solid ${color}20">
+        <span style="color:${color};font-size:.72rem;font-weight:800">${pct}%</span>
+      </div>
+      <div class="history-info">
+        <div class="history-subj">${subj}</div>
+        <div class="history-meta">${s.correct||0} correct · ${s.total||0} questions · ${formatDate(s.date)}</div>
+      </div>
+      <div class="history-pct" style="color:${color}">${pct>=80?'✅':pct>=50?'📈':'💪'}</div>
+    </div>`;
+  }).join('');
+}
+
+function buildAchievements(unlocked){
+  document.getElementById('achGrid').innerHTML=ACHIEVEMENTS.map(a=>{
+    const isUnlocked=unlocked.includes(a.id);
+    const isNew=isUnlocked&&!JSON.parse(localStorage.getItem('bqm_seen_ach')||'[]').includes(a.id);
+    return`<div class="ach-badge${isUnlocked?' unlocked':''}">
+      <div class="ach-icon">${a.icon}</div>
+      <div class="ach-name">${a.name}</div>
+      <div class="ach-desc">${isUnlocked?a.desc:'???'}</div>
+      ${isNew?'<div class="ach-new">NEW!</div>':''}
+    </div>`;
+  }).join('');
+  // Mark seen
+  if(unlocked.length){
+    localStorage.setItem('bqm_seen_ach',JSON.stringify(unlocked));
+  }
+}
+
+function formatDate(iso){
+  if(!iso) return '';
+  try{
+    const d=new Date(iso);
+    const now=new Date();
+    const diffDays=Math.floor((now-d)/(1000*60*60*24));
+    if(diffDays===0) return 'Today';
+    if(diffDays===1) return 'Yesterday';
+    return d.toLocaleDateString('en-NG',{day:'numeric',month:'short'});
+  }catch(e){return '';}
+}
+
+// ── NICKNAME ──
+function openNickModal(){
+  document.getElementById('nickInput').value=(userProfile&&userProfile.nickname)||'';
+  document.getElementById('nickModal').style.display='flex';
+}
+window.openNickModal=openNickModal;
+
+async function saveNickname(){
+  const nick=document.getElementById('nickInput').value.trim();
+  if(!nick||nick.length<2){alert('Please enter a nickname (min 2 characters).');return;}
+  try{
+    await window._updateDoc(window._doc(window._db,'cbt_users',cbtUser.uid),{nickname:nick});
+    if(userProfile) userProfile.nickname=nick;
+    document.getElementById('nickModal').style.display='none';
+    document.getElementById('dashNick').innerHTML=nick+`<button class="nick-edit-btn" onclick="openNickModal()">✏️ Edit</button>`;
+    document.getElementById('userBannerName').textContent=nick;
+  }catch(e){alert('Could not save nickname. Try again.');}
+}
+window.saveNickname=saveNickname;
+
+// ── COPY REFERRAL LINK ──
+function copyRefLink(){
+  const val=document.getElementById('refLinkInput').value;
+  navigator.clipboard.writeText(val).then(()=>{
+    const btn=document.querySelector('.ref-copy-btn');
+    btn.textContent='✅ Copied!';
+    setTimeout(()=>btn.textContent='📋 Copy',2000);
+  });
+}
+window.copyRefLink=copyRefLink;
+
+// ── AUTH UI ──
+function showAuthOverlay(){
+  document.getElementById('authOverlay').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+window.showAuthOverlay=showAuthOverlay;
 
 function closeAuthOverlay(){
-  document.getElementById('authOverlay').style.display = 'none';
-  document.body.style.overflow = '';
-  isGuest = true;
+  document.getElementById('authOverlay').style.display='none';
+  document.body.style.overflow='';
+}
+
+function closeAuthAsGuest(){
+  closeAuthOverlay();
+  isGuest=true;
   updateUserUI(null);
 }
-window.closeAuthOverlay = closeAuthOverlay;
+window.closeAuthAsGuest=closeAuthAsGuest;
 
-function switchCbtTab(tab, btn){
+function switchCbtTab(tab,btn){
   document.querySelectorAll('.auth-tab-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('cbtSigninForm').style.display = tab==='signin'?'block':'none';
-  document.getElementById('cbtRegisterForm').style.display = tab==='register'?'block':'none';
-  document.getElementById('cbtAuthError').style.display = 'none';
-  document.getElementById('cbtRegError').style.display = 'none';
+  document.getElementById('cbtSigninForm').style.display=tab==='signin'?'block':'none';
+  document.getElementById('cbtRegisterForm').style.display=tab==='register'?'block':'none';
+  document.getElementById('cbtAuthError').style.display='none';
+  document.getElementById('cbtRegError').style.display='none';
 }
-window.switchCbtTab = switchCbtTab;
+window.switchCbtTab=switchCbtTab;
 
-function showCbtError(id, msg){
-  const el = document.getElementById(id);
-  el.textContent = '❌ ' + msg;
-  el.style.display = 'block';
-  setTimeout(()=>el.style.display='none', 5000);
+function showCbtError(id,msg){
+  const el=document.getElementById(id);
+  el.textContent='❌ '+msg; el.style.display='block';
+  setTimeout(()=>el.style.display='none',5000);
 }
 
 async function cbtEmailSignIn(){
-  const email = document.getElementById('cbtEmail').value.trim();
-  const pass = document.getElementById('cbtPassword').value;
+  const email=document.getElementById('cbtEmail').value.trim();
+  const pass=document.getElementById('cbtPassword').value;
   if(!email||!pass){showCbtError('cbtAuthError','Enter your email and password.');return;}
-  const btn = document.getElementById('cbtSignInBtn');
-  btn.disabled=true; btn.textContent='Signing in…';
+  const btn=document.getElementById('cbtSignInBtn');
+  btn.disabled=true;btn.textContent='Signing in…';
   try{
-    if(!window._signInEmail) throw new Error('Auth not ready');
-    await window._signInEmail(email, pass);
+    await window._signInEmail(email,pass);
     closeAuthOverlay();
   }catch(e){
     showCbtError('cbtAuthError',
@@ -514,95 +1001,69 @@ async function cbtEmailSignIn(){
       e.code==='auth/user-not-found'?'No account found. Create one first.':
       e.code==='auth/too-many-requests'?'Too many attempts. Try later.':e.message);
   }
-  btn.disabled=false; btn.textContent='Sign In →';
+  btn.disabled=false;btn.textContent='Sign In →';
 }
-window.cbtEmailSignIn = cbtEmailSignIn;
+window.cbtEmailSignIn=cbtEmailSignIn;
 
 async function cbtCreateAccount(){
-  const name = document.getElementById('cbtRegName').value.trim();
-  const email = document.getElementById('cbtRegEmail').value.trim();
-  const pass = document.getElementById('cbtRegPw').value;
+  const name=document.getElementById('cbtRegName').value.trim();
+  const email=document.getElementById('cbtRegEmail').value.trim();
+  const pass=document.getElementById('cbtRegPw').value;
   if(!name||!email||!pass){showCbtError('cbtRegError','Fill in all fields.');return;}
   if(pass.length<6){showCbtError('cbtRegError','Password must be at least 6 characters.');return;}
-  const btn = document.getElementById('cbtRegBtn');
-  btn.disabled=true; btn.textContent='Creating…';
+  const btn=document.getElementById('cbtRegBtn');
+  btn.disabled=true;btn.textContent='Creating…';
   try{
-    if(!window._createAccount) throw new Error('Auth not ready');
-    const cred = await window._createAccount(email, pass);
-    if(window._auth && cred.user){
-      const{updateProfile}= await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js');
-      await updateProfile(cred.user,{displayName:name});
-      cred.user.displayName = name;
-    }
+    const cred=await window._createAccount(email,pass);
+    if(cred.user) await window._updateProfile(cred.user,{displayName:name});
     closeAuthOverlay();
   }catch(e){
     showCbtError('cbtRegError',
       e.code==='auth/email-already-in-use'?'Account already exists. Sign in instead.':
-      e.code==='auth/weak-password'?'Password too weak. Use at least 6 characters.':e.message);
+      e.code==='auth/weak-password'?'Password too weak.':e.message);
   }
-  btn.disabled=false; btn.textContent='Create Free Account →';
+  btn.disabled=false;btn.textContent='Create Free Account →';
 }
-window.cbtCreateAccount = cbtCreateAccount;
+window.cbtCreateAccount=cbtCreateAccount;
 
 async function cbtGoogleSignIn(){
   try{
-    if(!window._signInGoogle) throw new Error('Auth not ready');
     await window._signInGoogle();
     closeAuthOverlay();
   }catch(e){
-    if(e.code!=='auth/popup-closed-by-user') showCbtError('cbtAuthError', e.message);
+    if(e.code!=='auth/popup-closed-by-user') showCbtError('cbtAuthError',e.message);
   }
 }
-window.cbtGoogleSignIn = cbtGoogleSignIn;
+window.cbtGoogleSignIn=cbtGoogleSignIn;
 
 async function cbtForgotPw(){
-  const email = document.getElementById('cbtEmail').value.trim();
+  const email=document.getElementById('cbtEmail').value.trim();
   if(!email){showCbtError('cbtAuthError','Enter your email address first.');return;}
   try{
     await window._resetPw(email);
-    const el = document.getElementById('cbtAuthError');
-    el.textContent = '✅ Reset email sent to '+email;
-    el.style.color='#15803d';el.style.background='#dcfce7';
-    el.style.display='block';
+    const el=document.getElementById('cbtAuthError');
+    el.textContent='✅ Reset email sent to '+email;
+    el.style.color='#15803d';el.style.background='#dcfce7';el.style.display='block';
     setTimeout(()=>{el.style.display='none';el.style.color='';el.style.background='';},5000);
-  }catch(e){showCbtError('cbtAuthError', e.message);}
+  }catch(e){showCbtError('cbtAuthError',e.message);}
 }
-window.cbtForgotPw = cbtForgotPw;
+window.cbtForgotPw=cbtForgotPw;
 
 async function cbtSignOut(){
   if(window._signOut) await window._signOut().catch(()=>{});
-  cbtUser = null;
+  cbtUser=null;userProfile=null;isGuest=false;
+  hideAll();
+  document.getElementById('setupScreen').style.display='block';
+  document.getElementById('mainFooter').style.display='block';
   updateUserUI(null);
 }
-window.cbtSignOut = cbtSignOut;
+window.cbtSignOut=cbtSignOut;
 
-// ── Check auth before starting exam ──
-function checkAuthThenStart(){
-  if(!cbtUser){
-    // Guest: show notice, allow limited access
-    showAuthOverlay();
-    return;
-  }
-  startExam();
-}
-window.checkAuthThenStart = checkAuthThenStart;
-
-// Override start to enforce guest limit
-const _originalStartExam = window.startExam;
-
-function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
-document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';document.getElementById('yr').textContent=new Date().getFullYear();});
-function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
-
-const SUBJ_LABELS={english:'Use of English',maths:'Mathematics',physics:'Physics',chemistry:'Chemistry',biology:'Biology',economics:'Economics',gov:'Government',literature:'Literature in English',geography:'Geography',agric:'Agricultural Science',crk:'CRK',accounts:'Financial Accounting',commerce:'Commerce',history:'History',ict:'ICT'};
-
-let selectedSubjects=['english'];
-let allQuestions=[],examQuestions=[],userAnswers={},currentQ=0,timerInterval=null,secondsLeft=0,examStarted=false;
-
+// ── SUBJECT SELECTION ──
 function toggleSubject(btn){
   const s=btn.getAttribute('data-subj');
   if(btn.classList.contains('selected')){
-    if(selectedSubjects.length<=1){return;}
+    if(selectedSubjects.length<=1) return;
     btn.classList.remove('selected');
     selectedSubjects=selectedSubjects.filter(x=>x!==s);
   } else {
@@ -610,47 +1071,63 @@ function toggleSubject(btn){
     btn.classList.add('selected');
     selectedSubjects.push(s);
   }
-  document.getElementById('setupStatus').textContent=`${selectedSubjects.length} subject${selectedSubjects.length>1?'s':''} selected (max 4)`;
+  document.getElementById('setupStatus').textContent=selectedSubjects.length+' subject'+(selectedSubjects.length>1?'s':'')+' selected (max 4)';
 }
 window.toggleSubject=toggleSubject;
+
+// ── START EXAM ──
+function checkAuthThenStart(){
+  if(!cbtUser){
+    // Show auth first; if they skip they get guest mode
+    showAuthOverlay();
+    // After overlay closes as guest, we start with limit
+    // We store intent and let guest flow handle it
+    window._pendingStart=true;
+    return;
+  }
+  startExam();
+}
+window.checkAuthThenStart=checkAuthThenStart;
+
+// Override closeAuthAsGuest to auto-start if pending
+const _origCloseGuest=closeAuthAsGuest;
+window.closeAuthAsGuest=function(){
+  _origCloseGuest();
+  if(window._pendingStart){
+    window._pendingStart=false;
+    startExam();
+  }
+};
 
 async function startExam(){
   const btn=document.getElementById('startBtn');
   btn.disabled=true;btn.textContent='Loading questions…';
   document.getElementById('setupStatus').textContent='Fetching questions from database…';
-  // Guest limit
-  const maxQ = !cbtUser ? GUEST_LIMIT : parseInt(document.getElementById('qCount').value);
+  const maxQ=!cbtUser?GUEST_LIMIT:parseInt(document.getElementById('qCount').value);
   try{
-    if(!window._db){
-      // wait for firebase
-      await new Promise(r=>setTimeout(r,1500));
-    }
-    const db=window._db,col=window._collection,gDocs=window._getDocs,q=window._query,where=window._where;
+    if(!window._db) await new Promise(r=>setTimeout(r,1500));
+    const db=window._db,col=window._collection,gDocs=window._getDocs;
     if(!db) throw new Error('Firebase not ready');
     const snap=await gDocs(col(db,'cbt_questions'));
     allQuestions=snap.docs.map(d=>({id:d.id,...d.data()}));
-    const qCount=parseInt(document.getElementById('qCount').value);
     const diff=document.getElementById('difficulty').value;
     let pool=allQuestions.filter(q=>selectedSubjects.includes(q.subject));
     if(diff) pool=pool.filter(q=>q.difficulty===diff);
     if(!pool.length){
-      document.getElementById('setupStatus').textContent='No questions found for selected subjects/difficulty. Try different options.';
+      document.getElementById('setupStatus').textContent='No questions found for those subjects/difficulty. Try different options or add questions via the admin panel.';
       btn.disabled=false;btn.textContent='🎯 Start Practice Exam →';
       return;
     }
-    // Shuffle and pick
-    const qCount = !cbtUser ? Math.min(GUEST_LIMIT, parseInt(document.getElementById('qCount').value)) : parseInt(document.getElementById('qCount').value);
-    pool=pool.sort(()=>Math.random()-.5).slice(0,Math.min(qCount,pool.length));
-    // Show guest notice if limited
+    pool=pool.sort(()=>Math.random()-.5).slice(0,Math.min(maxQ,pool.length));
     if(!cbtUser && pool.length>=GUEST_LIMIT){
       document.getElementById('setupStatus').textContent=`⚠️ Guest mode: limited to ${GUEST_LIMIT} questions. Sign in for full access.`;
     }
     examQuestions=pool;
+    examStartSubjects=[...selectedSubjects];
     userAnswers={};currentQ=0;
-    // Timer
     const mins=parseInt(document.getElementById('timeLimit').value);
     secondsLeft=mins*60;
-    document.getElementById('setupScreen').style.display='none';
+    hideAll();
     document.getElementById('examScreen').style.display='block';
     document.getElementById('mainFooter').style.display='none';
     document.body.style.overflow='';
@@ -658,7 +1135,6 @@ async function startExam(){
     renderQuestion(0);
     if(mins>0) startTimer();
     else document.getElementById('timerBox').style.display='none';
-    examStarted=true;
   }catch(e){
     document.getElementById('setupStatus').textContent='Error: '+e.message+'. Please refresh and try again.';
     btn.disabled=false;btn.textContent='🎯 Start Practice Exam →';
@@ -666,6 +1142,7 @@ async function startExam(){
 }
 window.startExam=startExam;
 
+// ── TIMER ──
 function startTimer(){
   const box=document.getElementById('timerBox');
   const num=document.getElementById('timerNum');
@@ -678,11 +1155,13 @@ function startTimer(){
   },1000);
 }
 
+// ── QUESTION GRID ──
 function buildQGrid(){
   const grid=document.getElementById('qGrid');
   grid.innerHTML=examQuestions.map((_,i)=>`<button class="q-dot${i===0?' current':''}" id="dot-${i}" onclick="goQuestion(${i})">${i+1}</button>`).join('');
 }
 
+// ── RENDER QUESTION ──
 function renderQuestion(idx){
   currentQ=idx;
   const q=examQuestions[idx];
@@ -693,7 +1172,6 @@ function renderQuestion(idx){
   document.getElementById('answeredCount').textContent=`${answered}/${total} answered`;
   document.getElementById('prevBtn').disabled=idx===0;
   document.getElementById('nextBtn').textContent=idx===total-1?'Review ✓':'Next →';
-  // Update dots
   document.querySelectorAll('.q-dot').forEach((d,i)=>{
     d.className='q-dot'+(userAnswers[i]!==undefined?' answered':'')+(i===idx?' current':'');
   });
@@ -714,7 +1192,6 @@ function renderQuestion(idx){
         if(revealed){
           if(i===q.ans) cls+=' correct';
           else if(i===ua) cls+=' wrong';
-          cls+=' ';
         } else if(i===ua) cls+=' selected';
         return`<button class="${cls}" ${revealed?'disabled':''} onclick="selectAnswer(${idx},${i})">
           <span class="opt-letter">${letters[i]}</span>${opt}</button>`;
@@ -728,14 +1205,12 @@ function selectAnswer(qIdx,optIdx){
   if(userAnswers[qIdx]!==undefined) return;
   userAnswers[qIdx]=optIdx;
   renderQuestion(qIdx);
-  // Auto advance after 1.2s if not last
   if(qIdx<examQuestions.length-1) setTimeout(()=>goQuestion(qIdx+1),1200);
 }
 window.selectAnswer=selectAnswer;
 
 function goQuestion(idx){
   if(idx<0||idx>=examQuestions.length) return;
-  if(idx===examQuestions.length&&Object.keys(userAnswers).length===examQuestions.length) {confirmSubmit();return;}
   renderQuestion(idx);
 }
 window.goQuestion=goQuestion;
@@ -747,7 +1222,7 @@ function confirmSubmit(){
 }
 window.confirmSubmit=confirmSubmit;
 
-function submitExam(){
+async function submitExam(){
   clearInterval(timerInterval);
   let correct=0,wrong=0,skipped=0;
   examQuestions.forEach((q,i)=>{
@@ -759,12 +1234,16 @@ function submitExam(){
   const total=examQuestions.length;
   const pct=Math.round((correct/total)*100);
   let grade,gradeColor;
-  if(pct>=80){grade='Excellent!';gradeColor='#10b981';}
-  else if(pct>=65){grade='Very Good';gradeColor='#3b82f6';}
-  else if(pct>=50){grade='Average';gradeColor='#f59e0b';}
-  else if(pct>=40){grade='Below Average';gradeColor='#f97316';}
-  else{grade='Poor';gradeColor='#ef4444';}
-  document.getElementById('examScreen').style.display='none';
+  if(pct>=80){grade='Excellent! 🌟';gradeColor='#10b981';}
+  else if(pct>=65){grade='Very Good 👍';gradeColor='#3b82f6';}
+  else if(pct>=50){grade='Average 📈';gradeColor='#f59e0b';}
+  else if(pct>=40){grade='Keep Trying 💪';gradeColor='#f97316';}
+  else{grade='Need More Practice 📚';gradeColor='#ef4444';}
+  // Save to Firestore if signed in
+  if(cbtUser&&userProfile){
+    await saveSessionToFirestore(correct,wrong,skipped,pct);
+  }
+  hideAll();
   document.getElementById('resultScreen').style.display='block';
   document.getElementById('mainFooter').style.display='block';
   document.getElementById('scoreNum').textContent=correct;
@@ -777,7 +1256,8 @@ function submitExam(){
     <div class="rs-item"><div class="rs-num" style="color:#ef4444">${wrong}</div><div class="rs-lbl">Wrong</div></div>
     <div class="rs-item"><div class="rs-num" style="color:#f59e0b">${skipped}</div><div class="rs-lbl">Skipped</div></div>
     <div class="rs-item"><div class="rs-num">${pct}%</div><div class="rs-lbl">Score</div></div>`;
-  // Review list
+  if(cbtUser) document.getElementById('dashFromResult').style.display='flex';
+  // Review
   const letters=['A','B','C','D'];
   document.getElementById('reviewList').innerHTML=examQuestions.map((q,i)=>{
     const ua=userAnswers[i];
@@ -802,9 +1282,82 @@ function submitExam(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+async function saveSessionToFirestore(correct,wrong,skipped,pct){
+  try{
+    const uid=cbtUser.uid;
+    const now=new Date().toISOString();
+    const today=now.substring(0,10);
+    // Streak
+    const lastDate=userProfile.lastPracticeDate||'';
+    const yesterday=new Date(Date.now()-86400000).toISOString().substring(0,10);
+    let newStreak=(lastDate===yesterday||(lastDate===today))?((userProfile.streak||0)+(lastDate!==today?1:0)):(lastDate===today?userProfile.streak||1:1);
+    if(lastDate!==today&&lastDate!==yesterday) newStreak=1;
+    if(lastDate===today) newStreak=userProfile.streak||1;
+    // Subject history update
+    const sh=userProfile.subjectHistory||{};
+    examStartSubjects.forEach(s=>{
+      if(!sh[s]) sh[s]={sessions:0,bestPct:0,totalCorrect:0};
+      sh[s].sessions++;
+      if(pct>sh[s].bestPct) sh[s].bestPct=pct;
+    });
+    // Session entry
+    const entry={date:now,subjects:examStartSubjects,correct,total:examQuestions.length,pct};
+    // Subjects practised list
+    const spSet=new Set(userProfile.subjectsPractised||[]);
+    examStartSubjects.forEach(s=>spSet.add(s));
+    const newSessions=(userProfile.sessions||0)+1;
+    const newBest=Math.max(userProfile.bestScore||0,pct);
+    // Check achievements
+    const newAch=[...(userProfile.achievements||[])];
+    const grant=(id)=>{ if(!newAch.includes(id)) newAch.push(id); };
+    grant('first_session');
+    if(pct>=80) grant('score_80');
+    if(pct>=100) grant('score_100');
+    if(newSessions>=5) grant('sessions_5');
+    if(newSessions>=10) grant('sessions_10');
+    if(newSessions>=25) grant('sessions_25');
+    if(newStreak>=3) grant('streak_3');
+    if(newStreak>=7) grant('streak_7');
+    if(spSet.size>=4) grant('multi_subj');
+    const hr=new Date().getHours();
+    if(hr>=22||hr<4) grant('night_owl');
+    // New achievements to toast
+    const prevAch=userProfile.achievements||[];
+    const freshAch=newAch.filter(a=>!prevAch.includes(a));
+    // Update Firestore
+    await window._updateDoc(window._doc(window._db,'cbt_users',uid),{
+      sessions:window._increment(1),
+      bestScore:newBest,
+      lastPracticeDate:today,
+      streak:newStreak,
+      subjectHistory:sh,
+      subjectsPractised:[...spSet],
+      achievements:newAch,
+      sessionHistory:window._arrayUnion(entry),
+      totalCorrect:window._increment(correct),
+      totalQuestions:window._increment(examQuestions.length),
+    });
+    // Update local profile
+    userProfile={...userProfile,sessions:newSessions,bestScore:newBest,lastPracticeDate:today,streak:newStreak,subjectHistory:sh,achievements:newAch,subjectsPractised:[...spSet]};
+    userProfile.sessionHistory=[...(userProfile.sessionHistory||[]),entry];
+    // Toast new achievements
+    if(freshAch.length){
+      const def=ACHIEVEMENTS.find(a=>a.id===freshAch[0]);
+      if(def) showAchToast(def.icon,def.name);
+    }
+  }catch(e){console.warn('Save session error',e);}
+}
+
+function showAchToast(icon,name){
+  const t=document.getElementById('achToast');
+  t.innerHTML=`${icon} <span>Achievement Unlocked: <strong>${name}</strong></span>`;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
+}
+
 function restartExam(){
   clearInterval(timerInterval);
-  document.getElementById('resultScreen').style.display='none';
+  hideAll();
   document.getElementById('setupScreen').style.display='block';
   document.getElementById('mainFooter').style.display='block';
   document.getElementById('startBtn').disabled=false;
@@ -815,6 +1368,14 @@ function restartExam(){
   userAnswers={};examQuestions=[];currentQ=0;
 }
 window.restartExam=restartExam;
+
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
+document.addEventListener('DOMContentLoaded',()=>{
+  if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  document.getElementById('setupStatus').textContent='1 subject selected (max 4)';
+});
 </script>
 </body>
 </html>
