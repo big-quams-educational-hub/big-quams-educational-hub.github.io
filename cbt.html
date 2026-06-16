@@ -804,7 +804,7 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
 <!-- Firebase App + Firestore -->
 <script type="module">
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import{getFirestore,collection,getDocs,doc,setDoc,getDoc,updateDoc,increment,serverTimestamp,arrayUnion}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import{getFirestore,collection,getDocs,doc,setDoc,getDoc,updateDoc,increment,serverTimestamp,arrayUnion,onSnapshot}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,signOut,sendPasswordResetEmail,updateProfile}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
 const fbConfig={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media',storageBucket:'big-quams-media.firebasestorage.app',messagingSenderId:'383186323859',appId:'1:383186323859:web:826d6b9977cfa947730066',measurementId:'G-1FQ3TZXPV9'};
@@ -817,7 +817,7 @@ const gProvider=new GoogleAuthProvider();
 window._db=db; window._collection=collection; window._getDocs=getDocs;
 window._doc=doc; window._setDoc=(ref,data,opts)=>setDoc(ref,data,opts||{}); window._getDoc=getDoc;
 window._updateDoc=updateDoc; window._increment=increment;
-window._serverTimestamp=serverTimestamp; window._arrayUnion=arrayUnion;
+window._serverTimestamp=serverTimestamp; window._arrayUnion=arrayUnion; window._onSnapshot=onSnapshot;
 window._auth=auth;
 window._signInEmail=(e,p)=>signInWithEmailAndPassword(auth,e,p);
 window._createAccount=(e,p)=>createUserWithEmailAndPassword(auth,e,p);
@@ -857,6 +857,7 @@ const ACHIEVEMENTS=[
 let cbtUser=null;
 let isGuest=false;
 let userProfile=null;
+let _profileUnsubscribe=null; // real-time listener cleanup
 let selectedSubjects=['english'];
 let allQuestions=[],examQuestions=[],userAnswers={},currentQ=0,timerInterval=null,secondsLeft=0;
 let examStartSubjects=[];
@@ -870,15 +871,89 @@ setTimeout(()=>{
         isGuest=false;
         await loadUserProfile(user);
         updateUserUI(user);
-        // Check referral from URL
         checkReferralInURL(user.uid);
+        // Start real-time listener on user profile so referral count updates live
+        startProfileListener(user.uid);
       } else {
+        // Unsubscribe from profile listener on sign-out
+        if(_profileUnsubscribe){_profileUnsubscribe();_profileUnsubscribe=null;}
         userProfile=null;
         updateUserUI(null);
       }
     });
   }
 },500);
+
+// Real-time listener — fires whenever the user's Firestore profile changes
+// This ensures referralCount, referredUsers, achievements etc. update live
+function startProfileListener(uid){
+  if(_profileUnsubscribe){_profileUnsubscribe();_profileUnsubscribe=null;}
+  if(!window._onSnapshot||!window._db) return;
+  try{
+    _profileUnsubscribe=window._onSnapshot(
+      window._doc(window._db,'cbt_users',uid),
+      (snap)=>{
+        if(!snap.exists()) return;
+        const fresh=snap.data();
+        const prevRefCount=userProfile?userProfile.referralCount||0:0;
+        userProfile=fresh;
+        // If dashboard is open, refresh the referral section live
+        const dash=document.getElementById('dashboardScreen');
+        if(dash&&dash.style.display!=='none'){
+          // Update referral count display
+          const newCount=fresh.referralCount||0;
+          const countEl=document.getElementById('refCountBig');
+          if(countEl) countEl.textContent=newCount;
+          const tabCountEl=document.getElementById('refTabCount');
+          if(tabCountEl) tabCountEl.textContent=newCount;
+          const claimEl=document.getElementById('claimRefCount');
+          if(claimEl) claimEl.textContent=newCount;
+          const dRefEl=document.getElementById('dReferrals');
+          if(dRefEl) dRefEl.textContent=newCount;
+          // Update subtitle
+          const subEl=document.getElementById('refCountSub');
+          if(subEl) subEl.textContent=
+            newCount===0?'Share your link below to get started! 🚀':
+            newCount===1?'🎉 1 classmate joined through your link! Keep going!':
+            `🎉 ${newCount} classmates have joined through your link!`;
+          // If count increased show a toast
+          if(newCount>prevRefCount){
+            showAchToast('🔗','New referral! Someone joined through your link!');
+          }
+          // Rebuild referred users list
+          const referred=fresh.referredUsers||[];
+          const listEl=document.getElementById('referredList');
+          if(listEl){
+            if(referred.length){
+              listEl.innerHTML=referred.slice().reverse().map(u=>{
+                const initial=(u.name||'S').charAt(0).toUpperCase();
+                const joined=u.joinedAt?new Date(u.joinedAt).toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'}):'';
+                return`<div class="referred-item">
+                  <div class="referred-avatar">${initial}</div>
+                  <div style="flex:1;min-width:0">
+                    <div class="referred-name">${u.name||'Student'}</div>
+                    <div class="referred-date">${u.email||''}</div>
+                  </div>
+                  <div class="referred-date">📅 ${joined}</div>
+                </div>`;
+              }).join('');
+            } else {
+              listEl.innerHTML='<div style="text-align:center;padding:24px;color:var(--text-muted);font-size:.78rem">No one has joined through your link yet.<br>Share it and watch this list grow! 🚀</div>';
+            }
+          }
+          // Update stat header
+          const sessEl=document.getElementById('dSessions');
+          if(sessEl) sessEl.textContent=fresh.sessions||0;
+          const bestEl=document.getElementById('dBestScore');
+          if(bestEl) bestEl.textContent=(fresh.bestScore||0)+'%';
+          const streakEl=document.getElementById('dStreak');
+          if(streakEl) streakEl.textContent=(fresh.streak||0)+'🔥';
+        }
+      },
+      (err)=>{ console.warn('Profile listener error:',err.message); }
+    );
+  }catch(e){ console.warn('Could not start profile listener:',e.message); }
+}
 
 async function loadUserProfile(user){
   try{

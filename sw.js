@@ -1,5 +1,5 @@
-// BIG QUAMS MEDIA® Service Worker v4 — Firebase Cloud Messaging
-// Handles: offline caching (stale-while-revalidate) + FCM push notifications
+// BIG QUAMS MEDIA® Service Worker v5 — Firebase Cloud Messaging
+// Handles: offline caching (stale-while-revalidate) + FCM push notifications + broadcast listener
 
 importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js');
@@ -17,22 +17,26 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 // ── CACHE CONFIG ──
-const STATIC_CACHE = 'bqm-static-v5';
-const JSON_CACHE   = 'bqm-json-v5';
+const STATIC_CACHE = 'bqm-static-v6';
+const JSON_CACHE   = 'bqm-json-v6';
 
 const STATIC_ASSETS = [
   '/',
   '/index.html',
+  '/explore.html',
   '/newsroom.html',
   '/elibrary.html',
   '/dyk.html',
   '/spotlight.html',
   '/results.html',
   '/postutme-calculator.html',
+  '/postutme-prep.html',
   '/cbt.html',
   '/scholarship.html',
   '/subject-combo.html',
   '/community.html',
+  '/gpa-calculator.html',
+  '/student-loan.html',
   '/manifest.json',
 ];
 
@@ -215,4 +219,22 @@ self.addEventListener('message', event => {
     );
   }
   if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
+
+  // ── BROADCAST from admin push panel ──
+  if (event.data?.type === 'BROADCAST_NOTIFICATION') {
+    const { title, body, icon, url, tag } = event.data;
+    self.registration.showNotification(title || 'Big Quams Media®', {
+      body:     body  || 'You have a new update!',
+      icon:     icon  || 'https://i.imgur.com/lYJXUyY.jpeg',
+      badge:    'https://i.imgur.com/lYJXUyY.jpeg',
+      tag:      tag   || 'bqm-broadcast',
+      renotify: true,
+      data:     { url: url || 'https://big-quams-educational-hub.github.io/' },
+      actions:  [
+        { action: 'open',    title: '👀 View Now' },
+        { action: 'dismiss', title: 'Dismiss'     }
+      ],
+      vibrate: [200, 100, 200],
+    });
+  }
 });

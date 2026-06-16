@@ -12,7 +12,7 @@
 import { initializeApp }        from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import { getMessaging, getToken, onMessage }
                                 from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js';
-import { getFirestore, doc, setDoc, serverTimestamp }
+import { getFirestore, doc, setDoc, serverTimestamp, collection, query, orderBy, limit, onSnapshot }
                                 from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
 // ── CONFIG ──
@@ -234,6 +234,55 @@ onMessage(messaging, payload => {
   // Show in-page toast with click-to-navigate
   _showToastWithLink(`🔔 ${title}: ${body}`, url);
 });
+
+// ─────────────────────────────────────────────
+// PUSH BROADCASTS LISTENER
+// Watches push_broadcasts Firestore collection.
+// When admin sends a new broadcast, every open
+// page receives it and triggers a SW notification.
+// ─────────────────────────────────────────────
+(function watchBroadcasts() {
+  let _lastBroadcastId = null;
+  // Only start if notifications are already granted
+  if (!('Notification' in window) || Notification.permission !== 'granted') return;
+  try {
+    const q = query(
+      collection(db, 'push_broadcasts'),
+      orderBy('sentAt', 'desc'),
+      limit(1)
+    );
+    onSnapshot(q, async (snap) => {
+      if (snap.empty) return;
+      const latest = snap.docs[0];
+      const id = latest.id;
+      const data = latest.data();
+      // Skip on first load (don't re-notify for old broadcasts)
+      if (_lastBroadcastId === null) { _lastBroadcastId = id; return; }
+      // Skip if same broadcast as last seen
+      if (id === _lastBroadcastId) return;
+      _lastBroadcastId = id;
+      // Trigger via service worker so it shows even if page is in background
+      try {
+        const reg = await navigator.serviceWorker.ready;
+        if (reg.active) {
+          reg.active.postMessage({
+            type:  'BROADCAST_NOTIFICATION',
+            title: data.title || 'Big Quams Media®',
+            body:  data.body  || 'New update from BQM!',
+            icon:  data.icon  || 'https://big-quams-educational-hub.github.io/file_000000000370724698997662ddbee6b5.png',
+            url:   data.link  || 'https://big-quams-educational-hub.github.io/',
+            tag:   'bqm-broadcast-' + id,
+          });
+        }
+      } catch (e) {
+        // Fallback: show in-page toast if SW not available
+        _showToastWithLink(`🔔 ${data.title || 'BQM Update'}: ${data.body || ''}`, data.link || '/');
+      }
+    });
+  } catch (e) {
+    console.warn('[BQM FCM] Broadcast listener failed:', e.message);
+  }
+})();
 
 // ─────────────────────────────────────────────
 // DISMISS NOTIFICATION BAR
