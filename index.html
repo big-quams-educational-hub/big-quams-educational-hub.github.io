@@ -509,10 +509,12 @@ footer{background:#0a1228;padding:40px 16px 24px}
       </div>
     </div>
     <div class="footer-links">
-      <a href="#home">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a>
-      <a href="scholarship.html">Scholarships</a><a href="newsroom.html">Newsroom</a><a href="cbt.html">CBT Practice</a>
-      <a href="postutme-calculator.html">Post-UTME Calc</a><a href="gpa-calculator.html">GPA Calculator</a><a href="student-loan.html">Student Loan</a>
-      <a href="results.html">Results</a><a href="#about">About</a><a href="#contact">Contact</a>
+      <a href="#home">Home</a><a href="explore.html">Explore</a><a href="newsroom.html">Newsroom</a>
+      <a href="elibrary.html">eLibrary</a><a href="scholarship.html">Scholarships</a><a href="cbt.html">CBT Practice</a>
+      <a href="postutme-prep.html">Post-UTME Prep</a><a href="postutme-calculator.html">Post-UTME Calc</a><a href="subject-combo.html">Subject Combo</a>
+      <a href="gpa-calculator.html">GPA Calculator</a><a href="student-loan.html">Student Loan</a><a href="results.html">Results</a>
+      <a href="dyk.html">Did You Know</a><a href="spotlight.html">Spotlight</a><a href="community.html">Community</a>
+      <a href="#about">About</a><a href="#contact">Contact</a>
     </div>
     <div class="footer-copy">© <span id="footer-year">2026</span> Big Quams Media®. All rights reserved. Built with ❤️ for Nigerian students — <a href="#contact">Big Quams Media</a>, to the world.</div>
   </div>
@@ -648,7 +650,7 @@ function loadNews(){
   fetch('news.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
     if(!d||!d.length)return;
     const items=[...d.filter(n=>n.pinned),...d.filter(n=>!n.pinned)].slice(0,3);
-    grid.innerHTML=items.map(n=>`<div class="news-card" onclick="location.href='newsroom.html'">${n.image?`<img class="news-img" src="${n.image}" alt="${n.title}" loading="lazy">`:`<div class="news-img-ph">${n.emoji||'📰'}</div>`}<div class="news-body">${n.category?`<span class="news-tag">${n.category}</span>`:''}<div class="news-title">${n.title}</div><div class="news-excerpt">${n.summary||n.excerpt||''}</div><div class="news-foot"><span class="news-date">${n.date||''}</span><span class="news-more">Read →</span></div></div></div>`).join('');
+    grid.innerHTML=items.map((n,i)=>`<a class="news-card" href="newsroom.html?article=${i}">${n.image?`<img class="news-img" src="${n.image}" alt="${n.title}" loading="lazy">`:`<div class="news-img-ph">${n.emoji||'📰'}</div>`}<div class="news-body">${n.category?`<span class="news-tag">${n.category}</span>`:''}<div class="news-title">${n.title}</div><div class="news-excerpt">${n.summary||n.excerpt||''}</div><div class="news-foot"><span class="news-date">${n.date||''}</span><span class="news-more">Read →</span></div></div></a>`).join('');
   }).catch(()=>{});
 }
 
