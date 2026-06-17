@@ -377,6 +377,18 @@ body.dark .share-caption-box{background:#1a2236;border-color:var(--border)}
   box-shadow:0 4px 14px rgba(249,115,22,.35);
 }
 .claim-btn:hover{opacity:.9;transform:translateY(-1px)}
+/* Coins panel */
+.coins-panel{padding:4px 0 16px}
+.coins-balance-card{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:16px;padding:24px 16px;text-align:center;margin-bottom:14px;position:relative;overflow:hidden}
+.coins-balance-card::after{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.06)}
+.coins-icon{font-size:2.2rem;margin-bottom:6px}
+.coins-amount{font-family:'Montserrat',sans-serif;font-size:3rem;font-weight:800;color:#fbbf24;line-height:1;margin-bottom:4px;animation:countPop .4s cubic-bezier(.34,1.56,.64,1)}
+.coins-label{font-size:.78rem;color:rgba(255,255,255,.65);margin-bottom:4px}
+.coins-sub{font-size:.64rem;color:rgba(255,255,255,.4);line-height:1.4}
+.coins-breakdown{background:var(--surface-alt);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;display:flex;flex-direction:column;gap:8px}
+body.dark .coins-breakdown{background:#1a2236;border-color:var(--border)}
+.coins-row{display:flex;align-items:center;justify-content:space-between;font-size:.8rem;color:var(--text-muted)}
+.coins-row strong{color:var(--text-main);font-family:'Montserrat',sans-serif;font-size:.88rem}
 .ref-tabs{display:flex;gap:0;border-radius:9px;overflow:hidden;border:1.5px solid var(--border);margin-bottom:14px}
 .ref-tab{flex:1;padding:9px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:800;border:none;cursor:pointer;background:var(--surface-alt);color:var(--text-muted);transition:.2s}
 body.dark .ref-tab{background:#1a2236;color:#94a3b8}
@@ -443,13 +455,16 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
     <div class="auth-sub">Sign in or create a free account to practise all subjects, save your scores, earn achievements and track your progress.</div>
     <div class="auth-tabs">
       <button class="auth-tab-btn active" onclick="switchCbtTab('signin',this)">Sign In</button>
-      <button class="auth-tab-btn" onclick="switchCbtTab('register',this)">Create Account</button>
+      <button class="auth-tab-btn" onclick="switchCbtTab('register',this)">Email Sign Up</button>
+      <button class="auth-tab-btn" onclick="switchCbtTab('phone',this)">📱 Phone</button>
     </div>
     <button class="google-auth-btn" onclick="cbtGoogleSignIn()">
       <svg width="17" height="17" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.5 3.1 29.6 1 24 1 14.8 1 7 6.7 3.7 14.6l7 5.4C12.5 13.8 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.8-2.1 5.2-4.5 6.8l7 5.4C43.1 36.8 46.1 31.1 46.1 24.5z"/><path fill="#FBBC05" d="M10.7 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7-5.4C2.2 17.1 1 20.4 1 24s1.2 6.9 3.7 9.9l7-5.3z"/><path fill="#34A853" d="M24 47c5.6 0 10.4-1.9 13.8-5.1l-7-5.4c-1.9 1.3-4.2 2-6.8 2-6.2 0-11.5-4.3-13.3-10l-7 5.4C7 41.3 14.8 47 24 47z"/></svg>
       Continue with Google
     </button>
-    <div class="auth-divider">or email</div>
+    <div class="auth-divider">or</div>
+
+    <!-- SIGN IN -->
     <div id="cbtSigninForm">
       <input class="auth-input" type="email" id="cbtEmail" placeholder="Email address" autocomplete="email">
       <input class="auth-input" type="password" id="cbtPassword" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')cbtEmailSignIn()">
@@ -457,13 +472,37 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
       <button class="auth-btn" id="cbtSignInBtn" onclick="cbtEmailSignIn()">Sign In →</button>
       <button class="auth-link-btn" onclick="cbtForgotPw()">Forgot password?</button>
     </div>
+
+    <!-- EMAIL REGISTER -->
     <div id="cbtRegisterForm" style="display:none">
-      <input class="auth-input" type="text" id="cbtRegName" placeholder="Your name" autocomplete="name">
+      <input class="auth-input" type="text" id="cbtRegName" placeholder="Your full name" autocomplete="name">
       <input class="auth-input" type="email" id="cbtRegEmail" placeholder="Email address" autocomplete="email">
       <input class="auth-input" type="password" id="cbtRegPw" placeholder="Password (min 6 chars)" autocomplete="new-password" onkeydown="if(event.key==='Enter')cbtCreateAccount()">
       <div class="auth-error" id="cbtRegError"></div>
       <button class="auth-btn" id="cbtRegBtn" onclick="cbtCreateAccount()">Create Free Account →</button>
+      <div id="verifyEmailNotice" style="display:none;background:#fef9c3;border:1px solid #fde68a;border-radius:9px;padding:10px 12px;font-size:.74rem;color:#92400e;margin-top:8px;line-height:1.5">
+        📧 A verification email has been sent to your inbox. Please verify your email before signing in. Check your spam folder if you don't see it.
+      </div>
     </div>
+
+    <!-- PHONE AUTH -->
+    <div id="cbtPhoneForm" style="display:none">
+      <div id="cbtPhoneStep1">
+        <div style="font-size:.74rem;color:var(--text-muted);margin-bottom:10px;line-height:1.5">Enter your phone number with country code e.g. <strong>+2348012345678</strong></div>
+        <input class="auth-input" type="tel" id="cbtPhone" placeholder="+2348012345678" autocomplete="tel">
+        <div class="auth-error" id="cbtPhoneError"></div>
+        <div id="recaptcha-container" style="margin:10px 0"></div>
+        <button class="auth-btn" id="cbtSendOTPBtn" onclick="cbtSendOTP()">Send OTP →</button>
+      </div>
+      <div id="cbtPhoneStep2" style="display:none">
+        <div style="font-size:.74rem;color:var(--text-muted);margin-bottom:10px">📱 Enter the 6-digit OTP sent to <strong id="cbtPhoneDisplay"></strong></div>
+        <input class="auth-input" type="number" id="cbtOTP" placeholder="6-digit OTP" maxlength="6" onkeydown="if(event.key==='Enter')cbtVerifyOTP()">
+        <div class="auth-error" id="cbtOTPError"></div>
+        <button class="auth-btn" id="cbtVerifyOTPBtn" onclick="cbtVerifyOTP()">Verify & Sign In →</button>
+        <button class="auth-link-btn" onclick="cbtResendOTP()">Resend OTP</button>
+      </div>
+    </div>
+
     <button class="auth-skip" onclick="closeAuthAsGuest()">Skip — try 10 free questions</button>
   </div>
 </div>
@@ -690,15 +729,52 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
 
       <!-- Claim tab -->
       <div class="ref-tab-panel" id="refTab-claim">
-        <div class="claim-panel">
-          <div class="claim-icon">🎁</div>
-          <div class="claim-title">Claim Your Reward</div>
-          <div class="claim-msg">You've referred <strong id="claimRefCount">0</strong> student(s). Tap the button below to claim your referral reward.</div>
-          <button class="claim-btn" id="claimBtn" onclick="attemptClaim()">🎁 Claim Reward Now</button>
-          <div class="claim-sorry-badge" id="claimResult" style="display:none">
-            😔 Sorry, you're not eligible for this bonus/credit yet
+        <div class="coins-panel">
+          <!-- Coins balance -->
+          <div class="coins-balance-card">
+            <div class="coins-icon">🪙</div>
+            <div class="coins-amount" id="coinsBalance">0</div>
+            <div class="coins-label">BQM Coins</div>
+            <div class="coins-sub">1 referral = 10 coins · Redeemable in future updates</div>
           </div>
-          <div style="margin-top:12px;font-size:.7rem;color:var(--text-muted)">Rewards will be activated soon. Your referral count is saved!</div>
+          <!-- Breakdown -->
+          <div class="coins-breakdown">
+            <div class="coins-row">
+              <span>👥 People referred</span>
+              <strong id="coinsPeopleCount">0</strong>
+            </div>
+            <div class="coins-row">
+              <span>🪙 Coins per referral</span>
+              <strong>10</strong>
+            </div>
+            <div class="coins-row" style="border-top:1.5px solid var(--border);padding-top:10px;margin-top:4px">
+              <span>💰 Total coins earned</span>
+              <strong id="coinsTotalEarned" style="color:var(--orange)">0</strong>
+            </div>
+            <div class="coins-row">
+              <span>✅ Coins claimed</span>
+              <strong id="coinsAlreadyClaimed">0</strong>
+            </div>
+            <div class="coins-row">
+              <span>🪙 Available balance</span>
+              <strong id="coinsAvailable" style="color:var(--green)">0</strong>
+            </div>
+          </div>
+          <!-- Claim button -->
+          <div id="claimSection">
+            <button class="claim-btn" id="claimBtn" onclick="attemptClaim()">🎁 Claim My Coins</button>
+            <div class="claim-sorry-badge" id="claimResult" style="display:none">
+              😔 Sorry, you're not eligible for this bonus/credit yet
+            </div>
+            <div id="claimSuccess" style="display:none;background:#dcfce7;border:1.5px solid #bbf7d0;border-radius:12px;padding:14px;text-align:center;margin-top:10px">
+              <div style="font-size:1.5rem;margin-bottom:4px">🎉</div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:800;color:#15803d;font-size:.9rem">Coins Claimed!</div>
+              <div style="font-size:.74rem;color:#16a34a;margin-top:4px">Your balance has been updated</div>
+            </div>
+          </div>
+          <div style="margin-top:14px;font-size:.7rem;color:var(--text-muted);text-align:center;line-height:1.6">
+            🔮 Coming soon: use your coins to unlock premium features, study materials and more on BQM!
+          </div>
         </div>
       </div>
     </div>
@@ -805,7 +881,7 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
 <script type="module">
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
 import{getFirestore,collection,getDocs,doc,setDoc,getDoc,updateDoc,increment,serverTimestamp,arrayUnion,onSnapshot}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,signOut,sendPasswordResetEmail,updateProfile}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,signOut,sendPasswordResetEmail,updateProfile,sendEmailVerification,RecaptchaVerifier,signInWithPhoneNumber}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
 const fbConfig={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media',storageBucket:'big-quams-media.firebasestorage.app',messagingSenderId:'383186323859',appId:'1:383186323859:web:826d6b9977cfa947730066',measurementId:'G-1FQ3TZXPV9'};
 const app=initializeApp(fbConfig);
@@ -825,6 +901,10 @@ window._signInGoogle=()=>signInWithPopup(auth,gProvider);
 window._signOut=()=>signOut(auth);
 window._resetPw=(e)=>sendPasswordResetEmail(auth,e);
 window._updateProfile=updateProfile;
+window._sendEmailVerification=(user)=>sendEmailVerification(user);
+window._RecaptchaVerifier=RecaptchaVerifier;
+window._signInWithPhoneNumber=(phone,appVerifier)=>signInWithPhoneNumber(auth,phone,appVerifier);
+window._auth=auth;
 window._onAuthStateChanged=(cb)=>onAuthStateChanged(auth,cb);
 </script>
 
@@ -901,15 +981,28 @@ function startProfileListener(uid){
         const dash=document.getElementById('dashboardScreen');
         if(dash&&dash.style.display!=='none'){
           // Update referral count display
+          const COINS_PER_REFERRAL=10;
           const newCount=fresh.referralCount||0;
+          const newCoinsClaimed=fresh.coinsClaimed||0;
+          const newTotalEarned=newCount*COINS_PER_REFERRAL;
+          const newAvailable=Math.max(0,newTotalEarned-newCoinsClaimed);
           const countEl=document.getElementById('refCountBig');
           if(countEl) countEl.textContent=newCount;
           const tabCountEl=document.getElementById('refTabCount');
           if(tabCountEl) tabCountEl.textContent=newCount;
-          const claimEl=document.getElementById('claimRefCount');
-          if(claimEl) claimEl.textContent=newCount;
           const dRefEl=document.getElementById('dReferrals');
           if(dRefEl) dRefEl.textContent=newCount;
+          // Update coins
+          const balEl=document.getElementById('coinsBalance');
+          if(balEl) balEl.textContent=newAvailable;
+          const pplEl=document.getElementById('coinsPeopleCount');
+          if(pplEl) pplEl.textContent=newCount;
+          const earnedEl=document.getElementById('coinsTotalEarned');
+          if(earnedEl) earnedEl.textContent=newTotalEarned;
+          const claimedEl=document.getElementById('coinsAlreadyClaimed');
+          if(claimedEl) claimedEl.textContent=newCoinsClaimed;
+          const availEl=document.getElementById('coinsAvailable');
+          if(availEl) availEl.textContent=newAvailable;
           // Update subtitle
           const subEl=document.getElementById('refCountSub');
           if(subEl) subEl.textContent=
@@ -1149,16 +1242,25 @@ function populateDashboard(){
   const refLink=`${SITE_URL}?ref=${refCode}`;
   const refCount=p.referralCount||0;
   const referred=p.referredUsers||[];
+  const COINS_PER_REFERRAL=10;
+  const totalCoinsEarned=refCount*COINS_PER_REFERRAL;
+  const coinsClaimed=p.coinsClaimed||0;
+  const coinsAvailable=Math.max(0,totalCoinsEarned-coinsClaimed);
   document.getElementById('refLinkInput').value=refLink;
   // Big count banner
   document.getElementById('refCountBig').textContent=refCount;
   document.getElementById('dReferrals').textContent=refCount;
   document.getElementById('refTabCount').textContent=refCount;
-  document.getElementById('claimRefCount').textContent=refCount;
   document.getElementById('refCountSub').textContent=
     refCount===0?'Share your link below to get started! 🚀':
     refCount===1?'🎉 1 classmate joined through your link! Keep going!':
     `🎉 ${refCount} classmates have joined through your link!`;
+  // Coins display
+  document.getElementById('coinsBalance').textContent=coinsAvailable;
+  document.getElementById('coinsPeopleCount').textContent=refCount;
+  document.getElementById('coinsTotalEarned').textContent=totalCoinsEarned;
+  document.getElementById('coinsAlreadyClaimed').textContent=coinsClaimed;
+  document.getElementById('coinsAvailable').textContent=coinsAvailable;
   // Referred users list
   if(referred.length){
     document.getElementById('referredList').innerHTML=referred.slice().reverse().map(u=>{
@@ -1168,7 +1270,7 @@ function populateDashboard(){
         <div class="referred-avatar">${initial}</div>
         <div style="flex:1;min-width:0">
           <div class="referred-name">${u.name||'Student'}</div>
-          <div class="referred-date">${u.email||''}</div>
+          <div class="referred-date">${u.email||''} · 🪙 +${COINS_PER_REFERRAL} coins</div>
         </div>
         <div class="referred-date">📅 ${joined}</div>
       </div>`;
@@ -1178,7 +1280,8 @@ function populateDashboard(){
   }
   // Reset claim tab state
   document.getElementById('claimResult').style.display='none';
-  document.getElementById('claimBtn').style.display='inline-block';
+  document.getElementById('claimSuccess').style.display='none';
+  document.getElementById('claimBtn').style.display=coinsAvailable>0?'inline-block':'none';
   // Subjects
   buildSubjectCats(p);
   // History
@@ -1313,10 +1416,40 @@ function switchRefTab(tab,btn){
 }
 window.switchRefTab=switchRefTab;
 
-function attemptClaim(){
-  // Always show not eligible — rewards not live yet
-  document.getElementById('claimBtn').style.display='none';
-  document.getElementById('claimResult').style.display='flex';
+async function attemptClaim(){
+  if(!cbtUser||!userProfile) return;
+  const COINS_PER_REFERRAL=10;
+  const refCount=userProfile.referralCount||0;
+  const coinsClaimed=userProfile.coinsClaimed||0;
+  const totalEarned=refCount*COINS_PER_REFERRAL;
+  const available=totalEarned-coinsClaimed;
+  if(available<=0){
+    document.getElementById('claimBtn').style.display='none';
+    document.getElementById('claimResult').style.display='flex';
+    return;
+  }
+  const btn=document.getElementById('claimBtn');
+  btn.disabled=true;btn.textContent='Claiming…';
+  try{
+    const newClaimed=coinsClaimed+available;
+    await window._updateDoc(window._doc(window._db,'cbt_users',cbtUser.uid),{
+      coinsClaimed:newClaimed,
+      coinsBalance:available,
+      lastClaimedAt:new Date().toISOString(),
+    });
+    userProfile.coinsClaimed=newClaimed;
+    userProfile.coinsBalance=available;
+    // Update display
+    document.getElementById('coinsBalance').textContent=0;
+    document.getElementById('coinsAvailable').textContent=0;
+    document.getElementById('coinsAlreadyClaimed').textContent=newClaimed;
+    btn.style.display='none';
+    document.getElementById('claimSuccess').style.display='block';
+    showAchToast('🪙',`You claimed ${available} BQM Coins!`);
+  }catch(e){
+    btn.disabled=false;btn.textContent='🎁 Claim My Coins';
+    alert('Could not claim coins: '+e.message);
+  }
 }
 window.attemptClaim=attemptClaim;
 
@@ -1361,10 +1494,62 @@ function switchCbtTab(tab,btn){
   btn.classList.add('active');
   document.getElementById('cbtSigninForm').style.display=tab==='signin'?'block':'none';
   document.getElementById('cbtRegisterForm').style.display=tab==='register'?'block':'none';
+  document.getElementById('cbtPhoneForm').style.display=tab==='phone'?'block':'none';
   document.getElementById('cbtAuthError').style.display='none';
   document.getElementById('cbtRegError').style.display='none';
+  document.getElementById('cbtPhoneError').style.display='none';
 }
 window.switchCbtTab=switchCbtTab;
+
+// ── Phone OTP Auth ──
+let _confirmationResult=null;
+let _recaptchaVerifier=null;
+
+async function cbtSendOTP(){
+  const phone=document.getElementById('cbtPhone').value.trim();
+  if(!phone||!phone.startsWith('+')){
+    showCbtError('cbtPhoneError','Enter phone number with country code e.g. +2348012345678');return;
+  }
+  const btn=document.getElementById('cbtSendOTPBtn');
+  btn.disabled=true;btn.textContent='Sending OTP…';
+  try{
+    if(!_recaptchaVerifier){
+      _recaptchaVerifier=new window._RecaptchaVerifier(window._auth,'recaptcha-container',{size:'invisible'});
+    }
+    _confirmationResult=await window._signInWithPhoneNumber(phone,_recaptchaVerifier);
+    document.getElementById('cbtPhoneStep1').style.display='none';
+    document.getElementById('cbtPhoneStep2').style.display='block';
+    document.getElementById('cbtPhoneDisplay').textContent=phone;
+  }catch(e){
+    showCbtError('cbtPhoneError',e.code==='auth/invalid-phone-number'?'Invalid phone number. Use format +2348012345678':e.message);
+    if(_recaptchaVerifier){try{_recaptchaVerifier.clear();}catch(x){}  _recaptchaVerifier=null;}
+  }
+  btn.disabled=false;btn.textContent='Send OTP →';
+}
+window.cbtSendOTP=cbtSendOTP;
+
+async function cbtVerifyOTP(){
+  const otp=document.getElementById('cbtOTP').value.trim();
+  if(!otp||otp.length<6){showCbtError('cbtOTPError','Enter the 6-digit OTP sent to your phone.');return;}
+  const btn=document.getElementById('cbtVerifyOTPBtn');
+  btn.disabled=true;btn.textContent='Verifying…';
+  try{
+    await _confirmationResult.confirm(otp);
+    closeAuthOverlay();
+  }catch(e){
+    showCbtError('cbtOTPError',e.code==='auth/invalid-verification-code'?'Incorrect OTP. Try again.':e.message);
+  }
+  btn.disabled=false;btn.textContent='Verify & Sign In →';
+}
+window.cbtVerifyOTP=cbtVerifyOTP;
+
+async function cbtResendOTP(){
+  document.getElementById('cbtPhoneStep2').style.display='none';
+  document.getElementById('cbtPhoneStep1').style.display='block';
+  if(_recaptchaVerifier){try{_recaptchaVerifier.clear();}catch(x){} _recaptchaVerifier=null;}
+  _confirmationResult=null;
+}
+window.cbtResendOTP=cbtResendOTP;
 
 function showCbtError(id,msg){
   const el=document.getElementById(id);
@@ -1379,7 +1564,15 @@ async function cbtEmailSignIn(){
   const btn=document.getElementById('cbtSignInBtn');
   btn.disabled=true;btn.textContent='Signing in…';
   try{
-    await window._signInEmail(email,pass);
+    const cred=await window._signInEmail(email,pass);
+    if(!cred.user.emailVerified){
+      // Send another verification email
+      try{ await window._sendEmailVerification(cred.user); }catch(ve){}
+      await window._signOut().catch(()=>{});
+      showCbtError('cbtAuthError','📧 Please verify your email first. A new verification link has been sent to '+email+'. Check your spam folder too.');
+      btn.disabled=false;btn.textContent='Sign In →';
+      return;
+    }
     closeAuthOverlay();
   }catch(e){
     showCbtError('cbtAuthError',
@@ -1401,8 +1594,25 @@ async function cbtCreateAccount(){
   btn.disabled=true;btn.textContent='Creating…';
   try{
     const cred=await window._createAccount(email,pass);
-    if(cred.user) await window._updateProfile(cred.user,{displayName:name});
-    closeAuthOverlay();
+    if(cred.user){
+      await window._updateProfile(cred.user,{displayName:name});
+      // Send email verification
+      try{ await window._sendEmailVerification(cred.user); }catch(ve){}
+      // Show verification notice instead of closing overlay
+      document.getElementById('cbtRegBtn').style.display='none';
+      document.getElementById('verifyEmailNotice').style.display='block';
+      // Sign out until they verify — they sign in after verifying
+      setTimeout(async()=>{
+        await window._signOut().catch(()=>{});
+        // Switch to sign-in tab with message
+        const signinBtn=document.querySelector('.auth-tab-btn');
+        if(signinBtn) switchCbtTab('signin',signinBtn);
+        showCbtError('cbtAuthError','✅ Account created! Check your email to verify, then sign in here.');
+        document.getElementById('cbtAuthError').style.background='#dcfce7';
+        document.getElementById('cbtAuthError').style.color='#15803d';
+        document.getElementById('cbtAuthError').style.display='block';
+      },3000);
+    }
   }catch(e){
     showCbtError('cbtRegError',
       e.code==='auth/email-already-in-use'?'Account already exists. Sign in instead.':
