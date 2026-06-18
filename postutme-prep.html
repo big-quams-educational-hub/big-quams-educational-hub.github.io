@@ -109,6 +109,95 @@ body.dark .modal-footer{border-color:var(--border)}
 .cta-box p{font-size:.8rem;color:rgba(255,255,255,.65);margin-bottom:16px;line-height:1.6}
 .cta-wa{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 22px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.86rem;transition:.2s}
 .cta-wa:hover{background:#1db954}
+/* ── PAGE TABS ── */
+.page-tabs{display:flex;gap:0;background:var(--surface);border-bottom:2px solid var(--border);position:sticky;top:60px;z-index:199}
+body.dark .page-tabs{background:#161b27;border-color:var(--border)}
+.page-tab{flex:1;padding:13px 10px;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;border:none;background:transparent;color:var(--text-muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:.18s;display:flex;align-items:center;justify-content:center;gap:6px}
+.page-tab.active{color:var(--blue-main);border-bottom-color:var(--blue-main)}
+.page-tab-panel{display:none}
+.page-tab-panel.active{display:block}
+/* ── CBT PRACTICE ── */
+.pu-setup-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:24px;max-width:640px;margin:28px auto;box-shadow:var(--shadow-md)}
+body.dark .pu-setup-card{background:#161b27;border-color:var(--border)}
+.pu-setup-title{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;color:var(--text-main);margin-bottom:16px}
+.pu-school-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+@media(max-width:400px){.pu-school-grid{grid-template-columns:repeat(2,1fr)}}
+.pu-school-btn{padding:10px 8px;border-radius:9px;border:1.5px solid var(--border);background:var(--surface-alt);font-size:.74rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:.18s;text-align:center}
+body.dark .pu-school-btn{background:#1a2236;border-color:var(--border)}
+.pu-school-btn.selected{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
+.pu-options-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.pu-option label{display:block;font-size:.7rem;font-weight:700;color:var(--text-muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.pu-option select{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:.88rem;font-family:'Roboto',sans-serif;color:var(--text-main);background:var(--surface-alt)}
+body.dark .pu-option select{background:#111624;border-color:var(--border);color:var(--text-main)}
+.pu-start-btn{width:100%;padding:14px;background:linear-gradient(135deg,#4c1d95,#7c3aed);color:#fff;border:none;border-radius:var(--radius-sm);font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;cursor:pointer;transition:.2s}
+.pu-start-btn:hover{opacity:.9;transform:translateY(-1px)}
+.pu-start-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+/* Exam */
+.pu-exam-topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 16px;position:sticky;top:60px;z-index:198}
+body.dark .pu-exam-topbar{background:#161b27}
+.pu-exam-inner{max-width:800px;margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pu-progress{flex:1;min-width:100px}
+.pu-progress-label{font-size:.66rem;font-weight:700;color:var(--text-muted);margin-bottom:3px}
+.pu-progress-bar{height:5px;background:var(--border);border-radius:10px;overflow:hidden}
+.pu-progress-fill{height:100%;background:linear-gradient(90deg,#7c3aed,var(--orange));border-radius:10px;transition:width .3s}
+.pu-timer{display:flex;align-items:center;gap:6px;background:var(--surface-alt);border:1.5px solid var(--border);border-radius:9px;padding:7px 12px;flex-shrink:0}
+body.dark .pu-timer{background:#1a2236}
+.pu-timer.urgent{background:#fee2e2;border-color:#fca5a5;animation:flash .6s ease infinite}
+@keyframes flash{0%,100%{opacity:1}50%{opacity:.6}}
+.pu-timer-num{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;color:var(--text-main)}
+.pu-timer.urgent .pu-timer-num{color:var(--red,#dc2626)}
+.pu-submit-btn{background:#7c3aed;color:#fff;border:none;padding:7px 13px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;cursor:pointer}
+/* Question */
+.pu-q-wrap{max-width:800px;margin:0 auto;padding:16px 16px 100px}
+.pu-q-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:22px;box-shadow:var(--shadow-md)}
+body.dark .pu-q-card{background:#161b27;border-color:var(--border)}
+.pu-q-meta{display:flex;align-items:center;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+.pu-q-badge{background:#7c3aed;color:#fff;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;padding:3px 10px;border-radius:20px}
+.pu-q-subj{background:#ede9fe;color:#7c3aed;font-size:.66rem;font-weight:700;padding:3px 9px;border-radius:20px}
+body.dark .pu-q-subj{background:#2e1065;color:#c4b5fd}
+.pu-q-school{background:#f0f4ff;color:var(--blue-main);font-size:.64rem;font-weight:700;padding:3px 8px;border-radius:20px}
+body.dark .pu-q-school{background:#1a2d5a;color:#93c5fd}
+.pu-q-text{font-size:.92rem;color:var(--text-main);line-height:1.7;margin-bottom:18px;font-weight:500}
+.pu-opts{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.pu-opt{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1.5px solid var(--border);border-radius:9px;background:var(--surface-alt);cursor:pointer;transition:all .18s;font-size:.86rem;color:var(--text-main);text-align:left;font-family:'Roboto',sans-serif;line-height:1.5}
+body.dark .pu-opt{background:#1a2236;border-color:var(--border)}
+.pu-opt:hover:not(:disabled){border-color:#7c3aed;background:#ede9fe;color:#7c3aed}
+.pu-opt.selected{border-color:#7c3aed;background:#7c3aed;color:#fff}
+.pu-opt.correct{border-color:#16a34a;background:#dcfce7;color:#15803d}
+body.dark .pu-opt.correct{background:#052e16;color:#86efac}
+.pu-opt.wrong{border-color:#dc2626;background:#fee2e2;color:#dc2626}
+body.dark .pu-opt.wrong{background:#1a0000;color:#fca5a5}
+.pu-opt:disabled{cursor:default}
+.pu-opt-letter{background:var(--border);color:var(--text-muted);width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:800;flex-shrink:0;margin-top:1px}
+.pu-opt.selected .pu-opt-letter{background:rgba(255,255,255,.25);color:#fff}
+.pu-opt.correct .pu-opt-letter{background:#16a34a;color:#fff}
+.pu-opt.wrong .pu-opt-letter{background:#dc2626;color:#fff}
+.pu-exp{background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:9px;padding:12px 14px;font-size:.8rem;color:#15803d;line-height:1.6;margin-bottom:10px;display:none}
+body.dark .pu-exp{background:#052e16;border-color:#166534;color:#86efac}
+.pu-exp.show{display:block}
+.pu-nav{display:flex;justify-content:space-between;gap:10px}
+.pu-nav-btn{padding:10px 20px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;border:none;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:6px}
+.pu-btn-prev{background:var(--surface-alt);color:var(--text-muted);border:1.5px solid var(--border)}
+body.dark .pu-btn-prev{background:#1a2236;border-color:var(--border)}
+.pu-btn-next{background:linear-gradient(135deg,#4c1d95,#7c3aed);color:#fff}
+/* Result */
+.pu-result-hero{background:linear-gradient(135deg,#4c1d95,#7c3aed);padding:40px 16px;text-align:center}
+.pu-score-ring{width:130px;height:130px;border-radius:50%;border:5px solid rgba(255,255,255,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 14px}
+.pu-score-num{font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:800;color:#fff;line-height:1}
+.pu-score-denom{font-size:.7rem;color:rgba(255,255,255,.5)}
+.pu-result-grade{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:6px}
+.pu-result-sub{font-size:.82rem;color:rgba(255,255,255,.65)}
+.pu-result-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:16px;max-width:700px;margin:0 auto}
+.pu-ra-btn{padding:12px 22px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.84rem;border:none;cursor:pointer;transition:.18s}
+/* Q grid */
+.pu-q-grid-wrap{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);padding:8px 14px;z-index:197}
+body.dark .pu-q-grid-wrap{background:#161b27}
+.pu-q-grid{display:flex;flex-wrap:wrap;gap:4px;max-width:800px;margin:0 auto;max-height:46px;overflow-y:auto}
+.pu-dot{width:26px;height:26px;border-radius:5px;border:1.5px solid var(--border);background:var(--surface-alt);font-size:.64rem;font-weight:700;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.15s}
+body.dark .pu-dot{background:#1a2236}
+.pu-dot.answered{background:#7c3aed;color:#fff;border-color:#7c3aed}
+.pu-dot.current{border-color:var(--orange);color:var(--orange)}
+.pu-dot.current.answered{background:var(--orange);color:#fff;border-color:var(--orange)}
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
 .footer-inner{max-width:1000px;margin:0 auto}
 .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
@@ -154,6 +243,15 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   </div>
 </section>
 
+<!-- PAGE TABS -->
+<div class="page-tabs">
+  <button class="page-tab active" onclick="switchPageTab('guides',this)">📖 Prep Guides</button>
+  <button class="page-tab" onclick="switchPageTab('practice',this)">🧠 Practice Questions</button>
+</div>
+
+<!-- ═══ GUIDES TAB ═══ -->
+<div class="page-tab-panel active" id="pageTab-guides">
+
 <div class="filter-wrap">
   <div class="filter-inner">
     <button class="cat-btn active" onclick="setFilter('',this)">All</button>
@@ -173,9 +271,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   <div class="wrap">
     <div id="guidesGrid" class="guides-grid"><div class="loader"><div class="loader-spin"></div>Loading guides…</div></div>
     <div class="cta-box">
-      <h3>🎯 Want Personalised Help?</h3>
-      <p>Chat with the BQM team directly on WhatsApp for personalised Post-UTME prep advice and school-specific guidance.</p>
-      <a href="https://wa.me/message/OVCVEDHU3I2PH1" target="_blank" rel="noopener" class="cta-wa">💬 Chat with BQM Team →</a>
+      <h3>🧠 Want to Practice Questions?</h3>
+      <p>Switch to the Practice Questions tab above to test yourself with real Post-UTME style questions for your target school.</p>
+      <button onclick="switchPageTab('practice',document.querySelectorAll('.page-tab')[1])" class="cta-wa" style="border:none;cursor:pointer">🧠 Start Practice Questions →</button>
     </div>
   </div>
 </section>
@@ -193,11 +291,126 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     <div class="modal-content" id="modalBody"></div>
     <div class="modal-footer">
       <a href="postutme-calculator.html" class="btn-primary">🧮 Calculate My Aggregate</a>
-      <a href="cbt.html" class="btn-primary" style="background:var(--orange)">🎯 Practice CBT</a>
+      <button class="btn-primary" style="background:var(--orange)" onclick="switchPageTab('practice',document.querySelectorAll('.page-tab')[1]);closeModal()">🧠 Practice Questions</button>
       <button class="btn-ghost" onclick="closeModal()">Close</button>
     </div>
   </div>
 </div>
+</div><!-- /pageTab-guides -->
+
+<!-- ═══ PRACTICE TAB ═══ -->
+<div class="page-tab-panel" id="pageTab-practice">
+
+  <!-- SETUP SCREEN -->
+  <div id="puSetupScreen">
+    <div class="pu-setup-card">
+      <div class="pu-setup-title">🏫 Select Your Target School</div>
+      <div class="pu-school-grid">
+        <button class="pu-school-btn selected" data-school="general" onclick="toggleSchool(this)">🎓 General</button>
+        <button class="pu-school-btn" data-school="unilag" onclick="toggleSchool(this)">UNILAG</button>
+        <button class="pu-school-btn" data-school="oau" onclick="toggleSchool(this)">OAU</button>
+        <button class="pu-school-btn" data-school="ui" onclick="toggleSchool(this)">UI</button>
+        <button class="pu-school-btn" data-school="uniben" onclick="toggleSchool(this)">UNIBEN</button>
+        <button class="pu-school-btn" data-school="abu" onclick="toggleSchool(this)">ABU</button>
+        <button class="pu-school-btn" data-school="unn" onclick="toggleSchool(this)">UNN</button>
+        <button class="pu-school-btn" data-school="lasu" onclick="toggleSchool(this)">LASU</button>
+        <button class="pu-school-btn" data-school="futa" onclick="toggleSchool(this)">FUTA</button>
+      </div>
+      <div class="pu-setup-title" style="margin-top:4px">📚 Select Subject</div>
+      <div class="pu-options-row">
+        <div class="pu-option">
+          <label>Subject</label>
+          <select id="puSubject">
+            <option value="">All Subjects</option>
+            <option value="english">Use of English</option>
+            <option value="maths">Mathematics</option>
+            <option value="physics">Physics</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="biology">Biology</option>
+            <option value="economics">Economics</option>
+            <option value="gov">Government</option>
+            <option value="general">General Knowledge</option>
+          </select>
+        </div>
+        <div class="pu-option">
+          <label>Number of Questions</label>
+          <select id="puQCount">
+            <option value="10">10 Questions</option>
+            <option value="20" selected>20 Questions</option>
+            <option value="40">40 Questions</option>
+            <option value="60">60 Questions</option>
+          </select>
+        </div>
+      </div>
+      <div class="pu-options-row">
+        <div class="pu-option">
+          <label>Difficulty</label>
+          <select id="puDiff">
+            <option value="">All</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div class="pu-option">
+          <label>Time Limit</label>
+          <select id="puTime">
+            <option value="0">No Timer</option>
+            <option value="15">15 Minutes</option>
+            <option value="20" selected>20 Minutes</option>
+            <option value="30">30 Minutes</option>
+          </select>
+        </div>
+      </div>
+      <button class="pu-start-btn" id="puStartBtn" onclick="startPUExam()">🧠 Start Practice →</button>
+      <div id="puSetupStatus" style="text-align:center;margin-top:10px;font-size:.78rem;color:var(--text-muted)">Ready to start</div>
+    </div>
+  </div>
+
+  <!-- EXAM SCREEN -->
+  <div id="puExamScreen" style="display:none">
+    <div class="pu-exam-topbar">
+      <div class="pu-exam-inner">
+        <div class="pu-progress">
+          <div class="pu-progress-label" id="puProgressLabel">Question 1 of 20</div>
+          <div class="pu-progress-bar"><div class="pu-progress-fill" id="puProgressFill" style="width:0%"></div></div>
+        </div>
+        <div class="pu-timer" id="puTimerBox">⏱ <span class="pu-timer-num" id="puTimerNum">20:00</span></div>
+        <span style="font-size:.74rem;color:var(--text-muted)" id="puAnsweredCount">0/20</span>
+        <button class="pu-submit-btn" onclick="puConfirmSubmit()">Submit →</button>
+      </div>
+    </div>
+    <div class="pu-q-wrap">
+      <div class="pu-q-card" id="puQuestionCard"></div>
+      <div class="pu-nav">
+        <button class="pu-nav-btn pu-btn-prev" id="puPrevBtn" onclick="puGoQ(puCurrentQ-1)">← Prev</button>
+        <button class="pu-nav-btn pu-btn-next" id="puNextBtn" onclick="puGoQ(puCurrentQ+1)">Next →</button>
+      </div>
+    </div>
+    <div class="pu-q-grid-wrap">
+      <div class="pu-q-grid" id="puQGrid"></div>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="puResultScreen" style="display:none">
+    <div class="pu-result-hero">
+      <div class="pu-score-ring">
+        <div class="pu-score-num" id="puScoreNum">0</div>
+        <div class="pu-score-denom" id="puScoreDenom">/ 20</div>
+      </div>
+      <div class="pu-result-grade" id="puResultGrade">—</div>
+      <div class="pu-result-sub" id="puResultSub"></div>
+    </div>
+    <div class="pu-result-actions">
+      <button class="pu-ra-btn" style="background:linear-gradient(135deg,#4c1d95,#7c3aed);color:#fff" onclick="puRestart()">🔄 Try Again</button>
+      <a href="cbt.html" class="pu-ra-btn" style="background:var(--orange);color:#fff">🎯 JAMB CBT Practice</a>
+      <a href="postutme-calculator.html" class="pu-ra-btn" style="background:var(--surface-alt);color:var(--text-muted)">🧮 Calc Aggregate</a>
+    </div>
+    <div style="max-width:800px;margin:0 auto;padding:20px 16px 60px" id="puReviewList"></div>
+  </div>
+
+</div><!-- /pageTab-practice -->
 
 <footer>
   <div class="footer-inner">
@@ -207,35 +420,51 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   </div>
 </footer>
 
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import{getFirestore,collection,getDocs}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+const fbConfig={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media',storageBucket:'big-quams-media.firebasestorage.app',messagingSenderId:'383186323859',appId:'1:383186323859:web:826d6b9977cfa947730066'};
+const app=initializeApp(fbConfig);
+const db=getFirestore(app);
+window._puDb=db;window._puCollection=collection;window._puGetDocs=getDocs;
+</script>
+
 <script>
 (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
 function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
 document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';document.getElementById('yr').textContent=new Date().getFullYear();});
 function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
 
-let allGuides=[], activeFilter='';
+// ── PAGE TABS ──
+function switchPageTab(name,btn){
+  document.querySelectorAll('.page-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.page-tab-panel').forEach(p=>p.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.getElementById('pageTab-'+name).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+window.switchPageTab=switchPageTab;
 
+// ── GUIDES ──
+let allGuides=[],activeFilter='';
 async function load(){
   try{
     const r=await fetch('postutme-prep.json?v='+Date.now());
-    allGuides=await r.json();
-    render();
+    allGuides=await r.json();render();
   }catch(e){
     document.getElementById('guidesGrid').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load guides. Please try again.</p></div>';
   }
 }
-
 function setFilter(f,btn){
   activeFilter=f;
   document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  render();
+  if(btn)btn.classList.add('active');render();
 }
-
+window.setFilter=setFilter;
 function render(){
   const q=(document.getElementById('prepSearch').value||'').toLowerCase();
   const filtered=allGuides.filter(g=>{
-    const mCat=!activeFilter||(g.category||'')=== activeFilter;
+    const mCat=!activeFilter||(g.category||'')===activeFilter;
     const mQ=!q||((g.title||'')+(g.summary||'')+(g.school||'')).toLowerCase().includes(q);
     return mCat&&mQ;
   });
@@ -253,12 +482,11 @@ function render(){
         <div class="guide-meta"><span>${g.date||''}</span></div>
         <div class="guide-actions">
           <button class="read-btn" onclick='openGuide(${i})'>📖 Read Guide</button>
-          ${g.link?`<a href="${g.link}" target="_blank" rel="noopener" class="dl-link" title="Download Resource">📥</a>`:''}
+          ${g.link?`<a href="${g.link}" target="_blank" rel="noopener" class="dl-link" title="Download">📥</a>`:''}
         </div>
       </div>
     </div>`).join('');
 }
-
 function openGuide(i){
   const g=allGuides.filter(x=>{
     const q=(document.getElementById('prepSearch').value||'').toLowerCase();
@@ -266,7 +494,7 @@ function openGuide(i){
     const mQ=!q||((x.title||'')+(x.summary||'')+(x.school||'')).toLowerCase().includes(q);
     return mCat&&mQ;
   })[i];
-  if(!g) return;
+  if(!g)return;
   document.getElementById('modalTitle').textContent=g.title;
   document.getElementById('modalMeta').textContent=(g.category||'')+(g.school?' · '+g.school:'')+(g.date?' · '+g.date:'');
   document.getElementById('modalBody').textContent=g.body||g.summary||'';
@@ -276,7 +504,174 @@ function openGuide(i){
 window.openGuide=openGuide;
 function closeModal(){document.getElementById('guideModal').classList.remove('open');document.body.style.overflow='';}
 function handleOverlay(e){if(e.target===document.getElementById('guideModal'))closeModal();}
+window.closeModal=closeModal;window.handleOverlay=handleOverlay;
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// ── POST-UTME CBT ENGINE ──
+const SUBJ_LABELS={english:'Use of English',maths:'Mathematics',physics:'Physics',chemistry:'Chemistry',biology:'Biology',economics:'Economics',gov:'Government',general:'General Knowledge'};
+const SCHOOL_LABELS={general:'General',unilag:'UNILAG',oau:'OAU',ui:'UI',uniben:'UNIBEN',abu:'ABU',unn:'UNN',lasu:'LASU',futa:'FUTA'};
+const LETTERS=['A','B','C','D'];
+let puSelectedSchool='general';
+let puExamQuestions=[],puAnswers={},puCurrentQ=0,puTimerInterval=null,puSecondsLeft=0;
+
+function toggleSchool(btn){
+  document.querySelectorAll('.pu-school-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  puSelectedSchool=btn.getAttribute('data-school');
+}
+window.toggleSchool=toggleSchool;
+
+async function startPUExam(){
+  const btn=document.getElementById('puStartBtn');
+  btn.disabled=true;btn.textContent='Loading questions…';
+  document.getElementById('puSetupStatus').textContent='Fetching questions from database…';
+  try{
+    let retries=0;
+    while(!window._puDb&&retries<10){await new Promise(r=>setTimeout(r,500));retries++;}
+    if(!window._puDb)throw new Error('Firebase not ready. Please refresh.');
+    const subjVal=document.getElementById('puSubject').value;
+    const diffVal=document.getElementById('puDiff').value;
+    const qCount=parseInt(document.getElementById('puQCount').value);
+    const snap=await window._puGetDocs(window._puCollection(window._puDb,'postutme_questions'));
+    let pool=snap.docs.map(d=>({id:d.id,...d.data()}));
+    pool=pool.filter(q=>q.school==='general'||q.school===puSelectedSchool);
+    if(subjVal)pool=pool.filter(q=>q.subject===subjVal);
+    if(diffVal)pool=pool.filter(q=>q.difficulty===diffVal);
+    if(!pool.length){
+      document.getElementById('puSetupStatus').textContent='No questions found for this combination. Try different filters.';
+      btn.disabled=false;btn.textContent='🧠 Start Practice →';return;
+    }
+    puExamQuestions=pool.sort(()=>Math.random()-.5).slice(0,Math.min(qCount,pool.length));
+    puAnswers={};puCurrentQ=0;
+    const mins=parseInt(document.getElementById('puTime').value);
+    puSecondsLeft=mins*60;
+    document.getElementById('puSetupScreen').style.display='none';
+    document.getElementById('puExamScreen').style.display='block';
+    document.getElementById('puResultScreen').style.display='none';
+    puBuildQGrid();puRenderQ(0);
+    if(mins>0)puStartTimer();
+    else document.getElementById('puTimerBox').style.display='none';
+  }catch(e){
+    document.getElementById('puSetupStatus').textContent='Error: '+e.message;
+    btn.disabled=false;btn.textContent='🧠 Start Practice →';
+  }
+}
+window.startPUExam=startPUExam;
+
+function puStartTimer(){
+  const box=document.getElementById('puTimerBox'),num=document.getElementById('puTimerNum');
+  puTimerInterval=setInterval(()=>{
+    puSecondsLeft--;
+    const m=Math.floor(puSecondsLeft/60),s=puSecondsLeft%60;
+    num.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    if(puSecondsLeft<=120)box.classList.add('urgent');
+    if(puSecondsLeft<=0){clearInterval(puTimerInterval);puSubmitExam();}
+  },1000);
+}
+
+function puBuildQGrid(){
+  document.getElementById('puQGrid').innerHTML=puExamQuestions.map((_,i)=>`<button class="pu-dot${i===0?' current':''}" id="pudot-${i}" onclick="puGoQ(${i})">${i+1}</button>`).join('');
+}
+
+function puRenderQ(idx){
+  puCurrentQ=idx;
+  const q=puExamQuestions[idx],total=puExamQuestions.length,answered=Object.keys(puAnswers).length;
+  document.getElementById('puProgressLabel').textContent=`Question ${idx+1} of ${total}`;
+  document.getElementById('puProgressFill').style.width=((idx+1)/total*100)+'%';
+  document.getElementById('puAnsweredCount').textContent=answered+'/'+total;
+  document.getElementById('puPrevBtn').disabled=idx===0;
+  document.getElementById('puNextBtn').textContent=idx===total-1?'Review ✓':'Next →';
+  document.querySelectorAll('.pu-dot').forEach((d,i)=>{
+    d.className='pu-dot'+(puAnswers[i]!==undefined?' answered':'')+(i===idx?' current':'');
+  });
+  const ua=puAnswers[idx],revealed=ua!==undefined;
+  document.getElementById('puQuestionCard').innerHTML=`
+    <div class="pu-q-meta">
+      <span class="pu-q-badge">Q${idx+1}</span>
+      <span class="pu-q-subj">${SUBJ_LABELS[q.subject]||q.subject||'General'}</span>
+      <span class="pu-q-school">🏫 ${SCHOOL_LABELS[q.school]||q.school||'General'}</span>
+      ${q.difficulty?`<span style="font-size:.62rem;color:var(--text-muted)">${q.difficulty}</span>`:''}
+      ${q.year?`<span style="font-size:.62rem;color:var(--text-muted)">${q.year}</span>`:''}
+    </div>
+    <div class="pu-q-text">${q.q}</div>
+    <div class="pu-opts">
+      ${(q.opts||[]).map((opt,i)=>{
+        let cls='pu-opt';
+        if(revealed){if(i===q.ans)cls+=' correct';else if(i===ua)cls+=' wrong';}
+        else if(i===ua)cls+=' selected';
+        return`<button class="${cls}" ${revealed?'disabled':''} onclick="puSelectAnswer(${idx},${i})">
+          <span class="pu-opt-letter">${LETTERS[i]}</span>${opt}</button>`;
+      }).join('')}
+    </div>
+    ${revealed&&q.exp?`<div class="pu-exp show">💡 <strong>Explanation:</strong> ${q.exp}</div>`:''}`;
+}
+window.puRenderQ=puRenderQ;
+
+function puSelectAnswer(qIdx,optIdx){
+  if(puAnswers[qIdx]!==undefined)return;
+  puAnswers[qIdx]=optIdx;puRenderQ(qIdx);
+  if(qIdx<puExamQuestions.length-1)setTimeout(()=>puGoQ(qIdx+1),1100);
+}
+window.puSelectAnswer=puSelectAnswer;
+
+function puGoQ(idx){if(idx<0||idx>=puExamQuestions.length)return;puRenderQ(idx);}
+window.puGoQ=puGoQ;
+
+function puConfirmSubmit(){
+  const u=puExamQuestions.length-Object.keys(puAnswers).length;
+  if(u>0&&!confirm(`You have ${u} unanswered question${u>1?'s':''}. Submit anyway?`))return;
+  puSubmitExam();
+}
+window.puConfirmSubmit=puConfirmSubmit;
+
+function puSubmitExam(){
+  clearInterval(puTimerInterval);
+  let correct=0,wrong=0,skipped=0;
+  puExamQuestions.forEach((q,i)=>{const ua=puAnswers[i];if(ua===undefined)skipped++;else if(ua===q.ans)correct++;else wrong++;});
+  const total=puExamQuestions.length,pct=Math.round((correct/total)*100);
+  const grade=pct>=80?'Excellent! 🌟':pct>=65?'Very Good 👍':pct>=50?'Average — Keep Going 📈':'Need More Practice 💪';
+  document.getElementById('puExamScreen').style.display='none';
+  document.getElementById('puResultScreen').style.display='block';
+  document.getElementById('puScoreNum').textContent=correct;
+  document.getElementById('puScoreDenom').textContent='/ '+total;
+  document.getElementById('puResultGrade').textContent=grade;
+  document.getElementById('puResultSub').textContent=pct+'% — '+correct+' correct, '+wrong+' wrong, '+skipped+' skipped';
+  document.getElementById('puReviewList').innerHTML=puExamQuestions.map((q,i)=>{
+    const ua=puAnswers[i],isCorrect=ua===q.ans;
+    return`<div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+        <span style="font-size:.68rem;font-weight:800;padding:2px 8px;border-radius:20px;background:${isCorrect?'#dcfce7':'#fee2e2'};color:${isCorrect?'#15803d':'#b91c1c'}">${isCorrect?'✅ Correct':'❌ Wrong'}</span>
+        <span class="pu-q-subj">${SUBJ_LABELS[q.subject]||q.subject}</span>
+        <span class="pu-q-school">🏫 ${SCHOOL_LABELS[q.school]||q.school}</span>
+      </div>
+      <div style="font-size:.84rem;font-weight:500;color:var(--text-main);margin-bottom:8px;line-height:1.5">Q${i+1}. ${q.q}</div>
+      <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:6px">
+        ${(q.opts||[]).map((opt,j)=>{
+          let bg='transparent',color='var(--text-muted)',fw='400';
+          if(j===q.ans){bg='#dcfce7';color='#15803d';fw='700';}
+          else if(j===ua&&ua!==q.ans){bg='#fee2e2';color='#b91c1c';fw='700';}
+          return`<div style="font-size:.78rem;padding:6px 10px;border-radius:7px;background:${bg};color:${color};font-weight:${fw}"><strong>${LETTERS[j]}.</strong> ${opt}${j===q.ans?' ✓':j===ua?' ✗':''}</div>`;
+        }).join('')}
+      </div>
+      ${q.exp?`<div style="font-size:.74rem;color:#15803d;background:#f0fdf4;border-radius:7px;padding:8px 10px">💡 ${q.exp}</div>`:''}
+    </div>`;
+  }).join('');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function puRestart(){
+  clearInterval(puTimerInterval);
+  document.getElementById('puExamScreen').style.display='none';
+  document.getElementById('puResultScreen').style.display='none';
+  document.getElementById('puSetupScreen').style.display='block';
+  document.getElementById('puStartBtn').disabled=false;
+  document.getElementById('puStartBtn').textContent='🧠 Start Practice →';
+  document.getElementById('puSetupStatus').textContent='Ready to start';
+  document.getElementById('puTimerBox').style.display='flex';
+  document.getElementById('puTimerBox').classList.remove('urgent');
+  puExamQuestions=[];puAnswers={};puCurrentQ=0;
+}
+window.puRestart=puRestart;
 
 load();
 </script>
