@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Newsroom | Big Quams Media®</title>
-<meta name="description" content="Big Quams Media® — Nigeria's trusted platform for students. Free CBT practice, Post-UTME prep, scholarships, school news, eLibrary and more. Your admission success starts here.">
+<meta name="description" content="Latest campus news, school updates, scholarship alerts and student information. Stay informed with Big Quams Media® Newsroom.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Big Quams Media®">
+<meta property="og:title" content="Newsroom — Big Quams Media®">
+<meta property="og:description" content="Latest campus news, school updates, scholarship alerts and student information from Big Quams Media®.">
+<meta property="og:image" content="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
+<meta property="og:url" content="https://bigquamsmedia.com.ng/newsroom.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Newsroom — Big Quams Media®">
+<meta name="twitter:description" content="Latest campus news, school updates, scholarship alerts and student information.">
+<meta name="twitter:image" content="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
 <link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -71,7 +81,7 @@ body.dark .search-box{background:#111624;border-color:var(--border)}
 /* PINNED */
 .pinned-card{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));border-radius:var(--radius-md);overflow:hidden;margin-bottom:24px;cursor:pointer;transition:.2s}
 .pinned-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
-.pinned-img{width:100%;height:200px;object-fit:cover;display:block}
+.pinned-img{width:100%;height:auto;max-height:400px;object-fit:contain;display:block;background:#f5f7ff}
 .pinned-img-placeholder{width:100%;height:200px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:3rem}
 .pinned-body{padding:20px}
 .pinned-badge{display:inline-block;background:var(--orange);color:#fff;font-size:.62rem;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:8px}
@@ -83,7 +93,7 @@ body.dark .search-box{background:#111624;border-color:var(--border)}
 .news-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;display:flex;gap:0;cursor:pointer;transition:.2s}
 body.dark .news-card{background:#161b27;border-color:var(--border)}
 .news-card:hover{box-shadow:var(--shadow-md);border-color:var(--blue-light)}
-.news-card-img{width:110px;flex-shrink:0;object-fit:cover;min-height:100px}
+.news-card-img{width:110px;flex-shrink:0;object-fit:contain;min-height:80px;max-height:120px;background:#f5f7ff}
 body.dark .news-card-img{opacity:.85}
 .news-card-img-placeholder{width:110px;flex-shrink:0;background:var(--surface-alt);display:flex;align-items:center;justify-content:center;font-size:1.8rem;min-height:100px}
 body.dark .news-card-img-placeholder{background:#1a2236}
@@ -126,7 +136,7 @@ body.dark .page-btn{background:#161b27;border-color:var(--border)}
 body.dark .modal-box{background:#161b27}
 @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 @media(max-width:600px){.modal-overlay{padding:0;align-items:flex-end}.modal-box{border-radius:20px 20px 0 0;max-height:92vh;margin-bottom:0}}
-.modal-img{width:100%;max-height:280px;object-fit:cover;border-radius:18px 18px 0 0}
+.modal-img{width:100%;height:auto;max-width:100%;display:block;border-radius:18px 18px 0 0}
 .modal-body{padding:24px}
 .modal-cat{display:inline-block;font-size:.64rem;font-weight:800;padding:3px 10px;border-radius:20px;background:var(--blue-light);color:var(--blue-main);margin-bottom:10px}
 body.dark .modal-cat{background:#1a2d5a;color:#93c5fd}
@@ -328,12 +338,14 @@ function linkify(text){
 function shareArticle(){
   if(currentArticleIdx<0) return;
   const n=allNews[currentArticleIdx];
-  const url=window.location.href.split('?')[0]+'?article='+currentArticleIdx;
-  const text=`📰 ${n.title}\n\nRead on Big Quams Media®: ${url}`;
+  const slug=n.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').substring(0,60);
+  const base=window.location.href.split('?')[0];
+  const url=`${base}?article=${currentArticleIdx}&slug=${slug}`;
+  const text=`📰 ${n.title}\n\nRead more: ${url}`;
   if(navigator.share){
-    navigator.share({title:n.title,text:`📰 ${n.title} — Big Quams Media®`,url}).catch(()=>{});
+    navigator.share({title:n.title+' — Big Quams Media®',text:n.summary||n.title,url}).catch(()=>{});
   } else {
-    navigator.clipboard?navigator.clipboard.writeText(text).then(()=>showToast('🔗 Link copied to clipboard!')):showToast('🔗 '+url);
+    navigator.clipboard?navigator.clipboard.writeText(text).then(()=>showToast('🔗 Link copied!')):showToast('🔗 '+url);
   }
 }
 window.shareArticle=shareArticle;
@@ -342,10 +354,12 @@ window.shareArticle=shareArticle;
 function shareCard(e,idx){
   e.stopPropagation();
   const n=allNews[idx];
-  const url=window.location.href.split('?')[0]+'?article='+idx;
-  const text=`📰 ${n.title}\n\nRead on Big Quams Media®: ${url}`;
+  const slug=n.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').substring(0,60);
+  const base=window.location.href.split('?')[0];
+  const url=`${base}?article=${idx}&slug=${slug}`;
+  const text=`📰 ${n.title}\n\nRead more: ${url}`;
   if(navigator.share){
-    navigator.share({title:n.title,text:`📰 ${n.title} — Big Quams Media®`,url}).catch(()=>{});
+    navigator.share({title:n.title+' — Big Quams Media®',text:n.summary||n.title,url}).catch(()=>{});
   } else {
     navigator.clipboard?navigator.clipboard.writeText(text).then(()=>showToast('🔗 Link copied!')):showToast('🔗 '+url);
   }
@@ -360,6 +374,16 @@ function showToast(msg){
 }
 
 async function init(){
+  // Visitor counter — increment silently
+  try{
+    const vc=parseInt(localStorage.getItem('bqm_visits')||'0')+1;
+    localStorage.setItem('bqm_visits',vc);
+    // Track in sessionStorage so we only count once per session
+    if(!sessionStorage.getItem('bqm_counted')){
+      sessionStorage.setItem('bqm_counted','1');
+      fetch('https://api.countapi.xyz/hit/bigquamsmedia.com.ng/newsroom').catch(()=>{});
+    }
+  }catch(e){}
   try{
     const r=await fetch('news.json?v='+Date.now());
     allNews=await r.json();
@@ -491,10 +515,26 @@ function openArticle(idx){
           </div>
         </div>`:''}
     </div>`;
-  // Update URL without reload
+  // Update URL without reload — use headline slug for readable URL
+  const slug=n.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').substring(0,60);
   const url=new URL(location.href);
   url.searchParams.set('article',idx);
+  url.searchParams.set('slug',slug);
   history.replaceState({},'',url);
+  // Update og:title and og:image meta tags dynamically for link previews
+  let ogTitle=document.querySelector('meta[property="og:title"]');
+  if(!ogTitle){ogTitle=document.createElement('meta');ogTitle.setAttribute('property','og:title');document.head.appendChild(ogTitle);}
+  ogTitle.setAttribute('content',n.title+' — Big Quams Media®');
+  let ogDesc=document.querySelector('meta[property="og:description"]');
+  if(!ogDesc){ogDesc=document.createElement('meta');ogDesc.setAttribute('property','og:description');document.head.appendChild(ogDesc);}
+  ogDesc.setAttribute('content',(n.summary||'').substring(0,160));
+  let ogImg=document.querySelector('meta[property="og:image"]');
+  if(!ogImg){ogImg=document.createElement('meta');ogImg.setAttribute('property','og:image');document.head.appendChild(ogImg);}
+  if(n.image) ogImg.setAttribute('content',n.image);
+  let ogUrl=document.querySelector('meta[property="og:url"]');
+  if(!ogUrl){ogUrl=document.createElement('meta');ogUrl.setAttribute('property','og:url');document.head.appendChild(ogUrl);}
+  ogUrl.setAttribute('content',url.toString());
+  document.title=n.title+' — Big Quams Media®';
   document.getElementById('articleModal').classList.add('open');
   document.body.style.overflow='hidden';
 }
