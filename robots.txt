@@ -1,0 +1,55 @@
+# Big Quams Media® — robots.txt
+# https://bigquamsmedia.com.ng
+
+User-agent: *
+Allow: /
+
+# Allow all major pages
+Allow: /index.html
+Allow: /explore.html
+Allow: /newsroom.html
+Allow: /elibrary.html
+Allow: /cbt.html
+Allow: /postutme-prep.html
+Allow: /postutme-calculator.html
+Allow: /subject-combo.html
+Allow: /gpa-calculator.html
+Allow: /student-loan.html
+Allow: /scholarship.html
+Allow: /results.html
+Allow: /dyk.html
+Allow: /spotlight.html
+Allow: /community.html
+
+# Block admin and CEO dashboard from indexing
+Disallow: /admin.html
+Disallow: /ceo-dashboard.html
+
+# Block JSON data files from indexing
+Disallow: /news.json
+Disallow: /books.json
+Disallow: /scholarships.json
+Disallow: /dyk.json
+Disallow: /spotlight.json
+Disallow: /postutme-prep.json
+Disallow: /postutme-schools.json
+Disallow: /qa.json
+Disallow: /reviews.json
+Disallow: /calendar.json
+Disallow: /nelfund.json
+Disallow: /site-config.json
+Disallow: /hero-config.json
+Disallow: /contact-config.json
+Disallow: /socials-config.json
+Disallow: /stats-config.json
+Disallow: /results-config.json
+Disallow: /ticker.json
+Disallow: /success-ticker.json
+Disallow: /topbar-config.json
+
+# Block service worker and manifest
+Disallow: /sw.js
+Disallow: /fcm-init.js
+
+# Sitemap
+Sitemap: https://bigquamsmedia.com.ng/sitemap.xml
