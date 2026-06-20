@@ -109,7 +109,7 @@ header{background:linear-gradient(135deg,#0c1f6e 0%,#1a3fa8 100%);position:stick
 .hero-blob1{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.14) 0%,transparent 65%);top:-150px;right:-150px;pointer-events:none}
 .hero-blob2{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(26,63,168,.3) 0%,transparent 70%);bottom:-80px;left:-80px;pointer-events:none}
 .hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 14px;border-radius:30px;font-size:.75rem;font-weight:600;margin-bottom:20px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 14px;border-radius:30px;font-size:.75rem;font-weight:600;margin-bottom:20px;white-space:nowrap;max-width:100%;overflow:hidden}
 .hero-badge-dot{width:7px;height:7px;border-radius:50%;background:#f97316;animation:blink 1.4s ease infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:14px;letter-spacing:-.5px}
@@ -287,11 +287,7 @@ footer{background:#0a1228;padding:40px 16px 24px}
 .center{text-align:center}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-/* ══ SUCCESS TICKER (7) ══ */
-.success-bar{background:linear-gradient(90deg,#064e3b,#065f46);height:34px;overflow:hidden;display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.06)}
-.success-tag{background:#10b981;color:#fff;padding:0 14px;height:100%;display:flex;align-items:center;font-size:.65rem;font-weight:800;white-space:nowrap;letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
-.success-track{display:flex;animation:scroll-ticker 55s linear infinite;width:max-content}
-.success-track:hover{animation-play-state:paused}
+
 .success-item{padding:0 28px;font-size:.72rem;color:rgba(255,255,255,.75);white-space:nowrap;line-height:34px}
 .success-item::after{content:'🎉';margin-left:12px}
 
@@ -345,7 +341,7 @@ footer{background:#0a1228;padding:40px 16px 24px}
   <a href="explore.html" onclick="toggleNav()">Explore All Tools</a>
   <a href="newsroom.html" onclick="toggleNav()">Newsroom</a>
   <a href="elibrary.html" onclick="toggleNav()">eLibrary</a>
-  <a href="cbt.html" onclick="toggleNav()"> CBT Practice</a>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 CBT Practice</a>
   <a href="postutme-prep.html" onclick="toggleNav()">Post-UTME Prep</a>
   <a href="postutme-calculator.html" onclick="toggleNav()">Post-UTME Calculator</a>
   <a href="subject-combo.html" onclick="toggleNav()">Subject Combination</a>
@@ -366,11 +362,7 @@ footer{background:#0a1228;padding:40px 16px 24px}
   <div class="ticker-scroll-wrap"><div class="ticker-track" id="tickerTrack"></div></div>
 </div>
 
-<!-- SUCCESS TICKER -->
-<div class="success-bar" id="successBar">
-  <div class="success-tag">🎉 Students</div>
-  <div style="flex:1;overflow:hidden"><div class="success-track" id="successTrack"></div></div>
-</div>
+
 
 <main id="main-content">
 
@@ -378,7 +370,7 @@ footer{background:#0a1228;padding:40px 16px 24px}
 <section class="hero" id="home">
   <div class="hero-blob1"></div><div class="hero-blob2"></div>
   <div class="hero-inner">
-    <div class="hero-badge"><span class="hero-badge-dot"></span>Nigeria's Trusted Student Resource Platform (Since 2023)</div>
+    <div class="hero-badge"><span class="hero-badge-dot"></span>Nigeria's Trusted Student Platform · Since 2023</div>
     <h1>Everything You Need to <span>Thrive</span> in Campus Life</h1>
     <p class="hero-desc">From JAMB preparation and Post-UTME screening to scholarship opportunities, academic resources and campus news — all in one place, completely free for Nigerian undergraduates.</p>
     <div class="hero-ctas">
@@ -694,13 +686,6 @@ function loadScholarships(){
   }
   render(fb);
   fetch('scholarships.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.length)render([...d].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)));}).catch(()=>{});
-}
-
-/* SUCCESS TICKER */
-function initSuccessTicker(){
-  const track=document.getElementById('successTrack');if(!track)return;
-  const items=['Chidera O. just got admitted to UNILAG — Medicine & Surgery','Fatima A. secured the Commonwealth Scholarship to UCL London','Emeka N. scored 312 in JAMB — Computer Engineering, OAU','Blessing I. got full NELFUND loan approval — UNIBEN','David K. admitted to LASU Law after scoring 64 aggregate','Aisha M. won the MTN Foundation Scholarship 2026','Olawale B. scored 290 JAMB and admitted to Covenant University','Ngozi C. cleared Post-UTME at UI — Pharmacy','Hassan U. scored A1 in 7 WAEC subjects — now at ABU','Adaeze P. received FUTA admission offer — Chemical Engineering'];
-  track.innerHTML=[...items,...items].map(t=>`<span class="success-item">${t}</span>`).join('');
 }
 
 /* STAT COUNTERS */
