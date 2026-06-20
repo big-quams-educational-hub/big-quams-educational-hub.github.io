@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RCLYVCZY2K');
+</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Campus Life | Big Quams Media®</title>
+<meta name="description" content="Campus gist, fun polls, would you rather, mini games and relatable student content. Your daily campus entertainment on Big Quams Media®.">
+<link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--green:#16a34a;--red:#dc2626;--yellow:#f59e0b;--purple:#7c3aed;--pink:#ec4899;--surface:#fff;--surface-alt:#f5f7ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius:14px;--shadow:0 8px 28px rgba(26,63,168,.10)}
+body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Roboto',sans-serif;background:#f5f7ff;color:var(--text-main);overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4)}
+.header-bar{max-width:1100px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.logo-sub{font-size:.55rem;color:rgba(255,255,255,.45);display:block}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:860px){.hamburger{display:flex}}
+.mobile-nav{visibility:hidden;position:fixed;inset:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s ease,visibility 0s linear .3s}
+.mobile-nav.open{visibility:visible;transform:translateX(0);transition:transform .3s ease}
+.mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:60px}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mnav-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
+.mobile-nav>a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
+.mobile-nav>a:hover{background:rgba(255,255,255,.06);color:#fff}
+.mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px 20px!important;border-bottom:none!important}
+.nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+
+/* HERO */
+.cl-hero{background:linear-gradient(135deg,#ec4899,#f97316,#7c3aed);padding:40px 16px 48px;text-align:center;position:relative;overflow:hidden}
+.cl-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");pointer-events:none}
+.cl-hero-inner{position:relative;z-index:1;max-width:600px;margin:0 auto}
+.cl-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:14px}
+.cl-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;color:#fff;margin-bottom:10px}
+.cl-hero p{font-size:.88rem;color:rgba(255,255,255,.75);max-width:460px;margin:0 auto 20px}
+.cl-tabs-hero{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.cl-tab-hero{padding:10px 18px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;cursor:pointer;transition:.18s}
+.cl-tab-hero.active,.cl-tab-hero:hover{background:#fff;color:#7c3aed}
+
+/* MAIN */
+.wrap{max-width:820px;margin:0 auto;padding:0 16px}
+.tab-panel{display:none;padding:24px 0 60px}
+.tab-panel.active{display:block}
+
+/* CARD */
+.card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;box-shadow:var(--shadow)}
+body.dark .card{background:#161b27;border-color:var(--border)}
+.card-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.card-icon{font-size:1.3rem}
+.card-title{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;color:var(--text-main);flex:1}
+.card-body{padding:20px}
+
+/* GIST */
+.gist-item{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px;transition:.2s}
+body.dark .gist-item{background:#161b27;border-color:var(--border)}
+.gist-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.gist-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;font-weight:800;color:#fff}
+.gist-meta{flex:1;min-width:0}
+.gist-author{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text-main)}
+.gist-time{font-size:.64rem;color:var(--text-muted);margin-top:1px}
+.gist-tag{font-size:.62rem;font-weight:800;padding:2px 8px;border-radius:10px;flex-shrink:0}
+.gist-body{font-size:.86rem;color:var(--text-main);line-height:1.65;margin-bottom:12px}
+.gist-reactions{display:flex;gap:8px;flex-wrap:wrap}
+.react-btn{background:var(--surface-alt);border:1.5px solid var(--border);border-radius:20px;padding:5px 12px;font-size:.76rem;cursor:pointer;display:flex;align-items:center;gap:5px;transition:.18s;color:var(--text-muted)}
+body.dark .react-btn{background:#1a2236}
+.react-btn:hover,.react-btn.active{border-color:var(--orange);background:rgba(249,115,22,.08);color:var(--orange)}
+.react-btn span{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700}
+.gist-share{background:none;border:none;color:var(--text-muted);font-size:.72rem;cursor:pointer;padding:4px 8px;display:flex;align-items:center;gap:4px;margin-left:auto}
+.gist-share:hover{color:var(--blue-main)}
+
+/* POLL */
+.poll-card{background:linear-gradient(135deg,#f0f4ff,#e8edff);border:1.5px solid #c7d8ff;border-radius:14px;padding:20px;margin-bottom:16px}
+body.dark .poll-card{background:linear-gradient(135deg,#111624,#141c30);border-color:#2a3550}
+.poll-question{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;color:var(--text-main);margin-bottom:14px;line-height:1.4}
+.poll-options{display:flex;flex-direction:column;gap:9px}
+.poll-opt{position:relative;overflow:hidden;border:1.5px solid var(--border);border-radius:9px;background:var(--surface);cursor:pointer;transition:.18s;padding:12px 14px;display:flex;align-items:center;gap:10px}
+body.dark .poll-opt{background:#1a2236}
+.poll-opt:hover{border-color:var(--blue-main)}
+.poll-opt.voted{cursor:default}
+.poll-opt.winner{border-color:var(--green)}
+.poll-bar{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,rgba(26,63,168,.08),rgba(26,63,168,.04));border-radius:9px;transition:width .6s ease;z-index:0}
+.poll-opt.winner .poll-bar{background:linear-gradient(90deg,rgba(22,163,74,.1),rgba(22,163,74,.05))}
+.poll-opt-text{font-size:.86rem;font-weight:600;color:var(--text-main);flex:1;position:relative;z-index:1}
+.poll-pct{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:var(--blue-main);position:relative;z-index:1;flex-shrink:0}
+.poll-opt.winner .poll-pct{color:var(--green)}
+.poll-meta{font-size:.66rem;color:var(--text-muted);margin-top:10px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.poll-label{font-size:.62rem;font-weight:800;padding:2px 7px;border-radius:10px;background:#ede9fe;color:#7c3aed}
+
+/* WOULD YOU RATHER */
+.wyr-card{background:linear-gradient(135deg,#fdf2f8,#fce7f3);border:1.5px solid #f9a8d4;border-radius:14px;padding:20px;margin-bottom:16px}
+body.dark .wyr-card{background:linear-gradient(135deg,#1a0010,#2d0020);border-color:#831843}
+.wyr-title{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:#be185d;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
+body.dark .wyr-title{color:#f9a8d4}
+.wyr-options{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.wyr-opt-btn{padding:14px 12px;border-radius:10px;border:2px solid #f9a8d4;background:#fff;font-size:.82rem;font-weight:700;color:#be185d;cursor:pointer;transition:.2s;line-height:1.4;text-align:center}
+body.dark .wyr-opt-btn{background:#2d0020;color:#f9a8d4;border-color:#831843}
+.wyr-opt-btn:hover{background:#be185d;color:#fff;border-color:#be185d;transform:scale(1.02)}
+.wyr-opt-btn.chosen{background:#be185d;color:#fff;border-color:#be185d}
+.wyr-or{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#be185d;text-align:center}
+.wyr-result{margin-top:14px;font-size:.78rem;color:var(--text-muted);text-align:center;line-height:1.5}
+
+/* MINI GAME */
+.game-area{min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.game-timer{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:800;color:var(--orange)}
+.game-timer.urgent{color:var(--red);animation:flash .5s ease infinite}
+@keyframes flash{0%,100%{opacity:1}50%{opacity:.4}}
+.game-score-display{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text-main)}
+.scramble-word{font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:800;color:var(--blue-main);letter-spacing:6px;text-align:center}
+body.dark .scramble-word{color:#93c5fd}
+.scramble-hint{font-size:.74rem;color:var(--text-muted);text-align:center}
+.game-input{width:100%;max-width:280px;padding:12px 16px;border:2px solid var(--border);border-radius:10px;font-size:1rem;font-family:'Montserrat',sans-serif;font-weight:700;text-align:center;text-transform:uppercase;color:var(--text-main);background:var(--surface-alt);transition:.2s}
+.game-input:focus{outline:none;border-color:var(--blue-main)}
+.game-input.correct{border-color:var(--green);background:#dcfce7;color:var(--green)}
+.game-input.wrong{border-color:var(--red);background:#fee2e2;animation:shake .3s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.game-btn{padding:12px 28px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;border:none;cursor:pointer;transition:.18s}
+.game-btn-start{background:linear-gradient(135deg,var(--purple),#a855f7);color:#fff}
+.game-btn-start:hover{opacity:.9}
+.game-btn-skip{background:var(--surface-alt);color:var(--text-muted);border:1.5px solid var(--border)}
+.game-result-card{text-align:center;padding:20px;background:var(--surface-alt);border-radius:12px;width:100%}
+body.dark .game-result-card{background:#1a2236}
+.game-result-score{font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:800;color:var(--purple)}
+.game-result-lbl{font-size:.78rem;color:var(--text-muted);margin-bottom:12px}
+.game-result-rating{font-size:1rem;font-weight:700;color:var(--text-main);margin-bottom:14px}
+
+/* SUBMIT GIST */
+.submit-box{background:var(--surface-alt);border:1.5px dashed var(--border);border-radius:12px;padding:20px;text-align:center}
+body.dark .submit-box{background:#1a2236}
+.submit-icon{font-size:2rem;margin-bottom:8px}
+.submit-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text-main);margin-bottom:6px}
+.submit-sub{font-size:.76rem;color:var(--text-muted);margin-bottom:14px;line-height:1.5}
+.submit-wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;border:none;border-radius:10px;padding:11px 20px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;transition:.18s;text-decoration:none}
+.submit-wa-btn:hover{background:#1db954}
+
+/* AUTH OVERLAY */
+.auth-overlay{position:fixed;inset:0;background:rgba(10,20,60,.7);z-index:600;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)}
+.auth-card{background:#fff;border-radius:20px;padding:28px 24px;width:100%;max-width:380px;box-shadow:0 32px 80px rgba(0,0,0,.3);animation:pop .3s cubic-bezier(.34,1.56,.64,1)}
+body.dark .auth-card{background:#1e293b}
+@keyframes pop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.auth-logo{width:52px;height:52px;border-radius:50%;border:3px solid var(--orange);margin:0 auto 10px;overflow:hidden}
+.auth-logo img{width:100%;height:100%;object-fit:cover}
+.auth-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text-main);text-align:center;margin-bottom:4px}
+.auth-sub{font-size:.74rem;color:var(--text-muted);text-align:center;margin-bottom:16px;line-height:1.5}
+.auth-input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:.9rem;font-family:'Roboto',sans-serif;color:var(--text-main);background:var(--surface-alt);margin-bottom:10px}
+.auth-btn{width:100%;padding:12px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;cursor:pointer;margin-bottom:8px}
+.google-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;border:1.5px solid var(--border);border-radius:9px;padding:11px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.84rem;color:#1e2749;cursor:pointer;margin-bottom:10px}
+.auth-divider{display:flex;align-items:center;gap:8px;margin:6px 0;color:var(--text-muted);font-size:.68rem}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.auth-error{color:#b91c1c;font-size:.74rem;background:#fee2e2;border-radius:7px;padding:7px 10px;margin-bottom:8px;display:none}
+.auth-close{background:none;border:none;color:var(--text-muted);font-size:.74rem;cursor:pointer;display:block;margin:4px auto 0;text-decoration:underline}
+.auth-tabs{display:flex;gap:0;margin-bottom:14px;border-radius:9px;overflow:hidden;border:1.5px solid var(--border)}
+.auth-tab-btn{flex:1;padding:8px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:800;border:none;cursor:pointer;background:var(--surface-alt);color:var(--text-muted)}
+.auth-tab-btn.active{background:var(--blue-main);color:#fff}
+
+/* SIGN IN PROMPT */
+.signin-prompt{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:12px;padding:16px;text-align:center;margin-top:14px}
+.signin-prompt p{font-size:.76rem;color:rgba(255,255,255,.65);margin-bottom:10px}
+.signin-prompt-btn{background:var(--orange);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;cursor:pointer}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e293b;color:#fff;padding:12px 20px;border-radius:14px;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 8px 28px rgba(0,0,0,.4);z-index:800;opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* FOOTER */
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:20px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.footer-brand img{width:32px;height:32px;border-radius:50%;border:2px solid var(--orange)}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:14px}
+.footer-links a{font-size:.74rem;color:rgba(255,255,255,.45);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.7rem;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-bar">
+    <a href="index.html" class="logo-link">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
+    </a>
+    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <div class="mnav-header">
+    <div style="display:flex;align-items:center;gap:10px"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316"><div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div></div>
+    <button class="mnav-close" onclick="toggleNav()">✕</button>
+  </div>
+  <div class="mnav-lbl">Navigation</div>
+  <a href="index.html" onclick="toggleNav()">Home</a>
+  <a href="explore.html" onclick="toggleNav()">Explore All Tools</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 CBT Practice</a>
+  <a href="newsroom.html" onclick="toggleNav()">Newsroom</a>
+  <a href="scholarship.html" onclick="toggleNav()">Scholarships</a>
+  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
+</nav>
+
+<!-- AUTH OVERLAY -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-card">
+    <div class="auth-logo"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"></div>
+    <div class="auth-title">Join to Participate</div>
+    <div class="auth-sub">Create a free account to vote, react to gist and play mini games.</div>
+    <div class="auth-tabs">
+      <button class="auth-tab-btn active" onclick="switchAuthTab('signin',this)">Sign In</button>
+      <button class="auth-tab-btn" onclick="switchAuthTab('register',this)">Sign Up</button>
+    </div>
+    <button class="google-btn" onclick="clGoogleSignIn()">
+      <svg width="17" height="17" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.5 3.1 29.6 1 24 1 14.8 1 7 6.7 3.7 14.6l7 5.4C12.5 13.8 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.8-2.1 5.2-4.5 6.8l7 5.4C43.1 36.8 46.1 31.1 46.1 24.5z"/><path fill="#FBBC05" d="M10.7 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7-5.4C2.2 17.1 1 20.4 1 24s1.2 6.9 3.7 9.9l7-5.3z"/><path fill="#34A853" d="M24 47c5.6 0 10.4-1.9 13.8-5.1l-7-5.4c-1.9 1.3-4.2 2-6.8 2-6.2 0-11.5-4.3-13.3-10l-7 5.4C7 41.3 14.8 47 24 47z"/></svg>
+      Continue with Google
+    </button>
+    <div class="auth-divider">or email</div>
+    <div id="clSigninForm">
+      <input class="auth-input" type="email" id="clEmail" placeholder="Email address">
+      <input class="auth-input" type="password" id="clPw" placeholder="Password" onkeydown="if(event.key==='Enter')clSignIn()">
+      <div class="auth-error" id="clAuthErr"></div>
+      <button class="auth-btn" onclick="clSignIn()">Sign In →</button>
+    </div>
+    <div id="clRegForm" style="display:none">
+      <input class="auth-input" type="text" id="clRegName" placeholder="Your full name">
+      <input class="auth-input" type="email" id="clRegEmail" placeholder="Email address">
+      <input class="auth-input" type="password" id="clRegPw" placeholder="Password (min 6 chars)" onkeydown="if(event.key==='Enter')clRegister()">
+      <div class="auth-error" id="clRegErr"></div>
+      <button class="auth-btn" onclick="clRegister()">Create Free Account →</button>
+    </div>
+    <button class="auth-close" onclick="closeAuth()">Maybe later</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- HERO -->
+<div class="cl-hero">
+  <div class="cl-hero-inner">
+    <div class="cl-badge">🎮 Campus Life</div>
+    <h1>Where Campus Meets Fun</h1>
+    <p>Relatable gist, campus polls, would you rather, and mini games. Updated daily.</p>
+    <div class="cl-tabs-hero">
+      <button class="cl-tab-hero active" onclick="switchTab('gist',this)">😂 Campus Gist</button>
+      <button class="cl-tab-hero" onclick="switchTab('poll',this)">🗳️ Poll</button>
+      <button class="cl-tab-hero" onclick="switchTab('wyr',this)">🤔 Would You Rather</button>
+      <button class="cl-tab-hero" onclick="switchTab('game',this)">🎮 Mini Game</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- GIST TAB -->
+  <div class="tab-panel active" id="tab-gist">
+    <div id="gistFeed"></div>
+    <div class="card">
+      <div class="card-header"><span class="card-icon">📤</span><span class="card-title">Share Your Campus Gist</span></div>
+      <div class="card-body">
+        <div class="submit-box">
+          <div class="submit-icon">😂</div>
+          <div class="submit-title">Got a relatable campus story?</div>
+          <div class="submit-sub">Share it anonymously via WhatsApp and it might get featured here! No names required — just the vibes.</div>
+          <a href="https://wa.me/2349049871643?text=Campus%20Gist%20Submission%3A%0A%0A" target="_blank" rel="noopener" class="submit-wa-btn">📱 Submit Your Gist →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POLL TAB -->
+  <div class="tab-panel" id="tab-poll">
+    <div class="card">
+      <div class="card-header"><span class="card-icon">🗳️</span><span class="card-title">Campus Poll of the Day</span></div>
+      <div class="card-body" id="pollBody">Loading today's poll…</div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-icon">📊</span><span class="card-title">Previous Polls</span></div>
+      <div class="card-body" id="prevPolls"></div>
+    </div>
+  </div>
+
+  <!-- WOULD YOU RATHER TAB -->
+  <div class="tab-panel" id="tab-wyr">
+    <div class="card">
+      <div class="card-header"><span class="card-icon">🤔</span><span class="card-title">Would You Rather?</span></div>
+      <div class="card-body">
+        <div id="wyrArea"></div>
+        <div style="text-align:center;margin-top:16px">
+          <button class="game-btn game-btn-start" onclick="nextWYR()" style="background:linear-gradient(135deg,#ec4899,#be185d)">Next Question →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MINI GAME TAB -->
+  <div class="tab-panel" id="tab-game">
+    <div class="card">
+      <div class="card-header"><span class="card-icon">🎮</span><span class="card-title">Word Scramble — 60 Seconds</span></div>
+      <div class="card-body">
+        <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:16px;line-height:1.5">Unscramble as many words as you can in 60 seconds. All words are education and campus related. Type your answer and press Enter!</p>
+        <div class="game-area" id="gameArea">
+          <div style="text-align:center">
+            <div style="font-size:3rem;margin-bottom:10px">🎮</div>
+            <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;color:var(--text-main);margin-bottom:6px">Word Scramble</div>
+            <div style="font-size:.78rem;color:var(--text-muted);margin-bottom:16px">Unscramble campus & education words in 60 seconds</div>
+            <button class="game-btn game-btn-start" onclick="startGame()">🎮 Start Game</button>
+          </div>
+        </div>
+        <div id="gameHighscore" style="text-align:center;margin-top:14px;font-size:.74rem;color:var(--text-muted)"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><span class="card-icon">🏆</span><span class="card-title">Your Best Scores</span></div>
+      <div class="card-body" id="scoreHistory">
+        <div style="text-align:center;color:var(--text-muted);font-size:.8rem;padding:12px">Play the game to see your scores here!</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="daily.html">Daily Hub</a><a href="campus-life.html">Campus Life</a>
+      <a href="newsroom.html">Newsroom</a><a href="cbt.html">CBT Practice</a><a href="scholarship.html">Scholarships</a>
+      <a href="postutme-prep.html">Post-UTME Prep</a><a href="elibrary.html">eLibrary</a><a href="results.html">Results</a>
+    </div>
+    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved</div>
+  </div>
+</footer>
+
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import{getFirestore,doc,getDoc,setDoc,updateDoc,increment,arrayUnion,collection,addDoc,getDocs,orderBy,query,limit}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,updateProfile}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+const cfg={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'};
+const app=initializeApp(cfg);
+const db=getFirestore(app);
+const auth=getAuth(app);
+const gp=new GoogleAuthProvider();
+window._db=db;window._doc=doc;window._getDoc=getDoc;window._setDoc=setDoc;
+window._updateDoc=updateDoc;window._increment=increment;window._arrayUnion=arrayUnion;
+window._collection=collection;window._addDoc=addDoc;window._getDocs=getDocs;
+window._query=query;window._orderBy=orderBy;window._limit=limit;
+window._auth=auth;
+window._signIn=(e,p)=>signInWithEmailAndPassword(auth,e,p);
+window._createAccount=(e,p)=>createUserWithEmailAndPassword(auth,e,p);
+window._googleSignIn=()=>signInWithPopup(auth,gp);
+window._updateProfile=updateProfile;
+window._onAuth=(cb)=>onAuthStateChanged(auth,cb);
+</script>
+
+<script>
+// ── DATA ──
+const GISTS=[
+  {id:1,author:'Anonymous Student',avatar:'😤',color:'#7c3aed',tag:'Lectures',tagColor:'#ede9fe',tagText:'#7c3aed',time:'2 hours ago',text:"When your lecturer says 'this won't come out in exam' then uses it as the first question. Sir, I trusted you with my life.",reactions:{😂:142,💀:89,😭:34}},
+  {id:2,author:'Final Year Student',avatar:'🎓',color:'#1a3fa8',tag:'Project',tagColor:'#dde9ff',tagText:'#1a3fa8',time:'5 hours ago',text:"My supervisor rejected my project for the 7th time. At this point he's not supervising, he's just traumatizing me.",reactions:{💀:201,😭:156,😂:98}},
+  {id:3,author:'100 Level',avatar:'😵',color:'#f97316',tag:'Hostel',tagColor:'#fff7ed',tagText:'#c2410c',time:'Yesterday',text:"The generator in our hostel came on for exactly 12 minutes then went off. Those 12 minutes? The best 12 minutes of my week.",reactions:{😂:178,😭:203,💪:67}},
+  {id:4,author:'Anonymous',avatar:'🤡',color:'#ec4899',tag:'Exam',tagColor:'#fdf2f8',tagText:'#be185d',time:'Yesterday',text:"Sat next to the brightest student during exam. They finished in 30 minutes and left. I wanted to leave with them.",reactions:{💀:234,😂:189,😭:145}},
+  {id:5,author:'Off-campus Student',avatar:'🚶',color:'#16a34a',tag:'Transport',tagColor:'#f0fdf4',tagText:'#15803d',time:'2 days ago',text:"Trekked 2km to school in the rain, sat down, lecturer said 'class is cancelled'. I turned back and went home. No words.",reactions:{😭:312,😂:178,💀:134}},
+  {id:6,author:'Department Rep',avatar:'📢',color:'#0891b2',tag:'Announcement',tagColor:'#ecfeff',tagText:'#0891b2',time:'3 days ago',text:"POV: You're in a WhatsApp group with 500 students and someone sends 'hello' at 3am. 87 replies later, nobody is sleeping.",reactions:{😂:445,💀:289,🤦:201}},
+];
+
+const POLLS=[
+  {id:'p1',q:'Which is better for studying?',opts:['Early morning (4-7am)','Late night (11pm-3am)','Afternoon (2-5pm)','Anywhere once there\'s light'],votes:[234,189,67,145],label:'Study Habits'},
+  {id:'p2',q:'What do you do when a lecturer cancels class?',opts:['Go back to bed immediately','Use the time to study','Go to the cafeteria','Leave school entirely'],votes:[312,45,178,234],label:'Campus Life'},
+  {id:'p3',q:'Which is harder to survive in Nigeria?',opts:['University exams','ASUU strike','Hostel life','School fees payment'],votes:[156,289,234,178],label:'Student Life'},
+  {id:'p4',q:'Best way to pass a hard course?',opts:['Read your notes alone','Form a reading group','Past questions only','Prayer + past questions'],votes:[89,145,267,312],label:'Academics'},
+];
+
+const WYR=[
+  {a:'Have a first class degree but no job connections',b:'Have a 2:1 with strong industry connections'},
+  {a:'Write JAMB 5 times before passing',b:'Do Post-UTME 3 times before passing'},
+  {a:'Live in hostel with no water for a month',b:'Trek 3km to school every day for a semester'},
+  {a:'Have a brilliant project supervisor who is harsh',b:'Have a nice supervisor who gives bad feedback'},
+  {a:'Miss your final exams by 5 minutes',b:'Fail your final exams by 2 marks'},
+  {a:'Study abroad but come back broke',b:'Study in Nigeria but graduate with savings'},
+  {a:'Have light but no water in your hostel',b:'Have water but no light for 2 weeks'},
+  {a:'Submit your project one hour late',b:'Submit with one unread error in chapter 3'},
+  {a:'Sit next to someone who keeps asking you for answers during exam',b:'Sit next to someone who keeps copying your wrong answers'},
+  {a:'Have your favourite lecturer take your worst course',b:'Have your worst lecturer take your favourite course'},
+];
+
+const WORDS=[
+  {w:'LECTURE',h:'What a professor gives in class'},
+  {w:'SEMESTER',h:'Half an academic year'},
+  {w:'CAMPUS',h:'University grounds and buildings'},
+  {w:'STUDENT',h:'A person studying at school'},
+  {w:'FACULTY',h:'A department or group of departments'},
+  {w:'LIBRARY',h:'Where you find books and study'},
+  {w:'HOSTEL',h:'Student accommodation'},
+  {w:'THESIS',h:'A research paper for degree'},
+  {w:'MATRIC',h:'Starting university process'},
+  {w:'RESULT',h:'Academic performance outcome'},
+  {w:'PORTAL',h:'Online student access system'},
+  {w:'COURSE',h:'A subject studied in school'},
+  {w:'DEGREE',h:'Academic qualification earned'},
+  {w:'SCRIPT',h:'Your exam answer booklet'},
+  {w:'CARRYOVER',h:'A failed course repeated'},
+  {w:'ASSIGNMENT',h:'Work given by a lecturer'},
+  {w:'ADMISSION',h:'Process of getting into school'},
+  {w:'SCHOLARSHIP',h:'Financial aid for students'},
+  {w:'POSTUTME',h:'Screening after JAMB'},
+  {w:'CLEARANCE',h:'Final school process before graduation'},
+];
+
+const TODAY_KEY=()=>new Date().toISOString().substring(0,10);
+const DAY_OF_YEAR=()=>{const n=new Date();return Math.floor((n-new Date(n.getFullYear(),0,0))/(1000*60*60*24));}
+
+let currentUser=null;
+let currentPollIdx=DAY_OF_YEAR()%POLLS.length;
+let currentWYRIdx=0;
+let gameState={running:false,score:0,wordIdx:0,interval:null,timerInterval:null,shuffled:[]};
+
+// ── AUTH ──
+setTimeout(()=>{if(window._onAuth)window._onAuth(u=>{currentUser=u;});},500);
+
+// ── TABS ──
+function switchTab(name,btn){
+  document.querySelectorAll('.cl-tab-hero').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+  if(name==='poll') renderPoll();
+  if(name==='wyr') renderWYR();
+  if(name==='game') renderScoreHistory();
+}
+window.switchTab=switchTab;
+
+// ── GIST ──
+function renderGist(){
+  const feed=document.getElementById('gistFeed');
+  const reactions=['😂','💀','😭','💪','🤦'];
+  feed.innerHTML=GISTS.map(g=>{
+    const reactionBtns=reactions.map(r=>{
+      const count=g.reactions[r]||0;
+      return`<button class="react-btn" onclick="react(${g.id},'${r}',this)">${r}<span>${count}</span></button>`;
+    }).join('');
+    return`<div class="gist-item">
+      <div class="gist-header">
+        <div class="gist-avatar" style="background:${g.color}">${g.avatar}</div>
+        <div class="gist-meta">
+          <div class="gist-author">${g.author}</div>
+          <div class="gist-time">${g.time}</div>
+        </div>
+        <span class="gist-tag" style="background:${g.tagColor};color:${g.tagText}">${g.tag}</span>
+      </div>
+      <div class="gist-body">${g.text}</div>
+      <div class="gist-reactions">
+        ${reactionBtns}
+        <button class="gist-share" onclick="shareGist(${g.id})">📤 Share</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function react(id,emoji,btn){
+  if(!currentUser){showAuth();return;}
+  btn.classList.toggle('active');
+  const countEl=btn.querySelector('span');
+  const g=GISTS.find(x=>x.id===id);
+  if(!g.reactions[emoji]) g.reactions[emoji]=0;
+  if(btn.classList.contains('active')){
+    g.reactions[emoji]++;
+    showToast(emoji,'Reaction added!');
+  } else {
+    g.reactions[emoji]=Math.max(0,g.reactions[emoji]-1);
+  }
+  countEl.textContent=g.reactions[emoji];
+}
+window.react=react;
+
+function shareGist(id){
+  const g=GISTS.find(x=>x.id===id);
+  if(!g) return;
+  const msg=encodeURIComponent(`😂 Campus Gist from Big Quams Media®\n\n"${g.text}"\n\nMore campus gist: https://bigquamsmedia.com.ng/campus-life.html`);
+  window.open(`https://wa.me/?text=${msg}`,'_blank');
+}
+window.shareGist=shareGist;
+
+// ── POLL ──
+function renderPoll(){
+  const poll=POLLS[currentPollIdx];
+  const doneKey='bqm_poll_'+TODAY_KEY()+'_'+poll.id;
+  const voted=localStorage.getItem(doneKey);
+  const total=poll.votes.reduce((a,b)=>a+b,0);
+  const maxVotes=Math.max(...poll.votes);
+
+  document.getElementById('pollBody').innerHTML=`
+    <div class="poll-card">
+      <div class="poll-question">${poll.q}</div>
+      <div class="poll-options">
+        ${poll.opts.map((opt,i)=>{
+          const pct=total?Math.round(poll.votes[i]/total*100):0;
+          const isWinner=poll.votes[i]===maxVotes&&voted;
+          const isVoted=voted===String(i);
+          return`<button class="poll-opt${voted?' voted':''}${isWinner?' winner':''}" ${voted?'disabled':''} onclick="vote(${i})">
+            <div class="poll-bar" style="width:${voted?pct:0}%"></div>
+            <span class="poll-opt-text">${opt}${isVoted?' ✓':''}</span>
+            ${voted?`<span class="poll-pct">${pct}%</span>`:''}
+          </button>`;
+        }).join('')}
+      </div>
+      <div class="poll-meta">
+        <span class="poll-label">${poll.label}</span>
+        <span>${total.toLocaleString()} votes</span>
+        ${voted?'<span>You voted!</span>':'<span>Tap to vote</span>'}
+      </div>
+    </div>
+    ${!voted?`<div class="signin-prompt"><p>Sign in to vote and see live results</p><button class="signin-prompt-btn" onclick="showAuth()">Sign In / Sign Up →</button></div>`:''}`;
+
+  // Previous polls
+  const others=POLLS.filter((_,i)=>i!==currentPollIdx);
+  document.getElementById('prevPolls').innerHTML=others.map(p=>{
+    const t=p.votes.reduce((a,b)=>a+b,0);
+    const max=Math.max(...p.votes);
+    const winnerIdx=p.votes.indexOf(max);
+    return`<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)">
+      <div style="font-size:.82rem;font-weight:700;color:var(--text-main);margin-bottom:8px">${p.q}</div>
+      <div style="font-size:.76rem;color:var(--green);font-weight:700">🏆 "${p.opts[winnerIdx]}" — ${Math.round(max/t*100)}% voted this</div>
+      <div style="font-size:.66rem;color:var(--text-muted);margin-top:4px">${t.toLocaleString()} total votes</div>
+    </div>`;
+  }).join('');
+}
+
+function vote(idx){
+  if(!currentUser){showAuth();return;}
+  const poll=POLLS[currentPollIdx];
+  const doneKey='bqm_poll_'+TODAY_KEY()+'_'+poll.id;
+  if(localStorage.getItem(doneKey)) return;
+  poll.votes[idx]++;
+  localStorage.setItem(doneKey,String(idx));
+  renderPoll();
+  showToast('🗳️','Vote recorded!');
+}
+window.vote=vote;
+
+// ── WOULD YOU RATHER ──
+function renderWYR(){
+  const q=WYR[currentWYRIdx%WYR.length];
+  const doneKey='bqm_wyr_'+currentWYRIdx;
+  const chosen=localStorage.getItem(doneKey);
+  const aCount=parseInt(localStorage.getItem(doneKey+'_a')||String(Math.floor(Math.random()*200+50)));
+  const bCount=parseInt(localStorage.getItem(doneKey+'_b')||String(Math.floor(Math.random()*200+50)));
+  const total=aCount+bCount;
+
+  document.getElementById('wyrArea').innerHTML=`
+    <div class="wyr-card">
+      <div class="wyr-title">🤔 Would You Rather…</div>
+      <div class="wyr-options">
+        <button class="wyr-opt-btn${chosen==='a'?' chosen':''}" onclick="chooseWYR('a')" ${chosen?'disabled':''}>
+          ${q.a}
+          ${chosen?`<div style="margin-top:8px;font-size:.72rem;opacity:.8">${Math.round(aCount/total*100)}% chose this</div>`:''}
+        </button>
+        <div class="wyr-or">OR</div>
+        <button class="wyr-opt-btn${chosen==='b'?' chosen':''}" onclick="chooseWYR('b')" ${chosen?'disabled':''}>
+          ${q.b}
+          ${chosen?`<div style="margin-top:8px;font-size:.72rem;opacity:.8">${Math.round(bCount/total*100)}% chose this</div>`:''}
+        </button>
+      </div>
+      ${chosen?`<div class="wyr-result">You and ${Math.round((chosen==='a'?aCount:bCount)/total*100)}% of students chose the same option!</div>`:'<div class="wyr-result">Choose one to see how others voted</div>'}
+    </div>`;
+}
+
+function chooseWYR(side){
+  if(!currentUser){showAuth();return;}
+  const doneKey='bqm_wyr_'+currentWYRIdx;
+  if(localStorage.getItem(doneKey)) return;
+  localStorage.setItem(doneKey,side);
+  renderWYR();
+  showToast('🤔','Choice saved!');
+}
+window.chooseWYR=chooseWYR;
+
+function nextWYR(){currentWYRIdx=(currentWYRIdx+1)%WYR.length;renderWYR();}
+window.nextWYR=nextWYR;
+
+// ── MINI GAME ──
+function scramble(word){
+  let arr=word.split('');
+  for(let i=arr.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  const result=arr.join('');
+  return result===word?scramble(word):result;
+}
+
+function startGame(){
+  if(!currentUser){showAuth();return;}
+  gameState={running:true,score:0,wordIdx:0,timeLeft:60,shuffled:WORDS.sort(()=>Math.random()-.5)};
+  renderGameRound();
+  gameState.timerInterval=setInterval(()=>{
+    gameState.timeLeft--;
+    const timerEl=document.getElementById('gameTimerEl');
+    if(timerEl){
+      timerEl.textContent=gameState.timeLeft+'s';
+      if(gameState.timeLeft<=10) timerEl.classList.add('urgent');
+    }
+    if(gameState.timeLeft<=0){clearInterval(gameState.timerInterval);endGame();}
+  },1000);
+}
+window.startGame=startGame;
+
+function renderGameRound(){
+  const word=gameState.shuffled[gameState.wordIdx%gameState.shuffled.length];
+  const scrambled=scramble(word.w);
+  document.getElementById('gameArea').innerHTML=`
+    <div style="text-align:center;width:100%">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+        <div class="game-score-display">Score: <span style="color:var(--purple)">${gameState.score}</span></div>
+        <div class="game-timer" id="gameTimerEl">${gameState.timeLeft}s</div>
+        <div style="font-size:.72rem;color:var(--text-muted)">Word ${gameState.wordIdx+1}</div>
+      </div>
+      <div class="scramble-word">${scrambled}</div>
+      <div class="scramble-hint">💡 Hint: ${word.h}</div>
+      <input class="game-input" type="text" id="gameInput" placeholder="Type the word…" autocomplete="off" autocapitalize="characters" onkeydown="if(event.key==='Enter')checkAnswer()" autofocus>
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:12px">
+        <button class="game-btn game-btn-start" onclick="checkAnswer()">✓ Submit</button>
+        <button class="game-btn game-btn-skip" onclick="skipWord()">Skip →</button>
+      </div>
+    </div>`;
+  setTimeout(()=>{const inp=document.getElementById('gameInput');if(inp)inp.focus();},100);
+}
+
+function checkAnswer(){
+  const inp=document.getElementById('gameInput');
+  if(!inp) return;
+  const answer=inp.value.trim().toUpperCase();
+  const word=gameState.shuffled[gameState.wordIdx%gameState.shuffled.length];
+  if(answer===word.w){
+    inp.classList.add('correct');
+    gameState.score+=10;
+    showToast('✅','Correct! +10 points');
+    setTimeout(()=>{gameState.wordIdx++;renderGameRound();},600);
+  } else {
+    inp.classList.add('wrong');
+    inp.value='';
+    setTimeout(()=>inp.classList.remove('wrong'),400);
+  }
+}
+window.checkAnswer=checkAnswer;
+
+function skipWord(){gameState.wordIdx++;renderGameRound();}
+window.skipWord=skipWord;
+
+function endGame(){
+  gameState.running=false;
+  const score=gameState.score;
+  const rating=score>=150?'🏆 Word Master!':score>=100?'⭐ Great Job!':score>=50?'👍 Good effort!':'📚 Keep practising!';
+  document.getElementById('gameArea').innerHTML=`
+    <div class="game-result-card">
+      <div class="game-result-score">${score}</div>
+      <div class="game-result-lbl">points earned</div>
+      <div class="game-result-rating">${rating}</div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="game-btn game-btn-start" onclick="startGame()">🔄 Play Again</button>
+        <button class="game-btn game-btn-skip" onclick="shareScore(${score})">📤 Share Score</button>
+      </div>
+    </div>`;
+  // Save score
+  const hist=JSON.parse(localStorage.getItem('bqm_game_scores')||'[]');
+  hist.unshift({score,date:TODAY_KEY()});
+  localStorage.setItem('bqm_game_scores',JSON.stringify(hist.slice(0,10)));
+  renderScoreHistory();
+  const hs=JSON.parse(localStorage.getItem('bqm_game_scores')||'[]');
+  const best=Math.max(...hs.map(x=>x.score));
+  document.getElementById('gameHighscore').textContent=`🏆 Your best score: ${best} points`;
+}
+
+function shareScore(score){
+  const msg=encodeURIComponent(`🎮 I just scored ${score} points on the BQM Word Scramble!\n\nCan you beat me? Play at: https://bigquamsmedia.com.ng/campus-life.html`);
+  window.open(`https://wa.me/?text=${msg}`,'_blank');
+}
+window.shareScore=shareScore;
+
+function renderScoreHistory(){
+  const hist=JSON.parse(localStorage.getItem('bqm_game_scores')||'[]');
+  const el=document.getElementById('scoreHistory');
+  if(!el) return;
+  if(!hist.length){el.innerHTML='<div style="text-align:center;color:var(--text-muted);font-size:.8rem;padding:12px">Play the game to see your scores here!</div>';return;}
+  el.innerHTML=`<div style="display:flex;flex-direction:column;gap:8px">${hist.slice(0,5).map((s,i)=>`
+    <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--surface-alt);border-radius:8px;border:1px solid var(--border)">
+      <span style="font-size:.8rem;color:var(--text-muted);width:20px">${i+1}.</span>
+      <span style="font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;color:var(--purple);flex:1">${s.score} pts</span>
+      <span style="font-size:.66rem;color:var(--text-muted)">${s.date}</span>
+    </div>`).join('')}</div>`;
+}
+
+// ── AUTH ──
+function showAuth(){document.getElementById('authOverlay').style.display='flex';document.body.style.overflow='hidden';}
+window.showAuth=showAuth;
+function closeAuth(){document.getElementById('authOverlay').style.display='none';document.body.style.overflow='';}
+window.closeAuth=closeAuth;
+function switchAuthTab(t,btn){
+  document.querySelectorAll('.auth-tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('clSigninForm').style.display=t==='signin'?'block':'none';
+  document.getElementById('clRegForm').style.display=t==='register'?'block':'none';
+}
+window.switchAuthTab=switchAuthTab;
+async function clSignIn(){
+  const e=document.getElementById('clEmail').value.trim();
+  const p=document.getElementById('clPw').value;
+  if(!e||!p){showErr('clAuthErr','Enter email and password.');return;}
+  try{await window._signIn(e,p);closeAuth();showToast('✅','Signed in!');}
+  catch(err){showErr('clAuthErr',err.code==='auth/invalid-credential'?'Incorrect email or password.':err.message);}
+}
+window.clSignIn=clSignIn;
+async function clRegister(){
+  const n=document.getElementById('clRegName').value.trim();
+  const e=document.getElementById('clRegEmail').value.trim();
+  const p=document.getElementById('clRegPw').value;
+  if(!n||!e||!p){showErr('clRegErr','Fill in all fields.');return;}
+  try{
+    const cred=await window._createAccount(e,p);
+    if(cred.user) await window._updateProfile(cred.user,{displayName:n});
+    closeAuth();showToast('🎉','Account created!');
+  }catch(err){showErr('clRegErr',err.code==='auth/email-already-in-use'?'Email already registered.':err.message);}
+}
+window.clRegister=clRegister;
+async function clGoogleSignIn(){
+  try{await window._googleSignIn();closeAuth();showToast('✅','Signed in!');}
+  catch(e){if(e.code!=='auth/popup-closed-by-user')showErr('clAuthErr',e.message);}
+}
+window.clGoogleSignIn=clGoogleSignIn;
+function showErr(id,msg){const el=document.getElementById(id);el.textContent='❌ '+msg;el.style.display='block';}
+
+// ── TOAST ──
+function showToast(icon,msg){
+  const t=document.getElementById('toast');
+  t.innerHTML=icon+' <span>'+msg+'</span>';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ── UTILS ──
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
+window.toggleDark=toggleDark;window.toggleNav=toggleNav;
+
+document.addEventListener('DOMContentLoaded',()=>{
+  (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}})();
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  renderGist();
+  renderWYR();
+  renderScoreHistory();
+});
+</script>
+</body>
+</html>

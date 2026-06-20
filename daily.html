@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RCLYVCZY2K');
+</script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Daily Hub | Big Quams Media®</title>
+<meta name="description" content="Your daily dose of knowledge, fun challenges and brain teasers. Come back every day to maintain your streak and earn coins on Big Quams Media®.">
+<link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--green:#16a34a;--red:#dc2626;--yellow:#f59e0b;--purple:#7c3aed;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius:14px;--shadow:0 8px 28px rgba(26,63,168,.10)}
+body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Roboto',sans-serif;background:#f5f7ff;color:var(--text-main);overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4)}
+.header-bar{max-width:1100px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.logo-sub{font-size:.55rem;color:rgba(255,255,255,.45);display:block}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:860px){.hamburger{display:flex}}
+.mobile-nav{visibility:hidden;position:fixed;inset:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s ease,visibility 0s linear .3s}
+.mobile-nav.open{visibility:visible;transform:translateX(0);transition:transform .3s ease}
+.mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:60px}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.mnav-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
+.mobile-nav>a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
+.mobile-nav>a:hover{background:rgba(255,255,255,.06);color:#fff}
+.mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px 20px!important;border-bottom:none!important}
+.nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+
+/* HERO */
+.daily-hero{background:linear-gradient(135deg,#0c1f6e,#1a3fa8,#7c3aed);padding:40px 16px 48px;text-align:center;position:relative;overflow:hidden}
+.daily-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+.daily-hero-inner{position:relative;z-index:1;max-width:600px;margin:0 auto}
+.daily-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:14px}
+.daily-date{font-family:'Montserrat',sans-serif;font-size:clamp(1.3rem,4vw,2rem);font-weight:800;color:#fff;margin-bottom:8px}
+.daily-sub{font-size:.84rem;color:rgba(255,255,255,.6);margin-bottom:20px}
+/* Streak */
+.streak-display{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:12px 20px}
+.streak-num{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:800;color:#f97316}
+.streak-lbl{font-size:.72rem;color:rgba(255,255,255,.55);text-align:left}
+.streak-lbl strong{display:block;color:#fff;font-size:.84rem}
+/* Countdown */
+.next-challenge{margin-top:16px;font-size:.74rem;color:rgba(255,255,255,.45)}
+.countdown-timer{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:#fbbf24}
+
+/* MAIN */
+.wrap{max-width:800px;margin:0 auto;padding:0 16px}
+.section-gap{height:28px}
+
+/* CARDS */
+.card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;box-shadow:var(--shadow)}
+body.dark .card{background:#161b27;border-color:var(--border)}
+.card-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.card-icon{font-size:1.3rem}
+.card-title{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;color:var(--text-main);flex:1}
+.card-badge{font-size:.66rem;font-weight:800;padding:3px 9px;border-radius:20px}
+.badge-new{background:#dcfce7;color:#15803d}
+.badge-daily{background:#fef9c3;color:#92400e}
+.card-body{padding:20px}
+
+/* DYK */
+.dyk-card{background:linear-gradient(135deg,#f0f4ff,#e0e9ff);border-radius:12px;padding:20px;margin-bottom:14px;position:relative;overflow:hidden}
+body.dark .dyk-card{background:linear-gradient(135deg,#111624,#141c30)}
+.dyk-card::before{content:'💡';position:absolute;right:16px;top:12px;font-size:2rem;opacity:.15}
+.dyk-label{font-size:.66rem;font-weight:800;color:var(--blue-main);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.dyk-fact{font-size:.92rem;color:var(--text-main);line-height:1.7;font-weight:500}
+.dyk-source{font-size:.66rem;color:var(--text-muted);margin-top:10px}
+.dyk-nav{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+.dyk-nav-btn{background:var(--blue-main);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.72rem;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:5px}
+.dyk-nav-btn:hover{opacity:.85}
+.dyk-nav-btn:disabled{opacity:.35;cursor:not-allowed}
+.dyk-counter{font-size:.74rem;color:var(--text-muted)}
+.share-dyk-btn{background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);color:#16a34a;border-radius:8px;padding:8px 14px;font-size:.72rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;transition:.18s}
+.share-dyk-btn:hover{background:rgba(37,211,102,.2)}
+
+/* CHALLENGE */
+.challenge-intro{font-size:.84rem;color:var(--text-muted);line-height:1.6;margin-bottom:16px}
+.challenge-q{background:linear-gradient(135deg,#fef9c3,#fef3c7);border:1.5px solid #fde68a;border-radius:12px;padding:18px;margin-bottom:16px}
+body.dark .challenge-q{background:linear-gradient(135deg,#1c1400,#2a1e00);border-color:#b45309}
+.challenge-q-text{font-size:.95rem;font-weight:700;color:var(--text-main);line-height:1.6;margin-bottom:4px}
+.challenge-q-category{font-size:.64rem;color:#92400e;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+body.dark .challenge-q-category{color:#fbbf24}
+.challenge-opts{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.ch-opt{padding:12px 16px;border:1.5px solid var(--border);border-radius:9px;background:var(--surface-alt);font-size:.86rem;color:var(--text-main);cursor:pointer;transition:.18s;text-align:left;display:flex;align-items:center;gap:10px}
+body.dark .ch-opt{background:#1a2236;border-color:var(--border)}
+.ch-opt:hover{border-color:var(--purple);background:#ede9fe;color:var(--purple)}
+.ch-opt.correct{border-color:var(--green);background:#dcfce7;color:var(--green);font-weight:700}
+.ch-opt.wrong{border-color:var(--red);background:#fee2e2;color:var(--red)}
+.ch-opt:disabled{cursor:default}
+.ch-opt-letter{width:24px;height:24px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;flex-shrink:0}
+.ch-opt.correct .ch-opt-letter{background:var(--green);color:#fff}
+.ch-opt.wrong .ch-opt-letter{background:var(--red);color:#fff}
+.challenge-result{display:none;border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:.84rem;line-height:1.5}
+.challenge-result.show{display:block}
+.challenge-result.win{background:#dcfce7;border:1.5px solid #bbf7d0;color:#15803d}
+.challenge-result.lose{background:#fee2e2;border:1.5px solid #fca5a5;color:#b91c1c}
+.challenge-exp{font-size:.78rem;margin-top:6px;opacity:.85}
+.coins-earned{display:inline-flex;align-items:center;gap:6px;background:#fef9c3;border:1px solid #fde68a;border-radius:20px;padding:4px 12px;font-size:.76rem;font-weight:700;color:#92400e;margin-top:8px}
+.already-done{background:var(--surface-alt);border:1.5px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+body.dark .already-done{background:#1a2236}
+.already-done-icon{font-size:2rem;margin-bottom:6px}
+.already-done-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text-main);margin-bottom:4px}
+.already-done-sub{font-size:.74rem;color:var(--text-muted)}
+
+/* SIGN IN PROMPT */
+.signin-prompt{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:12px;padding:18px;text-align:center;margin-top:14px}
+.signin-prompt-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:#fff;margin-bottom:6px}
+.signin-prompt-sub{font-size:.74rem;color:rgba(255,255,255,.6);margin-bottom:14px;line-height:1.5}
+.signin-prompt-btn{background:var(--orange);color:#fff;border:none;border-radius:9px;padding:10px 22px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;transition:.18s}
+.signin-prompt-btn:hover{opacity:.9}
+
+/* AUTH OVERLAY */
+.auth-overlay{position:fixed;inset:0;background:rgba(10,20,60,.7);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px);display:none}
+.auth-card{background:#fff;border-radius:20px;padding:28px 24px;width:100%;max-width:380px;box-shadow:0 32px 80px rgba(0,0,0,.3);animation:authPop .3s cubic-bezier(.34,1.56,.64,1)}
+body.dark .auth-card{background:#1e293b}
+@keyframes authPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.auth-logo{width:52px;height:52px;border-radius:50%;border:3px solid var(--orange);margin:0 auto 10px;overflow:hidden}
+.auth-logo img{width:100%;height:100%;object-fit:cover}
+.auth-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text-main);text-align:center;margin-bottom:4px}
+.auth-sub{font-size:.74rem;color:var(--text-muted);text-align:center;margin-bottom:16px;line-height:1.5}
+.auth-input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:.9rem;font-family:'Roboto',sans-serif;color:var(--text-main);background:var(--surface-alt);margin-bottom:10px}
+.auth-btn{width:100%;padding:12px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;cursor:pointer;margin-bottom:8px}
+.google-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;border:1.5px solid var(--border);border-radius:9px;padding:11px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.84rem;color:#1e2749;cursor:pointer;margin-bottom:10px}
+.auth-divider{display:flex;align-items:center;gap:8px;margin:6px 0;color:var(--text-muted);font-size:.68rem}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.auth-error{color:#b91c1c;font-size:.74rem;background:#fee2e2;border-radius:7px;padding:7px 10px;margin-bottom:8px;display:none}
+.auth-close{background:none;border:none;color:var(--text-muted);font-size:.74rem;cursor:pointer;display:block;margin:4px auto 0;text-decoration:underline}
+.auth-tabs{display:flex;gap:0;margin-bottom:14px;border-radius:9px;overflow:hidden;border:1.5px solid var(--border)}
+.auth-tab-btn{flex:1;padding:8px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:800;border:none;cursor:pointer;background:var(--surface-alt);color:var(--text-muted)}
+.auth-tab-btn.active{background:var(--blue-main);color:#fff}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e293b;color:#fff;padding:12px 20px;border-radius:14px;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 8px 28px rgba(0,0,0,.4);z-index:800;opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* HISTORY */
+.history-list{display:flex;flex-direction:column;gap:8px}
+.history-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--surface-alt);border:1px solid var(--border);border-radius:9px;font-size:.78rem}
+body.dark .history-item{background:#1a2236}
+.history-icon{font-size:1rem;flex-shrink:0}
+.history-text{flex:1;color:var(--text-main)}
+.history-date{font-size:.64rem;color:var(--text-muted)}
+
+/* FOOTER */
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.footer-brand img{width:32px;height:32px;border-radius:50%;border:2px solid var(--orange)}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:14px}
+.footer-links a{font-size:.74rem;color:rgba(255,255,255,.45);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.7rem;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-bar">
+    <a href="index.html" class="logo-link">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
+    </a>
+    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <div class="mnav-header">
+    <div style="display:flex;align-items:center;gap:10px"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316"><div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div></div>
+    <button class="mnav-close" onclick="toggleNav()">✕</button>
+  </div>
+  <div class="mnav-lbl">Navigation</div>
+  <a href="index.html" onclick="toggleNav()">Home</a>
+  <a href="explore.html" onclick="toggleNav()">Explore All Tools</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 CBT Practice</a>
+  <a href="newsroom.html" onclick="toggleNav()">Newsroom</a>
+  <a href="scholarship.html" onclick="toggleNav()">Scholarships</a>
+  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
+</nav>
+
+<!-- AUTH OVERLAY -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-card">
+    <div class="auth-logo"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"></div>
+    <div class="auth-title">Join to Participate</div>
+    <div class="auth-sub">Create a free account to answer challenges, earn coins and save your streak.</div>
+    <div class="auth-tabs">
+      <button class="auth-tab-btn active" onclick="switchAuthTab('signin',this)">Sign In</button>
+      <button class="auth-tab-btn" onclick="switchAuthTab('register',this)">Sign Up</button>
+    </div>
+    <button class="google-btn" onclick="dailyGoogleSignIn()">
+      <svg width="17" height="17" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.5 3.1 29.6 1 24 1 14.8 1 7 6.7 3.7 14.6l7 5.4C12.5 13.8 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.8-2.1 5.2-4.5 6.8l7 5.4C43.1 36.8 46.1 31.1 46.1 24.5z"/><path fill="#FBBC05" d="M10.7 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7-5.4C2.2 17.1 1 20.4 1 24s1.2 6.9 3.7 9.9l7-5.3z"/><path fill="#34A853" d="M24 47c5.6 0 10.4-1.9 13.8-5.1l-7-5.4c-1.9 1.3-4.2 2-6.8 2-6.2 0-11.5-4.3-13.3-10l-7 5.4C7 41.3 14.8 47 24 47z"/></svg>
+      Continue with Google
+    </button>
+    <div class="auth-divider">or email</div>
+    <div id="signinForm">
+      <input class="auth-input" type="email" id="authEmail" placeholder="Email address">
+      <input class="auth-input" type="password" id="authPw" placeholder="Password" onkeydown="if(event.key==='Enter')dailySignIn()">
+      <div class="auth-error" id="authErr"></div>
+      <button class="auth-btn" onclick="dailySignIn()">Sign In →</button>
+    </div>
+    <div id="registerForm" style="display:none">
+      <input class="auth-input" type="text" id="regName" placeholder="Your full name">
+      <input class="auth-input" type="email" id="regEmail" placeholder="Email address">
+      <input class="auth-input" type="password" id="regPw" placeholder="Password (min 6 chars)" onkeydown="if(event.key==='Enter')dailyRegister()">
+      <div class="auth-error" id="regErr"></div>
+      <button class="auth-btn" onclick="dailyRegister()">Create Free Account →</button>
+    </div>
+    <button class="auth-close" onclick="closeAuth()">Maybe later</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- HERO -->
+<div class="daily-hero">
+  <div class="daily-hero-inner">
+    <div class="daily-badge">📅 Daily Hub</div>
+    <div class="daily-date" id="heroDate">Loading…</div>
+    <div class="daily-sub">Your daily dose of knowledge and brain challenges</div>
+    <div class="streak-display">
+      <div>🔥</div>
+      <div class="streak-num" id="streakNum">0</div>
+      <div class="streak-lbl"><strong id="streakLabel">Day Streak</strong><span id="streakSub">Visit daily to keep it going!</span></div>
+    </div>
+    <div class="next-challenge">Next challenge in: <span class="countdown-timer" id="countdown">--:--:--</span></div>
+  </div>
+</div>
+
+<div class="wrap" style="padding-top:28px">
+
+  <!-- DYK SECTION -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">💡</span>
+      <span class="card-title">Did You Know?</span>
+      <span class="card-badge badge-daily">Daily Facts</span>
+    </div>
+    <div class="card-body">
+      <div class="dyk-card" id="dykCard">
+        <div class="dyk-label">Today's Fact</div>
+        <div class="dyk-fact" id="dykFact">Loading today's fact…</div>
+        <div class="dyk-source" id="dykSource"></div>
+      </div>
+      <div class="dyk-nav">
+        <button class="dyk-nav-btn" id="dykPrevBtn" onclick="dykNavigate(-1)" disabled>← Prev</button>
+        <span class="dyk-counter" id="dykCounter">1 / 1</span>
+        <button class="dyk-nav-btn" id="dykNextBtn" onclick="dykNavigate(1)">Next →</button>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="share-dyk-btn" onclick="shareDYK()">📤 Share this Fact</button>
+        <a href="dyk.html" style="font-size:.74rem;color:var(--blue-main);font-weight:700;display:flex;align-items:center;gap:4px;padding:8px 12px;border:1.5px solid var(--border);border-radius:8px">📚 See All Facts →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAILY CHALLENGE -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-icon">🎯</span>
+      <span class="card-title">Daily Challenge</span>
+      <span class="card-badge badge-new" id="challengeBadge">New Today</span>
+    </div>
+    <div class="card-body">
+      <div class="challenge-intro">One new challenge every day. Answer correctly to earn <strong>5 🪙 coins</strong> and keep your streak alive!</div>
+      <div id="challengeArea">
+        <div style="text-align:center;padding:30px;color:var(--text-muted)">Loading today's challenge…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECENT HISTORY -->
+  <div class="card" id="historyCard" style="display:none">
+    <div class="card-header">
+      <span class="card-icon">📋</span>
+      <span class="card-title">Your Recent Activity</span>
+    </div>
+    <div class="card-body">
+      <div class="history-list" id="historyList"></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="daily.html">Daily Hub</a><a href="campus-life.html">Campus Life</a>
+      <a href="newsroom.html">Newsroom</a><a href="cbt.html">CBT Practice</a><a href="scholarship.html">Scholarships</a><a href="elibrary.html">eLibrary</a>
+      <a href="postutme-prep.html">Post-UTME Prep</a><a href="gpa-calculator.html">GPA Calculator</a><a href="results.html">Results</a>
+    </div>
+    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved</div>
+  </div>
+</footer>
+
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import{getFirestore,doc,getDoc,setDoc,updateDoc,increment,arrayUnion}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,updateProfile}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+const cfg={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'};
+const app=initializeApp(cfg);
+const db=getFirestore(app);
+const auth=getAuth(app);
+const gp=new GoogleAuthProvider();
+window._db=db;window._doc=doc;window._getDoc=getDoc;window._setDoc=setDoc;
+window._updateDoc=updateDoc;window._increment=increment;window._arrayUnion=arrayUnion;
+window._auth=auth;
+window._signIn=(e,p)=>signInWithEmailAndPassword(auth,e,p);
+window._createAccount=(e,p)=>createUserWithEmailAndPassword(auth,e,p);
+window._googleSignIn=()=>signInWithPopup(auth,gp);
+window._updateProfile=updateProfile;
+window._onAuth=(cb)=>onAuthStateChanged(auth,cb);
+</script>
+
+<script>
+// ── DAILY CHALLENGES BANK ──
+// Rotates by day of year so everyone gets same question each day
+const CHALLENGES=[
+  {q:"What is the capital of Nigeria?",opts:["Lagos","Abuja","Kano","Ibadan"],ans:1,exp:"Abuja became Nigeria's capital in 1991, replacing Lagos.",cat:"Geography"},
+  {q:"Which year did Nigeria gain independence?",opts:["1957","1960","1963","1965"],ans:1,exp:"Nigeria gained independence from Britain on October 1, 1960.",cat:"History"},
+  {q:"What does 'JAMB' stand for?",opts:["Joint Admissions and Matriculation Board","Joint Academic Matriculation Bureau","Junior Admissions and Matriculation Board","Joint Admissions and Management Board"],ans:0,exp:"JAMB = Joint Admissions and Matriculation Board, established in 1978.",cat:"Education"},
+  {q:"Which is the largest university in Nigeria by student population?",opts:["University of Lagos","Ahmadu Bello University","University of Ibadan","University of Nigeria Nsukka"],ans:1,exp:"Ahmadu Bello University (ABU) Zaria is the largest university in Nigeria.",cat:"Education"},
+  {q:"What is the chemical symbol for Gold?",opts:["Go","Gd","Au","Ag"],ans:2,exp:"Au comes from the Latin word 'Aurum' meaning gold.",cat:"Science"},
+  {q:"Which planet is known as the Red Planet?",opts:["Venus","Jupiter","Saturn","Mars"],ans:3,exp:"Mars appears red due to iron oxide (rust) on its surface.",cat:"Science"},
+  {q:"What is 15% of 200?",opts:["25","30","35","20"],ans:1,exp:"15% × 200 = (15/100) × 200 = 30.",cat:"Mathematics"},
+  {q:"Who wrote 'Things Fall Apart'?",opts:["Wole Soyinka","Chinua Achebe","Ben Okri","Chimamanda Adichie"],ans:1,exp:"Things Fall Apart was written by Chinua Achebe, published in 1958.",cat:"Literature"},
+  {q:"What is the powerhouse of the cell?",opts:["Nucleus","Ribosome","Mitochondria","Chloroplast"],ans:2,exp:"Mitochondria produce ATP energy through cellular respiration.",cat:"Biology"},
+  {q:"How many states are in Nigeria?",opts:["30","34","36","38"],ans:2,exp:"Nigeria has 36 states plus the Federal Capital Territory (FCT).",cat:"Geography"},
+  {q:"What is the speed of light in vacuum?",opts:["3×10⁶ m/s","3×10⁸ m/s","3×10¹⁰ m/s","3×10⁴ m/s"],ans:1,exp:"The speed of light in a vacuum is approximately 3×10⁸ m/s (300,000 km/s).",cat:"Physics"},
+  {q:"Which of these is NOT a programming language?",opts:["Python","Java","Photoshop","JavaScript"],ans:2,exp:"Photoshop is a graphic design software, not a programming language.",cat:"Technology"},
+  {q:"What is the full meaning of 'GPA'?",opts:["Grade Point Average","Grade Performance Assessment","General Point Average","Grade Point Assessment"],ans:0,exp:"GPA stands for Grade Point Average, used to measure academic performance.",cat:"Education"},
+  {q:"Water is a compound of which two elements?",opts:["Hydrogen and Carbon","Oxygen and Carbon","Hydrogen and Oxygen","Nitrogen and Hydrogen"],ans:2,exp:"Water (H₂O) is made of 2 hydrogen atoms and 1 oxygen atom.",cat:"Chemistry"},
+  {q:"Which African country has the largest economy?",opts:["South Africa","Egypt","Nigeria","Kenya"],ans:2,exp:"Nigeria has the largest economy in Africa by GDP as of recent years.",cat:"Economics"},
+  {q:"What does 'CPU' stand for in computing?",opts:["Computer Processing Unit","Central Processing Unit","Control Processing Unit","Core Processing Unit"],ans:1,exp:"CPU = Central Processing Unit — the brain of a computer.",cat:"Technology"},
+  {q:"How many bones are in the adult human body?",opts:["196","206","216","226"],ans:1,exp:"An adult human has 206 bones. Babies are born with about 270-300 bones that fuse over time.",cat:"Biology"},
+  {q:"What is the national anthem of Nigeria's first line?",opts:["Nigeria we hail thee","Arise O compatriots","Oh Nigeria thy land is great","God bless our homeland"],ans:1,exp:"The current Nigerian national anthem begins with 'Arise O compatriots, Nigeria's call obey.'",cat:"History"},
+  {q:"Which gas do plants absorb during photosynthesis?",opts:["Oxygen","Nitrogen","Carbon Dioxide","Hydrogen"],ans:2,exp:"Plants absorb CO₂ and release O₂ during photosynthesis using sunlight.",cat:"Biology"},
+  {q:"What is 2 to the power of 10?",opts:["512","1024","2048","256"],ans:1,exp:"2¹⁰ = 2×2×2×2×2×2×2×2×2×2 = 1024.",cat:"Mathematics"},
+  {q:"Which is the longest river in the world?",opts:["Amazon","Congo","Nile","Mississippi"],ans:2,exp:"The Nile River in Africa is the longest at approximately 6,650 km.",cat:"Geography"},
+  {q:"What does 'URL' stand for?",opts:["Universal Resource Locator","Uniform Resource Locator","United Resource Link","Universal Remote Link"],ans:1,exp:"URL = Uniform Resource Locator — the web address of a page.",cat:"Technology"},
+  {q:"Who is the father of mathematics?",opts:["Isaac Newton","Albert Einstein","Archimedes","Pythagoras"],ans:2,exp:"Archimedes of Syracuse is widely regarded as the father of mathematics.",cat:"Mathematics"},
+  {q:"What is the currency of Nigeria?",opts:["Cedi","Naira","Franc","Shilling"],ans:1,exp:"Nigeria's currency is the Naira (₦), introduced in 1973.",cat:"Economics"},
+  {q:"What is the chemical formula for common salt?",opts:["NaOH","HCl","NaCl","KCl"],ans:2,exp:"Common salt is Sodium Chloride (NaCl) — sodium + chlorine.",cat:"Chemistry"},
+  {q:"Which organ produces insulin in the human body?",opts:["Liver","Kidney","Pancreas","Stomach"],ans:2,exp:"The pancreas produces insulin, which regulates blood sugar levels.",cat:"Biology"},
+  {q:"What is the full meaning of 'WAEC'?",opts:["West African Examination Council","West African Examination Committee","West Africa Education Council","Western Africa Examination Council"],ans:0,exp:"WAEC = West African Examinations Council, established in 1952.",cat:"Education"},
+  {q:"Which planet has the most moons?",opts:["Jupiter","Saturn","Uranus","Neptune"],ans:1,exp:"Saturn has the most confirmed moons with over 140 discovered.",cat:"Science"},
+  {q:"What is the formula for calculating speed?",opts:["Speed = Distance ÷ Time","Speed = Time ÷ Distance","Speed = Distance × Time","Speed = Mass × Velocity"],ans:0,exp:"Speed = Distance divided by Time (S = D/T).",cat:"Physics"},
+  {q:"Which of these is a Nigerian Nobel Prize winner?",opts:["Chinua Achebe","Ngugi wa Thiong'o","Wole Soyinka","Ben Okri"],ans:2,exp:"Wole Soyinka won the Nobel Prize in Literature in 1986, the first African to do so.",cat:"History"},
+];
+
+const TODAY_KEY=()=>new Date().toISOString().substring(0,10);
+const DAY_OF_YEAR=()=>{const n=new Date();return Math.floor((n-new Date(n.getFullYear(),0,0))/(1000*60*60*24));}
+const todayChallenge=()=>CHALLENGES[DAY_OF_YEAR()%CHALLENGES.length];
+
+let currentUser=null;
+let dykData=[];
+let dykIndex=0;
+
+// ── AUTH ──
+setTimeout(()=>{
+  if(window._onAuth) window._onAuth(user=>{
+    currentUser=user;
+    if(user){updateStreakOnVisit(user);}
+    renderChallenge();
+    renderHistory();
+  });
+},500);
+
+// ── STREAK ──
+async function updateStreakOnVisit(user){
+  try{
+    const ref=window._doc(window._db,'cbt_users',user.uid);
+    const snap=await window._getDoc(ref);
+    const today=TODAY_KEY();
+    const yesterday=new Date(Date.now()-86400000).toISOString().substring(0,10);
+    if(snap.exists()){
+      const data=snap.data();
+      const last=data.lastDailyVisit||'';
+      if(last===today){
+        // Already visited today
+        updateStreakUI(data.dailyStreak||data.streak||0);
+        return;
+      }
+      const newStreak=last===yesterday?(data.dailyStreak||0)+1:1;
+      await window._updateDoc(ref,{lastDailyVisit:today,dailyStreak:newStreak});
+      updateStreakUI(newStreak);
+      if(newStreak>1) showToast('🔥','Day '+newStreak+' streak! Keep it going!');
+    }
+  }catch(e){}
+}
+
+function updateStreakUI(streak){
+  document.getElementById('streakNum').textContent=streak;
+  document.getElementById('streakLabel').textContent=streak===1?'Day Streak':'Day Streak';
+  document.getElementById('streakSub').textContent=streak>=7?'You\'re on fire! 🔥':streak>=3?'Great consistency!':'Visit daily to keep it going!';
+}
+
+// ── DYK ──
+async function loadDYK(){
+  try{
+    const r=await fetch('dyk.json?v='+Date.now());
+    const data=await r.json();
+    dykData=data;
+    // Start from today's index based on date
+    dykIndex=DAY_OF_YEAR()%data.length;
+    renderDYK();
+  }catch(e){
+    document.getElementById('dykFact').textContent='Could not load facts today. Check back later!';
+  }
+}
+
+function renderDYK(){
+  if(!dykData.length) return;
+  const item=dykData[dykIndex];
+  document.getElementById('dykFact').textContent=item.fact||item.content||item.text||JSON.stringify(item);
+  document.getElementById('dykSource').textContent=item.source?'Source: '+item.source:'';
+  document.getElementById('dykCounter').textContent=(dykIndex+1)+' / '+dykData.length;
+  document.getElementById('dykPrevBtn').disabled=dykIndex===0;
+  document.getElementById('dykNextBtn').disabled=dykIndex===dykData.length-1;
+}
+
+function dykNavigate(dir){
+  dykIndex=Math.max(0,Math.min(dykData.length-1,dykIndex+dir));
+  renderDYK();
+}
+window.dykNavigate=dykNavigate;
+
+function shareDYK(){
+  if(!dykData.length) return;
+  const item=dykData[dykIndex];
+  const fact=item.fact||item.content||item.text||'';
+  const msg=encodeURIComponent(`💡 Did You Know?\n\n${fact}\n\n— Big Quams Media® | bigquamsmedia.com.ng`);
+  window.open(`https://wa.me/?text=${msg}`,'_blank');
+}
+window.shareDYK=shareDYK;
+
+// ── CHALLENGE ──
+function renderChallenge(){
+  const area=document.getElementById('challengeArea');
+  const ch=todayChallenge();
+  const todayKey=TODAY_KEY();
+  const done=localStorage.getItem('bqm_daily_done_'+todayKey);
+
+  if(done){
+    const wasCorrect=localStorage.getItem('bqm_daily_correct_'+todayKey)==='1';
+    area.innerHTML=`
+      <div class="already-done">
+        <div class="already-done-icon">${wasCorrect?'✅':'📚'}</div>
+        <div class="already-done-title">${wasCorrect?"You got it right today! 🎉":"You attempted today's challenge"}</div>
+        <div class="already-done-sub">Come back tomorrow for a new challenge. New challenge in: <strong id="doneCountdown"></strong></div>
+        ${wasCorrect?'<div class="coins-earned" style="margin:10px auto 0">🪙 +5 coins earned today</div>':''}
+      </div>`;
+    document.getElementById('challengeBadge').textContent='Done ✓';
+    document.getElementById('challengeBadge').style.background='#dcfce7';
+    document.getElementById('challengeBadge').style.color='#15803d';
+    return;
+  }
+
+  const letters=['A','B','C','D'];
+  area.innerHTML=`
+    <div class="challenge-q">
+      <div class="challenge-q-category">${ch.cat}</div>
+      <div class="challenge-q-text">${ch.q}</div>
+    </div>
+    <div class="challenge-opts" id="chOpts">
+      ${ch.opts.map((o,i)=>`
+        <button class="ch-opt" onclick="answerChallenge(${i})" id="chOpt-${i}">
+          <span class="ch-opt-letter">${letters[i]}</span>${o}
+        </button>`).join('')}
+    </div>
+    <div class="challenge-result" id="chResult"></div>
+    ${!currentUser?`<div class="signin-prompt">
+      <div class="signin-prompt-title">Sign in to earn coins!</div>
+      <div class="signin-prompt-sub">Answer correctly and earn 🪙 5 coins added to your CBT balance.</div>
+      <button class="signin-prompt-btn" onclick="showAuth()">Sign In / Sign Up →</button>
+    </div>`:''}`;
+}
+
+async function answerChallenge(idx){
+  const ch=todayChallenge();
+  const todayKey=TODAY_KEY();
+  const isCorrect=idx===ch.ans;
+  const letters=['A','B','C','D'];
+
+  // Disable all options
+  document.querySelectorAll('.ch-opt').forEach((b,i)=>{
+    b.disabled=true;
+    if(i===ch.ans) b.classList.add('correct');
+    else if(i===idx&&!isCorrect) b.classList.add('wrong');
+  });
+
+  const result=document.getElementById('chResult');
+  result.className='challenge-result show '+(isCorrect?'win':'lose');
+  result.innerHTML=`
+    <strong>${isCorrect?'🎉 Correct!':'😔 Not quite!'}</strong>
+    <div class="challenge-exp">💡 ${ch.exp}</div>
+    ${isCorrect&&currentUser?'<div class="coins-earned">🪙 +5 coins added to your balance!</div>':''}
+    ${isCorrect&&!currentUser?'<div style="margin-top:8px;font-size:.74rem">Sign in to save your coins! <button onclick="showAuth()" style="background:none;border:none;color:var(--blue-main);font-weight:700;cursor:pointer">Sign In →</button></div>':''}
+  `;
+
+  // Save to localStorage
+  localStorage.setItem('bqm_daily_done_'+todayKey,'1');
+  localStorage.setItem('bqm_daily_correct_'+todayKey,isCorrect?'1':'0');
+
+  // Award coins to signed-in user
+  if(currentUser&&isCorrect){
+    try{
+      await window._updateDoc(window._doc(window._db,'cbt_users',currentUser.uid),{
+        coinsBalance:window._increment(5),
+        coinsDailyEarned:window._increment(5),
+        dailyChallengesCompleted:window._increment(1),
+      });
+      showToast('🪙','You earned 5 coins!');
+    }catch(e){}
+  }
+
+  // Save to history
+  const hist=JSON.parse(localStorage.getItem('bqm_daily_history')||'[]');
+  hist.unshift({date:todayKey,q:ch.q.substring(0,50)+'…',correct:isCorrect,cat:ch.cat});
+  localStorage.setItem('bqm_daily_history',JSON.stringify(hist.slice(0,14)));
+  renderHistory();
+}
+window.answerChallenge=answerChallenge;
+
+function renderHistory(){
+  const hist=JSON.parse(localStorage.getItem('bqm_daily_history')||'[]');
+  const card=document.getElementById('historyCard');
+  const list=document.getElementById('historyList');
+  if(!hist.length){card.style.display='none';return;}
+  card.style.display='block';
+  list.innerHTML=hist.slice(0,7).map(h=>`
+    <div class="history-item">
+      <span class="history-icon">${h.correct?'✅':'❌'}</span>
+      <span class="history-text">${h.q}</span>
+      <span class="history-date">${h.date}</span>
+    </div>`).join('');
+}
+
+// ── COUNTDOWN ──
+function updateCountdown(){
+  const now=new Date();
+  const tomorrow=new Date(now);
+  tomorrow.setDate(tomorrow.getDate()+1);
+  tomorrow.setHours(0,0,0,0);
+  const diff=tomorrow-now;
+  const h=Math.floor(diff/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const s=Math.floor((diff%60000)/1000);
+  const str=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  document.getElementById('countdown').textContent=str;
+  const dc=document.getElementById('doneCountdown');
+  if(dc) dc.textContent=str;
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+// ── AUTH ──
+function showAuth(){document.getElementById('authOverlay').style.display='flex';document.body.style.overflow='hidden';}
+window.showAuth=showAuth;
+function closeAuth(){document.getElementById('authOverlay').style.display='none';document.body.style.overflow='';}
+window.closeAuth=closeAuth;
+function switchAuthTab(t,btn){
+  document.querySelectorAll('.auth-tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('signinForm').style.display=t==='signin'?'block':'none';
+  document.getElementById('registerForm').style.display=t==='register'?'block':'none';
+}
+window.switchAuthTab=switchAuthTab;
+async function dailySignIn(){
+  const e=document.getElementById('authEmail').value.trim();
+  const p=document.getElementById('authPw').value;
+  if(!e||!p){showAuthErr('authErr','Enter email and password.');return;}
+  try{await window._signIn(e,p);closeAuth();}
+  catch(err){showAuthErr('authErr',err.code==='auth/invalid-credential'?'Incorrect email or password.':err.message);}
+}
+window.dailySignIn=dailySignIn;
+async function dailyRegister(){
+  const n=document.getElementById('regName').value.trim();
+  const e=document.getElementById('regEmail').value.trim();
+  const p=document.getElementById('regPw').value;
+  if(!n||!e||!p){showAuthErr('regErr','Fill in all fields.');return;}
+  try{
+    const cred=await window._createAccount(e,p);
+    if(cred.user) await window._updateProfile(cred.user,{displayName:n});
+    closeAuth();
+  }catch(err){showAuthErr('regErr',err.code==='auth/email-already-in-use'?'Email already registered. Sign in instead.':err.message);}
+}
+window.dailyRegister=dailyRegister;
+async function dailyGoogleSignIn(){
+  try{await window._googleSignIn();closeAuth();}
+  catch(e){if(e.code!=='auth/popup-closed-by-user')showAuthErr('authErr',e.message);}
+}
+window.dailyGoogleSignIn=dailyGoogleSignIn;
+function showAuthErr(id,msg){const el=document.getElementById(id);el.textContent='❌ '+msg;el.style.display='block';}
+
+// ── TOAST ──
+function showToast(icon,msg){
+  const t=document.getElementById('toast');
+  t.innerHTML=icon+' <span>'+msg+'</span>';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// ── INIT ──
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
+window.toggleDark=toggleDark;window.toggleNav=toggleNav;
+
+document.addEventListener('DOMContentLoaded',()=>{
+  (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}})();
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const now=new Date();
+  document.getElementById('heroDate').textContent=days[now.getDay()]+', '+now.getDate()+' '+months[now.getMonth()]+' '+now.getFullYear();
+  loadDYK();
+});
+</script>
+</body>
+</html>

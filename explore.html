@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RCLYVCZY2K');
+</script>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Explore All Tools | Big Quams Media®</title>
@@ -512,7 +520,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
 
 // ── ALL TOOLS DATA ──
 const ALL_TOOLS=[
-  {title:'JAMB CBT Practice',desc:'Timed CBT exam with 120+ past questions across all JAMB subjects. Practice in real exam conditions.',icon:'🎯',bg:'#fee2e2',tag:'Exam Prep',tagBg:'#fee2e2',tagColor:'#b91c1c',link:'cbt.html',stage:['pre-jamb'],filter:'exam',featured:true},
+  {title:'JAMB CBT Practice',desc:'Timed CBT exam with 515+ past questions across all JAMB subjects. Practice in real exam conditions.',icon:'👨🏽‍💻',bg:'#fee2e2',tag:'Exam Prep',tagBg:'#fee2e2',tagColor:'#b91c1c',link:'cbt.html',stage:['pre-jamb'],filter:'exam',featured:true},
   {title:'Post-UTME Calculator',desc:'Select your school, enter JAMB and O\'Level scores, get your aggregate instantly. Download result as PDF.',icon:'🧮',bg:'#dbeafe',tag:'Admission',tagBg:'#dbeafe',tagColor:'#1d4ed8',link:'postutme-calculator.html',stage:['post-utme'],filter:'admission',featured:true},
   {title:'Subject Combination Checker',desc:'Find the correct 4 JAMB subjects for any course. Instant results with O\'Level requirements.',icon:'📋',bg:'#dcfce7',tag:'Admission',tagBg:'#dcfce7',tagColor:'#15803d',link:'subject-combo.html',stage:['pre-jamb'],filter:'admission',featured:true},
   {title:'Free eLibrary',desc:'Download free JAMB past questions, textbooks and academic PDFs — no registration needed.',icon:'📚',bg:'#fef3c7',tag:'Resources',tagBg:'#fef3c7',tagColor:'#92400e',link:'elibrary.html',stage:['pre-jamb','post-utme','in-school'],filter:'resources',featured:true},
@@ -520,10 +528,12 @@ const ALL_TOOLS=[
   {title:'Results Checker',desc:'Step-by-step guides to check JAMB, WAEC, NECO and NABTEB results with direct portal links.',icon:'📊',bg:'#e0f2fe',tag:'Exam Prep',tagBg:'#e0f2fe',tagColor:'#0369a1',link:'results.html',stage:['pre-jamb','post-utme'],filter:'exam',featured:false},
   {title:'GPA / CGPA Calculator',desc:'Calculate your GPA and CGPA for both the 5.0 (University) and 4.0 (Polytechnic) scales.',icon:'🎓',bg:'#dcfce7',tag:'In School',tagBg:'#dcfce7',tagColor:'#15803d',link:'gpa-calculator.html',stage:['in-school'],filter:'inschool',featured:false},
   {title:'NELFUND Student Loan',desc:'Everything about the Nigerian federal interest-free student loan — eligibility, how to apply and repayment.',icon:'💳',bg:'#ede9fe',tag:'In School',tagBg:'#ede9fe',tagColor:'#6d28d9',link:'student-loan.html',stage:['in-school'],filter:'inschool',featured:true},
-  {title:'Post-UTME Prep Guide',desc:'School-specific preparation guides, tips and strategies for Post-UTME screening at Nigerian universities.',icon:'📖',bg:'#fef9c3',tag:'Admission',tagBg:'#fef9c3',tagColor:'#92400e',link:'postutme-prep.html',stage:['post-utme'],filter:'admission',featured:false},
+  {title:'Post-UTME Prep Guide',desc:'School-specific preparation guides, practice questions and strategies for Post-UTME screening at Nigerian universities.',icon:'📖',bg:'#fef9c3',tag:'Admission',tagBg:'#fef9c3',tagColor:'#92400e',link:'postutme-prep.html',stage:['post-utme'],filter:'admission',featured:false},
   {title:'Did You Know?',desc:'Fun educational facts about JAMB, Nigerian universities, scholarships and academic history.',icon:'💡',bg:'#fef9c3',tag:'Resources',tagBg:'#fef9c3',tagColor:'#92400e',link:'dyk.html',stage:['pre-jamb','post-utme','in-school'],filter:'resources',featured:false},
   {title:'Student Spotlight',desc:'Real success stories from Nigerian students who used BQM to get admitted, win scholarships and thrive.',icon:'🌟',bg:'#fce7f3',tag:'Resources',tagBg:'#fce7f3',tagColor:'#9d174d',link:'spotlight.html',stage:['pre-jamb','post-utme','in-school'],filter:'resources',featured:false},
   {title:'Newsroom',desc:'Latest news on JAMB updates, campus news, scholarship announcements and admission guides.',icon:'📰',bg:'#dbeafe',tag:'News',tagBg:'#dbeafe',tagColor:'#1d4ed8',link:'newsroom.html',stage:['pre-jamb','post-utme','in-school'],filter:'news',featured:false},
+  {title:'Daily Hub',desc:'A new brain challenge, Did You Know fact and daily streak every day. Earn coins and keep your learning streak alive.',icon:'📅',bg:'#fef9c3',tag:'Fun',tagBg:'#fef9c3',tagColor:'#92400e',link:'daily.html',stage:['pre-jamb','post-utme','in-school'],filter:'resources',featured:true},
+  {title:'Campus Life',desc:'Relatable campus gist, daily polls, Would You Rather, and a 60-second word scramble mini game. Updated daily.',icon:'🎮',bg:'#fce7f3',tag:'Fun',tagBg:'#fce7f3',tagColor:'#9d174d',link:'campus-life.html',stage:['in-school','post-utme','pre-jamb'],filter:'resources',featured:true},
   {title:'Brainy Buddies Community',desc:'Join 10,000+ Nigerian students on the free WhatsApp community for instant alerts and peer support.',icon:'👥',bg:'#dcfce7',tag:'Community',tagBg:'#dcfce7',tagColor:'#15803d',link:'community.html',stage:['pre-jamb','post-utme','in-school'],filter:'resources',featured:false},
 ];
 
