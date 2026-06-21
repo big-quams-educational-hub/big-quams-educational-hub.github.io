@@ -478,7 +478,7 @@ function render(){
     const idx=allNews.indexOf(n);
     const mins=readingTime(n.fullContent||n.summary);
     return`<div class="news-card" onclick="openArticle(${idx})">
-      ${n.image?`<img class="news-card-img" src="${n.image}" alt="${n.title}">`:`<div class="news-card-img-placeholder">📰</div>`}
+      ${n.image?`<img class="news-card-img" src="${n.image}" alt="${n.title}">`:`<img class="news-card-img" src="1001735667.png" alt="${n.title}">`}
       <div class="news-card-body">
         <span class="news-card-cat" style="${catStyle(n.category||'')}">${n.category||'News'}</span>
         <div class="news-card-title">${n.title}</div>
@@ -557,7 +557,7 @@ function openArticle(idx){
   ogDesc.setAttribute('content',(n.summary||'').substring(0,160));
   let ogImg=document.querySelector('meta[property="og:image"]');
   if(!ogImg){ogImg=document.createElement('meta');ogImg.setAttribute('property','og:image');document.head.appendChild(ogImg);}
-  if(n.image) ogImg.setAttribute('content',n.image);
+  ogImg.setAttribute('content', n.image || 'https://bigquamsmedia.com.ng/1001735667.png');
   let ogUrl=document.querySelector('meta[property="og:url"]');
   if(!ogUrl){ogUrl=document.createElement('meta');ogUrl.setAttribute('property','og:url');document.head.appendChild(ogUrl);}
   ogUrl.setAttribute('content',url.toString());
