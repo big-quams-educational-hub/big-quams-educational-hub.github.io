@@ -104,8 +104,8 @@ header{background:linear-gradient(135deg,#0c1f6e 0%,#1a3fa8 100%);position:stick
 @keyframes scroll-ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* HERO */
-.hero{background:linear-gradient(150deg,#081530 0%,#0f2060 40%,#1a3fa8 100%);padding:56px 16px 64px;position:relative;overflow:hidden;text-align:center}
-.hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+.hero{background:linear-gradient(150deg,rgba(8,21,48,.82) 0%,rgba(15,32,96,.75) 40%,rgba(26,63,168,.72) 100%),url('1001730394.png') center center/cover no-repeat;padding:56px 16px 64px;position:relative;overflow:hidden;text-align:center}
+.hero::after{content:'';position:absolute;inset:0;background:rgba(5,12,40,.38);pointer-events:none}
 .hero-blob1{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.14) 0%,transparent 65%);top:-150px;right:-150px;pointer-events:none}
 .hero-blob2{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(26,63,168,.3) 0%,transparent 70%);bottom:-80px;left:-80px;pointer-events:none}
 .hero-inner{max-width:760px;margin:0 auto;position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
@@ -530,18 +530,6 @@ body.dark .tools-bar{background:#161b27;border-color:var(--border)}
         <button onclick="heroSearchTag('Post-UTME')">📖 Post-UTME</button>
         <button onclick="heroSearchTag('Student Loan')">💳 NELFUND</button>
       </div>
-    </div>
-
-    <!-- FLOATING FEATURE ICONS -->
-    <div class="hero-features">
-      <a href="newsroom.html" class="hf-chip">📰 Newsroom</a>
-      <a href="scholarship.html" class="hf-chip">💰 Scholarships</a>
-      <a href="cbt.html" class="hf-chip hf-featured">👨🏽‍💻 CBT Practice</a>
-      <a href="gpa-calculator.html" class="hf-chip">📊 GPA Calc</a>
-      <a href="student-loan.html" class="hf-chip">💳 NELFUND</a>
-      <a href="elibrary.html" class="hf-chip">📚 eLibrary</a>
-      <a href="daily.html" class="hf-chip">📅 Daily Hub</a>
-      <a href="campus-life.html" class="hf-chip">🎮 Campus Life</a>
     </div>
 
     <div class="hero-ctas">
