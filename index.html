@@ -292,6 +292,148 @@ footer{background:#0a1228;padding:40px 16px 24px}
 .success-item::after{content:'🎉';margin-left:12px}
 
 /* EXPLORE BANNER used in quick-access strip below hero */
+
+/* ── HERO BLOBS ── */
+.hero{position:relative;overflow:hidden}
+.hero-blob1{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.15),transparent 70%);top:-100px;right:-100px;pointer-events:none}
+.hero-blob2{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(26,63,168,.2),transparent 70%);bottom:-80px;left:-60px;pointer-events:none}
+
+/* ── HERO SEARCH ── */
+.hero-search-wrap{margin:20px auto;max-width:540px}
+.hero-search{display:flex;align-items:center;background:rgba(255,255,255,.95);border-radius:50px;padding:6px 6px 6px 18px;box-shadow:0 8px 32px rgba(0,0,0,.2);gap:8px}
+.hero-search-icon{font-size:1rem;flex-shrink:0}
+.hero-search-input{flex:1;border:none;background:transparent;font-size:.9rem;font-family:'Roboto',sans-serif;color:#1e2749;outline:none;min-width:0}
+.hero-search-input::placeholder{color:#94a3b8}
+.hero-search-btn{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;border-radius:40px;padding:10px 20px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.hero-search-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.hero-search-tags button{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);padding:5px 12px;border-radius:20px;font-size:.72rem;cursor:pointer;transition:.18s;font-family:'Roboto',sans-serif}
+.hero-search-tags button:hover{background:rgba(255,255,255,.22);color:#fff}
+
+/* ── HERO FEATURE CHIPS ── */
+.hero-features{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:16px auto;max-width:560px}
+.hf-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);padding:7px 14px;border-radius:20px;font-size:.76rem;font-weight:600;cursor:pointer;transition:.18s;font-family:'Roboto',sans-serif;text-decoration:none}
+.hf-chip:hover{background:rgba(255,255,255,.2);color:#fff;transform:translateY(-1px)}
+.hf-featured{background:var(--orange)!important;border-color:var(--orange)!important;color:#fff!important;font-weight:700}
+
+/* ── QUICK TOOLS GRID ── */
+.qt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:480px){.qt-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:760px){.qt-grid{grid-template-columns:repeat(4,1fr)}}
+.qt-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px 14px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;transition:all .2s;text-decoration:none;position:relative;overflow:hidden}
+.qt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--qt-color,#dde9ff)}
+.qt-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,63,168,.12);border-color:var(--qt-text,#1a3fa8)}
+body.dark .qt-card{background:#161b27;border-color:var(--border)}
+.qt-icon{font-size:1.6rem}
+.qt-name{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text-main)}
+.qt-desc{font-size:.66rem;color:var(--text-muted)}
+
+/* ── SKELETON LOADING ── */
+.skeleton-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:600px){.skeleton-grid{grid-template-columns:1fr}}
+.skeleton-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px;overflow:hidden}
+body.dark .skeleton-card{background:#161b27}
+.skeleton{background:linear-gradient(90deg,var(--border) 25%,var(--surface-alt,#f0f4ff) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:6px}
+body.dark .skeleton{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:200% 100%}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.sk-img{height:120px;width:100%;margin-bottom:10px;border-radius:8px}
+.sk-line{height:12px;margin-bottom:8px}
+.sk-w80{width:80%}.sk-w60{width:60%}.sk-w40{width:40%}
+
+/* ── STATS SECTION ── */
+.stats-section{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:52px 16px}
+.stats-cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:800px;margin:0 auto}
+@media(min-width:600px){.stats-cards-grid{grid-template-columns:repeat(4,1fr)}}
+.stats-card{border-radius:16px;padding:20px 16px;text-align:center;position:relative;overflow:hidden;transition:.2s}
+.stats-card:hover{transform:translateY(-3px)}
+.stats-card.blue{background:rgba(59,130,246,.2);border:1.5px solid rgba(59,130,246,.3)}
+.stats-card.orange{background:rgba(249,115,22,.2);border:1.5px solid rgba(249,115,22,.3)}
+.stats-card.green{background:rgba(16,185,129,.2);border:1.5px solid rgba(16,185,129,.3)}
+.stats-card.purple{background:rgba(139,92,246,.2);border:1.5px solid rgba(139,92,246,.3)}
+.stats-card-icon{font-size:1.8rem;margin-bottom:8px}
+.stats-card-num{font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:800;color:#fff;line-height:1}
+.stats-card-lbl{font-size:.68rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+
+/* ── TESTIMONIALS ── */
+.testimonials-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:8px}
+@media(min-width:600px){.testimonials-grid{grid-template-columns:repeat(3,1fr)}}
+.testi-card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:20px;position:relative;transition:.2s}
+body.dark .testi-card{background:#161b27;border-color:var(--border)}
+.testi-card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,63,168,.1)}
+.testi-stars{font-size:.9rem;margin-bottom:10px}
+.testi-text{font-size:.84rem;color:var(--text-muted);line-height:1.7;margin-bottom:14px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;flex-shrink:0}
+.testi-name{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text-main)}
+.testi-school{font-size:.66rem;color:var(--text-muted);margin-top:1px}
+
+/* ── INSTALL APP ── */
+.install-sec{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+body.dark .install-sec{background:#161b27}
+.install-inner{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.install-text{flex:1;min-width:260px}
+.install-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.install-step{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--text-muted)}
+.install-num{width:24px;height:24px;border-radius:50%;background:var(--blue-main,#1a3fa8);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;flex-shrink:0}
+.install-note{font-size:.74rem;color:var(--text-muted);margin-top:10px;line-height:1.5}
+.install-visual{flex-shrink:0;display:flex;justify-content:center}
+.phone-mockup{width:160px;height:280px;border-radius:24px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:8px;box-shadow:0 20px 60px rgba(12,31,110,.3),0 0 0 2px rgba(255,255,255,.1)}
+.phone-screen{width:100%;height:100%;border-radius:18px;background:#fff;overflow:hidden;display:flex;flex-direction:column}
+body.dark .phone-screen{background:#1e293b}
+.phone-header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:8px 10px;display:flex;align-items:center;gap:6px}
+.phone-tools{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px}
+.phone-tool{aspect-ratio:1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.phone-notif{margin:6px 8px;background:#f0f4ff;border-radius:8px;padding:8px;display:flex;align-items:center;gap:6px;font-size:.5rem}
+body.dark .phone-notif{background:#1a2236}
+
+/* ── CTA BANNER ── */
+.cta-banner-sec{background:linear-gradient(135deg,#0c1f6e,#1a3fa8,#7c3aed);padding:48px 16px}
+.cta-banner{max-width:800px;margin:0 auto;text-align:center}
+.cta-banner h2{font-family:'Montserrat',sans-serif;font-size:clamp(1.3rem,4vw,2rem);font-weight:800;color:#fff;margin-bottom:10px}
+.cta-banner p{font-size:.9rem;color:rgba(255,255,255,.7);margin-bottom:24px}
+.cta-banner-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-blue{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--blue-main,#1a3fa8);padding:13px 24px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;transition:.18s;text-decoration:none}
+.btn-blue:hover{background:rgba(255,255,255,.9);transform:translateY(-1px)}
+
+/* ── STICKY BOTTOM NAV (mobile) ── */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);z-index:250;padding:6px 0 max(6px,env(safe-area-inset-bottom));box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+body.dark .bottom-nav{background:#161b27;border-color:var(--border)}
+@media(max-width:760px){.bottom-nav{display:flex}}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 2px;cursor:pointer;color:var(--text-muted);font-size:.52rem;font-weight:600;text-decoration:none;transition:.18s;border:none;background:none;font-family:'Roboto',sans-serif}
+.bn-item:hover,.bn-item.active{color:var(--blue-main,#1a3fa8)}
+.bn-icon{font-size:1.2rem;line-height:1}
+
+
+/* Scholarship preview */
+.sch-grid-inner{display:flex;flex-direction:column;gap:10px}
+.sch-prev-card{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;text-decoration:none;transition:.18s}
+body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
+.sch-prev-card:hover{border-color:var(--blue-main,#1a3fa8);transform:translateX(3px)}
+.sch-prev-emoji{font-size:1.5rem;flex-shrink:0}
+.sch-prev-body{flex:1;min-width:0}
+.sch-prev-title{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:var(--text-main);margin-bottom:2px}
+.sch-prev-meta{font-size:.68rem;color:var(--text-muted)}
+.sch-prev-amount{font-size:.72rem;font-weight:700;color:var(--green,#16a34a);margin-top:3px}
+/* News grid inner */
+.news-grid-inner{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:540px){.news-grid-inner{grid-template-columns:repeat(3,1fr)}}
+/* Countdown */
+.countdown-sec{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:48px 16px;text-align:center;color:#fff}
+.countdown-sec .sec-title{color:#fff;text-align:center;margin-bottom:6px}
+#countdownEventName{font-size:.82rem;color:rgba(255,255,255,.6);margin-bottom:20px}
+.cd-row{display:flex;gap:12px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.cd-box{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:14px 18px;min-width:72px;text-align:center}
+.cd-num{display:block;font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:800;color:#fff;line-height:1}
+.cd-lbl{font-size:.62rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-top:4px;display:block}
+.event-list{max-width:500px;margin:0 auto 20px;display:flex;flex-direction:column;gap:8px}
+.center{text-align:center}
+/* Tools bar */
+.tools-bar{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tools-bar::-webkit-scrollbar{display:none}
+body.dark .tools-bar{background:#161b27;border-color:var(--border)}
+.tools-scroll{display:flex;gap:0;padding:0;white-space:nowrap;min-width:max-content;margin:0 auto}
+.tool-tab{padding:12px 18px;font-family:'Montserrat',sans-serif;font-size:.76rem;font-weight:700;border:none;background:transparent;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;transition:.18s;white-space:nowrap}
+.tool-tab:hover,.tool-tab.active{color:var(--blue-main,#1a3fa8);border-bottom-color:var(--blue-main,#1a3fa8)}
+
 </style>
 </head>
 <body>
@@ -367,17 +509,47 @@ footer{background:#0a1228;padding:40px 16px 24px}
 <main id="main-content">
 
 <!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-blob1"></div><div class="hero-blob2"></div>
+<section class="hero">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
   <div class="hero-inner">
     <div class="hero-badge"><span class="hero-badge-dot"></span>Nigeria's Trusted Student Platform · Since 2023</div>
-    <h1>Everything You Need to <span>Thrive</span> in Campus Life</h1>
-    <p class="hero-desc">From JAMB preparation and Post-UTME screening to scholarship opportunities, academic resources and campus news — all in one place, completely free for Nigerian undergraduates.</p>
-    <div class="hero-ctas">
-      <a href="cbt.html" class="btn-orange">👨🏽‍💻 Start CBT Practice</a>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa">💬 Chat on WhatsApp</a>
-      <a href="explore.html" class="btn-ghost">🗂 Explore All Tools</a>
+    <h1>Your Free Digital Toolkit — <span>From JAMB to Graduation</span></h1>
+    <p class="hero-desc">Campus news, scholarship alerts, CBT practice, Post-UTME prep, free textbooks and student tools — all in one place, completely free for Nigerian undergraduates.</p>
+
+    <!-- SEARCH BAR -->
+    <div class="hero-search-wrap">
+      <div class="hero-search">
+        <span class="hero-search-icon">🔍</span>
+        <input type="text" id="heroSearch" class="hero-search-input" placeholder="Search scholarships, schools, news, tools…" onkeydown="if(event.key==='Enter')heroSearchGo()" autocomplete="off">
+        <button class="hero-search-btn" onclick="heroSearchGo()">Search</button>
+      </div>
+      <div class="hero-search-tags">
+        <button onclick="heroSearchTag('CBT Practice')">👨🏽‍💻 CBT</button>
+        <button onclick="heroSearchTag('Scholarship')">💰 Scholarships</button>
+        <button onclick="heroSearchTag('Post-UTME')">📖 Post-UTME</button>
+        <button onclick="heroSearchTag('Student Loan')">💳 NELFUND</button>
+      </div>
     </div>
+
+    <!-- FLOATING FEATURE ICONS -->
+    <div class="hero-features">
+      <a href="newsroom.html" class="hf-chip">📰 Newsroom</a>
+      <a href="scholarship.html" class="hf-chip">💰 Scholarships</a>
+      <a href="cbt.html" class="hf-chip hf-featured">👨🏽‍💻 CBT Practice</a>
+      <a href="gpa-calculator.html" class="hf-chip">📊 GPA Calc</a>
+      <a href="student-loan.html" class="hf-chip">💳 NELFUND</a>
+      <a href="elibrary.html" class="hf-chip">📚 eLibrary</a>
+      <a href="daily.html" class="hf-chip">📅 Daily Hub</a>
+      <a href="campus-life.html" class="hf-chip">🎮 Campus Life</a>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="explore.html" class="btn-orange">🗂 Explore All Tools</a>
+      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa">💬 Chat on WhatsApp</a>
+    </div>
+
+    <!-- STATS -->
     <div class="hero-stats">
       <div class="hero-stat"><div class="hero-stat-num">10K+</div><div class="hero-stat-lbl">Students Reached</div></div>
       <div class="hero-stat"><div class="hero-stat-num">515+</div><div class="hero-stat-lbl">CBT Questions</div></div>
@@ -391,13 +563,87 @@ footer{background:#0a1228;padding:40px 16px 24px}
 <div class="tools-bar">
   <div class="tools-scroll">
     <button class="tool-tab active" onclick="document.getElementById('news-updates').scrollIntoView({behavior:'smooth'})">📰 Latest News</button>
-    <button class="tool-tab" onclick="location.href='cbt.html'">📝 CBT Practice</button>
+    <button class="tool-tab" onclick="location.href='cbt.html'">👨🏽‍💻 CBT Practice</button>
     <button class="tool-tab" onclick="document.getElementById('scholarship-preview').scrollIntoView({behavior:'smooth'})">💰 Scholarships</button>
     <button class="tool-tab" onclick="location.href='elibrary.html'">📖 eLibrary</button>
+    <button class="tool-tab" onclick="location.href='daily.html'">📅 Daily Hub</button>
+    <button class="tool-tab" onclick="location.href='campus-life.html'">🎮 Campus Life</button>
     <button class="tool-tab" onclick="document.getElementById('countdown-section').scrollIntoView({behavior:'smooth'})">📅 Calendar</button>
     <button class="tool-tab" onclick="location.href='explore.html'">🗂 All Tools</button>
   </div>
 </div>
+
+<!-- QUICK TOOLS GRID -->
+<section class="sec" id="quick-tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-label">All Your Tools</div><h2 class="sec-title">Explore Student <span>Tools</span></h2></div>
+      <a href="explore.html" class="sec-link">See All →</a>
+    </div>
+    <div class="qt-grid">
+      <a href="cbt.html" class="qt-card" style="--qt-color:#fee2e2;--qt-text:#b91c1c">
+        <span class="qt-icon">👨🏽‍💻</span>
+        <div class="qt-name">CBT Practice</div>
+        <div class="qt-desc">515+ JAMB questions</div>
+      </a>
+      <a href="newsroom.html" class="qt-card" style="--qt-color:#dbeafe;--qt-text:#1d4ed8">
+        <span class="qt-icon">📰</span>
+        <div class="qt-name">Campus Newsroom</div>
+        <div class="qt-desc">Latest campus updates</div>
+      </a>
+      <a href="scholarship.html" class="qt-card" style="--qt-color:#dcfce7;--qt-text:#15803d">
+        <span class="qt-icon">💰</span>
+        <div class="qt-name">Scholarships</div>
+        <div class="qt-desc">50+ opportunities</div>
+      </a>
+      <a href="student-loan.html" class="qt-card" style="--qt-color:#ede9fe;--qt-text:#6d28d9">
+        <span class="qt-icon">💳</span>
+        <div class="qt-name">Student Loan</div>
+        <div class="qt-desc">NELFUND guide</div>
+      </a>
+      <a href="gpa-calculator.html" class="qt-card" style="--qt-color:#f0fdf4;--qt-text:#15803d">
+        <span class="qt-icon">📊</span>
+        <div class="qt-name">GPA Calculator</div>
+        <div class="qt-desc">5.0 & 4.0 scales</div>
+      </a>
+      <a href="elibrary.html" class="qt-card" style="--qt-color:#fef3c7;--qt-text:#92400e">
+        <span class="qt-icon">📚</span>
+        <div class="qt-name">eLibrary</div>
+        <div class="qt-desc">100+ free eBooks</div>
+      </a>
+      <a href="postutme-prep.html" class="qt-card" style="--qt-color:#fef9c3;--qt-text:#92400e">
+        <span class="qt-icon">📖</span>
+        <div class="qt-name">Post-UTME Prep</div>
+        <div class="qt-desc">School-specific guides</div>
+      </a>
+      <a href="postutme-calculator.html" class="qt-card" style="--qt-color:#dbeafe;--qt-text:#1d4ed8">
+        <span class="qt-icon">🧮</span>
+        <div class="qt-name">Aggregate Calc</div>
+        <div class="qt-desc">Know your chances</div>
+      </a>
+      <a href="daily.html" class="qt-card" style="--qt-color:#fef9c3;--qt-text:#92400e">
+        <span class="qt-icon">📅</span>
+        <div class="qt-name">Daily Hub</div>
+        <div class="qt-desc">Daily challenge + DYK</div>
+      </a>
+      <a href="campus-life.html" class="qt-card" style="--qt-color:#fce7f3;--qt-text:#9d174d">
+        <span class="qt-icon">🎮</span>
+        <div class="qt-name">Campus Life</div>
+        <div class="qt-desc">Gist, polls & games</div>
+      </a>
+      <a href="subject-combo.html" class="qt-card" style="--qt-color:#dcfce7;--qt-text:#15803d">
+        <span class="qt-icon">📋</span>
+        <div class="qt-name">Subject Combo</div>
+        <div class="qt-desc">JAMB combinations</div>
+      </a>
+      <a href="results.html" class="qt-card" style="--qt-color:#e0f2fe;--qt-text:#0369a1">
+        <span class="qt-icon">📋</span>
+        <div class="qt-name">Results Checker</div>
+        <div class="qt-desc">JAMB, WAEC, NECO</div>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- NEWS -->
 <section class="sec sec-alt" id="news-updates">
@@ -406,7 +652,11 @@ footer{background:#0a1228;padding:40px 16px 24px}
       <div><div class="sec-label">Latest Updates</div><h2 class="sec-title">Campus <span>News</span></h2></div>
       <a href="newsroom.html" class="sec-link">View All →</a>
     </div>
-    <div class="news-grid" id="newsGrid"><div class="loading-state">⏳ Loading…</div></div>
+    <div class="news-grid" id="newsGrid"><div class="skeleton-grid">
+      <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
+      <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
+      <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
+    </div></div>
   </div>
 </section>
 
@@ -417,7 +667,68 @@ footer{background:#0a1228;padding:40px 16px 24px}
       <div><div class="sec-label">Opportunities</div><h2 class="sec-title">Scholarship <span>Alerts</span></h2></div>
       <a href="scholarship.html" class="sec-link">View All →</a>
     </div>
-    <div class="sch-grid" id="scholarship-preview-grid"><div class="loading-state">⏳ Loading…</div></div>
+    <div class="sch-grid" id="scholarship-preview-grid"><div class="skeleton-grid">
+      <div class="skeleton-card"><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w40"></div></div>
+      <div class="skeleton-card"><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w40"></div></div>
+      <div class="skeleton-card"><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w40"></div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- STATS SECTION -->
+<section class="stats-section">
+  <div class="wrap">
+    <div class="sec-label" style="justify-content:center;color:rgba(255,255,255,.5)">By The Numbers</div>
+    <h2 class="sec-title" style="text-align:center;color:#fff;margin-bottom:28px">Trusted by <span style="color:var(--orange)">Thousands</span></h2>
+    <div class="stats-cards-grid">
+      <div class="stats-card blue">
+        <div class="stats-card-icon">👥</div>
+        <div class="stats-card-num" data-target="10000" data-suffix="+" data-divisor="1000">10K+</div>
+        <div class="stats-card-lbl">Students Reached</div>
+      </div>
+      <div class="stats-card orange">
+        <div class="stats-card-icon">📝</div>
+        <div class="stats-card-num" data-target="515" data-suffix="+">515+</div>
+        <div class="stats-card-lbl">CBT Questions</div>
+      </div>
+      <div class="stats-card green">
+        <div class="stats-card-icon">📚</div>
+        <div class="stats-card-num" data-target="100" data-suffix="+">100+</div>
+        <div class="stats-card-lbl">Free eBooks</div>
+      </div>
+      <div class="stats-card purple">
+        <div class="stats-card-icon">💰</div>
+        <div class="stats-card-num" data-target="50" data-suffix="+">50+</div>
+        <div class="stats-card-lbl">Scholarships</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec sec-alt" id="testimonials">
+  <div class="wrap">
+    <div class="sec-head" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
+      <div class="sec-label">What Students Say</div>
+      <h2 class="sec-title">Real <span>Student Stories</span></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card">
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-text">"I got verified admission information through Big Quams Media® when I was confused about Post-UTME screening. No fake news, just facts."</div>
+        <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Aisha M.</div><div class="testi-school">KWASU Student</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-text">"The Post-UTME aggregate calculator showed me exactly where I stood before screening. I went in confident and got admitted. Thank you BQM!"</div>
+        <div class="testi-author"><div class="testi-avatar">T</div><div><div class="testi-name">Tobiloba A.</div><div class="testi-school">UNIOSUN Applicant</div></div></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-text">"The CBT practice questions are exactly like the real JAMB exam. I practised every day and improved my score from 187 to 241. This platform is a must!"</div>
+        <div class="testi-author"><div class="testi-avatar">E</div><div><div class="testi-name">Emmanuel O.</div><div class="testi-school">UNILAG Applicant</div></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -438,8 +749,53 @@ footer{background:#0a1228;padding:40px 16px 24px}
   </div>
 </section>
 
+<!-- INSTALL APP -->
+<section class="sec install-sec" id="install-app">
+  <div class="wrap">
+    <div class="install-inner">
+      <div class="install-text">
+        <div class="sec-label">Mobile App</div>
+        <h2 class="sec-title">Install Big Quams <span>Media®</span></h2>
+        <p style="font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Access all your student tools like a mobile app — no app store needed. Works offline, loads faster and sends you push notifications for scholarship alerts, JAMB updates and campus news.</p>
+        <div class="install-steps">
+          <div class="install-step"><span class="install-num">1</span><span>Open this site in Chrome or Safari</span></div>
+          <div class="install-step"><span class="install-num">2</span><span>Tap the menu (⋮ or Share button)</span></div>
+          <div class="install-step"><span class="install-num">3</span><span>Tap "Add to Home Screen"</span></div>
+        </div>
+        <button class="btn-orange" onclick="installApp()" id="installBtn" style="display:none">📲 Install App</button>
+        <div class="install-note" id="installNote">Tap your browser menu → "Add to Home Screen" to install</div>
+      </div>
+      <div class="install-visual">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="phone-header">
+              <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM" style="width:24px;height:24px;border-radius:50%;border:1.5px solid #f97316">
+              <span style="font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</span>
+            </div>
+            <div class="phone-tools">
+              <div class="phone-tool" style="background:#fee2e2">👨🏽‍💻</div>
+              <div class="phone-tool" style="background:#dbeafe">📰</div>
+              <div class="phone-tool" style="background:#dcfce7">💰</div>
+              <div class="phone-tool" style="background:#ede9fe">💳</div>
+              <div class="phone-tool" style="background:#fef3c7">📚</div>
+              <div class="phone-tool" style="background:#fce7f3">🎮</div>
+            </div>
+            <div class="phone-notif">
+              <span>🔔</span>
+              <div style="flex:1">
+                <div style="font-size:.5rem;font-weight:700;color:#1e2749">New Scholarship Alert!</div>
+                <div style="font-size:.44rem;color:#64748b">MTN Foundation — Apply now</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
-<section class="sec" id="about">
+<section class="sec sec-alt" id="about">
   <div class="wrap">
     <div class="about-layout">
       <div class="about-text">
@@ -447,7 +803,7 @@ footer{background:#0a1228;padding:40px 16px 24px}
         <h2 class="sec-title">Built for <span>Nigerian Students</span></h2>
         <p><strong>Big Quams Media®</strong> is a leading student-centered digital platform committed to helping Nigerian students succeed academically and navigate campus life with ease.</p>
         <p>We provide timely, accurate, and reliable information on admissions, JAMB, Post-UTME screenings, scholarships, school updates, academic opportunities, and educational resources. Our mission is to bridge the information gap — ensuring students have access to the guidance and tools they need at every stage of their academic journey.</p>
-        <p>Whether you're seeking admission, preparing for screenings, searching for scholarships, or looking for verified school updates, Big Quams Media® is your trusted companion. Beyond information, we offer free student-focused tools designed to simplify academic processes and support educational success across Nigeria.</p>
+        <p>Whether you're seeking admission, preparing for screenings, searching for scholarships, or looking for verified school updates, Big Quams Media® is your trusted companion.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin:16px 0">
           <div style="flex:1;min-width:140px;background:var(--blue-lt,#dde9ff);border-radius:10px;padding:12px 14px">
             <div style="font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:var(--blue-main,#1a3fa8);margin-bottom:4px">🎯 Our Vision</div>
@@ -465,6 +821,22 @@ footer{background:#0a1228;padding:40px 16px 24px}
         <div class="stat-box"><div class="stat-num" data-target="500" data-suffix="+">500+</div><div class="stat-lbl">News Articles Published</div></div>
         <div class="stat-box"><div class="stat-num" data-target="515" data-suffix="+">515+</div><div class="stat-lbl">CBT Practice Questions</div></div>
         <div class="stat-box"><div class="stat-num" data-target="50" data-suffix="+">50+</div><div class="stat-lbl">Active Scholarships Tracked</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner-sec">
+  <div class="wrap">
+    <div class="cta-banner">
+      <div class="cta-banner-text">
+        <h2>Ready to Simplify Your Campus Life?</h2>
+        <p>Join thousands of Nigerian students using Big Quams Media® — completely free.</p>
+      </div>
+      <div class="cta-banner-btns">
+        <a href="explore.html" class="btn-orange">🗂 Explore Tools</a>
+        <a href="cbt.html" class="btn-blue">👨🏽‍💻 Start JAMB Practice</a>
       </div>
     </div>
   </div>
@@ -497,6 +869,7 @@ footer{background:#0a1228;padding:40px 16px 24px}
   </div>
 </section>
 
+</main>
 </main>
 
 <footer>
@@ -738,5 +1111,138 @@ document.addEventListener('DOMContentLoaded',()=>{
 /* SERVICE WORKER */
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
+
+<!-- STICKY BOTTOM NAV -->
+<nav class="bottom-nav" id="bottomNav">
+  <a href="index.html" class="bn-item active"><span class="bn-icon">🏠</span>Home</a>
+  <a href="newsroom.html" class="bn-item"><span class="bn-icon">📰</span>News</a>
+  <a href="explore.html" class="bn-item"><span class="bn-icon">🗂</span>Tools</a>
+  <a href="scholarship.html" class="bn-item"><span class="bn-icon">💰</span>Scholarships</a>
+  <a href="cbt.html" class="bn-item"><span class="bn-icon">👨🏽‍💻</span>CBT</a>
+</nav>
+
+
+<script>
+// ── HERO SEARCH ──
+function heroSearchGo(){
+  const q=document.getElementById('heroSearch').value.trim();
+  if(!q) return;
+  const lq=q.toLowerCase();
+  if(lq.includes('scholar')) location.href='scholarship.html';
+  else if(lq.includes('cbt')||lq.includes('jamb')||lq.includes('practice')) location.href='cbt.html';
+  else if(lq.includes('post-utme')||lq.includes('postutme')||lq.includes('aggregate')) location.href='postutme-calculator.html';
+  else if(lq.includes('gpa')||lq.includes('cgpa')) location.href='gpa-calculator.html';
+  else if(lq.includes('loan')||lq.includes('nelfund')) location.href='student-loan.html';
+  else if(lq.includes('book')||lq.includes('library')||lq.includes('pdf')) location.href='elibrary.html';
+  else if(lq.includes('news')||lq.includes('campus')) location.href='newsroom.html';
+  else if(lq.includes('combo')||lq.includes('subject')) location.href='subject-combo.html';
+  else if(lq.includes('result')) location.href='results.html';
+  else if(lq.includes('daily')||lq.includes('challenge')) location.href='daily.html';
+  else if(lq.includes('gist')||lq.includes('poll')||lq.includes('game')) location.href='campus-life.html';
+  else if(lq.includes('spotlight')) location.href='spotlight.html';
+  else if(lq.includes('dyk')||lq.includes('did you know')) location.href='dyk.html';
+  else location.href='explore.html?q='+encodeURIComponent(q);
+}
+window.heroSearchGo=heroSearchGo;
+
+function heroSearchTag(tag){
+  document.getElementById('heroSearch').value=tag;
+  heroSearchGo();
+}
+window.heroSearchTag=heroSearchTag;
+
+// ── NEWS GRID (skeleton → real) ──
+async function loadNewsGrid(){
+  try{
+    const r=await fetch('news.json?v='+Date.now());
+    const d=await r.json();
+    if(!d||!d.length) return;
+    const items=[...d.filter(n=>n.pinned),...d.filter(n=>!n.pinned)].slice(0,3);
+    document.getElementById('newsGrid').innerHTML='<div class="news-grid-inner">'+items.map((n,i)=>{
+      const slug=n.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').substring(0,60);
+      return`<a class="news-card" href="newsroom.html?article=${i}&slug=${slug}">
+        ${n.image?`<img class="news-img" src="${n.image}" alt="${n.title}" loading="lazy" style="width:100%;height:auto;max-height:200px;object-fit:contain;background:#f5f7ff;border-radius:10px 10px 0 0">`:`<div class="news-img-ph" style="height:120px;display:flex;align-items:center;justify-content:center;font-size:2rem;background:#f0f4ff;border-radius:10px 10px 0 0">${n.emoji||'📰'}</div>`}
+        <div class="news-body">
+          ${n.category?`<span class="news-tag">${n.category}</span>`:''}
+          <div class="news-title">${n.title}</div>
+          <div class="news-excerpt">${(n.summary||n.excerpt||'').substring(0,100)}…</div>
+          <div class="news-foot"><span class="news-date">${n.date||''}</span><span class="news-more">Read →</span></div>
+        </div>
+      </a>`;
+    }).join('')+'</div>';
+  }catch(e){}
+}
+
+// ── SCHOLARSHIP PREVIEW ──
+async function loadScholarshipPreview(){
+  try{
+    const r=await fetch('scholarships.json?v='+Date.now());
+    const d=await r.json();
+    if(!d||!d.length) return;
+    const items=d.slice(0,3);
+    document.getElementById('scholarship-preview-grid').innerHTML='<div class="sch-grid-inner">'+items.map(s=>`
+      <a href="scholarship.html" class="sch-prev-card">
+        <div class="sch-prev-emoji">${s.emoji||'💰'}</div>
+        <div class="sch-prev-body">
+          <div class="sch-prev-title">${s.title}</div>
+          <div class="sch-prev-meta">${s.provider||''} ${s.deadline?'· Deadline: '+s.deadline:''}</div>
+          ${s.amount?`<div class="sch-prev-amount">${s.amount}</div>`:''}
+        </div>
+        <span style="color:var(--blue-main,#1a3fa8);font-size:.8rem;font-weight:700;flex-shrink:0">→</span>
+      </a>`).join('')+'</div>';
+  }catch(e){}
+}
+
+// ── STATS COUNTER ANIMATION ──
+function animateCounters(){
+  document.querySelectorAll('[data-target]').forEach(el=>{
+    const target=parseInt(el.getAttribute('data-target'));
+    const suffix=el.getAttribute('data-suffix')||'';
+    const divisor=parseInt(el.getAttribute('data-divisor')||'1');
+    const display=target/divisor;
+    let start=0;
+    const step=display/40;
+    const timer=setInterval(()=>{
+      start+=step;
+      if(start>=display){start=display;clearInterval(timer);}
+      el.textContent=(start>=1000?Math.floor(start/1000)+'K':Math.floor(start))+suffix;
+    },30);
+  });
+}
+
+// Observer for stats animation
+const statsObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){animateCounters();statsObs.disconnect();}});
+},{threshold:.3});
+const statsEl=document.querySelector('.stats-section')||document.querySelector('.stats-grid');
+if(statsEl) statsObs.observe(statsEl);
+
+// ── PWA INSTALL ──
+let deferredInstall=null;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();deferredInstall=e;
+  const btn=document.getElementById('installBtn');
+  const note=document.getElementById('installNote');
+  if(btn){btn.style.display='inline-flex';}
+  if(note){note.style.display='none';}
+});
+function installApp(){
+  if(deferredInstall){deferredInstall.prompt();deferredInstall.userChoice.then(()=>{deferredInstall=null;});}
+}
+window.installApp=installApp;
+
+// ── STICKY BOTTOM NAV — add spacing to avoid content being hidden ──
+document.addEventListener('DOMContentLoaded',()=>{
+  if(window.innerWidth<=760){
+    const footer=document.querySelector('footer');
+    if(footer) footer.style.paddingBottom='70px';
+  }
+});
+
+// Load content
+loadNewsGrid();
+loadScholarshipPreview();
+</script>
+
 </body>
 </html>
