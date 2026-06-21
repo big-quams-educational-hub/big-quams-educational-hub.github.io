@@ -52,8 +52,8 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 .mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
 .nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
 .nav-overlay.show{opacity:1;pointer-events:auto}
-.page-hero{background:linear-gradient(135deg,#0c1f6e,#1a3fa8,#065f46);padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
-.page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+.page-hero{background:linear-gradient(150deg,rgba(8,21,48,.86) 0%,rgba(15,32,96,.80) 40%,rgba(26,63,168,.74) 100%),url('1782067011462.png') center center/cover no-repeat;padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;inset:0;background:rgba(5,12,40,.30);pointer-events:none}
 .page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:16px}
 .page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px}
@@ -113,6 +113,18 @@ body.dark .course-card{background:#161b27;border-color:var(--border)}
 body.dark .mini-pill{background:#1a2d5a;color:#93c5fd}
 .loader{text-align:center;padding:60px;color:var(--text-muted)}
 .loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
+/* ── SKELETON CARDS ── */
+.skeleton-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+@media(max-width:480px){.skeleton-grid{grid-template-columns:1fr}}
+.skeleton-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px;overflow:hidden}
+body.dark .skeleton-card{background:#161b27}
+.skeleton{background:linear-gradient(90deg,var(--border) 25%,var(--surface-alt,#f0f4ff) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:6px}
+body.dark .skeleton{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:200% 100%}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.sk-line{height:12px;margin-bottom:8px}
+.sk-w80{width:80%}.sk-w60{width:60%}.sk-w40{width:40%}.sk-w30{width:30%}
+.sk-tags{display:flex;gap:6px;margin-top:4px}
+.sk-tag{height:22px;width:60px;border-radius:20px}
 @keyframes spin{to{transform:rotate(360deg)}}
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
 .footer-inner{max-width:900px;margin:0 auto}
@@ -206,7 +218,14 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     <!-- ALL COURSES -->
     <div>
       <div style="font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text-main);margin-bottom:14px" id="courseListTitle">All Available Courses</div>
-      <div id="coursesGrid" class="courses-grid"><div class="loader"><div class="loader-spin"></div>Loading courses…</div></div>
+      <div id="coursesGrid" class="courses-grid"><div class="skeleton-grid">
+  <div class="skeleton-card"><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div><div class="sk-tags"><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div></div></div>
+  <div class="skeleton-card"><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w40"></div><div class="sk-tags"><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div></div></div>
+  <div class="skeleton-card"><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w30"></div><div class="sk-tags"><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div></div></div>
+  <div class="skeleton-card"><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w40"></div><div class="sk-tags"><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div></div></div>
+  <div class="skeleton-card"><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div><div class="sk-tags"><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div></div></div>
+  <div class="skeleton-card"><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w30"></div><div class="sk-tags"><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div><div class="skeleton sk-tag"></div></div></div>
+</div></div>
     </div>
   </div>
 </section>
