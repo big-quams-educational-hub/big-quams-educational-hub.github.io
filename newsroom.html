@@ -65,7 +65,7 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 .nav-overlay.show{opacity:1;pointer-events:auto}
 /* HERO */
 .page-hero{background:linear-gradient(150deg,rgba(8,21,48,.86) 0%,rgba(15,32,96,.80) 40%,rgba(26,63,168,.74) 100%),url('1001735667.png') center center/cover no-repeat;padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
-.page-hero::after{content:'';position:absolute;inset:0;background:rgba(5,12,40,.30);pointer-events:none}
+.page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
 .page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:16px}
 .page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px}
@@ -162,18 +162,6 @@ body.dark .modal-close-btn{background:#161b27;border-color:var(--border)}
 .empty .ei{font-size:2.5rem;margin-bottom:10px}
 .loader{text-align:center;padding:60px;color:var(--text-muted)}
 .loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
-/* ── SKELETON CARDS ── */
-.skeleton-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media(max-width:540px){.skeleton-grid{grid-template-columns:1fr}}
-@media(min-width:541px) and (max-width:800px){.skeleton-grid{grid-template-columns:repeat(2,1fr)}}
-.skeleton-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px;overflow:hidden}
-body.dark .skeleton-card{background:#161b27}
-.skeleton{background:linear-gradient(90deg,var(--border) 25%,var(--surface-alt,#f0f4ff) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:6px}
-body.dark .skeleton{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:200% 100%}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.sk-img{height:140px;width:100%;margin-bottom:10px;border-radius:8px}
-.sk-line{height:12px;margin-bottom:8px}
-.sk-w80{width:80%}.sk-w60{width:60%}.sk-w40{width:40%}
 @keyframes spin{to{transform:rotate(360deg)}}
 /* FOOTER */
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
@@ -186,6 +174,25 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .footer-links a:hover{color:#fff}
 .footer-copy{font-size:.7rem;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
 </style>
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import{getFirestore,collection,getDocs,query,orderBy,where,limit}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+const _cfg={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'};
+const _app=initializeApp(_cfg);
+const _db=getFirestore(_app);
+window._fsDb=_db;window._fsCol=collection;window._fsGet=getDocs;window._fsQuery=query;window._fsOrder=orderBy;window._fsWhere=where;window._fsLimit=limit;
+window._fsLoad=async(col)=>{try{const s=await getDocs(collection(_db,col));return s.docs.map(d=>({_id:d.id,...d.data()})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));}catch(e){console.warn('fsLoad',col,e.message);return [];}};
+window._fsLoadJson=async(col,jsonFile)=>{
+  // Try Firestore first, fall back to JSON file
+  try{
+    const s=await getDocs(collection(_db,col));
+    const data=s.docs.map(d=>({_id:d.id,...d.data()})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+    if(data.length) return data;
+  }catch(e){}
+  // Fallback to JSON
+  try{const r=await fetch(jsonFile+'?v='+Date.now());return await r.json();}catch(e){return [];}
+};
+</script>
 </head>
 <body>
 <header>
@@ -257,14 +264,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     <div class="layout">
       <div>
         <div id="pinnedArea"></div>
-        <div id="newsGrid" class="news-grid"><div class="skeleton-grid">
-  <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
-  <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
-  <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
-  <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
-  <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
-  <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
-</div></div>
+        <div id="newsGrid" class="news-grid"><div class="loader"><div class="loader-spin"></div>Loading articles…</div></div>
         <div class="pagination" id="pagination"></div>
       </div>
       <aside>
@@ -412,8 +412,7 @@ async function init(){
     }
   }catch(e){}
   try{
-    const r=await fetch('news.json?v='+Date.now());
-    allNews=await r.json();
+    allNews=await window._fsLoadJson('fs_news','news.json');
     allNews.sort((a,b)=>{if(a.pinned&&!b.pinned)return-1;if(!a.pinned&&b.pinned)return 1;return 0;});
     buildSidebar();
     render();
@@ -478,7 +477,7 @@ function render(){
     const idx=allNews.indexOf(n);
     const mins=readingTime(n.fullContent||n.summary);
     return`<div class="news-card" onclick="openArticle(${idx})">
-      ${n.image?`<img class="news-card-img" src="${n.image}" alt="${n.title}">`:`<img class="news-card-img" src="1001735667.png" alt="${n.title}">`}
+      ${n.image?`<img class="news-card-img" src="${n.image}" alt="${n.title}">`:`<div class="news-card-img-placeholder">📰</div>`}
       <div class="news-card-body">
         <span class="news-card-cat" style="${catStyle(n.category||'')}">${n.category||'News'}</span>
         <div class="news-card-title">${n.title}</div>
@@ -557,7 +556,7 @@ function openArticle(idx){
   ogDesc.setAttribute('content',(n.summary||'').substring(0,160));
   let ogImg=document.querySelector('meta[property="og:image"]');
   if(!ogImg){ogImg=document.createElement('meta');ogImg.setAttribute('property','og:image');document.head.appendChild(ogImg);}
-  ogImg.setAttribute('content', n.image || 'https://bigquamsmedia.com.ng/1001735667.png');
+  if(n.image) ogImg.setAttribute('content',n.image);
   let ogUrl=document.querySelector('meta[property="og:url"]');
   if(!ogUrl){ogUrl=document.createElement('meta');ogUrl.setAttribute('property','og:url');document.head.appendChild(ogUrl);}
   ogUrl.setAttribute('content',url.toString());
