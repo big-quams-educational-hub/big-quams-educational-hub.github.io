@@ -36,6 +36,24 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(typeof firebase==='undefined') throw new Error('SDK not loaded');
+    if(!firebase.apps.length){
+      firebase.initializeApp({
+        apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',
+        authDomain:'big-quams-media.firebaseapp.com',
+        projectId:'big-quams-media'
+      });
+    }
+    window._db=firebase.firestore();
+  }catch(e){console.warn('Firebase init:',e.message);}
+})();
+</script>
 <style>
 :root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--orange-dark:#e56b0f;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--text-faint:#94a3b8;--radius-sm:8px;--radius-md:14px;--radius-lg:20px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
 body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e;--text-faint:#64748b}
@@ -499,10 +517,11 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
     <nav class="main-nav" aria-label="Main navigation">
-      <a href="#home">Home</a>
+      <a href="newsroom.html">Newsroom</a>
       <a href="explore.html">Explore</a>
-      <a href="elibrary.html">eLibrary</a>
+      <a href="cbt.html">CBT</a>
       <a href="scholarship.html">Scholarships</a>
+      <a href="elibrary.html">eLibrary</a>
       <a href="#contact" class="nav-cta">💬 Contact</a>
     </nav>
     <div class="hdr-right">
@@ -516,27 +535,41 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
 
 <!-- MOBILE NAV -->
 <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-<div class="mnav-header">
+  <div class="mnav-header">
     <div class="mnav-brand">
       <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM" class="mnav-logo">
-      <div><div class="mnav-bname">Big Quams Media®</div>
-  </div></div></div>
-  <div class="mnav-lbl">Navigation</div>
-  <a href="index.html" onclick="toggleNav()">Home</a>
-  <a href="explore.html" onclick="toggleNav()">Explore All Tools</a>
-  <a href="newsroom.html" onclick="toggleNav()">Newsroom</a>
-  <a href="elibrary.html" onclick="toggleNav()">eLibrary</a>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">Post-UTME Calculator</a>
-  <a href="subject-combo.html" onclick="toggleNav()">Subject Combination</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">GPA Calculator</a>
-  <a href="student-loan.html" onclick="toggleNav()">Student Loan Guide</a>
-  <a href="scholarship.html" onclick="toggleNav()">Scholarships</a>
-  <a href="results.html" onclick="toggleNav()">Results Checker</a>
-  <a href="dyk.html" onclick="toggleNav()">Did You Know</a>
-  <a href="spotlight.html" onclick="toggleNav()">Student Spotlight</a>
-  <a href="community.html" onclick="toggleNav()">Community Hub</a>
+      <div>
+        <div class="mnav-bname">Big Quams Media®</div>
+        <div class="mnav-bsub">Nigeria's Trusted Student Platform</div>
+      </div>
+    </div>
+    <button class="mnav-close" onclick="toggleNav()" aria-label="Close menu">✕</button>
+  </div>
+
+  <div class="mnav-section">Main</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+
+  <div class="mnav-section">Exam Tools</div>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+
+  <div class="mnav-section">Resources</div>
+  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
+
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
@@ -576,7 +609,7 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
         <input type="text" id="heroSearch" class="hero-search-input" placeholder="Search scholarships, schools, news, tools…" onkeydown="if(event.key==='Enter')heroSearchGo()" autocomplete="off">
         <button class="hero-search-btn" onclick="heroSearchGo()">Search</button>
       </div>
-      <div class="hero-search-tags">
+      <div class="hero-search-tags" style="margin-top:10px">
         <button onclick="heroSearchTag('CBT Practice')">👨🏽‍💻 CBT</button>
         <button onclick="heroSearchTag('Scholarship')">💰 Scholarships</button>
         <button onclick="heroSearchTag('Post-UTME')">📖 Post-UTME</button>
@@ -584,7 +617,7 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
       </div>
     </div>
 
-    <div class="hero-ctas">
+    <div class="hero-ctas" style="margin-top:24px">
       <a href="explore.html" class="btn-orange">🗂 Explore All Tools</a>
       <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa">💬 Chat on WhatsApp</a>
     </div>
@@ -805,7 +838,7 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
       <div class="cd-box"><span class="cd-num" id="cdSecs">--</span><span class="cd-lbl">Secs</span></div>
     </div>
     <div class="event-list" id="upcomingEventsList"></div>
-    <div class="center"><a href="explore.html#calendar" class="btn-orange">📅 Full Academic Calendar</a></div>
+    <div class="center" style="margin-top:20px"><a href="explore.html" class="btn-orange">📅 Full Academic Calendar</a></div>
   </div>
 </section>
 
@@ -822,8 +855,8 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
           <div class="install-step"><span class="install-num">2</span><span>Tap the <strong>menu icon</strong> (⋮ on Android · Share ⬆ on iPhone)</span></div>
           <div class="install-step"><span class="install-num">3</span><span>Select <strong>"Add to Home Screen"</strong> and tap Add</span></div>
         </div>
-        <button class="btn-orange" onclick="installApp()" id="installBtn" style="display:none;width:100%;justify-content:center;margin-bottom:10px">📲 Install App Now</button>
-        <div class="install-note" id="installNote">💡 iPhone: tap the Share ⬆ icon in Safari → "Add to Home Screen"</div>
+        <button class="btn-orange" onclick="installApp()" id="installBtn" style="display:flex;width:100%;justify-content:center;margin-bottom:10px;align-items:center;gap:8px">📲 Install App Now</button>
+        <div class="install-note" id="installNote" style="font-size:.76rem;color:var(--text-muted);margin-top:6px;line-height:1.6">💡 <strong>iPhone:</strong> tap Share ⬆ in Safari → "Add to Home Screen"<br>💡 <strong>Android:</strong> tap ⋮ in Chrome → "Add to Home screen"</div>
       </div>
       <div class="install-visual">
         <div class="phone-mockup">
@@ -930,39 +963,62 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
 </section>
 
 </main>
-</main>
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img class="footer-logo" src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="Big Quams Media">
-        <div><div class="footer-bname">BIG QUAMS MEDIA®</div><div class="footer-bsub">Built for Nigerian Undergraduates</div></div>
-      </div>
-      <div class="footer-socials">
-        <a href="https://www.facebook.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-        <a href="https://www.instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-        <a href="https://t.me/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.9 8.2l-2 9.4c-.1.6-.5.8-1 .5l-2.8-2.1-1.3 1.3c-.2.2-.4.3-.7.3l.2-2.9 5.1-4.6c.2-.2 0-.3-.3-.1L6.6 14.4 4 13.6c-.6-.2-.6-.6.1-.9l11.5-4.4c.6-.2 1.1.1.3.9z"/></svg></a>
+    <div class="footer-brand" style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <img class="footer-logo" src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="Big Quams Media" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <div>
+        <div class="footer-bname" style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
+        <div class="footer-bsub" style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div>
       </div>
     </div>
-            <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="explore.html">Explore</a>
-      <a href="newsroom.html">Newsroom</a>
-      <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">CBT Practice</a>
-      <a href="postutme-prep.html">Post-UTME Prep</a>
-      <a href="postutme-calculator.html">Post-UTME Calc</a>
-      <a href="subject-combo.html">Subject Combo</a>
-      <a href="gpa-calculator.html">GPA Calculator</a>
-      <a href="student-loan.html">Student Loan</a>
-      <a href="scholarship.html">Scholarships</a>
-      <a href="results.html">Results Checker</a>
-      <a href="dyk.html">Did You Know</a>
-      <a href="spotlight.html">Spotlight</a>
-      <a href="community.html">Community</a>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🏠 Home</a>
+          <a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">📰 Newsroom</a>
+          <a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🗂 Explore Tools</a>
+          <a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🎮 Campus Life</a>
+          <a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🤝 Community</a>
+          <a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">📅 Daily Hub</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">👨🏽‍💻 JAMB CBT Practice</a>
+          <a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">📖 Post-UTME Prep</a>
+          <a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🧮 Aggregate Calc</a>
+          <a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🎓 GPA Calculator</a>
+          <a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">📊 Results Checker</a>
+          <a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🔑 JAMB Profile Code</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">📚 eLibrary</a>
+          <a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">💰 Scholarships</a>
+          <a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">💳 Student Loan</a>
+          <a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🌟 Student Spotlight</a>
+          <a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">💡 Did You Know</a>
+          <a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">📋 Subject Combo</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">💬 WhatsApp Us</a>
+          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">👥 Join Group</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">📸 Instagram</a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🎵 TikTok</a>
+          <a href="#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">📲 Install App</a>
+        </div>
+      </div>
     </div>
-    <div class="footer-copy">© <span id="footer-year">2026</span> Big Quams Media®. All rights reserved. Built with ❤️ for Nigerian students — <a href="#contact">Big Quams Media</a>, to the world.</div>
+    <div class="footer-copy" style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="footer-year">2026</span> Big Quams Media®. All rights reserved. Built with ❤️ for Nigerian students.</div>
   </div>
 </footer>
 
@@ -1028,7 +1084,17 @@ function initTicker(){
   const seed=['📢 JAMB 2026 UTME Results Released — Check yours on the JAMB portal','🎓 Post-UTME Screening begins June 2026 — 15 universities confirmed','💳 NELFUND Student Loan portal is open — Apply before the deadline','💰 MTN Foundation Scholarship 2026 now accepting applications','📰 WAEC 2026 Results expected August — stay updated on BQM','🔔 Monitor your JAMB CAPS portal daily for admission updates'];
   function render(items){track.innerHTML=[...items,...items].map(t=>`<span class="ticker-item">${t}</span>`).join('');bar.classList.add('show');}
   render(seed);
-  fetch('news.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.length)render(d.slice(0,8).map(n=>(n.emoji||'📰')+' '+n.title));}).catch(()=>{});
+  // Try Firebase ticker collection, fall back to news headlines
+  if(window._db){
+    window._db.collection('fs_ticker').orderBy('createdAt','asc').get()
+      .then(snap=>{
+        const items=snap.docs.map(d=>d.data().text).filter(Boolean);
+        if(items.length) render(items);
+        else return fetch('news.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.length)render(d.slice(0,8).map(n=>(n.emoji||'📰')+' '+n.title));});
+      }).catch(()=>{});
+  } else {
+    fetch('news.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.length)render(d.slice(0,8).map(n=>(n.emoji||'📰')+' '+n.title));}).catch(()=>{});
+  }
 }
 
 /* COUNTDOWN */
@@ -1076,28 +1142,75 @@ function initCountdown(){
     tick();cdInterval=setInterval(tick,1000);
   }
   startTimer(defaultEvents);
-  fetch('calendar.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
-    if(d&&d.length){
-      const parsed=d.map(e=>({...e,dateObj:new Date(e.date||e.dateObj)})).filter(e=>e.dateObj&&!isNaN(e.dateObj));
-      if(parsed.length)startTimer(parsed);
-    }
-  }).catch(()=>{});
+  // Try Firebase calendar first
+  function parseCalEvents(items){
+    return items.map(e=>({...e,dateObj:new Date(e.date||e.dateObj||'')})).filter(e=>e.dateObj&&!isNaN(e.dateObj));
+  }
+  if(window._db){
+    window._db.collection('fs_calendar').orderBy('title','asc').get()
+      .then(snap=>{
+        const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
+        const parsed=parseCalEvents(items);
+        if(parsed.length){startTimer(parsed);return;}
+        return fetch('calendar.json?v='+Date.now()).then(r=>r.ok?r.json():null);
+      })
+      .then(d=>{if(d&&d.length){const parsed=parseCalEvents(d);if(parsed.length)startTimer(parsed);}})
+      .catch(()=>{});
+  } else {
+    fetch('calendar.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
+      if(d&&d.length){const parsed=parseCalEvents(d);if(parsed.length)startTimer(parsed);}
+    }).catch(()=>{});
+  }
 }
 
-/* NEWS */
-function loadNews(){
+/* NEWS — fetch from Firebase, fall back to news.json, use hash URLs */
+function makeNewsSlug(title){
+  return(title||'').toLowerCase().replace(/[^a-z0-9\s-]/g,' ').trim().replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'').substring(0,70);
+}
+function newsArticleUrl(n){
+  const slug=n.slug||makeNewsSlug(n.title||'');
+  const id=n._id||'';
+  return 'newsroom.html#'+slug+(id?'--'+id:'');
+}
+function renderNewsCards(items){
   const grid=document.getElementById('newsGrid');if(!grid)return;
-  const fb=[
-    {tag:'JAMB',emoji:'📰',title:'JAMB Releases 2026 UTME Results — Check Yours Now',excerpt:'JAMB has officially released the 2026 UTME results. Check your scores on the JAMB portal.',date:'Apr 2026'},
-    {tag:'Admission',emoji:'🎓',title:'Post-UTME Screening: 15 Universities Confirm Dates',excerpt:'UNILAG, UI, OAU and ABU have announced 2026/2027 Post-UTME screening schedules.',date:'Apr 2026'},
-    {tag:'Student Loan',emoji:'💳',title:'NELFUND Loan Portal Open — Apply Before Deadline',excerpt:'The NELFUND student loan portal is open. All enrolled students in federal and state institutions are eligible.',date:'Apr 2026'},
-  ];
-  grid.innerHTML=fb.map(n=>`<a class="news-card" href="newsroom.html"><div class="news-img-ph">${n.emoji}</div><div class="news-body"><span class="news-tag">${n.tag}</span><div class="news-title">${n.title}</div><div class="news-excerpt">${n.excerpt}</div><div class="news-foot"><span class="news-date">${n.date}</span><span class="news-more">Read →</span></div></div></a>`).join('');
-  fetch('news.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
-    if(!d||!d.length)return;
-    const items=[...d.filter(n=>n.pinned),...d.filter(n=>!n.pinned)].slice(0,3);
-    grid.innerHTML=items.map((n,i)=>`<a class="news-card" href="newsroom.html?article=${i}">${n.image?`<img class="news-img" src="${n.image}" alt="${n.title}" loading="lazy">`:`<div class="news-img-ph">${n.emoji||'📰'}</div>`}<div class="news-body">${n.category?`<span class="news-tag">${n.category}</span>`:''}<div class="news-title">${n.title}</div><div class="news-excerpt">${n.summary||n.excerpt||''}</div><div class="news-foot"><span class="news-date">${n.date||''}</span><span class="news-more">Read →</span></div></div></a>`).join('');
-  }).catch(()=>{});
+  const top=[...items.filter(n=>n.pinned),...items.filter(n=>!n.pinned)].slice(0,3);
+  const preview=n=>(n.fullContent||n.summary||n.excerpt||'').replace(/<[^>]*>/g,'').substring(0,100);
+  grid.innerHTML=top.map(n=>`
+    <a class="news-card" href="${newsArticleUrl(n)}">
+      ${n.image?`<img class="news-img" src="${n.image}" alt="${n.title}" loading="lazy">`:`<div class="news-img-ph">${n.emoji||'📰'}</div>`}
+      <div class="news-body">
+        ${n.category?`<span class="news-tag">${n.category}</span>`:''}
+        <div class="news-title">${n.title}</div>
+        <div class="news-excerpt">${preview(n)}${preview(n)?'…':''}</div>
+        <div class="news-foot"><span class="news-date">${n.date||''}</span><span class="news-more">Read →</span></div>
+      </div>
+    </a>`).join('');
+}
+async function loadNews(){
+  const grid=document.getElementById('newsGrid');if(!grid)return;
+  // Show skeleton while loading
+  grid.innerHTML=`<div class="skeleton-grid">
+    <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
+    <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
+    <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
+  </div>`;
+  // Try Firebase first
+  if(window._db){
+    try{
+      const snap=await window._db.collection('fs_news').orderBy('createdAt','desc').limit(6).get();
+      const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
+      if(items.length){renderNewsCards(items);return;}
+    }catch(e){console.warn('Firebase news fetch:',e.message);}
+  }
+  // Fallback to news.json
+  try{
+    const r=await fetch('news.json?v='+Date.now());
+    const d=await r.json();
+    if(d&&d.length) renderNewsCards(d);
+  }catch(e){
+    grid.innerHTML='<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem">Could not load news. <a href="newsroom.html" style="color:#1a3fa8;font-weight:700">Go to Newsroom →</a></div>';
+  }
 }
 
 /* SCHOLARSHIPS */
@@ -1118,7 +1231,19 @@ function loadScholarships(){
     }).join('');
   }
   render(fb);
-  fetch('scholarships.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.length)render([...d].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)));}).catch(()=>{});
+  // Try Firebase first
+  if(window._db){
+    window._db.collection('fs_scholarships').get()
+      .then(snap=>{
+        const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
+        if(items.length){render([...items].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)));return;}
+        return fetch('scholarships.json?v='+Date.now()).then(r=>r.ok?r.json():null);
+      })
+      .then(d=>{if(d&&d.length)render([...d].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)));})
+      .catch(()=>{});
+  } else {
+    fetch('scholarships.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.length)render([...d].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)));}).catch(()=>{});
+  }
 }
 
 /* STAT COUNTERS */
@@ -1287,7 +1412,29 @@ window.addEventListener('beforeinstallprompt',e=>{
   if(note){note.style.display='none';}
 });
 function installApp(){
-  if(deferredInstall){deferredInstall.prompt();deferredInstall.userChoice.then(()=>{deferredInstall=null;});}
+  const btn=document.getElementById('installBtn');
+  if(deferredInstall){
+    deferredInstall.prompt();
+    deferredInstall.userChoice.then(r=>{
+      if(r.outcome==='accepted'){
+        showToast('✅ App installed! Find Big Quams Media® on your home screen.');
+        if(btn){btn.textContent='✅ Installed';btn.disabled=true;}
+      }
+      deferredInstall=null;
+    });
+  } else {
+    const ua=navigator.userAgent.toLowerCase();
+    const note=document.getElementById('installNote');
+    if(/iphone|ipad|ipod/.test(ua)){
+      showToast('📲 Tap Share ⬆ in Safari → "Add to Home Screen"');
+      if(note) note.textContent='📲 Safari: tap Share ⬆ → "Add to Home Screen"';
+    } else if(/android/.test(ua)){
+      showToast('📲 Tap ⋮ in Chrome → "Add to Home screen"');
+      if(note) note.textContent='📲 Chrome: tap ⋮ menu → "Add to Home screen"';
+    } else {
+      showToast('📲 Use your browser menu → "Add to Home Screen"');
+    }
+  }
 }
 window.installApp=installApp;
 
