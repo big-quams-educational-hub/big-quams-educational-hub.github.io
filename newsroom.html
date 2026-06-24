@@ -207,20 +207,30 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px}
 </style>
 
-<!-- Firebase -->
-<script type="module">
-import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import{getFirestore,collection,getDocs,query,orderBy}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-const _app=initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
-const _db=getFirestore(_app);
-window._fsLoadJson=async(col,jsonFile)=>{
-  try{
-    const s=await getDocs(query(collection(_db,col),orderBy('createdAt','desc')));
-    const d=s.docs.map(doc=>({_id:doc.id,...doc.data()}));
-    if(d.length) return d;
-  }catch(e){}
-  try{const r=await fetch(jsonFile+'?v='+Date.now());return await r.json();}catch(e){return [];}
-};
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  const _app=firebase.initializeApp({
+    apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',
+    authDomain:'big-quams-media.firebaseapp.com',
+    projectId:'big-quams-media'
+  });
+  const _db=firebase.firestore();
+  window._fsLoadNews=async function(){
+    try{
+      const s=await _db.collection('fs_news').orderBy('createdAt','desc').get();
+      const d=s.docs.map(doc=>({_id:doc.id,...doc.data()}));
+      if(d.length) return d;
+    }catch(e){console.warn('Firebase fetch failed:',e.message);}
+    // Fallback to JSON
+    try{const r=await fetch('news.json?v='+Date.now());const d=await r.json();return d||[];}
+    catch(e){return [];}
+  };
+  window._firebaseReady=true;
+  if(window._onFirebaseReady) window._onFirebaseReady();
+})();
 </script>
 </head>
 <body>
@@ -309,10 +319,13 @@ window._fsLoadJson=async(col,jsonFile)=>{
     <div class="grid-layout">
       <!-- MAIN FEED -->
       <div>
-        <div id="pinnedWrap" class="pinned-wrap"></div>
+        <div id="pinnedWrap" class="pinned-wrap">
+  <div class="sk-pinned" id="skPinned"><div class="sk-img-block sk sk-pinned-img"></div><div class="sk-pinned-body"><div class="sk sk-s sk-w40" style="margin-bottom:4px"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
+</div>
         <div id="newsList" class="news-list">
   <div class="skeleton-list" id="skeletonLoader">
-    <div class="sk-pinned"><div class="sk-img-block sk sk-pinned-img"></div><div class="sk-pinned-body"><div class="sk sk-h sk-w60"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w40"></div></div></div>
+    <div class="sk-card"><div class="sk-img-block sk"></div><div class="sk-body"><div class="sk sk-s sk-w40"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
+    <div class="sk-card"><div class="sk-img-block sk"></div><div class="sk-body"><div class="sk sk-s sk-w40"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
     <div class="sk-card"><div class="sk-img-block sk"></div><div class="sk-body"><div class="sk sk-s sk-w40"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
     <div class="sk-card"><div class="sk-img-block sk"></div><div class="sk-body"><div class="sk sk-s sk-w40"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
     <div class="sk-card"><div class="sk-img-block sk"></div><div class="sk-body"><div class="sk sk-s sk-w40"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
@@ -363,16 +376,57 @@ window._fsLoadJson=async(col,jsonFile)=>{
   <div class="footer-inner">
     <div class="footer-brand">
       <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM">
-      <div><div class="footer-brand-name">Big Quams Media®</div></div>
+      <div>
+        <div class="footer-brand-name">Big Quams Media®</div>
+        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Nigeria's Trusted Student Platform</div>
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="index.html">Home</a><a href="newsroom.html">Newsroom</a><a href="explore.html">Explore</a>
-      <a href="elibrary.html">eLibrary</a><a href="cbt.html">CBT Practice</a><a href="postutme-prep.html">Post-UTME Prep</a>
-      <a href="postutme-calculator.html">Aggregate Calc</a><a href="gpa-calculator.html">GPA Calc</a>
-      <a href="student-loan.html">Student Loan</a><a href="scholarship.html">Scholarships</a>
-      <a href="results.html">Results Checker</a><a href="spotlight.html">Spotlight</a><a href="community.html">Community</a>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="index.html">🏠 Home</a>
+          <a href="newsroom.html">📰 Newsroom</a>
+          <a href="explore.html">🗂 Explore Tools</a>
+          <a href="campus-life.html">🎮 Campus Life</a>
+          <a href="community.html">🤝 Community</a>
+          <a href="daily.html">📅 Daily Hub</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="cbt.html">👨🏽‍💻 JAMB CBT Practice</a>
+          <a href="postutme-prep.html">📖 Post-UTME Prep</a>
+          <a href="postutme-calculator.html">🧮 Aggregate Calc</a>
+          <a href="gpa-calculator.html">🎓 GPA Calculator</a>
+          <a href="results.html">📊 Results Checker</a>
+          <a href="Jamb_Profile_Code.html">🔑 JAMB Profile Code</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="elibrary.html">📚 eLibrary</a>
+          <a href="scholarship.html">💰 Scholarships</a>
+          <a href="student-loan.html">💳 Student Loan</a>
+          <a href="spotlight.html">🌟 Student Spotlight</a>
+          <a href="dyk.html">💡 Did You Know</a>
+          <a href="subject-combo.html">📋 Subject Combo</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener">💬 WhatsApp Us</a>
+          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener">👥 Join Group</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener">📸 Instagram</a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener">🎵 TikTok</a>
+          <a href="index.html#install-app">📲 Install App</a>
+        </div>
+      </div>
     </div>
-    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved · Nigeria's Trusted Student Platform</div>
+    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved · Built for Nigerian Students</div>
   </div>
 </footer>
 
@@ -432,13 +486,16 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 // ── Init ──
 async function init(){
   try{
-    allNews=await window._fsLoadJson('fs_news','news.json');
+    allNews=await window._fsLoadNews();
     // Sort: pinned first, then newest
     allNews.sort((a,b)=>{
       if(a.pinned&&!b.pinned) return -1;
       if(!a.pinned&&b.pinned) return 1;
       return 0;
     });
+    // Clear skeletons
+    document.getElementById('skPinned').remove();
+    document.getElementById('skeletonLoader').remove();
     updateHeroStats();
     buildSidebar();
     render();
@@ -451,8 +508,16 @@ async function init(){
     else if(legacyIdx!==null) target=allNews[parseInt(legacyIdx)];
     if(target) openArticle(allNews.indexOf(target));
   }catch(e){
-    document.getElementById('newsList').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load articles. Please try again later.</p></div>';
+    document.getElementById('skPinned')&&document.getElementById('skPinned').remove();
+    document.getElementById('newsList').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load articles. Please try again.</p></div>';
   }
+}
+
+// Wait for Firebase compat SDK to be ready before calling init
+if(window._firebaseReady){
+  init();
+} else {
+  window._onFirebaseReady=init;
 }
 
 function updateHeroStats(){
@@ -666,7 +731,6 @@ function shareCard(e,idx){
   }
 }
 
-init();
 </script>
 </body>
 </html>
