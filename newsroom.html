@@ -477,7 +477,9 @@ function articleUrl(item){
   const slug=item.slug||makeSlug(item.title||'');
   const id=item._id||'';
   const base='https://bigquamsmedia.com.ng/newsroom.html';
-  return base+(id?'?id='+id+(slug?'&slug='+slug:''):'');
+  // Format: /newsroom.html#slug--id  e.g. #unilorin-bans-dress--Ab3xFire9Kp
+  const hash=slug+(id?'--'+id:'');
+  return base+'#'+hash;
 }
 
 // ── Toast ──
@@ -499,14 +501,37 @@ async function init(){
     updateHeroStats();
     buildSidebar();
     render();
-    // Handle direct article URL
-    const p=new URLSearchParams(location.search);
-    const id=p.get('id'), slug=p.get('slug'), legacyIdx=p.get('article');
+    // Handle direct article link via hash e.g. #unilorin-bans-dress--Ab3xFire9Kp
+    // Also supports legacy ?id= ?slug= ?article= params
     let target=null;
-    if(id) target=allNews.find(n=>n._id===id);
-    else if(slug) target=allNews.find(n=>(n.slug||makeSlug(n.title||''))===slug);
-    else if(legacyIdx!==null) target=allNews[parseInt(legacyIdx)];
+    const hash=location.hash.replace('#','').trim();
+    if(hash){
+      // Try extracting --id suffix first (most reliable)
+      const dashIdx=hash.lastIndexOf('--');
+      const hashId=dashIdx>-1?hash.substring(dashIdx+2):'';
+      const hashSlug=dashIdx>-1?hash.substring(0,dashIdx):hash;
+      if(hashId) target=allNews.find(n=>n._id===hashId);
+      if(!target&&hashSlug) target=allNews.find(n=>(n.slug||makeSlug(n.title||''))===hashSlug);
+    }
+    if(!target){
+      const p=new URLSearchParams(location.search);
+      const id=p.get('id'),slug=p.get('slug'),legacyIdx=p.get('article');
+      if(id) target=allNews.find(n=>n._id===id);
+      else if(slug) target=allNews.find(n=>(n.slug||makeSlug(n.title||''))===slug);
+      else if(legacyIdx!==null) target=allNews[parseInt(legacyIdx)];
+    }
     if(target) openArticle(allNews.indexOf(target));
+    // Listen for hash changes (browser back/forward)
+    window.addEventListener('hashchange',()=>{
+      const h=location.hash.replace('#','').trim();
+      if(!h){closeArticle();return;}
+      const di=h.lastIndexOf('--');
+      const hId=di>-1?h.substring(di+2):'';
+      const hSlug=di>-1?h.substring(0,di):h;
+      let t=hId?allNews.find(n=>n._id===hId):null;
+      if(!t) t=allNews.find(n=>(n.slug||makeSlug(n.title||''))===hSlug);
+      if(t) openArticle(allNews.indexOf(t));
+    });
   }catch(e){
     document.getElementById('skPinned')&&document.getElementById('skPinned').remove();
     document.getElementById('newsList').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load articles. Please try again.</p></div>';
@@ -673,20 +698,18 @@ function openArticle(idx){
         </div>`:''}
     </div>`;
 
-  // Stable URL
-  const url=new URL(location.href);
-  url.search='';
-  if(n._id) url.searchParams.set('id',n._id);
+  // Stable hash URL: #slug--id
   const slug=n.slug||makeSlug(n.title||'');
-  if(slug) url.searchParams.set('slug',slug);
-  history.replaceState({},'',url);
+  const hash=slug+(n._id?'--'+n._id:'');
+  history.replaceState({},'',location.pathname+'#'+hash);
 
   // OG meta for share
+  const artLink=articleUrl(n);
   const setMeta=(p,v)=>{let m=document.querySelector(`meta[property="${p}"]`);if(!m){m=document.createElement('meta');m.setAttribute('property',p);document.head.appendChild(m);}m.setAttribute('content',v);};
   setMeta('og:title',n.title+' — Big Quams Media®');
   setMeta('og:description',preview);
   setMeta('og:image',n.image||'https://bigquamsmedia.com.ng/bigquamsmedia-admin/1001736174.png');
-  setMeta('og:url',url.toString());
+  setMeta('og:url',artLink);
   document.title=n.title+' — Big Quams Media®';
 
   document.getElementById('artOverlay').classList.add('open');
@@ -698,9 +721,7 @@ function closeArticle(){
   document.getElementById('artOverlay').classList.remove('open');
   document.body.style.overflow='';
   currentIdx=-1;
-  const url=new URL(location.href);
-  url.search='';
-  history.replaceState({},'',url);
+  history.replaceState({},'',location.pathname);
   document.title='Newsroom | Big Quams Media®';
 }
 
@@ -730,6 +751,7 @@ function shareCard(e,idx){
     navigator.clipboard.writeText('📰 '+n.title+'\n\nRead more: '+url).then(()=>showToast('🔗 Link copied!')).catch(()=>showToast('🔗 '+url));
   }
 }
+window.shareCard=shareCard;
 
 </script>
 </body>
