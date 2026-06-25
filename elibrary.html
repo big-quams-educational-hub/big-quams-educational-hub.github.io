@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RCLYVCZY2K');
-</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RCLYVCZY2K');</script>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Free eLibrary | Big Quams Media®</title>
-<meta name="description" content="Big Quams Media® — Nigeria's trusted platform for students. Free CBT practice, Post-UTME prep, scholarships, school news, eLibrary and more. Your admission success starts here.">
-<link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
+<meta name="description" content="100+ free textbooks, past questions, lecture notes and academic materials for Nigerian students. Download free on Big Quams Media® eLibrary.">
+<meta property="og:title" content="Free eLibrary — Big Quams Media®">
+<meta property="og:description" content="100+ free textbooks, past questions and academic materials for Nigerian students.">
+<meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia-admin/1001736174.png">
+<meta property="og:url" content="https://bigquamsmedia.com.ng/elibrary.html">
+<link rel="icon" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(typeof firebase==='undefined') throw new Error('SDK not loaded');
+    if(!firebase.apps.length) firebase.initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
+    window._db=firebase.firestore();
+  }catch(e){console.warn('Firebase:',e.message);}
+})();
+</script>
 <style>
-:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-sm:8px;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
-body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
+:root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:14px;--shadow:0 8px 28px rgba(26,63,168,.11)}
+body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Roboto',sans-serif;background:#f5f7ff;color:var(--text-main);line-height:1.6;overflow-x:hidden}
+body{font-family:'Roboto',sans-serif;background:var(--surface2);color:var(--text);line-height:1.6;overflow-x:hidden}
 body.dark{background:#0d1117}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;font-family:inherit}
 img{max-width:100%;display:block}
-header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4)}
-.header-bar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+/* HEADER */
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.35)}
+.hbar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
 .logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
 .logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
 .logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
-.logo-sub{font-size:.55rem;color:rgba(255,255,255,.45);display:block}
+.logo-sub{font-size:.52rem;color:rgba(255,255,255,.42);display:block}
 .main-nav{display:flex;align-items:center;gap:2px}
-.main-nav>a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
-.main-nav>a:hover,.main-nav>a.active{color:#fff;background:rgba(255,255,255,.12)}
+.main-nav a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
+.main-nav a:hover,.main-nav a.active{color:#fff;background:rgba(255,255,255,.12)}
 .nav-cta{background:var(--orange)!important;color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important}
 .hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center}
@@ -47,102 +57,87 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 .mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:60px}
 .mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .mnav-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
-.mobile-nav>a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
-.mobile-nav>a:hover{background:rgba(255,255,255,.06);color:#fff}
+.mobile-nav a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
+.mobile-nav a:hover{background:rgba(255,255,255,.06);color:#fff}
 .mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
 .nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
 .nav-overlay.show{opacity:1;pointer-events:auto}
-.page-hero{background:linear-gradient(150deg,rgba(8,21,48,.86) 0%,rgba(15,32,96,.80) 40%,rgba(26,63,168,.74) 100%),url('1782067011462.png') center center/cover no-repeat;padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
+/* HERO */
+.page-hero{background:linear-gradient(150deg,rgba(8,21,48,.88),rgba(15,32,96,.82),rgba(26,63,168,.76)),url('bigquamsmedia-admin/1001736174.png') center/cover no-repeat;padding:48px 16px 56px;text-align:center;position:relative;overflow:hidden}
 .page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
-.page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:16px}
-.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px}
-.page-hero h1 span{color:#fcd34d}
-.page-hero p{font-size:.9rem;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto}
-.hero-stats{display:flex;justify-content:center;gap:24px;margin-top:20px;flex-wrap:wrap}
-.hero-stat{text-align:center}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 18px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:14px}
+.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,5vw,2.5rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:10px}
+.page-hero h1 span{color:var(--orange)}
+.page-hero p{font-size:.88rem;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto 20px}
+.hero-stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
 .hero-stat-num{font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;color:#fff}
-.hero-stat-lbl{font-size:.62rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px}
-.filter-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;position:sticky;top:60px;z-index:200}
-body.dark .filter-wrap{background:#161b27;border-color:var(--border)}
-.filter-inner{max-width:1100px;margin:0 auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.cat-btn{padding:7px 16px;border-radius:20px;font-size:.76rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface-alt);color:var(--text-muted);cursor:pointer;transition:.18s;white-space:nowrap}
-body.dark .cat-btn{background:#1a2236;border-color:var(--border)}
-.cat-btn.active,.cat-btn:hover{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
-.search-box{display:flex;align-items:center;gap:8px;background:var(--surface-alt);border:1.5px solid var(--border);border-radius:10px;padding:0 12px;height:40px;margin-left:auto;flex:1;max-width:260px;min-width:0}
-body.dark .search-box{background:#111624;border-color:var(--border)}
-.search-box input{flex:1;border:none;background:transparent;font-size:.84rem;color:var(--text-main);outline:none;min-width:0;font-family:'Roboto',sans-serif}
+.hero-stat-lbl{font-size:.62rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px}
+/* FILTER */
+.filter-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 16px;position:sticky;top:60px;z-index:200}
+body.dark .filter-wrap{background:#161b27}
+.filter-inner{max-width:1100px;margin:0 auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.cat-btn{padding:6px 14px;border-radius:20px;font-size:.74rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:.18s;white-space:nowrap}
+body.dark .cat-btn{background:#1a2236}
+.cat-btn.active,.cat-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.search-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:0 12px;height:38px;flex:1;max-width:240px;min-width:0}
+body.dark .search-wrap{background:#111624}
+.search-wrap input{flex:1;border:none;background:transparent;font-size:.82rem;color:var(--text);outline:none;min-width:0;font-family:inherit}
+/* GRID */
 .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
-.sec{padding:36px 0}
-.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-@media(max-width:480px){.books-grid{grid-template-columns:repeat(2,1fr);gap:12px}}
-.book-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column;transition:all .22s}
-body.dark .book-card{background:#161b27;border-color:var(--border)}
-.book-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-.book-cover{width:100%;height:160px;object-fit:cover;background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.6);flex-shrink:0}
-.book-cover img{width:100%;height:100%;object-fit:cover}
-.book-body{padding:14px;flex:1;display:flex;flex-direction:column;gap:6px}
-.book-cat{font-size:.6rem;font-weight:800;padding:2px 9px;border-radius:20px;background:var(--blue-light);color:var(--blue-main);align-self:flex-start}
-body.dark .book-cat{background:#1a2d5a;color:#93c5fd}
-.book-title{font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:var(--text-main);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.book-author{font-size:.7rem;color:var(--text-muted)}
-.book-desc{font-size:.72rem;color:var(--text-muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
-.book-actions{display:flex;gap:7px;margin-top:auto;padding-top:10px;border-top:1px solid var(--border)}
-.dl-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff;padding:9px 10px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;border:none;cursor:pointer;transition:.18s;text-decoration:none}
-.dl-btn:hover{opacity:.9}
-.view-btn{display:flex;align-items:center;justify-content:center;background:var(--surface-alt);color:var(--blue-main);border:1.5px solid var(--border);width:36px;height:36px;border-radius:8px;font-size:.9rem;flex-shrink:0;transition:.18s;text-decoration:none}
-.view-btn:hover{background:var(--blue-light);border-color:var(--blue-main)}
-.featured-badge{position:absolute;top:8px;right:8px;background:var(--orange);color:#fff;font-size:.58rem;font-weight:800;padding:3px 8px;border-radius:20px}
+.sec{padding:36px 0 48px}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+@media(max-width:480px){.books-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+/* BOOK CARD */
 .book-wrap{position:relative}
-.empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
+.book-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:.22s;height:100%}
+body.dark .book-card{background:#161b27;border-color:var(--border)}
+.book-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#bfdbfe}
+.book-cover{width:100%;height:155px;object-fit:cover;background:linear-gradient(135deg,var(--blue-deep),var(--blue));display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.5);flex-shrink:0;overflow:hidden}
+.book-cover img{width:100%;height:100%;object-fit:cover}
+.featured-badge{position:absolute;top:8px;right:8px;background:var(--orange);color:#fff;font-size:.58rem;font-weight:800;padding:3px 8px;border-radius:20px;z-index:1}
+.book-body{padding:13px;flex:1;display:flex;flex-direction:column;gap:5px}
+.book-cat{font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);align-self:flex-start}
+body.dark .book-cat{background:#1a2d5a;color:#93c5fd}
+.book-title{font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:var(--text);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.book-author{font-size:.7rem;color:var(--muted)}
+.book-desc{font-size:.72rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.book-actions{display:flex;gap:7px;margin-top:auto;padding-top:10px;border-top:1px solid var(--border)}
+.dl-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;background:linear-gradient(135deg,var(--blue-deep),var(--blue));color:#fff;padding:9px 8px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.72rem;border:none;cursor:pointer;transition:.18s;text-decoration:none}
+.dl-btn:hover{opacity:.88}
+.dl-btn.disabled{opacity:.45;cursor:not-allowed;pointer-events:none}
+.view-btn{display:flex;align-items:center;justify-content:center;background:var(--surface2);color:var(--blue);border:1.5px solid var(--border);width:36px;height:36px;border-radius:8px;font-size:.9rem;flex-shrink:0;transition:.18s;text-decoration:none}
+body.dark .view-btn{background:#1a2236}
+.view-btn:hover{background:var(--blue-lt);border-color:var(--blue)}
+/* SKELETON */
+@keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+.sk{background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:6px}
+body.dark .sk{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:600px 100%}
+.sk-book{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden}
+body.dark .sk-book{background:#161b27}
+/* EMPTY */
+.empty{text-align:center;padding:56px 20px;color:var(--muted);grid-column:1/-1}
 .empty .ei{font-size:2.5rem;margin-bottom:10px}
-.loader{text-align:center;padding:60px;color:var(--text-muted)}
-.loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.suggest-box{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:var(--radius-md);padding:28px 24px;text-align:center;margin-top:32px}
+/* SUGGEST */
+.suggest-box{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:var(--r);padding:28px 24px;text-align:center;margin-top:32px}
 .suggest-box h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:8px}
-.suggest-box p{font-size:.8rem;color:rgba(255,255,255,.65);margin-bottom:16px;line-height:1.6}
-.suggest-btn{display:inline-flex;align-items:center;gap:8px;background:#f97316;color:#fff;padding:11px 22px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.86rem;transition:.2s}
-.suggest-btn:hover{background:#e56b0f}
+.suggest-box p{font-size:.82rem;color:rgba(255,255,255,.62);margin-bottom:18px;line-height:1.5}
+.suggest-btn{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 22px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.84rem}
+/* FOOTER */
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
 .footer-inner{max-width:1100px;margin:0 auto}
-.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.footer-brand img{width:32px;height:32px;border-radius:50%;border:2px solid var(--orange)}
-.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff}
-.footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:14px}
-.footer-links a{font-size:.74rem;color:rgba(255,255,255,.45);transition:.18s}
-.footer-links a:hover{color:#fff}
-.footer-copy{font-size:.7rem;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
 </style>
-<script type="module">
-import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import{getFirestore,collection,getDocs,query,orderBy,where,limit}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-const _cfg={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'};
-const _app=initializeApp(_cfg);
-const _db=getFirestore(_app);
-window._fsDb=_db;window._fsCol=collection;window._fsGet=getDocs;window._fsQuery=query;window._fsOrder=orderBy;window._fsWhere=where;window._fsLimit=limit;
-window._fsLoad=async(col)=>{try{const s=await getDocs(collection(_db,col));return s.docs.map(d=>({_id:d.id,...d.data()})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));}catch(e){console.warn('fsLoad',col,e.message);return [];}};
-window._fsLoadJson=async(col,jsonFile)=>{
-  // Try Firestore first, fall back to JSON file
-  try{
-    const s=await getDocs(collection(_db,col));
-    const data=s.docs.map(d=>({_id:d.id,...d.data()})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
-    if(data.length) return data;
-  }catch(e){}
-  // Fallback to JSON
-  try{const r=await fetch(jsonFile+'?v='+Date.now());return await r.json();}catch(e){return [];}
-};
-</script>
 </head>
 <body>
 <header>
-  <div class="header-bar">
+  <div class="hbar">
     <a href="index.html" class="logo-link">
       <img class="logo-img" src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM">
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
     <nav class="main-nav">
       <a href="index.html">Home</a>
+      <a href="newsroom.html">Newsroom</a>
       <a href="explore.html">Explore</a>
       <a href="elibrary.html" class="active">eLibrary</a>
       <a href="scholarship.html">Scholarships</a>
@@ -154,106 +149,180 @@ window._fsLoadJson=async(col,jsonFile)=>{
 </header>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
 <nav class="mobile-nav" id="mobileNav">
-<div class="mnav-header"><div style="display:flex;align-items:center;gap:10px"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316"><div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
-  </div></div>
-  <div class="mnav-lbl">Navigation</div>
-  <a href="index.html" onclick="toggleNav()">Home</a>
-  <a href="explore.html" onclick="toggleNav()">Explore All Tools</a>
-  <a href="newsroom.html" onclick="toggleNav()">Newsroom</a>
-  <a href="elibrary.html" onclick="toggleNav()">eLibrary</a>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">Post-UTME Calculator</a>
-  <a href="subject-combo.html" onclick="toggleNav()">Subject Combination</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">GPA Calculator</a>
-  <a href="student-loan.html" onclick="toggleNav()">Student Loan Guide</a>
-  <a href="scholarship.html" onclick="toggleNav()">Scholarships</a>
-  <a href="results.html" onclick="toggleNav()">Results Checker</a>
-  <a href="dyk.html" onclick="toggleNav()">Did You Know</a>
-  <a href="spotlight.html" onclick="toggleNav()">Student Spotlight</a>
-  <a href="community.html" onclick="toggleNav()">Community Hub</a>
+  <div class="mnav-header">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
+    </div>
+    <button class="mnav-close" onclick="toggleNav()">✕</button>
+  </div>
+  <div class="mnav-lbl">Main</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <div class="mnav-lbl">Exam Tools</div>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+  <div class="mnav-lbl">Resources</div>
+  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 
+<!-- HERO -->
 <section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="hero-badge">📚 100% Free — No Registration</div>
-    <h1>Free <span>eLibrary</span></h1>
-    <p>Download JAMB past questions, textbooks, scholarship guides and academic PDFs completely free. No sign-up, no payment — ever.</p>
+  <div class="hero-inner">
+    <div class="hero-badge">📚 Free Academic Resources</div>
+    <h1>BQM <span>eLibrary</span></h1>
+    <p>Free textbooks, past question papers, lecture notes and academic materials for Nigerian students. Download and read — completely free.</p>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-num" id="bookCount">—</div><div class="hero-stat-lbl">Books Available</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">Free</div><div class="hero-stat-lbl">Always</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">PDF</div><div class="hero-stat-lbl">Instant Download</div></div>
+      <div><div class="hero-stat-num" id="bookCount">—</div><div class="hero-stat-lbl">Books</div></div>
+      <div><div class="hero-stat-num" id="catCount">—</div><div class="hero-stat-lbl">Categories</div></div>
+      <div><div class="hero-stat-num">100%</div><div class="hero-stat-lbl">Free</div></div>
     </div>
   </div>
 </section>
 
+<!-- FILTER -->
 <div class="filter-wrap">
   <div class="filter-inner">
     <button class="cat-btn active" onclick="setCategory('',this)">All</button>
-    <button class="cat-btn" onclick="setCategory('JAMB (UTME & DE)',this)">JAMB</button>
-    <button class="cat-btn" onclick="setCategory('Secondary School',this)">Secondary</button>
-    <button class="cat-btn" onclick="setCategory('University',this)">University</button>
-    <button class="cat-btn" onclick="setCategory('Scholarship',this)">Scholarship</button>
-    <button class="cat-btn" onclick="setCategory('Novels & Fiction',this)">Novels</button>
-    <button class="cat-btn" onclick="setCategory('Professional',this)">Professional</button>
-    <div class="search-box">
-      <span>🔍</span>
+    <button class="cat-btn" onclick="setCategory('JAMB',this)">📝 JAMB</button>
+    <button class="cat-btn" onclick="setCategory('WAEC',this)">📋 WAEC</button>
+    <button class="cat-btn" onclick="setCategory('Post-UTME',this)">🎯 Post-UTME</button>
+    <button class="cat-btn" onclick="setCategory('Textbook',this)">📖 Textbooks</button>
+    <button class="cat-btn" onclick="setCategory('Lecture Notes',this)">📓 Lecture Notes</button>
+    <button class="cat-btn" onclick="setCategory('Novel',this)">📗 Novels</button>
+    <button class="cat-btn" onclick="setCategory('Dictionary',this)">📘 Dictionary</button>
+    <div class="search-wrap">
+      <span style="color:var(--muted);font-size:.82rem">🔍</span>
       <input type="text" id="bookSearch" placeholder="Search books…" oninput="render()" autocomplete="off">
     </div>
   </div>
 </div>
 
+<!-- BOOKS -->
 <section class="sec">
   <div class="wrap">
-    <div id="booksGrid" class="books-grid"><div class="loader"><div class="loader-spin"></div>Loading books…</div></div>
+    <div id="booksGrid" class="books-grid">
+      <!-- Skeleton -->
+      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+    </div>
     <div class="suggest-box">
       <h3>📖 Don't see the book you need?</h3>
-      <p>Send us a message on WhatsApp and tell us what you're looking for. We'll try to add it to the library.</p>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="suggest-btn">💬 Request a Book →</a>
+      <p>Send us a message and tell us what you're looking for. We'll try to add it to the library.</p>
+      <a href="https://wa.me/2349049871643?text=Please%20add%20this%20book%20to%20BQM%20eLibrary%3A%20" target="_blank" rel="noopener" class="suggest-btn">💬 Request a Book →</a>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
-            <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="explore.html">Explore</a>
-      <a href="newsroom.html">Newsroom</a>
-      <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">CBT Practice</a>
-      <a href="postutme-prep.html">Post-UTME Prep</a>
-      <a href="postutme-calculator.html">Post-UTME Calc</a>
-      <a href="subject-combo.html">Subject Combo</a>
-      <a href="gpa-calculator.html">GPA Calculator</a>
-      <a href="student-loan.html">Student Loan</a>
-      <a href="scholarship.html">Scholarships</a>
-      <a href="results.html">Results Checker</a>
-      <a href="dyk.html">Did You Know</a>
-      <a href="spotlight.html">Spotlight</a>
-      <a href="community.html">Community</a>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
+        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div>
+      </div>
     </div>
-    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All resources are free for personal educational use</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a>
+          <a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a>
+          <a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a>
+          <a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a>
+          <a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a>
+          <a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a>
+          <a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a>
+          <a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a>
+          <a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a>
+          <a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a>
+          <a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a>
+          <a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a>
+          <a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a>
+          <a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a>
+          <a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a>
+          <a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a>
+          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a>
+          <a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All resources are free for personal educational use</div>
   </div>
 </footer>
 
 <script>
 (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
 function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
-document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';document.getElementById('yr').textContent=new Date().getFullYear();});
 function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.getElementById('mobileNav');if(nav.classList.contains('open'))toggleNav();}});
+document.addEventListener('DOMContentLoaded',()=>{
+  if(document.body.classList.contains('dark')) document.getElementById('darkBtn').textContent='☀️';
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  init();
+});
 
 let allBooks=[], currentCat='';
 
 async function init(){
   try{
-    allBooks=await window._fsLoadJson('fs_books','books.json');
-    document.getElementById('bookCount').textContent=allBooks.length+'+';
+    let books=[];
+    if(window._db){
+      const snap=await window._db.collection('fs_books').orderBy('createdAt','desc').get();
+      books=snap.docs.map(d=>({_id:d.id,...d.data()}));
+    }
+    if(!books.length){
+      const r=await fetch('books.json?v='+Date.now());
+      books=await r.json();
+    }
+    allBooks=books;
+    // Update stats
+    const cats=new Set(books.map(b=>b.category).filter(Boolean));
+    document.getElementById('bookCount').textContent=books.length+'+';
+    document.getElementById('catCount').textContent=cats.size;
     render();
   }catch(e){
-    document.getElementById('booksGrid').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load books. Please try again.</p></div>';
+    document.getElementById('booksGrid').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load books. Please try again later.</p></div>';
   }
 }
 
@@ -265,37 +334,41 @@ function setCategory(cat,btn){
 }
 
 function render(){
-  const q=(document.getElementById('bookSearch').value||'').toLowerCase();
-  const featured=allBooks.filter(b=>b.featured&&!currentCat&&!q);
-  let filtered=allBooks.filter(b=>{
-    const matchCat=!currentCat||(b.category||'')=== currentCat;
+  const q=(document.getElementById('bookSearch').value||'').toLowerCase().trim();
+  const filtered=allBooks.filter(b=>{
+    const matchCat=!currentCat||(b.category||'')===currentCat;
     const matchQ=!q||((b.title||'')+(b.description||'')+(b.author||'')).toLowerCase().includes(q);
     return matchCat&&matchQ;
   });
   const el=document.getElementById('booksGrid');
-  if(!filtered.length){el.innerHTML='<div class="empty"><div class="ei">🔍</div><p>No books match your search. Try different keywords.</p></div>';return;}
-  el.innerHTML=filtered.map(b=>`
+  if(!filtered.length){
+    el.innerHTML='<div class="empty"><div class="ei">🔍</div><p>No books match your search.<br><button onclick="setCategory(\'\',document.querySelector(\'.cat-btn\'))" style="margin-top:12px;background:var(--blue);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-weight:700;cursor:pointer">Clear filter</button></p></div>';
+    return;
+  }
+  // Sort: featured first
+  const sorted=[...filtered.filter(b=>b.featured),...filtered.filter(b=>!b.featured)];
+  el.innerHTML=sorted.map(b=>`
     <div class="book-wrap">
       ${b.featured&&!currentCat&&!q?'<span class="featured-badge">⭐ Featured</span>':''}
       <div class="book-card">
         <div class="book-cover">
-          ${b.cover?`<img src="${b.cover}" alt="${b.title}">`:`📖`}
+          ${b.cover?`<img src="${b.cover}" alt="${b.title}" loading="lazy">`:'📖'}
         </div>
         <div class="book-body">
           <span class="book-cat">${b.category||'General'}</span>
-          <div class="book-title">${b.title}</div>
+          <div class="book-title">${b.title||''}</div>
           ${b.author?`<div class="book-author">✍️ ${b.author}${b.year?' · '+b.year:''}</div>`:''}
           <div class="book-desc">${b.description||''}</div>
           <div class="book-actions">
-            ${b.downloadUrl?`<a href="${b.downloadUrl}" target="_blank" rel="noopener" class="dl-btn">📥 Download Free</a>`:'<span class="dl-btn" style="opacity:.5;cursor:not-allowed">Coming Soon</span>'}
+            ${b.downloadUrl
+              ?`<a href="${b.downloadUrl}" target="_blank" rel="noopener" class="dl-btn">📥 Download Free</a>`
+              :`<span class="dl-btn disabled">Coming Soon</span>`}
             ${b.viewUrl?`<a href="${b.viewUrl}" target="_blank" rel="noopener" class="view-btn" title="Preview">👁</a>`:''}
           </div>
         </div>
       </div>
     </div>`).join('');
 }
-
-init();
 </script>
 </body>
 </html>
