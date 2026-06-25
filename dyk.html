@@ -15,6 +15,17 @@
 <link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(typeof firebase==='undefined') throw new Error('SDK not loaded');
+    if(!firebase.apps.length) firebase.initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
+    window._db=firebase.firestore();
+  }catch(e){console.warn('Firebase:',e.message);}
+})();
+</script>
 <style>
 :root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-sm:8px;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
 body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
@@ -86,9 +97,24 @@ body.dark .dyk-cat{background:#1a2d5a;color:#93c5fd}
 .share-btn:hover{color:var(--blue-main)}
 .empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
 .empty .ei{font-size:2.5rem;margin-bottom:10px}
-.loader{text-align:center;padding:60px;color:var(--text-muted)}
-.loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+.sk{background:linear-gradient(90deg,var(--border) 25%,var(--surface-alt) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:6px}
+body.dark .sk{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:600px 100%}
+.sk-dyk{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:22px}
+body.dark .sk-dyk{background:#161b27}
+/* DYK image support */
+.dyk-img-wrap{margin:12px -22px;overflow:hidden}
+.dyk-img-single{width:100%;height:auto;display:block;object-fit:contain;max-height:400px;background:#000;cursor:zoom-in}
+.dyk-img-grid{display:grid;gap:2px}
+.dyk-img-grid.cols-2{grid-template-columns:1fr 1fr}
+.dyk-img-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+.dyk-img-grid img{width:100%;height:160px;object-fit:cover;cursor:zoom-in}
+.dyk-img-grid.cols-1 img{height:auto;max-height:400px;object-fit:contain;background:#000}
+/* Lightbox */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:900;align-items:center;justify-content:center;padding:16px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:90vh;border-radius:8px;object-fit:contain}
+.lightbox-close{position:absolute;top:16px;right:16px;color:#fff;background:rgba(255,255,255,.15);border:none;width:38px;height:38px;border-radius:50%;font-size:1.1rem;cursor:pointer}
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 .footer-inner{max-width:1100px;margin:0 auto}
 .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
@@ -99,25 +125,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 .footer-links a:hover{color:#fff}
 .footer-copy{font-size:.7rem;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
 </style>
-<script type="module">
-import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import{getFirestore,collection,getDocs,query,orderBy,where,limit}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-const _cfg={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'};
-const _app=initializeApp(_cfg);
-const _db=getFirestore(_app);
-window._fsDb=_db;window._fsCol=collection;window._fsGet=getDocs;window._fsQuery=query;window._fsOrder=orderBy;window._fsWhere=where;window._fsLimit=limit;
-window._fsLoad=async(col)=>{try{const s=await getDocs(collection(_db,col));return s.docs.map(d=>({_id:d.id,...d.data()})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));}catch(e){console.warn('fsLoad',col,e.message);return [];}};
-window._fsLoadJson=async(col,jsonFile)=>{
-  // Try Firestore first, fall back to JSON file
-  try{
-    const s=await getDocs(collection(_db,col));
-    const data=s.docs.map(d=>({_id:d.id,...d.data()})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
-    if(data.length) return data;
-  }catch(e){}
-  // Fallback to JSON
-  try{const r=await fetch(jsonFile+'?v='+Date.now());return await r.json();}catch(e){return [];}
-};
-</script>
+
 </head>
 <body>
 <header>
@@ -140,19 +148,27 @@ window._fsLoadJson=async(col,jsonFile)=>{
   <div class="mnav-lbl">Navigation</div>
   <a href="index.html" onclick="toggleNav()">Home</a>
   <a href="explore.html" onclick="toggleNav()">Explore All Tools</a>
-  <a href="newsroom.html" onclick="toggleNav()">Newsroom</a>
-  <a href="elibrary.html" onclick="toggleNav()">eLibrary</a>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">Post-UTME Calculator</a>
-  <a href="subject-combo.html" onclick="toggleNav()">Subject Combination</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">GPA Calculator</a>
-  <a href="student-loan.html" onclick="toggleNav()">Student Loan Guide</a>
-  <a href="scholarship.html" onclick="toggleNav()">Scholarships</a>
-  <a href="results.html" onclick="toggleNav()">Results Checker</a>
-  <a href="dyk.html" onclick="toggleNav()">Did You Know</a>
-  <a href="spotlight.html" onclick="toggleNav()">Student Spotlight</a>
-  <a href="community.html" onclick="toggleNav()">Community Hub</a>
+  <div class="mnav-lbl">Main</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <div class="mnav-lbl">Exam Tools</div>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+  <div class="mnav-lbl">Resources</div>
+  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 
@@ -178,31 +194,35 @@ window._fsLoadJson=async(col,jsonFile)=>{
 
 <section class="sec">
   <div class="wrap">
-    <div id="dykGrid" class="dyk-grid"><div class="loader"><div class="loader-spin"></div>Loading facts…</div></div>
+    <div id="dykGrid" class="dyk-grid">
+  <div class="sk-dyk"><div class="sk" style="height:30px;width:42px;border-radius:10px;margin-bottom:12px"></div><div class="sk" style="height:14px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:11px;width:100%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:85%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:65%"></div></div>
+  <div class="sk-dyk"><div class="sk" style="height:30px;width:42px;border-radius:10px;margin-bottom:12px"></div><div class="sk" style="height:14px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:11px;width:100%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:85%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:65%"></div></div>
+  <div class="sk-dyk"><div class="sk" style="height:30px;width:42px;border-radius:10px;margin-bottom:12px"></div><div class="sk" style="height:14px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:11px;width:100%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:85%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:65%"></div></div>
+  <div class="sk-dyk"><div class="sk" style="height:30px;width:42px;border-radius:10px;margin-bottom:12px"></div><div class="sk" style="height:14px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:11px;width:100%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:85%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:65%"></div></div>
+  <div class="sk-dyk"><div class="sk" style="height:30px;width:42px;border-radius:10px;margin-bottom:12px"></div><div class="sk" style="height:14px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:11px;width:100%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:85%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:65%"></div></div>
+  <div class="sk-dyk"><div class="sk" style="height:30px;width:42px;border-radius:10px;margin-bottom:12px"></div><div class="sk" style="height:14px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:11px;width:100%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:85%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:65%"></div></div>
+</div>
   </div>
 </section>
 
+<div class="lightbox" id="lightbox" onclick="closeLb()">
+  <button class="lightbox-close" onclick="closeLb()">✕</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
-            <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="explore.html">Explore</a>
-      <a href="newsroom.html">Newsroom</a>
-      <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">CBT Practice</a>
-      <a href="postutme-prep.html">Post-UTME Prep</a>
-      <a href="postutme-calculator.html">Post-UTME Calc</a>
-      <a href="subject-combo.html">Subject Combo</a>
-      <a href="gpa-calculator.html">GPA Calculator</a>
-      <a href="student-loan.html">Student Loan</a>
-      <a href="scholarship.html">Scholarships</a>
-      <a href="results.html">Results Checker</a>
-      <a href="dyk.html">Did You Know</a>
-      <a href="spotlight.html">Spotlight</a>
-      <a href="community.html">Community</a>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
     </div>
-    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a><a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a><a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a><a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a><a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a><a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div><div style="display:flex;flex-direction:column;gap:5px"><a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a><a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a><a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a><a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a><a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a><a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div><div style="display:flex;flex-direction:column;gap:5px"><a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a><a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a><a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a><a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a><a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a><a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
+    </div>
+    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Built for Nigerian Students</div>
   </div>
 </footer>
 <script>
@@ -211,9 +231,39 @@ function toggleDark(){document.body.classList.toggle('dark');const d=document.bo
 document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';document.getElementById('yr').textContent=new Date().getFullYear();});
 function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
 let allData=[],activeFilter='';
+
+function openLb(src){const lb=document.getElementById('lightbox');document.getElementById('lbImg').src=src;lb.classList.add('open');document.body.style.overflow='hidden';}
+function closeLb(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+
+function buildImgHTML(d){
+  // Support: d.image (single), d.images (array)
+  const imgs=d.images||(d.image?[d.image]:[]);
+  if(!imgs.length) return '';
+  if(imgs.length===1){
+    return`<div class="dyk-img-wrap"><img class="dyk-img-single" src="${imgs[0]}" alt="Did You Know" loading="lazy" onclick="openLb('${imgs[0]}')"></div>`;
+  }
+  const cols=imgs.length===2?'cols-2':'cols-3';
+  return`<div class="dyk-img-wrap"><div class="dyk-img-grid ${cols}">${
+    imgs.slice(0,6).map((src,i)=>
+      imgs.length>6&&i===5
+        ?`<div style="position:relative;cursor:pointer" onclick="openLb('${src}')"><img src="${src}" style="width:100%;height:160px;object-fit:cover"><div style="position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:#fff">+${imgs.length-5}</div></div>`
+        :`<img src="${src}" alt="img${i+1}" loading="lazy" onclick="openLb('${src}')">`
+    ).join('')
+  }</div></div>`;
+}
+
 async function load(){
-  try{allData=await window._fsLoadJson('fs_dyk','dyk.json');render();}
-  catch(e){document.getElementById('dykGrid').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load facts. Please try again.</p></div>';}
+  try{
+    let data=[];
+    if(window._db){
+      const snap=await window._db.collection('fs_dyk').orderBy('createdAt','desc').get();
+      data=snap.docs.map(d=>({_id:d.id,...d.data()}));
+    }
+    if(!data.length){const r=await fetch('dyk.json?v='+Date.now());data=await r.json();}
+    allData=data;
+    render();
+  }catch(e){document.getElementById('dykGrid').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load facts. Please try again.</p></div>';}
 }
 function setFilter(f,btn){activeFilter=f;document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();}
 function render(){
@@ -230,6 +280,7 @@ function render(){
       <span class="dyk-emoji">${d.emoji||'💡'}</span>
       <div class="dyk-fact">${d.fact}</div>
       <div class="dyk-body">${d.body}</div>
+      ${buildImgHTML(d)}
       <div class="dyk-footer">
         ${d.category?`<span class="dyk-cat">${d.category}</span>`:'<span></span>'}
         <div style="display:flex;align-items:center;gap:8px">
@@ -243,7 +294,7 @@ function share(factEnc){
   const fact=decodeURIComponent(factEnc);
   const text=`💡 Did You Know? "${fact}" — via Big Quams Media® ${location.href}`;
   if(navigator.share){navigator.share({text});}
-  else{navigator.clipboard&&navigator.clipboard.writeText(text).then(()=>alert('Copied to clipboard!'));}
+  else{navigator.clipboard&&navigator.clipboard.writeText(text).then(()=>alert('Copied!'));}
 }
 load();
 </script>

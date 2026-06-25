@@ -15,6 +15,17 @@
 <link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(typeof firebase==='undefined') throw new Error('SDK not loaded');
+    if(!firebase.apps.length) firebase.initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
+    window._db=firebase.firestore();
+  }catch(e){console.warn('Firebase:',e.message);}
+})();
+</script>
 <style>
 :root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-sm:8px;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
 body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
@@ -85,9 +96,11 @@ body.dark .share-btn{background:#1a2236;border-color:var(--border)}
 .share-btn:hover{color:var(--blue-main);border-color:var(--blue-main)}
 .empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
 .empty .ei{font-size:2.5rem;margin-bottom:10px}
-.loader{text-align:center;padding:60px;color:var(--text-muted)}
-.loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+.sk{background:linear-gradient(90deg,var(--border) 25%,var(--surface-alt) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:6px}
+body.dark .sk{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:600px 100%}
+.sk-sp{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden}
+body.dark .sk-sp{background:#161b27}
 .your-story{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:44px 16px;text-align:center}
 .your-story h2{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:8px}
 .your-story p{font-size:.84rem;color:rgba(255,255,255,.65);margin-bottom:20px;max-width:500px;margin-left:auto;margin-right:auto}
@@ -144,19 +157,27 @@ window._fsLoadJson=async(col,jsonFile)=>{
   <div class="mnav-lbl">Navigation</div>
   <a href="index.html" onclick="toggleNav()">Home</a>
   <a href="explore.html" onclick="toggleNav()">Explore All Tools</a>
-  <a href="newsroom.html" onclick="toggleNav()">Newsroom</a>
-  <a href="elibrary.html" onclick="toggleNav()">eLibrary</a>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">Post-UTME Calculator</a>
-  <a href="subject-combo.html" onclick="toggleNav()">Subject Combination</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">GPA Calculator</a>
-  <a href="student-loan.html" onclick="toggleNav()">Student Loan Guide</a>
-  <a href="scholarship.html" onclick="toggleNav()">Scholarships</a>
-  <a href="results.html" onclick="toggleNav()">Results Checker</a>
-  <a href="dyk.html" onclick="toggleNav()">Did You Know</a>
-  <a href="spotlight.html" onclick="toggleNav()">Student Spotlight</a>
-  <a href="community.html" onclick="toggleNav()">Community Hub</a>
+  <div class="mnav-lbl">Main</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <div class="mnav-lbl">Exam Tools</div>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+  <div class="mnav-lbl">Resources</div>
+  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 
@@ -170,7 +191,11 @@ window._fsLoadJson=async(col,jsonFile)=>{
 
 <section class="sec">
   <div class="wrap">
-    <div id="spotlightGrid" class="spotlight-grid"><div class="loader"><div class="loader-spin"></div>Loading stories…</div></div>
+    <div id="spotlightGrid" class="spotlight-grid">
+  <div class="sk-sp"><div style="background:#1a3fa8;padding:22px 20px;display:flex;gap:14px;align-items:center"><div class="sk" style="width:54px;height:54px;border-radius:50%;flex-shrink:0"></div><div style="flex:1"><div class="sk" style="height:13px;width:60%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:80%"></div></div></div><div style="padding:18px 20px"><div class="sk" style="height:11px;width:100%;margin-bottom:6px"></div><div class="sk" style="height:11px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:11px;width:75%"></div></div></div>
+  <div class="sk-sp"><div style="background:#1a3fa8;padding:22px 20px;display:flex;gap:14px;align-items:center"><div class="sk" style="width:54px;height:54px;border-radius:50%;flex-shrink:0"></div><div style="flex:1"><div class="sk" style="height:13px;width:60%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:80%"></div></div></div><div style="padding:18px 20px"><div class="sk" style="height:11px;width:100%;margin-bottom:6px"></div><div class="sk" style="height:11px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:11px;width:75%"></div></div></div>
+  <div class="sk-sp"><div style="background:#1a3fa8;padding:22px 20px;display:flex;gap:14px;align-items:center"><div class="sk" style="width:54px;height:54px;border-radius:50%;flex-shrink:0"></div><div style="flex:1"><div class="sk" style="height:13px;width:60%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:80%"></div></div></div><div style="padding:18px 20px"><div class="sk" style="height:11px;width:100%;margin-bottom:6px"></div><div class="sk" style="height:11px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:11px;width:75%"></div></div></div>
+</div>
   </div>
 </section>
 
@@ -182,25 +207,17 @@ window._fsLoadJson=async(col,jsonFile)=>{
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
-            <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="explore.html">Explore</a>
-      <a href="newsroom.html">Newsroom</a>
-      <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">CBT Practice</a>
-      <a href="postutme-prep.html">Post-UTME Prep</a>
-      <a href="postutme-calculator.html">Post-UTME Calc</a>
-      <a href="subject-combo.html">Subject Combo</a>
-      <a href="gpa-calculator.html">GPA Calculator</a>
-      <a href="student-loan.html">Student Loan</a>
-      <a href="scholarship.html">Scholarships</a>
-      <a href="results.html">Results Checker</a>
-      <a href="dyk.html">Did You Know</a>
-      <a href="spotlight.html">Spotlight</a>
-      <a href="community.html">Community</a>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
     </div>
-    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a><a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a><a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a><a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a><a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a><a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div><div style="display:flex;flex-direction:column;gap:5px"><a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a><a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a><a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a><a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a><a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a><a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div><div style="display:flex;flex-direction:column;gap:5px"><a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a><a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a><a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a><a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a><a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a><a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
+    </div>
+    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Built for Nigerian Students</div>
   </div>
 </footer>
 <script>
@@ -211,13 +228,18 @@ function toggleNav(){const n=document.getElementById('mobileNav'),o=document.get
 async function load(){
   const el=document.getElementById('spotlightGrid');
   try{
-    const data=await window._fsLoadJson('fs_spotlight','spotlight.json');
+    let data=[];
+    if(window._db){
+      const snap=await window._db.collection('fs_spotlight').orderBy('createdAt','desc').get();
+      data=snap.docs.map(d=>({_id:d.id,...d.data()}));
+    }
+    if(!data.length){const r=await fetch('spotlight.json?v='+Date.now());data=await r.json();}
     if(!data.length){el.innerHTML='<div class="empty"><div class="ei">🌟</div><p>No spotlights yet. Check back soon!</p></div>';return;}
     el.innerHTML=data.map((s,i)=>`
       <div class="sp-card">
         <div class="sp-header">
           <div class="sp-avatar">${s.photo?`<img src="${s.photo}" alt="${s.name}" style="width:100%;height:100%;object-fit:cover">`:'🎓'}</div>
-          <div><div class="sp-name">${s.name}</div><div class="sp-achieve">${s.achievement||''}</div></div>
+          <div><div class="sp-name">${s.name}</div><div class="sp-achieve" style="color:#fdba74;font-weight:700">${s.achievement||s.title||''}</div></div>
         </div>
         <div class="sp-body">
           <div class="sp-story">${(s.story||'').slice(0,180)}${s.story&&s.story.length>180?'…':''}</div>

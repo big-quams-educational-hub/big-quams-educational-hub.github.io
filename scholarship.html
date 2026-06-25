@@ -11,10 +11,21 @@
 </script>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Scholarships | Big Quams Media®</title>
-<meta name="description" content="Big Quams Media® — Nigeria's trusted platform for students. Free CBT practice, Post-UTME prep, scholarships, school news, eLibrary and more. Your admission success starts here.">
+<meta name="description" content="50+ active scholarships for Nigerian students — local and international. Search by type, deadline and eligibility on Big Quams Media®.">
 <link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(typeof firebase==='undefined') throw new Error('SDK not loaded');
+    if(!firebase.apps.length) firebase.initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
+    window._db=firebase.firestore();
+  }catch(e){console.warn('Firebase:',e.message);}
+})();
+</script>
 <style>
 :root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-sm:8px;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
 body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
@@ -52,7 +63,7 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 .mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
 .nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
 .nav-overlay.show{opacity:1;pointer-events:auto}
-.page-hero{background:linear-gradient(150deg,rgba(8,21,48,.86) 0%,rgba(15,32,96,.80) 40%,rgba(26,63,168,.74) 100%),url('1782067011462.png') center center/cover no-repeat;padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
+.page-hero{background:linear-gradient(150deg,rgba(8,21,48,.88),rgba(12,42,80,.82),rgba(4,120,87,.76)),url('bigquamsmedia-admin/1001736174.png') center/cover no-repeat;padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
 .page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
 .page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.4);color:#6ee7b7;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:16px}
@@ -106,8 +117,13 @@ body.dark .sch-actions{border-color:var(--border)}
 .expand-btn{display:flex;align-items:center;justify-content:center;background:var(--surface-alt);border:1.5px solid var(--border);color:var(--text-muted);width:40px;height:40px;border-radius:8px;font-size:.84rem;flex-shrink:0;cursor:pointer;transition:.18s}
 body.dark .expand-btn{background:#1a2236;border-color:var(--border)}
 .expand-btn:hover{background:var(--blue-light);border-color:var(--blue-main);color:var(--blue-main)}
-.empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
+.empty{text-align:center;padding:60px 20px;color:var(--text-muted);grid-column:1/-1}
 .empty .ei{font-size:2.5rem;margin-bottom:10px}
+@keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+.sk{background:linear-gradient(90deg,var(--border) 25%,var(--surface-alt) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:6px}
+body.dark .sk{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:600px 100%}
+.sk-sch{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:20px;display:flex;flex-direction:column;gap:10px}
+body.dark .sk-sch{background:#161b27}
 .loader{text-align:center;padding:60px;color:var(--text-muted)}
 .loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:#10b981;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -168,22 +184,27 @@ window._fsLoadJson=async(col,jsonFile)=>{
 <nav class="mobile-nav" id="mobileNav">
 <div class="mnav-header"><div style="display:flex;align-items:center;gap:10px"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316"><div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
   </div></div>
-  <div class="mnav-lbl">Navigation</div>
-  <a href="index.html" onclick="toggleNav()">Home</a>
-  <a href="explore.html" onclick="toggleNav()">Explore All Tools</a>
-  <a href="newsroom.html" onclick="toggleNav()">Newsroom</a>
-  <a href="elibrary.html" onclick="toggleNav()">eLibrary</a>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">Post-UTME Calculator</a>
-  <a href="subject-combo.html" onclick="toggleNav()">Subject Combination</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">GPA Calculator</a>
-  <a href="student-loan.html" onclick="toggleNav()">Student Loan Guide</a>
-  <a href="scholarship.html" onclick="toggleNav()">Scholarships</a>
-  <a href="results.html" onclick="toggleNav()">Results Checker</a>
-  <a href="dyk.html" onclick="toggleNav()">Did You Know</a>
-  <a href="spotlight.html" onclick="toggleNav()">Student Spotlight</a>
-  <a href="community.html" onclick="toggleNav()">Community Hub</a>
+  <div class="mnav-lbl">Main</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <div class="mnav-lbl">Exam Tools</div>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+  <div class="mnav-lbl">Resources</div>
+  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 
@@ -212,7 +233,11 @@ window._fsLoadJson=async(col,jsonFile)=>{
 
 <section class="sec">
   <div class="wrap">
-    <div id="schGrid" class="sch-grid"><div class="loader"><div class="loader-spin"></div>Loading scholarships…</div></div>
+    <div id="schGrid" class="sch-grid">
+  <div class="sk-sch"><div style="display:flex;gap:12px;margin-bottom:4px"><div class="sk" style="width:44px;height:44px;border-radius:12px;flex-shrink:0"></div><div style="flex:1"><div class="sk" style="height:13px;width:75%;margin-bottom:7px"></div><div class="sk" style="height:10px;width:45%"></div></div></div><div class="sk" style="height:10px;width:30%;margin-bottom:10px"></div><div class="sk" style="height:11px;width:100%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:85%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:70%;margin-bottom:12px"></div><div class="sk" style="height:38px;border-radius:8px"></div></div>
+  <div class="sk-sch"><div style="display:flex;gap:12px;margin-bottom:4px"><div class="sk" style="width:44px;height:44px;border-radius:12px;flex-shrink:0"></div><div style="flex:1"><div class="sk" style="height:13px;width:75%;margin-bottom:7px"></div><div class="sk" style="height:10px;width:45%"></div></div></div><div class="sk" style="height:10px;width:30%;margin-bottom:10px"></div><div class="sk" style="height:11px;width:100%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:85%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:70%;margin-bottom:12px"></div><div class="sk" style="height:38px;border-radius:8px"></div></div>
+  <div class="sk-sch"><div style="display:flex;gap:12px;margin-bottom:4px"><div class="sk" style="width:44px;height:44px;border-radius:12px;flex-shrink:0"></div><div style="flex:1"><div class="sk" style="height:13px;width:75%;margin-bottom:7px"></div><div class="sk" style="height:10px;width:45%"></div></div></div><div class="sk" style="height:10px;width:30%;margin-bottom:10px"></div><div class="sk" style="height:11px;width:100%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:85%;margin-bottom:5px"></div><div class="sk" style="height:11px;width:70%;margin-bottom:12px"></div><div class="sk" style="height:38px;border-radius:8px"></div></div>
+</div>
     <div class="alert-cta">
       <h3>🔔 Never Miss a Scholarship</h3>
       <p>Join the Brainy Buddies WhatsApp community to get instant alerts the moment a new scholarship opens. 10,000+ students already subscribed.</p>
@@ -226,25 +251,59 @@ window._fsLoadJson=async(col,jsonFile)=>{
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
-            <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="explore.html">Explore</a>
-      <a href="newsroom.html">Newsroom</a>
-      <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">CBT Practice</a>
-      <a href="postutme-prep.html">Post-UTME Prep</a>
-      <a href="postutme-calculator.html">Post-UTME Calc</a>
-      <a href="subject-combo.html">Subject Combo</a>
-      <a href="gpa-calculator.html">GPA Calculator</a>
-      <a href="student-loan.html">Student Loan</a>
-      <a href="scholarship.html">Scholarships</a>
-      <a href="results.html">Results Checker</a>
-      <a href="dyk.html">Did You Know</a>
-      <a href="spotlight.html">Spotlight</a>
-      <a href="community.html">Community</a>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
+        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div>
+      </div>
     </div>
-    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a>
+          <a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a>
+          <a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a>
+          <a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a>
+          <a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a>
+          <a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a>
+          <a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a>
+          <a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a>
+          <a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a>
+          <a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a>
+          <a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a>
+          <a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a>
+          <a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a>
+          <a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a>
+          <a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a>
+          <a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a>
+          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a>
+          <a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a>
+        </div>
+      </div>
+    </div>
+    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Built for Nigerian Students</div>
   </div>
 </footer>
 
@@ -260,11 +319,22 @@ const STATUS_CLASS={open:'status-open',soon:'status-soon',ongoing:'status-ongoin
 
 async function init(){
   try{
-    allSch=await window._fsLoadJson('fs_scholarships','scholarships.json');
-    allSch.sort((a,b)=>{
+    let data=[];
+    if(window._db){
+      const snap=await window._db.collection('fs_scholarships').get();
+      data=snap.docs.map(d=>({_id:d.id,...d.data()}));
+    }
+    if(!data.length){
+      const r=await fetch('scholarships.json?v='+Date.now());
+      data=await r.json();
+    }
+    allSch=data.sort((a,b)=>{
       const order={open:0,soon:1,ongoing:2,closed:3};
       return (order[a.status]||2)-(order[b.status]||2);
     });
+    // Update hero count
+    const countEl=document.getElementById('schCount');
+    if(countEl) countEl.textContent=allSch.length+'+';
     render();
   }catch(e){
     document.getElementById('schGrid').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load scholarships. Please try again.</p></div>';
