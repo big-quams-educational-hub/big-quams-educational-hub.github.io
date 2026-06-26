@@ -33,7 +33,7 @@ const server = http.createServer(async (req, res) => {
 
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', allowed);
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
@@ -46,13 +46,6 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'GET' && req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'BQM FCM Server is running ✅' }));
-    return;
-  }
-
-  // Keep-alive ping — called by admin panel every 13 min to prevent Render cold start
-  if (req.method === 'GET' && req.url === '/ping') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'awake', ts: Date.now() }));
     return;
   }
 
@@ -131,19 +124,22 @@ async function sendToAll(accessToken, tokens, payload) {
 
 function sendOne(accessToken, token, { title, message, notifIcon, notifLink }) {
   return new Promise((resolve, reject) => {
+    // Data-only message — no top-level "notification" object.
+    // This ensures FCM always delivers to onBackgroundMessage in the SW
+    // instead of auto-displaying at the OS level (which bypasses the SW entirely).
+    // Field names match what sw.js reads: data.title, data.body, data.icon, data.url
     const body = JSON.stringify({
       message: {
         token,
-        notification: { title, body: message },
+        data: {
+          title:  title,
+          body:   message,
+          icon:   notifIcon,
+          url:    notifLink,
+          tag:    'bqm-broadcast',
+        },
         webpush: {
-          notification: {
-            title,
-            body: message,
-            icon: notifIcon,
-            badge: notifIcon,
-            requireInteraction: false,
-            actions: [{ action: 'view', title: '👀 View Now' }],
-          },
+          headers: { Urgency: 'high' },
           fcm_options: { link: notifLink },
         },
       },
