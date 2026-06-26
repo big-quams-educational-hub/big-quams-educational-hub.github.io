@@ -15,6 +15,17 @@
 <link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(typeof firebase==='undefined') throw new Error('SDK not loaded');
+    if(!firebase.apps.length) firebase.initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
+    window._db=firebase.firestore();
+  }catch(e){console.warn('Firebase:',e.message);}
+})();
+</script>
 <style>
 :root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--green:#25d366;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-sm:8px;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
 body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
@@ -97,6 +108,11 @@ body.dark .channel-card{background:#161b27;border-color:var(--border)}
 .channel-name{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text-main)}
 .channel-desc{font-size:.72rem;color:var(--text-muted);margin-top:2px}
 .channel-arrow{margin-left:auto;color:var(--text-muted);font-size:.8rem}
+@keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+.sk{background:linear-gradient(90deg,var(--border) 25%,var(--surface-alt) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:6px}
+body.dark .sk{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:600px 100%}
+.sk-channel{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:18px 20px;display:flex;align-items:center;gap:14px}
+body.dark .sk-channel{background:#161b27}
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 .footer-inner{max-width:1000px;margin:0 auto}
 .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
@@ -129,19 +145,27 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
   <div class="mnav-lbl">Navigation</div>
   <a href="index.html" onclick="toggleNav()">Home</a>
   <a href="explore.html" onclick="toggleNav()">Explore All Tools</a>
-  <a href="newsroom.html" onclick="toggleNav()">Newsroom</a>
-  <a href="elibrary.html" onclick="toggleNav()">eLibrary</a>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">Post-UTME Calculator</a>
-  <a href="subject-combo.html" onclick="toggleNav()">Subject Combination</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">GPA Calculator</a>
-  <a href="student-loan.html" onclick="toggleNav()">Student Loan Guide</a>
-  <a href="scholarship.html" onclick="toggleNav()">Scholarships</a>
-  <a href="results.html" onclick="toggleNav()">Results Checker</a>
-  <a href="dyk.html" onclick="toggleNav()">Did You Know</a>
-  <a href="spotlight.html" onclick="toggleNav()">Student Spotlight</a>
-  <a href="community.html" onclick="toggleNav()">Community Hub</a>
+  <div class="mnav-lbl">Main</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <div class="mnav-lbl">Exam Tools</div>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+  <div class="mnav-lbl">Resources</div>
+  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 
@@ -245,25 +269,17 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
-            <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="explore.html">Explore</a>
-      <a href="newsroom.html">Newsroom</a>
-      <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">CBT Practice</a>
-      <a href="postutme-prep.html">Post-UTME Prep</a>
-      <a href="postutme-calculator.html">Post-UTME Calc</a>
-      <a href="subject-combo.html">Subject Combo</a>
-      <a href="gpa-calculator.html">GPA Calculator</a>
-      <a href="student-loan.html">Student Loan</a>
-      <a href="scholarship.html">Scholarships</a>
-      <a href="results.html">Results Checker</a>
-      <a href="dyk.html">Did You Know</a>
-      <a href="spotlight.html">Spotlight</a>
-      <a href="community.html">Community</a>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
     </div>
-    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a><a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a><a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a><a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a><a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a><a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div><div style="display:flex;flex-direction:column;gap:5px"><a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a><a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a><a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a><a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a><a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a><a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div><div style="display:flex;flex-direction:column;gap:5px"><a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a><a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a><a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a><a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a><a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a><a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
+    </div>
+    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Built for Nigerian Students</div>
   </div>
 </footer>
 <script>
@@ -271,16 +287,56 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
 document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';document.getElementById('yr').textContent=new Date().getFullYear();});
 function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
-// Load member count from site config if available
+// Default links shown if Firebase has none yet
+const DEFAULT_LINKS=[
+  {icon:'💬',bg:'#dcfce7',name:'Brainy Buddies WhatsApp Group',desc:'Active student community — ask questions, get answers, share resources',url:'https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO'},
+  {icon:'📢',bg:'#dbeafe',name:'BQM WhatsApp Channel',desc:'Broadcast channel — one-way alerts and updates',url:'https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q'},
+  {icon:'🤝',bg:'#dcfce7',name:'Direct Chat with BQM',desc:'Message us directly for personal guidance',url:'https://wa.me/2349049871643'},
+  {icon:'📘',bg:'#dbeafe',name:'Facebook Page',desc:'Follow for news, tips and community highlights',url:'https://www.facebook.com/bigquamsmedia'},
+];
+
+function renderLinks(links){
+  const el=document.getElementById('channelLinks');
+  if(!el) return;
+  el.innerHTML=links.map(l=>`
+    <a href="${l.url}" target="_blank" rel="noopener" class="channel-card">
+      <div class="channel-icon" style="background:${l.bg||'#f0f4ff'}">${l.icon||'🔗'}</div>
+      <div><div class="channel-name">${l.name}</div><div class="channel-desc">${l.desc||''}</div></div>
+      <span class="channel-arrow">→</span>
+    </a>`).join('');
+}
+
+async function loadCommunityLinks(){
+  // Try Firebase first
+  if(window._db){
+    try{
+      const snap=await window._db.collection('fs_community_links').orderBy('order','asc').get();
+      const links=snap.docs.map(d=>({_id:d.id,...d.data()}));
+      if(links.length){renderLinks(links);return;}
+    }catch(e){console.warn('Community links:',e.message);}
+  }
+  // Fallback to defaults
+  renderLinks(DEFAULT_LINKS);
+}
+
 async function loadConfig(){
   try{
+    if(window._db){
+      const doc=await window._db.collection('site_config').doc('community').get();
+      if(doc.exists&&doc.data().memberCount){
+        document.getElementById('memberCount').textContent=doc.data().memberCount+'+';
+        return;
+      }
+    }
     const r=await fetch('site-config.json?v='+Date.now());
     const d=await r.json();
     const c=Array.isArray(d)?d[0]:d;
     if(c&&c.communityMembers) document.getElementById('memberCount').textContent=c.communityMembers.toLocaleString()+'+';
   }catch(e){}
 }
+
 loadConfig();
+loadCommunityLinks();
 </script>
 </body>
 </html>
