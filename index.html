@@ -1084,16 +1084,16 @@ function initTicker(){
   const seed=['📢 JAMB 2026 UTME Results Released — Check yours on the JAMB portal','🎓 Post-UTME Screening begins June 2026 — 15 universities confirmed','💳 NELFUND Student Loan portal is open — Apply before the deadline','💰 MTN Foundation Scholarship 2026 now accepting applications','📰 WAEC 2026 Results expected August — stay updated on BQM','🔔 Monitor your JAMB CAPS portal daily for admission updates'];
   function render(items){track.innerHTML=[...items,...items].map(t=>`<span class="ticker-item">${t}</span>`).join('');bar.classList.add('show');}
   render(seed);
-  // Try Firebase ticker collection, fall back to news headlines
+  // Try Firebase ticker collection, fall back to fs_news headlines
   if(window._db){
     window._db.collection('fs_ticker').orderBy('createdAt','asc').get()
       .then(snap=>{
         const items=snap.docs.map(d=>d.data().text).filter(Boolean);
-        if(items.length) render(items);
-        else return fetch('news.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.length)render(d.slice(0,8).map(n=>(n.emoji||'📰')+' '+n.title));});
+        if(items.length){ render(items); return; }
+        // Ticker empty — pull headlines from fs_news instead
+        return window._db.collection('fs_news').orderBy('createdAt','desc').limit(8).get()
+          .then(ns=>{ const h=ns.docs.map(d=>d.data()).filter(d=>d.title).map(d=>(d.emoji||'📰')+' '+d.title); if(h.length) render(h); });
       }).catch(()=>{});
-  } else {
-    fetch('news.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{if(d&&d.length)render(d.slice(0,8).map(n=>(n.emoji||'📰')+' '+n.title));}).catch(()=>{});
   }
 }
 
@@ -1163,7 +1163,7 @@ function initCountdown(){
   }
 }
 
-/* NEWS — fetch from Firebase, fall back to news.json, use hash URLs */
+/* NEWS — fetch from Firebase fs_news collection, use hash URLs */
 function makeNewsSlug(title){
   return(title||'').toLowerCase().replace(/[^a-z0-9\s-]/g,' ').trim().replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'').substring(0,70);
 }
@@ -1195,19 +1195,12 @@ async function loadNews(){
     <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
     <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
   </div>`;
-  // Try Firebase first
-  if(window._db){
-    try{
-      const snap=await window._db.collection('fs_news').orderBy('createdAt','desc').limit(6).get();
-      const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
-      if(items.length){renderNewsCards(items);return;}
-    }catch(e){console.warn('Firebase news fetch:',e.message);}
-  }
-  // Fallback to news.json
   try{
-    const r=await fetch('news.json?v='+Date.now());
-    const d=await r.json();
-    if(d&&d.length) renderNewsCards(d);
+    if(!window._db) throw new Error('Firestore not ready');
+    const snap=await window._db.collection('fs_news').orderBy('createdAt','desc').limit(6).get();
+    const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
+    if(items.length){ renderNewsCards(items); return; }
+    grid.innerHTML='<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem">No articles yet. <a href="newsroom.html" style="color:#1a3fa8;font-weight:700">Go to Newsroom →</a></div>';
   }catch(e){
     grid.innerHTML='<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem">Could not load news. <a href="newsroom.html" style="color:#1a3fa8;font-weight:700">Go to Newsroom →</a></div>';
   }
@@ -1337,26 +1330,7 @@ function heroSearchTag(tag){
 window.heroSearchTag=heroSearchTag;
 
 // ── NEWS GRID (skeleton → real) ──
-async function loadNewsGrid(){
-  try{
-    const r=await fetch('news.json?v='+Date.now());
-    const d=await r.json();
-    if(!d||!d.length) return;
-    const items=[...d.filter(n=>n.pinned),...d.filter(n=>!n.pinned)].slice(0,3);
-    document.getElementById('newsGrid').innerHTML='<div class="news-grid-inner">'+items.map((n,i)=>{
-      const slug=n.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').substring(0,60);
-      return`<a class="news-card" href="newsroom.html?article=${i}&slug=${slug}">
-        ${n.image?`<img class="news-img" src="${n.image}" alt="${n.title}" loading="lazy" style="width:100%;height:auto;max-height:200px;object-fit:contain;background:#f5f7ff;border-radius:10px 10px 0 0">`:`<div class="news-img-ph" style="height:120px;display:flex;align-items:center;justify-content:center;font-size:2rem;background:#f0f4ff;border-radius:10px 10px 0 0">${n.emoji||'📰'}</div>`}
-        <div class="news-body">
-          ${n.category?`<span class="news-tag">${n.category}</span>`:''}
-          <div class="news-title">${n.title}</div>
-          <div class="news-excerpt">${(n.summary||n.excerpt||'').substring(0,100)}…</div>
-          <div class="news-foot"><span class="news-date">${n.date||''}</span><span class="news-more">Read →</span></div>
-        </div>
-      </a>`;
-    }).join('')+'</div>';
-  }catch(e){}
-}
+function loadNewsGrid(){ loadNews(); }
 
 // ── SCHOLARSHIP PREVIEW ──
 async function loadScholarshipPreview(){

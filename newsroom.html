@@ -223,23 +223,14 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     }
     const _db=firebase.firestore();
     window._fsLoadNews=async function(){
-      try{
-        const s=await _db.collection('fs_news').orderBy('createdAt','desc').get();
-        const d=s.docs.map(doc=>({_id:doc.id,...doc.data()}));
-        if(d.length) return d;
-      }catch(e){console.warn('Firebase fetch failed:',e.message);}
-      try{const r=await fetch('news.json?v='+Date.now());const d=await r.json();return d||[];}
-      catch(e){return [];}
+      const s=await _db.collection('fs_news').orderBy('createdAt','desc').get();
+      return s.docs.map(doc=>({_id:doc.id,...doc.data()}));
     };
     window._firebaseReady=true;
     if(window._onFirebaseReady) window._onFirebaseReady();
   }catch(e){
     console.warn('Firebase init:',e.message);
-    // Still try JSON fallback
-    window._fsLoadNews=async function(){
-      try{const r=await fetch('news.json?v='+Date.now());const d=await r.json();return d||[];}
-      catch(e){return [];}
-    };
+    window._fsLoadNews=async function(){ return []; };
     window._firebaseReady=true;
     if(window._onFirebaseReady) window._onFirebaseReady();
   }
