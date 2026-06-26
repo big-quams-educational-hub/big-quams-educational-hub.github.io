@@ -33,7 +33,7 @@ const server = http.createServer(async (req, res) => {
 
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', allowed);
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
@@ -46,6 +46,13 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'GET' && req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ status: 'BQM FCM Server is running ✅' }));
+    return;
+  }
+
+  // Keep-alive ping — called by admin panel every 13 min to prevent Render cold start
+  if (req.method === 'GET' && req.url === '/ping') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: 'awake', ts: Date.now() }));
     return;
   }
 
