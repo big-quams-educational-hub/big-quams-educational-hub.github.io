@@ -1,0 +1,12 @@
+{
+  "name": "bqm-fcm-server",
+  "version": "1.0.0",
+  "description": "BIG QUAMS MEDIA FCM Push Notification Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
