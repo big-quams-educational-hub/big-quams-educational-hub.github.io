@@ -2,8 +2,8 @@
 // Handles: offline caching + FCM push notifications
 // Data is served from Firebase — no JSON files cached
 
-importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js');
 
 // ── FIREBASE CONFIG ──
 firebase.initializeApp({
