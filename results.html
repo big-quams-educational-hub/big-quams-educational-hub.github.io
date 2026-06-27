@@ -53,7 +53,7 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 .mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
 .nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
 .nav-overlay.show{opacity:1;pointer-events:auto}
-.page-hero{background:linear-gradient(135deg,#081530,#0f2060,#1a3fa8);padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
+.page-hero{background:linear-gradient(135deg,rgba(8,21,48,.88),rgba(15,32,96,.82),rgba(26,63,168,.76)),url('bigquamsmedia-admin/1001736174.png') center/cover no-repeat;padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
 .page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
 .page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:16px}
@@ -194,25 +194,17 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
-            <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="explore.html">Explore</a>
-      <a href="newsroom.html">Newsroom</a>
-      <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">CBT Practice</a>
-      <a href="postutme-prep.html">Post-UTME Prep</a>
-      <a href="postutme-calculator.html">Post-UTME Calc</a>
-      <a href="subject-combo.html">Subject Combo</a>
-      <a href="gpa-calculator.html">GPA Calculator</a>
-      <a href="student-loan.html">Student Loan</a>
-      <a href="scholarship.html">Scholarships</a>
-      <a href="results.html">Results Checker</a>
-      <a href="dyk.html">Did You Know</a>
-      <a href="spotlight.html">Spotlight</a>
-      <a href="community.html">Community</a>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
     </div>
-    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a><a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a><a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a><a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a><a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a><a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div><div style="display:flex;flex-direction:column;gap:5px"><a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a><a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a><a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a><a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a><a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a><a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div><div style="display:flex;flex-direction:column;gap:5px"><a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a><a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a><a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a><a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a><a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a><a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
+    </div>
+    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Built for Nigerian Students</div>
   </div>
 </footer>
 
@@ -240,14 +232,14 @@ const DEFAULT_CONFIG = {
   },
   neco:{
     title:'NECO SSCE / GCE Result',icon:'📘',iconBg:'#ede9fe',
-    portalLabel:'Check NECO Result on result.neco.gov.ng',portalUrl:'https://result.neco.gov.ng/',
+    portalLabel:'Check NECO Result on results.neco.gov.ng',portalUrl:'https://results.neco.gov.ng/',
     extraLinks:[{label:'NECO Certificate Verification',url:'https://neco.gov.ng/'}],
     steps:"1. Visit result.neco.gov.ng\n2. Enter your Examination Number\n3. Enter your token/PIN (purchased from NECO or an authorised vendor)\n4. Select your exam type (SSCE or GCE) and year\n5. Click 'Submit' to view your result",
     tip:'NECO tokens are purchased online at neco.gov.ng or from accredited vendors. Keep your token safe — each has limited uses.'
   },
   nabteb:{
     title:'NABTEB NBC / NBT Result',icon:'🏫',iconBg:'#fef3c7',
-    portalLabel:'Check NABTEB Result on nabteb.gov.ng',portalUrl:'https://www.nabteb.gov.ng/',
+    portalLabel:'Check NABTEB Result on eworld.nabteb.gov.ng',portalUrl:'https://eworld.nabteb.gov.ng/',
     extraLinks:[{label:'NABTEB Certificate Verification',url:'https://www.nabteb.gov.ng/'}],
     steps:"1. Go to nabteb.gov.ng\n2. Click on 'Check Result'\n3. Enter your Registration Number\n4. Select your Exam Year and Exam Type (NBC or NBT)\n5. Enter your token/PIN\n6. Submit to view your NABTEB result",
     tip:'NABTEB results are for National Business Certificate (NBC) and National Technical Certificate (NTC) holders. Contact NABTEB directly at info@nabteb.gov.ng if you have issues.'
@@ -282,6 +274,11 @@ function renderPanel(key){
         <div class="res-icon" style="background:${c.iconBg}">${c.icon}</div>
         <div><div class="res-card-title">${c.title}</div><div class="res-card-sub">Official Government Portal</div></div>
       </div>
+      ${c.sms ? `<div style="background:#f0f5ff;border:1.5px solid #c7d9ff;border-radius:10px;padding:14px 16px;margin-bottom:16px">
+        <div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:var(--text-main);margin-bottom:8px">📱 Via SMS (Fastest Method)</div>
+        <div style="font-size:.84rem;color:var(--text-main);line-height:1.8">Send <strong>${c.sms.code}</strong> to <strong>${c.sms.numbers.join('</strong> or <strong>')}</strong></div>
+        <div style="font-size:.72rem;color:var(--text-muted);margin-top:4px">Use the phone number you registered with JAMB</div>
+      </div>` : ''}
       <a href="${c.portalUrl}" target="_blank" rel="noopener" class="res-portal-btn">🔗 ${c.portalLabel} →</a>
       ${c.extraLinks && c.extraLinks.length ? `<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">${c.extraLinks.map(l=>`<a href="${l.url}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:var(--surface-alt);border:1.5px solid var(--border);border-radius:8px;padding:8px 14px;font-size:.78rem;font-weight:700;color:var(--blue-main);transition:.18s" onmouseover="this.style.borderColor='var(--blue-main)'" onmouseout="this.style.borderColor='var(--border)'">${l.label}</a>`).join('')}</div>` : ''}
       <div class="steps-title">📋 Step-by-Step Instructions</div>
