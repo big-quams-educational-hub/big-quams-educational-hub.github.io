@@ -9,11 +9,11 @@
  * Then call: window.BQM_enableNotifications() from any button onclick
  */
 
-import { initializeApp }     from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { initializeApp }     from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
 import { getMessaging, getToken, onMessage }
-                             from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js';
+                             from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js';
 import { getFirestore, doc, setDoc, serverTimestamp, collection, query, orderBy, limit, onSnapshot }
-                             from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+                             from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
 // ── CONFIG ──
 const FIREBASE_CONFIG = {
@@ -25,7 +25,7 @@ const FIREBASE_CONFIG = {
   appId:             '1:383186323859:web:826d6b9977cfa947730066'
 };
 
-const VAPID_KEY  = 'BBb1Kl0U1VL2p1Buf6HsxIOxRaiEqyyBKO3KuNpJupif027umU-WzgZRWGHI4FANB3w0aBo5k3tQ8lGu7LC57mo';
+const VAPID_KEY  = 'LfxgqpaadY8tn5lWCxhts1V2-y27fgtFWY8dvW_4ZjU';
 const BQM_DOMAIN = 'https://bigquamsmedia.com.ng';
 const BQM_ICON   = 'https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png';
 
