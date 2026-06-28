@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-RCLYVCZY2K');
-</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RCLYVCZY2K');</script>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Subject Combination Checker | Big Quams Media®</title>
-<meta name="description" content="Big Quams Media® — Nigeria's trusted platform for students. Free CBT practice, Post-UTME prep, scholarships, school news, eLibrary and more. Your admission success starts here.">
-<link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
+<title>Subject Combination Finder | Big Quams Media®</title>
+<meta name="description" content="Find the correct JAMB and O'Level subject combinations for any course in Nigerian universities. Free subject combo finder on Big Quams Media®.">
+<meta property="og:title" content="Subject Combination Finder — Big Quams Media®">
+<meta property="og:description" content="Find the correct JAMB and O'Level subject combinations for any Nigerian university course.">
+<meta property="og:image" content="https://big-quams-educational-hub.github.io/big-quams-educational-hub/1001736174.png">
+<link rel="icon" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(typeof firebase==='undefined') throw new Error('SDK not loaded');
+    if(!firebase.apps.length) firebase.initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
+    window._db=firebase.firestore();
+  }catch(e){console.warn('Firebase:',e.message);}
+})();
+</script>
 <style>
-:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-sm:8px;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
-body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
+:root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:12px;--shadow:0 8px 28px rgba(26,63,168,.11)}
+body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Roboto',sans-serif;background:#f5f7ff;color:var(--text-main);line-height:1.6;overflow-x:hidden}
+body{font-family:'Roboto',sans-serif;background:var(--surface2);color:var(--text);line-height:1.6;overflow-x:hidden}
 body.dark{background:#0d1117}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;font-family:inherit}
-img{max-width:100%;display:block}
-header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4)}
-.header-bar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+/* HEADER */
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.35)}
+.hbar{max-width:1100px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
 .logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
 .logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
 .logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
-.logo-sub{font-size:.55rem;color:rgba(255,255,255,.45);display:block}
+.logo-sub{font-size:.52rem;color:rgba(255,255,255,.42);display:block}
 .main-nav{display:flex;align-items:center;gap:2px}
-.main-nav>a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
-.main-nav>a:hover{color:#fff;background:rgba(255,255,255,.12)}
+.main-nav a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
+.main-nav a:hover,.main-nav a.active{color:#fff;background:rgba(255,255,255,.12)}
 .nav-cta{background:var(--orange)!important;color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important}
 .hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center}
@@ -45,114 +53,107 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 .mobile-nav{visibility:hidden;position:fixed;inset:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s ease,visibility 0s linear .3s}
 .mobile-nav.open{visibility:visible;transform:translateX(0);transition:transform .3s ease}
 .mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:60px}
-.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .mnav-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
-.mobile-nav>a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
-.mobile-nav>a:hover{background:rgba(255,255,255,.06);color:#fff}
+.mobile-nav a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
+.mobile-nav a:hover{background:rgba(255,255,255,.06);color:#fff}
 .mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
 .nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
 .nav-overlay.show{opacity:1;pointer-events:auto}
-.page-hero{background:linear-gradient(150deg,rgba(8,21,48,.86) 0%,rgba(15,32,96,.80) 40%,rgba(26,63,168,.74) 100%),url('1782067011462.png') center center/cover no-repeat;padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
+/* HERO */
+.page-hero{background:linear-gradient(150deg,rgba(8,21,48,.88),rgba(15,32,96,.82),rgba(26,63,168,.76)),url('https://big-quams-educational-hub.github.io/big-quams-educational-hub/1001736174.png') center/cover no-repeat;padding:48px 16px 56px;text-align:center;position:relative;overflow:hidden}
 .page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
-.page-hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:16px}
-.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px}
-.page-hero h1 span{color:#6ee7b7}
-.page-hero p{font-size:.9rem;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto}
+.hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 18px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:14px}
+.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.3rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:10px}
+.page-hero h1 span{color:var(--orange)}
+.page-hero p{font-size:.88rem;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto 20px}
+.hero-stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
+.hero-stat-num{font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;color:#fff}
+.hero-stat-lbl{font-size:.62rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px}
+/* FILTER */
+.filter-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 16px;position:sticky;top:60px;z-index:200}
+body.dark .filter-wrap{background:#161b27}
+.filter-inner{max-width:900px;margin:0 auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.dept-btn{padding:6px 14px;border-radius:20px;font-size:.74rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:.18s;white-space:nowrap}
+body.dark .dept-btn{background:#1a2236}
+.dept-btn.active,.dept-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.search-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:0 12px;height:38px;flex:1;max-width:240px;min-width:0}
+body.dark .search-wrap{background:#111624}
+.search-wrap input{flex:1;border:none;background:transparent;font-size:.82rem;color:var(--text);outline:none;min-width:0;font-family:inherit}
+/* LAYOUT */
 .wrap{max-width:900px;margin:0 auto;padding:0 16px}
-.sec{padding:36px 0}
-/* SEARCH CARD */
-.search-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:28px;margin-bottom:24px;box-shadow:var(--shadow-md)}
-body.dark .search-card{background:#161b27;border-color:var(--border)}
-.search-card-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text-main);margin-bottom:16px;display:flex;align-items:center;gap:8px}
-.big-search{display:flex;align-items:center;gap:10px;background:var(--surface-alt);border:2px solid var(--border);border-radius:12px;padding:0 16px;height:54px;transition:.2s;margin-bottom:12px}
-body.dark .big-search{background:#111624;border-color:var(--border)}
-.big-search:focus-within{border-color:var(--blue-main);box-shadow:0 0 0 3px rgba(26,63,168,.08)}
-.big-search input{flex:1;border:none;background:transparent;font-size:1rem;color:var(--text-main);outline:none;font-family:'Roboto',sans-serif}
-.big-search input::placeholder{color:var(--text-muted)}
-.big-search-icon{font-size:1.2rem;flex-shrink:0}
-.dept-filter{display:flex;gap:6px;flex-wrap:wrap}
-.dept-btn{padding:6px 14px;border-radius:20px;font-size:.74rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface-alt);color:var(--text-muted);cursor:pointer;transition:.18s;white-space:nowrap}
-body.dark .dept-btn{background:#1a2236;border-color:var(--border)}
-.dept-btn.active,.dept-btn:hover{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
-/* RESULT CARD */
-.result-card{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));border-radius:var(--radius-md);padding:24px;margin-bottom:24px;display:none;animation:fadeUp .25s ease}
-.result-card.show{display:block}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.result-course-name{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:4px}
-.result-dept{font-size:.72rem;color:rgba(255,255,255,.6);margin-bottom:16px}
-.subjects-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.subject-pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:.8rem;font-weight:700;padding:7px 14px;border-radius:20px;display:flex;align-items:center;gap:6px}
-.subject-num{background:rgba(255,255,255,.25);width:20px;height:20px;border-radius:50%;font-size:.62rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.result-section{background:rgba(255,255,255,.08);border-radius:10px;padding:14px;margin-bottom:10px}
-.result-section-title{font-size:.7rem;font-weight:800;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.result-section-body{font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.6}
-.result-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
-.result-action-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;border:none;cursor:pointer;transition:.18s}
-.btn-wa{background:#25d366;color:#fff}
-.btn-wa:hover{background:#1db954}
-.btn-calc{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25)}
-.btn-calc:hover{background:rgba(255,255,255,.25)}
-/* NOT FOUND */
-.not-found{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:32px;text-align:center;margin-bottom:24px;display:none}
-body.dark .not-found{background:#161b27;border-color:var(--border)}
-.not-found.show{display:block}
-.not-found-icon{font-size:2.5rem;margin-bottom:10px}
-.not-found-title{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;color:var(--text-main);margin-bottom:6px}
-.not-found-sub{font-size:.8rem;color:var(--text-muted);margin-bottom:16px;line-height:1.5}
-/* ALL COURSES */
-.courses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-@media(max-width:480px){.courses-grid{grid-template-columns:1fr}}
-.course-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:16px;cursor:pointer;transition:all .2s}
-body.dark .course-card{background:#161b27;border-color:var(--border)}
-.course-card:hover{border-color:var(--blue-main);box-shadow:var(--shadow-md);transform:translateY(-2px)}
-.course-card-name{font-family:'Montserrat',sans-serif;font-size:.86rem;font-weight:800;color:var(--text-main);margin-bottom:4px}
-.course-card-dept{font-size:.68rem;color:var(--text-muted);margin-bottom:8px}
-.course-card-subjects{display:flex;flex-wrap:wrap;gap:4px}
-.mini-pill{font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--blue-light);color:var(--blue-main)}
-body.dark .mini-pill{background:#1a2d5a;color:#93c5fd}
-.loader{text-align:center;padding:60px;color:var(--text-muted)}
-.loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
-@keyframes spin{to{transform:rotate(360deg)}}
+.sec{padding:32px 0 48px}
+/* COMBO GRID */
+.combo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+@media(max-width:480px){.combo-grid{grid-template-columns:1fr}}
+/* COMBO CARD */
+.combo-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;transition:.22s;cursor:pointer}
+body.dark .combo-card{background:#161b27;border-color:var(--border)}
+.combo-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#bfdbfe}
+.combo-head{background:linear-gradient(135deg,var(--blue-deep),var(--blue));padding:14px 16px}
+.combo-dept{font-size:.6rem;font-weight:800;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.combo-course{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;color:#fff;line-height:1.3}
+.combo-body{padding:14px 16px}
+.combo-label{font-size:.62rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;margin-top:10px}
+.combo-label:first-child{margin-top:0}
+.combo-subjects{display:flex;flex-wrap:wrap;gap:5px}
+.subj-pill{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:20px;background:var(--blue-lt);color:var(--blue)}
+body.dark .subj-pill{background:#1a2d5a;color:#93c5fd}
+.subj-pill.compulsory{background:#fee2e2;color:#b91c1c}
+body.dark .subj-pill.compulsory{background:#2d0a0a;color:#fca5a5}
+.combo-olevel{font-size:.76rem;color:var(--muted);line-height:1.6}
+.combo-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.combo-tag{font-size:.62rem;font-weight:700;padding:3px 8px;border-radius:8px;background:var(--surface2);color:var(--muted)}
+body.dark .combo-tag{background:#1a2236}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(5,10,30,.6);backdrop-filter:blur(4px);align-items:flex-end;justify-content:center}
+.modal-overlay.open{display:flex}
+@media(min-width:600px){.modal-overlay{align-items:center;padding:16px}}
+.modal-box{background:var(--surface);width:100%;max-width:560px;max-height:90vh;overflow-y:auto;border-radius:20px 20px 0 0;animation:slideUp .28s ease}
+body.dark .modal-box{background:#161b27}
+@media(min-width:600px){.modal-box{border-radius:16px}}
+@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.modal-header{position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--border);padding:14px 18px;display:flex;align-items:center;gap:10px;z-index:10}
+body.dark .modal-header{background:#161b27}
+.modal-close{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:.9rem;cursor:pointer;flex-shrink:0}
+body.dark .modal-close{background:#1a2236}
+.modal-title{font-family:'Montserrat',sans-serif;font-size:.86rem;font-weight:800;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.modal-body{padding:20px}
+.modal-dept{font-size:.64rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.modal-course-name{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:16px}
+.modal-section{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.modal-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.modal-sec-title{font-family:'Montserrat',sans-serif;font-size:.76rem;font-weight:800;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.share-btn{display:flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer;margin-top:4px}
+/* SKELETON */
+@keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+.sk{background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:6px}
+body.dark .sk{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:600px 100%}
+.sk-combo{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden}
+body.dark .sk-combo{background:#161b27}
+/* EMPTY */
+.empty{text-align:center;padding:56px 20px;color:var(--muted);grid-column:1/-1}
+.empty .ei{font-size:2.5rem;margin-bottom:10px}
+/* FOOTER */
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
-.footer-inner{max-width:900px;margin:0 auto}
-.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.footer-brand img{width:32px;height:32px;border-radius:50%;border:2px solid var(--orange)}
-.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff}
-.footer-links{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:14px}
-.footer-links a{font-size:.74rem;color:rgba(255,255,255,.45);transition:.18s}
-.footer-links a:hover{color:#fff}
-.footer-copy{font-size:.7rem;border-top:1px solid rgba(255,255,255,.08);padding-top:14px}
+.footer-inner{max-width:1100px;margin:0 auto}
 </style>
-<script type="module">
-import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import{getFirestore,collection,getDocs,query,orderBy,where,limit}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-const _cfg={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'};
-const _app=initializeApp(_cfg);
-const _db=getFirestore(_app);
-window._fsDb=_db;window._fsCol=collection;window._fsGet=getDocs;window._fsQuery=query;window._fsOrder=orderBy;window._fsWhere=where;window._fsLimit=limit;
-window._fsLoad=async(col)=>{try{const s=await getDocs(collection(_db,col));return s.docs.map(d=>({_id:d.id,...d.data()})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));}catch(e){console.warn('fsLoad',col,e.message);return [];}};
-window._fsLoadJson=async(col,jsonFile)=>{
-  // Try Firestore first, fall back to JSON file
-  try{
-    const s=await getDocs(collection(_db,col));
-    const data=s.docs.map(d=>({_id:d.id,...d.data()})).sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
-    if(data.length) return data;
-  }catch(e){}
-  // Fallback to JSON
-  try{const r=await fetch(jsonFile+'?v='+Date.now());return await r.json();}catch(e){return [];}
-};
-</script>
 </head>
 <body>
 <header>
-  <div class="header-bar">
+  <div class="hbar">
     <a href="index.html" class="logo-link">
       <img class="logo-img" src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM">
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
     <nav class="main-nav">
-      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a><a href="scholarship.html">Scholarships</a><a href="index.html#contact" class="nav-cta">💬 Contact</a>
+      <a href="index.html">Home</a>
+      <a href="newsroom.html">Newsroom</a>
+      <a href="explore.html">Explore</a>
+      <a href="cbt.html">CBT</a>
+      <a href="scholarship.html">Scholarships</a>
+      <a href="index.html#contact" class="nav-cta">💬 Contact</a>
     </nav>
     <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
     <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
@@ -160,188 +161,252 @@ window._fsLoadJson=async(col,jsonFile)=>{
 </header>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
 <nav class="mobile-nav" id="mobileNav">
-<div class="mnav-header"><div style="display:flex;align-items:center;gap:10px"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316"><div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
-  </div></div>
-  <div class="mnav-lbl">Navigation</div>
-  <a href="index.html" onclick="toggleNav()">Home</a>
-  <a href="explore.html" onclick="toggleNav()">Explore All Tools</a>
-  <a href="newsroom.html" onclick="toggleNav()">Newsroom</a>
-  <a href="elibrary.html" onclick="toggleNav()">eLibrary</a>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">Post-UTME Calculator</a>
-  <a href="subject-combo.html" onclick="toggleNav()">Subject Combination</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">GPA Calculator</a>
-  <a href="student-loan.html" onclick="toggleNav()">Student Loan Guide</a>
-  <a href="scholarship.html" onclick="toggleNav()">Scholarships</a>
-  <a href="results.html" onclick="toggleNav()">Results Checker</a>
-  <a href="dyk.html" onclick="toggleNav()">Did You Know</a>
-  <a href="spotlight.html" onclick="toggleNav()">Student Spotlight</a>
-  <a href="community.html" onclick="toggleNav()">Community Hub</a>
+  <div class="mnav-header">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
+    </div>
+    <button class="mnav-close" onclick="toggleNav()">✕</button>
+  </div>
+  <div class="mnav-lbl">Main</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <div class="mnav-lbl">Exam Tools</div>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+  <div class="mnav-lbl">Resources</div>
+  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 
+<!-- HERO -->
 <section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="hero-badge">📋 JAMB Subject Checker</div>
-    <h1>Subject <span>Combination</span> Checker</h1>
-    <p>Find the correct 4 JAMB subjects for any course — instantly. Includes O'Level requirements and cut-off information.</p>
+  <div class="hero-inner">
+    <div class="hero-badge">📋 JAMB & O'Level Guide</div>
+    <h1>Subject <span>Combination</span> Finder</h1>
+    <p>Find the correct JAMB and O'Level subject combinations for any course in Nigerian universities — instantly.</p>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num" id="totalCount">—</div><div class="hero-stat-lbl">Courses</div></div>
+      <div><div class="hero-stat-num" id="deptCount">—</div><div class="hero-stat-lbl">Departments</div></div>
+      <div><div class="hero-stat-num">Free</div><div class="hero-stat-lbl">Always</div></div>
+    </div>
   </div>
 </section>
 
+<!-- FILTER BAR -->
+<div class="filter-wrap">
+  <div class="filter-inner">
+    <button class="dept-btn active" onclick="setDept('',this)">All</button>
+    <button class="dept-btn" onclick="setDept('Medicine & Health',this)">🏥 Medicine</button>
+    <button class="dept-btn" onclick="setDept('Engineering',this)">⚙️ Engineering</button>
+    <button class="dept-btn" onclick="setDept('Sciences',this)">🔬 Sciences</button>
+    <button class="dept-btn" onclick="setDept('Social Sciences',this)">📊 Social Sci</button>
+    <button class="dept-btn" onclick="setDept('Arts & Humanities',this)">🎭 Arts</button>
+    <button class="dept-btn" onclick="setDept('Law',this)">⚖️ Law</button>
+    <button class="dept-btn" onclick="setDept('Education',this)">📚 Education</button>
+    <button class="dept-btn" onclick="setDept('Management',this)">💼 Management</button>
+    <div class="search-wrap">
+      <span style="color:var(--muted);font-size:.82rem">🔍</span>
+      <input type="text" id="comboSearch" placeholder="Search course…" oninput="render()" autocomplete="off">
+    </div>
+  </div>
+</div>
+
+<!-- GRID -->
 <section class="sec">
   <div class="wrap">
-    <div class="search-card">
-      <div class="search-card-title">🔍 Search Your Course</div>
-      <div class="big-search">
-        <span class="big-search-icon">📋</span>
-        <input type="text" id="comboSearch" placeholder="Type a course name e.g. Medicine, Law, Computer Science…" oninput="onSearch()" autocomplete="off">
-      </div>
-      <div class="dept-filter" id="deptFilter">
-        <button class="dept-btn active" onclick="setDept('',this)">All</button>
-        <button class="dept-btn" onclick="setDept('Medicine & Health',this)">Medicine</button>
-        <button class="dept-btn" onclick="setDept('Engineering',this)">Engineering</button>
-        <button class="dept-btn" onclick="setDept('Sciences',this)">Sciences</button>
-        <button class="dept-btn" onclick="setDept('Social Sciences',this)">Social Sci</button>
-        <button class="dept-btn" onclick="setDept('Law',this)">Law</button>
-        <button class="dept-btn" onclick="setDept('Management',this)">Management</button>
-        <button class="dept-btn" onclick="setDept('Education',this)">Education</button>
-        <button class="dept-btn" onclick="setDept('Arts & Humanities',this)">Arts</button>
-        <button class="dept-btn" onclick="setDept('Agriculture',this)">Agriculture</button>
-      </div>
+    <div id="comboGrid" class="combo-grid">
+      <div class="sk-combo"><div class="sk" style="height:70px"></div><div style="padding:14px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:60%"></div></div></div>
+      <div class="sk-combo"><div class="sk" style="height:70px"></div><div style="padding:14px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:60%"></div></div></div>
+      <div class="sk-combo"><div class="sk" style="height:70px"></div><div style="padding:14px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:60%"></div></div></div>
+      <div class="sk-combo"><div class="sk" style="height:70px"></div><div style="padding:14px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:60%"></div></div></div>
+      <div class="sk-combo"><div class="sk" style="height:70px"></div><div style="padding:14px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:60%"></div></div></div>
+      <div class="sk-combo"><div class="sk" style="height:70px"></div><div style="padding:14px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:80%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:60%"></div></div></div>
     </div>
-
-    <!-- RESULT -->
-    <div class="result-card" id="resultCard"></div>
-
-    <!-- NOT FOUND -->
-    <div class="not-found" id="notFound">
-      <div class="not-found-icon">🔍</div>
-      <div class="not-found-title">Course Not Found</div>
-      <div class="not-found-sub">This course hasn't been added to our database yet. Contact us on WhatsApp and we'll help you find the right subject combination.</div>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 22px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.86rem">💬 Ask on WhatsApp →</a>
-    </div>
-
-    <!-- ALL COURSES -->
-    <div>
-      <div style="font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text-main);margin-bottom:14px" id="courseListTitle">All Available Courses</div>
-      <div id="coursesGrid" class="courses-grid"><div class="loader"><div class="loader-spin"></div>Loading courses…</div></div>
+    <div style="text-align:center;margin-top:28px;padding:20px;background:var(--surface);border-radius:var(--r);border:1.5px solid var(--border)">
+      <div style="font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:6px">Can't find your course?</div>
+      <div style="font-size:.78rem;color:var(--muted);margin-bottom:12px">Send us the course name and we'll add it to the directory.</div>
+      <a href="https://wa.me/2349049871643?text=Please%20add%20this%20course%20combo%3A%20" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:10px 20px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem">💬 Request a Course →</a>
     </div>
   </div>
 </section>
 
+<!-- MODAL -->
+<div class="modal-overlay" id="comboModal" onclick="handleOverlay(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-title" id="modalTitle">Subject Combination</div>
+      <button class="share-btn" onclick="shareCombo()">🔗 Share</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"><div><div class="footer-brand-name">Big Quams Media®</div></div></div>
-            <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="explore.html">Explore</a>
-      <a href="newsroom.html">Newsroom</a>
-      <a href="elibrary.html">eLibrary</a>
-      <a href="cbt.html">CBT Practice</a>
-      <a href="postutme-prep.html">Post-UTME Prep</a>
-      <a href="postutme-calculator.html">Post-UTME Calc</a>
-      <a href="subject-combo.html">Subject Combo</a>
-      <a href="gpa-calculator.html">GPA Calculator</a>
-      <a href="student-loan.html">Student Loan</a>
-      <a href="scholarship.html">Scholarships</a>
-      <a href="results.html">Results Checker</a>
-      <a href="dyk.html">Did You Know</a>
-      <a href="spotlight.html">Spotlight</a>
-      <a href="community.html">Community</a>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
     </div>
-    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a><a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a><a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a><a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a><a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a><a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div><div style="display:flex;flex-direction:column;gap:5px"><a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a><a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a><a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a><a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a><a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a><a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div><div style="display:flex;flex-direction:column;gap:5px"><a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a><a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a><a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a><a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a><a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a><a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
+    </div>
+    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Built for Nigerian Students</div>
   </div>
 </footer>
 
 <script>
 (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
 function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
-document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';document.getElementById('yr').textContent=new Date().getFullYear();});
 function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();const nav=document.getElementById('mobileNav');if(nav.classList.contains('open'))toggleNav();}});
+document.addEventListener('DOMContentLoaded',()=>{
+  if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  init();
+});
 
-let allCourses=[], currentDept='', searchTimer=null;
+let allCombos=[],currentDept='',currentIdx=-1;
 
 async function init(){
   try{
-    allCourses=await window._fsLoadJson('fs_subject_combo','subject-combo.json');
-    renderGrid();
+    let data=[];
+    if(window._db){
+      const snap=await window._db.collection('fs_subject_combo').orderBy('course','asc').get();
+      data=snap.docs.map(d=>({_id:d.id,...d.data()}));
+    }
+    if(!data.length){const r=await fetch('subject-combo.json?v='+Date.now());data=await r.json();}
+    allCombos=data;
+    const depts=new Set(data.map(c=>c.dept).filter(Boolean));
+    document.getElementById('totalCount').textContent=data.length+'+';
+    document.getElementById('deptCount').textContent=depts.size;
+    render();
   }catch(e){
-    document.getElementById('coursesGrid').innerHTML='<div style="color:var(--text-muted);font-size:.84rem;padding:20px">Could not load courses. Please try again.</div>';
+    document.getElementById('comboGrid').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load courses. Please try again.</p></div>';
   }
 }
 
 function setDept(dept,btn){
   currentDept=dept;
   document.querySelectorAll('.dept-btn').forEach(b=>b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  const q=document.getElementById('comboSearch').value.trim();
-  if(q) onSearch(); else renderGrid();
+  if(btn)btn.classList.add('active');
+  render();
 }
 
-function onSearch(){
-  clearTimeout(searchTimer);
-  searchTimer=setTimeout(()=>{
-    const q=document.getElementById('comboSearch').value.trim().toLowerCase();
-    const rc=document.getElementById('resultCard');
-    const nf=document.getElementById('notFound');
-    rc.classList.remove('show'); nf.classList.remove('show');
-    if(q.length<2){renderGrid();return;}
-    const match=allCourses.find(c=>c.course.toLowerCase().includes(q)||(currentDept&&c.dept===currentDept&&c.course.toLowerCase().includes(q)));
-    const matches=allCourses.filter(c=>{
-      const mQ=c.course.toLowerCase().includes(q);
-      const mD=!currentDept||c.dept===currentDept;
-      return mQ&&mD;
-    });
-    if(matches.length===1||match){
-      const c=matches[0]||match;
-      showResult(c);
-    } else if(matches.length>1){
-      renderGrid(matches);
-    } else {
-      nf.classList.add('show');
-      renderGrid([]);
-    }
-  },320);
-}
-
-function showResult(c){
-  const rc=document.getElementById('resultCard');
-  const subjects=['English Language',c.s2,c.s3,c.s4].filter(Boolean);
-  rc.innerHTML=`
-    <div class="result-course-name">${c.course}</div>
-    <div class="result-dept">📂 ${c.dept||'General'}${c.duration?' · ⏱ '+c.duration:''}</div>
-    <div class="subjects-row">
-      ${subjects.map((s,i)=>`<div class="subject-pill"><span class="subject-num">${i+1}</span>${s}</div>`).join('')}
-    </div>
-    ${c.olevel?`<div class="result-section"><div class="result-section-title">O'Level Requirements</div><div class="result-section-body">${c.olevel}</div></div>`:''}
-    ${c.cutoff?`<div class="result-section"><div class="result-section-title">Minimum JAMB Cut-off</div><div class="result-section-body">${c.cutoff} (varies by school — always confirm with your institution)</div></div>`:''}
-    ${c.notes?`<div class="result-section"><div class="result-section-title">Additional Notes</div><div class="result-section-body">${c.notes}</div></div>`:''}
-    <div class="result-actions">
-      <a href="postutme-calculator.html" class="result-action-btn btn-calc">🧮 Calculate Aggregate →</a>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="result-action-btn btn-wa">💬 Get More Help</a>
-    </div>`;
-  rc.classList.add('show');
-  rc.scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-
-function renderGrid(data=null){
-  const list=data||(currentDept?allCourses.filter(c=>c.dept===currentDept):allCourses);
-  const el=document.getElementById('coursesGrid');
-  const title=document.getElementById('courseListTitle');
-  title.textContent=`${list.length} Course${list.length!==1?'s':''} Available${currentDept?' — '+currentDept:''}`;
-  if(!list.length){el.innerHTML='<div style="color:var(--text-muted);font-size:.84rem;padding:20px 0">No courses found.</div>';return;}
-  el.innerHTML=list.map(c=>`
-    <div class="course-card" onclick="showResult(${JSON.stringify(c).replace(/"/g,'&quot;')})">
-      <div class="course-card-name">${c.course}</div>
-      <div class="course-card-dept">${c.dept||''}</div>
-      <div class="course-card-subjects">
-        ${['English Language',c.s2,c.s3,c.s4].filter(Boolean).map(s=>`<span class="mini-pill">${s.split(' or ')[0]}</span>`).join('')}
+function render(){
+  const q=(document.getElementById('comboSearch').value||'').toLowerCase().trim();
+  const filtered=allCombos.filter(c=>{
+    const matchDept=!currentDept||(c.dept||'')===currentDept;
+    const matchQ=!q||((c.course||'')+(c.dept||'')+(c.subjects||[]).join(' ')).toLowerCase().includes(q);
+    return matchDept&&matchQ;
+  });
+  const el=document.getElementById('comboGrid');
+  if(!filtered.length){
+    el.innerHTML='<div class="empty"><div class="ei">🔍</div><p>No courses match your search.<br><button onclick="setDept(\'\',document.querySelector(\'.dept-btn\'))" style="margin-top:12px;background:var(--blue);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-weight:700;cursor:pointer">Clear filter</button></p></div>';
+    return;
+  }
+  el.innerHTML=filtered.map(c=>{
+    const idx=allCombos.indexOf(c);
+    const subjects=getSubjects(c);
+    return`<div class="combo-card" onclick="openCombo(${idx})">
+      <div class="combo-head">
+        <div class="combo-dept">${c.dept||'General'}</div>
+        <div class="combo-course">${c.course}</div>
       </div>
-    </div>`).join('');
+      <div class="combo-body">
+        <div class="combo-label">JAMB Subjects</div>
+        <div class="combo-subjects">
+          ${subjects.map((s,i)=>`<span class="subj-pill${i===0?' compulsory':''}">${s}</span>`).join('')}
+        </div>
+        <div class="combo-meta">
+          ${c.cutoff?`<span class="combo-tag">📊 Min: ${c.cutoff}</span>`:''}
+          ${c.duration?`<span class="combo-tag">⏱ ${c.duration}</span>`:''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-init();
+function getSubjects(c){
+  // Support both subjects[] array and individual s1-s4 fields
+  if(c.subjects&&c.subjects.length) return c.subjects;
+  const s=['English Language'];
+  if(c.s2||c.subject2) s.push(c.s2||c.subject2);
+  if(c.s3||c.subject3) s.push(c.s3||c.subject3);
+  if(c.s4||c.subject4) s.push(c.s4||c.subject4);
+  return s;
+}
+
+function openCombo(idx){
+  const c=allCombos[idx]; if(!c) return;
+  currentIdx=idx;
+  const subjects=getSubjects(c);
+  document.getElementById('modalTitle').textContent=c.course;
+  document.getElementById('modalBody').innerHTML=`
+    <div class="modal-dept">${c.dept||'General'}</div>
+    <div class="modal-course-name">${c.course}</div>
+    <div class="modal-section">
+      <div class="modal-sec-title">📝 JAMB Subject Combination</div>
+      <div class="combo-subjects" style="gap:6px">
+        ${subjects.map((s,i)=>`<span class="subj-pill${i===0?' compulsory':''}" style="font-size:.76rem;padding:5px 12px">${i===0?'🔒 ':''} ${s}</span>`).join('')}
+      </div>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:8px">🔒 English Language is compulsory for all courses</div>
+    </div>
+    ${c.olevel?`<div class="modal-section">
+      <div class="modal-sec-title">📋 O'Level Requirements</div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.7">${c.olevel}</div>
+    </div>`:''}
+    <div class="modal-section">
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        ${c.cutoff?`<div style="background:var(--surface2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue)">${c.cutoff}</div><div style="font-size:.64rem;color:var(--muted)">Min JAMB Score</div></div>`:''}
+        ${c.duration?`<div style="background:var(--surface2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text)">${c.duration}</div><div style="font-size:.64rem;color:var(--muted)">Programme Duration</div></div>`:''}
+      </div>
+    </div>
+    ${c.notes?`<div class="modal-section">
+      <div class="modal-sec-title">💡 Additional Notes</div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.7">${c.notes}</div>
+    </div>`:''}
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a href="postutme-calculator.html" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem">🧮 Calculate Aggregate →</a>
+      <a href="results.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--surface2);color:var(--blue);border:1.5px solid var(--border);padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem">📊 Check Results →</a>
+    </div>`;
+  document.getElementById('comboModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('comboModal').classList.remove('open');
+  document.body.style.overflow='';
+  currentIdx=-1;
+}
+function handleOverlay(e){if(e.target===document.getElementById('comboModal'))closeModal();}
+
+function shareCombo(){
+  if(currentIdx<0) return;
+  const c=allCombos[currentIdx];
+  const subjects=getSubjects(c);
+  const text=`📋 ${c.course} — Subject Combination\n\nJAMB: ${subjects.join(', ')}\n${c.olevel?`\nO\'Level: ${c.olevel}\n`:''}\nSource: Big Quams Media® — https://bigquamsmedia.com.ng/subject-combo.html`;
+  if(navigator.share){navigator.share({title:c.course+' Subject Combo',text}).catch(()=>{});}
+  else{navigator.clipboard.writeText(text).then(()=>alert('Copied to clipboard!'));}
+}
 </script>
 </body>
 </html>
