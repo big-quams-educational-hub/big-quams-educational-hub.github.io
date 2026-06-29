@@ -120,9 +120,9 @@ body.dark .modal-footer{border-color:var(--border)}
 .btn-primary{padding:10px 18px;border-radius:9px;background:var(--blue-main);color:#fff;border:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.84rem;cursor:pointer;display:flex;align-items:center;gap:6px}
 .empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
 .empty .ei{font-size:2.5rem;margin-bottom:10px}
-.loader{text-align:center;padding:60px;color:var(--text-muted)}
-.loader-spin{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
-@keyframes spin{to{transform:rotate(360deg)}}
+
+
+
 .cta-box{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));border-radius:var(--radius-md);padding:28px 24px;text-align:center;margin-top:32px}
 .cta-box h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:8px}
 .cta-box p{font-size:.8rem;color:rgba(255,255,255,.65);margin-bottom:16px;line-height:1.6}
@@ -246,6 +246,9 @@ window._fsLoadJson=async(col,jsonFile)=>{
   try{const r=await fetch(jsonFile+'?v='+Date.now());return await r.json();}catch(e){return [];}
 };
 </script>
+<meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
 </head>
 <body>
 <header>
@@ -328,7 +331,10 @@ window._fsLoadJson=async(col,jsonFile)=>{
 
 <section class="sec">
   <div class="wrap">
-    <div id="guidesGrid" class="guides-grid"><div class="loader"><div class="loader-spin"></div>Loading guides…</div></div>
+    <div id="guidesGrid" class="guides-grid"><div style="display:flex;flex-direction:column;gap:12px">
+  <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:18px"><div style="height:10px;width:30%;background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:5px;margin-bottom:8px"></div><div style="height:13px;width:80%;background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:5px;margin-bottom:6px"></div><div style="height:10px;width:55%;background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:5px"></div></div>
+  <div style="background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:18px"><div style="height:10px;width:40%;background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:5px;margin-bottom:8px"></div><div style="height:13px;width:70%;background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:5px;margin-bottom:6px"></div><div style="height:10px;width:45%;background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:5px"></div></div>
+</div></div>
     <div class="cta-box">
       <h3>🧠 Want to Practice Questions?</h3>
       <p>Switch to the Practice Questions tab above to test yourself with real Post-UTME style questions for your target school.</p>
