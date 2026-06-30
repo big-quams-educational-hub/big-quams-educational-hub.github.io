@@ -231,19 +231,7 @@ body.dark .sch-apply-btn{background:#071a12;color:#6ee7b7;border-color:#134e2a}
 .explore-btn:hover{background:#fff7ed;transform:translateY(-1px)}
 
 /* COUNTDOWN */
-.countdown-sec{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:52px 16px;text-align:center}
-.countdown-sec .sec-label{color:rgba(255,255,255,.5);justify-content:center}
-.countdown-sec .sec-label::before{background:rgba(255,255,255,.3)}
-.countdown-sec .sec-title{color:#fff;margin-bottom:6px}
-.countdown-sec .sec-title span{color:#fdba74}
-.countdown-sec>div>p{font-size:.85rem;color:rgba(255,255,255,.55);margin:10px auto 24px;max-width:440px}
-.cd-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:20px 0 24px}
-.cd-box{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:var(--radius-md);padding:16px 20px;min-width:72px;text-align:center}
-.cd-num{font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:800;color:#fff;display:block;line-height:1}
-.cd-lbl{font-size:.62rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-top:4px;display:block}
-.event-list{display:flex;flex-direction:column;gap:8px;max-width:540px;margin:0 auto 24px}
-.event-row{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);padding:10px 14px;text-align:left}
-.event-row.active{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.35)}
+
 .ev-date{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:rgba(255,255,255,.5);min-width:40px;white-space:nowrap}
 .ev-title{font-size:.8rem;font-weight:600;color:#fff}
 .ev-days{font-size:.7rem;font-weight:700;color:#fdba74;white-space:nowrap;margin-left:auto}
@@ -475,14 +463,7 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
 @media(min-width:480px){.news-grid-inner{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:860px){.news-grid-inner{grid-template-columns:repeat(3,1fr)}}
 /* Countdown */
-.countdown-sec{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:48px 16px;text-align:center;color:#fff}
-.countdown-sec .sec-title{color:#fff;text-align:center;margin-bottom:6px}
-#countdownEventName{font-size:.82rem;color:rgba(255,255,255,.6);margin-bottom:20px}
-.cd-row{display:flex;gap:12px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
-.cd-box{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:12px 14px;min-width:clamp(60px,16vw,72px);text-align:center}
-.cd-num{display:block;font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2rem);font-weight:800;color:#fff;line-height:1}
-.cd-lbl{font-size:.62rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-top:4px;display:block}
-.event-list{max-width:500px;margin:0 auto 20px;display:flex;flex-direction:column;gap:8px}
+
 .center{text-align:center}
 /* Tools bar */
 .tools-bar{background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;position:relative}
@@ -689,7 +670,6 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
     <button class="tool-tab" onclick="location.href='elibrary.html'">📖 eLibrary</button>
     <button class="tool-tab" onclick="location.href='daily.html'">📅 Daily Hub</button>
     <button class="tool-tab" onclick="location.href='campus-life.html'">🎮 Campus Life</button>
-    <button class="tool-tab" onclick="document.getElementById('countdown-section').scrollIntoView({behavior:'smooth'})">📅 Calendar</button>
     <button class="tool-tab" onclick="location.href='explore.html'">🗂 All Tools</button>
   </div>
 </div>
@@ -822,23 +802,6 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
         <div class="testi-author"><div class="testi-avatar">E</div><div><div class="testi-name">Emmanuel O.</div><div class="testi-school">UNILAG Applicant</div></div></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- COUNTDOWN -->
-<section class="countdown-sec" id="countdown-section">
-  <div class="wrap">
-    <div class="sec-label" style="justify-content:center">Important Dates</div>
-    <h2 class="sec-title">Academic <span>Countdown</span></h2>
-    <p id="countdownEventName"></p>
-    <div class="cd-row">
-      <div class="cd-box"><span class="cd-num" id="cdDays">--</span><span class="cd-lbl">Days</span></div>
-      <div class="cd-box"><span class="cd-num" id="cdHours">--</span><span class="cd-lbl">Hours</span></div>
-      <div class="cd-box"><span class="cd-num" id="cdMins">--</span><span class="cd-lbl">Mins</span></div>
-      <div class="cd-box"><span class="cd-num" id="cdSecs">--</span><span class="cd-lbl">Secs</span></div>
-    </div>
-    <div class="event-list" id="upcomingEventsList"></div>
-    <div class="center" style="margin-top:20px"><a href="explore.html" class="btn-orange">📅 Full Academic Calendar</a></div>
   </div>
 </section>
 
@@ -1097,78 +1060,6 @@ function initTicker(){
   }
 }
 
-/* COUNTDOWN */
-function initCountdown(){
-  const defaultEvents=[
-    {title:'Post-UTME Screening Begins',dateObj:new Date('2026-06-15')},
-    {title:'CAPS Admission Portal Opens',dateObj:new Date('2026-07-01')},
-    {title:'WAEC 2026 Results Release',dateObj:new Date('2026-08-20')},
-    {title:'New Academic Session 2026/2027',dateObj:new Date('2026-09-01')},
-    {title:'JAMB 2027 Registration Opens',dateObj:new Date('2026-11-01')},
-  ];
-  let cdInterval=null;
-  function startTimer(evs){
-    // Clear any previous interval
-    if(cdInterval)clearInterval(cdInterval);
-    const now=new Date();
-    // Sort ascending and filter to only future events
-    const upcoming=[...evs].sort((a,b)=>a.dateObj-b.dateObj).filter(e=>e.dateObj>now);
-    const nameEl=document.getElementById('countdownEventName');
-    const listEl=document.getElementById('upcomingEventsList');
-    if(!upcoming.length){
-      if(nameEl)nameEl.textContent='No upcoming events — check back soon!';
-      if(listEl)listEl.innerHTML='';
-      return;
-    }
-    // Target is strictly the NEXT upcoming event only
-    const target=upcoming[0];
-    if(nameEl)nameEl.innerHTML='⏳ Counting down to: <strong>'+target.title+'</strong>';
-    // Show next 4 upcoming events in the list
-    if(listEl)listEl.innerHTML=upcoming.slice(0,4).map((e,i)=>{
-      const d=e.dateObj;
-      const mo=d.toLocaleString('en-US',{month:'short'}),day=d.getDate();
-      const diff=Math.ceil((d-new Date())/864e5);
-      return`<div class="event-row${i===0?' active':''}"><div class="ev-date">${mo} ${day}</div><div class="ev-title" style="flex:1">${e.title}</div><div class="ev-days">${diff<=0?'Today':diff===1?'Tomorrow':diff+' days'}</div></div>`;
-    }).join('');
-    function tick(){
-      const diff=target.dateObj-new Date();
-      if(diff<=0){clearInterval(cdInterval);['cdDays','cdHours','cdMins','cdSecs'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='00';});return;}
-      const pad=n=>String(n).padStart(2,'0');
-      document.getElementById('cdDays').textContent=pad(Math.floor(diff/864e5));
-      document.getElementById('cdHours').textContent=pad(Math.floor((diff%864e5)/36e5));
-      document.getElementById('cdMins').textContent=pad(Math.floor((diff%36e5)/6e4));
-      document.getElementById('cdSecs').textContent=pad(Math.floor((diff%6e4)/1e3));
-    }
-    tick();cdInterval=setInterval(tick,1000);
-  }
-  startTimer(defaultEvents);
-  // Try Firebase calendar first
-  function parseCalEvents(items){
-    return items.map(e=>({...e,dateObj:new Date(e.date||e.dateObj||'')})).filter(e=>e.dateObj&&!isNaN(e.dateObj));
-  }
-  console.log('[Calendar] window._db ready?', !!window._db);
-  if(window._db){
-    window._db.collection('fs_calendar').get()
-      .then(snap=>{
-        console.log('[Calendar] Firestore docs found:', snap.size);
-        const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
-        console.log('[Calendar] Raw items:', items);
-        const parsed=parseCalEvents(items);
-        console.log('[Calendar] Parsed valid events:', parsed);
-        if(parsed.length){startTimer(parsed);return null;}
-        console.warn('[Calendar] No valid Firestore events — falling back to calendar.json');
-        return fetch('calendar.json?v='+Date.now()).then(r=>r.ok?r.json():null);
-      })
-      .then(d=>{if(d&&d.length){const parsed=parseCalEvents(d);if(parsed.length){console.log('[Calendar] Using calendar.json fallback:',parsed);startTimer(parsed);}}})
-      .catch(err=>{console.error('[Calendar] Firebase ERROR:',err.code||'',err.message);});
-  } else {
-    console.warn('[Calendar] window._db not available — using calendar.json directly');
-    fetch('calendar.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
-      if(d&&d.length){const parsed=parseCalEvents(d);if(parsed.length)startTimer(parsed);}
-    }).catch(()=>{});
-  }
-}
-
 /* NEWS — fetch from Firebase, fall back to news.json, use hash URLs */
 function makeNewsSlug(title){
   return(title||'').toLowerCase().replace(/[^a-z0-9\s-]/g,' ').trim().replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'').substring(0,70);
@@ -1291,7 +1182,6 @@ function showFb(msg,type){
 document.addEventListener('DOMContentLoaded',()=>{
   initTicker();
   initSuccessTicker();
-  initCountdown();
   loadNews();
   loadScholarships();
   document.getElementById('footer-year').textContent=new Date().getFullYear();
@@ -1342,47 +1232,9 @@ function heroSearchTag(tag){
 }
 window.heroSearchTag=heroSearchTag;
 
-// ── NEWS GRID (skeleton → real) ──
-async function loadNewsGrid(){
-  try{
-    const r=await fetch('news.json?v='+Date.now());
-    const d=await r.json();
-    if(!d||!d.length) return;
-    const items=[...d.filter(n=>n.pinned),...d.filter(n=>!n.pinned)].slice(0,3);
-    document.getElementById('newsGrid').innerHTML='<div class="news-grid-inner">'+items.map((n,i)=>{
-      const slug=n.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').substring(0,60);
-      return`<a class="news-card" href="newsroom.html?article=${i}&slug=${slug}">
-        ${n.image?`<img class="news-img" src="${n.image}" alt="${n.title}" loading="lazy" style="width:100%;height:auto;max-height:200px;object-fit:contain;background:#f5f7ff;border-radius:10px 10px 0 0">`:`<div class="news-img-ph" style="height:120px;display:flex;align-items:center;justify-content:center;font-size:2rem;background:#f0f4ff;border-radius:10px 10px 0 0">${n.emoji||'📰'}</div>`}
-        <div class="news-body">
-          ${n.category?`<span class="news-tag">${n.category}</span>`:''}
-          <div class="news-title">${n.title}</div>
-          <div class="news-excerpt">${(n.summary||n.excerpt||'').substring(0,100)}…</div>
-          <div class="news-foot"><span class="news-date">${n.date||''}</span><span class="news-more">Read →</span></div>
-        </div>
-      </a>`;
-    }).join('')+'</div>';
-  }catch(e){}
-}
+// ── (legacy loadNewsGrid removed — loadNews() above handles Firebase + fallback) ──
 
-// ── SCHOLARSHIP PREVIEW ──
-async function loadScholarshipPreview(){
-  try{
-    const r=await fetch('scholarships.json?v='+Date.now());
-    const d=await r.json();
-    if(!d||!d.length) return;
-    const items=d.slice(0,3);
-    document.getElementById('scholarship-preview-grid').innerHTML='<div class="sch-grid-inner">'+items.map(s=>`
-      <a href="scholarship.html" class="sch-prev-card">
-        <div class="sch-prev-emoji">${s.emoji||'💰'}</div>
-        <div class="sch-prev-body">
-          <div class="sch-prev-title">${s.title}</div>
-          <div class="sch-prev-meta">${s.provider||''} ${s.deadline?'· Deadline: '+s.deadline:''}</div>
-          ${s.amount?`<div class="sch-prev-amount">${s.amount}</div>`:''}
-        </div>
-        <span style="color:var(--blue-main,#1a3fa8);font-size:.8rem;font-weight:700;flex-shrink:0">→</span>
-      </a>`).join('')+'</div>';
-  }catch(e){}
-}
+// ── (legacy loadScholarshipPreview removed — loadScholarships() above handles Firebase + fallback) ──
 
 // ── STATS COUNTER ANIMATION ──
 function animateCounters(){
@@ -1444,9 +1296,7 @@ function installApp(){
 }
 window.installApp=installApp;
 
-// Load content
-loadNewsGrid();
-loadScholarshipPreview();
+// News and Scholarships are loaded via loadNews() and loadScholarships() inside DOMContentLoaded above
 </script>
 
 </body>
