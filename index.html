@@ -283,19 +283,19 @@ body.dark .ch-card{background:#1a2236;border-color:var(--border)}
 
 /* FOOTER */
 footer{background:#0a1228;padding:40px 16px 24px}
-.footer-inner{max-width:1100px;margin:0 auto}
-.footer-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.07)}
-.footer-brand{display:flex;align-items:center;gap:12px}
-.footer-logo{width:38px;height:38px;border-radius:50%;border:2px solid #f97316;object-fit:cover}
-.footer-bname{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.4px}
-.footer-bsub{font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px}
-.footer-socials{display:flex;gap:10px}
-.footer-socials a{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);transition:.2s}
-.footer-socials a:hover{background:rgba(249,115,22,.2);color:#f97316;border-color:rgba(249,115,22,.4)}
-.footer-links{display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:20px}
-.footer-links a{font-size:.77rem;color:rgba(255,255,255,.4);transition:color .2s}
-.footer-links a:hover{color:#f97316}
-.footer-copy{font-size:.72rem;color:rgba(255,255,255,.22)}
+
+
+
+
+
+
+
+
+
+
+
+
+
 .footer-copy a{color:#f97316}
 
 /* UTILS */
@@ -1018,8 +1018,7 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
         </div>
       </div>
     </div>
-    <div class="footer-copy" style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="footer-year">2026</span> Big Quams Media®. All rights reserved. Built with ❤️ for Nigerian students.</div>
-    <p style="font-size:.68rem;text-align:center;margin-top:8px;color:rgba(255,255,255,.3)">© 2026 Big Quams Media®. All rights reserved. Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</p>
+    <div class="footer-copy" style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="footer-year">2026</span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
   </div>
 </footer>
 
@@ -1147,17 +1146,23 @@ function initCountdown(){
   function parseCalEvents(items){
     return items.map(e=>({...e,dateObj:new Date(e.date||e.dateObj||'')})).filter(e=>e.dateObj&&!isNaN(e.dateObj));
   }
+  console.log('[Calendar] window._db ready?', !!window._db);
   if(window._db){
-    window._db.collection('fs_calendar').orderBy('title','asc').get()
+    window._db.collection('fs_calendar').get()
       .then(snap=>{
+        console.log('[Calendar] Firestore docs found:', snap.size);
         const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
+        console.log('[Calendar] Raw items:', items);
         const parsed=parseCalEvents(items);
-        if(parsed.length){startTimer(parsed);return;}
+        console.log('[Calendar] Parsed valid events:', parsed);
+        if(parsed.length){startTimer(parsed);return null;}
+        console.warn('[Calendar] No valid Firestore events — falling back to calendar.json');
         return fetch('calendar.json?v='+Date.now()).then(r=>r.ok?r.json():null);
       })
-      .then(d=>{if(d&&d.length){const parsed=parseCalEvents(d);if(parsed.length)startTimer(parsed);}})
-      .catch(()=>{});
+      .then(d=>{if(d&&d.length){const parsed=parseCalEvents(d);if(parsed.length){console.log('[Calendar] Using calendar.json fallback:',parsed);startTimer(parsed);}}})
+      .catch(err=>{console.error('[Calendar] Firebase ERROR:',err.code||'',err.message);});
   } else {
+    console.warn('[Calendar] window._db not available — using calendar.json directly');
     fetch('calendar.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(d=>{
       if(d&&d.length){const parsed=parseCalEvents(d);if(parsed.length)startTimer(parsed);}
     }).catch(()=>{});
