@@ -243,6 +243,11 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     </div>
     <div id="registerForm" style="display:none">
       <input class="auth-input" type="text" id="regName" placeholder="Your full name">
+      <select class="auth-input" id="regGender" style="color:var(--text-main)">
+        <option value="">Select gender…</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
       <input class="auth-input" type="email" id="regEmail" placeholder="Email address">
       <input class="auth-input" type="password" id="regPw" placeholder="Password (min 6 chars)" onkeydown="if(event.key==='Enter')dailyRegister()">
       <div class="auth-error" id="regErr"></div>
@@ -267,6 +272,23 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       <div class="streak-lbl"><strong id="streakLabel">Day Streak</strong><span id="streakSub">Visit daily to keep it going!</span></div>
     </div>
     <div class="next-challenge">Next challenge in: <span class="countdown-timer" id="countdown">--:--:--</span></div>
+    <div id="profileWidget" style="display:none;margin-top:18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:14px 18px;max-width:340px;margin-left:auto;margin-right:auto">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px">
+        <div style="text-align:left">
+          <div style="font-size:.68rem;color:rgba(255,255,255,.5)">Your Balance</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fde68a">🪙 <span id="coinBalance">0</span></div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:.68rem;color:rgba(255,255,255,.5)">Referrals</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff"><span id="referralCount">0</span></div>
+        </div>
+      </div>
+      <div style="font-size:.68rem;color:rgba(255,255,255,.5);margin-bottom:5px">Your referral code</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <code id="myReferralCode" style="flex:1;background:rgba(0,0,0,.25);padding:7px 10px;border-radius:8px;font-size:.78rem;font-weight:700;color:#fff;letter-spacing:.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</code>
+        <button onclick="shareReferralLink()" style="background:#25d366;border:none;color:#fff;padding:7px 12px;border-radius:8px;font-size:.74rem;font-weight:800;cursor:pointer;flex-shrink:0">📤 Share</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -406,13 +428,37 @@ let dykIndex=0;
 
 // ── AUTH ──
 setTimeout(()=>{
-  if(window._onAuth) window._onAuth(user=>{
+  if(window._onAuth) window._onAuth(async user=>{
     currentUser=user;
-    if(user){updateStreakOnVisit(user);}
+    if(user){
+      const profile=await ensureUserProfile(user,{});
+      updateStreakOnVisit(user);
+      showProfileWidget(profile);
+    }else{
+      document.getElementById('profileWidget').style.display='none';
+    }
     renderChallenge();
     renderHistory();
   });
 },500);
+
+function showProfileWidget(profile){
+  if(!profile) return;
+  document.getElementById('profileWidget').style.display='block';
+  document.getElementById('coinBalance').textContent=profile.coinsBalance||0;
+  document.getElementById('referralCount').textContent=profile.referralCount||0;
+  document.getElementById('myReferralCode').textContent=profile.referralCode||'—';
+}
+
+function shareReferralLink(){
+  const code=document.getElementById('myReferralCode').textContent;
+  if(!code||code==='—'){showToast('⚠️','Sign in first to get your referral code.');return;}
+  const url='https://bigquamsmedia.com.ng/daily.html?ref='+encodeURIComponent(code);
+  const text=`🎓 Join me on Big Quams Media®! Daily challenges, JAMB CBT practice, scholarships and more — all free.\n\nSign up with my link and we both earn coins:\n${url}`;
+  if(navigator.share){navigator.share({title:'Join Big Quams Media®',text,url}).catch(()=>{});}
+  else{navigator.clipboard.writeText(text).then(()=>showToast('🔗','Referral link copied!')).catch(()=>showToast('🔗',url));}
+}
+window.shareReferralLink=shareReferralLink;
 
 // ── STREAK ──
 async function updateStreakOnVisit(user){
@@ -559,6 +605,9 @@ async function answerChallenge(idx){
         dailyChallengesCompleted:window._increment(1),
       });
       showToast('🪙','You earned 5 coins!');
+      // Update live balance display
+      const bal=document.getElementById('coinBalance');
+      if(bal) bal.textContent=(parseInt(bal.textContent)||0)+5;
     }catch(e){}
   }
 
@@ -622,20 +671,107 @@ async function dailySignIn(){
   catch(err){showAuthErr('authErr',err.code==='auth/invalid-credential'?'Incorrect email or password.':err.message);}
 }
 window.dailySignIn=dailySignIn;
+
+// ── Generate a readable referral code from name: JOHNDOE-A3X9 ──
+function generateReferralCode(name){
+  const base=(name||'STUDENT').toUpperCase().replace(/[^A-Z]/g,'').substring(0,8)||'STUDENT';
+  const rand=Math.random().toString(36).substring(2,6).toUpperCase();
+  return base+'-'+rand;
+}
+
+async function ensureUserProfile(user,extra){
+  extra=extra||{};
+  try{
+    const ref=window._doc(window._db,'cbt_users',user.uid);
+    const snap=await window._getDoc(ref);
+    if(snap.exists()){
+      const data=snap.data();
+      if(!data.referralCode){
+        const code=generateReferralCode(data.displayName||user.displayName||user.email);
+        await window._updateDoc(ref,{referralCode:code});
+        await registerReferralCode(code,user.uid,user.email,data.displayName||user.displayName||'');
+      }
+      return data;
+    }
+    // New profile
+    const urlRef=new URLSearchParams(window.location.search).get('ref')||'';
+    const name=extra.name||user.displayName||(user.email?user.email.split('@')[0]:'Student');
+    const myCode=generateReferralCode(name);
+    const profile={
+      uid:user.uid,
+      email:user.email||'',
+      displayName:name,
+      nickname:name,
+      gender:extra.gender||'',
+      photoURL:user.photoURL||'',
+      referralCode:myCode,
+      referredBy:urlRef,
+      referralCount:0,
+      coinsBalance:0,
+      coinsDailyEarned:0,
+      dailyStreak:0,
+      lastDailyVisit:'',
+      sessions:0,
+      bestScore:0,
+      totalCorrect:0,
+      totalQuestions:0,
+      streak:0,
+      lastPracticeDate:'',
+      subjectHistory:{},
+      achievements:[],
+      joinDate:new Date().toISOString(),
+      sessionHistory:[],
+      subjectsPractised:[],
+    };
+    await window._setDoc(ref,profile);
+    await registerReferralCode(myCode,user.uid,user.email||'',name);
+    if(urlRef&&urlRef!==myCode){await creditReferrer(urlRef,user.uid);}
+    return profile;
+  }catch(e){console.warn('[Profile] error:',e.message);return null;}
+}
+
+async function registerReferralCode(code,uid,email,name){
+  try{
+    await window._setDoc(window._doc(window._db,'referral_codes',code),{uid,email,name,code,createdAt:new Date().toISOString()},{merge:true});
+  }catch(e){}
+}
+
+async function creditReferrer(refCode,newUid){
+  try{
+    const codeDoc=await window._getDoc(window._doc(window._db,'referral_codes',refCode));
+    if(codeDoc.exists()){
+      const referrerUid=codeDoc.data().uid;
+      if(referrerUid&&referrerUid!==newUid){
+        await window._updateDoc(window._doc(window._db,'cbt_users',referrerUid),{
+          referralCount:window._increment(1),
+          coinsBalance:window._increment(20),
+        });
+      }
+    }
+  }catch(e){}
+}
+
 async function dailyRegister(){
   const n=document.getElementById('regName').value.trim();
+  const g=document.getElementById('regGender').value;
   const e=document.getElementById('regEmail').value.trim();
   const p=document.getElementById('regPw').value;
-  if(!n||!e||!p){showAuthErr('regErr','Fill in all fields.');return;}
+  if(!n||!g||!e||!p){showAuthErr('regErr','Fill in all fields including gender.');return;}
   try{
     const cred=await window._createAccount(e,p);
     if(cred.user) await window._updateProfile(cred.user,{displayName:n});
+    await ensureUserProfile(cred.user,{name:n,gender:g});
     closeAuth();
+    showToast('🎉','Welcome, '+n.split(' ')[0]+'! Account created.');
   }catch(err){showAuthErr('regErr',err.code==='auth/email-already-in-use'?'Email already registered. Sign in instead.':err.message);}
 }
 window.dailyRegister=dailyRegister;
 async function dailyGoogleSignIn(){
-  try{await window._googleSignIn();closeAuth();}
+  try{
+    const cred=await window._googleSignIn();
+    if(cred.user) await ensureUserProfile(cred.user,{});
+    closeAuth();
+  }
   catch(e){if(e.code!=='auth/popup-closed-by-user')showAuthErr('authErr',e.message);}
 }
 window.dailyGoogleSignIn=dailyGoogleSignIn;
