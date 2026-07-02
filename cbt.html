@@ -11,8 +11,8 @@
 </script>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>JAMB CBT Practice | Big Quams Media®</title>
-<meta name="description" content="Big Quams Media® — Nigeria's trusted platform for students. Free CBT practice, Post-UTME prep, scholarships, school news, eLibrary and more. Your admission success starts here.">
-<link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
+<meta name="description" content="Free JAMB CBT practice on Big Quams Media®. 500+ questions across all subjects, timed mock tests, performance tracking, streak calendar and coins rewards.">
+<link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -437,7 +437,7 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
 <header>
   <div class="header-bar">
     <a href="index.html" class="logo-link">
-      <img class="logo-img" src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
     <nav class="main-nav">
@@ -451,7 +451,7 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
 <nav class="mobile-nav" id="mobileNav">
 <div class="mnav-header">
     <div style="display:flex;align-items:center;gap:10px">
-      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
       <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
     </div>
     <button class="mnav-close" onclick="toggleNav()">✕</button>
@@ -465,6 +465,7 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
   <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
   <div class="mnav-lbl">Exam Tools</div>
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
   <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
   <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
   <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
@@ -483,7 +484,7 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
 <!-- AUTH OVERLAY -->
 <div class="auth-overlay" id="authOverlay" style="display:none">
   <div class="auth-card">
-    <div class="auth-logo"><img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM"></div>
+    <div class="auth-logo"><img src="https://bigquamsmedia.com.ng/logo.png" alt="BQM"></div>
     <div class="auth-title">Unlock Full CBT Access</div>
     <div class="auth-sub">Sign in or create a free account to practise all subjects, save your scores, earn achievements and track your progress.</div>
     <div class="auth-tabs">
@@ -513,6 +514,11 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
     <!-- EMAIL REGISTER -->
     <div id="cbtRegisterForm" style="display:none">
       <input class="auth-input" type="text" id="cbtRegName" placeholder="Your full name" autocomplete="name">
+      <select class="auth-input" id="cbtRegGender" style="color:var(--text-main)">
+        <option value="">Select gender…</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
       <input class="auth-input" type="email" id="cbtRegEmail" placeholder="Email address" autocomplete="email">
       <input class="auth-input" type="password" id="cbtRegPw" placeholder="Password (min 6 chars)" autocomplete="new-password" onkeydown="if(event.key==='Enter')cbtCreateAccount()">
       <div class="auth-error" id="cbtRegError"></div>
@@ -888,7 +894,7 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
 <footer id="mainFooter">
   <div class="footer-inner">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
       <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
@@ -1081,7 +1087,7 @@ async function loadUserProfile(user){
       userProfile=d.data();
       // Ensure referralCode exists on old profiles
       if(!userProfile.referralCode){
-        const code=user.uid.substring(0,8);
+        const code=generateReferralCode(userProfile.name||userProfile.displayName||user.displayName||'');
         await window._updateDoc(window._doc(window._db,'cbt_users',user.uid),{referralCode:code});
         userProfile.referralCode=code;
         // Register in lookup index
@@ -1090,7 +1096,7 @@ async function loadUserProfile(user){
     } else {
       // New user — capture ref from URL BEFORE clearing it
       const urlRef=new URLSearchParams(window.location.search).get('ref')||'';
-      const myCode=user.uid.substring(0,8);
+      const myCode=generateReferralCode(extra.name||user.displayName||user.email||"");
       userProfile={
         uid:user.uid,
         email:user.email,
@@ -1106,6 +1112,7 @@ async function loadUserProfile(user){
         subjectHistory:{},
         achievements:[],
         referralCode:myCode,
+        gender:extra.gender||'',
         referredBy:urlRef,
         referralCount:0,
         joinDate:new Date().toISOString(),
@@ -1264,7 +1271,7 @@ function populateDashboard(){
     document.getElementById('streakDays').textContent=streak+' Day Streak! Keep it up! 🔥';
   }
   // Referral
-  const refCode=p.referralCode||cbtUser.uid.substring(0,8);
+  const refCode=p.referralCode||generateReferralCode(p.name||p.displayName||'');
   const refLink=`${SITE_URL}?ref=${refCode}`;
   const refCount=p.referralCount||0;
   const referred=p.referredUsers||[];
@@ -1612,6 +1619,7 @@ window.cbtEmailSignIn=cbtEmailSignIn;
 
 async function cbtCreateAccount(){
   const name=document.getElementById('cbtRegName').value.trim();
+  const gender=document.getElementById('cbtRegGender')?document.getElementById('cbtRegGender').value:'';
   const email=document.getElementById('cbtRegEmail').value.trim();
   const pass=document.getElementById('cbtRegPw').value;
   if(!name||!email||!pass){showCbtError('cbtRegError','Fill in all fields.');return;}
