@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RCLYVCZY2K');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Big Quams Practice Test | Big Quams Media®</title>
+<meta name="description" content="Full 180-question timed practice test across 4 subjects. Simulate a real exam experience with instant performance breakdown. Free on Big Quams Media®.">
+<meta property="og:title" content="Big Quams Practice Test — Big Quams Media®">
+<meta property="og:description" content="Full 180-question timed exam simulation. 4 subjects, 1hr 40min, performance breakdown. Nigeria's most realistic practice test.">
+<meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
+<link rel="icon" href="https://bigquamsmedia.com.ng/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(!firebase.apps.length) firebase.initializeApp({
+      apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',
+      authDomain:'big-quams-media.firebaseapp.com',
+      projectId:'big-quams-media'
+    });
+    window._db=firebase.firestore();
+    window._auth=firebase.auth();
+  }catch(e){console.warn('Firebase:',e.message);}
+})();
+</script>
+<style>
+:root{
+  --blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;
+  --orange:#f97316;--green:#16a34a;--red:#dc2626;
+  --surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;
+  --text:#1e2749;--muted:#64748b;--r:12px;
+  --shadow:0 8px 28px rgba(26,63,168,.11)
+}
+body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Roboto',sans-serif;background:var(--surface2);color:var(--text);min-height:100vh;overflow-x:hidden}
+body.dark{background:#0d1117}
+body.exam-active{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:0 16px;height:56px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(12,31,110,.3)}
+.hdr-logo{display:flex;align-items:center;gap:8px}
+.hdr-logo img{width:32px;height:32px;border-radius:50%;border:2px solid var(--orange)}
+.hdr-brand{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:#fff}
+.hdr-back{margin-left:auto;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:7px 14px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer}
+.hdr-dark{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.84rem;cursor:pointer}
+
+/* SCREENS */
+.screen{display:none;min-height:calc(100vh - 56px)}
+.screen.active{display:block}
+
+/* ── SETUP SCREEN ── */
+.setup-hero{background:linear-gradient(150deg,rgba(8,21,48,.9),rgba(15,32,96,.85),rgba(26,63,168,.8)),url('https://bigquamsmedia.com.ng/cbt.png') center/cover no-repeat;padding:40px 16px 48px;text-align:center}
+.setup-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:5px 16px;border-radius:20px;font-size:.7rem;font-weight:700;margin-bottom:12px}
+.setup-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.4rem,5vw,2rem);font-weight:800;color:#fff;margin-bottom:8px;line-height:1.2}
+.setup-hero h1 span{color:var(--orange)}
+.setup-hero p{font-size:.84rem;color:rgba(255,255,255,.65);max-width:480px;margin:0 auto}
+.setup-body{max-width:680px;margin:0 auto;padding:24px 16px 40px}
+.setup-card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+body.dark .setup-card{background:#161b27}
+.setup-card-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.subj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:480px){.subj-grid{grid-template-columns:repeat(3,1fr)}}
+.subj-btn{padding:10px 8px;border:1.5px solid var(--border);border-radius:10px;background:var(--surface2);color:var(--text);font-size:.76rem;font-weight:700;text-align:center;cursor:pointer;transition:.18s;position:relative}
+body.dark .subj-btn{background:#1a2236}
+.subj-btn.selected{background:var(--blue);color:#fff;border-color:var(--blue)}
+.subj-btn.locked{opacity:.45;cursor:not-allowed}
+.subj-btn .subj-icon{display:block;font-size:1.3rem;margin-bottom:4px}
+.subj-btn .subj-eng{font-size:.62rem;color:rgba(255,255,255,.6);margin-top:2px;font-weight:400}
+.subj-btn:not(.selected) .subj-eng{color:var(--muted)}
+.subj-count-badge{position:absolute;top:5px;right:6px;background:#22c55e;color:#fff;font-size:.58rem;font-weight:800;padding:1px 5px;border-radius:6px}
+.format-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.format-card{padding:14px;border:1.5px solid var(--border);border-radius:12px;cursor:pointer;transition:.18s;text-align:center}
+body.dark .format-card{background:#1a2236}
+.format-card.selected{border-color:var(--blue);background:var(--blue-lt)}
+body.dark .format-card.selected{background:rgba(26,63,168,.2)}
+.format-card-icon{font-size:1.6rem;margin-bottom:6px}
+.format-card-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:var(--text)}
+.format-card-desc{font-size:.68rem;color:var(--muted);margin-top:3px;line-height:1.4}
+.format-card.selected .format-card-name{color:var(--blue)}
+body.dark .format-card.selected .format-card-name{color:#93c5fd}
+.info-banner{display:flex;gap:10px;background:var(--blue-lt);border:1.5px solid #bfdbfe;border-radius:10px;padding:12px 14px;font-size:.78rem;color:var(--blue-deep);line-height:1.5}
+body.dark .info-banner{background:rgba(26,63,168,.15);border-color:rgba(59,130,246,.25);color:#93c5fd}
+.start-btn{width:100%;padding:15px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;border-radius:12px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:.18s;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+.start-btn:hover{opacity:.9;transform:translateY(-1px)}
+.start-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.setup-status{text-align:center;font-size:.78rem;color:var(--muted);margin-top:10px;min-height:20px}
+
+/* ── LOADING SCREEN ── */
+.loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 56px);gap:20px;padding:32px}
+.load-spinner{width:52px;height:52px;border:4px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-title{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);text-align:center}
+.load-sub{font-size:.82rem;color:var(--muted);text-align:center}
+.load-bar-wrap{width:200px;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.load-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--orange));border-radius:3px;transition:width .3s}
+
+/* ── EXAM SCREEN ── */
+#examScreen{display:none;flex-direction:column;height:calc(100vh - 56px);overflow:hidden}
+#examScreen.active{display:flex}
+.exam-top-bar{background:var(--surface);border-bottom:1.5px solid var(--border);padding:10px 14px;display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:10}
+body.dark .exam-top-bar{background:#161b27}
+.exam-timer{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text);min-width:70px}
+.exam-timer.warning{color:#f59e0b;animation:timerPulse 1s ease-in-out infinite}
+.exam-timer.danger{color:var(--red);animation:timerPulse .5s ease-in-out infinite}
+@keyframes timerPulse{0%,100%{opacity:1}50%{opacity:.5}}
+.exam-progress{flex:1;display:flex;flex-direction:column;gap:3px}
+.exam-progress-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.exam-progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--orange));border-radius:3px;transition:width .3s}
+.exam-progress-txt{font-size:.64rem;color:var(--muted);text-align:right}
+.exam-flag-btn{background:var(--surface2);border:1.5px solid var(--border);padding:6px 12px;border-radius:8px;font-size:.74rem;font-weight:700;color:var(--muted);cursor:pointer}
+body.dark .exam-flag-btn{background:#1a2236}
+.exam-flag-btn.flagged{background:#fef9c3;border-color:#fde047;color:#b45309}
+body.dark .exam-flag-btn.flagged{background:#2d2400;border-color:#854d0e;color:#fde047}
+.exam-submit-btn{background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff;border:none;padding:7px 14px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;cursor:pointer}
+.exam-body{flex:1;overflow-y:auto;padding:16px}
+.exam-body::-webkit-scrollbar{width:4px}
+.exam-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.q-card{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)}
+body.dark .q-card{background:#161b27}
+.q-meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.q-num{font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:var(--blue);background:var(--blue-lt);padding:3px 9px;border-radius:8px}
+body.dark .q-num{background:rgba(26,63,168,.2);color:#93c5fd}
+.q-subj{font-size:.66rem;font-weight:700;padding:3px 8px;border-radius:8px;background:rgba(249,115,22,.1);color:var(--orange)}
+.q-year{font-size:.64rem;color:var(--muted)}
+.q-text{font-size:.88rem;line-height:1.7;color:var(--text);margin-bottom:14px;font-weight:500}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:10px;padding:11px 13px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:.15s;text-align:left;background:var(--surface);width:100%}
+body.dark .opt{background:#1a2236;border-color:var(--border)}
+.opt:hover:not(:disabled){border-color:var(--blue);background:var(--blue-lt)}
+body.dark .opt:hover:not(:disabled){background:rgba(26,63,168,.2)}
+.opt.selected{border-color:var(--blue);background:var(--blue-lt)}
+body.dark .opt.selected{background:rgba(26,63,168,.25)}
+.opt.correct{border-color:#16a34a;background:#dcfce7}
+body.dark .opt.correct{background:#052e16;border-color:#166534}
+.opt.wrong{border-color:var(--red);background:#fee2e2}
+body.dark .opt.wrong{background:#2d0a0a;border-color:#991b1b}
+.opt:disabled{cursor:default}
+.opt-letter{width:24px;height:24px;border-radius:6px;background:var(--surface2);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0;color:var(--text)}
+body.dark .opt-letter{background:#2a3550}
+.opt.selected .opt-letter{background:var(--blue);color:#fff;border-color:var(--blue)}
+.opt.correct .opt-letter{background:#16a34a;color:#fff;border-color:#16a34a}
+.opt.wrong .opt-letter{background:var(--red);color:#fff;border-color:var(--red)}
+.opt-text{font-size:.83rem;line-height:1.5;color:var(--text);flex:1}
+.q-exp{margin-top:10px;background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:10px;padding:12px 14px;font-size:.78rem;color:#15803d;line-height:1.6}
+body.dark .q-exp{background:#052e16;border-color:#166534;color:#86efac}
+.q-flag-row{display:flex;justify-content:flex-end;margin-top:8px}
+.q-flag-inline{background:none;border:1px solid var(--border);color:var(--muted);font-size:.7rem;padding:4px 10px;border-radius:7px;cursor:pointer}
+.q-flag-inline.flagged{background:#fef9c3;border-color:#fde047;color:#b45309}
+body.dark .q-flag-inline.flagged{background:#2d2400;color:#fde047;border-color:#854d0e}
+
+/* NAV BAR */
+.exam-nav{background:var(--surface);border-top:1.5px solid var(--border);padding:10px 14px;display:flex;gap:8px;flex-shrink:0}
+body.dark .exam-nav{background:#161b27}
+.nav-btn{flex:1;padding:10px;border:1.5px solid var(--border);border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;cursor:pointer;background:var(--surface2);color:var(--text);transition:.15s}
+body.dark .nav-btn{background:#1a2236}
+.nav-btn:hover:not(:disabled){border-color:var(--blue);color:var(--blue)}
+.nav-btn:disabled{opacity:.35;cursor:not-allowed}
+.nav-btn.primary{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border-color:transparent}
+
+/* QUESTION GRID */
+.q-grid-overlay{position:fixed;inset:0;background:rgba(5,10,30,.6);z-index:200;display:none;align-items:flex-end;justify-content:center}
+.q-grid-overlay.open{display:flex}
+.q-grid-panel{background:var(--surface);width:100%;max-width:520px;border-radius:20px 20px 0 0;padding:20px;max-height:65vh;overflow-y:auto}
+body.dark .q-grid-panel{background:#161b27}
+.q-grid-title{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;margin-bottom:14px;color:var(--text)}
+.q-dot-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:5px}
+.q-dot{width:28px;height:28px;border-radius:7px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.64rem;font-weight:700;cursor:pointer;color:var(--muted);background:var(--surface2);transition:.12s}
+body.dark .q-dot{background:#1a2236}
+.q-dot.answered{background:var(--blue);color:#fff;border-color:var(--blue)}
+.q-dot.flagged{background:#fde047;color:#92400e;border-color:#fde047}
+.q-dot.current{box-shadow:0 0 0 2px var(--orange)}
+.q-grid-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:.66rem;color:var(--muted)}
+.q-grid-legend span{display:flex;align-items:center;gap:4px}
+.leg-box{width:12px;height:12px;border-radius:3px}
+
+/* ── RESULT SCREEN ── */
+.result-body{max-width:680px;margin:0 auto;padding:20px 16px 48px}
+.result-hero{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:20px;padding:28px 22px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden}
+.result-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(249,115,22,.18),transparent 60%);pointer-events:none}
+.result-score-circle{width:120px;height:120px;border-radius:50%;border:5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;position:relative;z-index:1}
+.result-score-num{font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:800;color:#fff;line-height:1}
+.result-score-lbl{font-size:.6rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px}
+.result-grade{font-family:'Montserrat',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:4px;position:relative;z-index:1}
+.result-grade-sub{font-size:.78rem;color:rgba(255,255,255,.6);position:relative;z-index:1}
+.result-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;position:relative;z-index:1}
+.result-stat{background:rgba(255,255,255,.08);border-radius:10px;padding:10px;text-align:center}
+.result-stat-num{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:#fff}
+.result-stat-lbl{font-size:.6rem;color:rgba(255,255,255,.5)}
+.result-subj-card{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)}
+body.dark .result-subj-card{background:#161b27}
+.result-subj-title{font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:var(--text);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.result-subj-score{font-size:1.1rem;font-weight:800;color:var(--blue)}
+.result-bar-wrap{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:6px}
+.result-bar{height:100%;border-radius:4px;transition:width 1s ease}
+.result-subj-meta{font-size:.7rem;color:var(--muted);display:flex;gap:12px}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.result-btn{flex:1;min-width:130px;padding:12px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.82rem;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:.18s}
+.result-btn.primary{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff}
+.result-btn.secondary{background:var(--surface2);color:var(--text);border:1.5px solid var(--border)}
+body.dark .result-btn.secondary{background:#1a2236}
+.result-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* RESULT SLIP */
+#resultSlip{background:var(--surface);border:2px solid var(--border);border-radius:16px;padding:20px;margin-top:16px}
+body.dark #resultSlip{background:#161b27}
+.slip-header{display:flex;align-items:center;gap:12px;border-bottom:2px solid var(--border);padding-bottom:14px;margin-bottom:14px}
+.slip-logo{width:44px;height:44px;border-radius:50%;border:2px solid var(--orange)}
+.slip-brand{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:var(--text)}
+.slip-sub{font-size:.64rem;color:var(--muted)}
+.slip-score-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface2);border-radius:10px;margin-bottom:12px}
+body.dark .slip-score-row{background:#1a2236}
+.slip-score-big{font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:800;color:var(--blue)}
+.slip-rows td{padding:5px 8px;font-size:.76rem;border-bottom:1px solid var(--border)}
+.slip-rows td:first-child{color:var(--muted);width:50%}
+.slip-rows td:last-child{font-weight:700;color:var(--text)}
+.slip-footer{text-align:center;font-size:.64rem;color:var(--muted);margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
+.share-slip-btn{width:100%;padding:12px;background:linear-gradient(135deg,#25d366,#1db954);color:#fff;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;cursor:pointer;margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(5,10,30,.7);z-index:500;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--surface);border-radius:18px;padding:24px;width:100%;max-width:420px;text-align:center}
+body.dark .modal-box{background:#161b27}
+.modal-icon{font-size:2.5rem;margin-bottom:12px}
+.modal-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text);margin-bottom:8px}
+.modal-sub{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:20px}
+.modal-actions{display:flex;gap:10px}
+.modal-btn{flex:1;padding:11px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.84rem;border:none;cursor:pointer}
+.modal-btn.primary{background:linear-gradient(135deg,#dc2626,#991b1b);color:#fff}
+.modal-btn.secondary{background:var(--surface2);color:var(--text);border:1.5px solid var(--border)}
+body.dark .modal-btn.secondary{background:#1a2236}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr-logo">
+    <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media">
+    <span class="hdr-brand">Big Quams Media®</span>
+  </div>
+  <button class="hdr-dark" onclick="toggleDark()" id="darkBtn">🌙</button>
+  <button class="hdr-back" onclick="goHome()">← Back</button>
+</header>
+
+<!-- ── SETUP SCREEN ── -->
+<div class="screen active" id="setupScreen">
+  <div class="setup-hero">
+    <div class="setup-badge">📝 Full Exam Simulation</div>
+    <h1>Big Quams <span>Practice Test</span></h1>
+    <p>180 questions · 4 subjects · 100 minutes · Instant performance breakdown</p>
+  </div>
+  <div class="setup-body">
+    <div class="setup-card">
+      <div class="setup-card-title">📚 Select Your 4 Subjects</div>
+      <div class="info-banner" style="margin-bottom:14px">
+        <span>ℹ️</span>
+        <span>Use of English is compulsory and already included. Pick 3 more subjects to match your exam combination.</span>
+      </div>
+      <div class="subj-grid" id="subjGrid"></div>
+    </div>
+
+    <div class="setup-card">
+      <div class="setup-card-title">⚙️ Exam Mode</div>
+      <div class="format-row">
+        <div class="format-card selected" id="modeFull" onclick="selectMode('full')">
+          <div class="format-card-icon">🎯</div>
+          <div class="format-card-name">Full Exam</div>
+          <div class="format-card-desc">180 questions · 100 minutes · No hints · Real exam conditions</div>
+        </div>
+        <div class="format-card" id="modePractice" onclick="selectMode('practice')">
+          <div class="format-card-icon">📖</div>
+          <div class="format-card-name">Practice Mode</div>
+          <div class="format-card-desc">45 questions · No timer · Instant explanations after each answer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="setup-card">
+      <div class="setup-card-title">📋 Exam Summary</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center" id="summaryGrid">
+        <div><div style="font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:var(--blue)" id="sumQuestions">180</div><div style="font-size:.66rem;color:var(--muted)">Questions</div></div>
+        <div><div style="font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:var(--blue)" id="sumTime">100 min</div><div style="font-size:.66rem;color:var(--muted)">Duration</div></div>
+        <div><div style="font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:var(--blue)">Free</div><div style="font-size:.66rem;color:var(--muted)">Always</div></div>
+      </div>
+    </div>
+
+    <button class="start-btn" onclick="startExam()" id="startBtn" disabled>
+      🚀 Start Big Quams Practice Test
+    </button>
+    <div class="setup-status" id="setupStatus">Select 3 more subjects to start</div>
+  </div>
+</div>
+
+<!-- ── LOADING SCREEN ── -->
+<div class="screen" id="loadingScreen">
+  <div class="loading-screen">
+    <div class="load-spinner"></div>
+    <div class="load-title">Preparing your practice test…</div>
+    <div class="load-sub" id="loadSub">Loading questions from all subjects</div>
+    <div class="load-bar-wrap"><div class="load-bar" id="loadBar"></div></div>
+  </div>
+</div>
+
+<!-- ── EXAM SCREEN ── -->
+<div class="screen" id="examScreen">
+  <div class="exam-top-bar">
+    <div class="exam-timer" id="examTimer">1:40:00</div>
+    <div class="exam-progress">
+      <div class="exam-progress-bar"><div class="exam-progress-fill" id="examProgressFill"></div></div>
+      <div class="exam-progress-txt" id="examProgressTxt">0/180 answered</div>
+    </div>
+    <button class="exam-flag-btn" id="flagBtn" onclick="toggleFlag()">🚩 Flag</button>
+    <button class="exam-submit-btn" onclick="confirmSubmit()">Submit</button>
+  </div>
+  <div class="exam-body" id="examBody"></div>
+  <div class="exam-nav">
+    <button class="nav-btn" id="prevBtn" onclick="prevQ()" disabled>← Prev</button>
+    <button class="nav-btn" onclick="openQGrid()">📋 All</button>
+    <button class="nav-btn primary" id="nextBtn" onclick="nextQ()">Next →</button>
+  </div>
+</div>
+
+<!-- ── RESULT SCREEN ── -->
+<div class="screen" id="resultScreen">
+  <div class="result-body">
+    <div class="result-hero" id="resultHero"></div>
+    <div id="resultSubjects"></div>
+    <div id="resultSlip"></div>
+    <div class="result-actions">
+      <button class="result-btn primary" onclick="retakeExam()">🔄 Retake Test</button>
+      <button class="result-btn secondary" onclick="reviewAnswers()">📖 Review Answers</button>
+      <button class="result-btn secondary" onclick="goHome()">🏠 Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- Q GRID OVERLAY -->
+<div class="q-grid-overlay" id="qGridOverlay" onclick="closeQGrid()">
+  <div class="q-grid-panel" onclick="event.stopPropagation()">
+    <div class="q-grid-title">Question Navigator</div>
+    <div class="q-dot-grid" id="qDotGrid"></div>
+    <div class="q-grid-legend">
+      <span><div class="leg-box" style="background:var(--blue)"></div>Answered</span>
+      <span><div class="leg-box" style="background:var(--border)"></div>Unanswered</span>
+      <span><div class="leg-box" style="background:#fde047"></div>Flagged</span>
+      <span><div class="leg-box" style="border:2px solid var(--orange)"></div>Current</span>
+    </div>
+    <button onclick="closeQGrid()" style="width:100%;margin-top:14px;padding:10px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;font-weight:700;cursor:pointer;color:var(--text)">Close</button>
+  </div>
+</div>
+
+<!-- SUBMIT CONFIRM MODAL -->
+<div class="modal-overlay" id="submitModal">
+  <div class="modal-box">
+    <div class="modal-icon">⚠️</div>
+    <div class="modal-title">Submit your test?</div>
+    <div class="modal-sub" id="submitModalSub">Are you sure you want to submit? You cannot change your answers after submission.</div>
+    <div class="modal-actions">
+      <button class="modal-btn secondary" onclick="closeModal('submitModal')">Keep Going</button>
+      <button class="modal-btn primary" onclick="finishExam()">Submit Now</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
+function toggleDark(){document.body.classList.toggle('dark');localStorage.setItem('bqm-theme',document.body.classList.contains('dark')?'dark':'light');document.getElementById('darkBtn').textContent=document.body.classList.contains('dark')?'☀️':'🌙';}
+if(document.body.classList.contains('dark')) document.getElementById('darkBtn').textContent='☀️';
+
+// ── CONSTANTS ──
+const SUBJ_LABELS={
+  english:'Use of English',maths:'Mathematics',physics:'Physics',
+  chemistry:'Chemistry',biology:'Biology',economics:'Economics',
+  gov:'Government',literature:'Literature in English',
+  geography:'Geography',agric:'Agricultural Science',
+  crk:'CRK',accounts:'Financial Accounting',commerce:'Commerce',
+  history:'History',ict:'ICT'
+};
+const SUBJ_ICONS={
+  english:'📖',maths:'🔢',physics:'⚡',chemistry:'🧪',biology:'🌿',
+  economics:'📈',gov:'🏛️',literature:'📝',geography:'🌍',agric:'🌾',
+  crk:'✝️',accounts:'💼',commerce:'🛒',history:'📜',ict:'💻'
+};
+const FULL_Q=180, PRACTICE_Q=45;
+const FULL_TIME=100*60, PRACTICE_TIME=0; // 100 mins for full
+const PER_SUBJ_FULL=45; // 45 per subject × 4 = 180
+
+// ── STATE ──
+let selectedSubjects=['english']; // English always included
+let examMode='full';
+let allQuestions=[];
+let examQuestions=[];
+let currentQ=0;
+let userAnswers={};
+let flaggedQs=new Set();
+let timerInterval=null;
+let timeLeft=FULL_TIME;
+let examStarted=false;
+let currentUser=null;
+
+// ── SUBJECT GRID ──
+function renderSubjGrid(){
+  const grid=document.getElementById('subjGrid');
+  const subjects=Object.keys(SUBJ_LABELS);
+  grid.innerHTML=subjects.map(s=>{
+    const isEnglish=s==='english';
+    const isSelected=selectedSubjects.includes(s);
+    const isLocked=!isSelected&&selectedSubjects.length>=4;
+    return`<button class="subj-btn${isSelected?' selected':''}${isLocked?' locked':''}"
+      onclick="${isEnglish?'':'toggleSubject(\''+s+'\',this)'}" ${isEnglish?'disabled':''}>
+      <span class="subj-icon">${SUBJ_ICONS[s]||'📚'}</span>
+      ${SUBJ_LABELS[s]}
+      ${isEnglish?'<span class="subj-count-badge">✓</span>':''}
+    </button>`;
+  }).join('');
+}
+
+function toggleSubject(s,btn){
+  if(s==='english') return;
+  const idx=selectedSubjects.indexOf(s);
+  if(idx>-1){
+    selectedSubjects.splice(idx,1);
+  } else {
+    if(selectedSubjects.length>=4){return;}
+    selectedSubjects.push(s);
+  }
+  renderSubjGrid();
+  updateSetupUI();
+}
+
+function updateSetupUI(){
+  const count=selectedSubjects.length;
+  const ready=count===4;
+  const startBtn=document.getElementById('startBtn');
+  const status=document.getElementById('setupStatus');
+  startBtn.disabled=!ready;
+  if(ready){
+    status.textContent='Ready! '+selectedSubjects.map(s=>SUBJ_LABELS[s]).join(' · ');
+    status.style.color='var(--green)';
+  } else {
+    const need=4-count;
+    status.textContent=`Select ${need} more subject${need>1?'s':''} to start`;
+    status.style.color='var(--muted)';
+  }
+  // Update summary
+  const isFullMode=examMode==='full';
+  document.getElementById('sumQuestions').textContent=isFullMode?FULL_Q:PRACTICE_Q;
+  document.getElementById('sumTime').textContent=isFullMode?'100 min':'No timer';
+}
+
+function selectMode(mode){
+  examMode=mode;
+  document.getElementById('modeFull').classList.toggle('selected',mode==='full');
+  document.getElementById('modePractice').classList.toggle('selected',mode==='practice');
+  updateSetupUI();
+}
+
+// ── START EXAM ──
+async function startExam(){
+  if(selectedSubjects.length<4) return;
+  showScreen('loadingScreen');
+  const loadBar=document.getElementById('loadBar');
+  const loadSub=document.getElementById('loadSub');
+
+  try{
+    const perSubj=examMode==='full'?PER_SUBJ_FULL:Math.floor(PRACTICE_Q/4);
+    let all=[];
+    let progress=0;
+
+    for(const subj of selectedSubjects){
+      loadSub.textContent=`Loading ${SUBJ_LABELS[subj]}…`;
+      const snap=await window._db.collection('cbt_questions')
+        .where('subject','==',subj)
+        .get();
+      let qs=snap.docs.map(d=>({_id:d.id,...d.data()}));
+      // Shuffle and take required amount
+      qs=shuffle(qs);
+      // If not enough questions, take all available
+      qs=qs.slice(0,perSubj);
+      all.push(...qs);
+      progress+=25;
+      loadBar.style.width=progress+'%';
+    }
+
+    if(all.length<4){
+      alert('Not enough questions in the database yet. Please check back soon!');
+      showScreen('setupScreen');
+      return;
+    }
+
+    // Interleave subjects (not all English together)
+    examQuestions=interleave(all);
+    userAnswers={};
+    flaggedQs=new Set();
+    currentQ=0;
+    timeLeft=examMode==='full'?FULL_TIME:null;
+    examStarted=true;
+
+    loadBar.style.width='100%';
+    setTimeout(()=>{
+      showScreen('examScreen');
+      renderQ(0);
+      if(examMode==='full') startTimer();
+    },400);
+
+  }catch(e){
+    alert('Could not load questions: '+e.message);
+    showScreen('setupScreen');
+  }
+}
+
+function shuffle(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+function interleave(questions){
+  // Group by subject then interleave so subjects alternate
+  const bySubj={};
+  questions.forEach(q=>{
+    if(!bySubj[q.subject]) bySubj[q.subject]=[];
+    bySubj[q.subject].push(q);
+  });
+  const groups=Object.values(bySubj);
+  const result=[];
+  const maxLen=Math.max(...groups.map(g=>g.length));
+  for(let i=0;i<maxLen;i++){
+    groups.forEach(g=>{if(g[i]) result.push(g[i]);});
+  }
+  return result;
+}
+
+// ── TIMER ──
+function startTimer(){
+  clearInterval(timerInterval);
+  timerInterval=setInterval(()=>{
+    timeLeft--;
+    updateTimerDisplay();
+    if(timeLeft<=0){
+      clearInterval(timerInterval);
+      finishExam();
+    }
+  },1000);
+}
+
+function updateTimerDisplay(){
+  if(timeLeft===null) return;
+  const h=Math.floor(timeLeft/3600);
+  const m=Math.floor((timeLeft%3600)/60);
+  const s=timeLeft%60;
+  const display=(h>0?h+':':'')+(h>0?String(m).padStart(2,'0'):m)+':'+String(s).padStart(2,'0');
+  const el=document.getElementById('examTimer');
+  if(el){
+    el.textContent=display;
+    el.className='exam-timer'+(timeLeft<=300?' danger':timeLeft<=600?' warning':'');
+  }
+}
+
+// ── RENDER QUESTION ──
+function renderQ(idx){
+  const q=examQuestions[idx];
+  if(!q) return;
+  currentQ=idx;
+  const total=examQuestions.length;
+  const answered=Object.keys(userAnswers).length;
+  const letters=['A','B','C','D','E'];
+  const opts=q.opts||q.options||[];
+  const ua=userAnswers[idx];
+  const isPractice=examMode==='practice';
+  const revealed=isPractice&&ua!==undefined;
+  const isFlagged=flaggedQs.has(idx);
+
+  document.getElementById('examProgressFill').style.width=((idx+1)/total*100)+'%';
+  document.getElementById('examProgressTxt').textContent=`${answered}/${total} answered`;
+  document.getElementById('prevBtn').disabled=idx===0;
+  document.getElementById('nextBtn').textContent=idx===total-1?'Review ✓':'Next →';
+  document.getElementById('flagBtn').className='exam-flag-btn'+(isFlagged?' flagged':'');
+  document.getElementById('flagBtn').textContent=isFlagged?'🚩 Flagged':'🚩 Flag';
+
+  document.getElementById('examBody').innerHTML=`
+    <div class="q-card">
+      <div class="q-meta">
+        <span class="q-num">Q${idx+1} / ${total}</span>
+        <span class="q-subj">${SUBJ_LABELS[q.subject]||q.subject||''}</span>
+        ${q.year?`<span class="q-year">${q.year}</span>`:''}
+      </div>
+      <div class="q-text">${q.q||q.question||q.text||''}</div>
+      <div class="opts">
+        ${opts.map((opt,i)=>{
+          let cls='opt';
+          if(revealed){
+            if(i===(q.ans??q.answer)) cls+=' correct';
+            else if(i===ua) cls+=' wrong';
+          } else if(i===ua) cls+=' selected';
+          return`<button class="${cls}" ${(revealed||(!isPractice&&ua!==undefined))?'disabled':''} onclick="selectAns(${idx},${i})">
+            <span class="opt-letter">${letters[i]}</span>
+            <span class="opt-text">${opt}</span>
+          </button>`;
+        }).join('')}
+      </div>
+      ${revealed&&(q.exp||q.explanation)?`<div class="q-exp">💡 <strong>Explanation:</strong> ${q.exp||q.explanation}</div>`:''}
+      <div class="q-flag-row">
+        <button class="q-flag-inline${isFlagged?' flagged':''}" onclick="toggleFlag()">
+          ${isFlagged?'🚩 Flagged':'🚩 Flag for review'}
+        </button>
+      </div>
+    </div>`;
+
+  // Sync q-grid
+  updateQDotGrid();
+}
+
+function selectAns(qIdx,optIdx){
+  if(examMode!=='practice'&&userAnswers[qIdx]!==undefined) return;
+  userAnswers[qIdx]=optIdx;
+  renderQ(qIdx);
+  // Auto-advance in full mode after 800ms
+  if(examMode==='full'&&qIdx<examQuestions.length-1){
+    setTimeout(()=>{if(currentQ===qIdx)nextQ();},900);
+  }
+}
+
+function prevQ(){if(currentQ>0)renderQ(currentQ-1);}
+function nextQ(){
+  if(currentQ<examQuestions.length-1) renderQ(currentQ+1);
+  else openQGrid();
+}
+function toggleFlag(){
+  if(flaggedQs.has(currentQ)) flaggedQs.delete(currentQ);
+  else flaggedQs.add(currentQ);
+  renderQ(currentQ);
+}
+
+// ── Q GRID ──
+function openQGrid(){
+  updateQDotGrid();
+  document.getElementById('qGridOverlay').classList.add('open');
+}
+function closeQGrid(){document.getElementById('qGridOverlay').classList.remove('open');}
+function updateQDotGrid(){
+  const grid=document.getElementById('qDotGrid');
+  if(!grid) return;
+  grid.innerHTML=examQuestions.map((_,i)=>`
+    <div class="q-dot${userAnswers[i]!==undefined?' answered':''}${flaggedQs.has(i)?' flagged':''}${i===currentQ?' current':''}"
+      onclick="closeQGrid();renderQ(${i})">${i+1}</div>`).join('');
+}
+
+// ── SUBMIT ──
+function confirmSubmit(){
+  const answered=Object.keys(userAnswers).length;
+  const total=examQuestions.length;
+  const unanswered=total-answered;
+  document.getElementById('submitModalSub').textContent=
+    unanswered>0
+    ?`You have ${unanswered} unanswered question${unanswered>1?'s':''} out of ${total}. Unanswered questions score 0. Submit anyway?`
+    :`You've answered all ${total} questions. Ready to submit?`;
+  document.getElementById('submitModal').classList.add('open');
+}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+
+function finishExam(){
+  clearInterval(timerInterval);
+  closeModal('submitModal');
+  showResults();
+}
+
+// ── RESULTS ──
+function showResults(){
+  showScreen('resultScreen');
+
+  // Calculate scores per subject
+  const subjScores={};
+  selectedSubjects.forEach(s=>{subjScores[s]={correct:0,total:0};});
+  let totalCorrect=0;
+
+  examQuestions.forEach((q,i)=>{
+    const subj=q.subject||'other';
+    if(!subjScores[subj]) subjScores[subj]={correct:0,total:0};
+    subjScores[subj].total++;
+    const ua=userAnswers[i];
+    const correct=q.ans??q.answer;
+    if(ua===correct){
+      subjScores[subj].correct++;
+      totalCorrect++;
+    }
+  });
+
+  const total=examQuestions.length;
+  const pct=Math.round((totalCorrect/total)*100);
+  const timeTaken=examMode==='full'?formatTime(FULL_TIME-(timeLeft||0)):null;
+  const grade=pct>=70?'🏆 Excellent':pct>=55?'✅ Good':pct>=45?'📈 Average':'📚 Keep Studying';
+
+  // Render hero
+  document.getElementById('resultHero').innerHTML=`
+    <div class="result-score-circle">
+      <div class="result-score-num">${pct}%</div>
+      <div class="result-score-lbl">Score</div>
+    </div>
+    <div class="result-grade">${grade}</div>
+    <div class="result-grade-sub">${totalCorrect} correct out of ${total} questions</div>
+    <div class="result-stats">
+      <div class="result-stat"><div class="result-stat-num">${totalCorrect}</div><div class="result-stat-lbl">Correct</div></div>
+      <div class="result-stat"><div class="result-stat-num">${total-totalCorrect}</div><div class="result-stat-lbl">Wrong</div></div>
+      <div class="result-stat"><div class="result-stat-num">${timeTaken||'—'}</div><div class="result-stat-lbl">Time used</div></div>
+    </div>`;
+
+  // Per-subject breakdown
+  document.getElementById('resultSubjects').innerHTML=selectedSubjects.map(s=>{
+    const sc=subjScores[s]||{correct:0,total:0};
+    const sp=sc.total>0?Math.round((sc.correct/sc.total)*100):0;
+    const barColor=sp>=70?'#16a34a':sp>=50?'#f59e0b':'#dc2626';
+    return`<div class="result-subj-card">
+      <div class="result-subj-title">
+        ${SUBJ_ICONS[s]||'📚'} ${SUBJ_LABELS[s]}
+        <span class="result-subj-score">${sp}%</span>
+      </div>
+      <div class="result-bar-wrap">
+        <div class="result-bar" style="width:${sp}%;background:${barColor}"></div>
+      </div>
+      <div class="result-subj-meta">
+        <span>✅ ${sc.correct} correct</span>
+        <span>❌ ${sc.total-sc.correct} wrong</span>
+        <span>📊 ${sc.total} questions</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Result slip
+  const slipDate=new Date().toLocaleDateString('en-NG',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('resultSlip').innerHTML=`
+    <div class="slip-header">
+      <img class="slip-logo" src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
+      <div>
+        <div class="slip-brand">Big Quams Media®</div>
+        <div class="slip-sub">Practice Test Result Slip</div>
+      </div>
+    </div>
+    <div class="slip-score-row">
+      <div><div style="font-size:.68rem;color:var(--muted)">Total Score</div><div class="slip-score-big">${pct}%</div></div>
+      <div style="text-align:right"><div style="font-size:.68rem;color:var(--muted)">Grade</div><div style="font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;color:var(--text)">${pct>=70?'Excellent':pct>=55?'Good':pct>=45?'Average':'Below Average'}</div></div>
+    </div>
+    <table style="width:100%;border-collapse:collapse" class="slip-rows">
+      <tr><td>Date</td><td>${slipDate}</td></tr>
+      <tr><td>Mode</td><td>${examMode==='full'?'Full Exam (180 Questions)':'Practice Mode (45 Questions)'}</td></tr>
+      <tr><td>Subjects</td><td>${selectedSubjects.map(s=>SUBJ_LABELS[s]).join(', ')}</td></tr>
+      <tr><td>Correct Answers</td><td>${totalCorrect} / ${total}</td></tr>
+      ${timeTaken?`<tr><td>Time Used</td><td>${timeTaken}</td></tr>`:''}
+      ${selectedSubjects.map(s=>{const sc=subjScores[s]||{correct:0,total:0};const sp=sc.total>0?Math.round((sc.correct/sc.total)*100):0;return`<tr><td>${SUBJ_LABELS[s]}</td><td>${sp}% (${sc.correct}/${sc.total})</td></tr>`;}).join('')}
+    </table>
+    <div class="slip-footer">
+      This is a practice test result. Actual exam results are issued by JAMB.<br>
+      bigquamsmedia.com.ng — Nigeria's Free Student Success Platform
+    </div>
+    <button class="share-slip-btn" onclick="shareResult(${pct})">📤 Share My Result</button>`;
+
+  // Save to Firestore if signed in
+  if(currentUser&&window._db){
+    window._db.collection('cbt_users').doc(currentUser.uid).update({
+      sessions:firebase.firestore.FieldValue.increment(1),
+      bestScore:Math.max(pct,0),
+      totalCorrect:firebase.firestore.FieldValue.increment(totalCorrect),
+      totalQuestions:firebase.firestore.FieldValue.increment(total),
+      lastPracticeDate:new Date().toISOString(),
+    }).catch(()=>{});
+  }
+}
+
+function formatTime(secs){
+  const h=Math.floor(secs/3600);
+  const m=Math.floor((secs%3600)/60);
+  const s=secs%60;
+  return(h>0?h+'h ':'')+m+'m '+s+'s';
+}
+
+function shareResult(pct){
+  const subjs=selectedSubjects.map(s=>SUBJ_LABELS[s]).join(', ');
+  const text=`🎓 I just scored ${pct}% on the Big Quams Practice Test!\n\nSubjects: ${subjs}\n\nTry it free on Big Quams Media® 👇\nhttps://bigquamsmedia.com.ng/practice-test.html`;
+  if(navigator.share){navigator.share({title:'My Big Quams Practice Test Result',text}).catch(()=>{});}
+  else{navigator.clipboard.writeText(text).then(()=>alert('Result copied! Share it with your friends 🎉')).catch(()=>{});}
+}
+
+function reviewAnswers(){
+  showScreen('examScreen');
+  examMode='practice'; // Show explanations in review mode
+  renderQ(0);
+}
+function retakeExam(){selectedSubjects=['english'];renderSubjGrid();updateSetupUI();showScreen('setupScreen');}
+function goHome(){window.location.href='index.html';}
+
+// ── UTILS ──
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ── AUTH ──
+if(window._auth){
+  window._auth.onAuthStateChanged(user=>{currentUser=user;});
+}
+
+// ── INIT ──
+renderSubjGrid();
+updateSetupUI();
+</script>
+</body>
+</html>

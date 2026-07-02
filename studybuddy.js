@@ -23,7 +23,7 @@
   const style = document.createElement('style');
   style.textContent = `
     #bqm-buddy-fab {
-      position:fixed;bottom:24px;right:20px;z-index:8000;
+      position:fixed;bottom:24px;left:18px;z-index:8000;
       width:56px;height:56px;border-radius:50%;
       background:linear-gradient(135deg,#1a3fa8,#f97316);
       border:none;cursor:pointer;box-shadow:0 4px 20px rgba(26,63,168,.45);
@@ -43,7 +43,7 @@
     }
     #bqm-buddy-badge.show{opacity:1;}
     #bqm-buddy-panel{
-      position:fixed;bottom:90px;right:16px;z-index:8001;
+      position:fixed;bottom:90px;left:14px;z-index:8001;
       width:min(380px,calc(100vw - 32px));
       height:min(560px,calc(100vh - 110px));
       background:#fff;border-radius:20px;
@@ -52,6 +52,7 @@
       transform:scale(.92) translateY(16px);opacity:0;pointer-events:none;
       transition:transform .28s cubic-bezier(.34,1.56,.64,1),opacity .2s ease;
     }
+    @media(max-width:480px){#bqm-buddy-panel{left:8px;right:8px;width:auto;}}
     #bqm-buddy-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all;}
     body.dark #bqm-buddy-panel{background:#161b27;box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 1.5px rgba(255,255,255,.08);}
     .buddy-header{

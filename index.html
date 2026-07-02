@@ -295,7 +295,10 @@ footer{background:#0a1228;padding:40px 16px 24px}
 #backToTop:hover{background:var(--orange)}
 #wa-float{position:fixed;bottom:22px;right:18px;width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;z-index:400;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s}
 #wa-float:hover{transform:scale(1.1)}
-@media(max-width:760px){#wa-float{bottom:78px;right:14px;width:46px;height:46px;font-size:1.2rem}#backToTop{bottom:134px;right:14px}}
+/* AI buddy FAB moved to left side to avoid collision */
+#bqm-buddy-fab{bottom:22px!important;left:18px!important;right:auto!important}
+#bqm-buddy-panel{bottom:90px!important;left:16px!important;right:auto!important}
+@media(max-width:760px){#wa-float{bottom:78px;right:14px;width:46px;height:46px;font-size:1.2rem}#backToTop{bottom:134px;right:14px}#bqm-buddy-fab{bottom:78px!important;left:14px!important}#bqm-buddy-panel{left:8px!important;right:8px!important;width:auto!important}}
 .center{text-align:center}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
@@ -440,7 +443,7 @@ body.dark .phone-notif{background:#1a2236}
 body.dark .bottom-nav{background:#161b27;border-color:var(--border)}
 @media(max-width:760px){.bottom-nav{display:flex}}
 @media(max-width:760px){body{padding-bottom:64px}}
-@media(max-width:760px){#wa-float{bottom:76px}.toast{bottom:86px}}
+
 .bn-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 2px;cursor:pointer;color:var(--text-muted);font-size:.52rem;font-weight:600;text-decoration:none;transition:.18s;border:none;background:none;font-family:'Roboto',sans-serif}
 .bn-item:hover,.bn-item.active{color:var(--blue-main,#1a3fa8)}
 .bn-icon{font-size:1.2rem;line-height:1}
@@ -537,6 +540,7 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
 
   <div class="mnav-section">Exam Tools</div>
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
   <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
   <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
   <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
@@ -1095,9 +1099,16 @@ async function loadNews(){
   // Try Firebase first
   if(window._db){
     try{
-      const snap=await window._db.collection('fs_news').orderBy('createdAt','desc').limit(6).get();
+      const snap=await window._db.collection('fs_news').limit(20).get();
       const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
-      if(items.length){renderNewsCards(items);return;}
+      if(items.length){
+        items.sort((a,b)=>{
+          const at=a.createdAt?.toMillis?a.createdAt.toMillis():new Date(a.createdAt||0).getTime();
+          const bt=b.createdAt?.toMillis?b.createdAt.toMillis():new Date(b.createdAt||0).getTime();
+          return bt-at;
+        });
+        renderNewsCards(items);return;
+      }
     }catch(e){console.warn('Firebase news fetch:',e.message);}
   }
   // Fallback to news.json

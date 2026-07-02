@@ -10,7 +10,7 @@
 <meta property="og:description" content="Nigeria's free all-in-one student platform. CBT, scholarships, eLibrary, GPA calc, Post-UTME prep and more.">
 <meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
 <meta property="og:url" content="https://bigquamsmedia.com.ng/explore.html">
-<link rel="icon" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
+<link rel="icon" href="https://bigquamsmedia.com.ng/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <!-- Firebase -->
@@ -200,7 +200,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <header>
   <div class="hbar">
     <a href="index.html" class="logo-link">
-      <img class="logo-img" src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
     <nav class="main-nav">
@@ -221,7 +221,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <nav class="mobile-nav" id="mobileNav">
   <div class="mnav-header">
     <div style="display:flex;align-items:center;gap:10px">
-      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
       <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
     </div>
     <button class="mnav-close" onclick="toggleNav()">✕</button>
@@ -235,6 +235,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
   <div class="mnav-lbl">Exam Tools</div>
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
   <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
   <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
   <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
@@ -274,12 +275,35 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     <button class="f-btn" onclick="setFilter('resources',this)">Resources</button>
     <button class="f-btn" onclick="setFilter('news',this)">News & Info</button>
     <button class="f-btn" onclick="setFilter('community',this)">Community</button>
+    <button class="f-btn" onclick="setFilter('ai',this)">🤖 AI Tools</button>
     <div class="search-box">
       <span style="color:var(--muted);font-size:.8rem">🔍</span>
       <input type="text" id="toolSearch" placeholder="Search tools…" oninput="renderTools()" autocomplete="off">
     </div>
   </div>
 </div>
+
+<!-- AI STUDY BUDDY FEATURED SECTION -->
+<section class="sec" id="ai-buddy-section" style="background:linear-gradient(135deg,rgba(12,31,110,.04),rgba(249,115,22,.04));border-bottom:1px solid var(--border);padding:32px 0">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr;gap:20px;align-items:center">
+      <div>
+        <div class="sec-lbl" style="color:#f97316;border-color:#f97316">🤖 AI-Powered · Exclusive to Big Quams Media®</div>
+        <h2 class="sec-title" style="margin-top:8px">Meet Your <span>Study Buddy</span></h2>
+        <p style="font-size:.84rem;color:var(--muted);line-height:1.7;max-width:540px;margin-bottom:18px">Nigeria's first AI study assistant built for JAMB and university students. Ask about subject combinations, cutoff marks, scholarship requirements, Post-UTME calculations — get instant, accurate answers powered by Claude AI.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">
+          <span style="background:#f0f4ff;color:#1a3fa8;padding:5px 12px;border-radius:20px;font-size:.74rem;font-weight:700">📝 JAMB Topics</span>
+          <span style="background:#f0f4ff;color:#1a3fa8;padding:5px 12px;border-radius:20px;font-size:.74rem;font-weight:700">🏫 University Info</span>
+          <span style="background:#f0f4ff;color:#1a3fa8;padding:5px 12px;border-radius:20px;font-size:.74rem;font-weight:700">💰 Scholarships</span>
+          <span style="background:#f0f4ff;color:#1a3fa8;padding:5px 12px;border-radius:20px;font-size:.74rem;font-weight:700">📊 Score Calculator</span>
+          <span style="background:#f0f4ff;color:#1a3fa8;padding:5px 12px;border-radius:20px;font-size:.74rem;font-weight:700">📚 Study Tips</span>
+        </div>
+        <button onclick="window.bqmToggleBuddy&&window.bqmToggleBuddy()" style="background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;padding:12px 24px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;cursor:pointer;display:inline-flex;align-items:center;gap:8px">🎓 Open Study Buddy →</button>
+        <div style="font-size:.68rem;color:var(--muted);margin-top:8px">3 free questions/day · Unlimited for signed-in users</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ALL TOOLS -->
 <section class="sec" id="tools-section">
@@ -416,7 +440,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <footer>
   <div class="footer-inner">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
       <div>
         <div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
         <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div>
@@ -492,6 +516,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.
 // ── TOOLS DATA ──
 const TOOLS=[
   {title:'JAMB CBT Practice',icon:'👨🏽‍💻',color:'#fee2e2',text:'#b91c1c',tag:'Exam Prep',tagBg:'#fee2e2',tagTxt:'#b91c1c',desc:'515+ real JAMB questions. Timed mock exams, instant scoring, subject filtering and performance tracking.',url:'cbt.html',filters:['exam','admission'],featured:true},
+  {title:'Big Quams Practice Test',icon:'📝',color:'#ede9fe',text:'#7c3aed',tag:'NEW',tagBg:'#7c3aed',tagTxt:'#fff',desc:'Full 180-question timed exam simulation across 4 subjects. Real exam conditions, instant performance breakdown and shareable result slip.',url:'practice-test.html',filters:['exam','admission'],featured:true},
+  {title:'Big Quams Study Buddy',icon:'🤖',color:'#fef9c3',text:'#92400e',tag:'AI · NEW',tagBg:'#f97316',tagTxt:'#fff',desc:'AI-powered study assistant on every page. Ask anything about JAMB, Post-UTME, university courses, scholarships and study tips — instant answers powered by Claude.',url:'#',onclick:"window.bqmToggleBuddy&&window.bqmToggleBuddy()",filters:['ai','exam','resources'],featured:true},
   {title:'Newsroom',icon:'📰',color:'#dbeafe',text:'#1d4ed8',tag:'News',tagBg:'#dbeafe',tagTxt:'#1d4ed8',desc:'Latest campus news, JAMB updates, scholarship alerts, Post-UTME announcements and school events.',url:'newsroom.html',filters:['news'],featured:true},
   {title:'Scholarship Finder',icon:'💰',color:'#dcfce7',text:'#15803d',tag:'Resources',tagBg:'#dcfce7',tagTxt:'#15803d',desc:'50+ active scholarships — local and international. Search by type, deadline and eligibility.',url:'scholarship.html',filters:['resources','admission'],featured:true},
   {title:'Student Loan (NELFUND)',icon:'💳',color:'#ede9fe',text:'#6d28d9',tag:'Resources',tagBg:'#ede9fe',tagTxt:'#6d28d9',desc:'Complete step-by-step NELFUND student loan guide — eligibility, application, repayment and FAQs.',url:'student-loan.html',filters:['resources','inschool'],featured:true},
@@ -533,7 +559,7 @@ function renderTools(){
     return;
   }
   grid.innerHTML=filtered.map(t=>`
-    <a href="${t.url}" class="tool-card">
+    <a href="${t.url==='#'?'javascript:void(0)':t.url}" ${t.onclick?`onclick="${t.onclick}"`:''}class="tool-card">
       ${t.isNew?'<div class="tool-new">New</div>':''}
       <div class="tool-card-icon" style="background:${t.color}">${t.icon}</div>
       <div class="tool-card-title">${t.title}</div>
@@ -766,5 +792,7 @@ function installApp(){
   }
 }
 </script>
+
+<script src="studybuddy.js" defer></script>
 </body>
 </html>
