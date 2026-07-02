@@ -69,6 +69,8 @@
     .buddy-status{display:flex;align-items:center;gap:5px;font-size:.62rem;color:rgba(255,255,255,.55);margin-left:auto;}
     .buddy-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:bqmBlink 2s infinite;}
     @keyframes bqmBlink{0%,100%{opacity:1}50%{opacity:.4}}
+    .buddy-fs{background:rgba(255,255,255,.1);border:none;color:#fff;width:28px;height:28px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.84rem;flex-shrink:0;}
+    #bqm-buddy-panel.fullscreen{position:fixed;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100%!important;height:100%!important;max-height:100%!important;border-radius:0!important;z-index:9999;}
     .buddy-close{background:rgba(255,255,255,.1);border:none;color:#fff;width:28px;height:28px;
       border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
     .buddy-messages{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth;}
@@ -152,18 +154,19 @@
   const container = document.createElement('div');
   container.innerHTML = `
     <button id="bqm-buddy-fab" aria-label="Open Big Quams Study Buddy" onclick="window.bqmToggleBuddy()">
-      🎓
+      🤖
       <span id="bqm-buddy-badge"></span>
     </button>
     <div id="bqm-buddy-panel" role="dialog" aria-label="Big Quams Media Study Buddy">
       <div class="buddy-header">
-        <div class="buddy-avatar">🎓</div>
+        <div class="buddy-avatar">🤖</div>
         <div>
           <div class="buddy-title">Big Quams Study Buddy</div>
           <div class="buddy-sub">AI-powered · Powered by Claude</div>
         </div>
         <div class="buddy-status"><div class="buddy-dot"></div>Online</div>
-        <button class="buddy-close" onclick="window.bqmToggleBuddy()" aria-label="Close">✕</button>
+        <button class="buddy-fs" onclick="window.bqmToggleFS()" title="Fullscreen" id="bqm-buddy-fs-btn">⛶</button>
+      <button class="buddy-close" onclick="window.bqmToggleBuddy()" aria-label="Close">✕</button>
       </div>
 
       <div class="buddy-messages" id="bqm-buddy-messages">
@@ -277,45 +280,29 @@
     scrollToBottom();
 
     try{
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch('https://bqm-fcm-server.onrender.com/chat', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({
-          model:'claude-sonnet-4-6',
-          max_tokens:1000,
-          system:`You are the Big Quams Study Buddy — an expert AI tutor built into Big Quams Media®, Nigeria's leading student success platform. Your sole purpose is helping Nigerian secondary school and university students succeed academically.
-
-You specialise in:
-- JAMB UTME (subjects, topics, cutoff marks, registration process, result checking, profile codes)
-- Post-UTME screening (aggregate calculation, school-specific requirements)
-- Nigerian university admissions (CAPS, DE, supplementary forms)
-- Course/subject combinations for all Nigerian universities
-- O'Level requirements (WAEC, NECO, NABTEB grading)
-- GPA/CGPA calculation on 4.0 and 5.0 scales
-- Scholarship opportunities for Nigerian students
-- NELFUND student loan application and eligibility
-- Study tips and exam strategies for Nigerian syllabuses
-- University life, hostel tips, campus advice
-
-Rules:
-- Always respond in clear, friendly, encouraging Nigerian student-friendly language
-- Keep answers concise but complete — use bullet points for lists
-- If a question is outside your scope (e.g. politics, adult content), politely redirect to academic topics
-- Never make up specific cutoff marks — say "cutoff marks vary by year, check JAMB's official website or Big Quams Media® for the latest"
-- Always end answers with one follow-up question or tip to keep the student engaged
-- Refer to the platform as "Big Quams Media®" never "BQM" or anything shorter`,
-          messages: messageHistory
-        })
+        body:JSON.stringify({messages: messageHistory})
       });
+      if(!response.ok){
+        const err=await response.json().catch(()=>({}));
+        throw new Error(err.error||'Server error '+response.status);
+      }
       const data = await response.json();
-      const answer = data.content?.[0]?.text || 'Sorry, I had trouble answering that. Please try again!';
+      const answer = data.content || 'Sorry, I had trouble answering that. Please try again!';
       messageHistory.push({role:'assistant', content:answer});
       if(messageHistory.length > 12) messageHistory = messageHistory.slice(-12);
       document.getElementById('bqm-buddy-typing').classList.remove('show');
       addMessage('ai', answer);
     }catch(e){
       document.getElementById('bqm-buddy-typing').classList.remove('show');
-      addMessage('ai','⚠️ I\'m having connection trouble. Please check your internet and try again.');
+      const errMsg=e.message||'';
+      if(errMsg.includes('ANTHROPIC_API_KEY')||errMsg.includes('not configured')){
+        addMessage('ai','⚙️ The AI service is not yet fully configured on the server. Please contact Big Quams Media® support.');
+      } else {
+        addMessage('ai','⚠️ I\'m having connection trouble right now. The server may be waking up (this takes ~30 seconds on first use). Please try again in a moment!');
+      }
     }
 
     isTyping = false;
@@ -328,6 +315,17 @@ Rules:
     const input = document.getElementById('bqm-buddy-input');
     input.value = btn.textContent.replace(/[🏥📝🧮⚖️💳]/g,'').trim();
     window.bqmSend();
+  };
+
+  // ── FULLSCREEN TOGGLE ──
+  let isFS = false;
+  window.bqmToggleFS = function(){
+    isFS = !isFS;
+    const panel = document.getElementById('bqm-buddy-panel');
+    const btn = document.getElementById('bqm-buddy-fs-btn');
+    panel.classList.toggle('fullscreen', isFS);
+    if(btn) btn.textContent = isFS ? '⛶' : '⛶';
+    btn.title = isFS ? 'Exit fullscreen' : 'Fullscreen';
   };
 
   // ── SIGN IN REDIRECT ──

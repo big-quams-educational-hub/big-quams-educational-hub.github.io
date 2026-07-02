@@ -13,7 +13,7 @@
 <meta property="og:image" id="ogImage" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
 <meta property="og:url" content="https://bigquamsmedia.com.ng/newsroom.html">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
+<link rel="icon" type="image/png" href="https://bigquamsmedia.com.ng/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -197,6 +197,14 @@ body.dark .sk-pinned{background:#161b27}
 
 /* ── FOOTER ── */
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.footer-brand img{width:36px;height:36px;border-radius:50%;border:2px solid #f97316}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-direction:column;gap:5px}
+.footer-links a{font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)}
 
 
 
@@ -250,7 +258,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <header>
   <div class="hbar">
     <a href="index.html" class="logo-link">
-      <img class="logo-img" src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
     <nav class="main-nav">
@@ -270,7 +278,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <nav class="mobile-nav" id="mobileNav">
   <div class="mnav-header">
     <div style="display:flex;align-items:center;gap:10px">
-      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
       <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
     </div>
     <button class="mnav-close" onclick="toggleNav()">✕</button>
@@ -286,6 +294,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
   <div class="mnav-lbl">Exam Tools</div>
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
   <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
   <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calc</a>
   <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
@@ -388,7 +397,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <img src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
       <div>
         <div class="footer-brand-name">Big Quams Media®</div>
         <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Nigeria's Trusted Student Platform</div>
@@ -615,7 +624,7 @@ function render(){
     const pidx=allNews.indexOf(p);
     const preview=stripHtml(p.fullContent||'').substring(0,160);
     pw.innerHTML=`<div class="pinned-card" onclick="openArticle(${pidx})">
-      ${p.image?`<img class="pinned-img" src="${p.image}" alt="${p.title}" loading="lazy">`:`<div class="pinned-img-ph">📰</div>`}
+      ${p.image?`<img class="pinned-img" src="${p.image}" alt="${p.title}" loading="lazy">`:`<img class="pinned-img" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media®" loading="lazy" style="object-fit:contain;background:#f0f4ff;padding:8px">`}
       <div class="pinned-body">
         <span class="pinned-badge">📌 Featured Story</span>
         <div class="pinned-title">${p.title}</div>
@@ -642,7 +651,7 @@ function render(){
     const mins=readingTime(n.fullContent||'');
     const preview=stripHtml(n.fullContent||'').substring(0,130);
     return`<div class="news-card" onclick="openArticle(${idx})">
-      ${n.image?`<img class="nc-img" src="${n.image}" alt="${n.title}" loading="lazy">`:`<div class="nc-img-ph">📰</div>`}
+      ${n.image?`<img class="nc-img" src="${n.image}" alt="${n.title}" loading="lazy">`:`<img class="nc-img" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media®" loading="lazy" style="object-fit:contain;background:#f0f4ff;padding:8px">`}
       <div class="nc-body">
         <span class="nc-cat" style="${catStyle(n.category||'')}">${n.category||'News'}</span>
         <div class="nc-title">${n.title}</div>
@@ -701,7 +710,7 @@ function openArticle(idx){
           ${related.map(r=>{
             const ridx=allNews.indexOf(r);
             return`<div class="rel-card" onclick="openArticle(${ridx})">
-              ${r.image?`<img class="rel-thumb" src="${r.image}" alt="${r.title}" loading="lazy">`:`<div style="width:54px;height:42px;background:var(--surface2);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.2rem">📰</div>`}
+              ${r.image?`<img class="rel-thumb" src="${r.image}" alt="${r.title}" loading="lazy">`:`<img src="https://bigquamsmedia.com.ng/logo.png" alt="BQM" loading="lazy" style="width:54px;height:42px;border-radius:6px;object-fit:contain;background:#f0f4ff;padding:4px;flex-shrink:0">`}
               <div>
                 <div class="rel-title">${r.title}</div>
                 <div class="rel-meta">${r.category||''} · ${r.date||''}</div>
@@ -767,5 +776,7 @@ function shareCard(e,idx){
 window.shareCard=shareCard;
 
 </script>
+
+<script src="studybuddy.js" defer></script>
 </body>
 </html>
