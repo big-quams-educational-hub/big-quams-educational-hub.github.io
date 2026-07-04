@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RCLYVCZY2K');</script>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Profile | Big Quams Media®</title>
+<meta name="description" content="View your Big Quams Media® profile — coins, streak, referrals, achievements and study stats.">
+<meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
+<link rel="icon" href="https://bigquamsmedia.com.ng/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(!firebase.apps.length) firebase.initializeApp({
+      apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',
+      authDomain:'big-quams-media.firebaseapp.com',
+      projectId:'big-quams-media'
+    });
+    window._db=firebase.firestore();
+    window._auth=firebase.auth();
+  }catch(e){console.warn('Firebase:',e.message);}
+})();
+</script>
+<style>
+:root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--green:#16a34a;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:14px;--shadow:0 8px 28px rgba(26,63,168,.11)}
+body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Roboto',sans-serif;background:var(--surface2);color:var(--text);min-height:100vh;overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+
+/* HEADER */
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);height:56px;display:flex;align-items:center;padding:0 16px;gap:10px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(12,31,110,.3)}
+.hdr-logo{display:flex;align-items:center;gap:8px;margin-right:auto}
+.hdr-logo img{width:32px;height:32px;border-radius:50%;border:2px solid var(--orange)}
+.hdr-brand{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:#fff}
+.hdr-dark{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.84rem;cursor:pointer}
+.hdr-back{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;padding:7px 14px;border-radius:8px;font-size:.78rem;font-weight:700}
+
+/* HERO */
+.profile-hero{background:linear-gradient(150deg,rgba(8,21,48,.92),rgba(15,32,96,.88),rgba(26,63,168,.84)),url('https://bigquamsmedia.com.ng/webpage.png') center/cover no-repeat;padding:28px 16px 0;text-align:center;position:relative}
+.avatar-wrap{position:relative;display:inline-block;margin-bottom:12px}
+.avatar{width:88px;height:88px;border-radius:50%;border:4px solid var(--orange);object-fit:cover;background:var(--blue-deep);display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:800;color:#fff;margin:0 auto;font-family:'Montserrat',sans-serif}
+.avatar-edit{position:absolute;bottom:0;right:0;width:26px;height:26px;background:var(--orange);border:2px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;cursor:pointer}
+.profile-name{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:4px}
+.profile-email{font-size:.74rem;color:rgba(255,255,255,.5);margin-bottom:4px}
+.profile-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(249,115,22,.2);border:1px solid rgba(249,115,22,.4);color:#fdba74;padding:3px 12px;border-radius:20px;font-size:.66rem;font-weight:700;margin-bottom:16px}
+.profile-tabs{display:flex;border-top:1px solid rgba(255,255,255,.1);margin-top:4px}
+.profile-tab{flex:1;padding:12px 8px;font-size:.72rem;font-weight:700;color:rgba(255,255,255,.5);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:.18s}
+.profile-tab.active{color:#fff;border-bottom-color:var(--orange)}
+
+/* CONTENT */
+.wrap{max-width:680px;margin:0 auto;padding:20px 16px 60px}
+.tab-panel{display:none}
+.tab-panel.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* STAT CARDS */
+.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+@media(min-width:480px){.stats-row{grid-template-columns:repeat(4,1fr)}}
+.stat-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:16px 12px;text-align:center;box-shadow:var(--shadow)}
+body.dark .stat-card{background:#161b27}
+.stat-num{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:800;color:var(--blue);line-height:1}
+.stat-lbl{font-size:.62rem;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:.4px}
+
+/* SECTION CARD */
+.sec-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:14px;box-shadow:var(--shadow)}
+body.dark .sec-card{background:#161b27}
+.sec-title{font-family:'Montserrat',sans-serif;font-size:.86rem;font-weight:800;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+
+/* REFERRAL */
+.referral-box{background:linear-gradient(135deg,var(--blue-deep),var(--blue));border-radius:12px;padding:16px;margin-bottom:14px}
+.ref-code-row{display:flex;gap:8px;align-items:center;margin-top:10px}
+.ref-code{flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:9px 12px;font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:#fff;letter-spacing:1px}
+.ref-share-btn{background:var(--orange);border:none;color:#fff;padding:9px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;flex-shrink:0;cursor:pointer}
+.ref-stats{display:flex;gap:16px;margin-top:12px}
+.ref-stat{text-align:center}
+.ref-stat-num{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:#fff}
+.ref-stat-lbl{font-size:.6rem;color:rgba(255,255,255,.5)}
+
+/* COIN BALANCE */
+.coin-card{background:linear-gradient(135deg,#92400e,#b45309,#d97706);border-radius:12px;padding:18px;margin-bottom:14px;display:flex;align-items:center;gap:14px}
+.coin-icon{font-size:2.4rem;flex-shrink:0}
+.coin-bal{font-family:'Montserrat',sans-serif;font-size:2rem;font-weight:800;color:#fff}
+.coin-lbl{font-size:.68rem;color:rgba(255,255,255,.6)}
+.coin-coming{font-size:.74rem;color:rgba(255,255,255,.55);margin-top:4px;line-height:1.5}
+
+/* ACHIEVEMENTS */
+.badge-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:10px}
+.badge-item{text-align:center;padding:12px 6px;border:1.5px solid var(--border);border-radius:10px;background:var(--surface2)}
+body.dark .badge-item{background:#1a2236}
+.badge-item.earned{border-color:var(--orange);background:rgba(249,115,22,.06)}
+body.dark .badge-item.earned{background:rgba(249,115,22,.1)}
+.badge-icon{font-size:1.8rem;margin-bottom:4px}
+.badge-name{font-size:.62rem;font-weight:700;color:var(--muted);line-height:1.3}
+.badge-item.earned .badge-name{color:var(--text)}
+.badge-locked{font-size:.56rem;color:var(--muted);margin-top:2px}
+
+/* STUDY STATS */
+.stat-bar-row{display:flex;flex-direction:column;gap:10px}
+.stat-bar-item{background:var(--surface2);border-radius:10px;padding:12px}
+body.dark .stat-bar-item{background:#1a2236}
+.stat-bar-head{display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:6px}
+.stat-bar-label{font-weight:700;color:var(--text)}
+.stat-bar-val{color:var(--muted)}
+.stat-bar-bg{height:7px;background:var(--border);border-radius:4px;overflow:hidden}
+.stat-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--orange));transition:width 1s ease}
+
+/* EDIT FORM */
+.edit-inp{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:.9rem;font-family:inherit;color:var(--text);background:var(--surface2);margin-bottom:10px;transition:.18s}
+body.dark .edit-inp{background:#111624;color:var(--text);border-color:var(--border)}
+.edit-inp:focus{outline:none;border-color:var(--blue)}
+.save-btn{width:100%;padding:12px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer;transition:.18s}
+.save-btn:hover{opacity:.9}
+.signout-btn{width:100%;padding:11px;background:var(--surface2);color:var(--muted);border:1.5px solid var(--border);border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.84rem;cursor:pointer;margin-top:8px}
+body.dark .signout-btn{background:#1a2236}
+.signout-btn:hover{border-color:#ef4444;color:#ef4444}
+.toast-msg{display:none;padding:10px 16px;border-radius:10px;font-size:.8rem;font-weight:700;text-align:center;margin-bottom:12px}
+.toast-msg.success{background:#dcfce7;color:#15803d;border:1px solid #86efac;display:block}
+.toast-msg.error{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;display:block}
+
+/* NOT SIGNED IN */
+.signin-wall{text-align:center;padding:56px 20px}
+.signin-wall-icon{font-size:3rem;margin-bottom:14px}
+.signin-wall-title{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:8px}
+.signin-wall-sub{font-size:.82rem;color:var(--muted);margin-bottom:20px;line-height:1.6}
+.signin-wall-btn{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;padding:13px 28px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer}
+
+/* SKELETON */
+@keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+.sk{background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:6px}
+body.dark .sk{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:600px 100%}
+
+/* FOOTER */
+footer{background:#0a1228;padding:28px 16px 20px}
+.footer-inner{max-width:680px;margin:0 auto;text-align:center;font-size:.68rem;color:rgba(255,255,255,.3)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr-logo">
+    <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media">
+    <span class="hdr-brand">Big Quams Media®</span>
+  </div>
+  <button class="hdr-dark" onclick="toggleDark()" id="darkBtn">🌙</button>
+  <a href="index.html" class="hdr-back">← Home</a>
+</header>
+
+<!-- NOT SIGNED IN STATE -->
+<div id="notSignedIn" style="display:none">
+  <div class="signin-wall">
+    <div class="signin-wall-icon">👤</div>
+    <div class="signin-wall-title">Sign in to view your profile</div>
+    <div class="signin-wall-sub">Create a free account to track your coins, streaks, referrals and study performance across all Big Quams Media® tools.</div>
+    <button class="signin-wall-btn" onclick="window.location.href='daily.html?signup=1'">Create Free Account →</button>
+    <div style="margin-top:10px"><a href="daily.html" style="font-size:.78rem;color:var(--muted)">Already have an account? Sign in →</a></div>
+  </div>
+</div>
+
+<!-- LOADING STATE -->
+<div id="profileLoading">
+  <div style="padding:20px 16px 0;max-width:680px;margin:0 auto">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:20px;padding:28px 0">
+      <div class="sk" style="width:88px;height:88px;border-radius:50%"></div>
+      <div class="sk" style="height:18px;width:160px;margin-top:6px"></div>
+      <div class="sk" style="height:12px;width:120px"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
+      ${[1,2,3,4].map(()=>'<div class="sk" style="height:72px;border-radius:14px"></div>').join('')}
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE CONTENT -->
+<div id="profileContent" style="display:none">
+  <!-- HERO -->
+  <div class="profile-hero">
+    <div class="avatar-wrap">
+      <div class="avatar" id="profileAvatar">?</div>
+      <div class="avatar-edit" onclick="switchTab('settings')" title="Edit profile">✏️</div>
+    </div>
+    <div class="profile-name" id="profileName">Loading…</div>
+    <div class="profile-email" id="profileEmail"></div>
+    <div class="profile-badge" id="profileBadge">🎓 Student</div>
+    <div class="profile-tabs">
+      <button class="profile-tab active" onclick="switchTab('overview')">Overview</button>
+      <button class="profile-tab" onclick="switchTab('stats')">Stats</button>
+      <button class="profile-tab" onclick="switchTab('referral')">Referrals</button>
+      <button class="profile-tab" onclick="switchTab('badges')">Badges</button>
+      <button class="profile-tab" onclick="switchTab('settings')">Settings</button>
+    </div>
+  </div>
+
+  <!-- TAB: OVERVIEW -->
+  <div class="tab-panel active" id="tab-overview">
+    <div class="wrap">
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num" id="ovCoins">0</div>
+          <div class="stat-lbl">🪙 Coins</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="ovStreak">0</div>
+          <div class="stat-lbl">🔥 Day Streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="ovReferrals">0</div>
+          <div class="stat-lbl">👥 Referrals</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="ovBest">—</div>
+          <div class="stat-lbl">🎯 Best Score</div>
+        </div>
+      </div>
+
+      <!-- COIN BALANCE -->
+      <div class="coin-card">
+        <div class="coin-icon">🪙</div>
+        <div>
+          <div class="coin-bal" id="coinBalanceBig">0</div>
+          <div class="coin-lbl">Total Coins Earned</div>
+          <div class="coin-coming">+5 coins per correct daily challenge · +20 per referral<br>More ways to redeem coins coming soon!</div>
+        </div>
+      </div>
+
+      <!-- QUICK LINKS -->
+      <div class="sec-card">
+        <div class="sec-title">🚀 Quick Actions</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="daily.html" style="display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--surface2);border-radius:10px;font-weight:700;font-size:.84rem;color:var(--text);border:1.5px solid var(--border)">
+            <span style="font-size:1.2rem">📅</span>
+            <div><div>Daily Hub</div><div style="font-size:.68rem;font-weight:400;color:var(--muted)">Earn coins with today's challenge</div></div>
+            <span style="margin-left:auto;color:var(--muted)">→</span>
+          </a>
+          <a href="cbt.html" style="display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--surface2);border-radius:10px;font-weight:700;font-size:.84rem;color:var(--text);border:1.5px solid var(--border)">
+            <span style="font-size:1.2rem">👨🏽‍💻</span>
+            <div><div>CBT Practice</div><div style="font-size:.68rem;font-weight:400;color:var(--muted)">Improve your JAMB performance</div></div>
+            <span style="margin-left:auto;color:var(--muted)">→</span>
+          </a>
+          <a href="scholarship.html" style="display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--surface2);border-radius:10px;font-weight:700;font-size:.84rem;color:var(--text);border:1.5px solid var(--border)">
+            <span style="font-size:1.2rem">💰</span>
+            <div><div>Scholarships</div><div style="font-size:.68rem;font-weight:400;color:var(--muted)">Find funding for your education</div></div>
+            <span style="margin-left:auto;color:var(--muted)">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: STATS -->
+  <div class="tab-panel" id="tab-stats">
+    <div class="wrap">
+      <div class="sec-card">
+        <div class="sec-title">📊 Study Performance</div>
+        <div class="stat-bar-row" id="studyStats"></div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-title">📅 Activity Summary</div>
+        <div id="activitySummary" style="display:flex;flex-direction:column;gap:8px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: REFERRALS -->
+  <div class="tab-panel" id="tab-referral">
+    <div class="wrap">
+      <div class="referral-box">
+        <div style="font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:#fff;margin-bottom:4px">🔗 Your Referral Code</div>
+        <div style="font-size:.74rem;color:rgba(255,255,255,.55);margin-bottom:2px">Share and earn 20 coins for every friend who signs up</div>
+        <div class="ref-code-row">
+          <div class="ref-code" id="refCodeDisplay">—</div>
+          <button class="ref-share-btn" onclick="shareReferral()">📤 Share</button>
+        </div>
+        <div class="ref-stats">
+          <div class="ref-stat">
+            <div class="ref-stat-num" id="refCount">0</div>
+            <div class="ref-stat-lbl">Friends Referred</div>
+          </div>
+          <div class="ref-stat">
+            <div class="ref-stat-num" id="refCoins">0</div>
+            <div class="ref-stat-lbl">Coins from Referrals</div>
+          </div>
+        </div>
+      </div>
+      <div class="sec-card">
+        <div class="sec-title">ℹ️ How Referrals Work</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:.82rem;line-height:1.6">
+            <span style="background:var(--blue-lt);color:var(--blue);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;font-size:.72rem">1</span>
+            <span>Share your referral code or link with a friend</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:.82rem;line-height:1.6">
+            <span style="background:var(--blue-lt);color:var(--blue);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;font-size:.72rem">2</span>
+            <span>Your friend creates a free account using your link</span>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:.82rem;line-height:1.6">
+            <span style="background:var(--blue-lt);color:var(--blue);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;font-size:.72rem">3</span>
+            <span>You automatically receive <strong>20 coins</strong> credited to your balance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: BADGES -->
+  <div class="tab-panel" id="tab-badges">
+    <div class="wrap">
+      <div class="sec-card">
+        <div class="sec-title">🏅 Your Achievements</div>
+        <div class="badge-grid" id="badgeGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: SETTINGS -->
+  <div class="tab-panel" id="tab-settings">
+    <div class="wrap">
+      <div class="sec-card">
+        <div class="sec-title">✏️ Edit Profile</div>
+        <div class="toast-msg" id="settingsToast"></div>
+        <label style="font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px">Display Name</label>
+        <input class="edit-inp" type="text" id="editName" placeholder="Your full name">
+        <label style="font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px">Gender</label>
+        <select class="edit-inp" id="editGender">
+          <option value="">Prefer not to say</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <label style="font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px">Email</label>
+        <input class="edit-inp" type="email" id="editEmail" placeholder="Email address" disabled style="opacity:.5;cursor:not-allowed">
+        <div style="font-size:.66rem;color:var(--muted);margin-bottom:14px">Email cannot be changed here. Contact support if needed.</div>
+        <button class="save-btn" onclick="saveProfile()">💾 Save Changes</button>
+        <button class="signout-btn" onclick="signOut()">🚪 Sign Out</button>
+      </div>
+      <div class="sec-card" style="margin-top:14px">
+        <div class="sec-title" style="color:#ef4444">⚠️ Account</div>
+        <div style="font-size:.8rem;color:var(--muted);margin-bottom:12px;line-height:1.6">Your account data including coins, streaks and referrals are stored securely on Big Quams Media®.</div>
+        <a href="https://wa.me/2349049871643?text=I need help with my Big Quams Media account" target="_blank" rel="noopener" style="display:block;text-align:center;font-size:.78rem;color:var(--blue);font-weight:700;padding:10px;border:1.5px solid var(--border);border-radius:8px">💬 Contact Support on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    © <span id="yr"></span> Big Quams Media® · All rights reserved · Created by
+    <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.
+  </div>
+</footer>
+
+<script src="studybuddy.js" defer></script>
+<script>
+(function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
+function toggleDark(){document.body.classList.toggle('dark');localStorage.setItem('bqm-theme',document.body.classList.contains('dark')?'dark':'light');document.getElementById('darkBtn').textContent=document.body.classList.contains('dark')?'☀️':'🌙';}
+if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+// ── ALL BADGES ──
+const ALL_BADGES=[
+  {id:'first_session',icon:'🎯',name:'First Session',desc:'Completed your first CBT session'},
+  {id:'streak_3',icon:'🔥',name:'3-Day Streak',desc:'Visited for 3 days in a row'},
+  {id:'streak_7',icon:'⚡',name:'7-Day Streak',desc:'Visited for 7 days in a row'},
+  {id:'streak_30',icon:'🌟',name:'30-Day Streak',desc:'Visited for 30 days in a row'},
+  {id:'first_referral',icon:'👥',name:'First Referral',desc:'Referred your first friend'},
+  {id:'referral_5',icon:'🏆',name:'5 Referrals',desc:'Referred 5 friends'},
+  {id:'score_80',icon:'💎',name:'High Scorer',desc:'Scored 80%+ in a CBT session'},
+  {id:'score_100',icon:'👑',name:'Perfect Score',desc:'Scored 100% in a session'},
+  {id:'coins_100',icon:'💰',name:'Coin Collector',desc:'Earned 100+ coins'},
+  {id:'coins_500',icon:'🏦',name:'Coin Hoarder',desc:'Earned 500+ coins'},
+  {id:'early_bird',icon:'🐦',name:'Early Adopter',desc:'Joined Big Quams Media® early'},
+];
+
+function getEarnedBadges(p){
+  const earned=new Set(p.achievements||[]);
+  const auto=[];
+  if((p.sessions||0)>=1) auto.push('first_session');
+  if((p.dailyStreak||p.streak||0)>=3) auto.push('streak_3');
+  if((p.dailyStreak||p.streak||0)>=7) auto.push('streak_7');
+  if((p.dailyStreak||p.streak||0)>=30) auto.push('streak_30');
+  if((p.referralCount||0)>=1) auto.push('first_referral');
+  if((p.referralCount||0)>=5) auto.push('referral_5');
+  if((p.bestScore||0)>=80) auto.push('score_80');
+  if((p.bestScore||0)>=100) auto.push('score_100');
+  if((p.coinsBalance||0)>=100) auto.push('coins_100');
+  if((p.coinsBalance||0)>=500) auto.push('coins_500');
+  // Early adopter — anyone who joined before 2027
+  if(p.joinDate&&new Date(p.joinDate)<new Date('2027-01-01')) auto.push('early_bird');
+  auto.forEach(id=>earned.add(id));
+  return earned;
+}
+
+// ── TAB SWITCHING ──
+function switchTab(tab){
+  document.querySelectorAll('.profile-tab').forEach((t,i)=>{
+    const tabs=['overview','stats','referral','badges','settings'];
+    t.classList.toggle('active',tabs[i]===tab);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById('tab-'+tab);
+  if(el) el.classList.add('active');
+}
+
+// ── SIGN OUT ──
+async function signOut(){
+  if(!confirm('Sign out of Big Quams Media®?')) return;
+  try{await window._auth.signOut();window.location.href='index.html';}
+  catch(e){alert('Error signing out: '+e.message);}
+}
+window.signOut=signOut;
+
+// ── SAVE PROFILE ──
+async function saveProfile(){
+  const user=window._auth.currentUser;
+  if(!user) return;
+  const name=document.getElementById('editName').value.trim();
+  const gender=document.getElementById('editGender').value;
+  if(!name){showToast('error','Name cannot be empty.');return;}
+  try{
+    await window._db.collection('cbt_users').doc(user.uid).update({displayName:name,nickname:name,gender});
+    await user.updateProfile({displayName:name});
+    document.getElementById('profileName').textContent=name;
+    document.getElementById('profileAvatar').textContent=name.charAt(0).toUpperCase();
+    showToast('success','✅ Profile updated!');
+  }catch(e){showToast('error','Error: '+e.message);}
+}
+window.saveProfile=saveProfile;
+
+function showToast(type,msg){
+  const el=document.getElementById('settingsToast');
+  el.className='toast-msg '+type;
+  el.textContent=msg;
+  setTimeout(()=>{el.className='toast-msg';},4000);
+}
+
+// ── SHARE REFERRAL ──
+function shareReferral(){
+  const code=document.getElementById('refCodeDisplay').textContent;
+  if(!code||code==='—') return;
+  const url='https://bigquamsmedia.com.ng/daily.html?ref='+encodeURIComponent(code);
+  const text=`🎓 Join me on Big Quams Media® — Nigeria's best free student platform!\n\nGet JAMB practice, scholarships, campus news, AI study help and more — all free.\n\nSign up with my link:\n${url}`;
+  if(navigator.share){navigator.share({title:'Join Big Quams Media®',text,url}).catch(()=>{});}
+  else{navigator.clipboard.writeText(text).then(()=>alert('Referral link copied! Share with your friends 🎉'));}
+}
+window.shareReferral=shareReferral;
+
+// ── RENDER PROFILE ──
+function renderProfile(user, p){
+  const name=p.displayName||p.nickname||user.displayName||user.email?.split('@')[0]||'Student';
+  const initials=name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+  const streak=p.dailyStreak||p.streak||0;
+  const coins=p.coinsBalance||0;
+  const referrals=p.referralCount||0;
+  const best=p.bestScore?p.bestScore+'%':'—';
+  const sessions=p.sessions||0;
+  const correct=p.totalCorrect||0;
+  const total=p.totalQuestions||0;
+  const pct=total>0?Math.round((correct/total)*100):0;
+  const joinDate=p.joinDate?new Date(p.joinDate).toLocaleDateString('en-NG',{day:'numeric',month:'long',year:'numeric'}):'—';
+
+  // Avatar
+  if(user.photoURL){
+    const img=document.createElement('img');
+    img.src=user.photoURL;
+    img.style.cssText='width:88px;height:88px;border-radius:50%;border:4px solid #f97316;object-fit:cover';
+    document.getElementById('profileAvatar').parentNode.replaceChild(img,document.getElementById('profileAvatar'));
+  } else {
+    const av=document.getElementById('profileAvatar');
+    av.textContent=initials;
+    av.style.background=`hsl(${name.charCodeAt(0)*13%360},60%,35%)`;
+  }
+
+  document.getElementById('profileName').textContent=name;
+  document.getElementById('profileEmail').textContent=user.email||'';
+  document.getElementById('profileBadge').textContent=streak>=30?'🌟 Super Scholar':streak>=7?'⚡ On Fire':streak>=3?'🔥 On Streak':'🎓 Student';
+
+  // Overview stats
+  document.getElementById('ovCoins').textContent=coins;
+  document.getElementById('ovStreak').textContent=streak;
+  document.getElementById('ovReferrals').textContent=referrals;
+  document.getElementById('ovBest').textContent=best;
+  document.getElementById('coinBalanceBig').textContent=coins;
+
+  // Study stats tab
+  const statsRows=[
+    {label:'Accuracy',val:pct,pct,unit:'%'},
+    {label:'Best Score',val:p.bestScore||0,pct:p.bestScore||0,unit:'%'},
+    {label:'Sessions Completed',val:sessions,pct:Math.min(sessions*10,100),unit:''},
+    {label:'Correct Answers',val:correct,pct:total>0?pct:0,unit:''},
+  ];
+  document.getElementById('studyStats').innerHTML=statsRows.map(s=>`
+    <div class="stat-bar-item">
+      <div class="stat-bar-head">
+        <span class="stat-bar-label">${s.label}</span>
+        <span class="stat-bar-val">${s.val}${s.unit}</span>
+      </div>
+      <div class="stat-bar-bg"><div class="stat-bar-fill" style="width:${s.pct}%"></div></div>
+    </div>`).join('');
+
+  document.getElementById('activitySummary').innerHTML=[
+    {icon:'📅',label:'Joined',val:joinDate},
+    {icon:'🔥',label:'Current Streak',val:streak+' day'+(streak===1?'':'s')},
+    {icon:'👨🏽‍💻',label:'CBT Sessions',val:sessions+' session'+(sessions===1?'':'s')},
+    {icon:'✅',label:'Total Correct',val:correct+' question'+(correct===1?'':'s')},
+    {icon:'👥',label:'Friends Referred',val:referrals+' friend'+(referrals===1?'':'s')},
+    {icon:'🪙',label:'Total Coins',val:coins+' coins'},
+  ].map(a=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface2);border-radius:9px;font-size:.82rem">
+      <span>${a.icon} ${a.label}</span>
+      <span style="font-weight:700;color:var(--text)">${a.val}</span>
+    </div>`).join('');
+
+  // Referral tab
+  document.getElementById('refCodeDisplay').textContent=p.referralCode||'—';
+  document.getElementById('refCount').textContent=referrals;
+  document.getElementById('refCoins').textContent=(referrals*20)+' coins';
+
+  // Badges tab
+  const earned=getEarnedBadges(p);
+  document.getElementById('badgeGrid').innerHTML=ALL_BADGES.map(b=>`
+    <div class="badge-item${earned.has(b.id)?' earned':''}" title="${b.desc}">
+      <div class="badge-icon">${earned.has(b.id)?b.icon:'🔒'}</div>
+      <div class="badge-name">${b.name}</div>
+      ${!earned.has(b.id)?`<div class="badge-locked">${b.desc}</div>`:''}
+    </div>`).join('');
+
+  // Settings tab
+  document.getElementById('editName').value=name;
+  document.getElementById('editGender').value=p.gender||'';
+  document.getElementById('editEmail').value=user.email||'';
+}
+
+// ── INIT ──
+window._auth.onAuthStateChanged(async user=>{
+  document.getElementById('profileLoading').style.display='none';
+  if(!user){
+    document.getElementById('notSignedIn').style.display='block';
+    return;
+  }
+  // Fetch profile from Firestore
+  try{
+    const snap=await window._db.collection('cbt_users').doc(user.uid).get();
+    const p=snap.exists?snap.data():{};
+    document.getElementById('profileContent').style.display='block';
+    renderProfile(user,p);
+  }catch(e){
+    console.error('Profile load error:',e.message);
+    document.getElementById('profileContent').style.display='block';
+    renderProfile(user,{});
+  }
+});
+</script>
+</body>
+</html>

@@ -419,6 +419,45 @@ body.dark .referred-item{background:#1a2236;border-color:var(--border)}
 body.dark .claim-sorry-badge{background:#1a0000;border-color:#7f1d1d;color:#fca5a5}
 footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(255,255,255,.5);padding:44px 16px 28px}
 
+/* ── FLAG BUTTON ── */
+.flag-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);width:34px;height:34px;border-radius:8px;font-size:.9rem;cursor:pointer;flex-shrink:0;transition:.18s}
+.flag-btn.flagged{background:rgba(234,179,8,.2);border-color:#fde047;color:#fde047}
+
+/* ── QUESTION GRID LEGEND ── */
+.q-grid-header{padding:10px 14px 4px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.q-grid-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.64rem;color:var(--text-muted)}
+.q-grid-legend span{display:flex;align-items:center;gap:4px}
+.q-leg{width:11px;height:11px;border-radius:3px;background:var(--surface-alt);border:1.5px solid var(--border)}
+.q-leg.answered{background:var(--blue-main);border-color:var(--blue-main)}
+.q-leg.flagged{background:#eab308;border-color:#eab308}
+.q-leg.current{background:var(--orange);border-color:var(--orange)}
+
+/* ── FLAGGED QUESTION DOT ── */
+.q-dot.flagged-q{background:#eab308!important;border-color:#eab308!important;color:#fff!important}
+.q-dot.flagged-q.answered-q{background:linear-gradient(135deg,var(--blue-main),#eab308)!important}
+
+/* ── ANIMATED SCORE RING ── */
+.score-ring{position:relative;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.score-ring-svg{position:absolute;top:0;left:0}
+.score-ring-inner{position:relative;text-align:center;z-index:1}
+
+/* ── WEAK TOPICS ── */
+.weak-topic-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+body.dark .weak-topic-card{background:#161b27}
+.weak-topic-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.weak-topic-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:var(--text-main)}
+.weak-topic-score{font-size:.76rem;font-weight:700;color:var(--red)}
+.weak-topic-bar{height:6px;background:var(--surface-alt);border-radius:3px;overflow:hidden;margin-bottom:8px}
+.weak-topic-fill{height:100%;background:linear-gradient(90deg,var(--red),#f97316);border-radius:3px;transition:width .8s ease}
+.weak-topic-tip{font-size:.74rem;color:var(--text-muted);line-height:1.5;padding:8px 10px;background:var(--surface-alt);border-radius:8px}
+body.dark .weak-topic-tip{background:#1a2236}
+
+/* ── ANSWER FEEDBACK ANIMATION ── */
+@keyframes correctPop{0%{transform:scale(1)}30%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes wrongShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.option-btn.correct-anim{animation:correctPop .3s ease}
+.option-btn.wrong-anim{animation:wrongShake .35s ease}
+
 
 
 
@@ -463,6 +502,7 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
   <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
   <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
   <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
   <div class="mnav-lbl">Exam Tools</div>
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
   <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
@@ -628,6 +668,7 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
         </select>
       </div>
       <button class="start-btn" id="startBtn" onclick="checkAuthThenStart()">🎯 Start Practice Exam →</button>
+      <div style="text-align:center;font-size:.7rem;color:var(--text-muted);margin-top:8px">💡 Tip: Use <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">A B C D</kbd> keys to answer · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">← →</kbd> to navigate · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">F</kbd> to flag</div>
       <div id="setupStatus" style="text-align:center;margin-top:12px;font-size:.8rem;color:var(--text-muted)">Select at least 1 subject to start</div>
       <div id="guestNotice" style="display:none;text-align:center;margin-top:10px;padding:10px 14px;background:#fef9c3;border:1px solid #fde68a;border-radius:9px;font-size:.76rem;color:#92400e">
         ⚠️ Guest mode — <strong>limited to 10 questions</strong>. 
@@ -836,6 +877,7 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
         <span>⏱</span><span class="timer-num" id="timerNum">30:00</span>
       </div>
       <span class="q-counter" id="answeredCount">0/40 answered</span>
+      <button class="flag-btn" id="flagBtn" onclick="toggleFlag()" title="Flag for review">🚩</button>
       <button class="submit-early-btn" onclick="confirmSubmit()">Submit →</button>
     </div>
   </div>
@@ -846,7 +888,15 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
       <button class="nav-btn btn-next" onclick="goQuestion(currentQ+1)" id="nextBtn">Next →</button>
     </div>
   </div>
-  <div class="q-grid-wrap">
+  <div class="q-grid-wrap" id="qGridWrap">
+    <div class="q-grid-header">
+      <div class="q-grid-legend">
+        <span><div class="q-leg answered"></div>Answered</span>
+        <span><div class="q-leg flagged"></div>Flagged</span>
+        <span><div class="q-leg current"></div>Current</span>
+        <span><div class="q-leg"></div>Unanswered</span>
+      </div>
+    </div>
     <div class="q-grid" id="qGrid"></div>
   </div>
 </div>
@@ -855,8 +905,16 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
 <div id="resultScreen">
   <div class="result-hero">
     <div class="score-ring" id="scoreRing">
-      <div class="score-num" id="scoreNum">0</div>
-      <div class="score-denom" id="scoreDenom">/ 40</div>
+      <svg class="score-ring-svg" viewBox="0 0 120 120" width="140" height="140">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="10"/>
+        <circle id="scoreRingArc" cx="60" cy="60" r="52" fill="none" stroke="#f97316" stroke-width="10"
+          stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"
+          transform="rotate(-90 60 60)" style="transition:stroke-dashoffset 1.2s cubic-bezier(.34,1.1,.64,1)"/>
+      </svg>
+      <div class="score-ring-inner">
+        <div class="score-num" id="scoreNum">0</div>
+        <div class="score-denom" id="scoreDenom">/ 40</div>
+      </div>
     </div>
     <div class="result-grade" id="resultGrade">—</div>
     <div class="result-sub" id="resultSub"></div>
@@ -888,6 +946,10 @@ footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(
   <div class="review-section">
     <div class="review-title">📋 Question Review</div>
     <div id="reviewList"></div>
+  </div>
+  <div class="review-section" id="weakTopicsSection" style="display:none">
+    <div class="review-title">🧠 Weak Topics Detector</div>
+    <div id="weakTopicsList"></div>
   </div>
 </div>
 
@@ -1801,6 +1863,52 @@ function buildQGrid(){
   grid.innerHTML=examQuestions.map((_,i)=>`<button class="q-dot${i===0?' current':''}" id="dot-${i}" onclick="goQuestion(${i})">${i+1}</button>`).join('');
 }
 
+// ── FLAG SYSTEM ──
+const flaggedQs=new Set();
+function toggleFlag(){
+  if(flaggedQs.has(currentQ)) flaggedQs.delete(currentQ);
+  else flaggedQs.add(currentQ);
+  updateFlagBtn();
+  updateDotClasses();
+}
+window.toggleFlag=toggleFlag;
+
+function updateFlagBtn(){
+  const btn=document.getElementById('flagBtn');
+  if(!btn) return;
+  btn.classList.toggle('flagged',flaggedQs.has(currentQ));
+  btn.title=flaggedQs.has(currentQ)?'Unflag question':'Flag for review';
+}
+
+function updateDotClasses(){
+  document.querySelectorAll('.q-dot').forEach((d,i)=>{
+    const ans=userAnswers[i]!==undefined;
+    const flag=flaggedQs.has(i);
+    const cur=i===currentQ;
+    d.className='q-dot'+(ans?' answered-q':'')+(flag?' flagged-q':'')+(cur?' current':'');
+  });
+}
+
+// ── KEYBOARD SHORTCUTS ──
+document.addEventListener('keydown',e=>{
+  const exam=document.getElementById('examScreen');
+  if(!exam||exam.style.display==='none') return;
+  if(document.activeElement&&['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) return;
+  const key=e.key.toUpperCase();
+  if(key==='A') selectAnswerByKey(0);
+  else if(key==='B') selectAnswerByKey(1);
+  else if(key==='C') selectAnswerByKey(2);
+  else if(key==='D') selectAnswerByKey(3);
+  else if(e.key==='ArrowRight'||e.key==='.') goQuestion(currentQ+1);
+  else if(e.key==='ArrowLeft'||e.key===',') goQuestion(currentQ-1);
+  else if(key==='F'){e.preventDefault();toggleFlag();}
+});
+function selectAnswerByKey(optIdx){
+  const q=examQuestions[currentQ];
+  if(!q||userAnswers[currentQ]!==undefined) return;
+  selectAnswer(currentQ,optIdx);
+}
+
 // ── RENDER QUESTION ──
 function renderQuestion(idx){
   currentQ=idx;
@@ -1812,9 +1920,8 @@ function renderQuestion(idx){
   document.getElementById('answeredCount').textContent=`${answered}/${total} answered`;
   document.getElementById('prevBtn').disabled=idx===0;
   document.getElementById('nextBtn').textContent=idx===total-1?'Review ✓':'Next →';
-  document.querySelectorAll('.q-dot').forEach((d,i)=>{
-    d.className='q-dot'+(userAnswers[i]!==undefined?' answered':'')+(i===idx?' current':'');
-  });
+  updateDotClasses();
+  updateFlagBtn();
   const ua=userAnswers[idx];
   const revealed=ua!==undefined;
   const letters=['A','B','C','D'];
@@ -1824,6 +1931,7 @@ function renderQuestion(idx){
       <span class="q-subj-badge">${SUBJ_LABELS[q.subject]||q.subject}</span>
       ${q.difficulty?`<span class="q-diff-badge diff-${q.difficulty}">${q.difficulty}</span>`:''}
       ${q.year?`<span style="font-size:.64rem;color:var(--text-muted)">${q.year}</span>`:''}
+      ${flaggedQs.has(idx)?'<span style="font-size:.7rem;color:#eab308;font-weight:700">🚩 Flagged</span>':''}
     </div>
     <div class="q-text">${q.q}</div>
     <div class="options-list" id="optList">
@@ -1833,19 +1941,27 @@ function renderQuestion(idx){
           if(i===q.ans) cls+=' correct';
           else if(i===ua) cls+=' wrong';
         } else if(i===ua) cls+=' selected';
-        return`<button class="${cls}" ${revealed?'disabled':''} onclick="selectAnswer(${idx},${i})">
+        return`<button class="${cls}" ${revealed?'disabled':''} onclick="selectAnswer(${idx},${i})" data-opt="${i}">
           <span class="opt-letter">${letters[i]}</span>${opt}</button>`;
       }).join('')}
     </div>
-    ${revealed&&q.exp?`<div class="explanation show">💡 <strong>Explanation:</strong> ${q.exp}</div>`:''}`;
+    ${revealed&&q.exp?`<div class="explanation show">💡 <strong>Explanation:</strong> ${q.exp}</div>`:''}
+    <div style="text-align:right;margin-top:8px;font-size:.62rem;color:var(--text-muted)">Press <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 5px;border-radius:3px">F</kbd> to flag · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 5px;border-radius:3px">A B C D</kbd> to answer · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 5px;border-radius:3px">← →</kbd> navigate</div>`;
 }
 window.renderQuestion=renderQuestion;
 
 function selectAnswer(qIdx,optIdx){
   if(userAnswers[qIdx]!==undefined) return;
   userAnswers[qIdx]=optIdx;
+  // Animate the selected option
+  const btn=document.querySelector(`[data-opt="${optIdx}"]`);
+  if(btn){
+    const q=examQuestions[qIdx];
+    const isCorrect=optIdx===q.ans;
+    btn.classList.add(isCorrect?'correct-anim':'wrong-anim');
+  }
   renderQuestion(qIdx);
-  if(qIdx<examQuestions.length-1) setTimeout(()=>goQuestion(qIdx+1),1200);
+  if(qIdx<examQuestions.length-1) setTimeout(()=>goQuestion(qIdx+1),1100);
 }
 window.selectAnswer=selectAnswer;
 
@@ -1896,11 +2012,20 @@ async function submitExam(){
     <div class="rs-item"><div class="rs-num" style="color:#ef4444">${wrong}</div><div class="rs-lbl">Wrong</div></div>
     <div class="rs-item"><div class="rs-num" style="color:#f59e0b">${skipped}</div><div class="rs-lbl">Skipped</div></div>
     <div class="rs-item"><div class="rs-num">${pct}%</div><div class="rs-lbl">Score</div></div>`;
+  // Animate SVG score ring
+  setTimeout(()=>{
+    const arc=document.getElementById('scoreRingArc');
+    if(arc){
+      const circumference=326.7;
+      const offset=circumference-(circumference*(pct/100));
+      arc.style.strokeDashoffset=offset;
+      arc.style.stroke=pct>=80?'#10b981':pct>=65?'#3b82f6':pct>=50?'#f59e0b':pct>=40?'#f97316':'#ef4444';
+    }
+  },200);
   if(cbtUser) document.getElementById('dashFromResult').style.display='flex';
   // Score card + share caption
-  const refCode=(cbtUser&&userProfile&&(userProfile.referralCode||cbtUser.uid.substring(0,8)))||null;
+  const refCode=(cbtUser&&userProfile&&(userProfile.referralCode||generateReferralCode(userProfile.name||'')))||null;
   const refLink=refCode?`${SITE_URL}?ref=${refCode}`:'https://bigquamsmedia.com.ng/cbt.html';
-  // Defer canvas draw slightly so DOM is painted
   setTimeout(()=>{
     buildScoreCard(correct,total,pct,grade,examStartSubjects,refLink);
     buildShareCaption(pct,grade,examStartSubjects,refLink);
@@ -1914,6 +2039,7 @@ async function submitExam(){
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
         <span style="font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:20px;background:${isCorrect?'#dcfce7':'#fee2e2'};color:${isCorrect?'#15803d':'#b91c1c'}">${isCorrect?'✅ Correct':'❌ Wrong'}</span>
         <span class="q-subj-badge">${SUBJ_LABELS[q.subject]||q.subject}</span>
+        ${flaggedQs.has(i)?'<span style="font-size:.7rem;color:#eab308">🚩 Flagged</span>':''}
       </div>
       <div class="review-q-text">Q${i+1}. ${q.q}</div>
       <div class="review-opts">
@@ -1927,7 +2053,87 @@ async function submitExam(){
       ${q.exp?`<div class="review-exp">💡 ${q.exp}</div>`:''}
     </div>`;
   }).join('');
+  // ── WEAK TOPICS DETECTOR ──
+  buildWeakTopics();
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── WEAK TOPICS DETECTOR ──
+const TOPIC_TIPS={
+  physics:{
+    'mechanics':'Review Newton\'s laws, motion equations and energy conservation. Practise resolving forces and projectile problems.',
+    'waves':'Focus on wave properties: frequency, wavelength, amplitude. Practise calculations for sound and light waves.',
+    'electricity':'Review Ohm\'s law, series/parallel circuits, and power calculations. Draw circuit diagrams as you solve.',
+    'default':'Review your textbook notes and attempt past questions on this topic.'
+  },
+  chemistry:{
+    'organic':'Memorise functional groups and their reactions. Draw structural formulas to understand what\'s happening.',
+    'mole concept':'Practise mole-to-mass-to-volume conversions daily. Learn Avogadro\'s number applications.',
+    'default':'Focus on past WAEC/NECO questions for this topic — patterns repeat frequently.'
+  },
+  biology:{
+    'genetics':'Draw Punnett squares for every genetics question. Understand dominant vs recessive traits clearly.',
+    'ecology':'Learn food chains, energy flow, and ecological terms. Create summary tables.',
+    'default':'Use diagrams and labelling to memorise biological structures and processes.'
+  },
+  default:'Focus on past questions for this topic. Attempt at least 10 questions daily until your confidence improves.'
+};
+function getTopicTip(subj,topic){
+  const subjTips=TOPIC_TIPS[subj]||{};
+  const tLower=(topic||'').toLowerCase();
+  for(const key of Object.keys(subjTips)){
+    if(key!=='default'&&tLower.includes(key)) return subjTips[key];
+  }
+  return subjTips.default||TOPIC_TIPS.default;
+}
+
+function buildWeakTopics(){
+  // Group wrong answers by subject
+  const subjData={};
+  examQuestions.forEach((q,i)=>{
+    const ua=userAnswers[i];
+    const subj=q.subject||'other';
+    if(!subjData[subj]) subjData[subj]={total:0,wrong:0,topics:{}};
+    subjData[subj].total++;
+    if(ua!==undefined&&ua!==q.ans){
+      subjData[subj].wrong++;
+      const topic=q.topic||q.category||'General';
+      if(!subjData[subj].topics[topic]) subjData[subj].topics[topic]={wrong:0,total:0};
+      subjData[subj].topics[topic].wrong++;
+    }
+    if(ua!==undefined){
+      const topic=q.topic||q.category||'General';
+      if(!subjData[subj].topics[topic]) subjData[subj].topics[topic]={wrong:0,total:0};
+      subjData[subj].topics[topic].total++;
+    }
+  });
+  // Find subjects with >30% wrong
+  const weakSubjects=Object.entries(subjData)
+    .filter(([,d])=>d.total>0&&(d.wrong/d.total)>0.3)
+    .sort((a,b)=>(b[1].wrong/b[1].total)-(a[1].wrong/a[1].total));
+  if(!weakSubjects.length){
+    document.getElementById('weakTopicsSection').style.display='none';
+    return;
+  }
+  document.getElementById('weakTopicsSection').style.display='block';
+  document.getElementById('weakTopicsList').innerHTML=weakSubjects.map(([subj,data])=>{
+    const pct=Math.round((data.wrong/data.total)*100);
+    const worstTopics=Object.entries(data.topics)
+      .filter(([,t])=>t.total>0&&t.wrong>0)
+      .sort((a,b)=>(b[1].wrong/b[1].total)-(a[1].wrong/a[1].total))
+      .slice(0,2);
+    const tip=worstTopics.length?getTopicTip(subj,worstTopics[0][0]):getTopicTip(subj,'');
+    return`<div class="weak-topic-card">
+      <div class="weak-topic-head">
+        <div class="weak-topic-name">⚠️ ${SUBJ_LABELS[subj]||subj}</div>
+        <div class="weak-topic-score">${pct}% wrong (${data.wrong}/${data.total})</div>
+      </div>
+      <div class="weak-topic-bar"><div class="weak-topic-fill" style="width:${pct}%"></div></div>
+      ${worstTopics.length?`<div style="font-size:.72rem;color:var(--muted);margin-bottom:8px">Struggling most with: <strong>${worstTopics.map(([t])=>t).join(', ')}</strong></div>`:''}
+      <div class="weak-topic-tip">💡 ${tip}</div>
+      <a href="cbt.html?subject=${encodeURIComponent(subj)}" style="display:inline-block;margin-top:8px;font-size:.74rem;font-weight:700;color:var(--blue-main);text-decoration:none">🎯 Practise ${SUBJ_LABELS[subj]||subj} only →</a>
+    </div>`;
+  }).join('');
 }
 
 async function saveSessionToFirestore(correct,wrong,skipped,pct){
