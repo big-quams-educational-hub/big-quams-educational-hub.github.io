@@ -1,124 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Homepage -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Explore Hub -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/explore.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Newsroom -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/newsroom.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- eLibrary -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/elibrary.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- CBT Practice -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/cbt.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Scholarship Finder -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/scholarship.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- GPA & CGPA Calculator -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/gpa-calculator.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Post-UTME Aggregate Calculator -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/postutme-calculator.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Post-UTME Prep Guide -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/postutme-prep.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Results Checker -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/results.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- NELFUND Student Loan Guide -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/student-loan.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- JAMB Subject Combination Checker -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/subject-combo.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- DYK / Did You Know -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/dyk.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Student Spotlight -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/spotlight.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Community Hub -->
-  <url>
-    <loc>https://big-quams-educational-hub.github.io/community.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
+  <url><loc>https://bigquamsmedia.com.ng/</loc><priority>1.0</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/newsroom.html</loc><priority>0.9</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/explore.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/cbt.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/campus-life.html</loc><priority>0.8</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/daily.html</loc><priority>0.8</priority><changefreq>daily</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/scholarship.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/postutme-prep.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/postutme-calculator.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/gpa-calculator.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/results.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/subject-combo.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/admission-chances.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/elibrary.html</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/community.html</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/spotlight.html</loc><priority>0.6</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/dyk.html</loc><priority>0.6</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/student-loan.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/Jamb_Profile_Code.html</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://bigquamsmedia.com.ng/practice-test.html</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
 </urlset>

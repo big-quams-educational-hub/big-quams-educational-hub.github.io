@@ -8,7 +8,7 @@
 <meta name="description" content="Campus gist, polls, anonymous messages and trivia games for Nigerian students. Your daily campus entertainment on Big Quams Media®.">
 <meta property="og:title" content="Campus Life — Big Quams Media®">
 <meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
-<link rel="icon" href="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png">
+<link rel="icon" href="https://bigquamsmedia.com.ng/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <!-- Firebase -->
@@ -194,13 +194,14 @@ body.dark .trivia-opt{background:#1a2236}
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:20px}
 
 </style>
+<link rel="canonical" href="https://bigquamsmedia.com.ng/campus-life.html">
 </head>
 <body>
 
 <header>
   <div class="hbar">
     <a href="index.html" class="logo-link">
-      <img class="logo-img" src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" alt="BQM">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
     <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
@@ -212,7 +213,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <nav class="mobile-nav" id="mobileNav">
   <div class="mnav-header">
     <div style="display:flex;align-items:center;gap:10px">
-      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
       <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
     </div>
     <button class="mnav-close" onclick="toggleNav()">✕</button>
@@ -224,8 +225,10 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
   <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
   <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
   <div class="mnav-lbl">Exam Tools</div>
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
   <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
   <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
   <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
@@ -366,7 +369,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <footer>
   <div class="footer-inner">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-      <img src="https://bigquamsmedia.com.ng/file_000000000370724698997662ddbee6b5.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
       <div>
         <div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
         <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div>
@@ -457,23 +460,38 @@ const CAT_COLORS={
   General:'#f0f4ff,#1a3fa8'
 };
 
+let gistAllLoaded=null; // cache of ALL published gists, fetched once
+
 async function loadGist(reset=false){
   if(gistLoading) return;
   gistLoading=true;
   const feed=document.getElementById('gistFeed');
-  if(reset){allGists=[];gistLastDoc=null;feed.innerHTML=skGist(3);}
+  if(reset){feed.innerHTML=skGist(3);allGists=[];}
   if(!window._db){feed.innerHTML='<div class="empty-state"><div class="ei">📡</div><p>Could not connect to Firebase.</p></div>';gistLoading=false;return;}
   try{
-    let q=window._db.collection('fs_campus_gist').where('published','==',true).orderBy('pinned','desc').orderBy('createdAt','desc').limit(GIST_PER_PAGE);
-    if(gistCat) q=q.where('category','==',gistCat);
-    if(gistLastDoc) q=q.startAfter(gistLastDoc);
-    const snap=await q.get();
-    const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
-    gistLastDoc=snap.docs[snap.docs.length-1]||null;
-    if(reset) allGists=items; else allGists=[...allGists,...items];
+    // Single-field query only (no composite index needed) — sort/filter client-side
+    if(!gistAllLoaded){
+      const snap=await window._db.collection('fs_campus_gist').where('published','==',true).get();
+      gistAllLoaded=snap.docs.map(d=>({_id:d.id,...d.data()}));
+      console.log('[Gist] Loaded',gistAllLoaded.length,'published posts from Firestore');
+    }
+    let items=[...gistAllLoaded];
+    if(gistCat) items=items.filter(g=>g.category===gistCat);
+    // Sort: pinned first, then newest
+    items.sort((a,b)=>{
+      if(!!a.pinned!==!!b.pinned) return a.pinned?-1:1;
+      const at=a.createdAt?.toMillis?a.createdAt.toMillis():(a.createdAt?new Date(a.createdAt).getTime():0);
+      const bt=b.createdAt?.toMillis?b.createdAt.toMillis():(b.createdAt?new Date(b.createdAt).getTime():0);
+      return bt-at;
+    });
+    const page=Math.floor((allGists.length)/GIST_PER_PAGE);
+    const startIdx=reset?0:allGists.length;
+    const nextBatch=items.slice(startIdx,startIdx+GIST_PER_PAGE);
+    if(reset) allGists=nextBatch; else allGists=[...allGists,...nextBatch];
     renderGistFeed();
-    document.getElementById('gistLoadMore').style.display=items.length===GIST_PER_PAGE?'block':'none';
+    document.getElementById('gistLoadMore').style.display=(startIdx+GIST_PER_PAGE<items.length)?'block':'none';
   }catch(e){
+    console.error('[Gist] Firestore error:',e.code||'',e.message);
     if(reset) feed.innerHTML='<div class="empty-state"><div class="ei">😴</div><p>No gist yet. Check back soon!</p></div>';
   }
   gistLoading=false;
@@ -585,11 +603,18 @@ async function loadPolls(){
   const feed=document.getElementById('pollFeed');
   if(!window._db){feed.innerHTML='<div class="empty-state"><div class="ei">📡</div><p>Firebase not available.</p></div>';return;}
   try{
-    const snap=await window._db.collection('fs_polls').where('published','==',true).orderBy('createdAt','desc').limit(10).get();
-    const polls=snap.docs.map(d=>({_id:d.id,...d.data()}));
+    const snap=await window._db.collection('fs_polls').where('published','==',true).get();
+    let polls=snap.docs.map(d=>({_id:d.id,...d.data()}));
+    console.log('[Polls] Loaded',polls.length,'published polls from Firestore');
+    polls.sort((a,b)=>{
+      const at=a.createdAt?.toMillis?a.createdAt.toMillis():(a.createdAt?new Date(a.createdAt).getTime():0);
+      const bt=b.createdAt?.toMillis?b.createdAt.toMillis():(b.createdAt?new Date(b.createdAt).getTime():0);
+      return bt-at;
+    });
+    polls=polls.slice(0,10);
     if(!polls.length){feed.innerHTML='<div class="empty-state"><div class="ei">🗳️</div><p>No polls yet. Check back soon!</p></div>';return;}
     feed.innerHTML=polls.map(p=>renderPollCard(p)).join('');
-  }catch(e){feed.innerHTML='<div class="empty-state"><div class="ei">😴</div><p>Could not load polls.</p></div>';}
+  }catch(e){console.error('[Polls] Firestore error:',e.code||'',e.message);feed.innerHTML='<div class="empty-state"><div class="ei">😴</div><p>Could not load polls.</p></div>';}
 }
 
 function renderPollCard(p){
@@ -828,5 +853,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   loadGist(true);
 });
 </script>
+
+<script src="studybuddy.js" defer></script>
 </body>
 </html>
