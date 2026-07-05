@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RCLYVCZY2K');</script>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://bigquamsmedia.com.ng/cookie-policy.html">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cookie Policy | Big Quams Media®</title>
+<meta name="description" content="Cookie Policy for Big Quams Media — what cookies we use and how to manage them.">
+<meta name="robots" content="index,follow">
+<meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
+<link rel="icon" href="https://bigquamsmedia.com.ng/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(!firebase.apps.length) firebase.initializeApp({
+      apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',
+      authDomain:'big-quams-media.firebaseapp.com',
+      projectId:'big-quams-media'
+    });
+    window._db=firebase.firestore();
+  }catch(e){console.warn('Firebase:',e.message);}
+})();
+</script>
+<style>
+
+:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
+body.dark{--surface:#161b27;--surface-alt:#111624;--border:#2a3550;--text-main:#e6edf3;--text-muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Roboto',sans-serif;background:var(--surface-alt);color:var(--text-main);min-height:100vh;overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+img{max-width:100%;display:block}
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.35)}
+.header-bar,.hbar{display:flex;align-items:center;gap:10px;max-width:1300px;margin:0 auto;width:100%;padding:0 16px;height:60px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase;display:block}
+.logo-sub{font-size:.52rem;color:rgba(255,255,255,.42);display:block}
+.hdr-right{display:flex;align-items:center;gap:8px;margin-left:auto}
+.main-nav{position:relative;display:flex;align-items:center;gap:2px}
+.main-nav>a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
+.main-nav>a:hover{color:#fff;background:rgba(255,255,255,.12)}
+.nav-item{position:relative}
+.nav-drop-trigger{display:flex;align-items:center;gap:4px;cursor:pointer;color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px}
+.nav-drop-trigger:hover{color:#fff;background:rgba(255,255,255,.12)}
+.nav-drop-trigger .care{font-size:.6rem;transition:transform .18s;opacity:.7}
+.nav-item:hover .nav-drop-trigger .care,.nav-item:focus-within .nav-drop-trigger .care{transform:rotate(180deg)}
+.nav-drop{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(6px);min-width:230px;background:#0e1a4d;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:8px;box-shadow:0 20px 40px rgba(0,0,0,.35);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s,transform .16s;z-index:500}
+.nav-item:hover .nav-drop,.nav-item:focus-within .nav-drop{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-drop a{display:flex;flex-direction:column;gap:1px;padding:9px 12px;border-radius:8px;color:rgba(255,255,255,.85)!important;font-size:.78rem!important;font-weight:600!important}
+.nav-drop a:hover{background:rgba(255,255,255,.08);color:#fff!important}
+.nav-drop a small{font-weight:400;font-size:.68rem;color:rgba(255,255,255,.45)}
+.hdr-login{color:rgba(255,255,255,.8)!important;font-weight:600!important}
+.hdr-get-started{background:var(--orange);color:#fff!important;font-weight:800!important;padding:9px 18px!important;border-radius:8px!important;box-shadow:0 4px 14px rgba(249,115,22,.4)}
+.hdr-get-started:hover{background:#e56b0f}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.88rem;cursor:pointer}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:860px){.main-nav{display:none}.hamburger{display:flex}}
+.mobile-nav{visibility:hidden;position:fixed;inset:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s ease,visibility 0s linear .3s}
+.mobile-nav.open{visibility:visible;transform:translateX(0);transition:transform .3s ease}
+.mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:60px}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
+.mobile-nav>a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
+.mobile-nav>a:hover{background:rgba(255,255,255,.06);color:#fff}
+.mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
+.mnav-auth{display:flex;gap:8px;padding:14px 20px 4px}
+.mnav-auth a{flex:1;text-align:center;padding:10px;border-radius:9px;font-size:.8rem;font-weight:700}
+.mnav-auth .mnav-login{border:1.5px solid rgba(255,255,255,.2);color:#fff}
+.mnav-auth .mnav-getstarted{background:var(--orange);color:#fff}
+.nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+
+/* LEGAL PAGE LAYOUT */
+.legal-hero{background:linear-gradient(150deg,rgba(8,21,48,.95),rgba(15,32,96,.92),rgba(26,63,168,.88));padding:44px 16px 34px;text-align:center}
+.legal-hero .legal-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:.68rem;font-weight:700;padding:5px 14px;border-radius:30px;margin-bottom:14px}
+.legal-hero h1{font-family:'Montserrat',sans-serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:8px}
+.legal-hero p{font-size:.82rem;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto}
+.legal-updated{font-size:.68rem;color:rgba(255,255,255,.45);margin-top:10px}
+.legal-wrap{max-width:760px;margin:0 auto;padding:30px 18px 50px}
+.legal-toc{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:18px 20px;margin-bottom:28px}
+body.dark .legal-toc{background:#161b27}
+.legal-toc-title{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text-main);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.legal-toc ol{padding-left:18px;display:flex;flex-direction:column;gap:5px}
+.legal-toc a{font-size:.8rem;color:var(--blue-main);font-weight:600}
+.legal-section{margin-bottom:26px;scroll-margin-top:80px}
+.legal-section h2{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text-main);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.legal-section h2 .num{background:var(--blue-light);color:var(--blue-main);width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.78rem;flex-shrink:0}
+body.dark .legal-section h2 .num{background:#1e3060}
+.legal-section p,.legal-section li{font-size:.86rem;color:var(--text-muted);line-height:1.7;margin-bottom:8px}
+.legal-section ul{padding-left:20px;margin-bottom:8px}
+.legal-note{background:var(--surface);border:1.5px dashed var(--border);border-left:4px solid var(--orange);border-radius:10px;padding:14px 16px;margin:10px 0}
+body.dark .legal-note{background:#161b27}
+.legal-note p{margin-bottom:0;color:var(--text-main);font-size:.8rem}
+.legal-contact{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:var(--radius-md);padding:24px 20px;text-align:center;color:#fff;margin-top:34px}
+.legal-contact h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;margin-bottom:8px}
+.legal-contact p{font-size:.82rem;color:rgba(255,255,255,.75);margin-bottom:14px}
+.legal-contact a.btn{display:inline-block;background:var(--orange);color:#fff;padding:10px 20px;border-radius:9px;font-weight:700;font-size:.82rem;margin:4px}
+
+/* FOOTER (shared) */
+footer{background:#0a1228;padding:28px 16px 20px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-newsletter{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 18px;margin-bottom:22px}
+.footer-newsletter h4{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff;margin-bottom:4px}
+.footer-newsletter p{font-size:.72rem;color:rgba(255,255,255,.45);margin-bottom:12px}
+.footer-newsletter-row{display:flex;gap:8px;flex-wrap:wrap}
+.footer-newsletter-row input{flex:1;min-width:160px;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.78rem}
+.footer-newsletter-row input::placeholder{color:rgba(255,255,255,.35)}
+.footer-newsletter-row button{background:var(--orange);color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap}
+.footer-social-row{display:flex;gap:8px;margin-top:10px}
+.footer-social-row a{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.85rem}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-bar hbar">
+    <a href="index.html" class="logo-link">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media">
+      <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <div class="nav-item">
+        <span class="nav-drop-trigger" tabindex="0">Admissions <span class="care">▾</span></span>
+        <div class="nav-drop">
+          <a href="admission-chances.html">Admission Predictor<small>Estimate your chances</small></a>
+          <a href="postutme-prep.html">Post-UTME Prep<small>School-specific guides</small></a>
+          <a href="postutme-calculator.html">Aggregate Calculator<small>Know where you stand</small></a>
+          <a href="subject-combo.html">Subject Combination<small>Find your JAMB combo</small></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-drop-trigger" tabindex="0">Academics <span class="care">▾</span></span>
+        <div class="nav-drop">
+          <a href="cbt.html">CBT Practice<small>515+ JAMB questions</small></a>
+          <a href="practice-test.html">Practice Test<small>Timed mock exams</small></a>
+          <a href="gpa-calculator.html">GPA Calculator<small>5.0 &amp; 4.0 scales</small></a>
+          <a href="elibrary.html">eLibrary<small>100+ free textbooks</small></a>
+          <a href="results.html">Results Checker<small>JAMB, WAEC, NECO</small></a>
+        </div>
+      </div>
+      <a href="javascript:void(0)" onclick="if(window.bqmToggleBuddy){window.bqmToggleBuddy()}else{location.href='explore.html'}">AI Tools</a>
+      <div class="nav-item">
+        <span class="nav-drop-trigger" tabindex="0">CampusConnect <span class="care">▾</span></span>
+        <div class="nav-drop">
+          <a href="community.html">Community Hub<small>Groups &amp; study buddies</small></a>
+          <a href="campus-life.html">Campus Life<small>Gist, polls &amp; games</small></a>
+          <a href="daily.html">Daily Hub<small>Daily challenge + DYK</small></a>
+          <a href="spotlight.html">Student Spotlight<small>Featured student stories</small></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-drop-trigger" tabindex="0">Opportunities <span class="care">▾</span></span>
+        <div class="nav-drop">
+          <a href="scholarship.html">Scholarships<small>50+ live opportunities</small></a>
+          <a href="student-loan.html">Student Loan<small>NELFUND, step by step</small></a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <span class="nav-drop-trigger" tabindex="0">Resources <span class="care">▾</span></span>
+        <div class="nav-drop">
+          <a href="newsroom.html">Newsroom<small>Verified campus news</small></a>
+          <a href="Jamb_Profile_Code.html">JAMB Profile Code<small>Step-by-step help</small></a>
+          <a href="dyk.html">Did You Know<small>Bite-sized facts</small></a>
+          <a href="explore.html">Explore All Tools<small>See everything in one place</small></a>
+        </div>
+      </div>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="javascript:void(0)" onclick="bqmGetStarted('signin')" class="hdr-login">Login</a>
+      <a href="javascript:void(0)" onclick="bqmGetStarted('register')" class="hdr-get-started">Get Started</a>
+    </nav>
+    <div class="hdr-right">
+      <button class="hdr-btn" id="darkBtn" onclick="toggleDark()" aria-label="Switch to dark mode">🌙</button>
+      <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <div class="mnav-header">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
+    </div>
+    <button class="mnav-close" onclick="toggleNav()">✕</button>
+  </div>
+  <div class="mnav-auth">
+    <a href="javascript:void(0)" class="mnav-login" onclick="toggleNav();bqmGetStarted('signin')">Login</a>
+    <a href="javascript:void(0)" class="mnav-getstarted" onclick="toggleNav();bqmGetStarted('register')">Get Started</a>
+  </div>
+  <div class="mnav-lbl">Main</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
+  <div class="mnav-lbl">Legal</div>
+  <a href="terms.html" onclick="toggleNav()">📄 Terms &amp; Conditions</a>
+  <a href="privacy.html" onclick="toggleNav()">🔒 Privacy Policy</a>
+  <a href="cookie-policy.html" onclick="toggleNav()">🍪 Cookie Policy</a>
+  <a href="disclaimer.html" onclick="toggleNav()">⚠️ Disclaimer</a>
+  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
+</nav>
+
+<div class="legal-hero">
+  <div class="legal-badge">🍪 Legal</div>
+  <h1>Cookie Policy</h1>
+  <p>What cookies and similar technologies we use, and how you can manage them.</p>
+  <div class="legal-updated">Last updated: 5 July 2026</div>
+</div>
+
+<div class="legal-wrap">
+  <div class="legal-toc">
+    <div class="legal-toc-title">On this page</div>
+    <ol><li><a href="#what">1. What Are Cookies?</a></li><li><a href="#types">2. Types of Cookies We Use</a></li><li><a href="#third-party">3. Third-Party Cookies</a></li><li><a href="#control">4. Managing Cookies</a></li><li><a href="#changes">5. Changes to This Policy</a></li><li><a href="#contact">6. Contact Us</a></li></ol>
+  </div>
+
+  <div class="legal-section" id="what"><h2><span class="num">1</span>What Are Cookies?</h2>
+<p>Cookies are small text files stored on your device when you visit a website. We also use similar local storage technologies (like your browser's localStorage) for the same purposes described below. Big Quams Media® uses these to make the Platform work properly and to understand how it's used.</p>
+</div><div class="legal-section" id="types"><h2><span class="num">2</span>Types of Cookies We Use</h2>
+<p><strong>Essential / functional:</strong> remembers your dark/light mode preference and basic session information so the site works as expected as you navigate between pages.</p>
+<p><strong>Authentication:</strong> Firebase Authentication uses secure tokens to keep you signed in to your student dashboard between visits.</p>
+<p><strong>Analytics:</strong> Google Analytics cookies help us understand aggregated usage patterns (e.g. which pages are most visited) so we can improve the Platform. This data is not used to personally identify you for marketing purposes.</p>
+</div><div class="legal-section" id="third-party"><h2><span class="num">3</span>Third-Party Cookies</h2>
+<p>Some cookies are set by services we rely on to run the Platform:</p>
+<ul>
+<li><strong>Google Analytics</strong> — usage analytics.</li>
+<li><strong>Google Firebase</strong> — authentication and app functionality.</li>
+<li><strong>Google Sign-In</strong> — if you choose to sign in with your Google account.</li>
+</ul>
+<p>These providers have their own privacy and cookie practices, which we encourage you to review on their respective sites.</p>
+</div><div class="legal-section" id="control"><h2><span class="num">4</span>Managing Cookies</h2>
+<p>Most browsers let you control or delete cookies through their settings. You can typically:</p>
+<ul>
+<li>View what cookies are stored and delete them individually.</li>
+<li>Block third-party cookies while allowing first-party cookies.</li>
+<li>Block all cookies (note: this may prevent sign-in and some features from working correctly on Big Quams Media® and most other websites).</li>
+</ul>
+<p>Because browser steps change over time, we recommend searching "manage cookies" plus the name of your browser (Chrome, Safari, Firefox, Edge) for current instructions.</p>
+</div><div class="legal-section" id="changes"><h2><span class="num">5</span>Changes to This Policy</h2>
+<p>We may update this Cookie Policy as our tools and integrations evolve. Check back here for the latest version — the "Last updated" date above will always reflect the most recent revision.</p>
+</div><div class="legal-section" id="contact"><h2><span class="num">6</span>Contact Us</h2>
+<p>Questions about our use of cookies? Reach us at <a href="mailto:bigquamsmedia@gmail.com">bigquamsmedia@gmail.com</a> or via WhatsApp below.</p>
+</div>
+
+  <div class="legal-contact">
+    <h3>Questions about this policy?</h3>
+    <p>We're happy to explain anything in plain language — reach out any time.</p>
+    <a class="btn" href="https://wa.me/2349049871643" target="_blank" rel="noopener">💬 WhatsApp Us</a>
+    <a class="btn" href="mailto:bigquamsmedia@gmail.com" style="background:rgba(255,255,255,.15)">📧 Email Us</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
+        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Simplifying Campus Life for Every Student.</div>
+      </div>
+    </div>
+    <div class="footer-newsletter">
+      <h4>📬 Never miss an update</h4>
+      <p>Scholarship alerts, JAMB updates and campus news — straight to your inbox, no spam.</p>
+      <form class="footer-newsletter-row" onsubmit="submitNewsletter(event)">
+        <input type="email" id="fn_email" placeholder="yourname@gmail.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div style="font-size:.62rem;color:rgba(255,255,255,.32);margin-top:8px;line-height:1.5">By subscribing, you agree to our <a href="terms.html" style="color:rgba(255,255,255,.55);text-decoration:underline">Terms</a> and <a href="privacy.html" style="color:rgba(255,255,255,.55);text-decoration:underline">Privacy Policy</a>.</div>
+      <div class="footer-social-row">
+        <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
+        <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" aria-label="TikTok">🎵</a>
+        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a><a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a><a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a><a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a><a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a><a href="profile.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👤 My Profile</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Legal</div><div style="display:flex;flex-direction:column;gap:5px"><a href="terms.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📄 Terms &amp; Conditions</a><a href="privacy.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔒 Privacy Policy</a><a href="cookie-policy.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🍪 Cookie Policy</a><a href="disclaimer.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">⚠️ Disclaimer</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Company</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html#about" style="font-size:.72rem;color:rgba(255,255,255,.42)">ℹ️ About</a><a href="index.html#pricing" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Pricing</a><a href="javascript:void(0)" onclick="bqmGetStarted('signin')" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔐 Login</a><a href="javascript:void(0)" onclick="bqmGetStarted('register')" style="font-size:.72rem;color:rgba(255,255,255,.42)">🚀 Get Started</a><a href="index.html#contact" style="font-size:.72rem;color:rgba(255,255,255,.42)">📩 Contact &amp; Support</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a></div></div>
+    </div>
+    <div class="footer-copy" style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="footer-year">2026</span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.
+      <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 14px">
+        <a href="terms.html" style="color:rgba(255,255,255,.4)">Terms &amp; Conditions</a>
+        <a href="privacy.html" style="color:rgba(255,255,255,.4)">Privacy Policy</a>
+        <a href="cookie-policy.html" style="color:rgba(255,255,255,.4)">Cookie Policy</a>
+        <a href="disclaimer.html" style="color:rgba(255,255,255,.4)">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="auth.js" defer></script>
+<script>
+function bqmGetStarted(mode){
+  mode = mode === 'signin' ? 'signin' : 'register';
+  if (typeof window.bqmOpenAuth === 'function'){ window.bqmOpenAuth(mode); return; }
+  window.location.href = 'profile.html';
+}
+function submitNewsletter(e){
+  e.preventDefault();
+  var input=document.getElementById('fn_email');
+  var email=input.value.trim();
+  if(!email)return;
+  try{ if(window._db){ window._db.collection('newsletter_subscribers').add({email:email,ts:new Date().toISOString()}).catch(function(){}); } }catch(err){}
+  input.value='';
+  var btn=e.target.querySelector('button');
+  var original=btn.textContent;
+  btn.textContent='Subscribed ✓';
+  setTimeout(function(){btn.textContent=original;},2500);
+}
+function toggleDark(){document.body.classList.toggle('dark');localStorage.setItem('bqm-theme',document.body.classList.contains('dark')?'dark':'light');document.getElementById('darkBtn').textContent=document.body.classList.contains('dark')?'☀️':'🌙';}
+function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
+document.addEventListener('DOMContentLoaded',function(){
+  (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}})();
+  var yr=document.getElementById('footer-year'); if(yr) yr.textContent=new Date().getFullYear();
+});
+</script>
+<script src="studybuddy.js" defer></script>
+
+</body>
+</html>
