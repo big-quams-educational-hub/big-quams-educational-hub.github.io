@@ -122,36 +122,6 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 
 
 
-
-/* ══════════════ PHASE 1.6 — PLATFORM-WIDE NAV/FOOTER CONSISTENCY ══════════════ */
-.header-bar,.hbar{display:flex;align-items:center;gap:10px;max-width:1300px;margin:0 auto;width:100%;padding:0 16px;height:100%}
-.hdr-right{display:flex;align-items:center;gap:8px;margin-left:auto}
-.main-nav{position:relative}
-.nav-item{position:relative}
-.nav-drop-trigger{display:flex;align-items:center;gap:4px;cursor:pointer}
-.nav-drop-trigger .care{font-size:.6rem;transition:transform .18s;opacity:.7}
-.nav-item:hover .nav-drop-trigger .care,.nav-item:focus-within .nav-drop-trigger .care{transform:rotate(180deg)}
-.nav-drop{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(6px);min-width:230px;background:#0e1a4d;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:8px;box-shadow:0 20px 40px rgba(0,0,0,.35);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s,transform .16s;z-index:500}
-.nav-item:hover .nav-drop,.nav-item:focus-within .nav-drop{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.nav-drop a{display:flex;flex-direction:column;gap:1px;padding:9px 12px;border-radius:8px;color:rgba(255,255,255,.85)!important;font-size:.78rem!important;font-weight:600!important}
-.nav-drop a:hover{background:rgba(255,255,255,.08);color:#fff!important}
-.nav-drop a small{font-weight:400;font-size:.68rem;color:rgba(255,255,255,.45)}
-.hdr-login{color:rgba(255,255,255,.8)!important;font-weight:600!important}
-.hdr-get-started{background:#f97316;color:#fff!important;font-weight:800!important;padding:9px 18px!important;border-radius:8px!important;box-shadow:0 4px 14px rgba(249,115,22,.4)}
-.hdr-get-started:hover{background:#e56b0f}
-.mnav-auth{display:flex;gap:8px;padding:14px 20px 4px}
-.mnav-auth a{flex:1;text-align:center;padding:10px;border-radius:9px;font-size:.8rem;font-weight:700}
-.mnav-auth .mnav-login{border:1.5px solid rgba(255,255,255,.2);color:#fff}
-.mnav-auth .mnav-getstarted{background:#f97316;color:#fff}
-.footer-newsletter{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 18px;margin-bottom:22px}
-.footer-newsletter h4{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff;margin-bottom:4px}
-.footer-newsletter p{font-size:.72rem;color:rgba(255,255,255,.45);margin-bottom:12px}
-.footer-newsletter-row{display:flex;gap:8px;flex-wrap:wrap}
-.footer-newsletter-row input{flex:1;min-width:160px;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.78rem}
-.footer-newsletter-row input::placeholder{color:rgba(255,255,255,.35)}
-.footer-newsletter-row button{background:#f97316;color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap}
-.footer-social-row{display:flex;gap:8px;margin-top:10px}
-.footer-social-row a{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.85rem}
 </style>
 <script type="module">
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
@@ -179,118 +149,50 @@ window._fsLoadJson=async(col,jsonFile)=>{
 </head>
 <body>
 <header>
-  <div class="header-bar hbar">
+  <div class="header-bar">
     <a href="index.html" class="logo-link">
-      <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <div class="nav-item">
-        <span class="nav-drop-trigger" tabindex="0">Admissions <span class="care">▾</span></span>
-        <div class="nav-drop">
-          <a href="admission-chances.html">Admission Predictor<small>Estimate your chances</small></a>
-          <a href="postutme-prep.html">Post-UTME Prep<small>School-specific guides</small></a>
-          <a href="postutme-calculator.html">Aggregate Calculator<small>Know where you stand</small></a>
-          <a href="subject-combo.html">Subject Combination<small>Find your JAMB combo</small></a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <span class="nav-drop-trigger" tabindex="0">Academics <span class="care">▾</span></span>
-        <div class="nav-drop">
-          <a href="cbt.html">CBT Practice<small>515+ JAMB questions</small></a>
-          <a href="practice-test.html">Practice Test<small>Timed mock exams</small></a>
-          <a href="gpa-calculator.html">GPA Calculator<small>5.0 &amp; 4.0 scales</small></a>
-          <a href="elibrary.html">eLibrary<small>100+ free textbooks</small></a>
-          <a href="results.html">Results Checker<small>JAMB, WAEC, NECO</small></a>
-        </div>
-      </div>
-      <a href="javascript:void(0)" onclick="if(window.bqmToggleBuddy){window.bqmToggleBuddy()}else{location.href='explore.html'}">AI Tools</a>
-      <div class="nav-item">
-        <span class="nav-drop-trigger" tabindex="0">CampusConnect <span class="care">▾</span></span>
-        <div class="nav-drop">
-          <a href="community.html">Community Hub<small>Groups &amp; study buddies</small></a>
-          <a href="campus-life.html">Campus Life<small>Gist, polls &amp; games</small></a>
-          <a href="daily.html">Daily Hub<small>Daily challenge + DYK</small></a>
-          <a href="spotlight.html">Student Spotlight<small>Featured student stories</small></a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <span class="nav-drop-trigger" tabindex="0">Opportunities <span class="care">▾</span></span>
-        <div class="nav-drop">
-          <a href="scholarship.html">Scholarships<small>50+ live opportunities</small></a>
-          <a href="student-loan.html">Student Loan<small>NELFUND, step by step</small></a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <span class="nav-drop-trigger" tabindex="0">Resources <span class="care">▾</span></span>
-        <div class="nav-drop">
-          <a href="newsroom.html">Newsroom<small>Verified campus news</small></a>
-          <a href="Jamb_Profile_Code.html">JAMB Profile Code<small>Step-by-step help</small></a>
-          <a href="dyk.html">Did You Know<small>Bite-sized facts</small></a>
-          <a href="explore.html">Explore All Tools<small>See everything in one place</small></a>
-        </div>
-      </div>
-      <a href="index.html#pricing">Pricing</a>
-      <a href="javascript:void(0)" onclick="bqmGetStarted('signin')" class="hdr-login">Login</a>
-      <a href="javascript:void(0)" onclick="bqmGetStarted('register')" class="hdr-get-started">Get Started</a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a><a href="scholarship.html">Scholarships</a><a href="index.html#contact" class="nav-cta">💬 Contact</a>
     </nav>
-    <div class="hdr-right">
-      <button class="hdr-btn" id="darkBtn" onclick="toggleDark()" aria-label="Switch to dark mode">🌙</button>
-      <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu"><span></span><span></span><span></span></button>
-    </div>
+    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
 <nav class="mobile-nav" id="mobileNav">
-  <div class="mnav-header">
+<div class="mnav-header">
     <div style="display:flex;align-items:center;gap:10px">
-      <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
       <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
     </div>
     <button class="mnav-close" onclick="toggleNav()">✕</button>
   </div>
-
-  <div class="mnav-auth">
-    <a href="javascript:void(0)" class="mnav-login" onclick="toggleNav();bqmGetStarted('signin')">Login</a>
-    <a href="javascript:void(0)" class="mnav-getstarted" onclick="toggleNav();bqmGetStarted('register')">Get Started</a>
-  </div>
-
   <div class="mnav-lbl">Main</div>
   <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
   <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
-  <a href="javascript:void(0)" onclick="toggleNav();if(window.bqmToggleBuddy)window.bqmToggleBuddy()">🤖 AI Tools (Study Buddy)</a>
-  <a href="index.html#pricing" onclick="toggleNav()">💳 Pricing</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
   <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
-
-  <div class="mnav-lbl">Admissions</div>
-  <a href="admission-chances.html" onclick="toggleNav()">🎯 Admission Predictor</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
-  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
-
-  <div class="mnav-lbl">Academics</div>
+  <div class="mnav-lbl">Exam Tools</div>
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
   <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
+  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
   <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
-  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
   <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
   <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
-
-  <div class="mnav-lbl">CampusConnect</div>
-  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
-  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
-  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
-  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
-
-  <div class="mnav-lbl">Opportunities</div>
+  <div class="mnav-lbl">Resources</div>
+  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
   <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
   <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
-
-  <div class="mnav-lbl">Resources</div>
-  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
   <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
-
+  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 
@@ -378,45 +280,17 @@ window._fsLoadJson=async(col,jsonFile)=>{
 
 <footer>
   <div class="footer-inner">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-      <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
-      <div>
-        <div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
-        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Simplifying Campus Life for Every Student.</div>
-      </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
     </div>
-
-    <div class="footer-newsletter">
-      <h4>📬 Never miss an update</h4>
-      <p>Scholarship alerts, JAMB updates and campus news — straight to your inbox, no spam.</p>
-      <form class="footer-newsletter-row" onsubmit="submitNewsletter(event)">
-        <input type="email" id="fn_email" placeholder="yourname@gmail.com" required>
-        <button type="submit">Subscribe</button>
-      </form>
-      <div style="font-size:.62rem;color:rgba(255,255,255,.32);margin-top:8px;line-height:1.5">By subscribing, you agree to our <a href="terms.html" style="color:rgba(255,255,255,.55);text-decoration:underline">Terms</a> and <a href="privacy.html" style="color:rgba(255,255,255,.55);text-decoration:underline">Privacy Policy</a>.</div>
-      <div class="footer-social-row">
-        <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
-        <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" aria-label="TikTok">🎵</a>
-        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
-      </div>
-    </div>
-
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
       <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a><a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a><a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a><a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a><a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a><a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Academics</div><div style="display:flex;flex-direction:column;gap:5px"><a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a><a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a><a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a><a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a><a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a><a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div><div style="display:flex;flex-direction:column;gap:5px"><a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a><a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a><a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a><a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a><a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a><a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a></div></div>
       <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div><div style="display:flex;flex-direction:column;gap:5px"><a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a><a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a><a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a><a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a><a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a><a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Company</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html#about" style="font-size:.72rem;color:rgba(255,255,255,.42)">ℹ️ About</a><a href="index.html#pricing" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Pricing</a><a href="javascript:void(0)" onclick="bqmGetStarted('signin')" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔐 Login</a><a href="javascript:void(0)" onclick="bqmGetStarted('register')" style="font-size:.72rem;color:rgba(255,255,255,.42)">🚀 Get Started</a><a href="index.html#contact" style="font-size:.72rem;color:rgba(255,255,255,.42)">📩 Contact &amp; Support</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
+      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
     </div>
-
-    <div class="footer-copy" style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="footer-year">2026</span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.
-      <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 14px">
-        <a href="terms.html" style="color:rgba(255,255,255,.4)">Terms &amp; Conditions</a>
-        <a href="privacy.html" style="color:rgba(255,255,255,.4)">Privacy Policy</a>
-        <a href="cookie-policy.html" style="color:rgba(255,255,255,.4)">Cookie Policy</a>
-        <a href="disclaimer.html" style="color:rgba(255,255,255,.4)">Disclaimer</a>
-      </div>
-    </div>
+    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
   </div>
 </footer>
 <script>
@@ -453,30 +327,5 @@ loadUpdates();
 </script>
 
 <script src="studybuddy.js" defer></script>
-<script src="auth.js" defer></script>
-<script>
-function bqmGetStarted(mode){
-  mode = mode === 'signin' ? 'signin' : 'register';
-  if (typeof window.bqmOpenAuth === 'function'){ window.bqmOpenAuth(mode); return; }
-  if (typeof window.showAuth === 'function'){ window.showAuth(); return; }
-  window.location.href = 'profile.html';
-}
-function submitNewsletter(e){
-  e.preventDefault();
-  var input=document.getElementById('fn_email');
-  var email=input.value.trim();
-  if(!email)return;
-  try{
-    if(window._db){
-      window._db.collection('newsletter_subscribers').add({email:email,ts:new Date().toISOString()}).catch(function(){});
-    }
-  }catch(err){console.warn('Newsletter save skipped:',err.message);}
-  input.value='';
-  var btn=e.target.querySelector('button');
-  var original=btn.textContent;
-  btn.textContent='Subscribed ✓';
-  setTimeout(function(){btn.textContent=original;},2500);
-}
-</script>
 </body>
 </html>
