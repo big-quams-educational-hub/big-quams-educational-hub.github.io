@@ -479,111 +479,6 @@ body.dark .tools-bar::after{background:linear-gradient(to left,#161b27,transpare
 .tool-tab:hover,.tool-tab.active{color:var(--blue-main,#1a3fa8);border-bottom-color:var(--blue-main,#1a3fa8)}
 @media(max-width:480px){.tool-tab{padding:11px 12px;font-size:.68rem}}
 
-/* ══════════════════ PHASE 1 REDESIGN ADDITIONS ══════════════════ */
-
-/* Nav dropdowns */
-.main-nav{position:relative}
-.nav-item{position:relative}
-.nav-drop-trigger{display:flex;align-items:center;gap:4px;cursor:pointer}
-.nav-drop-trigger .care{font-size:.6rem;transition:transform .18s;opacity:.7}
-.nav-item:hover .nav-drop-trigger .care,.nav-item:focus-within .nav-drop-trigger .care{transform:rotate(180deg)}
-.nav-drop{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(6px);min-width:230px;background:#0e1a4d;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:8px;box-shadow:0 20px 40px rgba(0,0,0,.35);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s,transform .16s;z-index:50}
-.nav-item:hover .nav-drop,.nav-item:focus-within .nav-drop{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.nav-drop a{display:flex;flex-direction:column;gap:1px;padding:9px 12px;border-radius:8px;color:rgba(255,255,255,.85)!important;font-size:.78rem!important;font-weight:600!important}
-.nav-drop a:hover{background:rgba(255,255,255,.08);color:#fff!important}
-.nav-drop a small{font-weight:400;font-size:.68rem;color:rgba(255,255,255,.45)}
-.hdr-login{color:rgba(255,255,255,.8)!important;font-weight:600!important}
-.hdr-get-started{background:#f97316;color:#fff!important;font-weight:800!important;padding:9px 18px!important;border-radius:8px!important;box-shadow:0 4px 14px rgba(249,115,22,.4)}
-.hdr-get-started:hover{background:#e56b0f;transform:translateY(-1px)}
-header.scrolled{box-shadow:0 4px 26px rgba(12,31,110,.55)}
-
-/* Mobile nav auth row */
-.mnav-auth{display:flex;gap:8px;padding:14px 20px 4px}
-.mnav-auth a{flex:1;text-align:center;padding:10px;border-radius:9px;font-size:.8rem;font-weight:700}
-.mnav-auth .mnav-login{border:1.5px solid rgba(255,255,255,.2);color:#fff}
-.mnav-auth .mnav-getstarted{background:#f97316;color:#fff}
-
-/* Trust bar */
-.trust-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:22px 16px}
-body.dark .trust-bar{background:#161b27}
-.trust-bar-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px}
-.trust-pill{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;color:var(--text-muted)}
-.trust-pill .ic{font-size:1rem}
-
-/* Flagship features */
-.flagship-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:8px}
-@media(min-width:700px){.flagship-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1050px){.flagship-grid{grid-template-columns:repeat(5,1fr)}}
-.flagship-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:22px 18px;display:flex;flex-direction:column;gap:10px;transition:all .22s;text-decoration:none}
-body.dark .flagship-card{background:#161b27;border-color:var(--border)}
-.flagship-card:hover{transform:translateY(-5px);border-color:var(--fc,#f97316);box-shadow:0 16px 30px rgba(12,31,110,.12)}
-.flagship-icon{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;background:var(--fc-bg,#fff7ed)}
-.flagship-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.92rem;color:var(--text-main)}
-.flagship-points{list-style:none;display:flex;flex-direction:column;gap:4px;margin:2px 0 4px}
-.flagship-points li{font-size:.75rem;color:var(--text-muted);padding-left:14px;position:relative}
-.flagship-points li::before{content:'•';position:absolute;left:2px;color:var(--fc,#f97316);font-weight:800}
-.flagship-more{margin-top:auto;font-size:.76rem;font-weight:800;color:var(--fc,#f97316);display:flex;align-items:center;gap:5px}
-
-/* Student journey */
-.journey-track{display:flex;flex-direction:column;gap:0;margin-top:24px;position:relative}
-@media(min-width:900px){.journey-track{flex-direction:row;align-items:stretch}}
-.journey-step{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:20px 18px;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);position:relative}
-body.dark .journey-step{background:#161b27;border-color:var(--border)}
-.journey-icon{width:38px;height:38px;border-radius:10px;background:var(--blue-light,#dde9ff);display:flex;align-items:center;justify-content:center;font-size:1.05rem}
-body.dark .journey-icon{background:#1e3060}
-.journey-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.86rem;color:var(--text-main)}
-.journey-desc{font-size:.76rem;color:var(--text-muted);line-height:1.55}
-.journey-arrow{display:none;align-items:center;justify-content:center;color:var(--text-faint);font-size:1.1rem;padding:0 4px}
-@media(min-width:900px){.journey-arrow{display:flex}}
-.journey-arrow.mob{display:flex;justify-content:center;padding:4px 0;color:var(--text-faint)}
-@media(min-width:900px){.journey-arrow.mob{display:none}}
-
-/* Why choose / value section */
-.value-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:24px}
-@media(min-width:640px){.value-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:960px){.value-grid{grid-template-columns:repeat(3,1fr)}}
-.value-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:20px}
-body.dark .value-card{background:#161b27;border-color:var(--border)}
-.value-check{width:30px;height:30px;border-radius:9px;background:#dcfce7;color:#15803d;display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:10px}
-body.dark .value-check{background:#0f2c1c}
-.value-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.84rem;color:var(--text-main);margin-bottom:5px}
-.value-desc{font-size:.78rem;color:var(--text-muted);line-height:1.55}
-
-/* Pricing / free-forever strip */
-.pricing-strip{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:var(--radius-lg);padding:34px 26px;text-align:center;color:#fff;margin-top:8px}
-.pricing-strip h3{font-family:'Montserrat',sans-serif;font-size:1.15rem;font-weight:800;margin-bottom:8px}
-.pricing-strip p{font-size:.85rem;color:rgba(255,255,255,.75);max-width:520px;margin:0 auto 18px;line-height:1.6}
-.pricing-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:6px 16px;border-radius:30px;font-size:.72rem;font-weight:700;margin-bottom:14px}
-
-/* Newsletter (footer) */
-.footer-newsletter{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px 18px;margin-bottom:22px}
-.footer-newsletter h4{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff;margin-bottom:4px}
-.footer-newsletter p{font-size:.72rem;color:rgba(255,255,255,.45);margin-bottom:12px}
-.footer-newsletter-row{display:flex;gap:8px;flex-wrap:wrap}
-.footer-newsletter-row input{flex:1;min-width:160px;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:.78rem}
-.footer-newsletter-row input::placeholder{color:rgba(255,255,255,.35)}
-.footer-newsletter-row button{background:#f97316;color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap}
-.footer-social-row{display:flex;gap:8px;margin-top:10px}
-.footer-social-row a{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:.85rem}
-
-/* CAMPUS BRIEF (Phase 1.7 — UI structure only, reuses existing fs_news data) */
-.brief-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin:18px 0 20px;scrollbar-width:none}
-.brief-tabs::-webkit-scrollbar{display:none}
-.brief-tab{flex-shrink:0;padding:8px 16px;border-radius:30px;border:1.5px solid var(--border);background:var(--surface);color:var(--text-muted);font-size:.76rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:.18s}
-body.dark .brief-tab{background:#161b27}
-.brief-tab:hover{border-color:#f97316}
-.brief-tab.active{background:#1a3fa8;border-color:#1a3fa8;color:#fff}
-.brief-featured{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:18px;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md,14px);overflow:hidden;text-decoration:none}
-body.dark .brief-featured{background:#161b27}
-@media(min-width:760px){.brief-featured{grid-template-columns:1.1fr 1fr}}
-.brief-featured-img{width:100%;height:220px;object-fit:cover;background:#dde9ff}
-@media(min-width:760px){.brief-featured-img{height:100%;min-height:280px}}
-.brief-featured-body{padding:20px 22px;display:flex;flex-direction:column;justify-content:center}
-.brief-featured-tag{display:inline-block;background:#fff7ed;color:#f97316;font-size:.68rem;font-weight:800;padding:4px 12px;border-radius:20px;margin-bottom:10px;width:fit-content}
-.brief-featured-title{font-family:'Montserrat',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text-main);margin-bottom:8px;line-height:1.35}
-.brief-featured-excerpt{font-size:.84rem;color:var(--text-muted);line-height:1.6;margin-bottom:12px}
-.brief-featured-meta{font-size:.72rem;color:var(--text-faint,#94a3b8);font-weight:600}
-
 </style>
 </head>
 <body>
@@ -606,55 +501,12 @@ body.dark .brief-featured{background:#161b27}
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
     <nav class="main-nav" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <div class="nav-item">
-        <span class="nav-drop-trigger" tabindex="0">Admissions <span class="care">▾</span></span>
-        <div class="nav-drop">
-          <a href="admission-chances.html">Admission Predictor<small>Estimate your chances</small></a>
-          <a href="postutme-prep.html">Post-UTME Prep<small>School-specific guides</small></a>
-          <a href="postutme-calculator.html">Aggregate Calculator<small>Know where you stand</small></a>
-          <a href="subject-combo.html">Subject Combination<small>Find your JAMB combo</small></a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <span class="nav-drop-trigger" tabindex="0">Academics <span class="care">▾</span></span>
-        <div class="nav-drop">
-          <a href="cbt.html">CBT Practice<small>515+ JAMB questions</small></a>
-          <a href="practice-test.html">Practice Test<small>Timed mock exams</small></a>
-          <a href="gpa-calculator.html">GPA Calculator<small>5.0 &amp; 4.0 scales</small></a>
-          <a href="elibrary.html">eLibrary<small>100+ free textbooks</small></a>
-          <a href="results.html">Results Checker<small>JAMB, WAEC, NECO</small></a>
-        </div>
-      </div>
-      <a href="javascript:void(0)" onclick="if(window.bqmToggleBuddy){window.bqmToggleBuddy()}else{location.href='explore.html'}">AI Tools</a>
-      <div class="nav-item">
-        <span class="nav-drop-trigger" tabindex="0">CampusConnect <span class="care">▾</span></span>
-        <div class="nav-drop">
-          <a href="community.html">Community Hub<small>Groups &amp; study buddies</small></a>
-          <a href="campus-life.html">Campus Life<small>Gist, polls &amp; games</small></a>
-          <a href="daily.html">Daily Hub<small>Daily challenge + DYK</small></a>
-          <a href="spotlight.html">Student Spotlight<small>Featured student stories</small></a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <span class="nav-drop-trigger" tabindex="0">Opportunities <span class="care">▾</span></span>
-        <div class="nav-drop">
-          <a href="scholarship.html">Scholarships<small>50+ live opportunities</small></a>
-          <a href="student-loan.html">Student Loan<small>NELFUND, step by step</small></a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <span class="nav-drop-trigger" tabindex="0">Resources <span class="care">▾</span></span>
-        <div class="nav-drop">
-          <a href="newsroom.html">Newsroom<small>Verified campus news</small></a>
-          <a href="Jamb_Profile_Code.html">JAMB Profile Code<small>Step-by-step help</small></a>
-          <a href="dyk.html">Did You Know<small>Bite-sized facts</small></a>
-          <a href="explore.html">Explore All Tools<small>See everything in one place</small></a>
-        </div>
-      </div>
-      <a href="#pricing">Pricing</a>
-      <a href="profile.html" class="hdr-login">Login</a>
-      <a href="profile.html" class="hdr-get-started">Get Started</a>
+      <a href="newsroom.html">Newsroom</a>
+      <a href="explore.html">Explore</a>
+      <a href="cbt.html">CBT</a>
+      <a href="scholarship.html">Scholarships</a>
+      <a href="elibrary.html">eLibrary</a>
+      <a href="#contact" class="nav-cta">💬 Contact</a>
     </nav>
     <div class="hdr-right">
       <button class="hdr-btn" id="darkToggle" onclick="toggleDarkMode()" aria-label="Switch to dark mode">🌙</button>
@@ -678,45 +530,31 @@ body.dark .brief-featured{background:#161b27}
     <button class="mnav-close" onclick="toggleNav()" aria-label="Close menu">✕</button>
   </div>
 
-  <div class="mnav-auth">
-    <a href="profile.html" class="mnav-login" onclick="toggleNav()">Login</a>
-    <a href="profile.html" class="mnav-getstarted" onclick="toggleNav()">Get Started</a>
-  </div>
-
   <div class="mnav-section">Main</div>
   <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
   <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
-  <a href="javascript:void(0)" onclick="toggleNav();if(window.bqmToggleBuddy)window.bqmToggleBuddy()">🤖 AI Tools (Study Buddy)</a>
-  <a href="#pricing" onclick="toggleNav()">💳 Pricing</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
   <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
 
-  <div class="mnav-section">Admissions</div>
-  <a href="admission-chances.html" onclick="toggleNav()">🎯 Admission Predictor</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
-  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
-
-  <div class="mnav-section">Academics</div>
+  <div class="mnav-section">Exam Tools</div>
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
   <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
+  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
   <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
-  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
   <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
   <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
 
-  <div class="mnav-section">CampusConnect</div>
-  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
-  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
-  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
-  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
-
-  <div class="mnav-section">Opportunities</div>
+  <div class="mnav-section">Resources</div>
+  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
   <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
   <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
-
-  <div class="mnav-section">Resources</div>
-  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
   <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
 
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
@@ -738,8 +576,8 @@ body.dark .brief-featured{background:#161b27}
   <div class="hero-blob2"></div>
   <div class="hero-inner">
     <div class="hero-badge"><span class="hero-badge-dot"></span>Nigeria's Trusted Student Platform · Since 2023</div>
-    <h1>Simplifying Campus Life <span>for Every Student.</span></h1>
-    <p class="hero-desc">Big Quams Media® brings together admission guidance, AI-powered learning, CBT practice, scholarships, campus communities, career opportunities and student tools into one platform built for Nigerian students.</p>
+    <h1>Everything a Nigerian Student <span>Needs in One Place</span></h1>
+    <p class="hero-desc">Campus news, scholarship alerts, CBT practice, Post-UTME prep, free textbooks and student tools — all in one place, completely free for Nigerian undergraduates.</p>
 
     <!-- TRUST BADGES -->
     <div class="hero-trust">
@@ -766,9 +604,8 @@ body.dark .brief-featured{background:#161b27}
     </div>
 
     <div class="hero-ctas" style="margin-top:24px">
-      <a href="profile.html" class="btn-orange">🚀 Get Started Free</a>
-      <a href="#flagship-features" class="btn-ghost">Explore Features →</a>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa">💬 WhatsApp</a>
+      <a href="explore.html" class="btn-orange">🗂 Explore All Tools</a>
+      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa">💬 Chat on WhatsApp</a>
     </div>
 
     <!-- STATS -->
@@ -780,18 +617,6 @@ body.dark .brief-featured{background:#161b27}
     </div>
   </div>
 </section>
-
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-bar-inner">
-    <div class="trust-pill"><span class="ic">🎯</span>Admission Resources</div>
-    <div class="trust-pill"><span class="ic">🤖</span>AI Study Assistant</div>
-    <div class="trust-pill"><span class="ic">👨🏽‍💻</span>CBT Practice</div>
-    <div class="trust-pill"><span class="ic">💰</span>Scholarships</div>
-    <div class="trust-pill"><span class="ic">🤝</span>CampusConnect</div>
-    <div class="trust-pill"><span class="ic">🧰</span>Student Tools</div>
-  </div>
-</div>
 
 <!-- VISUAL HERO STRIP -->
 <section class="visual-hero">
@@ -854,72 +679,11 @@ body.dark .brief-featured{background:#161b27}
   </div>
 </div>
 
-<!-- FLAGSHIP FEATURES -->
-<section class="sec" id="flagship-features">
-  <div class="wrap">
-    <div class="sec-head">
-      <div><div class="sec-label">The Platform</div><h2 class="sec-title">Five Ways We <span>Have Your Back</span></h2></div>
-    </div>
-    <div class="flagship-grid">
-      <a href="javascript:void(0)" onclick="if(window.bqmToggleBuddy){window.bqmToggleBuddy()}else{location.href='daily.html'}" class="flagship-card" style="--fc:#1a3fa8;--fc-bg:#dde9ff">
-        <span class="flagship-icon">🤖</span>
-        <div class="flagship-name">AI Student Assistant</div>
-        <ul class="flagship-points">
-          <li>Ask academic questions anytime</li>
-          <li>Personalised study planner</li>
-          <li>Reading timetable</li>
-          <li>Assignment helper</li>
-        </ul>
-        <span class="flagship-more">Chat now →</span>
-      </a>
-      <a href="cbt.html" class="flagship-card" style="--fc:#b91c1c;--fc-bg:#fee2e2">
-        <span class="flagship-icon">👨🏽‍💻</span>
-        <div class="flagship-name">CBT Practice</div>
-        <ul class="flagship-points">
-          <li>JAMB past questions</li>
-          <li>Post-UTME mock exams</li>
-          <li>Performance tracking</li>
-        </ul>
-        <span class="flagship-more">Learn more →</span>
-      </a>
-      <a href="admission-chances.html" class="flagship-card" style="--fc:#0369a1;--fc-bg:#e0f2fe">
-        <span class="flagship-icon">🎯</span>
-        <div class="flagship-name">Admission Predictor</div>
-        <ul class="flagship-points">
-          <li>Estimate your admission chances</li>
-          <li>Suggests alternative schools</li>
-        </ul>
-        <span class="flagship-more">Learn more →</span>
-      </a>
-      <a href="scholarship.html" class="flagship-card" style="--fc:#15803d;--fc-bg:#dcfce7">
-        <span class="flagship-icon">💰</span>
-        <div class="flagship-name">Scholarship Hub</div>
-        <ul class="flagship-points">
-          <li>Personalised opportunities</li>
-          <li>NELFUND guidance</li>
-          <li>Internship alerts</li>
-        </ul>
-        <span class="flagship-more">Learn more →</span>
-      </a>
-      <a href="community.html" class="flagship-card" style="--fc:#9d174d;--fc-bg:#fce7f3">
-        <span class="flagship-icon">🤝</span>
-        <div class="flagship-name">CampusConnect</div>
-        <ul class="flagship-points">
-          <li>Student communities</li>
-          <li>Study groups &amp; events</li>
-          <li>Campus marketplace</li>
-        </ul>
-        <span class="flagship-more">Learn more →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- QUICK TOOLS GRID -->
-<section class="sec sec-alt" id="quick-tools">
+<section class="sec" id="quick-tools">
   <div class="wrap">
     <div class="sec-head">
-      <div><div class="sec-label">All Your Tools</div><h2 class="sec-title">Explore Every <span>Tool</span></h2></div>
+      <div><div class="sec-label">All Your Tools</div><h2 class="sec-title">Explore Student <span>Tools</span></h2></div>
       <a href="explore.html" class="sec-link">See All →</a>
     </div>
     <div class="qt-grid">
@@ -987,56 +751,13 @@ body.dark .brief-featured{background:#161b27}
   </div>
 </section>
 
-<!-- STUDENT JOURNEY -->
-<section class="sec" id="student-journey">
-  <div class="wrap">
-    <div class="sec-head" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
-      <div class="sec-label">Every Stage, Covered</div>
-      <h2 class="sec-title">Your Journey With <span>Big Quams Media®</span></h2>
-    </div>
-    <div class="journey-track">
-      <div class="journey-step">
-        <span class="journey-icon">🎯</span>
-        <div class="journey-title">Admission</div>
-        <div class="journey-desc">Predict your chances, pick the right subject combo and follow verified Post-UTME guides.</div>
-      </div>
-      <div class="journey-arrow mob">↓</div><div class="journey-arrow">→</div>
-      <div class="journey-step">
-        <span class="journey-icon">📖</span>
-        <div class="journey-title">Preparation</div>
-        <div class="journey-desc">Practice with 515+ CBT questions and get instant help from your AI study assistant.</div>
-      </div>
-      <div class="journey-arrow mob">↓</div><div class="journey-arrow">→</div>
-      <div class="journey-step">
-        <span class="journey-icon">🤝</span>
-        <div class="journey-title">Campus Life</div>
-        <div class="journey-desc">Join CampusConnect for communities, study groups, events and daily campus gist.</div>
-      </div>
-      <div class="journey-arrow mob">↓</div><div class="journey-arrow">→</div>
-      <div class="journey-step">
-        <span class="journey-icon">🎓</span>
-        <div class="journey-title">Academic Success</div>
-        <div class="journey-desc">Track your GPA, access the free eLibrary and check results the moment they're out.</div>
-      </div>
-      <div class="journey-arrow mob">↓</div><div class="journey-arrow">→</div>
-      <div class="journey-step">
-        <span class="journey-icon">💼</span>
-        <div class="journey-title">Career Development</div>
-        <div class="journey-desc">Discover scholarships, NELFUND support and internship opportunities as you grow.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CAMPUS BRIEF -->
+<!-- NEWS -->
 <section class="sec sec-alt" id="news-updates">
   <div class="wrap">
     <div class="sec-head">
-      <div><div class="sec-label">Campus Brief</div><h2 class="sec-title">Campus <span>Brief</span></h2></div>
+      <div><div class="sec-label">Latest Updates</div><h2 class="sec-title">Campus <span>News</span></h2></div>
       <a href="newsroom.html" class="sec-link">View All →</a>
     </div>
-    <div class="brief-tabs" id="briefTabs"></div>
-    <div id="briefFeatured"></div>
     <div class="news-grid" id="newsGrid"><div class="skeleton-grid">
       <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
       <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
@@ -1085,54 +806,6 @@ body.dark .brief-featured{background:#161b27}
         <div class="testi-text">"The CBT practice questions are exactly like the real JAMB exam. I practised every day and improved my score from 187 to 241. This platform is a must!"</div>
         <div class="testi-author"><div class="testi-avatar">E</div><div><div class="testi-name">Emmanuel O.</div><div class="testi-school">UNILAG Applicant</div></div></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY CHOOSE -->
-<section class="sec" id="why-choose">
-  <div class="wrap">
-    <div class="sec-head" style="justify-content:center;text-align:center;flex-direction:column;align-items:center">
-      <div class="sec-label">Why Big Quams Media®</div>
-      <h2 class="sec-title">One Account. <span>One Student Ecosystem.</span></h2>
-    </div>
-    <div class="value-grid">
-      <div class="value-card">
-        <div class="value-check">✓</div>
-        <div class="value-title">One Account, One Dashboard</div>
-        <div class="value-desc">No more juggling five different apps and WhatsApp groups — admissions, academics and community live in one place.</div>
-      </div>
-      <div class="value-card">
-        <div class="value-check">✓</div>
-        <div class="value-title">AI Assistance, Built In</div>
-        <div class="value-desc">Your Study Buddy is always a tap away, ready to explain a topic, plan your week or answer a JAMB question.</div>
-      </div>
-      <div class="value-card">
-        <div class="value-check">✓</div>
-        <div class="value-title">Verified Information</div>
-        <div class="value-desc">Admission cut-offs, NELFUND steps and scholarship deadlines are checked before they reach you — no fake news.</div>
-      </div>
-      <div class="value-card">
-        <div class="value-check">✓</div>
-        <div class="value-title">Built for Nigerian Students</div>
-        <div class="value-desc">From JAMB subject combos to school-specific Post-UTME guides, every tool is shaped around the Nigerian system.</div>
-      </div>
-      <div class="value-card">
-        <div class="value-check">✓</div>
-        <div class="value-title">A Community, Not Just a Website</div>
-        <div class="value-desc">CampusConnect brings you study groups, events and student spotlights — people going through it with you.</div>
-      </div>
-      <div class="value-card">
-        <div class="value-check">✓</div>
-        <div class="value-title">Free, No Catch</div>
-        <div class="value-desc">Every core tool is free to use. We believe access to good information shouldn't depend on ability to pay.</div>
-      </div>
-    </div>
-    <div class="pricing-strip" id="pricing">
-      <div class="pricing-tag">💳 Pricing</div>
-      <h3>Free for Every Nigerian Student</h3>
-      <p>CBT practice, the AI study assistant, scholarships, eLibrary, CampusConnect and every calculator on this platform are completely free — today and going forward.</p>
-      <a href="profile.html" class="btn-orange">Create Free Account</a>
     </div>
   </div>
 </section>
@@ -1219,12 +892,12 @@ body.dark .brief-featured{background:#161b27}
   <div class="wrap">
     <div class="cta-banner">
       <div class="cta-banner-text">
-        <h2>Everything You Need to Succeed as a Student.</h2>
+        <h2>Ready to Simplify Your Campus Life?</h2>
         <p>Join thousands of Nigerian students using Big Quams Media® — completely free.</p>
       </div>
       <div class="cta-banner-btns">
-        <a href="profile.html" class="btn-orange">🚀 Create Free Account</a>
-        <a href="explore.html" class="btn-blue">Learn More</a>
+        <a href="explore.html" class="btn-orange">🗂 Explore Tools</a>
+        <a href="cbt.html" class="btn-blue">👨🏽‍💻 Start JAMB Practice</a>
       </div>
     </div>
   </div>
@@ -1261,28 +934,13 @@ body.dark .brief-featured{background:#161b27}
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand" style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+    <div class="footer-brand" style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
       <img class="footer-logo" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
       <div>
         <div class="footer-bname" style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
-        <div class="footer-bsub" style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Simplifying Campus Life for Every Student.</div>
+        <div class="footer-bsub" style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div>
       </div>
     </div>
-
-    <div class="footer-newsletter">
-      <h4>📬 Never miss an update</h4>
-      <p>Scholarship alerts, JAMB updates and campus news — straight to your inbox, no spam.</p>
-      <form class="footer-newsletter-row" onsubmit="submitNewsletter(event)">
-        <input type="email" id="fn_email" placeholder="yourname@gmail.com" required>
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="footer-social-row">
-        <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
-        <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" aria-label="TikTok">🎵</a>
-        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
-      </div>
-    </div>
-
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
       <div>
         <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
@@ -1315,16 +973,6 @@ body.dark .brief-featured{background:#161b27}
           <a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🌟 Student Spotlight</a>
           <a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">💡 Did You Know</a>
           <a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">📋 Subject Combo</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Company</div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <a href="index.html#about" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">ℹ️ About</a>
-          <a href="index.html#pricing" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">💳 Pricing</a>
-          <a href="profile.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🔐 Login</a>
-          <a href="profile.html" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">🚀 Get Started</a>
-          <a href="index.html#contact" style="font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s">📩 Contact &amp; Support</a>
         </div>
       </div>
       <div>
@@ -1362,33 +1010,6 @@ function toggleDarkMode(){
   const saved=localStorage.getItem('bqm-theme');
   const sys=!saved&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
   if(saved==='dark'||sys){document.body.classList.add('dark');if(btn){btn.textContent='☀️';btn.setAttribute('aria-label','Switch to light mode');}if(sys)localStorage.setItem('bqm-theme','dark');}
-})();
-
-/* NEWSLETTER */
-function submitNewsletter(e){
-  e.preventDefault();
-  const input=document.getElementById('fn_email');
-  const email=input.value.trim();
-  if(!email)return;
-  try{
-    if(window._db){
-      window._db.collection('newsletter_subscribers').add({email:email,ts:new Date().toISOString()}).catch(()=>{});
-    }
-  }catch(err){console.warn('Newsletter save skipped:',err.message);}
-  input.value='';
-  const btn=e.target.querySelector('button');
-  const original=btn.textContent;
-  btn.textContent='Subscribed ✓';
-  setTimeout(()=>{btn.textContent=original;},2500);
-}
-
-/* STICKY HEADER SHADOW ON SCROLL */
-(function(){
-  const hdr=document.querySelector('header');
-  if(!hdr)return;
-  window.addEventListener('scroll',()=>{
-    hdr.classList.toggle('scrolled',window.scrollY>10);
-  },{passive:true});
 })();
 
 /* NAV */
@@ -1453,79 +1074,21 @@ function newsArticleUrl(n){
   const id=n._id||'';
   return 'newsroom.html#'+slug+(id?'--'+id:'');
 }
-/* ── CAMPUS BRIEF — reusable article card + featured layout + category tabs ──
-   Structure only (Phase 1.7): reuses the existing fs_news Firestore collection,
-   no new CMS/publishing/moderation added. Swap the data source later without
-   touching this rendering layer. */
-let briefAllItems = [];
-let briefActiveCategory = 'All';
-
-function briefPreview(n){ return (n.fullContent||n.summary||n.excerpt||'').replace(/<[^>]*>/g,'').substring(0,110); }
-
-// Reusable article card — used for every non-featured item in the grid
-function renderArticleCard(n){
-  const p = briefPreview(n);
-  return `<a class="news-card" href="${newsArticleUrl(n)}">
+function renderNewsCards(items){
+  const grid=document.getElementById('newsGrid');if(!grid)return;
+  const top=[...items.filter(n=>n.pinned),...items.filter(n=>!n.pinned)].slice(0,3);
+  const preview=n=>(n.fullContent||n.summary||n.excerpt||'').replace(/<[^>]*>/g,'').substring(0,100);
+  grid.innerHTML=top.map(n=>`
+    <a class="news-card" href="${newsArticleUrl(n)}">
       ${n.image?`<img class="news-img" src="${n.image}" alt="${n.title}" loading="lazy">`:`<div class="news-img-ph">${n.emoji||'📰'}</div>`}
       <div class="news-body">
         ${n.category?`<span class="news-tag">${n.category}</span>`:''}
         <div class="news-title">${n.title}</div>
-        <div class="news-excerpt">${p}${p?'…':''}</div>
+        <div class="news-excerpt">${preview(n)}${preview(n)?'…':''}</div>
         <div class="news-foot"><span class="news-date">${n.date||''}</span><span class="news-more">Read →</span></div>
       </div>
-    </a>`;
+    </a>`).join('');
 }
-
-// Featured layout — the single most prominent story (pinned, or most recent)
-function renderFeaturedCard(n){
-  const p = briefPreview(n);
-  return `<a class="brief-featured" href="${newsArticleUrl(n)}">
-      ${n.image?`<img class="brief-featured-img" src="${n.image}" alt="${n.title}" loading="lazy">`:`<div class="brief-featured-img" style="display:flex;align-items:center;justify-content:center;font-size:2.4rem">${n.emoji||'📰'}</div>`}
-      <div class="brief-featured-body">
-        <span class="brief-featured-tag">${n.category||'Featured'}</span>
-        <div class="brief-featured-title">${n.title}</div>
-        <div class="brief-featured-excerpt">${p}${p?'…':''}</div>
-        <div class="brief-featured-meta">${n.date||''} · Read the full story →</div>
-      </div>
-    </a>`;
-}
-
-// Category layout — tabs derived from whatever categories exist in the data
-function renderBriefTabs(items){
-  const tabsEl = document.getElementById('briefTabs'); if(!tabsEl) return;
-  const cats = ['All', ...new Set(items.map(n=>n.category).filter(Boolean))];
-  tabsEl.innerHTML = cats.map(c=>`<button type="button" class="brief-tab${c===briefActiveCategory?' active':''}" data-cat="${c}">${c}</button>`).join('');
-  tabsEl.querySelectorAll('.brief-tab').forEach(btn=>{
-    btn.addEventListener('click', function(){
-      briefActiveCategory = btn.getAttribute('data-cat');
-      renderCampusBrief(briefAllItems);
-    });
-  });
-}
-
-function renderCampusBrief(items){
-  briefAllItems = items;
-  const grid = document.getElementById('newsGrid');
-  const featuredEl = document.getElementById('briefFeatured');
-  if (!grid || !featuredEl) return;
-
-  renderBriefTabs(items);
-
-  const filtered = briefActiveCategory === 'All' ? items : items.filter(n => n.category === briefActiveCategory);
-  if (!filtered.length){
-    featuredEl.innerHTML = '';
-    grid.innerHTML = '<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem">No stories in this category yet.</div>';
-    return;
-  }
-
-  const [pinned] = filtered.filter(n => n.pinned);
-  const featured = pinned || filtered[0];
-  const rest = filtered.filter(n => n !== featured).slice(0, 5);
-
-  featuredEl.innerHTML = renderFeaturedCard(featured);
-  grid.innerHTML = rest.map(renderArticleCard).join('');
-}
-
 async function loadNews(){
   const grid=document.getElementById('newsGrid');if(!grid)return;
   // Show skeleton while loading
@@ -1545,7 +1108,7 @@ async function loadNews(){
           const bt=b.createdAt?.toMillis?b.createdAt.toMillis():new Date(b.createdAt||0).getTime();
           return bt-at;
         });
-        renderCampusBrief(items);return;
+        renderNewsCards(items);return;
       }
     }catch(e){console.warn('Firebase news fetch:',e.message);}
   }
@@ -1553,7 +1116,7 @@ async function loadNews(){
   try{
     const r=await fetch('news.json?v='+Date.now());
     const d=await r.json();
-    if(d&&d.length) renderCampusBrief(d);
+    if(d&&d.length) renderNewsCards(d);
   }catch(e){
     grid.innerHTML='<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem">Could not load news. <a href="newsroom.html" style="color:#1a3fa8;font-weight:700">Go to Newsroom →</a></div>';
   }
