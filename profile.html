@@ -140,6 +140,29 @@ body.dark .sk{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 7
 /* FOOTER */
 footer{background:#0a1228;padding:28px 16px 20px}
 .footer-inner{max-width:680px;margin:0 auto;text-align:center;font-size:.68rem;color:rgba(255,255,255,.3)}
+
+/* ── Student Identity Foundation (auth layer) ── */
+.verify-banner{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:#fff7ed;border-bottom:1.5px solid #fed7aa;padding:11px 16px;font-size:.8rem;color:#9a3412}
+body.dark .verify-banner{background:#3a2410;border-color:#5c3416;color:#fdba74}
+.verify-banner b{font-weight:800}
+.verify-banner button{margin-left:auto;background:#f97316;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-weight:700;font-size:.76rem;cursor:pointer;white-space:nowrap}
+.verify-banner button:disabled{opacity:.6}
+.completion-gate{max-width:520px;margin:0 auto;padding:32px 18px 60px}
+.completion-gate-head{text-align:center;margin-bottom:22px}
+.completion-gate-icon{font-size:2.4rem;margin-bottom:8px}
+.completion-gate-title{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:6px}
+.completion-gate-sub{font-size:.82rem;color:var(--muted);line-height:1.6}
+.completion-form-card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:22px 20px}
+.completion-form-card label{font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px;margin-top:12px}
+.completion-form-card label:first-of-type{margin-top:0}
+.completion-photo-row{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.completion-photo-preview{width:64px;height:64px;border-radius:50%;background:var(--surface2);border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:1.6rem;overflow:hidden;flex-shrink:0}
+.completion-photo-preview img{width:100%;height:100%;object-fit:cover}
+.completion-skip{display:block;text-align:center;margin-top:12px;font-size:.78rem;color:var(--muted)}
+.completion-indicator{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.completion-indicator-head{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;font-weight:700;color:var(--text);margin-bottom:8px}
+.completion-indicator-bar{height:8px;border-radius:6px;background:var(--surface2);overflow:hidden}
+.completion-indicator-fill{height:100%;background:linear-gradient(90deg,#f97316,#1a3fa8);border-radius:6px;transition:width .4s}
 </style>
 </head>
 <body>
@@ -161,6 +184,58 @@ footer{background:#0a1228;padding:28px 16px 20px}
     <div class="signin-wall-sub">Create a free account to track your coins, streaks, referrals and study performance across all Big Quams Media® tools.</div>
     <button class="signin-wall-btn" onclick="window.location.href='daily.html?signup=1'">Create Free Account →</button>
     <div style="margin-top:10px"><a href="daily.html" style="font-size:.78rem;color:var(--muted)">Already have an account? Sign in →</a></div>
+  </div>
+</div>
+
+<!-- EMAIL VERIFICATION BANNER -->
+<div id="verifyBanner" class="verify-banner" style="display:none">
+  <span>📩 <b>Verify your email</b> to secure your account — check your inbox for the link.</span>
+  <button type="button" id="verifyBannerBtn" onclick="resendVerification()">Resend Email</button>
+</div>
+
+<!-- PROFILE COMPLETION GATE -->
+<div id="completionGate" style="display:none">
+  <div class="completion-gate">
+    <div class="completion-gate-head">
+      <div class="completion-gate-icon">🎓</div>
+      <div class="completion-gate-title">Complete Your Student Profile</div>
+      <div class="completion-gate-sub">Just a few details so we can personalise your dashboard. Takes under a minute.</div>
+    </div>
+    <div class="completion-form-card">
+      <div class="toast-msg" id="completionToast"></div>
+      <div class="completion-photo-row">
+        <div class="completion-photo-preview" id="completionPhotoPreview">📷</div>
+        <div>
+          <label style="margin:0" for="completionPhoto">Profile Photo (optional)</label>
+          <input type="file" id="completionPhoto" accept="image/*" style="font-size:.74rem">
+        </div>
+      </div>
+      <label>Full Name</label>
+      <input class="edit-inp" type="text" id="cFullName" placeholder="Your full name">
+      <label>Institution</label>
+      <input class="edit-inp" type="text" id="cInstitution" placeholder="e.g. University of Lagos">
+      <label>Campus (if applicable)</label>
+      <input class="edit-inp" type="text" id="cCampus" placeholder="e.g. Main Campus, Akoka">
+      <label>Faculty</label>
+      <input class="edit-inp" type="text" id="cFaculty" placeholder="e.g. Faculty of Engineering">
+      <label>Department</label>
+      <input class="edit-inp" type="text" id="cDepartment" placeholder="e.g. Computer Engineering">
+      <label>Level</label>
+      <select class="edit-inp" id="cLevel">
+        <option value="">Select level</option>
+        <option value="100 Level">100 Level</option>
+        <option value="200 Level">200 Level</option>
+        <option value="300 Level">300 Level</option>
+        <option value="400 Level">400 Level</option>
+        <option value="500 Level">500 Level</option>
+        <option value="Graduate">Graduate</option>
+        <option value="Prospective Student">Prospective Student (not yet admitted)</option>
+      </select>
+      <label>Phone Number (optional)</label>
+      <input class="edit-inp" type="tel" id="cPhone" placeholder="080…">
+      <button class="save-btn" id="completionSaveBtn" onclick="completeProfile()" style="margin-top:16px">✅ Save &amp; Continue</button>
+      <a href="javascript:void(0)" class="completion-skip" onclick="skipCompletion()">Skip for now</a>
+    </div>
   </div>
 </div>
 
@@ -201,6 +276,13 @@ footer{background:#0a1228;padding:28px 16px 20px}
   <!-- TAB: OVERVIEW -->
   <div class="tab-panel active" id="tab-overview">
     <div class="wrap">
+      <div class="completion-indicator" id="completionIndicator" style="display:none">
+        <div class="completion-indicator-head">
+          <span>🧩 Profile Completion</span>
+          <span id="completionPct">0%</span>
+        </div>
+        <div class="completion-indicator-bar"><div class="completion-indicator-fill" id="completionFill" style="width:0%"></div></div>
+      </div>
       <div class="stats-row">
         <div class="stat-card">
           <div class="stat-num" id="ovCoins">0</div>
@@ -336,6 +418,27 @@ footer{background:#0a1228;padding:28px 16px 20px}
         <label style="font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px">Email</label>
         <input class="edit-inp" type="email" id="editEmail" placeholder="Email address" disabled style="opacity:.5;cursor:not-allowed">
         <div style="font-size:.66rem;color:var(--muted);margin-bottom:14px">Email cannot be changed here. Contact support if needed.</div>
+        <label style="font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px">Institution</label>
+        <input class="edit-inp" type="text" id="editInstitution" placeholder="e.g. University of Lagos">
+        <label style="font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px">Campus</label>
+        <input class="edit-inp" type="text" id="editCampus" placeholder="e.g. Main Campus">
+        <label style="font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px">Faculty</label>
+        <input class="edit-inp" type="text" id="editFaculty" placeholder="e.g. Faculty of Engineering">
+        <label style="font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px">Department</label>
+        <input class="edit-inp" type="text" id="editDepartment" placeholder="e.g. Computer Engineering">
+        <label style="font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px">Level</label>
+        <select class="edit-inp" id="editLevel">
+          <option value="">Select level</option>
+          <option value="100 Level">100 Level</option>
+          <option value="200 Level">200 Level</option>
+          <option value="300 Level">300 Level</option>
+          <option value="400 Level">400 Level</option>
+          <option value="500 Level">500 Level</option>
+          <option value="Graduate">Graduate</option>
+          <option value="Prospective Student">Prospective Student (not yet admitted)</option>
+        </select>
+        <label style="font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:5px">Phone Number</label>
+        <input class="edit-inp" type="tel" id="editPhone" placeholder="080…">
         <button class="save-btn" onclick="saveProfile()">💾 Save Changes</button>
         <button class="signout-btn" onclick="signOut()">🚪 Sign Out</button>
       </div>
@@ -361,6 +464,13 @@ footer{background:#0a1228;padding:28px 16px 20px}
       <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
     </div>
     <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Built for Nigerian Students</div>
+    <div style="font-size:.68rem;color:rgba(255,255,255,.35);margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 14px">
+      <a href="terms.html" style="color:rgba(255,255,255,.4)">Terms &amp; Conditions</a>
+      <a href="privacy.html" style="color:rgba(255,255,255,.4)">Privacy Policy</a>
+      <a href="cookie-policy.html" style="color:rgba(255,255,255,.4)">Cookie Policy</a>
+      <a href="disclaimer.html" style="color:rgba(255,255,255,.4)">Disclaimer</a>
+    </div>
+
   </div>
 </footer>
 
@@ -416,6 +526,110 @@ function switchTab(tab){
   if(el) el.classList.add('active');
 }
 
+// ── STUDENT IDENTITY: PROFILE COMPLETION HELPERS ──
+const COMPLETION_FIELDS=['displayName','institution','faculty','department','level'];
+function computeCompletionPct(p){
+  const filled=COMPLETION_FIELDS.filter(f=>p&&p[f]&&String(p[f]).trim()!=='').length;
+  return Math.round((filled/COMPLETION_FIELDS.length)*100);
+}
+
+document.getElementById('completionPhoto').addEventListener('change',function(e){
+  const file=e.target.files[0];
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    document.getElementById('completionPhotoPreview').innerHTML=`<img src="${ev.target.result}" alt="Preview">`;
+  };
+  reader.readAsDataURL(file);
+});
+
+async function uploadProfilePhoto(uid,file){
+  // Firebase Storage — degrades gracefully if Storage isn't provisioned
+  // on the project (non-blocking for profile completion).
+  try{
+    const storageMod=await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js');
+    const app=(await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js')).getApp();
+    const storage=storageMod.getStorage(app);
+    const fileRef=storageMod.ref(storage,'profile_photos/'+uid+'.jpg');
+    await storageMod.uploadBytes(fileRef,file);
+    return await storageMod.getDownloadURL(fileRef);
+  }catch(e){
+    console.warn('[Profile] Photo upload skipped:',e.message);
+    return null;
+  }
+}
+
+async function completeProfile(){
+  const user=window._auth.currentUser;
+  if(!user) return;
+  const name=document.getElementById('cFullName').value.trim();
+  const institution=document.getElementById('cInstitution').value.trim();
+  const campus=document.getElementById('cCampus').value.trim();
+  const faculty=document.getElementById('cFaculty').value.trim();
+  const department=document.getElementById('cDepartment').value.trim();
+  const level=document.getElementById('cLevel').value;
+  const phone=document.getElementById('cPhone').value.trim();
+  if(!name||!institution||!faculty||!department||!level){
+    const t=document.getElementById('completionToast');
+    t.className='toast-msg error'; t.textContent='Please fill in Name, Institution, Faculty, Department and Level.';
+    setTimeout(()=>{t.className='toast-msg';},4000);
+    return;
+  }
+  const btn=document.getElementById('completionSaveBtn'); btn.disabled=true; btn.textContent='Saving…';
+  try{
+    const updates={
+      displayName:name, nickname:name, institution, campus, faculty, department, level,
+      phoneNumber:phone, profileCompleted:true
+    };
+    const photoFile=document.getElementById('completionPhoto').files[0];
+    if(photoFile){
+      const url=await uploadProfilePhoto(user.uid,photoFile);
+      if(url) updates.photoURL=url;
+    }
+    await window._db.collection('cbt_users').doc(user.uid).update(updates);
+    if(user.updateProfile) await user.updateProfile({displayName:name});
+    document.getElementById('completionGate').style.display='none';
+    document.getElementById('profileContent').style.display='block';
+    const snap=await window._db.collection('cbt_users').doc(user.uid).get();
+    renderProfile(user,snap.exists?snap.data():updates);
+  }catch(e){
+    const t=document.getElementById('completionToast');
+    t.className='toast-msg error'; t.textContent='Error saving: '+e.message;
+    setTimeout(()=>{t.className='toast-msg';},5000);
+  }finally{
+    btn.disabled=false; btn.textContent='✅ Save & Continue';
+  }
+}
+window.completeProfile=completeProfile;
+
+function skipCompletion(){
+  document.getElementById('completionGate').style.display='none';
+  document.getElementById('profileContent').style.display='block';
+  const user=window._auth.currentUser;
+  if(user){
+    window._db.collection('cbt_users').doc(user.uid).get().then(snap=>{
+      renderProfile(user,snap.exists?snap.data():{});
+    });
+  }
+}
+window.skipCompletion=skipCompletion;
+
+async function resendVerification(){
+  const user=window._auth.currentUser;
+  if(!user) return;
+  const btn=document.getElementById('verifyBannerBtn');
+  btn.disabled=true; const original=btn.textContent; btn.textContent='Sending…';
+  try{
+    await user.sendEmailVerification();
+    btn.textContent='Sent ✓';
+  }catch(e){
+    btn.textContent='Error — try again';
+    console.warn('Verification email error:',e.message);
+  }
+  setTimeout(()=>{btn.disabled=false;btn.textContent=original;},5000);
+}
+window.resendVerification=resendVerification;
+
 // ── SIGN OUT ──
 async function signOut(){
   if(!confirm('Sign out of Big Quams Media®?')) return;
@@ -430,16 +644,35 @@ async function saveProfile(){
   if(!user) return;
   const name=document.getElementById('editName').value.trim();
   const gender=document.getElementById('editGender').value;
+  const institution=document.getElementById('editInstitution').value.trim();
+  const campus=document.getElementById('editCampus').value.trim();
+  const faculty=document.getElementById('editFaculty').value.trim();
+  const department=document.getElementById('editDepartment').value.trim();
+  const level=document.getElementById('editLevel').value;
+  const phone=document.getElementById('editPhone').value.trim();
   if(!name){showToast('error','Name cannot be empty.');return;}
   try{
-    await window._db.collection('cbt_users').doc(user.uid).update({displayName:name,nickname:name,gender});
+    const updates={displayName:name,nickname:name,gender,institution,campus,faculty,department,level,phoneNumber:phone};
+    updates.profileCompleted = !!(name && institution && faculty && department && level);
+    await window._db.collection('cbt_users').doc(user.uid).update(updates);
     await user.updateProfile({displayName:name});
     document.getElementById('profileName').textContent=name;
     document.getElementById('profileAvatar').textContent=name.charAt(0).toUpperCase();
+    const snap=await window._db.collection('cbt_users').doc(user.uid).get();
+    if(snap.exists) updateCompletionIndicator(snap.data());
     showToast('success','✅ Profile updated!');
   }catch(e){showToast('error','Error: '+e.message);}
 }
 window.saveProfile=saveProfile;
+
+function updateCompletionIndicator(p){
+  const pct=computeCompletionPct(p);
+  const card=document.getElementById('completionIndicator');
+  if(pct>=100){ card.style.display='none'; return; }
+  card.style.display='block';
+  document.getElementById('completionPct').textContent=pct+'%';
+  document.getElementById('completionFill').style.width=pct+'%';
+}
 
 function showToast(type,msg){
   const el=document.getElementById('settingsToast');
@@ -543,6 +776,14 @@ function renderProfile(user, p){
   document.getElementById('editName').value=name;
   document.getElementById('editGender').value=p.gender||'';
   document.getElementById('editEmail').value=user.email||'';
+  document.getElementById('editInstitution').value=p.institution||'';
+  document.getElementById('editCampus').value=p.campus||'';
+  document.getElementById('editFaculty').value=p.faculty||'';
+  document.getElementById('editDepartment').value=p.department||'';
+  document.getElementById('editLevel').value=p.level||'';
+  document.getElementById('editPhone').value=p.phoneNumber||'';
+
+  updateCompletionIndicator(p);
 }
 
 // ── INIT ──
@@ -552,12 +793,23 @@ window._auth.onAuthStateChanged(async user=>{
     document.getElementById('notSignedIn').style.display='block';
     return;
   }
+  // Verification banner (non-blocking — students can still see their dashboard)
+  document.getElementById('verifyBanner').style.display = user.emailVerified ? 'none' : 'flex';
+
   // Fetch profile from Firestore
   try{
     const snap=await window._db.collection('cbt_users').doc(user.uid).get();
     const p=snap.exists?snap.data():{};
-    document.getElementById('profileContent').style.display='block';
-    renderProfile(user,p);
+
+    // Pre-fill the completion gate with what we already know
+    document.getElementById('cFullName').value = p.displayName || user.displayName || '';
+
+    if(!p.profileCompleted){
+      document.getElementById('completionGate').style.display='block';
+    }else{
+      document.getElementById('profileContent').style.display='block';
+      renderProfile(user,p);
+    }
   }catch(e){
     console.error('Profile load error:',e.message);
     document.getElementById('profileContent').style.display='block';

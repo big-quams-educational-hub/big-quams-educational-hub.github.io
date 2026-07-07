@@ -207,7 +207,6 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
   <div class="mnav-lbl">Exam Tools</div>
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
-  <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
   <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
   <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
   <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
@@ -241,6 +240,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     <div id="signinForm">
       <input class="auth-input" type="email" id="authEmail" placeholder="Email address">
       <input class="auth-input" type="password" id="authPw" placeholder="Password" onkeydown="if(event.key==='Enter')dailySignIn()">
+      <button type="button" onclick="dailyForgotPassword()" style="background:none;border:none;color:#1a3fa8;font-size:.72rem;font-weight:700;cursor:pointer;display:block;margin:-6px 0 10px;text-decoration:underline;padding:0">Forgot password?</button>
       <div class="auth-error" id="authErr"></div>
       <button class="auth-btn" onclick="dailySignIn()">Sign In →</button>
     </div>
@@ -253,6 +253,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       </select>
       <input class="auth-input" type="email" id="regEmail" placeholder="Email address">
       <input class="auth-input" type="password" id="regPw" placeholder="Password (min 6 chars)" onkeydown="if(event.key==='Enter')dailyRegister()">
+      <div style="font-size:.68rem;color:#64748b;line-height:1.5;margin:2px 0 10px">By creating an account, you agree to our <a href="terms.html" target="_blank" rel="noopener" style="color:#1a3fa8;font-weight:700;text-decoration:underline">Terms</a> and <a href="privacy.html" target="_blank" rel="noopener" style="color:#1a3fa8;font-weight:700;text-decoration:underline">Privacy Policy</a>.</div>
       <div class="auth-error" id="regErr"></div>
       <button class="auth-btn" onclick="dailyRegister()">Create Free Account →</button>
     </div>
@@ -363,18 +364,26 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
     </div>
     <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
+    <div style="font-size:.68rem;color:rgba(255,255,255,.35);margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 14px">
+      <a href="terms.html" style="color:rgba(255,255,255,.4)">Terms &amp; Conditions</a>
+      <a href="privacy.html" style="color:rgba(255,255,255,.4)">Privacy Policy</a>
+      <a href="cookie-policy.html" style="color:rgba(255,255,255,.4)">Cookie Policy</a>
+      <a href="disclaimer.html" style="color:rgba(255,255,255,.4)">Disclaimer</a>
+    </div>
+
   </div>
 </footer>
 
 <script type="module">
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
 import{getFirestore,doc,getDoc,setDoc,updateDoc,increment,arrayUnion}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
-import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,updateProfile}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,updateProfile,sendEmailVerification,sendPasswordResetEmail,setPersistence,browserLocalPersistence}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 const cfg={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'};
 const app=initializeApp(cfg);
 const db=getFirestore(app);
 const auth=getAuth(app);
 const gp=new GoogleAuthProvider();
+setPersistence(auth,browserLocalPersistence).catch(e=>console.warn('[Auth] persistence:',e.message));
 window._db=db;window._doc=doc;window._getDoc=getDoc;window._setDoc=setDoc;
 window._updateDoc=updateDoc;window._increment=increment;window._arrayUnion=arrayUnion;
 window._auth=auth;
@@ -382,6 +391,8 @@ window._signIn=(e,p)=>signInWithEmailAndPassword(auth,e,p);
 window._createAccount=(e,p)=>createUserWithEmailAndPassword(auth,e,p);
 window._googleSignIn=()=>signInWithPopup(auth,gp);
 window._updateProfile=updateProfile;
+window._sendEmailVerification=(u)=>sendEmailVerification(u);
+window._sendPasswordResetEmail=(e)=>sendPasswordResetEmail(auth,e);
 window._onAuth=(cb)=>onAuthStateChanged(auth,cb);
 </script>
 
@@ -666,14 +677,48 @@ function switchAuthTab(t,btn){
   document.getElementById('registerForm').style.display=t==='register'?'block':'none';
 }
 window.switchAuthTab=switchAuthTab;
+function friendlyAuthError(err){
+  const map={
+    'auth/invalid-credential':'Incorrect email or password.',
+    'auth/wrong-password':'Incorrect email or password.',
+    'auth/user-not-found':'No account found with that email.',
+    'auth/email-already-in-use':'Email already registered. Sign in instead.',
+    'auth/invalid-email':'Please enter a valid email address.',
+    'auth/weak-password':'Password must be at least 6 characters.',
+    'auth/too-many-requests':'Too many attempts. Please wait a moment and try again.',
+    'auth/network-request-failed':'Network error. Check your connection and try again.',
+  };
+  if(err&&err.code&&map[err.code]!==undefined) return map[err.code];
+  return (err&&err.message)?err.message:'Something went wrong. Please try again.';
+}
+
 async function dailySignIn(){
   const e=document.getElementById('authEmail').value.trim();
   const p=document.getElementById('authPw').value;
   if(!e||!p){showAuthErr('authErr','Enter email and password.');return;}
-  try{await window._signIn(e,p);closeAuth();}
-  catch(err){showAuthErr('authErr',err.code==='auth/invalid-credential'?'Incorrect email or password.':err.message);}
+  try{
+    const cred=await window._signIn(e,p);
+    await window._updateDoc(window._doc(window._db,'cbt_users',cred.user.uid),{
+      lastLogin:new Date().toISOString(),emailVerified:!!cred.user.emailVerified
+    }).catch(()=>{});
+    closeAuth();
+  }
+  catch(err){showAuthErr('authErr',friendlyAuthError(err));}
 }
 window.dailySignIn=dailySignIn;
+
+async function dailyForgotPassword(){
+  const e=document.getElementById('authEmail').value.trim();
+  if(!e){showAuthErr('authErr','Enter your email address above first, then tap "Forgot password?" again.');return;}
+  try{
+    await window._sendPasswordResetEmail(e);
+    const el=document.getElementById('authErr');
+    el.style.color='#15803d';el.style.background='#dcfce7';
+    el.textContent='✅ Reset link sent — check your inbox (and spam folder).';
+    el.style.display='block';
+  }catch(err){showAuthErr('authErr',friendlyAuthError(err));}
+}
+window.dailyForgotPassword=dailyForgotPassword;
 
 // ── Generate a readable referral code from name: JOHNDOE-A3X9 ──
 function generateReferralCode(name){
@@ -700,6 +745,7 @@ async function ensureUserProfile(user,extra){
     const urlRef=new URLSearchParams(window.location.search).get('ref')||'';
     const name=extra.name||user.displayName||(user.email?user.email.split('@')[0]:'Student');
     const myCode=generateReferralCode(name);
+    const now=new Date().toISOString();
     const profile={
       uid:user.uid,
       email:user.email||'',
@@ -707,6 +753,11 @@ async function ensureUserProfile(user,extra){
       nickname:name,
       gender:extra.gender||'',
       photoURL:user.photoURL||'',
+      role:'student',
+      institution:'',campus:'',faculty:'',department:'',level:'',
+      phoneNumber:'',profileCompleted:false,
+      emailVerified:!!user.emailVerified,
+      createdAt:now,lastLogin:now,
       referralCode:myCode,
       referredBy:urlRef,
       referralCount:0,
@@ -722,7 +773,7 @@ async function ensureUserProfile(user,extra){
       lastPracticeDate:'',
       subjectHistory:{},
       achievements:[],
-      joinDate:new Date().toISOString(),
+      joinDate:now,
       sessionHistory:[],
       subjectsPractised:[],
     };
@@ -760,13 +811,15 @@ async function dailyRegister(){
   const e=document.getElementById('regEmail').value.trim();
   const p=document.getElementById('regPw').value;
   if(!n||!g||!e||!p){showAuthErr('regErr','Fill in all fields including gender.');return;}
+  if(p.length<6){showAuthErr('regErr','Password must be at least 6 characters.');return;}
   try{
     const cred=await window._createAccount(e,p);
     if(cred.user) await window._updateProfile(cred.user,{displayName:n});
     await ensureUserProfile(cred.user,{name:n,gender:g});
+    try{await window._sendEmailVerification(cred.user);}catch(ve){console.warn('Verification email:',ve.message);}
     closeAuth();
-    showToast('🎉','Welcome, '+n.split(' ')[0]+'! Account created.');
-  }catch(err){showAuthErr('regErr',err.code==='auth/email-already-in-use'?'Email already registered. Sign in instead.':err.message);}
+    showToast('🎉','Welcome, '+n.split(' ')[0]+'! Check your email to verify your account.');
+  }catch(err){showAuthErr('regErr',friendlyAuthError(err));}
 }
 window.dailyRegister=dailyRegister;
 async function dailyGoogleSignIn(){
@@ -801,6 +854,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   const now=new Date();
   document.getElementById('heroDate').textContent=days[now.getDay()]+', '+now.getDate()+' '+months[now.getMonth()]+' '+now.getFullYear();
   loadDYK();
+  // Honor ?signup=1 (e.g. arriving from profile.html's "Create Free Account" link)
+  if(new URLSearchParams(window.location.search).get('signup')==='1'){
+    showAuth();
+    const regTab=document.querySelector('.auth-tab-btn[onclick*="register"]');
+    if(regTab) switchAuthTab('register',regTab);
+  }
 });
 </script>
 
