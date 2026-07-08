@@ -481,7 +481,7 @@ body.dark .weak-topic-tip{background:#1a2236}
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
     <nav class="main-nav">
-      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a><a href="scholarship.html">Scholarships</a><a href="index.html#contact" class="nav-cta">💬 Contact</a>
+      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a><a href="scholarship.html">Scholarships</a><a href="profile.html">👤 Login</a><a href="index.html#contact" class="nav-cta">💬 Contact</a>
     </nav>
     <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
     <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
@@ -491,11 +491,12 @@ body.dark .weak-topic-tip{background:#1a2236}
 <nav class="mobile-nav" id="mobileNav">
 <div class="mnav-header">
     <div style="display:flex;align-items:center;gap:10px">
-      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
       <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
     </div>
     <button class="mnav-close" onclick="toggleNav()">✕</button>
   </div>
+  <a href="profile.html" onclick="toggleNav()" style="background:rgba(249,115,22,.12);font-weight:700">👤 Login / My Account</a>
   <div class="mnav-lbl">Main</div>
   <a href="index.html" onclick="toggleNav()">🏠 Home</a>
   <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
@@ -506,7 +507,6 @@ body.dark .weak-topic-tip{background:#1a2236}
   <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
   <div class="mnav-lbl">Exam Tools</div>
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
-  <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
   <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
   <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
   <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
@@ -521,6 +521,9 @@ body.dark .weak-topic-tip{background:#1a2236}
   <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
+
+<main id="main-content">
+
 
 <!-- AUTH OVERLAY -->
 <div class="auth-overlay" id="authOverlay" style="display:none">
@@ -954,10 +957,12 @@ body.dark .weak-topic-tip{background:#1a2236}
   </div>
 </div>
 
+</main>
+
 <footer id="mainFooter">
   <div class="footer-inner">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
       <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
@@ -967,6 +972,13 @@ body.dark .weak-topic-tip{background:#1a2236}
       <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
     </div>
     <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
+    <div style="font-size:.68rem;color:rgba(255,255,255,.35);margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 14px">
+      <a href="terms.html" style="color:rgba(255,255,255,.4)">Terms &amp; Conditions</a>
+      <a href="privacy.html" style="color:rgba(255,255,255,.4)">Privacy Policy</a>
+      <a href="cookie-policy.html" style="color:rgba(255,255,255,.4)">Cookie Policy</a>
+      <a href="disclaimer.html" style="color:rgba(255,255,255,.4)">Disclaimer</a>
+    </div>
+
   </div>
 </footer>
 

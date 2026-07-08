@@ -176,6 +176,9 @@ body.dark .verify-banner{background:#3a2410;border-color:#5c3416;color:#fdba74}
   <a href="index.html" class="hdr-back">← Home</a>
 </header>
 
+<main id="main-content">
+
+
 <!-- NOT SIGNED IN STATE -->
 <div id="notSignedIn" style="display:none">
   <div class="signin-wall">
@@ -183,7 +186,7 @@ body.dark .verify-banner{background:#3a2410;border-color:#5c3416;color:#fdba74}
     <div class="signin-wall-title">Sign in to view your profile</div>
     <div class="signin-wall-sub">Create a free account to track your coins, streaks, referrals and study performance across all Big Quams Media® tools.</div>
     <button class="signin-wall-btn" onclick="window.location.href='daily.html?signup=1'">Create Free Account →</button>
-    <div style="margin-top:10px"><a href="daily.html" style="font-size:.78rem;color:var(--muted)">Already have an account? Sign in →</a></div>
+    <div style="margin-top:10px"><a href="daily.html?login=1" style="font-size:.78rem;color:var(--muted)">Already have an account? Sign in →</a></div>
   </div>
 </div>
 
@@ -451,10 +454,12 @@ body.dark .verify-banner{background:#3a2410;border-color:#5c3416;color:#fdba74}
   </div>
 </div>
 
+</main>
+
 <footer>
   <div class="footer-inner">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
       <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
