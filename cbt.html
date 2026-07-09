@@ -1,0 +1,2727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RCLYVCZY2K');
+</script>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JAMB CBT Practice | Big Quams Media®</title>
+<meta name="description" content="Free JAMB CBT practice on Big Quams Media®. 500+ questions across all subjects, timed mock tests, performance tracking, streak calendar and coins rewards.">
+<link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+
+:root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--green:#16a34a;--red:#dc2626;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--radius-sm:8px;--radius-md:14px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
+
+html{scroll-behavior:smooth}
+
+body{font-family:'Roboto',sans-serif;background:#f5f7ff;color:var(--text-main);line-height:1.6;overflow-x:hidden}
+
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4)}
+
+.header-bar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+
+@media(max-width:860px){.main-nav{display:none}.hamburger{display:flex}}
+
+.mobile-nav{visibility:hidden;position:fixed;inset:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s ease,visibility 0s linear .3s}
+
+.mnav-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
+
+
+/* ── SETUP HERO ── */
+.setup-hero{background:linear-gradient(150deg,rgba(8,21,48,.86) 0%,rgba(15,32,96,.80) 40%,rgba(26,63,168,.74) 100%),url('https://bigquamsmedia.com.ng/cbt.png') center/cover no-repeat;padding:44px 16px 52px;text-align:center;position:relative;overflow:hidden}
+
+.setup-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+
+.setup-hero-inner{position:relative;z-index:1;max-width:600px;margin:0 auto}
+
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 16px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:16px}
+
+.setup-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:12px}
+
+.setup-hero h1 span{color:var(--orange)}
+
+.setup-hero p{font-size:.9rem;color:rgba(255,255,255,.65);max-width:480px;margin:0 auto}
+
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+
+
+/* ── SETUP CARD ── */
+.setup-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:28px;margin:32px auto;max-width:640px;box-shadow:var(--shadow-md)}
+
+body.dark .setup-card{background:#161b27;border-color:var(--border)}
+
+.setup-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text-main);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+
+.subject-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:20px}
+
+@media(min-width:480px){.subject-grid{grid-template-columns:repeat(3,1fr)}}
+
+.subj-btn{padding:12px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface-alt);font-size:.8rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:.18s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px}
+
+body.dark .subj-btn{background:#1a2236;border-color:var(--border)}
+
+.subj-btn:hover{border-color:var(--blue-main);color:var(--blue-main)}
+
+.subj-btn.selected{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
+
+.subj-icon{font-size:1.2rem}
+
+.options-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+
+.option-group label{display:block;font-size:.7rem;font-weight:700;color:var(--text-muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+
+.option-group select{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:.9rem;font-family:'Roboto',sans-serif;color:var(--text-main);background:var(--surface-alt)}
+
+body.dark .option-group select{background:#111624;border-color:var(--border);color:var(--text-main)}
+
+.start-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff;border:none;border-radius:var(--radius-sm);font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:.2s}
+
+.start-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+.start-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+
+/* ── EXAM SCREEN ── */
+#examScreen{display:none}
+
+.exam-topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;position:sticky;top:60px;z-index:200}
+
+body.dark .exam-topbar{background:#161b27;border-color:var(--border)}
+
+.exam-topbar-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+
+.exam-progress{flex:1;min-width:120px}
+
+.progress-label{font-size:.68rem;font-weight:700;color:var(--text-muted);margin-bottom:4px}
+
+.progress-bar{height:6px;background:var(--border);border-radius:10px;overflow:hidden}
+
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue-main),var(--orange));border-radius:10px;transition:width .3s}
+
+.timer-box{display:flex;align-items:center;gap:7px;background:var(--surface-alt);border:1.5px solid var(--border);border-radius:10px;padding:8px 14px;flex-shrink:0}
+
+body.dark .timer-box{background:#1a2236}
+
+.timer-box.urgent{background:#fee2e2;border-color:#fca5a5;animation:flash .6s ease infinite}
+
+@keyframes flash{0%,100%{opacity:1}50%{opacity:.6}}
+
+.timer-num{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text-main)}
+
+.timer-box.urgent .timer-num{color:var(--red)}
+
+.q-counter{font-size:.78rem;font-weight:700;color:var(--text-muted);white-space:nowrap}
+
+.submit-early-btn{background:var(--orange);color:#fff;border:none;padding:8px 14px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.76rem;cursor:pointer;white-space:nowrap}
+
+
+/* ── QUESTION CARD ── */
+.q-wrap{max-width:860px;margin:0 auto;padding:20px 16px 100px}
+
+.q-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:24px;box-shadow:var(--shadow-md)}
+
+body.dark .q-card{background:#161b27;border-color:var(--border)}
+
+.q-meta{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+
+.q-num-badge{background:var(--blue-main);color:#fff;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;padding:4px 12px;border-radius:20px}
+
+.q-subj-badge{background:var(--blue-light);color:var(--blue-main);font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:20px}
+
+body.dark .q-subj-badge{background:#1a2d5a;color:#93c5fd}
+
+.q-diff-badge{font-size:.64rem;font-weight:700;padding:3px 8px;border-radius:20px}
+
+.diff-easy{background:#dcfce7;color:#15803d}
+.diff-medium{background:#fef9c3;color:#92400e}
+.diff-hard{background:#fee2e2;color:#b91c1c}
+
+.q-text{font-size:.95rem;color:var(--text-main);line-height:1.7;margin-bottom:20px;font-weight:500}
+
+.options-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+
+.opt-btn{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1.5px solid var(--border);border-radius:10px;background:var(--surface-alt);cursor:pointer;transition:all .18s;font-size:.88rem;color:var(--text-main);text-align:left;font-family:'Roboto',sans-serif;line-height:1.5}
+
+body.dark .opt-btn{background:#1a2236;border-color:var(--border)}
+
+.opt-btn:hover:not(:disabled){border-color:var(--blue-main);background:var(--blue-light);color:var(--blue-main)}
+
+body.dark .opt-btn:hover:not(:disabled){background:#1a2d5a}
+
+.opt-btn.selected{border-color:var(--blue-main);background:var(--blue-main);color:#fff}
+
+.opt-btn.correct{border-color:var(--green);background:#dcfce7;color:var(--green)}
+
+body.dark .opt-btn.correct{background:#052e16;color:#86efac}
+
+.opt-btn.wrong{border-color:var(--red);background:#fee2e2;color:var(--red)}
+
+body.dark .opt-btn.wrong{background:#1a0000;color:#fca5a5}
+
+.opt-btn:disabled{cursor:default}
+
+.opt-letter{background:var(--border);color:var(--text-muted);width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0;margin-top:1px}
+
+.opt-btn.selected .opt-letter{background:rgba(255,255,255,.25);color:#fff}
+
+.opt-btn.correct .opt-letter{background:#16a34a;color:#fff}
+
+.opt-btn.wrong .opt-letter{background:#dc2626;color:#fff}
+
+.explanation{background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:10px;padding:14px 16px;font-size:.82rem;color:#15803d;line-height:1.6;display:none;margin-bottom:12px}
+
+body.dark .explanation{background:#052e16;border-color:#166534;color:#86efac}
+
+.explanation.show{display:block;animation:fadeUp .2s ease}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.q-nav{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+.nav-btn{padding:11px 22px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.84rem;border:none;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:7px}
+
+.btn-prev{background:var(--surface-alt);color:var(--text-muted);border:1.5px solid var(--border)}
+
+body.dark .btn-prev{background:#1a2236;border-color:var(--border)}
+
+.btn-next{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff}
+
+.btn-next:disabled{opacity:.5;cursor:not-allowed}
+
+
+/* ── Q GRID ── */
+.q-grid-wrap{position:fixed;bottom:0;left:0;right:0;background:var(--surface);border-top:1px solid var(--border);padding:10px 16px;z-index:200}
+
+body.dark .q-grid-wrap{background:#161b27;border-color:var(--border)}
+
+.q-grid{display:flex;flex-wrap:wrap;gap:5px;max-width:860px;margin:0 auto;overflow:hidden;max-height:52px;overflow-y:auto}
+
+.q-dot{width:28px;height:28px;border-radius:6px;border:1.5px solid var(--border);background:var(--surface-alt);font-size:.68rem;font-weight:700;color:var(--text-muted);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.15s}
+
+body.dark .q-dot{background:#1a2236;border-color:var(--border)}
+
+.q-dot.answered{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
+
+.q-dot.current{border-color:var(--orange);color:var(--orange)}
+
+.q-dot.current.answered{background:var(--orange);color:#fff;border-color:var(--orange)}
+
+
+/* ── RESULT SCREEN ── */
+#resultScreen{display:none}
+
+.result-hero{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));padding:44px 16px;text-align:center}
+
+.score-ring{width:140px;height:140px;border-radius:50%;border:6px solid rgba(255,255,255,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 16px;position:relative}
+
+.score-num{font-family:'Montserrat',sans-serif;font-size:2.4rem;font-weight:800;color:#fff;line-height:1;position:relative;z-index:1}
+
+.score-denom{font-size:.72rem;color:rgba(255,255,255,.55);position:relative;z-index:1}
+
+.result-grade{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:6px}
+
+.result-sub{font-size:.84rem;color:rgba(255,255,255,.65)}
+
+.result-stats{display:flex;justify-content:center;gap:20px;margin-top:20px;flex-wrap:wrap}
+
+.rs-item{background:rgba(255,255,255,.1);border-radius:10px;padding:12px 20px;text-align:center}
+
+.rs-num{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:#fff}
+
+.rs-lbl{font-size:.62rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px}
+
+.review-section{max-width:860px;margin:0 auto;padding:24px 16px 60px}
+
+.review-title{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;color:var(--text-main);margin-bottom:16px}
+
+.review-q{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:18px;margin-bottom:12px}
+
+body.dark .review-q{background:#161b27;border-color:var(--border)}
+
+.review-q-text{font-size:.86rem;font-weight:500;color:var(--text-main);margin-bottom:10px;line-height:1.5}
+
+.review-opts{display:flex;flex-direction:column;gap:6px}
+
+.review-opt{font-size:.8rem;padding:8px 12px;border-radius:8px;display:flex;align-items:center;gap:8px}
+
+.review-opt.correct-answer{background:#dcfce7;color:#15803d;font-weight:700}
+
+body.dark .review-opt.correct-answer{background:#052e16;color:#86efac}
+
+.review-opt.user-wrong{background:#fee2e2;color:#b91c1c}
+
+body.dark .review-opt.user-wrong{background:#1a0000;color:#fca5a5}
+
+.review-exp{font-size:.76rem;color:#15803d;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:7px;padding:10px;margin-top:8px;line-height:1.5}
+
+body.dark .review-exp{background:#052e16;border-color:#166534;color:#86efac}
+
+.result-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 16px 24px;max-width:860px;margin:0 auto}
+
+.ra-btn{padding:13px 24px;border-radius:10px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.88rem;border:none;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:8px}
+
+.ra-btn-primary{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff}
+
+.ra-btn-wa{background:#25d366;color:#fff}
+
+
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+
+/* ── AUTH OVERLAY ── */
+.auth-overlay{position:fixed;inset:0;background:rgba(10,20,60,.7);z-index:600;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)}
+
+.auth-card{background:#fff;border-radius:20px;padding:28px 24px;width:100%;max-width:400px;box-shadow:0 32px 80px rgba(0,0,0,.3);animation:authPop .3s cubic-bezier(.34,1.56,.64,1);max-height:90vh;overflow-y:auto}
+
+body.dark .auth-card{background:#1e293b}
+
+@keyframes authPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+
+.auth-logo{width:60px;height:60px;border-radius:50%;border:3px solid var(--orange);margin:0 auto 12px;overflow:hidden}
+
+.auth-logo img{width:100%;height:100%;object-fit:cover}
+
+.auth-title{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text-main);text-align:center;margin-bottom:4px}
+
+body.dark .auth-title{color:#bfdbfe}
+
+.auth-sub{font-size:.76rem;color:var(--text-muted);text-align:center;margin-bottom:20px;line-height:1.5}
+
+.auth-tabs{display:flex;gap:0;margin-bottom:18px;border-radius:9px;overflow:hidden;border:1.5px solid var(--border)}
+
+.auth-tab-btn{flex:1;padding:9px;font-family:'Montserrat',sans-serif;font-size:.76rem;font-weight:800;border:none;cursor:pointer;background:var(--surface-alt);color:var(--text-muted);transition:.2s}
+
+body.dark .auth-tab-btn{background:#1a2236;color:#94a3b8}
+
+.auth-tab-btn.active{background:var(--blue-main);color:#fff}
+
+.auth-input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:.92rem;font-family:'Roboto',sans-serif;color:var(--text-main);background:var(--surface-alt);margin-bottom:10px;transition:.2s}
+
+body.dark .auth-input{background:#0f172a;border-color:#334155;color:#e2e8f0}
+
+.auth-input:focus{outline:none;border-color:var(--blue-main);box-shadow:0 0 0 3px rgba(26,63,168,.08)}
+
+.auth-btn{width:100%;padding:13px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer;transition:.2s;margin-bottom:10px}
+
+.auth-btn:hover{opacity:.9}
+
+.auth-btn:disabled{opacity:.5;cursor:not-allowed}
+
+.google-auth-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;border:1.5px solid var(--border);border-radius:9px;padding:11px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.86rem;color:#1e2749;cursor:pointer;transition:.2s;margin-bottom:10px}
+
+body.dark .google-auth-btn{background:#1a2236;border-color:#334155;color:#e2e8f0}
+
+.google-auth-btn:hover{border-color:#4285F4;box-shadow:0 2px 10px rgba(66,133,244,.2)}
+
+.auth-divider{display:flex;align-items:center;gap:8px;margin:8px 0;color:var(--text-muted);font-size:.7rem}
+
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.auth-error{color:#b91c1c;font-size:.76rem;background:#fee2e2;border-radius:7px;padding:8px 12px;margin-bottom:10px;display:none}
+
+.auth-link-btn{background:none;border:none;color:var(--blue-main);font-size:.74rem;font-weight:700;cursor:pointer;padding:2px;display:block;margin:0 auto;text-align:center}
+
+.auth-skip{background:none;border:none;color:var(--text-muted);font-size:.72rem;cursor:pointer;padding:4px;display:block;margin:8px auto 0;text-align:center;text-decoration:underline}
+
+
+/* ── USER BANNER ── */
+.user-banner{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #bbf7d0;border-radius:12px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+
+body.dark .user-banner{background:linear-gradient(135deg,#052e16,#064e3b);border-color:#166534}
+
+.user-banner img,.user-banner-avatar{width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid #10b981}
+
+.user-banner-avatar{background:#10b981;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff}
+
+.user-banner-name{font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:#15803d;flex:1}
+
+body.dark .user-banner-name{color:#86efac}
+
+.user-banner-sub{font-size:.66rem;color:#16a34a;margin-top:1px}
+
+body.dark .user-banner-sub{color:#4ade80}
+
+.sign-out-link{font-size:.7rem;font-weight:700;color:#dc2626;cursor:pointer;border:none;background:none;flex-shrink:0}
+
+
+/* ── FULL USER DASHBOARD ── */
+#dashboardScreen{display:none}
+
+.dash-hero{background:linear-gradient(135deg,#081530,#0f2060,#1a3fa8);padding:28px 16px 32px;position:relative;overflow:hidden}
+
+.dash-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+
+.dash-hero-inner{max-width:860px;margin:0 auto;position:relative;z-index:1}
+
+.dash-profile{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+
+.dash-avatar{width:56px;height:56px;border-radius:50%;border:3px solid var(--orange);object-fit:cover;flex-shrink:0}
+
+.dash-avatar-placeholder{width:56px;height:56px;border-radius:50%;border:3px solid var(--orange);background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+
+.dash-profile-info{flex:1;min-width:0}
+
+.dash-nick{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:#fff;margin-bottom:2px;display:flex;align-items:center;gap:8px}
+
+.nick-edit-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:.65rem;padding:3px 8px;border-radius:6px;cursor:pointer;font-weight:700}
+
+.nick-edit-btn:hover{background:rgba(255,255,255,.2)}
+
+.dash-email{font-size:.72rem;color:rgba(255,255,255,.5)}
+
+.dash-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+
+@media(max-width:480px){.dash-stats-row{grid-template-columns:repeat(2,1fr)}}
+
+.dash-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px;text-align:center}
+
+.dash-stat-num{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff}
+
+.dash-stat-lbl{font-size:.6rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+.dash-body{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+
+.dash-section{margin-bottom:28px}
+
+.dash-sec-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text-main);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+
+/* Subject category cards */
+.cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+
+@media(min-width:540px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
+
+@media(min-width:800px){.cat-grid{grid-template-columns:repeat(4,1fr)}}
+
+.cat-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px 14px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;position:relative;overflow:hidden}
+
+body.dark .cat-card{background:#161b27;border-color:var(--border)}
+
+.cat-card:hover{border-color:var(--blue-main);transform:translateY(-2px);box-shadow:0 8px 20px rgba(26,63,168,.12)}
+
+.cat-card-icon{font-size:1.8rem}
+
+.cat-card-name{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text-main)}
+
+.cat-card-count{font-size:.64rem;color:var(--text-muted);margin-top:1px}
+
+.cat-card-bar{position:absolute;bottom:0;left:0;height:3px;background:linear-gradient(90deg,var(--blue-main),var(--orange));border-radius:0 0 12px 12px}
+
+.cat-card.has-score .cat-card-bar{display:block}
+
+.cat-card-score{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:800;color:var(--blue-main);background:var(--blue-light);border-radius:20px;padding:2px 8px;margin-top:2px}
+
+body.dark .cat-card-score{background:#1a2d5a;color:#93c5fd}
+
+/* Achievements */
+.ach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+
+@media(min-width:540px){.ach-grid{grid-template-columns:repeat(3,1fr)}}
+
+.ach-badge{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 12px;text-align:center;transition:.2s;position:relative}
+
+body.dark .ach-badge{background:#161b27;border-color:var(--border)}
+
+.ach-badge.unlocked{border-color:#f59e0b;background:linear-gradient(135deg,#fffbeb,#fef9c3)}
+
+body.dark .ach-badge.unlocked{background:linear-gradient(135deg,#1c1400,#2a1e00);border-color:#b45309}
+
+.ach-icon{font-size:1.8rem;margin-bottom:6px;filter:grayscale(1);opacity:.35}
+
+.ach-badge.unlocked .ach-icon{filter:none;opacity:1;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+
+@keyframes popIn{from{transform:scale(.7)}to{transform:scale(1)}}
+
+.ach-name{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;color:var(--text-muted)}
+
+.ach-badge.unlocked .ach-name{color:#92400e}
+
+body.dark .ach-badge.unlocked .ach-name{color:#fbbf24}
+
+.ach-desc{font-size:.62rem;color:var(--text-muted);margin-top:3px;line-height:1.4}
+
+.ach-badge.unlocked .ach-desc{color:#78350f}
+
+body.dark .ach-badge.unlocked .ach-desc{color:#d97706}
+
+.ach-new{position:absolute;top:6px;right:6px;background:#f59e0b;color:#fff;font-size:.52rem;font-weight:800;padding:2px 5px;border-radius:10px}
+
+/* Referral section */
+.ref-card{background:linear-gradient(135deg,#f0f4ff,#e0e9ff);border:1.5px solid #c7d8ff;border-radius:14px;padding:18px;margin-bottom:12px}
+
+body.dark .ref-card{background:linear-gradient(135deg,#111624,#141c30);border-color:#2a3550}
+
+.ref-title{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:var(--blue-main);margin-bottom:6px}
+
+body.dark .ref-title{color:#93c5fd}
+
+.ref-sub{font-size:.72rem;color:var(--text-muted);margin-bottom:12px}
+
+.ref-link-box{display:flex;gap:8px;align-items:center}
+
+.ref-link-input{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:8px;font-size:.78rem;font-family:'Roboto',sans-serif;color:var(--text-main);background:var(--surface);cursor:text}
+
+body.dark .ref-link-input{background:#0d1117;border-color:#2a3550;color:var(--text-main)}
+
+.ref-copy-btn{background:var(--blue-main);color:#fff;border:none;border-radius:8px;padding:9px 14px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.72rem;cursor:pointer;white-space:nowrap;transition:.18s}
+
+.ref-copy-btn:hover{opacity:.85}
+
+.ref-count{font-family:'Montserrat',sans-serif;font-size:1.2rem;font-weight:800;color:var(--blue-main);text-align:center;margin-top:12px}
+
+body.dark .ref-count{color:#93c5fd}
+
+.ref-count span{font-size:.7rem;font-weight:500;color:var(--text-muted);display:block;margin-top:2px}
+
+/* History list */
+.history-list{display:flex;flex-direction:column;gap:8px}
+
+.history-item{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:10px}
+
+body.dark .history-item{background:#161b27;border-color:var(--border)}
+
+.history-score-badge{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;flex-shrink:0}
+
+.history-info{flex:1;min-width:0}
+
+.history-subj{font-size:.74rem;font-weight:700;color:var(--text-main)}
+
+.history-meta{font-size:.64rem;color:var(--text-muted);margin-top:2px}
+
+.history-pct{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;flex-shrink:0}
+
+/* Nickname modal */
+.nick-modal{position:fixed;inset:0;background:rgba(10,20,60,.7);z-index:700;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)}
+
+.nick-modal-card{background:var(--surface);border-radius:16px;padding:24px;width:100%;max-width:340px;box-shadow:0 32px 80px rgba(0,0,0,.3);animation:authPop .3s cubic-bezier(.34,1.56,.64,1)}
+
+body.dark .nick-modal-card{background:#1e293b}
+
+.nick-modal-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text-main);margin-bottom:6px}
+
+.nick-modal-sub{font-size:.74rem;color:var(--text-muted);margin-bottom:14px}
+
+.nick-input{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:.95rem;font-family:'Roboto',sans-serif;color:var(--text-main);background:var(--surface-alt);margin-bottom:12px}
+
+body.dark .nick-input{background:#0f172a;border-color:#334155;color:#e2e8f0}
+
+.nick-input:focus{outline:none;border-color:var(--blue-main)}
+
+.nick-save-btn{width:100%;padding:12px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;cursor:pointer}
+
+/* Achievement toast */
+.ach-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e293b;color:#fff;padding:12px 20px;border-radius:14px;font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:10px;box-shadow:0 8px 28px rgba(0,0,0,.4);z-index:800;opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1);pointer-events:none;white-space:nowrap}
+
+.ach-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Streak banner */
+.streak-banner{background:linear-gradient(135deg,#ff6b35,#f97316);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+
+.streak-fire{font-size:1.6rem}
+
+.streak-info{flex:1}
+
+.streak-days{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:#fff}
+
+.streak-label{font-size:.66rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.5px}
+
+
+/* ── WEEKLY PERFORMANCE CHART ── */
+.perf-chart-wrap{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:20px 16px 14px;margin-bottom:0}
+
+body.dark .perf-chart-wrap{background:#161b27;border-color:var(--border)}
+
+.perf-chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+
+.perf-chart-title{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:var(--text-main)}
+
+.perf-chart-avg{font-size:.7rem;color:var(--text-muted);background:var(--surface-alt);padding:3px 9px;border-radius:20px}
+
+body.dark .perf-chart-avg{background:#1a2236}
+
+.perf-bars{display:flex;align-items:flex-end;gap:5px;height:90px;padding-bottom:4px}
+
+.perf-bar-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+
+.perf-bar-val{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;color:var(--text-muted);min-height:14px;text-align:center}
+
+.perf-bar{width:100%;border-radius:5px 5px 2px 2px;transition:height .5s cubic-bezier(.34,1.2,.64,1);min-height:4px;position:relative}
+
+.perf-bar-day{font-size:.58rem;color:var(--text-muted);margin-top:4px;text-align:center}
+
+.perf-empty{text-align:center;padding:28px 0;font-size:.78rem;color:var(--text-muted)}
+
+
+/* ── STREAK CALENDAR ── */
+.streak-cal-wrap{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:18px 16px 14px}
+
+body.dark .streak-cal-wrap{background:#161b27;border-color:var(--border)}
+
+.streak-cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+
+.streak-cal-title{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:var(--text-main)}
+
+.streak-cal-badge{font-size:.68rem;font-weight:800;color:#f97316;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.25);padding:3px 9px;border-radius:20px}
+
+.streak-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+
+.streak-cal-dow{font-size:.56rem;font-weight:700;color:var(--text-muted);text-align:center;padding-bottom:4px;text-transform:uppercase}
+
+.streak-day{aspect-ratio:1;border-radius:4px;background:var(--surface-alt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.56rem;font-weight:700;color:var(--text-muted);transition:.15s;position:relative;cursor:default}
+
+body.dark .streak-day{background:#1a2236;border-color:var(--border)}
+
+.streak-day.active{background:var(--blue-main);border-color:var(--blue-main);color:#fff}
+
+.streak-day.today{border-color:var(--orange)!important;box-shadow:0 0 0 2px rgba(249,115,22,.2)}
+
+.streak-day.active.today{background:var(--orange);border-color:var(--orange);color:#fff}
+
+.streak-day.future{opacity:.3}
+
+.streak-cal-legend{display:flex;align-items:center;gap:12px;margin-top:10px;flex-wrap:wrap}
+
+.streak-cal-legend span{display:flex;align-items:center;gap:5px;font-size:.62rem;color:var(--text-muted)}
+
+.legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+
+
+/* ── SHARE SCORE CARD ── */
+.share-card-wrap{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:18px 16px;margin-top:16px}
+
+body.dark .share-card-wrap{background:#161b27;border-color:var(--border)}
+
+.share-card-title{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:var(--text-main);margin-bottom:14px;display:flex;align-items:center;gap:7px}
+
+#scoreCardCanvas{display:block;width:100%;max-width:360px;border-radius:12px;margin:0 auto 14px;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+
+.share-card-btns{display:flex;gap:8px;flex-wrap:wrap}
+
+.share-card-btn{flex:1;min-width:120px;padding:11px 14px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.76rem;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:.18s}
+
+.share-card-btn:hover{opacity:.88;transform:translateY(-1px)}
+
+.scb-dl{background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff}
+
+.scb-wa{background:#25d366;color:#fff}
+
+.scb-copy{background:var(--surface-alt);color:var(--text-main);border:1.5px solid var(--border)}
+
+body.dark .scb-copy{background:#1a2236;border-color:var(--border)}
+
+.share-caption-box{background:var(--surface-alt);border:1.5px solid var(--border);border-radius:9px;padding:12px 14px;margin-bottom:12px;font-size:.76rem;color:var(--text-muted);line-height:1.6;position:relative}
+
+body.dark .share-caption-box{background:#1a2236;border-color:var(--border)}
+
+.share-caption-copy{position:absolute;top:8px;right:8px;background:var(--blue-main);color:#fff;border:none;border-radius:6px;padding:3px 8px;font-size:.62rem;font-family:'Montserrat',sans-serif;font-weight:800;cursor:pointer}
+
+
+/* Referral count banner */
+.ref-count-banner{
+  background:linear-gradient(135deg,#0c1f6e,#1a3fa8);
+  border-radius:14px;padding:22px 16px;text-align:center;margin-bottom:12px;
+  position:relative;overflow:hidden;
+}
+
+.ref-count-banner::after{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.05)}
+
+.ref-count-big{
+  font-family:'Montserrat',sans-serif;font-size:3.5rem;font-weight:800;
+  color:#fff;line-height:1;margin-bottom:4px;
+  animation:countPop .4s cubic-bezier(.34,1.56,.64,1);
+}
+
+@keyframes countPop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+
+.ref-count-label{font-size:.8rem;color:rgba(255,255,255,.65);margin-bottom:6px}
+
+.ref-count-sub{font-size:.7rem;color:rgba(255,255,255,.4)}
+
+/* Claim button */
+.claim-btn{
+  background:linear-gradient(135deg,var(--orange),#ea6c00);
+  color:#fff;border:none;border-radius:10px;padding:14px 28px;
+  font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;
+  cursor:pointer;transition:.2s;margin-bottom:14px;
+  box-shadow:0 4px 14px rgba(249,115,22,.35);
+}
+
+.claim-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* Coins panel */
+.coins-panel{padding:4px 0 16px}
+
+.coins-balance-card{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:16px;padding:24px 16px;text-align:center;margin-bottom:14px;position:relative;overflow:hidden}
+
+.coins-balance-card::after{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.06)}
+
+.coins-icon{font-size:2.2rem;margin-bottom:6px}
+
+.coins-amount{font-family:'Montserrat',sans-serif;font-size:3rem;font-weight:800;color:#fbbf24;line-height:1;margin-bottom:4px;animation:countPop .4s cubic-bezier(.34,1.56,.64,1)}
+
+.coins-label{font-size:.78rem;color:rgba(255,255,255,.65);margin-bottom:4px}
+
+.coins-sub{font-size:.64rem;color:rgba(255,255,255,.4);line-height:1.4}
+
+.coins-breakdown{background:var(--surface-alt);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;display:flex;flex-direction:column;gap:8px}
+
+body.dark .coins-breakdown{background:#1a2236;border-color:var(--border)}
+
+.coins-row{display:flex;align-items:center;justify-content:space-between;font-size:.8rem;color:var(--text-muted)}
+
+.coins-row strong{color:var(--text-main);font-family:'Montserrat',sans-serif;font-size:.88rem}
+
+.ref-tabs{display:flex;gap:0;border-radius:9px;overflow:hidden;border:1.5px solid var(--border);margin-bottom:14px}
+
+.ref-tab{flex:1;padding:9px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:800;border:none;cursor:pointer;background:var(--surface-alt);color:var(--text-muted);transition:.2s}
+
+body.dark .ref-tab{background:#1a2236;color:#94a3b8}
+
+.ref-tab.active{background:var(--blue-main);color:#fff}
+
+.ref-tab-panel{display:none}
+
+.ref-tab-panel.active{display:block}
+
+/* Referred users list */
+.referred-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+
+.referred-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--surface-alt);border:1px solid var(--border);border-radius:9px}
+
+body.dark .referred-item{background:#1a2236;border-color:var(--border)}
+
+.referred-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--blue-main),var(--orange));display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;color:#fff;font-weight:800}
+
+.referred-name{font-size:.78rem;font-weight:700;color:var(--text-main);flex:1}
+
+.referred-date{font-size:.62rem;color:var(--text-muted)}
+
+/* Claim panel */
+.claim-panel{text-align:center;padding:28px 16px}
+
+.claim-icon{font-size:3rem;margin-bottom:10px}
+
+.claim-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--red);margin-bottom:8px}
+
+.claim-msg{font-size:.8rem;color:var(--text-muted);line-height:1.6;max-width:280px;margin:0 auto 16px}
+
+.claim-sorry-badge{display:flex;align-items:center;justify-content:center;gap:8px;background:#fee2e2;border:1.5px solid #fca5a5;border-radius:12px;padding:12px 18px;font-size:.8rem;font-weight:700;color:#b91c1c;margin:0 auto}
+
+body.dark .claim-sorry-badge{background:#1a0000;border-color:#7f1d1d;color:#fca5a5}
+
+footer#mainFooter{background:linear-gradient(135deg,#081530,#0c1f6e);color:rgba(255,255,255,.5);padding:44px 16px 28px}
+
+
+/* ── FLAG BUTTON ── */
+.flag-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);width:34px;height:34px;border-radius:8px;font-size:.9rem;cursor:pointer;flex-shrink:0;transition:.18s}
+
+.flag-btn.flagged{background:rgba(234,179,8,.2);border-color:#fde047;color:#fde047}
+
+
+/* ── QUESTION GRID LEGEND ── */
+.q-grid-header{padding:10px 14px 4px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+
+.q-grid-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.64rem;color:var(--text-muted)}
+
+.q-grid-legend span{display:flex;align-items:center;gap:4px}
+
+.q-leg{width:11px;height:11px;border-radius:3px;background:var(--surface-alt);border:1.5px solid var(--border)}
+
+.q-leg.answered{background:var(--blue-main);border-color:var(--blue-main)}
+
+.q-leg.flagged{background:#eab308;border-color:#eab308}
+
+.q-leg.current{background:var(--orange);border-color:var(--orange)}
+
+
+/* ── FLAGGED QUESTION DOT ── */
+.q-dot.flagged-q{background:#eab308!important;border-color:#eab308!important;color:#fff!important}
+
+.q-dot.flagged-q.answered-q{background:linear-gradient(135deg,var(--blue-main),#eab308)!important}
+
+
+/* ── ANIMATED SCORE RING ── */
+.score-ring{position:relative;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+
+.score-ring-svg{position:absolute;top:0;left:0}
+
+.score-ring-inner{position:relative;text-align:center;z-index:1}
+
+
+/* ── WEAK TOPICS ── */
+.weak-topic-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+
+body.dark .weak-topic-card{background:#161b27}
+
+.weak-topic-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+
+.weak-topic-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:var(--text-main)}
+
+.weak-topic-score{font-size:.76rem;font-weight:700;color:var(--red)}
+
+.weak-topic-bar{height:6px;background:var(--surface-alt);border-radius:3px;overflow:hidden;margin-bottom:8px}
+
+.weak-topic-fill{height:100%;background:linear-gradient(90deg,var(--red),#f97316);border-radius:3px;transition:width .8s ease}
+
+.weak-topic-tip{font-size:.74rem;color:var(--text-muted);line-height:1.5;padding:8px 10px;background:var(--surface-alt);border-radius:8px}
+
+body.dark .weak-topic-tip{background:#1a2236}
+
+
+/* ── ANSWER FEEDBACK ANIMATION ── */
+@keyframes correctPop{0%{transform:scale(1)}30%{transform:scale(1.04)}100%{transform:scale(1)}}
+
+@keyframes wrongShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+
+.option-btn.correct-anim{animation:correctPop .3s ease}
+
+.option-btn.wrong-anim{animation:wrongShake .35s ease}
+</style>
+<meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
+<link rel="canonical" href="https://bigquamsmedia.com.ng/cbt.html">
+</head>
+<body>
+<header id="bqm-header"></header>
+<nav id="bqm-mobile-nav"></nav>
+
+<main id="main-content">
+
+
+<!-- AUTH OVERLAY -->
+<div class="auth-overlay" id="authOverlay" style="display:none">
+  <div class="auth-card">
+    <div class="auth-logo"><img src="https://bigquamsmedia.com.ng/logo.png" alt="BQM"></div>
+    <div class="auth-title">Unlock Full CBT Access</div>
+    <div class="auth-sub">Sign in or create a free account to practise all subjects, save your scores, earn achievements and track your progress.</div>
+    <div class="auth-tabs">
+      <button class="auth-tab-btn active" onclick="switchCbtTab('signin',this)">Sign In</button>
+      <button class="auth-tab-btn" onclick="switchCbtTab('register',this)">Email Sign Up</button>
+      <button class="auth-tab-btn" onclick="switchCbtTab('phone',this)">📱 Phone</button>
+    </div>
+    <button class="google-auth-btn" onclick="cbtGoogleSignIn()">
+      <svg width="17" height="17" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.5 3.1 29.6 1 24 1 14.8 1 7 6.7 3.7 14.6l7 5.4C12.5 13.8 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.8-2.1 5.2-4.5 6.8l7 5.4C43.1 36.8 46.1 31.1 46.1 24.5z"/><path fill="#FBBC05" d="M10.7 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7-5.4C2.2 17.1 1 20.4 1 24s1.2 6.9 3.7 9.9l7-5.3z"/><path fill="#34A853" d="M24 47c5.6 0 10.4-1.9 13.8-5.1l-7-5.4c-1.9 1.3-4.2 2-6.8 2-6.2 0-11.5-4.3-13.3-10l-7 5.4C7 41.3 14.8 47 24 47z"/></svg>
+      Continue with Google
+    </button>
+    <button class="google-auth-btn" onclick="cbtAppleSignIn()" style="background:#000;color:#fff;border-color:#000">
+      <svg width="17" height="17" viewBox="0 0 814 1000" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.9 137.8-317.9 272.5-317.9 64.4 0 118.1 42.4 158.6 42.4 36.7 0 95.2-44.9 169.6-44.9 27.3 0 108.2 2.6 168.4 101.1zm-199.2-175.7c31.8-40.5 53.3-95.3 53.3-150.1 0-7.7-.6-15.4-1.9-22.4-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 87.2-55.1 142.7 0 8.3 1.3 16.6 1.9 19.2 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.3-66.5z"/></svg>
+      Continue with Apple
+    </button>
+    <div class="auth-divider">or</div>
+
+    <!-- SIGN IN -->
+    <div id="cbtSigninForm">
+      <input class="auth-input" type="email" id="cbtEmail" placeholder="Email address" autocomplete="email">
+      <input class="auth-input" type="password" id="cbtPassword" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')cbtEmailSignIn()">
+      <div class="auth-error" id="cbtAuthError"></div>
+      <button class="auth-btn" id="cbtSignInBtn" onclick="cbtEmailSignIn()">Sign In →</button>
+      <button class="auth-link-btn" onclick="cbtForgotPw()">Forgot password?</button>
+    </div>
+
+    <!-- EMAIL REGISTER -->
+    <div id="cbtRegisterForm" style="display:none">
+      <input class="auth-input" type="text" id="cbtRegName" placeholder="Your full name" autocomplete="name">
+      <select class="auth-input" id="cbtRegGender" style="color:var(--text-main)">
+        <option value="">Select gender…</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <input class="auth-input" type="email" id="cbtRegEmail" placeholder="Email address" autocomplete="email">
+      <input class="auth-input" type="password" id="cbtRegPw" placeholder="Password (min 6 chars)" autocomplete="new-password" onkeydown="if(event.key==='Enter')cbtCreateAccount()">
+      <div class="auth-error" id="cbtRegError"></div>
+      <button class="auth-btn" id="cbtRegBtn" onclick="cbtCreateAccount()">Create Free Account →</button>
+      <div id="verifyEmailNotice" style="display:none;background:#fef9c3;border:1px solid #fde68a;border-radius:9px;padding:10px 12px;font-size:.74rem;color:#92400e;margin-top:8px;line-height:1.5">
+        📧 A verification email has been sent to your inbox. Please verify your email before signing in. Check your spam folder if you don't see it.
+      </div>
+    </div>
+
+    <!-- PHONE AUTH -->
+    <div id="cbtPhoneForm" style="display:none">
+      <div id="cbtPhoneStep1">
+        <div style="font-size:.74rem;color:var(--text-muted);margin-bottom:10px;line-height:1.5">Enter your phone number with country code e.g. <strong>+2348012345678</strong></div>
+        <input class="auth-input" type="tel" id="cbtPhone" placeholder="+2348012345678" autocomplete="tel">
+        <div class="auth-error" id="cbtPhoneError"></div>
+        <div id="recaptcha-container" style="margin:10px 0"></div>
+        <button class="auth-btn" id="cbtSendOTPBtn" onclick="cbtSendOTP()">Send OTP →</button>
+      </div>
+      <div id="cbtPhoneStep2" style="display:none">
+        <div style="font-size:.74rem;color:var(--text-muted);margin-bottom:10px">📱 Enter the 6-digit OTP sent to <strong id="cbtPhoneDisplay"></strong></div>
+        <input class="auth-input" type="number" id="cbtOTP" placeholder="6-digit OTP" maxlength="6" onkeydown="if(event.key==='Enter')cbtVerifyOTP()">
+        <div class="auth-error" id="cbtOTPError"></div>
+        <button class="auth-btn" id="cbtVerifyOTPBtn" onclick="cbtVerifyOTP()">Verify & Sign In →</button>
+        <button class="auth-link-btn" onclick="cbtResendOTP()">Resend OTP</button>
+      </div>
+    </div>
+
+    <button class="auth-skip" onclick="closeAuthAsGuest()">Skip — try 10 free questions</button>
+  </div>
+</div>
+
+<!-- NICKNAME MODAL -->
+<div class="nick-modal" id="nickModal" style="display:none">
+  <div class="nick-modal-card">
+    <div class="nick-modal-title">✏️ Set Your Nickname</div>
+    <div class="nick-modal-sub">This is how you'll appear on your dashboard. Choose something fun!</div>
+    <input class="nick-input" type="text" id="nickInput" placeholder="e.g. JAMB Slayer, Science King…" maxlength="24">
+    <button class="nick-save-btn" onclick="saveNickname()">Save Nickname →</button>
+  </div>
+</div>
+
+<!-- ACHIEVEMENT TOAST -->
+<div class="ach-toast" id="achToast"></div>
+
+<!-- ══════════════ SETUP SCREEN ══════════════ -->
+<div id="setupScreen">
+  <div class="setup-hero">
+    <div class="setup-hero-inner">
+      <div class="hero-badge">🎯 Free CBT Practice</div>
+      <h1>JAMB <span>CBT Practice</span></h1>
+      <p>Practice with real past questions. Timed exam with instant scoring, explanations and performance review.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="user-banner" id="userBanner" style="display:none;max-width:640px;margin:20px auto 0">
+      <div class="user-banner-avatar" id="userAvatarWrap">👤</div>
+      <div style="flex:1;min-width:0">
+        <div class="user-banner-name" id="userBannerName">Loading…</div>
+        <div class="user-banner-sub">✅ Full access — scores saved automatically</div>
+      </div>
+      <button class="sign-out-link" onclick="cbtSignOut()">Sign Out</button>
+    </div>
+    <div class="setup-card">
+      <div class="setup-title">📚 Select Your Subjects</div>
+      <div class="subject-grid" id="subjectGrid">
+        <button class="subj-btn selected" data-subj="english" onclick="toggleSubject(this)"><span class="subj-icon">📝</span>Use of English</button>
+        <button class="subj-btn" data-subj="maths" onclick="toggleSubject(this)"><span class="subj-icon">🔢</span>Mathematics</button>
+        <button class="subj-btn" data-subj="physics" onclick="toggleSubject(this)"><span class="subj-icon">⚡</span>Physics</button>
+        <button class="subj-btn" data-subj="chemistry" onclick="toggleSubject(this)"><span class="subj-icon">🧪</span>Chemistry</button>
+        <button class="subj-btn" data-subj="biology" onclick="toggleSubject(this)"><span class="subj-icon">🌿</span>Biology</button>
+        <button class="subj-btn" data-subj="economics" onclick="toggleSubject(this)"><span class="subj-icon">📊</span>Economics</button>
+        <button class="subj-btn" data-subj="gov" onclick="toggleSubject(this)"><span class="subj-icon">🏛️</span>Government</button>
+        <button class="subj-btn" data-subj="literature" onclick="toggleSubject(this)"><span class="subj-icon">📖</span>Literature</button>
+        <button class="subj-btn" data-subj="geography" onclick="toggleSubject(this)"><span class="subj-icon">🌍</span>Geography</button>
+        <button class="subj-btn" data-subj="agric" onclick="toggleSubject(this)"><span class="subj-icon">🌾</span>Agriculture</button>
+        <button class="subj-btn" data-subj="crk" onclick="toggleSubject(this)"><span class="subj-icon">✝️</span>CRK</button>
+        <button class="subj-btn" data-subj="accounts" onclick="toggleSubject(this)"><span class="subj-icon">💼</span>Fin. Accounting</button>
+      </div>
+      <div class="options-row">
+        <div class="option-group">
+          <label>Number of Questions</label>
+          <select id="qCount">
+            <option value="20">20 Questions (Quick)</option>
+            <option value="40" selected>40 Questions (Standard)</option>
+            <option value="60">60 Questions (Extended)</option>
+            <option value="100">100 Questions (Full)</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>Time Limit</label>
+          <select id="timeLimit">
+            <option value="0">No Timer</option>
+            <option value="20">20 Minutes</option>
+            <option value="30" selected>30 Minutes</option>
+            <option value="60">1 Hour</option>
+            <option value="120">2 Hours</option>
+          </select>
+        </div>
+      </div>
+      <div class="option-group" style="margin-bottom:16px">
+        <label>Difficulty</label>
+        <select id="difficulty">
+          <option value="">All Difficulties</option>
+          <option value="easy">Easy Only</option>
+          <option value="medium">Medium Only</option>
+          <option value="hard">Hard Only</option>
+        </select>
+      </div>
+      <button class="start-btn" id="startBtn" onclick="checkAuthThenStart()">🎯 Start Practice Exam →</button>
+      <div style="text-align:center;font-size:.7rem;color:var(--text-muted);margin-top:8px">💡 Tip: Use <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">A B C D</kbd> keys to answer · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">← →</kbd> to navigate · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">F</kbd> to flag</div>
+      <div id="setupStatus" style="text-align:center;margin-top:12px;font-size:.8rem;color:var(--text-muted)">Select at least 1 subject to start</div>
+      <div id="guestNotice" style="display:none;text-align:center;margin-top:10px;padding:10px 14px;background:#fef9c3;border:1px solid #fde68a;border-radius:9px;font-size:.76rem;color:#92400e">
+        ⚠️ Guest mode — <strong>limited to 10 questions</strong>. 
+        <button onclick="showAuthOverlay()" style="background:none;border:none;color:var(--blue-main);font-weight:700;cursor:pointer;font-size:.76rem">Sign in for full access →</button>
+      </div>
+    </div>
+    <!-- Dashboard button for signed-in users -->
+    <div id="dashBtn" style="display:none;text-align:center;margin:-12px auto 32px;max-width:640px">
+      <button onclick="showDashboard()" style="background:none;border:1.5px solid var(--blue-main);color:var(--blue-main);padding:10px 20px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer">📊 View My Dashboard →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ DASHBOARD SCREEN ══════════════ -->
+<div id="dashboardScreen">
+  <div class="dash-hero">
+    <div class="dash-hero-inner">
+      <div class="dash-profile">
+        <div id="dashAvatarEl" class="dash-avatar-placeholder">👤</div>
+        <div class="dash-profile-info">
+          <div class="dash-nick" id="dashNick">Loading…
+            <button class="nick-edit-btn" onclick="openNickModal()">✏️ Edit</button>
+          </div>
+          <div class="dash-email" id="dashEmail"></div>
+        </div>
+        <button onclick="cbtSignOut()" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:.66rem;padding:6px 10px;border-radius:7px;cursor:pointer;font-weight:700;white-space:nowrap">Sign Out</button>
+      </div>
+      <div class="dash-stats-row">
+        <div class="dash-stat"><div class="dash-stat-num" id="dSessions">0</div><div class="dash-stat-lbl">Sessions</div></div>
+        <div class="dash-stat"><div class="dash-stat-num" id="dBestScore">0%</div><div class="dash-stat-lbl">Best Score</div></div>
+        <div class="dash-stat"><div class="dash-stat-num" id="dStreak">0🔥</div><div class="dash-stat-lbl">Day Streak</div></div>
+        <div class="dash-stat"><div class="dash-stat-num" id="dReferrals">0</div><div class="dash-stat-lbl">Referrals</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-body">
+    <!-- Streak Banner -->
+    <div class="streak-banner" id="streakBanner" style="display:none">
+      <div class="streak-fire">🔥</div>
+      <div class="streak-info">
+        <div class="streak-days" id="streakDays">3 Day Streak!</div>
+        <div class="streak-label">Keep practising daily to maintain your streak</div>
+      </div>
+    </div>
+
+    <!-- Start Practice from Dashboard -->
+    <div class="dash-section">
+      <button class="start-btn" onclick="backToSetup()" style="max-width:100%;margin-bottom:8px">🎯 Start New Practice Session →</button>
+    </div>
+
+    <!-- Subjects -->
+    <div class="dash-section">
+      <div class="dash-sec-title">📚 Practice by Subject</div>
+      <div class="cat-grid" id="catGrid">
+        <div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted);font-size:.8rem">Loading…</div>
+      </div>
+    </div>
+
+    <!-- Weekly Performance Chart -->
+    <div class="dash-section">
+      <div class="dash-sec-title">📈 This Week's Performance</div>
+      <div class="perf-chart-wrap">
+        <div class="perf-chart-header">
+          <div class="perf-chart-title">Score trend — last 7 days</div>
+          <div class="perf-chart-avg" id="weekAvgBadge">Avg: —</div>
+        </div>
+        <div class="perf-bars" id="perfBars">
+          <div class="perf-empty" style="width:100%">Complete a session to see your chart 📊</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Streak Calendar -->
+    <div class="dash-section">
+      <div class="dash-sec-title">🗓️ Practice Calendar</div>
+      <div class="streak-cal-wrap">
+        <div class="streak-cal-header">
+          <div class="streak-cal-title" id="streakCalMonthLabel">This Month</div>
+          <div class="streak-cal-badge" id="streakCalBadge">🔥 0 day streak</div>
+        </div>
+        <div class="streak-cal-grid" id="streakCalGrid"></div>
+        <div class="streak-cal-legend">
+          <span><div class="legend-dot" style="background:var(--blue-main)"></div>Practised</span>
+          <span><div class="legend-dot" style="background:var(--orange)"></div>Today</span>
+          <span><div class="legend-dot" style="background:var(--surface-alt);border:1px solid var(--border)"></div>No session</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent History -->
+    <div class="dash-section">
+      <div class="dash-sec-title">📋 Recent Sessions</div>
+      <div class="history-list" id="historyList">
+        <div style="text-align:center;padding:20px;color:var(--text-muted);font-size:.8rem">No sessions yet. Start practising!</div>
+      </div>
+    </div>
+
+    <!-- Achievements -->
+    <div class="dash-section">
+      <div class="dash-sec-title">🏆 Achievements</div>
+      <div class="ach-grid" id="achGrid"></div>
+    </div>
+
+    <!-- Referral -->
+    <div class="dash-section">
+      <div class="dash-sec-title">🔗 Refer & Grow</div>
+
+      <!-- Big referral count banner -->
+      <div class="ref-count-banner" id="refCountBanner">
+        <div class="ref-count-big" id="refCountBig">0</div>
+        <div class="ref-count-label">classmates referred so far</div>
+        <div class="ref-count-sub" id="refCountSub">Share your link below to get started!</div>
+      </div>
+
+      <!-- Share card -->
+      <div class="ref-card">
+        <div class="ref-title">📤 Your Referral Link</div>
+        <div class="ref-sub">Anyone who signs up through your link is counted as your referral.</div>
+        <div class="ref-link-box">
+          <input class="ref-link-input" type="text" id="refLinkInput" readonly>
+          <button class="ref-copy-btn" onclick="copyRefLink()">📋 Copy</button>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+          <button onclick="shareRefWhatsApp()" style="flex:1;padding:9px;background:#25d366;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">📱 Share on WhatsApp</button>
+          <button onclick="shareRefNative()" style="flex:1;padding:9px;background:var(--surface-alt);color:var(--text-main);border:1.5px solid var(--border);border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;cursor:pointer">↗️ Share</button>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="ref-tabs">
+        <button class="ref-tab active" onclick="switchRefTab('people',this)">👥 Who Joined (<span id="refTabCount">0</span>)</button>
+        <button class="ref-tab" onclick="switchRefTab('claim',this)">🎁 Claim Reward</button>
+      </div>
+
+      <!-- Who joined tab -->
+      <div class="ref-tab-panel active" id="refTab-people">
+        <div class="referred-list" id="referredList">
+          <div style="text-align:center;padding:24px;color:var(--text-muted);font-size:.78rem">No one has joined through your link yet.<br>Share it with your classmates! 🚀</div>
+        </div>
+      </div>
+
+      <!-- Claim tab -->
+      <div class="ref-tab-panel" id="refTab-claim">
+        <div class="coins-panel">
+          <!-- Coins balance -->
+          <div class="coins-balance-card">
+            <div class="coins-icon">🪙</div>
+            <div class="coins-amount" id="coinsBalance">0</div>
+            <div class="coins-label">BQM Coins</div>
+            <div class="coins-sub">1 referral = 10 coins · Redeemable in future updates</div>
+          </div>
+          <!-- Breakdown -->
+          <div class="coins-breakdown">
+            <div class="coins-row">
+              <span>👥 People referred</span>
+              <strong id="coinsPeopleCount">0</strong>
+            </div>
+            <div class="coins-row">
+              <span>🪙 Coins per referral</span>
+              <strong>10</strong>
+            </div>
+            <div class="coins-row" style="border-top:1.5px solid var(--border);padding-top:10px;margin-top:4px">
+              <span>💰 Total coins earned</span>
+              <strong id="coinsTotalEarned" style="color:var(--orange)">0</strong>
+            </div>
+            <div class="coins-row">
+              <span>✅ Coins claimed</span>
+              <strong id="coinsAlreadyClaimed">0</strong>
+            </div>
+            <div class="coins-row">
+              <span>🪙 Available balance</span>
+              <strong id="coinsAvailable" style="color:var(--green)">0</strong>
+            </div>
+          </div>
+          <!-- Claim button -->
+          <div id="claimSection">
+            <button class="claim-btn" id="claimBtn" onclick="attemptClaim()">🎁 Claim My Coins</button>
+            <div class="claim-sorry-badge" id="claimResult" style="display:none">
+              😔 Sorry, you're not eligible for this bonus/credit yet
+            </div>
+            <div id="claimSuccess" style="display:none;background:#dcfce7;border:1.5px solid #bbf7d0;border-radius:12px;padding:14px;text-align:center;margin-top:10px">
+              <div style="font-size:1.5rem;margin-bottom:4px">🎉</div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:800;color:#15803d;font-size:.9rem">Coins Claimed!</div>
+              <div style="font-size:.74rem;color:#16a34a;margin-top:4px">Your balance has been updated</div>
+            </div>
+          </div>
+          <div style="margin-top:14px;font-size:.7rem;color:var(--text-muted);text-align:center;line-height:1.6">
+            🔮 Coming soon: use your coins to unlock premium features, study materials and more on BQM!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ EXAM SCREEN ══════════════ -->
+<div id="examScreen">
+  <div class="exam-topbar">
+    <div class="exam-topbar-inner">
+      <div class="exam-progress">
+        <div class="progress-label" id="progressLabel">Question 1 of 40</div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      </div>
+      <div class="timer-box" id="timerBox">
+        <span>⏱</span><span class="timer-num" id="timerNum">30:00</span>
+      </div>
+      <span class="q-counter" id="answeredCount">0/40 answered</span>
+      <button class="flag-btn" id="flagBtn" onclick="toggleFlag()" title="Flag for review">🚩</button>
+      <button class="submit-early-btn" onclick="confirmSubmit()">Submit →</button>
+    </div>
+  </div>
+  <div class="q-wrap">
+    <div class="q-card" id="questionCard"></div>
+    <div class="q-nav">
+      <button class="nav-btn btn-prev" onclick="goQuestion(currentQ-1)" id="prevBtn">← Previous</button>
+      <button class="nav-btn btn-next" onclick="goQuestion(currentQ+1)" id="nextBtn">Next →</button>
+    </div>
+  </div>
+  <div class="q-grid-wrap" id="qGridWrap">
+    <div class="q-grid-header">
+      <div class="q-grid-legend">
+        <span><div class="q-leg answered"></div>Answered</span>
+        <span><div class="q-leg flagged"></div>Flagged</span>
+        <span><div class="q-leg current"></div>Current</span>
+        <span><div class="q-leg"></div>Unanswered</span>
+      </div>
+    </div>
+    <div class="q-grid" id="qGrid"></div>
+  </div>
+</div>
+
+<!-- ══════════════ RESULT SCREEN ══════════════ -->
+<div id="resultScreen">
+  <div class="result-hero">
+    <div class="score-ring" id="scoreRing">
+      <svg class="score-ring-svg" viewBox="0 0 120 120" width="140" height="140">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="10"/>
+        <circle id="scoreRingArc" cx="60" cy="60" r="52" fill="none" stroke="#f97316" stroke-width="10"
+          stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="326.7"
+          transform="rotate(-90 60 60)" style="transition:stroke-dashoffset 1.2s cubic-bezier(.34,1.1,.64,1)"/>
+      </svg>
+      <div class="score-ring-inner">
+        <div class="score-num" id="scoreNum">0</div>
+        <div class="score-denom" id="scoreDenom">/ 40</div>
+      </div>
+    </div>
+    <div class="result-grade" id="resultGrade">—</div>
+    <div class="result-sub" id="resultSub"></div>
+    <div class="result-stats" id="resultStats"></div>
+  </div>
+  <div class="result-actions">
+    <button class="ra-btn ra-btn-primary" onclick="restartExam()">🔄 Try Again</button>
+    <button class="ra-btn ra-btn-primary" onclick="showDashboard()" id="dashFromResult" style="display:none;background:linear-gradient(135deg,#059669,#10b981)">📊 My Dashboard</button>
+    <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="ra-btn ra-btn-wa">💬 Get Help</a>
+    <a href="explore.html" class="ra-btn" style="background:var(--surface-alt);color:var(--text-muted)">🗂 Explore More</a>
+  </div>
+
+  <!-- Share Score Card -->
+  <div style="max-width:860px;margin:0 auto;padding:0 16px">
+    <div class="share-card-wrap">
+      <div class="share-card-title">📤 Share Your Score</div>
+      <canvas id="scoreCardCanvas" width="720" height="400"></canvas>
+      <div class="share-caption-box" id="shareCaption">
+        Loading caption…
+        <button class="share-caption-copy" onclick="copyShareCaption()">Copy</button>
+      </div>
+      <div class="share-card-btns">
+        <button class="share-card-btn scb-dl" onclick="downloadScoreCard()">⬇️ Download Image</button>
+        <button class="share-card-btn scb-wa" onclick="shareScoreWhatsApp()">📱 WhatsApp</button>
+        <button class="share-card-btn scb-copy" onclick="copyShareCaption()">📋 Copy Caption</button>
+      </div>
+    </div>
+  </div>
+  <div class="review-section">
+    <div class="review-title">📋 Question Review</div>
+    <div id="reviewList"></div>
+  </div>
+  <div class="review-section" id="weakTopicsSection" style="display:none">
+    <div class="review-title">🧠 Weak Topics Detector</div>
+    <div id="weakTopicsList"></div>
+  </div>
+</div>
+
+</main>
+
+<footer id="bqm-footer"></footer>
+
+<!-- Firebase App + Firestore -->
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import{getFirestore,collection,getDocs,doc,setDoc,getDoc,updateDoc,increment,serverTimestamp,arrayUnion,onSnapshot}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,OAuthProvider,signOut,sendPasswordResetEmail,updateProfile,sendEmailVerification,RecaptchaVerifier,signInWithPhoneNumber}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+const fbConfig={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media',storageBucket:'big-quams-media.firebasestorage.app',messagingSenderId:'383186323859',appId:'1:383186323859:web:826d6b9977cfa947730066',measurementId:'G-1FQ3TZXPV9'};
+const app=initializeApp(fbConfig);
+const db=getFirestore(app);
+const auth=getAuth(app);
+const gProvider=new GoogleAuthProvider();
+
+// Expose to global JS
+window._db=db; window._collection=collection; window._getDocs=getDocs;
+window._doc=doc; window._setDoc=(ref,data,opts)=>setDoc(ref,data,opts||{}); window._getDoc=getDoc;
+window._updateDoc=updateDoc; window._increment=increment;
+window._serverTimestamp=serverTimestamp; window._arrayUnion=arrayUnion; window._onSnapshot=onSnapshot;
+window._auth=auth;
+window._signInEmail=(e,p)=>signInWithEmailAndPassword(auth,e,p);
+window._createAccount=(e,p)=>createUserWithEmailAndPassword(auth,e,p);
+window._signInGoogle=()=>signInWithPopup(auth,gProvider);
+window._signOut=()=>signOut(auth);
+window._resetPw=(e)=>sendPasswordResetEmail(auth,e);
+window._updateProfile=updateProfile;
+window._sendEmailVerification=(user)=>sendEmailVerification(user);
+window._RecaptchaVerifier=RecaptchaVerifier;
+window._signInWithPhoneNumber=(phone,appVerifier)=>signInWithPhoneNumber(auth,phone,appVerifier);
+window._auth=auth;
+window._appleProvider=new OAuthProvider('apple.com');
+window._signInApple=()=>signInWithPopup(auth,window._appleProvider);
+window._onAuthStateChanged=(cb)=>onAuthStateChanged(auth,cb);
+</script>
+
+<script>
+(function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
+
+// ── CONSTANTS ──
+const GUEST_LIMIT=10;
+const SITE_URL='https://bigquamsmedia.com.ng/cbt.html';
+const SUBJ_LABELS={english:'Use of English',maths:'Mathematics',physics:'Physics',chemistry:'Chemistry',biology:'Biology',economics:'Economics',gov:'Government',literature:'Literature in English',geography:'Geography',agric:'Agricultural Science',crk:'CRK',accounts:'Financial Accounting',commerce:'Commerce',history:'History',ict:'ICT'};
+const SUBJ_ICONS={english:'📝',maths:'🔢',physics:'⚡',chemistry:'🧪',biology:'🌿',economics:'📊',gov:'🏛️',literature:'📖',geography:'🌍',agric:'🌾',crk:'✝️',accounts:'💼',commerce:'🛒',history:'🏺',ict:'💻'};
+
+// ── ACHIEVEMENTS DEFINITION ──
+const ACHIEVEMENTS=[
+  {id:'first_session',icon:'🎯',name:'First Step',desc:'Complete your first practice session'},
+  {id:'score_80',icon:'🌟',name:'Star Performer',desc:'Score 80% or above in any session'},
+  {id:'score_100',icon:'💯',name:'Perfect Score',desc:'Score 100% in any session'},
+  {id:'sessions_5',icon:'🔥',name:'On Fire',desc:'Complete 5 practice sessions'},
+  {id:'sessions_10',icon:'⚡',name:'Dedicated',desc:'Complete 10 practice sessions'},
+  {id:'sessions_25',icon:'👑',name:'JAMB Champion',desc:'Complete 25 practice sessions'},
+  {id:'streak_3',icon:'📅',name:'3-Day Streak',desc:'Practise 3 days in a row'},
+  {id:'streak_7',icon:'🗓️',name:'Weekly Warrior',desc:'Practise 7 days in a row'},
+  {id:'referral_1',icon:'🤝',name:'Team Player',desc:'Refer your first classmate'},
+  {id:'referral_5',icon:'🚀',name:'BQM Ambassador',desc:'Refer 5 classmates'},
+  {id:'multi_subj',icon:'📚',name:'All-Rounder',desc:'Practice at least 4 different subjects'},
+  {id:'night_owl',icon:'🦉',name:'Night Owl',desc:'Complete a session after 10 PM'},
+];
+
+// ── STATE ──
+let cbtUser=null;
+let isGuest=false;
+let userProfile=null;
+let _profileUnsubscribe=null; // real-time listener cleanup
+let selectedSubjects=['english'];
+let allQuestions=[],examQuestions=[],userAnswers={},currentQ=0,timerInterval=null,secondsLeft=0;
+let examStartSubjects=[];
+
+// ── AUTH OBSERVER ──
+setTimeout(()=>{
+  if(window._onAuthStateChanged){
+    window._onAuthStateChanged(async(user)=>{
+      cbtUser=user;
+      if(user){
+        isGuest=false;
+        await loadUserProfile(user);
+        updateUserUI(user);
+        checkReferralInURL(user.uid);
+        // Start real-time listener on user profile so referral count updates live
+        startProfileListener(user.uid);
+      } else {
+        // Unsubscribe from profile listener on sign-out
+        if(_profileUnsubscribe){_profileUnsubscribe();_profileUnsubscribe=null;}
+        userProfile=null;
+        updateUserUI(null);
+      }
+    });
+  }
+},500);
+
+// Real-time listener — fires whenever the user's Firestore profile changes
+// This ensures referralCount, referredUsers, achievements etc. update live
+function startProfileListener(uid){
+  if(_profileUnsubscribe){_profileUnsubscribe();_profileUnsubscribe=null;}
+  if(!window._onSnapshot||!window._db) return;
+  try{
+    _profileUnsubscribe=window._onSnapshot(
+      window._doc(window._db,'cbt_users',uid),
+      (snap)=>{
+        if(!snap.exists()) return;
+        const fresh=snap.data();
+        const prevRefCount=userProfile?userProfile.referralCount||0:0;
+        userProfile=fresh;
+        // If dashboard is open, refresh the referral section live
+        const dash=document.getElementById('dashboardScreen');
+        if(dash&&dash.style.display!=='none'){
+          // Update referral count display
+          const COINS_PER_REFERRAL=10;
+          const newCount=fresh.referralCount||0;
+          const newCoinsClaimed=fresh.coinsClaimed||0;
+          const newTotalEarned=newCount*COINS_PER_REFERRAL;
+          const newAvailable=Math.max(0,newTotalEarned-newCoinsClaimed);
+          const countEl=document.getElementById('refCountBig');
+          if(countEl) countEl.textContent=newCount;
+          const tabCountEl=document.getElementById('refTabCount');
+          if(tabCountEl) tabCountEl.textContent=newCount;
+          const dRefEl=document.getElementById('dReferrals');
+          if(dRefEl) dRefEl.textContent=newCount;
+          // Update coins
+          const balEl=document.getElementById('coinsBalance');
+          if(balEl) balEl.textContent=newAvailable;
+          const pplEl=document.getElementById('coinsPeopleCount');
+          if(pplEl) pplEl.textContent=newCount;
+          const earnedEl=document.getElementById('coinsTotalEarned');
+          if(earnedEl) earnedEl.textContent=newTotalEarned;
+          const claimedEl=document.getElementById('coinsAlreadyClaimed');
+          if(claimedEl) claimedEl.textContent=newCoinsClaimed;
+          const availEl=document.getElementById('coinsAvailable');
+          if(availEl) availEl.textContent=newAvailable;
+          // Update subtitle
+          const subEl=document.getElementById('refCountSub');
+          if(subEl) subEl.textContent=
+            newCount===0?'Share your link below to get started! 🚀':
+            newCount===1?'🎉 1 classmate joined through your link! Keep going!':
+            `🎉 ${newCount} classmates have joined through your link!`;
+          // If count increased show a toast
+          if(newCount>prevRefCount){
+            showAchToast('🔗','New referral! Someone joined through your link!');
+          }
+          // Rebuild referred users list
+          const referred=fresh.referredUsers||[];
+          const listEl=document.getElementById('referredList');
+          if(listEl){
+            if(referred.length){
+              listEl.innerHTML=referred.slice().reverse().map(u=>{
+                const initial=(u.name||'S').charAt(0).toUpperCase();
+                const joined=u.joinedAt?new Date(u.joinedAt).toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'}):'';
+                return`<div class="referred-item">
+                  <div class="referred-avatar">${initial}</div>
+                  <div style="flex:1;min-width:0">
+                    <div class="referred-name">${u.name||'Student'}</div>
+                    <div class="referred-date">${u.email||''}</div>
+                  </div>
+                  <div class="referred-date">📅 ${joined}</div>
+                </div>`;
+              }).join('');
+            } else {
+              listEl.innerHTML='<div style="text-align:center;padding:24px;color:var(--text-muted);font-size:.78rem">No one has joined through your link yet.<br>Share it and watch this list grow! 🚀</div>';
+            }
+          }
+          // Update stat header
+          const sessEl=document.getElementById('dSessions');
+          if(sessEl) sessEl.textContent=fresh.sessions||0;
+          const bestEl=document.getElementById('dBestScore');
+          if(bestEl) bestEl.textContent=(fresh.bestScore||0)+'%';
+          const streakEl=document.getElementById('dStreak');
+          if(streakEl) streakEl.textContent=(fresh.streak||0)+'🔥';
+        }
+      },
+      (err)=>{ console.warn('Profile listener error:',err.message); }
+    );
+  }catch(e){ console.warn('Could not start profile listener:',e.message); }
+}
+
+async function loadUserProfile(user){
+  try{
+    const d=await window._getDoc(window._doc(window._db,'cbt_users',user.uid));
+    if(d.exists()){
+      userProfile=d.data();
+      // Ensure referralCode exists on old profiles
+      if(!userProfile.referralCode){
+        const code=generateReferralCode(userProfile.name||userProfile.displayName||user.displayName||'');
+        await window._updateDoc(window._doc(window._db,'cbt_users',user.uid),{referralCode:code});
+        userProfile.referralCode=code;
+        // Register in lookup index
+        await registerReferralCode(code,user.uid,user.email,user.displayName||user.email.split('@')[0]);
+      }
+    } else {
+      // New user — capture ref from URL BEFORE clearing it
+      const urlRef=new URLSearchParams(window.location.search).get('ref')||'';
+      const myCode=generateReferralCode(extra.name||user.displayName||user.email||"");
+      userProfile={
+        uid:user.uid,
+        email:user.email,
+        displayName:user.displayName||user.email.split('@')[0],
+        nickname:user.displayName||user.email.split('@')[0],
+        photoURL:user.photoURL||'',
+        sessions:0,
+        bestScore:0,
+        totalCorrect:0,
+        totalQuestions:0,
+        streak:0,
+        lastPracticeDate:'',
+        subjectHistory:{},
+        achievements:[],
+        referralCode:myCode,
+        gender:extra.gender||'',
+        referredBy:urlRef,
+        referralCount:0,
+        joinDate:new Date().toISOString(),
+        sessionHistory:[],
+        subjectsPractised:[],
+      };
+      await window._setDoc(window._doc(window._db,'cbt_users',user.uid),userProfile);
+      // Register this user's referral code in the lookup index
+      await registerReferralCode(myCode,user.uid,user.email,userProfile.nickname);
+      // Credit referrer if someone referred this new user
+      if(urlRef && urlRef!==myCode){
+        await creditReferrer(urlRef,user.uid,user.email,userProfile.nickname);
+      }
+    }
+  }catch(e){console.warn('Profile load error',e);}
+}
+
+// Store ref code → uid mapping so lookup is O(1), no full scan needed
+async function registerReferralCode(code,uid,email,name){
+  try{
+    await window._setDoc(
+      window._doc(window._db,'referral_codes',code),
+      {uid,email,name,code,createdAt:new Date().toISOString()},
+      {merge:true}
+    );
+  }catch(e){console.warn('Referral code register error',e);}
+}
+
+// Direct lookup by code — no full collection scan
+async function creditReferrer(refCode,newUserUid,newUserEmail,newUserName){
+  try{
+    // Look up referrer uid directly from the index
+    const codeDoc=await window._getDoc(window._doc(window._db,'referral_codes',refCode));
+    if(!codeDoc.exists()) return;
+    const referrerUid=codeDoc.data().uid;
+    if(!referrerUid||referrerUid===newUserUid) return;
+
+    // Increment referrer's count
+    await window._updateDoc(window._doc(window._db,'cbt_users',referrerUid),{
+      referralCount:window._increment(1),
+      referredUsers:window._arrayUnion({
+        uid:newUserUid,
+        email:newUserEmail||'',
+        name:newUserName||'Student',
+        joinedAt:new Date().toISOString(),
+      }),
+    });
+
+    // Fetch updated profile to check achievements
+    const referrerDoc=await window._getDoc(window._doc(window._db,'cbt_users',referrerUid));
+    if(referrerDoc.exists()){
+      const rd=referrerDoc.data();
+      const newCount=(rd.referralCount||0);
+      const achToGrant=[];
+      if(newCount>=1) achToGrant.push('referral_1');
+      if(newCount>=5) achToGrant.push('referral_5');
+      for(const a of achToGrant) await grantAchievementToUser(referrerUid,a);
+    }
+  }catch(e){console.warn('Credit referrer error',e);}
+}
+
+async function grantAchievementToUser(uid,achId){
+  try{
+    const d=await window._getDoc(window._doc(window._db,'cbt_users',uid));
+    if(d.exists()&&!(d.data().achievements||[]).includes(achId)){
+      await window._updateDoc(window._doc(window._db,'cbt_users',uid),{
+        achievements:window._arrayUnion(achId)
+      });
+    }
+  }catch(e){}
+}
+
+function checkReferralInURL(myUid){
+  // Clean the URL after capturing ref so it doesn't re-trigger on refresh
+  const url=new URL(window.location.href);
+  if(url.searchParams.has('ref')){
+    url.searchParams.delete('ref');
+    window.history.replaceState({},'',url.pathname);
+  }
+}
+
+function updateUserUI(user){
+  const banner=document.getElementById('userBanner');
+  const notice=document.getElementById('guestNotice');
+  const dashBtnEl=document.getElementById('dashBtn');
+  if(user){
+    isGuest=false;
+    if(banner){
+      banner.style.display='flex';
+      const nick=(userProfile&&userProfile.nickname)||user.displayName||user.email.split('@')[0];
+      document.getElementById('userBannerName').textContent=nick;
+      const avatarWrap=document.getElementById('userAvatarWrap');
+      if(user.photoURL) avatarWrap.innerHTML=`<img src="${user.photoURL}" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #10b981">`;
+    }
+    if(notice) notice.style.display='none';
+    if(dashBtnEl) dashBtnEl.style.display='block';
+  } else {
+    isGuest=true;
+    if(banner) banner.style.display='none';
+    if(notice) notice.style.display='block';
+    if(dashBtnEl) dashBtnEl.style.display='none';
+  }
+}
+
+// ── DASHBOARD ──
+async function showDashboard(){
+  hideAll();
+  document.getElementById('dashboardScreen').style.display='block';
+  document.getElementById('mainFooter').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+  // Always re-fetch fresh profile so referral count is always current
+  if(cbtUser){
+    try{
+      const snap=await window._getDoc(window._doc(window._db,'cbt_users',cbtUser.uid));
+      if(snap.exists()) userProfile=snap.data();
+    }catch(e){ console.warn('Profile refresh error',e); }
+  }
+  populateDashboard();
+}
+window.showDashboard=showDashboard;
+
+function backToSetup(){
+  hideAll();
+  document.getElementById('setupScreen').style.display='block';
+  document.getElementById('mainFooter').style.display='block';
+}
+window.backToSetup=backToSetup;
+
+function hideAll(){
+  ['setupScreen','dashboardScreen','examScreen','resultScreen'].forEach(id=>{
+    document.getElementById(id).style.display='none';
+  });
+}
+
+function populateDashboard(){
+  if(!cbtUser||!userProfile) return;
+  const p=userProfile;
+  // Avatar
+  const avatarEl=document.getElementById('dashAvatarEl');
+  if(cbtUser.photoURL){
+    avatarEl.outerHTML=`<img id="dashAvatarEl" class="dash-avatar" src="${cbtUser.photoURL}" alt="">`;
+  }
+  // Nick & email
+  document.getElementById('dashNick').innerHTML=(p.nickname||p.displayName||'Student')+`<button class="nick-edit-btn" onclick="openNickModal()">✏️ Edit</button>`;
+  document.getElementById('dashEmail').textContent=cbtUser.email;
+  // Stats
+  document.getElementById('dSessions').textContent=p.sessions||0;
+  document.getElementById('dBestScore').textContent=(p.bestScore||0)+'%';
+  document.getElementById('dStreak').textContent=(p.streak||0)+'🔥';
+  document.getElementById('dReferrals').textContent=p.referralCount||0;
+  // Streak banner
+  const streak=p.streak||0;
+  const sb=document.getElementById('streakBanner');
+  if(streak>=2){
+    sb.style.display='flex';
+    document.getElementById('streakDays').textContent=streak+' Day Streak! Keep it up! 🔥';
+  }
+  // Referral
+  const refCode=p.referralCode||generateReferralCode(p.name||p.displayName||'');
+  const refLink=`${SITE_URL}?ref=${refCode}`;
+  const refCount=p.referralCount||0;
+  const referred=p.referredUsers||[];
+  const COINS_PER_REFERRAL=10;
+  const totalCoinsEarned=refCount*COINS_PER_REFERRAL;
+  const coinsClaimed=p.coinsClaimed||0;
+  const coinsAvailable=Math.max(0,totalCoinsEarned-coinsClaimed);
+  document.getElementById('refLinkInput').value=refLink;
+  // Big count banner
+  document.getElementById('refCountBig').textContent=refCount;
+  document.getElementById('dReferrals').textContent=refCount;
+  document.getElementById('refTabCount').textContent=refCount;
+  document.getElementById('refCountSub').textContent=
+    refCount===0?'Share your link below to get started! 🚀':
+    refCount===1?'🎉 1 classmate joined through your link! Keep going!':
+    `🎉 ${refCount} classmates have joined through your link!`;
+  // Coins display
+  document.getElementById('coinsBalance').textContent=coinsAvailable;
+  document.getElementById('coinsPeopleCount').textContent=refCount;
+  document.getElementById('coinsTotalEarned').textContent=totalCoinsEarned;
+  document.getElementById('coinsAlreadyClaimed').textContent=coinsClaimed;
+  document.getElementById('coinsAvailable').textContent=coinsAvailable;
+  // Referred users list
+  if(referred.length){
+    document.getElementById('referredList').innerHTML=referred.slice().reverse().map(u=>{
+      const initial=(u.name||'S').charAt(0).toUpperCase();
+      const joined=u.joinedAt?new Date(u.joinedAt).toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'}):'';
+      return`<div class="referred-item">
+        <div class="referred-avatar">${initial}</div>
+        <div style="flex:1;min-width:0">
+          <div class="referred-name">${u.name||'Student'}</div>
+          <div class="referred-date">${u.email||''} · 🪙 +${COINS_PER_REFERRAL} coins</div>
+        </div>
+        <div class="referred-date">📅 ${joined}</div>
+      </div>`;
+    }).join('');
+  } else {
+    document.getElementById('referredList').innerHTML='<div style="text-align:center;padding:24px;color:var(--text-muted);font-size:.78rem">No one has joined through your link yet.<br>Share it and watch this list grow! 🚀</div>';
+  }
+  // Reset claim tab state
+  document.getElementById('claimResult').style.display='none';
+  document.getElementById('claimSuccess').style.display='none';
+  document.getElementById('claimBtn').style.display=coinsAvailable>0?'inline-block':'none';
+  // Subjects
+  buildSubjectCats(p);
+  // History
+  buildHistory(p);
+  // Achievements
+  buildAchievements(p.achievements||[]);
+  // Weekly chart
+  buildWeeklyChart(p);
+  // Streak calendar
+  buildStreakCalendar(p);
+}
+
+function buildSubjectCats(p){
+  const subjects=Object.keys(SUBJ_LABELS);
+  const history=p.subjectHistory||{};
+  let html='';
+  subjects.forEach(s=>{
+    const info=history[s]||null;
+    const bestPct=info?info.bestPct:null;
+    const sessions=info?info.sessions:0;
+    html+=`<div class="cat-card${info?' has-score':''}" onclick="quickStart('${s}')">
+      <div class="cat-card-icon">${SUBJ_ICONS[s]||'📚'}</div>
+      <div class="cat-card-name">${SUBJ_LABELS[s]}</div>
+      <div class="cat-card-count">${sessions?sessions+' session'+(sessions>1?'s':''):'Not started yet'}</div>
+      ${bestPct!==null?`<div class="cat-card-score">Best: ${bestPct}%</div>`:''}
+      ${info?'<div class="cat-card-bar" style="width:'+Math.min(bestPct,100)+'%"></div>':''}
+    </div>`;
+  });
+  document.getElementById('catGrid').innerHTML=html;
+}
+
+function quickStart(subj){
+  backToSetup();
+  // deselect all, select this one
+  document.querySelectorAll('.subj-btn').forEach(b=>{
+    b.classList.remove('selected');
+    if(b.getAttribute('data-subj')===subj) b.classList.add('selected');
+  });
+  selectedSubjects=[subj];
+  document.getElementById('setupStatus').textContent='1 subject selected — ready to start';
+}
+window.quickStart=quickStart;
+
+function buildHistory(p){
+  const hist=(p.sessionHistory||[]).slice().reverse().slice(0,8);
+  if(!hist.length){
+    document.getElementById('historyList').innerHTML='<div style="text-align:center;padding:20px;color:var(--text-muted);font-size:.8rem">No sessions yet. Start practising!</div>';
+    return;
+  }
+  document.getElementById('historyList').innerHTML=hist.map(s=>{
+    const pct=s.pct||0;
+    const color=pct>=80?'#10b981':pct>=65?'#3b82f6':pct>=50?'#f59e0b':'#ef4444';
+    const subj=s.subjects?s.subjects.map(x=>SUBJ_LABELS[x]||x).join(', '):'Mixed';
+    return`<div class="history-item">
+      <div class="history-score-badge" style="background:${color}22;border:2px solid ${color}20">
+        <span style="color:${color};font-size:.72rem;font-weight:800">${pct}%</span>
+      </div>
+      <div class="history-info">
+        <div class="history-subj">${subj}</div>
+        <div class="history-meta">${s.correct||0} correct · ${s.total||0} questions · ${formatDate(s.date)}</div>
+      </div>
+      <div class="history-pct" style="color:${color}">${pct>=80?'✅':pct>=50?'📈':'💪'}</div>
+    </div>`;
+  }).join('');
+}
+
+function buildAchievements(unlocked){
+  document.getElementById('achGrid').innerHTML=ACHIEVEMENTS.map(a=>{
+    const isUnlocked=unlocked.includes(a.id);
+    const isNew=isUnlocked&&!JSON.parse(localStorage.getItem('bqm_seen_ach')||'[]').includes(a.id);
+    return`<div class="ach-badge${isUnlocked?' unlocked':''}">
+      <div class="ach-icon">${a.icon}</div>
+      <div class="ach-name">${a.name}</div>
+      <div class="ach-desc">${isUnlocked?a.desc:'???'}</div>
+      ${isNew?'<div class="ach-new">NEW!</div>':''}
+    </div>`;
+  }).join('');
+  // Mark seen
+  if(unlocked.length){
+    localStorage.setItem('bqm_seen_ach',JSON.stringify(unlocked));
+  }
+}
+
+function formatDate(iso){
+  if(!iso) return '';
+  try{
+    const d=new Date(iso);
+    const now=new Date();
+    const diffDays=Math.floor((now-d)/(1000*60*60*24));
+    if(diffDays===0) return 'Today';
+    if(diffDays===1) return 'Yesterday';
+    return d.toLocaleDateString('en-NG',{day:'numeric',month:'short'});
+  }catch(e){return '';}
+}
+
+// ── NICKNAME ──
+function openNickModal(){
+  document.getElementById('nickInput').value=(userProfile&&userProfile.nickname)||'';
+  document.getElementById('nickModal').style.display='flex';
+}
+window.openNickModal=openNickModal;
+
+async function saveNickname(){
+  const nick=document.getElementById('nickInput').value.trim();
+  if(!nick||nick.length<2){alert('Please enter a nickname (min 2 characters).');return;}
+  try{
+    await window._updateDoc(window._doc(window._db,'cbt_users',cbtUser.uid),{nickname:nick});
+    if(userProfile) userProfile.nickname=nick;
+    document.getElementById('nickModal').style.display='none';
+    document.getElementById('dashNick').innerHTML=nick+`<button class="nick-edit-btn" onclick="openNickModal()">✏️ Edit</button>`;
+    document.getElementById('userBannerName').textContent=nick;
+  }catch(e){alert('Could not save nickname. Try again.');}
+}
+window.saveNickname=saveNickname;
+
+// ── COPY REFERRAL LINK ──
+function copyRefLink(){
+  const val=document.getElementById('refLinkInput').value;
+  navigator.clipboard.writeText(val).then(()=>{
+    const btn=document.querySelector('.ref-copy-btn');
+    btn.textContent='✅ Copied!';
+    setTimeout(()=>btn.textContent='📋 Copy',2000);
+  });
+}
+window.copyRefLink=copyRefLink;
+
+function switchRefTab(tab,btn){
+  document.querySelectorAll('.ref-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.ref-tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('refTab-'+tab).classList.add('active');
+}
+window.switchRefTab=switchRefTab;
+
+async function attemptClaim(){
+  if(!cbtUser||!userProfile) return;
+  const COINS_PER_REFERRAL=10;
+  const refCount=userProfile.referralCount||0;
+  const coinsClaimed=userProfile.coinsClaimed||0;
+  const totalEarned=refCount*COINS_PER_REFERRAL;
+  const available=totalEarned-coinsClaimed;
+  if(available<=0){
+    document.getElementById('claimBtn').style.display='none';
+    document.getElementById('claimResult').style.display='flex';
+    return;
+  }
+  const btn=document.getElementById('claimBtn');
+  btn.disabled=true;btn.textContent='Claiming…';
+  try{
+    const newClaimed=coinsClaimed+available;
+    await window._updateDoc(window._doc(window._db,'cbt_users',cbtUser.uid),{
+      coinsClaimed:newClaimed,
+      coinsBalance:available,
+      lastClaimedAt:new Date().toISOString(),
+    });
+    userProfile.coinsClaimed=newClaimed;
+    userProfile.coinsBalance=available;
+    // Update display
+    document.getElementById('coinsBalance').textContent=0;
+    document.getElementById('coinsAvailable').textContent=0;
+    document.getElementById('coinsAlreadyClaimed').textContent=newClaimed;
+    btn.style.display='none';
+    document.getElementById('claimSuccess').style.display='block';
+    showAchToast('🪙',`You claimed ${available} BQM Coins!`);
+  }catch(e){
+    btn.disabled=false;btn.textContent='🎁 Claim My Coins';
+    alert('Could not claim coins: '+e.message);
+  }
+}
+window.attemptClaim=attemptClaim;
+
+function shareRefWhatsApp(){
+  const link=document.getElementById('refLinkInput').value;
+  const msg=encodeURIComponent(`🎯 I've been using Big Quams Media® to practise for JAMB — it's completely free!\n\nJoin through my link and let's ace JAMB together: ${link}`);
+  window.open(`https://wa.me/?text=${msg}`,'_blank');
+}
+window.shareRefWhatsApp=shareRefWhatsApp;
+
+function shareRefNative(){
+  const link=document.getElementById('refLinkInput').value;
+  if(navigator.share){
+    navigator.share({title:'Big Quams Media® — Free JAMB Practice',text:'Join me on Big Quams Media® for free JAMB CBT practice!',url:link}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(link).then(()=>alert('Link copied! Share it with your classmates.'));
+  }
+}
+window.shareRefNative=shareRefNative;
+
+// ── AUTH UI ──
+function showAuthOverlay(){
+  document.getElementById('authOverlay').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+window.showAuthOverlay=showAuthOverlay;
+
+function closeAuthOverlay(){
+  document.getElementById('authOverlay').style.display='none';
+  document.body.style.overflow='';
+}
+
+function closeAuthAsGuest(){
+  closeAuthOverlay();
+  isGuest=true;
+  updateUserUI(null);
+}
+window.closeAuthAsGuest=closeAuthAsGuest;
+
+function switchCbtTab(tab,btn){
+  document.querySelectorAll('.auth-tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('cbtSigninForm').style.display=tab==='signin'?'block':'none';
+  document.getElementById('cbtRegisterForm').style.display=tab==='register'?'block':'none';
+  document.getElementById('cbtPhoneForm').style.display=tab==='phone'?'block':'none';
+  document.getElementById('cbtAuthError').style.display='none';
+  document.getElementById('cbtRegError').style.display='none';
+  document.getElementById('cbtPhoneError').style.display='none';
+}
+window.switchCbtTab=switchCbtTab;
+
+// ── Phone OTP Auth ──
+let _confirmationResult=null;
+let _recaptchaVerifier=null;
+
+async function cbtSendOTP(){
+  const phone=document.getElementById('cbtPhone').value.trim();
+  if(!phone||!phone.startsWith('+')){
+    showCbtError('cbtPhoneError','Enter phone number with country code e.g. +2348012345678');return;
+  }
+  const btn=document.getElementById('cbtSendOTPBtn');
+  btn.disabled=true;btn.textContent='Sending OTP…';
+  try{
+    if(!_recaptchaVerifier){
+      _recaptchaVerifier=new window._RecaptchaVerifier(window._auth,'recaptcha-container',{size:'invisible'});
+    }
+    _confirmationResult=await window._signInWithPhoneNumber(phone,_recaptchaVerifier);
+    document.getElementById('cbtPhoneStep1').style.display='none';
+    document.getElementById('cbtPhoneStep2').style.display='block';
+    document.getElementById('cbtPhoneDisplay').textContent=phone;
+  }catch(e){
+    showCbtError('cbtPhoneError',e.code==='auth/invalid-phone-number'?'Invalid phone number. Use format +2348012345678':e.message);
+    if(_recaptchaVerifier){try{_recaptchaVerifier.clear();}catch(x){}  _recaptchaVerifier=null;}
+  }
+  btn.disabled=false;btn.textContent='Send OTP →';
+}
+window.cbtSendOTP=cbtSendOTP;
+
+async function cbtVerifyOTP(){
+  const otp=document.getElementById('cbtOTP').value.trim();
+  if(!otp||otp.length<6){showCbtError('cbtOTPError','Enter the 6-digit OTP sent to your phone.');return;}
+  const btn=document.getElementById('cbtVerifyOTPBtn');
+  btn.disabled=true;btn.textContent='Verifying…';
+  try{
+    await _confirmationResult.confirm(otp);
+    closeAuthOverlay();
+  }catch(e){
+    showCbtError('cbtOTPError',e.code==='auth/invalid-verification-code'?'Incorrect OTP. Try again.':e.message);
+  }
+  btn.disabled=false;btn.textContent='Verify & Sign In →';
+}
+window.cbtVerifyOTP=cbtVerifyOTP;
+
+async function cbtResendOTP(){
+  document.getElementById('cbtPhoneStep2').style.display='none';
+  document.getElementById('cbtPhoneStep1').style.display='block';
+  if(_recaptchaVerifier){try{_recaptchaVerifier.clear();}catch(x){} _recaptchaVerifier=null;}
+  _confirmationResult=null;
+}
+window.cbtResendOTP=cbtResendOTP;
+
+function showCbtError(id,msg){
+  const el=document.getElementById(id);
+  el.textContent='❌ '+msg; el.style.display='block';
+  setTimeout(()=>el.style.display='none',5000);
+}
+
+async function cbtEmailSignIn(){
+  const email=document.getElementById('cbtEmail').value.trim();
+  const pass=document.getElementById('cbtPassword').value;
+  if(!email||!pass){showCbtError('cbtAuthError','Enter your email and password.');return;}
+  const btn=document.getElementById('cbtSignInBtn');
+  btn.disabled=true;btn.textContent='Signing in…';
+  try{
+    const cred=await window._signInEmail(email,pass);
+    if(!cred.user.emailVerified){
+      // Send another verification email
+      try{ await window._sendEmailVerification(cred.user); }catch(ve){}
+      await window._signOut().catch(()=>{});
+      showCbtError('cbtAuthError','📧 Please verify your email first. A new verification link has been sent to '+email+'. Check your spam folder too.');
+      btn.disabled=false;btn.textContent='Sign In →';
+      return;
+    }
+    closeAuthOverlay();
+  }catch(e){
+    showCbtError('cbtAuthError',
+      e.code==='auth/invalid-credential'||e.code==='auth/wrong-password'?'Incorrect email or password.':
+      e.code==='auth/user-not-found'?'No account found. Create one first.':
+      e.code==='auth/too-many-requests'?'Too many attempts. Try later.':e.message);
+  }
+  btn.disabled=false;btn.textContent='Sign In →';
+}
+window.cbtEmailSignIn=cbtEmailSignIn;
+
+async function cbtCreateAccount(){
+  const name=document.getElementById('cbtRegName').value.trim();
+  const gender=document.getElementById('cbtRegGender')?document.getElementById('cbtRegGender').value:'';
+  const email=document.getElementById('cbtRegEmail').value.trim();
+  const pass=document.getElementById('cbtRegPw').value;
+  if(!name||!email||!pass){showCbtError('cbtRegError','Fill in all fields.');return;}
+  if(pass.length<6){showCbtError('cbtRegError','Password must be at least 6 characters.');return;}
+  const btn=document.getElementById('cbtRegBtn');
+  btn.disabled=true;btn.textContent='Creating…';
+  try{
+    const cred=await window._createAccount(email,pass);
+    if(cred.user){
+      await window._updateProfile(cred.user,{displayName:name});
+      // Send email verification
+      try{ await window._sendEmailVerification(cred.user); }catch(ve){}
+      // Show verification notice instead of closing overlay
+      document.getElementById('cbtRegBtn').style.display='none';
+      document.getElementById('verifyEmailNotice').style.display='block';
+      // Sign out until they verify — they sign in after verifying
+      setTimeout(async()=>{
+        await window._signOut().catch(()=>{});
+        // Switch to sign-in tab with message
+        const signinBtn=document.querySelector('.auth-tab-btn');
+        if(signinBtn) switchCbtTab('signin',signinBtn);
+        showCbtError('cbtAuthError','✅ Account created! Check your email to verify, then sign in here.');
+        document.getElementById('cbtAuthError').style.background='#dcfce7';
+        document.getElementById('cbtAuthError').style.color='#15803d';
+        document.getElementById('cbtAuthError').style.display='block';
+      },3000);
+    }
+  }catch(e){
+    showCbtError('cbtRegError',
+      e.code==='auth/email-already-in-use'?'Account already exists. Sign in instead.':
+      e.code==='auth/weak-password'?'Password too weak.':e.message);
+  }
+  btn.disabled=false;btn.textContent='Create Free Account →';
+}
+window.cbtCreateAccount=cbtCreateAccount;
+
+async function cbtGoogleSignIn(){
+  try{
+    await window._signInGoogle();
+    closeAuthOverlay();
+  }catch(e){
+    if(e.code!=='auth/popup-closed-by-user') showCbtError('cbtAuthError',e.message);
+  }
+}
+window.cbtGoogleSignIn=cbtGoogleSignIn;
+
+async function cbtAppleSignIn(){
+  try{
+    await window._signInApple();
+    closeAuthOverlay();
+  }catch(e){
+    if(e.code!=='auth/popup-closed-by-user') showCbtError('cbtAuthError',e.message);
+  }
+}
+window.cbtAppleSignIn=cbtAppleSignIn;
+
+async function cbtForgotPw(){
+  const email=document.getElementById('cbtEmail').value.trim();
+  if(!email){showCbtError('cbtAuthError','Enter your email address first.');return;}
+  try{
+    await window._resetPw(email);
+    const el=document.getElementById('cbtAuthError');
+    el.textContent='✅ Reset email sent to '+email;
+    el.style.color='#15803d';el.style.background='#dcfce7';el.style.display='block';
+    setTimeout(()=>{el.style.display='none';el.style.color='';el.style.background='';},5000);
+  }catch(e){showCbtError('cbtAuthError',e.message);}
+}
+window.cbtForgotPw=cbtForgotPw;
+
+async function cbtSignOut(){
+  if(window._signOut) await window._signOut().catch(()=>{});
+  cbtUser=null;userProfile=null;isGuest=false;
+  hideAll();
+  document.getElementById('setupScreen').style.display='block';
+  document.getElementById('mainFooter').style.display='block';
+  updateUserUI(null);
+}
+window.cbtSignOut=cbtSignOut;
+
+// ── SUBJECT SELECTION ──
+function toggleSubject(btn){
+  const s=btn.getAttribute('data-subj');
+  if(btn.classList.contains('selected')){
+    if(selectedSubjects.length<=1) return;
+    btn.classList.remove('selected');
+    selectedSubjects=selectedSubjects.filter(x=>x!==s);
+  } else {
+    if(selectedSubjects.length>=4){alert('JAMB allows maximum 4 subjects.');return;}
+    btn.classList.add('selected');
+    selectedSubjects.push(s);
+  }
+  document.getElementById('setupStatus').textContent=selectedSubjects.length+' subject'+(selectedSubjects.length>1?'s':'')+' selected (max 4)';
+}
+window.toggleSubject=toggleSubject;
+
+// ── START EXAM ──
+function checkAuthThenStart(){
+  if(!cbtUser){
+    // Show auth first; if they skip they get guest mode
+    showAuthOverlay();
+    // After overlay closes as guest, we start with limit
+    // We store intent and let guest flow handle it
+    window._pendingStart=true;
+    return;
+  }
+  startExam();
+}
+window.checkAuthThenStart=checkAuthThenStart;
+
+// Override closeAuthAsGuest to auto-start if pending
+const _origCloseGuest=closeAuthAsGuest;
+window.closeAuthAsGuest=function(){
+  _origCloseGuest();
+  if(window._pendingStart){
+    window._pendingStart=false;
+    startExam();
+  }
+};
+
+async function startExam(){
+  const btn=document.getElementById('startBtn');
+  btn.disabled=true;btn.textContent='Loading questions…';
+  document.getElementById('setupStatus').textContent='Fetching questions from database…';
+  const maxQ=!cbtUser?GUEST_LIMIT:parseInt(document.getElementById('qCount').value);
+  try{
+    if(!window._db) await new Promise(r=>setTimeout(r,1500));
+    const db=window._db,col=window._collection,gDocs=window._getDocs;
+    if(!db) throw new Error('Firebase not ready');
+    const snap=await gDocs(col(db,'cbt_questions'));
+    allQuestions=snap.docs.map(d=>({id:d.id,...d.data()}));
+    const diff=document.getElementById('difficulty').value;
+    let pool=allQuestions.filter(q=>selectedSubjects.includes(q.subject));
+    if(diff) pool=pool.filter(q=>q.difficulty===diff);
+    if(!pool.length){
+      document.getElementById('setupStatus').textContent='No questions found for those subjects/difficulty. Try different options or add questions via the admin panel.';
+      btn.disabled=false;btn.textContent='🎯 Start Practice Exam →';
+      return;
+    }
+    pool=pool.sort(()=>Math.random()-.5).slice(0,Math.min(maxQ,pool.length));
+    if(!cbtUser && pool.length>=GUEST_LIMIT){
+      document.getElementById('setupStatus').textContent=`⚠️ Guest mode: limited to ${GUEST_LIMIT} questions. Sign in for full access.`;
+    }
+    examQuestions=pool;
+    examStartSubjects=[...selectedSubjects];
+    userAnswers={};currentQ=0;
+    const mins=parseInt(document.getElementById('timeLimit').value);
+    secondsLeft=mins*60;
+    hideAll();
+    document.getElementById('examScreen').style.display='block';
+    document.getElementById('mainFooter').style.display='none';
+    document.body.style.overflow='';
+    buildQGrid();
+    renderQuestion(0);
+    if(mins>0) startTimer();
+    else document.getElementById('timerBox').style.display='none';
+  }catch(e){
+    document.getElementById('setupStatus').textContent='Error: '+e.message+'. Please refresh and try again.';
+    btn.disabled=false;btn.textContent='🎯 Start Practice Exam →';
+  }
+}
+window.startExam=startExam;
+
+// ── TIMER ──
+function startTimer(){
+  const box=document.getElementById('timerBox');
+  const num=document.getElementById('timerNum');
+  timerInterval=setInterval(()=>{
+    secondsLeft--;
+    const m=Math.floor(secondsLeft/60),s=secondsLeft%60;
+    num.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    if(secondsLeft<=120) box.classList.add('urgent');
+    if(secondsLeft<=0){clearInterval(timerInterval);submitExam();}
+  },1000);
+}
+
+// ── QUESTION GRID ──
+function buildQGrid(){
+  const grid=document.getElementById('qGrid');
+  grid.innerHTML=examQuestions.map((_,i)=>`<button class="q-dot${i===0?' current':''}" id="dot-${i}" onclick="goQuestion(${i})">${i+1}</button>`).join('');
+}
+
+// ── FLAG SYSTEM ──
+const flaggedQs=new Set();
+function toggleFlag(){
+  if(flaggedQs.has(currentQ)) flaggedQs.delete(currentQ);
+  else flaggedQs.add(currentQ);
+  updateFlagBtn();
+  updateDotClasses();
+}
+window.toggleFlag=toggleFlag;
+
+function updateFlagBtn(){
+  const btn=document.getElementById('flagBtn');
+  if(!btn) return;
+  btn.classList.toggle('flagged',flaggedQs.has(currentQ));
+  btn.title=flaggedQs.has(currentQ)?'Unflag question':'Flag for review';
+}
+
+function updateDotClasses(){
+  document.querySelectorAll('.q-dot').forEach((d,i)=>{
+    const ans=userAnswers[i]!==undefined;
+    const flag=flaggedQs.has(i);
+    const cur=i===currentQ;
+    d.className='q-dot'+(ans?' answered-q':'')+(flag?' flagged-q':'')+(cur?' current':'');
+  });
+}
+
+// ── KEYBOARD SHORTCUTS ──
+document.addEventListener('keydown',e=>{
+  const exam=document.getElementById('examScreen');
+  if(!exam||exam.style.display==='none') return;
+  if(document.activeElement&&['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) return;
+  const key=e.key.toUpperCase();
+  if(key==='A') selectAnswerByKey(0);
+  else if(key==='B') selectAnswerByKey(1);
+  else if(key==='C') selectAnswerByKey(2);
+  else if(key==='D') selectAnswerByKey(3);
+  else if(e.key==='ArrowRight'||e.key==='.') goQuestion(currentQ+1);
+  else if(e.key==='ArrowLeft'||e.key===',') goQuestion(currentQ-1);
+  else if(key==='F'){e.preventDefault();toggleFlag();}
+});
+function selectAnswerByKey(optIdx){
+  const q=examQuestions[currentQ];
+  if(!q||userAnswers[currentQ]!==undefined) return;
+  selectAnswer(currentQ,optIdx);
+}
+
+// ── RENDER QUESTION ──
+function renderQuestion(idx){
+  currentQ=idx;
+  const q=examQuestions[idx];
+  const total=examQuestions.length;
+  const answered=Object.keys(userAnswers).length;
+  document.getElementById('progressLabel').textContent=`Question ${idx+1} of ${total}`;
+  document.getElementById('progressFill').style.width=((idx+1)/total*100)+'%';
+  document.getElementById('answeredCount').textContent=`${answered}/${total} answered`;
+  document.getElementById('prevBtn').disabled=idx===0;
+  document.getElementById('nextBtn').textContent=idx===total-1?'Review ✓':'Next →';
+  updateDotClasses();
+  updateFlagBtn();
+  const ua=userAnswers[idx];
+  const revealed=ua!==undefined;
+  const letters=['A','B','C','D'];
+  document.getElementById('questionCard').innerHTML=`
+    <div class="q-meta">
+      <span class="q-num-badge">Q${idx+1}</span>
+      <span class="q-subj-badge">${SUBJ_LABELS[q.subject]||q.subject}</span>
+      ${q.difficulty?`<span class="q-diff-badge diff-${q.difficulty}">${q.difficulty}</span>`:''}
+      ${q.year?`<span style="font-size:.64rem;color:var(--text-muted)">${q.year}</span>`:''}
+      ${flaggedQs.has(idx)?'<span style="font-size:.7rem;color:#eab308;font-weight:700">🚩 Flagged</span>':''}
+    </div>
+    <div class="q-text">${q.q}</div>
+    <div class="options-list" id="optList">
+      ${(q.opts||[]).map((opt,i)=>{
+        let cls='opt-btn';
+        if(revealed){
+          if(i===q.ans) cls+=' correct';
+          else if(i===ua) cls+=' wrong';
+        } else if(i===ua) cls+=' selected';
+        return`<button class="${cls}" ${revealed?'disabled':''} onclick="selectAnswer(${idx},${i})" data-opt="${i}">
+          <span class="opt-letter">${letters[i]}</span>${opt}</button>`;
+      }).join('')}
+    </div>
+    ${revealed&&q.exp?`<div class="explanation show">💡 <strong>Explanation:</strong> ${q.exp}</div>`:''}
+    <div style="text-align:right;margin-top:8px;font-size:.62rem;color:var(--text-muted)">Press <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 5px;border-radius:3px">F</kbd> to flag · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 5px;border-radius:3px">A B C D</kbd> to answer · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 5px;border-radius:3px">← →</kbd> navigate</div>`;
+}
+window.renderQuestion=renderQuestion;
+
+function selectAnswer(qIdx,optIdx){
+  if(userAnswers[qIdx]!==undefined) return;
+  userAnswers[qIdx]=optIdx;
+  // Animate the selected option
+  const btn=document.querySelector(`[data-opt="${optIdx}"]`);
+  if(btn){
+    const q=examQuestions[qIdx];
+    const isCorrect=optIdx===q.ans;
+    btn.classList.add(isCorrect?'correct-anim':'wrong-anim');
+  }
+  renderQuestion(qIdx);
+  if(qIdx<examQuestions.length-1) setTimeout(()=>goQuestion(qIdx+1),1100);
+}
+window.selectAnswer=selectAnswer;
+
+function goQuestion(idx){
+  if(idx<0||idx>=examQuestions.length) return;
+  renderQuestion(idx);
+}
+window.goQuestion=goQuestion;
+
+function confirmSubmit(){
+  const unanswered=examQuestions.length-Object.keys(userAnswers).length;
+  if(unanswered>0&&!confirm(`You have ${unanswered} unanswered question${unanswered>1?'s':''}. Submit anyway?`)) return;
+  submitExam();
+}
+window.confirmSubmit=confirmSubmit;
+
+async function submitExam(){
+  clearInterval(timerInterval);
+  let correct=0,wrong=0,skipped=0;
+  examQuestions.forEach((q,i)=>{
+    const ua=userAnswers[i];
+    if(ua===undefined) skipped++;
+    else if(ua===q.ans) correct++;
+    else wrong++;
+  });
+  const total=examQuestions.length;
+  const pct=Math.round((correct/total)*100);
+  let grade,gradeColor;
+  if(pct>=80){grade='Excellent! 🌟';gradeColor='#10b981';}
+  else if(pct>=65){grade='Very Good 👍';gradeColor='#3b82f6';}
+  else if(pct>=50){grade='Average 📈';gradeColor='#f59e0b';}
+  else if(pct>=40){grade='Keep Trying 💪';gradeColor='#f97316';}
+  else{grade='Need More Practice 📚';gradeColor='#ef4444';}
+  // Save to Firestore if signed in
+  if(cbtUser&&userProfile){
+    await saveSessionToFirestore(correct,wrong,skipped,pct);
+  }
+  hideAll();
+  document.getElementById('resultScreen').style.display='block';
+  document.getElementById('mainFooter').style.display='block';
+  document.getElementById('scoreNum').textContent=correct;
+  document.getElementById('scoreDenom').textContent='/ '+total;
+  document.getElementById('resultGrade').textContent=grade;
+  document.getElementById('resultGrade').style.color=gradeColor;
+  document.getElementById('resultSub').textContent=pct+'% score — '+correct+' correct, '+wrong+' wrong, '+skipped+' skipped';
+  document.getElementById('resultStats').innerHTML=`
+    <div class="rs-item"><div class="rs-num" style="color:#10b981">${correct}</div><div class="rs-lbl">Correct</div></div>
+    <div class="rs-item"><div class="rs-num" style="color:#ef4444">${wrong}</div><div class="rs-lbl">Wrong</div></div>
+    <div class="rs-item"><div class="rs-num" style="color:#f59e0b">${skipped}</div><div class="rs-lbl">Skipped</div></div>
+    <div class="rs-item"><div class="rs-num">${pct}%</div><div class="rs-lbl">Score</div></div>`;
+  // Animate SVG score ring
+  setTimeout(()=>{
+    const arc=document.getElementById('scoreRingArc');
+    if(arc){
+      const circumference=326.7;
+      const offset=circumference-(circumference*(pct/100));
+      arc.style.strokeDashoffset=offset;
+      arc.style.stroke=pct>=80?'#10b981':pct>=65?'#3b82f6':pct>=50?'#f59e0b':pct>=40?'#f97316':'#ef4444';
+    }
+  },200);
+  if(cbtUser) document.getElementById('dashFromResult').style.display='flex';
+  // Score card + share caption
+  const refCode=(cbtUser&&userProfile&&(userProfile.referralCode||generateReferralCode(userProfile.name||'')))||null;
+  const refLink=refCode?`${SITE_URL}?ref=${refCode}`:'https://bigquamsmedia.com.ng/cbt.html';
+  setTimeout(()=>{
+    buildScoreCard(correct,total,pct,grade,examStartSubjects,refLink);
+    buildShareCaption(pct,grade,examStartSubjects,refLink);
+  },100);
+  // Review
+  const letters=['A','B','C','D'];
+  document.getElementById('reviewList').innerHTML=examQuestions.map((q,i)=>{
+    const ua=userAnswers[i];
+    const isCorrect=ua===q.ans;
+    return`<div class="review-q">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:20px;background:${isCorrect?'#dcfce7':'#fee2e2'};color:${isCorrect?'#15803d':'#b91c1c'}">${isCorrect?'✅ Correct':'❌ Wrong'}</span>
+        <span class="q-subj-badge">${SUBJ_LABELS[q.subject]||q.subject}</span>
+        ${flaggedQs.has(i)?'<span style="font-size:.7rem;color:#eab308">🚩 Flagged</span>':''}
+      </div>
+      <div class="review-q-text">Q${i+1}. ${q.q}</div>
+      <div class="review-opts">
+        ${(q.opts||[]).map((opt,j)=>{
+          let cls='review-opt';
+          if(j===q.ans) cls+=' correct-answer';
+          else if(j===ua&&ua!==q.ans) cls+=' user-wrong';
+          return`<div class="${cls}"><span style="font-weight:800;min-width:20px">${letters[j]}.</span>${opt}${j===q.ans?' ✓':j===ua?' ✗':''}</div>`;
+        }).join('')}
+      </div>
+      ${q.exp?`<div class="review-exp">💡 ${q.exp}</div>`:''}
+    </div>`;
+  }).join('');
+  // ── WEAK TOPICS DETECTOR ──
+  buildWeakTopics();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── WEAK TOPICS DETECTOR ──
+const TOPIC_TIPS={
+  physics:{
+    'mechanics':'Review Newton\'s laws, motion equations and energy conservation. Practise resolving forces and projectile problems.',
+    'waves':'Focus on wave properties: frequency, wavelength, amplitude. Practise calculations for sound and light waves.',
+    'electricity':'Review Ohm\'s law, series/parallel circuits, and power calculations. Draw circuit diagrams as you solve.',
+    'default':'Review your textbook notes and attempt past questions on this topic.'
+  },
+  chemistry:{
+    'organic':'Memorise functional groups and their reactions. Draw structural formulas to understand what\'s happening.',
+    'mole concept':'Practise mole-to-mass-to-volume conversions daily. Learn Avogadro\'s number applications.',
+    'default':'Focus on past WAEC/NECO questions for this topic — patterns repeat frequently.'
+  },
+  biology:{
+    'genetics':'Draw Punnett squares for every genetics question. Understand dominant vs recessive traits clearly.',
+    'ecology':'Learn food chains, energy flow, and ecological terms. Create summary tables.',
+    'default':'Use diagrams and labelling to memorise biological structures and processes.'
+  },
+  default:'Focus on past questions for this topic. Attempt at least 10 questions daily until your confidence improves.'
+};
+function getTopicTip(subj,topic){
+  const subjTips=TOPIC_TIPS[subj]||{};
+  const tLower=(topic||'').toLowerCase();
+  for(const key of Object.keys(subjTips)){
+    if(key!=='default'&&tLower.includes(key)) return subjTips[key];
+  }
+  return subjTips.default||TOPIC_TIPS.default;
+}
+
+function buildWeakTopics(){
+  // Group wrong answers by subject
+  const subjData={};
+  examQuestions.forEach((q,i)=>{
+    const ua=userAnswers[i];
+    const subj=q.subject||'other';
+    if(!subjData[subj]) subjData[subj]={total:0,wrong:0,topics:{}};
+    subjData[subj].total++;
+    if(ua!==undefined&&ua!==q.ans){
+      subjData[subj].wrong++;
+      const topic=q.topic||q.category||'General';
+      if(!subjData[subj].topics[topic]) subjData[subj].topics[topic]={wrong:0,total:0};
+      subjData[subj].topics[topic].wrong++;
+    }
+    if(ua!==undefined){
+      const topic=q.topic||q.category||'General';
+      if(!subjData[subj].topics[topic]) subjData[subj].topics[topic]={wrong:0,total:0};
+      subjData[subj].topics[topic].total++;
+    }
+  });
+  // Find subjects with >30% wrong
+  const weakSubjects=Object.entries(subjData)
+    .filter(([,d])=>d.total>0&&(d.wrong/d.total)>0.3)
+    .sort((a,b)=>(b[1].wrong/b[1].total)-(a[1].wrong/a[1].total));
+  if(!weakSubjects.length){
+    document.getElementById('weakTopicsSection').style.display='none';
+    return;
+  }
+  document.getElementById('weakTopicsSection').style.display='block';
+  document.getElementById('weakTopicsList').innerHTML=weakSubjects.map(([subj,data])=>{
+    const pct=Math.round((data.wrong/data.total)*100);
+    const worstTopics=Object.entries(data.topics)
+      .filter(([,t])=>t.total>0&&t.wrong>0)
+      .sort((a,b)=>(b[1].wrong/b[1].total)-(a[1].wrong/a[1].total))
+      .slice(0,2);
+    const tip=worstTopics.length?getTopicTip(subj,worstTopics[0][0]):getTopicTip(subj,'');
+    return`<div class="weak-topic-card">
+      <div class="weak-topic-head">
+        <div class="weak-topic-name">⚠️ ${SUBJ_LABELS[subj]||subj}</div>
+        <div class="weak-topic-score">${pct}% wrong (${data.wrong}/${data.total})</div>
+      </div>
+      <div class="weak-topic-bar"><div class="weak-topic-fill" style="width:${pct}%"></div></div>
+      ${worstTopics.length?`<div style="font-size:.72rem;color:var(--muted);margin-bottom:8px">Struggling most with: <strong>${worstTopics.map(([t])=>t).join(', ')}</strong></div>`:''}
+      <div class="weak-topic-tip">💡 ${tip}</div>
+      <a href="cbt.html?subject=${encodeURIComponent(subj)}" style="display:inline-block;margin-top:8px;font-size:.74rem;font-weight:700;color:var(--blue-main);text-decoration:none">🎯 Practise ${SUBJ_LABELS[subj]||subj} only →</a>
+    </div>`;
+  }).join('');
+}
+
+async function saveSessionToFirestore(correct,wrong,skipped,pct){
+  try{
+    const uid=cbtUser.uid;
+    const now=new Date().toISOString();
+    const today=now.substring(0,10);
+    // Streak
+    const lastDate=userProfile.lastPracticeDate||'';
+    const yesterday=new Date(Date.now()-86400000).toISOString().substring(0,10);
+    let newStreak=(lastDate===yesterday||(lastDate===today))?((userProfile.streak||0)+(lastDate!==today?1:0)):(lastDate===today?userProfile.streak||1:1);
+    if(lastDate!==today&&lastDate!==yesterday) newStreak=1;
+    if(lastDate===today) newStreak=userProfile.streak||1;
+    // Subject history update
+    const sh=userProfile.subjectHistory||{};
+    examStartSubjects.forEach(s=>{
+      if(!sh[s]) sh[s]={sessions:0,bestPct:0,totalCorrect:0};
+      sh[s].sessions++;
+      if(pct>sh[s].bestPct) sh[s].bestPct=pct;
+    });
+    // Session entry
+    const entry={date:now,subjects:examStartSubjects,correct,total:examQuestions.length,pct};
+    // Subjects practised list
+    const spSet=new Set(userProfile.subjectsPractised||[]);
+    examStartSubjects.forEach(s=>spSet.add(s));
+    const newSessions=(userProfile.sessions||0)+1;
+    const newBest=Math.max(userProfile.bestScore||0,pct);
+    // Check achievements
+    const newAch=[...(userProfile.achievements||[])];
+    const grant=(id)=>{ if(!newAch.includes(id)) newAch.push(id); };
+    grant('first_session');
+    if(pct>=80) grant('score_80');
+    if(pct>=100) grant('score_100');
+    if(newSessions>=5) grant('sessions_5');
+    if(newSessions>=10) grant('sessions_10');
+    if(newSessions>=25) grant('sessions_25');
+    if(newStreak>=3) grant('streak_3');
+    if(newStreak>=7) grant('streak_7');
+    if(spSet.size>=4) grant('multi_subj');
+    const hr=new Date().getHours();
+    if(hr>=22||hr<4) grant('night_owl');
+    // New achievements to toast
+    const prevAch=userProfile.achievements||[];
+    const freshAch=newAch.filter(a=>!prevAch.includes(a));
+    // Update Firestore
+    await window._updateDoc(window._doc(window._db,'cbt_users',uid),{
+      sessions:window._increment(1),
+      bestScore:newBest,
+      lastPracticeDate:today,
+      streak:newStreak,
+      subjectHistory:sh,
+      subjectsPractised:[...spSet],
+      achievements:newAch,
+      sessionHistory:window._arrayUnion(entry),
+      totalCorrect:window._increment(correct),
+      totalQuestions:window._increment(examQuestions.length),
+    });
+    // Update local profile
+    userProfile={...userProfile,sessions:newSessions,bestScore:newBest,lastPracticeDate:today,streak:newStreak,subjectHistory:sh,achievements:newAch,subjectsPractised:[...spSet]};
+    userProfile.sessionHistory=[...(userProfile.sessionHistory||[]),entry];
+    // Toast new achievements
+    if(freshAch.length){
+      const def=ACHIEVEMENTS.find(a=>a.id===freshAch[0]);
+      if(def) showAchToast(def.icon,def.name);
+    }
+  }catch(e){console.warn('Save session error',e);}
+}
+
+function showAchToast(icon,name){
+  const t=document.getElementById('achToast');
+  t.innerHTML=`${icon} <span>Achievement Unlocked: <strong>${name}</strong></span>`;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
+}
+
+function restartExam(){
+  clearInterval(timerInterval);
+  hideAll();
+  document.getElementById('setupScreen').style.display='block';
+  document.getElementById('mainFooter').style.display='block';
+  document.getElementById('startBtn').disabled=false;
+  document.getElementById('startBtn').textContent='🎯 Start Practice Exam →';
+  document.getElementById('setupStatus').textContent=selectedSubjects.length+' subject(s) selected';
+  document.getElementById('timerBox').style.display='flex';
+  document.getElementById('timerBox').classList.remove('urgent');
+  userAnswers={};examQuestions=[];currentQ=0;
+}
+window.restartExam=restartExam;
+
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
+
+// ── WEEKLY PERFORMANCE CHART ──
+function buildWeeklyChart(profile){
+  const history=(profile.sessionHistory||[]);
+  const now=new Date();
+  // Build a map of date -> best score that day
+  const dayMap={};
+  history.forEach(s=>{
+    if(!s.date) return;
+    const d=s.date.substring(0,10);
+    if(!dayMap[d]||s.pct>dayMap[d]) dayMap[d]=s.pct;
+  });
+  // Last 7 days
+  const days=[];
+  for(let i=6;i>=0;i--){
+    const d=new Date(now);
+    d.setDate(d.getDate()-i);
+    const key=d.toISOString().substring(0,10);
+    const labels=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    days.push({key,label:labels[d.getDay()],pct:dayMap[key]||null});
+  }
+  const hasSessions=days.some(d=>d.pct!==null);
+  const container=document.getElementById('perfBars');
+  if(!hasSessions){
+    container.innerHTML='<div class="perf-empty" style="width:100%">Complete a session to see your chart 📊</div>';
+    document.getElementById('weekAvgBadge').textContent='Avg: —';
+    return;
+  }
+  const scored=days.filter(d=>d.pct!==null);
+  const avg=Math.round(scored.reduce((a,d)=>a+d.pct,0)/scored.length);
+  document.getElementById('weekAvgBadge').textContent='Avg: '+avg+'%';
+  const maxPct=Math.max(...scored.map(d=>d.pct),1);
+  container.innerHTML=days.map(d=>{
+    const heightPct=d.pct!==null?Math.max(8,Math.round((d.pct/maxPct)*100)):0;
+    const color=d.pct===null?'var(--border)':d.pct>=80?'#10b981':d.pct>=65?'#3b82f6':d.pct>=50?'#f59e0b':'#ef4444';
+    const isToday=d.key===now.toISOString().substring(0,10);
+    return`<div class="perf-bar-col">
+      <div class="perf-bar-val">${d.pct!==null?d.pct+'%':''}</div>
+      <div class="perf-bar" style="height:${heightPct}%;background:${color};${isToday?'box-shadow:0 0 0 2px rgba(249,115,22,.4)':''}"></div>
+      <div class="perf-bar-day" style="${isToday?'color:var(--orange);font-weight:800':''}">${d.label}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── STREAK CALENDAR ──
+function buildStreakCalendar(profile){
+  const history=(profile.sessionHistory||[]);
+  const practicedDays=new Set(history.map(s=>s.date?s.date.substring(0,10):null).filter(Boolean));
+  const now=new Date();
+  const todayKey=now.toISOString().substring(0,10);
+  const year=now.getFullYear();
+  const month=now.getMonth();
+  const monthNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('streakCalMonthLabel').textContent=monthNames[month]+' '+year;
+  document.getElementById('streakCalBadge').textContent='🔥 '+(profile.streak||0)+' day streak';
+  const firstDay=new Date(year,month,1).getDay(); // 0=Sun
+  const daysInMonth=new Date(year,month+1,0).getDate();
+  const dows=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  let html=dows.map(d=>`<div class="streak-cal-dow">${d}</div>`).join('');
+  // Empty cells before month start
+  for(let i=0;i<firstDay;i++) html+=`<div class="streak-day future"></div>`;
+  for(let d=1;d<=daysInMonth;d++){
+    const dateStr=year+'-'+String(month+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    const isToday=dateStr===todayKey;
+    const isPracticed=practicedDays.has(dateStr);
+    const isFuture=dateStr>todayKey;
+    let cls='streak-day';
+    if(isPracticed) cls+=' active';
+    if(isToday) cls+=' today';
+    if(isFuture) cls+=' future';
+    html+=`<div class="${cls}" title="${dateStr}">${d}</div>`;
+  }
+  document.getElementById('streakCalGrid').innerHTML=html;
+}
+
+// ── SHARE SCORE CARD ──
+let _lastScoreData={};
+
+function canvasRoundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+
+function buildScoreCard(correct,total,pct,grade,subjects,refLink){
+  _lastScoreData={correct,total,pct,grade,subjects,refLink};
+  var canvas=document.getElementById('scoreCardCanvas');
+  if(!canvas) return;
+  var ctx=canvas.getContext('2d');
+  var W=720,H=400;
+  canvas.width=W;canvas.height=H;
+
+  // Background gradient
+  var bg=ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,'#081530');
+  bg.addColorStop(0.6,'#0f2060');
+  bg.addColorStop(1,'#1a3fa8');
+  ctx.fillStyle=bg;
+  canvasRoundRect(ctx,0,0,W,H,20);
+  ctx.fill();
+
+  // Subtle grid pattern
+  ctx.strokeStyle='rgba(255,255,255,0.03)';
+  ctx.lineWidth=1;
+  for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+  // Score ring
+  const cx=170,cy=210,r=85;
+  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
+  ctx.strokeStyle='rgba(255,255,255,0.12)';ctx.lineWidth=8;ctx.stroke();
+  // Arc fill for score
+  const scoreAngle=(pct/100)*Math.PI*2;
+  const ringColor=pct>=80?'#10b981':pct>=65?'#3b82f6':pct>=50?'#f59e0b':'#ef4444';
+  ctx.beginPath();ctx.arc(cx,cy,r,-Math.PI/2,-Math.PI/2+scoreAngle);
+  ctx.strokeStyle=ringColor;ctx.lineWidth=8;ctx.lineCap='round';ctx.stroke();
+  // Score text
+  ctx.fillStyle='#fff';
+  ctx.font='800 52px Montserrat,sans-serif';ctx.textAlign='center';
+  ctx.fillText(pct+'%',cx,cy+10);
+  ctx.font='500 15px Roboto,sans-serif';ctx.fillStyle='rgba(255,255,255,0.5)';
+  ctx.fillText(correct+' / '+total+' correct',cx,cy+36);
+
+  // BQM brand top-left
+  ctx.font='800 13px Montserrat,sans-serif';ctx.fillStyle='rgba(255,255,255,0.9)';ctx.textAlign='left';
+  ctx.fillText('Big Quams Media®',30,34);
+  ctx.font='500 11px Roboto,sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';
+  ctx.fillText('JAMB CBT Practice',30,52);
+
+  // Orange accent line
+  ctx.fillStyle='#f97316';
+  ctx.fillRect(290,60,3,280);
+
+  // Right panel
+  const rx=320;
+  ctx.font='800 22px Montserrat,sans-serif';ctx.fillStyle='#fff';ctx.textAlign='left';
+  ctx.fillText(grade,rx,110);
+
+  ctx.font='700 13px Roboto,sans-serif';ctx.fillStyle='rgba(255,255,255,0.55)';
+  ctx.fillText('SUBJECTS PRACTISED',rx,148);
+  ctx.font='500 14px Roboto,sans-serif';ctx.fillStyle='rgba(255,255,255,0.85)';
+  const subjText=subjects.map(s=>SUBJ_LABELS[s]||s).join('  •  ');
+  // Word-wrap subjects if long
+  const words=subjText.split('  •  ');
+  let line='',lineY=172;
+  words.forEach((w,i)=>{
+    const test=line+(line?'  •  ':'')+w;
+    if(ctx.measureText(test).width>370&&line){
+      ctx.fillText(line,rx,lineY);line=w;lineY+=20;
+    } else {line=test;}
+  });
+  ctx.fillText(line,rx,lineY);
+
+  // Stats row
+  const stats=[{v:correct,l:'Correct'},{v:total-correct,l:'Wrong'},{v:total,l:'Questions'}];
+  stats.forEach((s,i)=>{
+    const sx=rx+(i*110);const sy=230;
+    ctx.fillStyle='rgba(255,255,255,0.08)';
+    canvasRoundRect(ctx,sx,sy,95,56,8);ctx.fill();
+    ctx.font='800 20px Montserrat,sans-serif';
+    ctx.fillStyle=i===0?'#10b981':i===1?'#ef4444':'#fff';
+    ctx.textAlign='center';ctx.fillText(s.v,sx+47,sy+28);
+    ctx.font='500 10px Roboto,sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';
+    ctx.fillText(s.l.toUpperCase(),sx+47,sy+46);
+  });
+
+  // Referral CTA bottom
+  ctx.textAlign='left';
+  ctx.font='500 11px Roboto,sans-serif';ctx.fillStyle='rgba(255,255,255,0.35)';
+  ctx.fillText('Practice free at bigquamsmedia.com.ng',rx,330);
+  if(refLink){
+    ctx.font='700 11px Roboto,sans-serif';ctx.fillStyle='#f97316';
+    ctx.fillText('Join via: '+refLink.replace('https://',''),rx,348);
+  }
+
+  // Watermark
+  ctx.textAlign='right';
+  ctx.font='500 10px Roboto,sans-serif';ctx.fillStyle='rgba(255,255,255,0.18)';
+  ctx.fillText('BQM © '+new Date().getFullYear(),W-24,H-16);
+}
+
+function buildShareCaption(pct,grade,subjects,refLink){
+  const subj=subjects.map(s=>SUBJ_LABELS[s]||s).join(', ');
+  const emoji=pct>=80?'🏆':pct>=65?'🎯':pct>=50?'📈':'💪';
+  const caption=`${emoji} I just scored ${pct}% on my JAMB CBT Practice!\n\nSubjects: ${subj}\nGrade: ${grade}\n\n📚 Big Quams Media® — Nigeria's Trusted Student Success Platform\n\nPractise for free 👇\n${refLink||'https://bigquamsmedia.com.ng/cbt.html'}`;
+  document.getElementById('shareCaption').innerHTML=caption.replace(/\n/g,'<br>')+`<button class="share-caption-copy" onclick="copyShareCaption()">Copy</button>`;
+  return caption;
+}
+
+function downloadScoreCard(){
+  const canvas=document.getElementById('scoreCardCanvas');
+  const link=document.createElement('a');
+  link.download='BQM-Score-'+_lastScoreData.pct+'pct.png';
+  link.href=canvas.toDataURL('image/png');
+  link.click();
+}
+
+function shareScoreWhatsApp(){
+  const refLink=_lastScoreData.refLink||'https://bigquamsmedia.com.ng/cbt.html';
+  const pct=_lastScoreData.pct||0;
+  const grade=_lastScoreData.grade||'';
+  const subjects=_lastScoreData.subjects||[];
+  const subj=subjects.map(s=>SUBJ_LABELS[s]||s).join(', ');
+  const emoji=pct>=80?'🏆':pct>=65?'🎯':pct>=50?'📈':'💪';
+  const msg=encodeURIComponent(`${emoji} I just scored ${pct}% on my JAMB CBT Practice on Big Quams Media®!\n\nSubjects: ${subj} | Grade: ${grade}\n\nPractise free here 👇\n${refLink}`);
+  window.open('https://wa.me/?text='+msg,'_blank');
+}
+
+function copyShareCaption(){
+  const pct=_lastScoreData.pct||0;const grade=_lastScoreData.grade||'';
+  const subjects=_lastScoreData.subjects||[];
+  const refLink=_lastScoreData.refLink||'https://bigquamsmedia.com.ng/cbt.html';
+  const subj=subjects.map(s=>SUBJ_LABELS[s]||s).join(', ');
+  const emoji=pct>=80?'🏆':pct>=65?'🎯':pct>=50?'📈':'💪';
+  const caption=`${emoji} I just scored ${pct}% on my JAMB CBT Practice!\n\nSubjects: ${subj}\nGrade: ${grade}\n\n📚 Big Quams Media® — Nigeria's Trusted Student Success Platform\nPractise for free 👇\n${refLink}`;
+  navigator.clipboard.writeText(caption).then(()=>{
+    const btns=document.querySelectorAll('.share-caption-copy,.scb-copy');
+    btns.forEach(b=>{const orig=b.textContent;b.textContent='✅ Copied!';setTimeout(()=>b.textContent=orig,2000);});
+  }).catch(()=>alert(caption));
+}
+window.downloadScoreCard=downloadScoreCard;
+window.shareScoreWhatsApp=shareScoreWhatsApp;
+window.copyShareCaption=copyShareCaption;
+document.addEventListener('DOMContentLoaded',function(){
+  if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  document.getElementById('setupStatus').textContent='1 subject selected (max 4)';
+});
+</script>
+<script src="studybuddy.js" defer></script>
+<script src="assets/shared.js" defer></script>
+</body>
+</html>

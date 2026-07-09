@@ -1,0 +1,99 @@
+/* ═══════════════════════════════════════════════════════════════════
+   BIG QUAMS MEDIA® — SHARED STYLES
+   Single source of truth for design tokens, header, navigation,
+   mobile drawer, footer, and dark mode. Loaded by every page via:
+     <link rel="stylesheet" href="assets/shared.css">
+
+   Tokens are defined under BOTH naming conventions that exist across
+   the codebase's page-specific styles (--text-main vs --text, etc.)
+   as aliases to the same values, so existing per-page CSS keeps
+   working unmodified during migration — no need to touch every
+   page's unique styles just to adopt this file.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root{
+  /* canonical values */
+  --c-blue-deep:#0c1f6e;
+  --c-blue:#1a3fa8;
+  --c-blue-light:#dde9ff;
+  --c-orange:#f97316;
+  --c-orange-dark:#e56b0f;
+  --c-green:#16a34a;
+  --c-red:#dc2626;
+  --c-surface:#fff;
+  --c-surface-alt:#f0f4ff;
+  --c-border:#e2e8f4;
+  --c-text:#1e2749;
+  --c-muted:#64748b;
+  --c-faint:#94a3b8;
+  --c-radius-sm:8px;
+  --c-radius-md:14px;
+  --c-radius-lg:20px;
+  --c-shadow:0 8px 28px rgba(26,63,168,.12);
+
+  /* alias set A (--blue-main / --text-main / --surface-alt / --radius-md style) */
+  --blue-deep:var(--c-blue-deep); --blue-main:var(--c-blue); --blue-light:var(--c-blue-light);
+  --orange:var(--c-orange); --orange-dark:var(--c-orange-dark); --green:var(--c-green); --red:var(--c-red);
+  --surface:var(--c-surface); --surface-alt:var(--c-surface-alt); --border:var(--c-border);
+  --text-main:var(--c-text); --text-muted:var(--c-muted); --text-faint:var(--c-faint);
+  --radius-sm:var(--c-radius-sm); --radius-md:var(--c-radius-md); --radius-lg:var(--c-radius-lg);
+  --shadow-md:var(--c-shadow);
+
+  /* alias set B (--blue / --text / --surface2 / --r style) */
+  --blue:var(--c-blue); --blue-lt:var(--c-blue-light);
+  --surface2:var(--c-surface-alt); --text:var(--c-text); --muted:var(--c-muted);
+  --r:var(--c-radius-md); --shadow:var(--c-shadow);
+}
+body.dark{
+  --c-surface:#161b27; --c-surface-alt:#111624; --c-border:#2a3550; --c-text:#e6edf3; --c-muted:#8b949e;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+img{max-width:100%;display:block}
+
+/* ── HEADER ── */
+header{background:linear-gradient(135deg,#0c1f6e 0%,#1a3fa8 100%);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.4);min-height:62px}
+.header-bar,.hbar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:62px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:38px;height:38px;border-radius:50%;border:2.5px solid #f97316;object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff;letter-spacing:.4px;text-transform:uppercase;display:block;line-height:1}
+.logo-sub{font-size:.55rem;color:rgba(255,255,255,.48);letter-spacing:.3px;white-space:nowrap;display:block;margin-top:1px}
+.main-nav{display:flex;align-items:center;gap:2px;margin-right:12px}
+.main-nav>a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:all .18s}
+.main-nav>a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.nav-cta{background:#f97316;color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important;margin-left:4px}
+.nav-cta:hover{background:#e56b0f!important}
+.hdr-right{display:flex;align-items:center;gap:8px}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;transition:all .18s;cursor:pointer}
+.hdr-btn:hover{background:rgba(255,255,255,.18);color:#fff}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center;padding:0}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s ease}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:900px){.main-nav{display:none!important}.hamburger{display:flex}.logo-sub{display:none}.hdr-right{margin-left:auto}}
+@media(min-width:901px){.hamburger{display:none!important}.mobile-nav{visibility:hidden!important}.nav-overlay{display:none!important}}
+
+/* ── MOBILE DRAWER ── */
+.mobile-nav{visibility:hidden;pointer-events:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1),visibility 0s linear .3s}
+.mobile-nav.open{visibility:visible;pointer-events:auto;transform:translateX(0);transition:transform .3s cubic-bezier(.4,0,.2,1),visibility 0s}
+.mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:62px}
+.mnav-logo{width:36px;height:36px;border-radius:50%;border:2px solid #f97316;object-fit:cover}
+.mnav-brand{display:flex;align-items:center;gap:10px}
+.mnav-bname{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.mnav-bsub{font-size:.58rem;color:rgba(255,255,255,.45);margin-top:1px}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav-section,.mnav-lbl{padding:14px 20px 6px;font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1.6px;color:rgba(255,255,255,.22)}
+.mobile-nav>a{display:flex;align-items:center;gap:13px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.92rem;font-weight:500;border-bottom:1px solid rgba(255,255,255,.04);transition:all .18s}
+.mobile-nav>a:hover{background:rgba(255,255,255,.06);color:#fff;padding-left:26px}
+.mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px 20px!important;border-bottom:none!important;font-size:.9rem;gap:10px}
+.nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+
+/* ── FOOTER ── */
+footer{background:#0a1228;padding:40px 16px 24px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)}
+.footer-copy a{color:rgba(255,255,255,.5);font-weight:700}
