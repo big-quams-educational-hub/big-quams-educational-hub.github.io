@@ -13,19 +13,16 @@
 <link rel="icon" href="https://bigquamsmedia.com.ng/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<script>
-(function(){
-  try{
-    if(typeof firebase==='undefined') throw new Error('SDK not loaded');
-    if(!firebase.apps.length){
-      firebase.initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
-    }
-    window._db=firebase.firestore();
-  }catch(e){console.warn('Firebase:',e.message);}
-})();
+<!-- Firebase (modular v9+ SDK) -->
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js';
+import{getFirestore,collection,getDocs,query,orderBy,limit}from'https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js';
+try{
+  const app=initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
+  window._db=getFirestore(app);
+  window._fs={collection,getDocs,query,orderBy,limit};
+}catch(e){console.warn('Firebase:',e.message);}
+</script>
 </script>
 <style>
 :root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:12px;--shadow:0 8px 28px rgba(26,63,168,.11)}
@@ -621,7 +618,7 @@ async function loadComboDropdown(){
   const sel=document.getElementById('qt_course');
   try{
     if(!window._db)return;
-    const snap=await window._db.collection('fs_subject_combo').orderBy('course','asc').get();
+    const snap=await window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_subject_combo'),window._fs.orderBy('course','asc')));
     comboData=snap.docs.map(d=>({...d.data(),_id:d.id}));
     if(!comboData.length)return;
     sel.innerHTML='<option value="">Select your course…</option>';
@@ -719,7 +716,7 @@ async function loadDYK(){
   const el=document.getElementById('dykGrid');
   try{
     if(!window._db){el.innerHTML='<p style="color:var(--muted);font-size:.84rem;padding:20px">Facts unavailable right now.</p>';return;}
-    const snap=await window._db.collection('fs_dyk').limit(3).get();
+    const snap=await window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_dyk'),window._fs.limit(3)));
     const data=snap.docs.map(d=>d.data());
     if(!data.length){el.innerHTML='<p style="color:var(--muted);font-size:.84rem;padding:20px">No facts yet — check back soon.</p>';return;}
     el.innerHTML=data.slice(0,3).map(d=>`
@@ -737,7 +734,7 @@ async function loadSpotlight(){
   const el=document.getElementById('spGrid');
   try{
     if(!window._db){el.innerHTML='<p style="color:var(--muted);font-size:.84rem;padding:20px">Spotlights unavailable right now.</p>';return;}
-    const snap=await window._db.collection('fs_spotlight').limit(3).get();
+    const snap=await window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_spotlight'),window._fs.limit(3)));
     const data=snap.docs.map(d=>d.data());
     if(!data.length){el.innerHTML='<p style="color:var(--muted);font-size:.84rem;padding:20px">No spotlights yet — check back soon.</p>';return;}
     el.innerHTML=data.slice(0,3).map(s=>`
@@ -772,7 +769,7 @@ async function initCountdown(){
   let events=defaultEvents;
   try{
     if(window._db){
-      const snap=await window._db.collection('fs_calendar').get();
+      const snap=await window._fs.getDocs(window._fs.collection(window._db,'fs_calendar'));
       const d=snap.docs.map(doc=>doc.data());
       if(d.length) events=d;
     }

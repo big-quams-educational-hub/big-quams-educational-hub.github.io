@@ -34,23 +34,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<script>
-(function(){
-  try{
-    if(typeof firebase==='undefined') throw new Error('SDK not loaded');
-    if(!firebase.apps.length){
-      firebase.initializeApp({
-        apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',
-        authDomain:'big-quams-media.firebaseapp.com',
-        projectId:'big-quams-media'
-      });
-    }
-    window._db=firebase.firestore();
-  }catch(e){console.warn('Firebase init:',e.message);}
-})();
+<!-- Firebase (modular v9+ SDK) -->
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js';
+import{getFirestore,collection,getDocs,query,orderBy,limit}from'https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js';
+try{
+  const app=initializeApp({
+    apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',
+    authDomain:'big-quams-media.firebaseapp.com',
+    projectId:'big-quams-media'
+  });
+  window._db=getFirestore(app);
+  window._fs={collection,getDocs,query,orderBy,limit};
+}catch(e){console.warn('Firebase init:',e.message);}
 </script>
 <style>
 :root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--orange-dark:#e56b0f;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--text-faint:#94a3b8;--radius-sm:8px;--radius-md:14px;--radius-lg:20px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
@@ -1082,12 +1078,12 @@ function showToast(msg){
 function initTicker(){
   const track=document.getElementById('tickerTrack'),bar=document.getElementById('tickerBar');
   if(!track||!bar)return;
-  const seed=['📢 JAMB 2026 UTME Results Released — Check yours on the JAMB portal','🎓 Post-UTME Screening begins June 2026 — 15 universities confirmed','💳 NELFUND Student Loan portal is open — Apply before the deadline','💰 MTN Foundation Scholarship 2026 now accepting applications','📰 WAEC 2026 Results expected August — stay updated on BQM','🔔 Monitor your JAMB CAPS portal daily for admission updates'];
+  const seed=['📢 JAMB 2026 UTME Results Released — Check yours on the JAMB portal','🎓 Post-UTME Screening begins June 2026 — 15 universities confirmed','💳 NELFUND Student Loan portal is open — Apply before the deadline','💰 New scholarships added regularly — check the Scholarships page','📰 WAEC 2026 Results expected August — stay updated on BQM','🔔 Monitor your JAMB CAPS portal daily for admission updates'];
   function render(items){track.innerHTML=[...items,...items].map(t=>`<span class="ticker-item">${t}</span>`).join('');bar.classList.add('show');}
   render(seed);
   // Pull live ticker items from Firestore; keep the seed text if it fails or is empty
   if(window._db){
-    window._db.collection('fs_ticker').orderBy('createdAt','asc').get()
+    window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_ticker'),window._fs.orderBy('createdAt','asc')))
       .then(snap=>{
         const items=snap.docs.map(d=>d.data().text).filter(Boolean);
         if(items.length) render(items);
@@ -1138,7 +1134,7 @@ async function loadNews(){
     return;
   }
   try{
-    const snap=await window._db.collection('fs_news').limit(20).get();
+    const snap=await window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_news'),window._fs.limit(20)));
     const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
     if(items.length){
       items.sort((a,b)=>{
@@ -1159,29 +1155,32 @@ async function loadNews(){
 /* SCHOLARSHIPS */
 function loadScholarships(){
   const grid=document.getElementById('scholarship-preview-grid');if(!grid)return;
-  const fb=[
-    {icon:'🇳🇬',name:'Federal Government BEA Scholarship',org:'Federal Ministry of Education',type:'federal',desc:'Funds Nigerian students to study abroad under bilateral agreements with Russia, China, Hungary and more.',deadline:'Aug–Oct annually',amount:'Full tuition + stipend',status:'soon'},
-    {icon:'📡',name:'MTN Foundation Scholarship',org:'MTN Nigeria Foundation',type:'corporate',desc:'Awards outstanding Nigerian STEM undergraduates in accredited universities annually.',deadline:'April–June annually',amount:'₦200,000/year',status:'soon'},
-    {icon:'🌍',name:'Commonwealth Scholarship (UK)',org:'Commonwealth Scholarship Commission',type:'international',desc:'Funds Nigerian students for Masters and PhD at UK universities — tuition, flights and living allowance.',deadline:'December annually',amount:'Fully funded',status:'ongoing'},
-  ];
   const tM={federal:['#dbeafe','#1d4ed8','#eff6ff'],corporate:['#fff7ed','#c2410c','#fff7ed'],international:['#ede9fe','#7c3aed','#f5f3ff'],state:['#dcfce7','#15803d','#f0fdf4']};
   const sC={open:'ss-open',ongoing:'ss-ongoing',soon:'ss-soon',closed:'ss-closed'};
   const sL={open:'🟢 Open',ongoing:'🔵 Ongoing',soon:'🟡 Soon',closed:'🔴 Closed'};
   function render(items){
     grid.innerHTML=items.slice(0,3).map(s=>{
       const[tc,tx,ic]=tM[s.type||'federal']||tM.federal;
-      return`<div class="sch-card" onclick="location.href='scholarship.html'"><div class="sch-top"><div class="sch-icon-box" style="background:${ic}">${escapeHtml(s.icon||'💰')}</div><div class="sch-meta"><span class="sch-type-tag" style="background:${tc};color:${tx}">${escapeHtml((s.type||'federal').toUpperCase())}</span><div class="sch-name">${escapeHtml(s.name)}</div><div class="sch-org">${escapeHtml(s.org||'')}</div></div></div><div class="sch-body"><div class="sch-desc">${escapeHtml(s.desc||'')}</div></div><div class="sch-foot"><span class="sch-deadline">📅 ${escapeHtml(s.deadline||'Check portal')}</span><span class="sch-amount">${escapeHtml(s.amount||'')}</span><span class="sch-status ${sC[s.status]||'ss-ongoing'}">${sL[s.status]||'🔵 Ongoing'}</span></div><a href="https://wa.me/2349049871643?text=${encodeURIComponent('Hello BQM, I need help applying for: '+s.name)}" target="_blank" rel="noopener noreferrer" class="sch-apply-btn">💬 Get Help Applying →</a></div>`;
+      return`<div class="sch-card" onclick="location.href='scholarship.html'"><div class="sch-top"><div class="sch-icon-box" style="background:${ic}">${escapeHtml(s.icon||'💰')}</div><div class="sch-meta"><span class="sch-type-tag" style="background:${tc};color:${tx}">${escapeHtml((s.type||'federal').toUpperCase())}</span><div class="sch-name">${escapeHtml(s.name)}</div><div class="sch-org">${escapeHtml(s.org||'')}</div></div></div><div class="sch-body"><div class="sch-desc">${escapeHtml(s.desc||s.description||'')}</div></div><div class="sch-foot"><span class="sch-deadline">📅 ${escapeHtml(s.deadline||'Check portal')}</span><span class="sch-amount">${escapeHtml(s.amount||'')}</span><span class="sch-status ${sC[s.status]||'ss-ongoing'}">${sL[s.status]||'🔵 Ongoing'}</span></div><a href="https://wa.me/2349049871643?text=${encodeURIComponent('Hello BQM, I need help applying for: '+s.name)}" target="_blank" rel="noopener noreferrer" class="sch-apply-btn">💬 Get Help Applying →</a></div>`;
     }).join('');
   }
-  render(fb);
-  if(window._db){
-    window._db.collection('fs_scholarships').get()
-      .then(snap=>{
-        const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
-        if(items.length)render([...items].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)));
-      })
-      .catch(e=>console.warn('Firebase scholarships fetch failed, keeping placeholder cards:',e.message));
+  if(!window._db){
+    grid.innerHTML='<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem;grid-column:1/-1">Scholarships are temporarily unavailable.</div>';
+    return;
   }
+  window._fs.getDocs(window._fs.collection(window._db,'fs_scholarships'))
+    .then(snap=>{
+      const items=snap.docs.map(d=>({_id:d.id,...d.data()}));
+      if(items.length){
+        render([...items].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)));
+      } else {
+        grid.innerHTML='<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem;grid-column:1/-1">No scholarships yet — check back soon.</div>';
+      }
+    })
+    .catch(e=>{
+      console.warn('Firebase scholarships fetch failed:',e.message);
+      grid.innerHTML='<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem;grid-column:1/-1">Could not load scholarships.</div>';
+    });
 }
 
 /* STAT COUNTERS */
