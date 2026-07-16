@@ -492,6 +492,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
           <li><a href="cbt.html">👨🏽‍💻 JAMB CBT Practice</a></li>
           <li><a href="postutme-prep.html">📖 Post-UTME Prep</a></li>
           <li><a href="postutme-calculator.html">🧮 Aggregate Calc</a></li>
+          <li><a href="admissioncalculator.html">🎯 Admission Chances</a></li>
           <li><a href="gpa-calculator.html">🎓 GPA Calculator</a></li>
           <li><a href="results.html">📊 Results Checker</a></li>
           <li><a href="Jamb_Profile_Code.html">🔑 JAMB Profile Code</a></li>
@@ -556,6 +557,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.
 // ── TOOLS DATA ──
 const TOOLS=[
   {title:'JAMB CBT Practice',icon:'👨🏽‍💻',color:'#fee2e2',text:'#b91c1c',tag:'Exam Prep',tagBg:'#fee2e2',tagTxt:'#b91c1c',desc:'515+ real JAMB questions. Timed mock exams, instant scoring, subject filtering and performance tracking.',url:'cbt.html',filters:['exam','admission'],featured:true},
+  {title:'Admission Chances Calculator',icon:'🎯',color:'#dcfce7',text:'#15803d',tag:'NEW',tagBg:'#16a34a',tagTxt:'#fff',desc:'Upload your JAMB, Post-UTME/DE and O-Level results and find out your estimated chances of admission for any course.',url:'admissioncalculator.html',filters:['admission'],featured:true},
   {title:'Big Quams Practice Test',icon:'📝',color:'#ede9fe',text:'#7c3aed',tag:'NEW',tagBg:'#7c3aed',tagTxt:'#fff',desc:'Full 180-question timed exam simulation across 4 subjects. Real exam conditions, instant performance breakdown and shareable result slip.',url:'practice-test.html',filters:['exam','admission'],featured:true},
   {title:'Big Quams Study Buddy',icon:'🤖',color:'#fef9c3',text:'#92400e',tag:'AI · NEW',tagBg:'#f97316',tagTxt:'#fff',desc:'AI-powered study assistant on every page. Ask anything about JAMB, Post-UTME, university courses, scholarships and study tips — instant answers powered by Claude.',url:'#',onclick:"window.bqmToggleBuddy&&window.bqmToggleBuddy()",filters:['ai','exam','resources'],featured:true},
   {title:'Newsroom',icon:'📰',color:'#dbeafe',text:'#1d4ed8',tag:'News',tagBg:'#dbeafe',tagTxt:'#1d4ed8',desc:'Latest campus news, JAMB updates, scholarship alerts, Post-UTME announcements and school events.',url:'newsroom.html',filters:['news'],featured:true},
