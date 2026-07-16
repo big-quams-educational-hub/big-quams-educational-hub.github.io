@@ -435,11 +435,18 @@ async function loadCalculatorData(){
     console.warn('Failed to load admission requirements:',e.message);
   }
 
+  let priceLoadError=null;
   try{
     const pd=await window._fs.getDoc(window._fs.doc(window._db,'fs_admission_settings','price'));
     calculatorPrice=pd.exists()?(pd.data().price||0):0;
-  }catch(e){ calculatorPrice=0; console.warn('Failed to load price:',e.message); }
-  document.getElementById('priceDisplay').textContent=calculatorPrice?('₦'+calculatorPrice.toLocaleString()):'Not set yet — check back soon';
+  }catch(e){ calculatorPrice=0; priceLoadError=e.message; console.warn('Failed to load price:',e.message); }
+  const priceEl=document.getElementById('priceDisplay');
+  if(priceLoadError){
+    priceEl.textContent='Could not load price — try refreshing';
+    priceEl.title=priceLoadError;
+  }else{
+    priceEl.textContent=calculatorPrice?('₦'+calculatorPrice.toLocaleString()):'Not set yet — check back soon';
+  }
   document.getElementById('payBtn').disabled=!calculatorPrice;
 }
 
