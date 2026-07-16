@@ -256,6 +256,10 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
           <label>Course *</label>
           <select id="targetCourse" onchange="onCourseSelected()"><option value="">Select a school first</option></select>
         </div>
+        <div class="form-group" id="categoryFieldGroup" style="display:none">
+          <label id="categoryFieldLabel">Which category applies to you? *</label>
+          <select id="candCategory"></select>
+        </div>
         <div id="courseInsight"></div>
         <div id="loadDiagnostic"></div>
       </div>
@@ -273,6 +277,11 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
             <label>Post-UTME / DE Score <span style="font-weight:400;color:var(--muted)">(if taken)</span></label>
             <input type="number" id="postUtmeScore" placeholder="e.g. 65" min="0">
           </div>
+        </div>
+        <div id="jambSubjectFieldGroup" style="display:none">
+          <label style="display:block;font-size:.74rem;font-weight:700;color:var(--text);margin-bottom:5px">Which 4 subjects did you sit for in JAMB? *</label>
+          <div id="jambSubjectRows" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
+          <div class="form-hint" style="margin-top:6px" id="jambComboHint"></div>
         </div>
       </div>
 
@@ -464,6 +473,12 @@ window.populateCourses=populateCourses;
 // If a school+course has been re-added for multiple sessions (yearly
 // requirement updates), this picks the one with the latest session string
 // (works for "YYYY/YYYY" format) — falls back to the last matching entry.
+// Approximate WAEC/NECO grade-to-point scale used ONLY for the optional
+// "O-Level as percentage" scoring method some schools request. Different
+// institutions may use different conversion scales for their own official
+// calculations — this is a reasonable estimate, not an official formula.
+const GRADE_POINTS={A1:8,B2:7,B3:6,C4:5,C5:4,C6:3,D7:2,E8:1,F9:0};
+
 function findRequirement(school,course){
   const matches=admissionReqs.filter(r=>r.school===school&&r.course===course);
   if(!matches.length) return null;
@@ -473,6 +488,21 @@ function findRequirement(school,course){
 function resetScoreFields(){
   document.getElementById('postUtmeFieldGroup').style.display='block';
   document.getElementById('scoreFieldsHint').textContent='Select a school and course above to see which scores are needed.';
+  document.getElementById('categoryFieldGroup').style.display='none';
+  document.getElementById('jambSubjectFieldGroup').style.display='none';
+}
+
+function populateJambSubjectRows(requiredSubjects){
+  const wrap=document.getElementById('jambSubjectRows');
+  wrap.innerHTML='';
+  const count=Math.max(4,requiredSubjects.length||4);
+  for(let i=0;i<count;i++){
+    const sel=document.createElement('select');
+    sel.className='jamb-subject-select';
+    sel.innerHTML=SUBJECTS.map(s=>`<option${s===requiredSubjects[i]?' selected':''}>${s}</option>`).join('');
+    wrap.appendChild(sel);
+  }
+  document.getElementById('jambComboHint').textContent=requiredSubjects.length?`This course requires: ${requiredSubjects.join(', ')}. Pre-filled with the expected combination — change any that don't match what you actually sat.`:'';
 }
 
 function onCourseSelected(){
@@ -481,6 +511,8 @@ function onCourseSelected(){
   const insightEl=document.getElementById('courseInsight');
   const hintEl=document.getElementById('scoreFieldsHint');
   const postGroup=document.getElementById('postUtmeFieldGroup');
+  const categoryGroup=document.getElementById('categoryFieldGroup');
+  const jambSubjectGroup=document.getElementById('jambSubjectFieldGroup');
   if(!school||!course){ insightEl.innerHTML=''; resetScoreFields(); return; }
 
   const req=findRequirement(school,course);
@@ -500,6 +532,22 @@ function onCourseSelected(){
     hintEl.textContent='This course uses your JAMB and Post-UTME/DE scores together (weighted aggregate).';
   }
 
+  // Category selector (Merit/Catchment/ELDS, Indigene/Non-Indigene, etc.)
+  if(req.useCategories&&(req.categories||[]).length){
+    categoryGroup.style.display='block';
+    document.getElementById('candCategory').innerHTML=req.categories.map(c=>`<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)}</option>`).join('');
+  }else{
+    categoryGroup.style.display='none';
+  }
+
+  // JAMB subject combination picker
+  if((req.jambSubjects||[]).length){
+    jambSubjectGroup.style.display='block';
+    populateJambSubjectRows(req.jambSubjects);
+  }else{
+    jambSubjectGroup.style.display='none';
+  }
+
   // Show session + previous-year notes if the admin has added them
   if(req.session||req.notes){
     insightEl.innerHTML=`<div class="insight-box">
@@ -514,70 +562,109 @@ window.onCourseSelected=onCourseSelected;
 
 // ── CALCULATION LOGIC ──
 // This is a transparent estimate, not an official admissions decision.
-// It checks three things: O-Level credit requirements, JAMB minimum, and
-// Post-UTME/DE minimum (if the school requires one) — then estimates a
+// It checks O-Level requirements (credit-count or percentage, depending on
+// what the school uses), JAMB subject combination (if specified), and JAMB/
+// Post-UTME minimums (using category-specific cutoffs like Merit/Catchment/
+// ELDS or Indigene/Non-Indigene if the school has them) — then estimates a
 // chance tier based on how far above/below the minimums the student is.
 function calculateChance(student, req){
   const reasons=[];
   const method=req.method||'aggregate';
 
+  // ── O-LEVEL CHECK (credit-count or percentage) ──
   const creditSubjects=student.olevel.filter(o=>CREDIT_GRADES.includes(o.grade));
   const studentSubjectNames=creditSubjects.map(o=>o.subject.toLowerCase());
   const missingRequired=(req.subjects||[]).filter(rs=>!studentSubjectNames.includes(rs.toLowerCase().trim()));
-  const hasEnoughCredits=creditSubjects.length>=(req.minOlevel||5);
+  let olevelOk;
 
-  if(missingRequired.length) reasons.push(`Missing a credit pass in: ${missingRequired.join(', ')}.`);
-  if(!hasEnoughCredits) reasons.push(`You have ${creditSubjects.length} credit pass(es); this course requires at least ${req.minOlevel||5}.`);
-  const olevelOk=!missingRequired.length && hasEnoughCredits;
-  if(olevelOk) reasons.push(`Your O-Level results meet the subject and credit requirements.`);
+  if(req.olevelMethod==='percentage'){
+    // Percentage across the required subjects specifically (0 if a required
+    // subject wasn't entered at all). This is an approximation — see the
+    // GRADE_POINTS comment above.
+    const points=(req.subjects||[]).map(rs=>{
+      const match=student.olevel.find(o=>o.subject.toLowerCase()===rs.toLowerCase().trim());
+      return match?(GRADE_POINTS[match.grade]||0):0;
+    });
+    const maxPoints=(req.subjects||[]).length*8;
+    const pct=maxPoints?((points.reduce((a,b)=>a+b,0)/maxPoints)*100):0;
+    olevelOk=pct>=(req.minOlevelPct||0)&&!missingRequired.length;
+    reasons.push(`Your estimated O-Level percentage across required subjects is ${pct.toFixed(1)}% (minimum: ${req.minOlevelPct}%). This is an approximate conversion, not an official calculation.`);
+    if(missingRequired.length) reasons.push(`Missing a result for: ${missingRequired.join(', ')}.`);
+  }else{
+    const hasEnoughCredits=creditSubjects.length>=(req.minOlevel||5);
+    if(missingRequired.length) reasons.push(`Missing a credit pass in: ${missingRequired.join(', ')}.`);
+    if(!hasEnoughCredits) reasons.push(`You have ${creditSubjects.length} credit pass(es); this course requires at least ${req.minOlevel||5}.`);
+    olevelOk=!missingRequired.length && hasEnoughCredits;
+  }
+  if(olevelOk) reasons.push(`Your O-Level results meet the requirements.`);
 
-  const jambOk=student.jambScore>=req.minJamb;
-  reasons.push(jambOk?`Your JAMB score (${student.jambScore}) meets the minimum (${req.minJamb}).`:`Your JAMB score (${student.jambScore}) is below the minimum required (${req.minJamb}).`);
+  // ── JAMB SUBJECT COMBINATION CHECK ──
+  let comboOk=true;
+  if((req.jambSubjects||[]).length && student.jambSubjects && student.jambSubjects.length){
+    const required=req.jambSubjects.map(s=>s.toLowerCase());
+    const sat=student.jambSubjects.map(s=>s.toLowerCase());
+    const missingCombo=required.filter(s=>!sat.includes(s));
+    comboOk=!missingCombo.length;
+    reasons.push(comboOk?`Your JAMB subject combination matches what this course requires.`:`Your JAMB subjects don't fully match what's required (${req.jambSubjects.join(', ')}) — double-check with the school, as this can affect eligibility even with a good score.`);
+  }
+
+  // ── DETERMINE WHICH CUTOFF APPLIES (category-based, or general) ──
+  let effMinJamb=req.minJamb, effMinPostUtme=req.minPostUtme, effCutoffAggregate=req.cutoffAggregate;
+  if(req.useCategories && student.category){
+    const cat=(req.categories||[]).find(c=>c.name===student.category);
+    if(cat){
+      effMinJamb=cat.minJamb; effMinPostUtme=cat.minPostUtme; effCutoffAggregate=cat.cutoffAggregate;
+      reasons.push(`Using the "${cat.name}" cutoff for this school (minimum JAMB: ${cat.minJamb}${cat.minPostUtme?', minimum Post-UTME: '+cat.minPostUtme:''}).`);
+    }
+  }
+
+  const jambOk=student.jambScore>=effMinJamb;
+  reasons.push(jambOk?`Your JAMB score (${student.jambScore}) meets the minimum (${effMinJamb}).`:`Your JAMB score (${student.jambScore}) is below the minimum required (${effMinJamb}).`);
 
   let tier,tierLabel,tierColor;
 
-  if(method==='aggregate' && req.jambWeight && req.postWeight && req.cutoffAggregate){
-    // Weighted aggregate: JAMB and Post-UTME normalized to 0-100, weighted, compared to cutoff.
+  if(method==='aggregate' && req.jambWeight && req.postWeight && effCutoffAggregate){
     const jambPct=(student.jambScore/400)*100;
-    const postPct=req.minPostUtme?((student.postUtmeScore||0)/100)*100:0;
+    const postPct=effMinPostUtme?((student.postUtmeScore||0)/100)*100:0;
     const aggregate=(jambPct*(req.jambWeight/100))+(postPct*(req.postWeight/100));
-    const aggMargin=aggregate-req.cutoffAggregate;
-    reasons.push(`Your weighted aggregate is ${aggregate.toFixed(1)} (JAMB ${req.jambWeight}% + Post-UTME ${req.postWeight}%), against a cutoff of ${req.cutoffAggregate}.`);
-    if(!olevelOk){ tier='ineligible'; tierLabel='❌ Not Eligible'; tierColor='var(--red)'; }
+    const aggMargin=aggregate-effCutoffAggregate;
+    reasons.push(`Your weighted aggregate is ${aggregate.toFixed(1)} (JAMB ${req.jambWeight}% + Post-UTME ${req.postWeight}%), against a cutoff of ${effCutoffAggregate}.`);
+    if(!olevelOk||!comboOk){ tier='ineligible'; tierLabel='❌ Not Eligible'; tierColor='var(--red)'; }
     else if(aggMargin<0){ tier='low'; tierLabel='🔴 Low Chance'; tierColor='var(--red)'; }
     else if(aggMargin>=10){ tier='high'; tierLabel='🟢 High Chance'; tierColor='var(--green)'; }
     else if(aggMargin>=3){ tier='moderate'; tierLabel='🟡 Moderate Chance'; tierColor='var(--amber)'; }
     else{ tier='borderline'; tierLabel='🟠 Borderline Chance'; tierColor='#c2410c'; }
   }else if(method==='screening'){
-    // Screening schools: no separate Post-UTME score, admission also
-    // depends on document verification/interview this tool can't assess.
     reasons.push(`This school uses a screening process — document verification and/or interview also affect the outcome, which this tool cannot evaluate.`);
-    if(!olevelOk){ tier='ineligible'; tierLabel='❌ Not Eligible'; tierColor='var(--red)'; }
+    if(!olevelOk||!comboOk){ tier='ineligible'; tierLabel='❌ Not Eligible'; tierColor='var(--red)'; }
     else if(!jambOk){ tier='low'; tierLabel='🔴 Low Chance'; tierColor='var(--red)'; }
     else{
-      const jambMargin=student.jambScore-req.minJamb;
+      const jambMargin=student.jambScore-effMinJamb;
       if(jambMargin>=30){ tier='high'; tierLabel='🟢 High Chance (screening still applies)'; tierColor='var(--green)'; }
       else if(jambMargin>=10){ tier='moderate'; tierLabel='🟡 Moderate Chance (screening still applies)'; tierColor='var(--amber)'; }
       else{ tier='borderline'; tierLabel='🟠 Borderline Chance (screening still applies)'; tierColor='#c2410c'; }
     }
   }else{
-    // jamb_only, or aggregate without full formula data — fall back to
-    // simple JAMB-margin comparison, same as before.
     let postUtmeOk=true, postUtmeMargin=0;
-    if(req.minPostUtme){
-      postUtmeOk=(student.postUtmeScore||0)>=req.minPostUtme;
-      postUtmeMargin=(student.postUtmeScore||0)-req.minPostUtme;
-      reasons.push(postUtmeOk?`Your Post-UTME/DE score meets the minimum (${req.minPostUtme}).`:`Your Post-UTME/DE score is below the minimum required (${req.minPostUtme}).`);
+    if(effMinPostUtme){
+      postUtmeOk=(student.postUtmeScore||0)>=effMinPostUtme;
+      postUtmeMargin=(student.postUtmeScore||0)-effMinPostUtme;
+      reasons.push(postUtmeOk?`Your Post-UTME/DE score meets the minimum (${effMinPostUtme}).`:`Your Post-UTME/DE score is below the minimum required (${effMinPostUtme}).`);
     }
-    const jambMargin=student.jambScore-req.minJamb;
-    if(!olevelOk){ tier='ineligible'; tierLabel='❌ Not Eligible'; tierColor='var(--red)'; }
+    const jambMargin=student.jambScore-effMinJamb;
+    if(!olevelOk||!comboOk){ tier='ineligible'; tierLabel='❌ Not Eligible'; tierColor='var(--red)'; }
     else if(!jambOk||!postUtmeOk){ tier='low'; tierLabel='🔴 Low Chance'; tierColor='var(--red)'; }
     else{
-      const margin=jambMargin+(req.minPostUtme?postUtmeMargin:0);
+      const margin=jambMargin+(effMinPostUtme?postUtmeMargin:0);
       if(margin>=20){ tier='high'; tierLabel='🟢 High Chance'; tierColor='var(--green)'; }
       else if(margin>=5){ tier='moderate'; tierLabel='🟡 Moderate Chance'; tierColor='var(--amber)'; }
       else{ tier='borderline'; tierLabel='🟠 Borderline Chance'; tierColor='#c2410c'; }
     }
+  }
+
+  // Suggest alternative courses if things don't look great
+  if(['low','ineligible','borderline'].includes(tier) && (req.altCourses||[]).length){
+    reasons.push(`This school also considers these related courses, which may have different requirements: ${req.altCourses.join(', ')}. Worth checking separately.`);
   }
 
   return {tier,tierLabel,tierColor,reasons,olevelOk,jambOk};
@@ -591,11 +678,15 @@ function collectFormData(){
   const postUtmeScore=parseInt(document.getElementById('postUtmeScore').value)||0;
   const school=document.getElementById('targetSchool').value;
   const course=document.getElementById('targetCourse').value;
+  const category=document.getElementById('categoryFieldGroup').style.display!=='none'?document.getElementById('candCategory').value:'';
+  const jambSubjects=document.getElementById('jambSubjectFieldGroup').style.display!=='none'
+    ?[...document.querySelectorAll('.jamb-subject-select')].map(s=>s.value)
+    :[];
   const olevel=[...document.querySelectorAll('.olevel-row')].map(row=>({
     subject:row.querySelector('.ol-subject').value,
     grade:row.querySelector('.ol-grade').value
   }));
-  return {name,phone,email,jambScore,postUtmeScore,school,course,olevel};
+  return {name,phone,email,jambScore,postUtmeScore,school,course,category,jambSubjects,olevel};
 }
 
 function validateForm(d){
@@ -604,6 +695,7 @@ function validateForm(d){
   if(!d.jambScore) return 'Please enter your JAMB score.';
   if(!d.school) return 'Please select a school.';
   if(!d.course) return 'Please select a course.';
+  if(document.getElementById('categoryFieldGroup').style.display!=='none' && !d.category) return 'Please select which category applies to you.';
   if(d.olevel.length<5) return 'Please add at least 5 O-Level subjects.';
   if(!calculatorPrice) return 'The calculator price has not been set yet — please check back later.';
   return null;
@@ -639,7 +731,7 @@ async function startPayment(){
       sessionId, status:'started',
       name:data.name, phone:data.phone, email:data.email||'',
       jambScore:data.jambScore, postUtmeScore:data.postUtmeScore||null,
-      school:data.school, course:data.course,
+      school:data.school, course:data.course, category:data.category||'',
       createdAt:window._fs.serverTimestamp()
     });
   }catch(e){ console.warn('Could not log attempt:',e.message); }
@@ -678,8 +770,8 @@ async function handlePaymentSuccess(data, req, paymentRef, sessionId){
       sessionId, status:'paid',
       name:data.name, phone:data.phone, email:data.email||'',
       jambScore:data.jambScore, postUtmeScore:data.postUtmeScore||null,
-      school:data.school, course:data.course,
-      olevel:data.olevel,
+      school:data.school, course:data.course, category:data.category||'',
+      olevel:data.olevel, jambSubjects:data.jambSubjects||[],
       resultTier:result.tierLabel,
       paymentRef, amountPaid:calculatorPrice,
       createdAt:window._fs.serverTimestamp()
@@ -728,8 +820,10 @@ function downloadResultPdf(){
   if(data.email) line('Email:',data.email);
   line('School:',data.school);
   line('Course:',data.course);
+  if(data.category) line('Category:',data.category);
   line('JAMB Score:',data.jambScore);
   if(data.postUtmeScore) line('Post-UTME/DE Score:',data.postUtmeScore);
+  if(data.jambSubjects&&data.jambSubjects.length) line('JAMB Subjects:',data.jambSubjects.join(', '));
   y+=4;
 
   doc.setFont('helvetica','bold'); doc.setFontSize(14);
