@@ -596,6 +596,7 @@ function setCandidateType(type){
   document.getElementById('deScoreFields').style.display=type==='de'?'block':'none';
   document.getElementById('scoresStepTitle').textContent=type==='utme'?'Your JAMB Scores':'Your Direct Entry Qualification';
   if(type==='de'&&!document.getElementById('deRows').children.length){ addDeRow(); addDeRow(); }
+  if(document.getElementById('targetCourse').value) onCourseSelected();
 }
 window.setCandidateType=setCandidateType;
 
@@ -653,7 +654,7 @@ function addDeRow(subject,grade){
 window.addDeRow=addDeRow;
 document.addEventListener('DOMContentLoaded',()=>{
   const sel=document.getElementById('deQualType');
-  if(sel) sel.addEventListener('change',toggleDeQualFields);
+  if(sel) sel.addEventListener('change',()=>{ toggleDeQualFields(); if(document.getElementById('targetCourse').value) onCourseSelected(); });
 });
 
 function onCourseSelected(){
@@ -693,14 +694,24 @@ function onCourseSelected(){
   // Pre-fill JAMB subject combo (UTME path)
   populateJambOtherRows(req.jambSubjects||[]);
 
+  // Direct Entry acceptance warning
+  let deWarningHtml='';
+  if(candidateType==='de'){
+    if(req.acceptsDE===false){
+      deWarningHtml=`<div class="disclaimer-box" style="margin-top:10px">🚫 This course does not accept Direct Entry candidates — it's UTME only. You can still check it, but admission via DE isn't possible here based on what the school has told us.</div>`;
+    }else if((req.deAcceptedTypes||[]).length && !req.deAcceptedTypes.includes(document.getElementById('deQualType').value)){
+      deWarningHtml=`<div class="disclaimer-box" style="margin-top:10px">⚠️ This course only accepts Direct Entry via: ${req.deAcceptedTypes.join(', ')}. Your selected qualification may not be accepted here — double check with the school.</div>`;
+    }
+  }
+
   // Show session + previous-year notes if the admin has added them
   if(req.session||req.notes){
     insightEl.innerHTML=`<div class="insight-box">
       ${req.session?`<span class="method-tag">${escapeHtml(req.session)} session</span>`:''}
       ${req.notes?`<b>What to know before applying</b>${escapeHtml(req.notes)}`:''}
-    </div>`;
+    </div>`+deWarningHtml;
   }else{
-    insightEl.innerHTML='';
+    insightEl.innerHTML=deWarningHtml;
   }
 }
 window.onCourseSelected=onCourseSelected;
@@ -804,7 +815,17 @@ function calculateChance(student, req){
   // give an honest, O-Level-based read rather than fabricate a JAMB-style
   // tier from data that doesn't apply to DE candidates. ──
   if(student.candidateType==='de'){
-    reasons.push(`You're applying via Direct Entry (${student.deQualType}${student.deCgpa?', '+student.deCgpa:''}) — this school's requirements in our system are set up for UTME cutoffs, so we can't give a precise DE chance tier yet.`);
+    // These are known facts from the admin, not approximations — so they
+    // take priority over the softer "we can't calculate this yet" message.
+    if(req.acceptsDE===false){
+      reasons.push(`This course does not accept Direct Entry candidates — it's UTME only.`);
+      return {tier:'ineligible',tierLabel:'🚫 Direct Entry Not Accepted',tierColor:'var(--red)',reasons,olevelOk,jambOk:null};
+    }
+    if((req.deAcceptedTypes||[]).length && !req.deAcceptedTypes.includes(student.deQualType)){
+      reasons.push(`This course only accepts Direct Entry via: ${req.deAcceptedTypes.join(', ')}. Your qualification (${student.deQualType}) isn't on that list.`);
+      return {tier:'ineligible',tierLabel:'🚫 Your Qualification Not Accepted Here',tierColor:'var(--red)',reasons,olevelOk,jambOk:null};
+    }
+    reasons.push(`You're applying via Direct Entry (${student.deQualType}${student.deCgpa?', '+student.deCgpa:''}) — this school's cutoff data in our system is set up for UTME, so we can't give a precise DE chance tier yet.`);
     reasons.push(`Direct Entry candidates are typically admitted into 200 level subject to the department confirming your qualification is equivalent — it's worth confirming your specific result with the school's admissions office directly.`);
     let tier,tierLabel,tierColor;
     if(!olevelOk){ tier='ineligible'; tierLabel='❌ O-Level Requirements Not Met'; tierColor='var(--red)'; }
