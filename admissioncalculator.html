@@ -342,8 +342,8 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
             </select>
           </div>
           <div class="form-group" id="deCgpaGroup" style="display:none">
-            <label>CGPA / Class of Degree *</label>
-            <input type="text" id="deCgpa" placeholder="e.g. 4.20 or Upper Credit">
+            <label>CGPA / Class of Certificate *</label>
+            <input type="text" id="deCgpa" placeholder="e.g. 4.20, Upper Credit, or Distinction/Credit/Merit/Pass for NCE">
           </div>
           <div id="deSubjectFieldsWrap">
             <label style="display:block;font-size:.74rem;font-weight:700;color:var(--text);margin-bottom:5px">Your Subjects &amp; Grades/Points</label>
@@ -370,13 +370,6 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
         <div id="olevelRows"></div>
         <button type="button" class="add-row-btn" onclick="addOlevelRow()">+ Add Subject</button>
         <div class="form-hint" style="margin-top:10px">Include at least 5 subjects with your best sitting, including English Language and Mathematics.</div>
-
-        <div class="suggest-box">
-          <div style="font-weight:800;font-size:.84rem;color:var(--text)">🔍 Not sure what to study?</div>
-          <div class="form-hint" style="margin-top:4px">Free — based on your O-Level results and JAMB subjects above, see which courses in our database you might already qualify for.</div>
-          <button type="button" class="add-row-btn" style="margin-top:10px" onclick="suggestCourses()">Suggest Courses For Me</button>
-          <div id="suggestResults"></div>
-        </div>
       </div>
 
       <div class="calc-card">
@@ -544,6 +537,20 @@ async function loadCalculatorData(){
     priceEl.textContent=calculatorPrice?('₦'+calculatorPrice.toLocaleString()):'Not set yet — check back soon';
   }
   document.getElementById('payBtn').disabled=!calculatorPrice;
+
+  // If the student arrived here via "Check This →" from a course suggestion,
+  // pre-select that school/course now that the dropdowns are populated.
+  const preSchool=sessionStorage.getItem('bqm_presel_school');
+  const preCourse=sessionStorage.getItem('bqm_presel_course');
+  if(preSchool){
+    sessionStorage.removeItem('bqm_presel_school');
+    sessionStorage.removeItem('bqm_presel_course');
+    schoolSelect.value=preSchool;
+    populateCourses();
+    if(preCourse) document.getElementById('targetCourse').value=preCourse;
+    onCourseSelected();
+    schoolSelect.closest('.calc-card').scrollIntoView({behavior:'smooth',block:'center'});
+  }
 }
 
 function populateCourses(){
@@ -623,7 +630,7 @@ function populateJambOtherRows(requiredSubjects){
 
 function toggleDeQualFields(){
   const type=document.getElementById('deQualType').value;
-  const usesCgpa=['ND','HND','Other'].includes(type);
+  const usesCgpa=['ND','HND','NCE','Other'].includes(type);
   document.getElementById('deCgpaGroup').style.display=usesCgpa?'block':'none';
   document.getElementById('deSubjectFieldsWrap').style.display=usesCgpa?'none':'block';
 }
@@ -632,7 +639,7 @@ window.toggleDeQualFields=toggleDeQualFields;
 // A-Level: A,B,C,D,E. IJMB/JUPEB commonly graded A-F or on a points scale —
 // letting the student pick from a broad merged list keeps this flexible
 // rather than guessing one exact scale.
-const DE_GRADES=['A','B','C','D','E','F','Distinction','Merit','Pass'];
+const DE_GRADES=['A','B','C','D','E','F'];
 function addDeRow(subject,grade){
   const wrap=document.getElementById('deRows');
   const row=document.createElement('div');
@@ -702,32 +709,20 @@ window.onCourseSelected=onCourseSelected;
 // Uses whatever O-Level rows (and JAMB subjects, if UTME) are currently
 // filled in — doesn't require payment, since it's a subject-match filter,
 // not a chance calculation against a specific cutoff.
-function suggestCourses(){
-  const resultsEl=document.getElementById('suggestResults');
-  const olevel=[...document.querySelectorAll('.olevel-row')].map(row=>({
-    subject:row.querySelector('.ol-subject').value,
-    grade:row.querySelector('.ol-grade').value
-  }));
-  const creditSubjects=olevel.filter(o=>CREDIT_GRADES.includes(o.grade)).map(o=>o.subject.toLowerCase());
+// not a chance calculation against a specific cutoff — but it IS now shown
+// only after payment, on the results page, per how this is meant to be used.
+function findSuggestedCourses(data){
+  const creditSubjects=data.olevel.filter(o=>CREDIT_GRADES.includes(o.grade)).map(o=>o.subject.toLowerCase());
+  if(creditSubjects.length<5 || !admissionReqs.length) return [];
 
-  if(creditSubjects.length<5){
-    resultsEl.innerHTML='<div class="form-hint" style="margin-top:10px;color:var(--red)">Add at least 5 O-Level subjects with grades above first.</div>';
-    return;
-  }
-  if(!admissionReqs.length){
-    resultsEl.innerHTML='<div class="form-hint" style="margin-top:10px">No courses in our database yet — check back soon.</div>';
-    return;
-  }
-
-  const jambSubjects=candidateType==='utme'
-    ?['English Language',...[...document.querySelectorAll('.jamb-other-subject')].map(s=>s.value)].map(s=>s.toLowerCase())
-    :null;
+  const jambSubjects=data.candidateType==='utme' ? (data.jambSubjects||[]).map(s=>s.toLowerCase()) : null;
 
   const matches=[];
   const seen=new Set();
   for(const req of admissionReqs){
     const key=req.school+'|'+req.course;
     if(seen.has(key)) continue;
+    if(req.school===data.school && req.course===data.course) continue; // skip the one they just paid to check
     const requiredSubjects=(req.subjects||[]).map(s=>s.toLowerCase().trim());
     const olevelMatch=requiredSubjects.every(rs=>creditSubjects.includes(rs));
     if(!olevelMatch) continue;
@@ -739,30 +734,34 @@ function suggestCourses(){
     seen.add(key);
     matches.push(req);
   }
-
-  if(!matches.length){
-    resultsEl.innerHTML='<div class="form-hint" style="margin-top:10px">No exact matches found in our current database — this only checks schools/courses that have been added so far, not every course that might exist.</div>';
-    return;
-  }
-
-  resultsEl.innerHTML=`<div class="suggest-list">${matches.slice(0,25).map((r,i)=>`
-    <div class="suggest-item" onclick="pickSuggestedCourse(${matches.indexOf(r)})">
-      <div><b>${escapeHtml(r.course)}</b><br><span>${escapeHtml(r.school)}</span></div>
-      <button type="button" class="suggest-pick-btn">Use This →</button>
-    </div>`).join('')}</div>
-    <div class="form-hint" style="margin-top:8px">${matches.length>25?`Showing 25 of ${matches.length} matches. `:''}This only checks subject requirements — JAMB/Post-UTME score minimums still apply once you pick one.</div>`;
-  window._suggestedMatches=matches;
+  return matches;
 }
-window.suggestCourses=suggestCourses;
+
+function renderSuggestions(matches){
+  if(!matches.length){
+    return `<div class="suggest-box"><div style="font-weight:800;font-size:.84rem;color:var(--text)">🔍 Other courses you might qualify for</div><div class="form-hint" style="margin-top:6px">No other exact matches found in our current database, based on your O-Level results${candidateType==='utme'?' and JAMB subjects':''}. This only checks schools/courses already added to our system.</div></div>`;
+  }
+  window._suggestedMatches=matches;
+  return `<div class="suggest-box">
+    <div style="font-weight:800;font-size:.84rem;color:var(--text)">🔍 Other courses you might qualify for</div>
+    <div class="form-hint" style="margin-top:4px">Based on your O-Level results${candidateType==='utme'?' and JAMB subjects':''} — worth checking these too.</div>
+    <div class="suggest-list">${matches.slice(0,25).map((r,i)=>`
+      <div class="suggest-item" onclick="pickSuggestedCourse(${i})">
+        <div><b>${escapeHtml(r.course)}</b><br><span>${escapeHtml(r.school)}</span></div>
+        <button type="button" class="suggest-pick-btn">Check This →</button>
+      </div>`).join('')}</div>
+    <div class="form-hint" style="margin-top:8px">${matches.length>25?`Showing 25 of ${matches.length} matches. `:''}This only checks subject requirements — JAMB/Post-UTME score minimums still apply, so checking one of these fully will need its own payment.</div>
+  </div>`;
+}
 
 function pickSuggestedCourse(idx){
   const req=window._suggestedMatches[idx];
   if(!req) return;
-  document.getElementById('targetSchool').value=req.school;
-  populateCourses();
-  document.getElementById('targetCourse').value=req.course;
-  onCourseSelected();
-  document.getElementById('targetSchool').closest('.calc-card').scrollIntoView({behavior:'smooth',block:'center'});
+  location.reload();
+  // Re-open the form fresh for the newly picked course rather than trying
+  // to reuse a hidden, already-submitted form — keeps state simple and safe.
+  sessionStorage.setItem('bqm_presel_school',req.school);
+  sessionStorage.setItem('bqm_presel_course',req.course);
 }
 window.pickSuggestedCourse=pickSuggestedCourse;
 
@@ -930,7 +929,7 @@ function validateForm(d){
   if(d.candidateType==='utme'){
     if(!d.jambScore) return 'Please enter your JAMB subject scores.';
   }else{
-    const usesCgpa=['ND','HND','Other'].includes(d.deQualType);
+    const usesCgpa=['ND','HND','NCE','Other'].includes(d.deQualType);
     if(usesCgpa&&!d.deCgpa) return 'Please enter your CGPA / class of degree.';
     if(!usesCgpa&&d.deSubjects.length<2) return 'Please add your Direct Entry subjects and grades.';
   }
@@ -1025,6 +1024,7 @@ function renderResult(data, result){
   const bg={high:'#f0fdf4',moderate:'#fffbeb',borderline:'#fff7ed',low:'#fef2f2',ineligible:'#fef2f2',de_unclear:'#eff6ff'}[result.tier]||'#f8fafc';
   const el=document.getElementById('resultArea');
   el.style.display='block';
+  const suggestionsHtml=renderSuggestions(findSuggestedCourses(data));
   el.innerHTML=`
     <div class="result-card" style="background:${bg};border:2px solid ${result.tierColor}">
       <div style="font-size:.76rem;color:var(--muted);margin-bottom:6px">${escapeHtml(data.name)}'s estimated chance for</div>
@@ -1035,7 +1035,8 @@ function renderResult(data, result){
         ⚠️ This is an <strong>estimate only</strong> based on requirements set by our team, not the official admissions office. It does not guarantee admission or rejection.
       </div>
     </div>
-    <button class="btn-pay" style="margin-bottom:10px" onclick="downloadResultPdf()">📄 Download as PDF</button>
+    ${suggestionsHtml}
+    <button class="btn-pay" style="margin:12px 0 10px" onclick="downloadResultPdf()">📄 Download as PDF</button>
     <button class="support-cta" onclick="contactSupportWithResult()">💬 Contact Support About This Result</button>
     <button class="add-row-btn" style="width:100%;padding:12px;font-size:.82rem" onclick="location.reload()">🔄 Check Another Course</button>
   `;
