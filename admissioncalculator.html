@@ -108,6 +108,40 @@ body.dark .insight-box{background:#0f1d3d;border-color:#1e3a6a;color:#93c5fd}
 .add-row-btn{background:var(--blue-lt);color:var(--blue);border:none;border-radius:8px;padding:9px 14px;font-size:.78rem;font-weight:700;margin-top:4px}
 body.dark .add-row-btn{background:#1a2d5a;color:#93c5fd}
 
+/* Candidate type toggle */
+.type-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.type-btn{border:1.5px solid var(--border);background:var(--surface2);border-radius:10px;padding:12px 8px;text-align:center;font-size:.78rem;font-weight:700;color:var(--muted);cursor:pointer;transition:.15s}
+.type-btn.active{border-color:var(--blue);background:var(--blue-lt);color:var(--blue)}
+body.dark .type-btn.active{background:#1a2d5a;color:#93c5fd}
+
+/* JAMB subject+score rows */
+.jamb-row{display:grid;grid-template-columns:1fr 70px;gap:6px;margin-bottom:8px;align-items:center}
+.jamb-row select,.jamb-row input{padding:9px 6px;font-size:.76rem}
+@media(min-width:420px){.jamb-row{grid-template-columns:1fr 84px;gap:8px}.jamb-row select,.jamb-row input{padding:9px 10px;font-size:.8rem}}
+.jamb-fixed-row{display:grid;grid-template-columns:1fr 70px;gap:6px;margin-bottom:8px;align-items:center}
+@media(min-width:420px){.jamb-fixed-row{grid-template-columns:1fr 84px;gap:8px}}
+.jamb-fixed-label{background:var(--surface2);border:1.5px solid var(--border);border-radius:9px;padding:9px 12px;font-size:.8rem;font-weight:700;color:var(--text)}
+.jamb-total-box{background:var(--blue-lt);border-radius:10px;padding:12px 14px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;font-size:.82rem;font-weight:700;color:var(--blue)}
+body.dark .jamb-total-box{background:#1a2d5a;color:#93c5fd}
+.jamb-total-box b{font-size:1.1rem}
+
+/* DE (Direct Entry) rows — reuses olevel-row layout */
+.de-row{display:grid;grid-template-columns:1fr 90px 32px;gap:6px;margin-bottom:8px;align-items:center}
+.de-row select,.de-row input{padding:9px 6px;font-size:.76rem}
+@media(min-width:420px){.de-row{grid-template-columns:1fr 100px 34px;gap:8px}.de-row select,.de-row input{padding:9px 10px;font-size:.8rem}}
+
+/* Course suggestions */
+.suggest-box{background:var(--surface2);border:1.5px dashed var(--border);border-radius:12px;padding:16px;margin-top:12px}
+.suggest-list{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.suggest-item{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;font-size:.8rem;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer;transition:.15s}
+.suggest-item:hover{border-color:var(--blue)}
+.suggest-item b{color:var(--text)}
+.suggest-item span{color:var(--muted);font-size:.7rem}
+.suggest-pick-btn{background:var(--blue);color:#fff;border:none;border-radius:7px;padding:6px 12px;font-size:.7rem;font-weight:700;white-space:nowrap;flex-shrink:0}
+
+/* Support CTA on result */
+.support-cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:linear-gradient(135deg,#25d366,#1db954);color:#fff;border:none;border-radius:12px;padding:14px;font-size:.88rem;font-weight:800;margin-bottom:10px}
+
 /* Buttons */
 .btn-pay{width:100%;background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;border:none;border-radius:12px;padding:16px;font-size:.94rem;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 6px 20px rgba(22,163,74,.3);transition:.2s}
 .btn-pay:hover{transform:translateY(-2px)}
@@ -243,6 +277,13 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
           <input type="email" id="candEmail" placeholder="you@example.com">
           <div class="form-hint">We'll only use this to send your result — leave blank if you'd rather not share it.</div>
         </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label>Which route are you applying through? *</label>
+          <div class="type-toggle">
+            <div class="type-btn active" id="typeBtnUtme" onclick="setCandidateType('utme')">🎓 UTME<br><span style="font-weight:400;font-size:.68rem">First-degree, JAMB</span></div>
+            <div class="type-btn" id="typeBtnDe" onclick="setCandidateType('de')">📜 Direct Entry<br><span style="font-weight:400;font-size:.68rem">A-Level, ND/HND, IJMB, JUPEB</span></div>
+          </div>
+        </div>
       </div>
 
       <div class="calc-card">
@@ -266,22 +307,60 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
 
       <div class="calc-card">
         <div class="calc-step-label">Step 3</div>
-        <div class="calc-step-title">Your Scores</div>
+        <div class="calc-step-title" id="scoresStepTitle">Your JAMB Scores</div>
         <div id="scoreFieldsHint" class="form-hint" style="margin-bottom:10px">Select a school and course above to see which scores are needed.</div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>JAMB (UTME) Score *</label>
-            <input type="number" id="jambScore" placeholder="e.g. 245" min="0" max="400">
+
+        <!-- UTME: English fixed + 3 other subjects, each with its own score -->
+        <div id="utmeScoreFields">
+          <div class="jamb-fixed-row">
+            <div class="jamb-fixed-label">English Language <span style="font-weight:400;color:var(--muted)">(compulsory)</span></div>
+            <input type="number" id="jambEnglishScore" placeholder="0–100" min="0" max="100" oninput="updateJambTotal()">
           </div>
-          <div class="form-group" id="postUtmeFieldGroup">
-            <label>Post-UTME / DE Score <span style="font-weight:400;color:var(--muted)">(if taken)</span></label>
+          <div id="jambOtherRows"></div>
+          <div class="jamb-total-box">
+            <span>Total JAMB Score</span>
+            <b id="jambTotalDisplay">0</b>
+          </div>
+          <div class="form-group" id="postUtmeFieldGroup" style="margin-top:12px">
+            <label>Post-UTME Score <span style="font-weight:400;color:var(--muted)">(if taken)</span></label>
             <input type="number" id="postUtmeScore" placeholder="e.g. 65" min="0">
           </div>
         </div>
+
+        <!-- Direct Entry: qualification type + subject/grade rows -->
+        <div id="deScoreFields" style="display:none">
+          <div class="form-group">
+            <label>Your Qualification *</label>
+            <select id="deQualType">
+              <option value="A-Level">GCE A-Level</option>
+              <option value="IJMB">IJMB</option>
+              <option value="JUPEB">JUPEB</option>
+              <option value="ND">National Diploma (ND)</option>
+              <option value="HND">Higher National Diploma (HND)</option>
+              <option value="NCE">NCE</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group" id="deCgpaGroup" style="display:none">
+            <label>CGPA / Class of Degree *</label>
+            <input type="text" id="deCgpa" placeholder="e.g. 4.20 or Upper Credit">
+          </div>
+          <div id="deSubjectFieldsWrap">
+            <label style="display:block;font-size:.74rem;font-weight:700;color:var(--text);margin-bottom:5px">Your Subjects &amp; Grades/Points</label>
+            <div id="deRows"></div>
+            <button type="button" class="add-row-btn" onclick="addDeRow()">+ Add Subject</button>
+          </div>
+          <div class="form-group" style="margin-top:12px">
+            <label>Did you also sit JAMB (Direct Entry form)? If so, Post-UTME/Screening Score</label>
+            <input type="number" id="postUtmeScoreDe" placeholder="Leave blank if not applicable" min="0">
+          </div>
+          <div class="disclaimer-box" style="margin-top:12px">
+            ⚠️ Direct Entry cutoffs aren't set up for every school yet — we'll check your O-Level and subject match, but the exact chance for your specific qualification may need confirming with the school's admissions office.
+          </div>
+        </div>
+
         <div id="jambSubjectFieldGroup" style="display:none">
-          <label style="display:block;font-size:.74rem;font-weight:700;color:var(--text);margin-bottom:5px">Which 4 subjects did you sit for in JAMB? *</label>
-          <div id="jambSubjectRows" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"></div>
-          <div class="form-hint" style="margin-top:6px" id="jambComboHint"></div>
+          <div class="form-hint" style="margin:10px 0 6px" id="jambComboHint"></div>
         </div>
       </div>
 
@@ -291,6 +370,13 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
         <div id="olevelRows"></div>
         <button type="button" class="add-row-btn" onclick="addOlevelRow()">+ Add Subject</button>
         <div class="form-hint" style="margin-top:10px">Include at least 5 subjects with your best sitting, including English Language and Mathematics.</div>
+
+        <div class="suggest-box">
+          <div style="font-weight:800;font-size:.84rem;color:var(--text)">🔍 Not sure what to study?</div>
+          <div class="form-hint" style="margin-top:4px">Free — based on your O-Level results and JAMB subjects above, see which courses in our database you might already qualify for.</div>
+          <button type="button" class="add-row-btn" style="margin-top:10px" onclick="suggestCourses()">Suggest Courses For Me</button>
+          <div id="suggestResults"></div>
+        </div>
       </div>
 
       <div class="calc-card">
@@ -308,6 +394,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
 
   </div>
 </section>
+
 
 <footer>
   <div class="footer-inner">
@@ -489,21 +576,78 @@ function resetScoreFields(){
   document.getElementById('postUtmeFieldGroup').style.display='block';
   document.getElementById('scoreFieldsHint').textContent='Select a school and course above to see which scores are needed.';
   document.getElementById('categoryFieldGroup').style.display='none';
-  document.getElementById('jambSubjectFieldGroup').style.display='none';
+  document.getElementById('jambComboHint').textContent='';
 }
 
-function populateJambSubjectRows(requiredSubjects){
-  const wrap=document.getElementById('jambSubjectRows');
-  wrap.innerHTML='';
-  const count=Math.max(4,requiredSubjects.length||4);
-  for(let i=0;i<count;i++){
-    const sel=document.createElement('select');
-    sel.className='jamb-subject-select';
-    sel.innerHTML=SUBJECTS.map(s=>`<option${s===requiredSubjects[i]?' selected':''}>${s}</option>`).join('');
-    wrap.appendChild(sel);
-  }
-  document.getElementById('jambComboHint').textContent=requiredSubjects.length?`This course requires: ${requiredSubjects.join(', ')}. Pre-filled with the expected combination — change any that don't match what you actually sat.`:'';
+let candidateType='utme';
+
+function setCandidateType(type){
+  candidateType=type;
+  document.getElementById('typeBtnUtme').classList.toggle('active',type==='utme');
+  document.getElementById('typeBtnDe').classList.toggle('active',type==='de');
+  document.getElementById('utmeScoreFields').style.display=type==='utme'?'block':'none';
+  document.getElementById('deScoreFields').style.display=type==='de'?'block':'none';
+  document.getElementById('scoresStepTitle').textContent=type==='utme'?'Your JAMB Scores':'Your Direct Entry Qualification';
+  if(type==='de'&&!document.getElementById('deRows').children.length){ addDeRow(); addDeRow(); }
 }
+window.setCandidateType=setCandidateType;
+
+function updateJambTotal(){
+  const eng=parseInt(document.getElementById('jambEnglishScore').value)||0;
+  const others=[...document.querySelectorAll('.jamb-other-score')].map(i=>parseInt(i.value)||0);
+  const total=eng+others.reduce((a,b)=>a+b,0);
+  document.getElementById('jambTotalDisplay').textContent=total;
+  return total;
+}
+window.updateJambTotal=updateJambTotal;
+
+function populateJambOtherRows(requiredSubjects){
+  // requiredSubjects may include "English Language" since some schools list
+  // it explicitly in their combo — filter it out since it's handled separately.
+  const others=(requiredSubjects||[]).filter(s=>s.toLowerCase()!=='english language');
+  const wrap=document.getElementById('jambOtherRows');
+  wrap.innerHTML='';
+  const count=3;
+  for(let i=0;i<count;i++){
+    const row=document.createElement('div');
+    row.className='jamb-row';
+    const preset=others[i]||'';
+    row.innerHTML=`
+      <select class="jamb-other-subject">${SUBJECTS.filter(s=>s!=='English Language').map(s=>`<option${s===preset?' selected':''}>${s}</option>`).join('')}</select>
+      <input type="number" class="jamb-other-score" placeholder="0–100" min="0" max="100" oninput="updateJambTotal()">`;
+    wrap.appendChild(row);
+  }
+  document.getElementById('jambComboHint').textContent=others.length?`This course requires: English Language, ${others.join(', ')}. Pre-filled with the expected combination — change any that don't match what you actually sat.`:'';
+  updateJambTotal();
+}
+
+function toggleDeQualFields(){
+  const type=document.getElementById('deQualType').value;
+  const usesCgpa=['ND','HND','Other'].includes(type);
+  document.getElementById('deCgpaGroup').style.display=usesCgpa?'block':'none';
+  document.getElementById('deSubjectFieldsWrap').style.display=usesCgpa?'none':'block';
+}
+window.toggleDeQualFields=toggleDeQualFields;
+
+// A-Level: A,B,C,D,E. IJMB/JUPEB commonly graded A-F or on a points scale —
+// letting the student pick from a broad merged list keeps this flexible
+// rather than guessing one exact scale.
+const DE_GRADES=['A','B','C','D','E','F','Distinction','Merit','Pass'];
+function addDeRow(subject,grade){
+  const wrap=document.getElementById('deRows');
+  const row=document.createElement('div');
+  row.className='de-row';
+  row.innerHTML=`
+    <select class="de-subject">${SUBJECTS.map(s=>`<option${s===subject?' selected':''}>${s}</option>`).join('')}</select>
+    <select class="de-grade">${DE_GRADES.map(g=>`<option${g===grade?' selected':''}>${g}</option>`).join('')}</select>
+    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()">✕</button>`;
+  wrap.appendChild(row);
+}
+window.addDeRow=addDeRow;
+document.addEventListener('DOMContentLoaded',()=>{
+  const sel=document.getElementById('deQualType');
+  if(sel) sel.addEventListener('change',toggleDeQualFields);
+});
 
 function onCourseSelected(){
   const school=document.getElementById('targetSchool').value;
@@ -512,7 +656,6 @@ function onCourseSelected(){
   const hintEl=document.getElementById('scoreFieldsHint');
   const postGroup=document.getElementById('postUtmeFieldGroup');
   const categoryGroup=document.getElementById('categoryFieldGroup');
-  const jambSubjectGroup=document.getElementById('jambSubjectFieldGroup');
   if(!school||!course){ insightEl.innerHTML=''; resetScoreFields(); return; }
 
   const req=findRequirement(school,course);
@@ -540,13 +683,8 @@ function onCourseSelected(){
     categoryGroup.style.display='none';
   }
 
-  // JAMB subject combination picker
-  if((req.jambSubjects||[]).length){
-    jambSubjectGroup.style.display='block';
-    populateJambSubjectRows(req.jambSubjects);
-  }else{
-    jambSubjectGroup.style.display='none';
-  }
+  // Pre-fill JAMB subject combo (UTME path)
+  populateJambOtherRows(req.jambSubjects||[]);
 
   // Show session + previous-year notes if the admin has added them
   if(req.session||req.notes){
@@ -559,6 +697,74 @@ function onCourseSelected(){
   }
 }
 window.onCourseSelected=onCourseSelected;
+
+// ── FREE COURSE SUGGESTIONS ──
+// Uses whatever O-Level rows (and JAMB subjects, if UTME) are currently
+// filled in — doesn't require payment, since it's a subject-match filter,
+// not a chance calculation against a specific cutoff.
+function suggestCourses(){
+  const resultsEl=document.getElementById('suggestResults');
+  const olevel=[...document.querySelectorAll('.olevel-row')].map(row=>({
+    subject:row.querySelector('.ol-subject').value,
+    grade:row.querySelector('.ol-grade').value
+  }));
+  const creditSubjects=olevel.filter(o=>CREDIT_GRADES.includes(o.grade)).map(o=>o.subject.toLowerCase());
+
+  if(creditSubjects.length<5){
+    resultsEl.innerHTML='<div class="form-hint" style="margin-top:10px;color:var(--red)">Add at least 5 O-Level subjects with grades above first.</div>';
+    return;
+  }
+  if(!admissionReqs.length){
+    resultsEl.innerHTML='<div class="form-hint" style="margin-top:10px">No courses in our database yet — check back soon.</div>';
+    return;
+  }
+
+  const jambSubjects=candidateType==='utme'
+    ?['English Language',...[...document.querySelectorAll('.jamb-other-subject')].map(s=>s.value)].map(s=>s.toLowerCase())
+    :null;
+
+  const matches=[];
+  const seen=new Set();
+  for(const req of admissionReqs){
+    const key=req.school+'|'+req.course;
+    if(seen.has(key)) continue;
+    const requiredSubjects=(req.subjects||[]).map(s=>s.toLowerCase().trim());
+    const olevelMatch=requiredSubjects.every(rs=>creditSubjects.includes(rs));
+    if(!olevelMatch) continue;
+    if(jambSubjects && (req.jambSubjects||[]).length){
+      const requiredJamb=req.jambSubjects.map(s=>s.toLowerCase());
+      const jambMatch=requiredJamb.every(rs=>jambSubjects.includes(rs));
+      if(!jambMatch) continue;
+    }
+    seen.add(key);
+    matches.push(req);
+  }
+
+  if(!matches.length){
+    resultsEl.innerHTML='<div class="form-hint" style="margin-top:10px">No exact matches found in our current database — this only checks schools/courses that have been added so far, not every course that might exist.</div>';
+    return;
+  }
+
+  resultsEl.innerHTML=`<div class="suggest-list">${matches.slice(0,25).map((r,i)=>`
+    <div class="suggest-item" onclick="pickSuggestedCourse(${matches.indexOf(r)})">
+      <div><b>${escapeHtml(r.course)}</b><br><span>${escapeHtml(r.school)}</span></div>
+      <button type="button" class="suggest-pick-btn">Use This →</button>
+    </div>`).join('')}</div>
+    <div class="form-hint" style="margin-top:8px">${matches.length>25?`Showing 25 of ${matches.length} matches. `:''}This only checks subject requirements — JAMB/Post-UTME score minimums still apply once you pick one.</div>`;
+  window._suggestedMatches=matches;
+}
+window.suggestCourses=suggestCourses;
+
+function pickSuggestedCourse(idx){
+  const req=window._suggestedMatches[idx];
+  if(!req) return;
+  document.getElementById('targetSchool').value=req.school;
+  populateCourses();
+  document.getElementById('targetCourse').value=req.course;
+  onCourseSelected();
+  document.getElementById('targetSchool').closest('.calc-card').scrollIntoView({behavior:'smooth',block:'center'});
+}
+window.pickSuggestedCourse=pickSuggestedCourse;
 
 // ── CALCULATION LOGIC ──
 // This is a transparent estimate, not an official admissions decision.
@@ -578,9 +784,6 @@ function calculateChance(student, req){
   let olevelOk;
 
   if(req.olevelMethod==='percentage'){
-    // Percentage across the required subjects specifically (0 if a required
-    // subject wasn't entered at all). This is an approximation — see the
-    // GRADE_POINTS comment above.
     const points=(req.subjects||[]).map(rs=>{
       const match=student.olevel.find(o=>o.subject.toLowerCase()===rs.toLowerCase().trim());
       return match?(GRADE_POINTS[match.grade]||0):0;
@@ -597,6 +800,21 @@ function calculateChance(student, req){
     olevelOk=!missingRequired.length && hasEnoughCredits;
   }
   if(olevelOk) reasons.push(`Your O-Level results meet the requirements.`);
+
+  // ── DIRECT ENTRY: no DE-specific cutoff data exists per school yet, so
+  // give an honest, O-Level-based read rather than fabricate a JAMB-style
+  // tier from data that doesn't apply to DE candidates. ──
+  if(student.candidateType==='de'){
+    reasons.push(`You're applying via Direct Entry (${student.deQualType}${student.deCgpa?', '+student.deCgpa:''}) — this school's requirements in our system are set up for UTME cutoffs, so we can't give a precise DE chance tier yet.`);
+    reasons.push(`Direct Entry candidates are typically admitted into 200 level subject to the department confirming your qualification is equivalent — it's worth confirming your specific result with the school's admissions office directly.`);
+    let tier,tierLabel,tierColor;
+    if(!olevelOk){ tier='ineligible'; tierLabel='❌ O-Level Requirements Not Met'; tierColor='var(--red)'; }
+    else{ tier='de_unclear'; tierLabel='📋 O-Level OK — DE Chance Not Yet Calculable'; tierColor='var(--blue)'; }
+    if(['ineligible','de_unclear'].includes(tier) && (req.altCourses||[]).length){
+      reasons.push(`This school also considers these related courses: ${req.altCourses.join(', ')}. Worth checking separately.`);
+    }
+    return {tier,tierLabel,tierColor,reasons,olevelOk,jambOk:null};
+  }
 
   // ── JAMB SUBJECT COMBINATION CHECK ──
   let comboOk=true;
@@ -674,29 +892,48 @@ function collectFormData(){
   const name=document.getElementById('candName').value.trim();
   const phone=document.getElementById('candPhone').value.trim();
   const email=document.getElementById('candEmail').value.trim();
-  const jambScore=parseInt(document.getElementById('jambScore').value)||0;
-  const postUtmeScore=parseInt(document.getElementById('postUtmeScore').value)||0;
   const school=document.getElementById('targetSchool').value;
   const course=document.getElementById('targetCourse').value;
   const category=document.getElementById('categoryFieldGroup').style.display!=='none'?document.getElementById('candCategory').value:'';
-  const jambSubjects=document.getElementById('jambSubjectFieldGroup').style.display!=='none'
-    ?[...document.querySelectorAll('.jamb-subject-select')].map(s=>s.value)
-    :[];
   const olevel=[...document.querySelectorAll('.olevel-row')].map(row=>({
     subject:row.querySelector('.ol-subject').value,
     grade:row.querySelector('.ol-grade').value
   }));
-  return {name,phone,email,jambScore,postUtmeScore,school,course,category,jambSubjects,olevel};
+
+  let jambScore=0, postUtmeScore=0, jambSubjects=[];
+  let deQualType='', deCgpa='', deSubjects=[];
+
+  if(candidateType==='utme'){
+    jambScore=updateJambTotal();
+    postUtmeScore=parseInt(document.getElementById('postUtmeScore').value)||0;
+    jambSubjects=['English Language',...[...document.querySelectorAll('.jamb-other-subject')].map(s=>s.value)];
+  }else{
+    deQualType=document.getElementById('deQualType').value;
+    deCgpa=document.getElementById('deCgpa').value.trim();
+    deSubjects=[...document.querySelectorAll('.de-row')].map(row=>({
+      subject:row.querySelector('.de-subject').value,
+      grade:row.querySelector('.de-grade').value
+    }));
+    postUtmeScore=parseInt(document.getElementById('postUtmeScoreDe').value)||0;
+  }
+
+  return {name,phone,email,jambScore,postUtmeScore,school,course,category,jambSubjects,olevel,candidateType,deQualType,deCgpa,deSubjects};
 }
 
 function validateForm(d){
   if(!d.name) return 'Please enter your full name.';
   if(!d.phone) return 'Please enter your phone number.';
-  if(!d.jambScore) return 'Please enter your JAMB score.';
   if(!d.school) return 'Please select a school.';
   if(!d.course) return 'Please select a course.';
   if(document.getElementById('categoryFieldGroup').style.display!=='none' && !d.category) return 'Please select which category applies to you.';
   if(d.olevel.length<5) return 'Please add at least 5 O-Level subjects.';
+  if(d.candidateType==='utme'){
+    if(!d.jambScore) return 'Please enter your JAMB subject scores.';
+  }else{
+    const usesCgpa=['ND','HND','Other'].includes(d.deQualType);
+    if(usesCgpa&&!d.deCgpa) return 'Please enter your CGPA / class of degree.';
+    if(!usesCgpa&&d.deSubjects.length<2) return 'Please add your Direct Entry subjects and grades.';
+  }
   if(!calculatorPrice) return 'The calculator price has not been set yet — please check back later.';
   return null;
 }
@@ -732,6 +969,7 @@ async function startPayment(){
       name:data.name, phone:data.phone, email:data.email||'',
       jambScore:data.jambScore, postUtmeScore:data.postUtmeScore||null,
       school:data.school, course:data.course, category:data.category||'',
+      candidateType:data.candidateType, deQualType:data.deQualType||'', deCgpa:data.deCgpa||'',
       createdAt:window._fs.serverTimestamp()
     });
   }catch(e){ console.warn('Could not log attempt:',e.message); }
@@ -772,6 +1010,7 @@ async function handlePaymentSuccess(data, req, paymentRef, sessionId){
       jambScore:data.jambScore, postUtmeScore:data.postUtmeScore||null,
       school:data.school, course:data.course, category:data.category||'',
       olevel:data.olevel, jambSubjects:data.jambSubjects||[],
+      candidateType:data.candidateType, deQualType:data.deQualType||'', deCgpa:data.deCgpa||'', deSubjects:data.deSubjects||[],
       resultTier:result.tierLabel,
       paymentRef, amountPaid:calculatorPrice,
       createdAt:window._fs.serverTimestamp()
@@ -783,7 +1022,7 @@ async function handlePaymentSuccess(data, req, paymentRef, sessionId){
 
 function renderResult(data, result){
   document.getElementById('calcForm').style.display='none';
-  const bg={high:'#f0fdf4',moderate:'#fffbeb',borderline:'#fff7ed',low:'#fef2f2',ineligible:'#fef2f2'}[result.tier];
+  const bg={high:'#f0fdf4',moderate:'#fffbeb',borderline:'#fff7ed',low:'#fef2f2',ineligible:'#fef2f2',de_unclear:'#eff6ff'}[result.tier]||'#f8fafc';
   const el=document.getElementById('resultArea');
   el.style.display='block';
   el.innerHTML=`
@@ -797,11 +1036,32 @@ function renderResult(data, result){
       </div>
     </div>
     <button class="btn-pay" style="margin-bottom:10px" onclick="downloadResultPdf()">📄 Download as PDF</button>
+    <button class="support-cta" onclick="contactSupportWithResult()">💬 Contact Support About This Result</button>
     <button class="add-row-btn" style="width:100%;padding:12px;font-size:.82rem" onclick="location.reload()">🔄 Check Another Course</button>
   `;
   window._lastResult={data,result};
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+function contactSupportWithResult(){
+  if(!window._lastResult){ window.open('https://wa.me/2349049871643','_blank'); return; }
+  const {data,result}=window._lastResult;
+  const tierPlain=result.tierLabel.replace(/[\u{1F534}\u{1F7E2}\u{1F7E1}\u{1F7E0}\u274C\u{1F4CB}]/gu,'').trim();
+  const lines=[
+    `Hi BQM, I just used the Admission Chances Calculator and have a question.`,
+    ``,
+    `Name: ${data.name}`,
+    `School: ${data.school}`,
+    `Course: ${data.course}`,
+    `Route: ${data.candidateType==='de'?'Direct Entry ('+data.deQualType+')':'UTME'}`,
+    `Result: ${tierPlain}`,
+    ``,
+    `My question: `
+  ];
+  const msg=encodeURIComponent(lines.join('\n'));
+  window.open(`https://wa.me/2349049871643?text=${msg}`,'_blank');
+}
+window.contactSupportWithResult=contactSupportWithResult;
 
 function downloadResultPdf(){
   if(!window._lastResult||typeof jspdf==='undefined'){ alert('PDF generator failed to load. Please try again.'); return; }
@@ -854,6 +1114,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   addOlevelRow();
   addOlevelRow();
   addOlevelRow();
+  populateJambOtherRows([]);
   loadCalculatorData();
 });
 </script>
