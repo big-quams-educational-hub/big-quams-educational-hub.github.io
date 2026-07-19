@@ -980,6 +980,22 @@ function makeSessionId(){
   return 'sess_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
 }
 
+// Logs the attempt before the outcome is known — before payment opens, or
+// before a free result is generated — so it shows up in Admin →
+// Submissions even if something fails or the student never completes.
+async function logStartedAttempt(data, sessionId){
+  try{
+    await window._fs.addDoc(window._fs.collection(window._db,'fs_admission_submissions'),{
+      sessionId, status:'started',
+      name:data.name, phone:data.phone, email:data.email||'',
+      jambScore:data.jambScore, postUtmeScore:data.postUtmeScore||null,
+      school:data.school, course:data.course, category:data.category||'',
+      candidateType:data.candidateType, deQualType:data.deQualType||'', deCgpa:data.deCgpa||'',
+      createdAt:window._fs.serverTimestamp()
+    });
+  }catch(e){ console.warn('Could not log attempt:',e.message); }
+}
+
 async function startPayment(){
   const data=collectFormData();
   const err=validateForm(data);
@@ -994,6 +1010,7 @@ async function startPayment(){
   // ── FREE PATH: admin set price to 0, no payment needed ──
   if(calculatorPrice===0){
     btn.disabled=true; btn.textContent='Checking your chances…';
+    await logStartedAttempt(data, sessionId);
     await handlePaymentSuccess(data, req, 'FREE', sessionId, true);
     return;
   }
@@ -1004,19 +1021,7 @@ async function startPayment(){
     return;
   }
 
-  // Log the attempt immediately — before payment — so it shows up in
-  // Admin → Submissions even if the student closes the popup or the
-  // payment never completes. Status gets updated to 'paid' on success.
-  try{
-    await window._fs.addDoc(window._fs.collection(window._db,'fs_admission_submissions'),{
-      sessionId, status:'started',
-      name:data.name, phone:data.phone, email:data.email||'',
-      jambScore:data.jambScore, postUtmeScore:data.postUtmeScore||null,
-      school:data.school, course:data.course, category:data.category||'',
-      candidateType:data.candidateType, deQualType:data.deQualType||'', deCgpa:data.deCgpa||'',
-      createdAt:window._fs.serverTimestamp()
-    });
-  }catch(e){ console.warn('Could not log attempt:',e.message); }
+  await logStartedAttempt(data, sessionId);
 
   btn.disabled=true; btn.textContent='Opening payment…';
 
