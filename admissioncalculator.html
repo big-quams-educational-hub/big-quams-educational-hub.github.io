@@ -486,6 +486,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.
 // ── DATA ──
 let admissionReqs=[];
 let calculatorPrice=0;
+let priceConfigured=false;
 const SUBJECTS=['English Language','Mathematics','Biology','Chemistry','Physics','Economics','Government','Literature in English','Geography','Agricultural Science','Commerce','Accounting','Christian Religious Studies','Islamic Religious Studies','History','Civic Education','Further Mathematics','Yoruba','Igbo','Hausa','Fine Art','Food and Nutrition','Health Science'];
 const GRADES=['A1','B2','B3','C4','C5','C6','D7','E8','F9'];
 const CREDIT_GRADES=['A1','B2','B3','C4','C5','C6'];
@@ -530,16 +531,27 @@ async function loadCalculatorData(){
   let priceLoadError=null;
   try{
     const pd=await window._fs.getDoc(window._fs.doc(window._db,'fs_admission_settings','price'));
+    priceConfigured=pd.exists();
     calculatorPrice=pd.exists()?(pd.data().price||0):0;
   }catch(e){ calculatorPrice=0; priceLoadError=e.message; console.warn('Failed to load price:',e.message); }
   const priceEl=document.getElementById('priceDisplay');
+  const payBtn=document.getElementById('payBtn');
   if(priceLoadError){
     priceEl.textContent='Could not load price — try refreshing';
     priceEl.title=priceLoadError;
+    payBtn.disabled=true;
+  }else if(!priceConfigured){
+    priceEl.textContent='Not set yet — check back soon';
+    payBtn.disabled=true;
+  }else if(calculatorPrice===0){
+    priceEl.textContent='Free 🎉';
+    payBtn.disabled=false;
+    payBtn.textContent='🎉 See My Chances (Free)';
   }else{
-    priceEl.textContent=calculatorPrice?('₦'+calculatorPrice.toLocaleString()):'Not set yet — check back soon';
+    priceEl.textContent='₦'+calculatorPrice.toLocaleString();
+    payBtn.disabled=false;
+    payBtn.textContent='🔒 Pay & See My Chances';
   }
-  document.getElementById('payBtn').disabled=!calculatorPrice;
 
   // If the student arrived here via "Check This →" from a course suggestion,
   // pre-select that school/course now that the dropdowns are populated.
@@ -957,7 +969,7 @@ function validateForm(d){
     if(usesCgpa&&!d.deCgpa) return 'Please enter your CGPA / class of degree.';
     if(!usesCgpa&&d.deSubjects.length<2) return 'Please add your Direct Entry subjects and grades.';
   }
-  if(!calculatorPrice) return 'The calculator price has not been set yet — please check back later.';
+  if(!priceConfigured) return 'The calculator price has not been set yet — please check back later.';
   return null;
 }
 
@@ -976,12 +988,21 @@ async function startPayment(){
   const req=findRequirement(data.school,data.course);
   if(!req){ alert('Could not find requirements for this school/course. Please try another.'); return; }
 
+  const sessionId=makeSessionId();
+  const btn=document.getElementById('payBtn');
+
+  // ── FREE PATH: admin set price to 0, no payment needed ──
+  if(calculatorPrice===0){
+    btn.disabled=true; btn.textContent='Checking your chances…';
+    await handlePaymentSuccess(data, req, 'FREE', sessionId, true);
+    return;
+  }
+
+  // ── PAID PATH ──
   if(typeof PaystackPop==='undefined'){
     alert('Payment system failed to load. Please check your connection and try again.');
     return;
   }
-
-  const sessionId=makeSessionId();
 
   // Log the attempt immediately — before payment — so it shows up in
   // Admin → Submissions even if the student closes the popup or the
@@ -997,7 +1018,6 @@ async function startPayment(){
     });
   }catch(e){ console.warn('Could not log attempt:',e.message); }
 
-  const btn=document.getElementById('payBtn');
   btn.disabled=true; btn.textContent='Opening payment…';
 
   const handler=PaystackPop.setup({
@@ -1011,7 +1031,7 @@ async function startPayment(){
       // NOTE: response.reference here is reported by the client-side
       // popup only — there is no server-side verification against
       // Paystack's API. See the admin panel warning on this feature.
-      handlePaymentSuccess(data, req, response.reference, sessionId);
+      handlePaymentSuccess(data, req, response.reference, sessionId, false);
     },
     onClose:function(){
       btn.disabled=false; btn.textContent='🔒 Pay & See My Chances';
@@ -1021,21 +1041,21 @@ async function startPayment(){
 }
 window.startPayment=startPayment;
 
-async function handlePaymentSuccess(data, req, paymentRef, sessionId){
+async function handlePaymentSuccess(data, req, paymentRef, sessionId, isFree){
   const result=calculateChance(data, req);
 
   // Log the completed record (separate document, same sessionId — see
   // makeSessionId() comment above for why this isn't an update).
   try{
     await window._fs.addDoc(window._fs.collection(window._db,'fs_admission_submissions'),{
-      sessionId, status:'paid',
+      sessionId, status:isFree?'free':'paid',
       name:data.name, phone:data.phone, email:data.email||'',
       jambScore:data.jambScore, postUtmeScore:data.postUtmeScore||null,
       school:data.school, course:data.course, category:data.category||'',
       olevel:data.olevel, jambSubjects:data.jambSubjects||[],
       candidateType:data.candidateType, deQualType:data.deQualType||'', deCgpa:data.deCgpa||'', deSubjects:data.deSubjects||[],
       resultTier:result.tierLabel,
-      paymentRef, amountPaid:calculatorPrice,
+      paymentRef, amountPaid:isFree?0:calculatorPrice,
       createdAt:window._fs.serverTimestamp()
     });
   }catch(e){ console.warn('Could not save submission:',e.message); }
