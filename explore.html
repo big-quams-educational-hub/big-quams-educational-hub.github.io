@@ -261,8 +261,8 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
   <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
   <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
+  <a href="academic-tools.html#postutme" onclick="toggleNav()">🧮 Aggregate Calculator</a>
+  <a href="academic-tools.html#gpa" onclick="toggleNav()">🎓 GPA Calculator</a>
   <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
   <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
   <div class="mnav-lbl">Resources</div>
@@ -271,7 +271,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
   <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
   <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
   <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
-  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
+  <a href="academic-tools.html#combo" onclick="toggleNav()">📋 Subject Combination</a>
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 
@@ -353,7 +353,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
         <div class="qt-title">📚 Subject Combo Finder</div>
         <select class="qt-sel" id="qt_course" onchange="qtSubjectCombo()"><option value="">Select your course…</option></select>
         <div class="qt-result" id="qt_comboResult"></div>
-        <a href="subject-combo.html" class="qt-link">Full subject combo guide →</a>
+        <a href="academic-tools.html#combo" class="qt-link">Full subject combo guide →</a>
       </div>
 
       <!-- Results Checker -->
@@ -380,7 +380,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
         </select>
         <input class="qt-inp" type="number" id="qt_gpaInput" placeholder="Your current GPA (e.g. 4.2)" step="0.01" min="0" max="5" oninput="qtCheckGPA()">
         <div class="qt-result" id="qt_gpaResult"></div>
-        <a href="gpa-calculator.html" class="qt-link">Full GPA calculator →</a>
+        <a href="academic-tools.html#gpa" class="qt-link">Full GPA calculator →</a>
       </div>
 
     </div>
@@ -491,9 +491,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
         <ul class="footer-links">
           <li><a href="cbt.html">👨🏽‍💻 JAMB CBT Practice</a></li>
           <li><a href="postutme-prep.html">📖 Post-UTME Prep</a></li>
-          <li><a href="postutme-calculator.html">🧮 Aggregate Calc</a></li>
+          <li><a href="academic-tools.html#postutme">🧮 Aggregate Calc</a></li>
           <li><a href="admissioncalculator.html">🎯 Admission Chances</a></li>
-          <li><a href="gpa-calculator.html">🎓 GPA Calculator</a></li>
+          <li><a href="academic-tools.html#gpa">🎓 GPA Calculator</a></li>
           <li><a href="results.html">📊 Results Checker</a></li>
           <li><a href="Jamb_Profile_Code.html">🔑 JAMB Profile Code</a></li>
         </ul>
@@ -506,7 +506,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
           <li><a href="student-loan.html">💳 Student Loan</a></li>
           <li><a href="spotlight.html">🌟 Student Spotlight</a></li>
           <li><a href="dyk.html">💡 Did You Know</a></li>
-          <li><a href="subject-combo.html">📋 Subject Combo</a></li>
+          <li><a href="academic-tools.html#combo">📋 Subject Combo</a></li>
         </ul>
       </div>
       <div>
@@ -565,11 +565,11 @@ const TOOLS=[
   {title:'Student Loan (NELFUND)',icon:'💳',color:'#ede9fe',text:'#6d28d9',tag:'Resources',tagBg:'#ede9fe',tagTxt:'#6d28d9',desc:'Complete step-by-step NELFUND student loan guide — eligibility, application, repayment and FAQs.',url:'student-loan.html',filters:['resources','inschool'],featured:true},
   {title:'eLibrary',icon:'📚',color:'#fef3c7',text:'#92400e',tag:'Resources',tagBg:'#fef3c7',tagTxt:'#92400e',desc:'100+ free textbooks, past question papers, lecture notes and academic materials.',url:'elibrary.html',filters:['resources','inschool'],featured:true},
   {title:'Post-UTME Prep',icon:'📖',color:'#fef9c3',text:'#92400e',tag:'Exam Prep',tagBg:'#fef9c3',tagTxt:'#92400e',desc:'School-specific Post-UTME preparation guides, past questions and cut-off mark information.',url:'postutme-prep.html',filters:['exam','admission'],featured:true},
-  {title:'Aggregate Calculator',icon:'🧮',color:'#dbeafe',text:'#1d4ed8',tag:'Admission',tagBg:'#dbeafe',tagTxt:'#1d4ed8',desc:'Calculate your Post-UTME aggregate score instantly. Know your chances before screening day.',url:'postutme-calculator.html',filters:['admission','exam']},
-  {title:'GPA Calculator',icon:'🎓',color:'#f0fdf4',text:'#15803d',tag:'In School',tagBg:'#f0fdf4',tagTxt:'#15803d',desc:'Calculate your GPA and CGPA on both 5.0 and 4.0 scales. Plan your semester grades.',url:'gpa-calculator.html',filters:['inschool']},
+  {title:'Aggregate Calculator',icon:'🧮',color:'#dbeafe',text:'#1d4ed8',tag:'Admission',tagBg:'#dbeafe',tagTxt:'#1d4ed8',desc:'Calculate your Post-UTME aggregate score instantly. Know your chances before screening day.',url:'academic-tools.html#postutme',filters:['admission','exam']},
+  {title:'GPA Calculator',icon:'🎓',color:'#f0fdf4',text:'#15803d',tag:'In School',tagBg:'#f0fdf4',tagTxt:'#15803d',desc:'Calculate your GPA and CGPA on both 5.0 and 4.0 scales. Plan your semester grades.',url:'academic-tools.html#gpa',filters:['inschool']},
   {title:'Results Checker',icon:'📊',color:'#e0f2fe',text:'#0369a1',tag:'Exam Prep',tagBg:'#e0f2fe',tagTxt:'#0369a1',desc:'Direct links and step-by-step guides to check JAMB, WAEC, NECO, NABTEB and CAPS results.',url:'results.html',filters:['exam','admission']},
   {title:'JAMB Profile Code',icon:'🔑',color:'#fce7f3',text:'#9d174d',tag:'Admission',tagBg:'#fce7f3',tagTxt:'#9d174d',desc:'Step-by-step guide to generate your JAMB profile code, create your e-Facility account and register.',url:'Jamb_Profile_Code.html',filters:['admission'],isNew:true},
-  {title:'Subject Combination',icon:'📋',color:'#dcfce7',text:'#15803d',tag:'Admission',tagBg:'#dcfce7',tagTxt:'#15803d',desc:'Find the correct O\'Level and JAMB subject combinations for any course and university in Nigeria.',url:'subject-combo.html',filters:['admission','exam']},
+  {title:'Subject Combination',icon:'📋',color:'#dcfce7',text:'#15803d',tag:'Admission',tagBg:'#dcfce7',tagTxt:'#15803d',desc:'Find the correct O\'Level and JAMB subject combinations for any course and university in Nigeria.',url:'academic-tools.html#combo',filters:['admission','exam']},
   {title:'Student Spotlight',icon:'🌟',color:'#fef3c7',text:'#92400e',tag:'Community',tagBg:'#fef3c7',tagTxt:'#92400e',desc:'Celebrating Nigerian students with outstanding achievements. Get inspired by your peers.',url:'spotlight.html',filters:['community']},
   {title:'Did You Know?',icon:'💡',color:'#dbeafe',text:'#1d4ed8',tag:'Community',tagBg:'#dbeafe',tagTxt:'#1d4ed8',desc:'Interesting facts about Nigerian universities, admission, academics and campus life.',url:'dyk.html',filters:['community']},
   {title:'Community Hub',icon:'🤝',color:'#ede9fe',text:'#6d28d9',tag:'Community',tagBg:'#ede9fe',tagTxt:'#6d28d9',desc:'Student Q&A, peer reviews, academic calendars and community discussions.',url:'community.html',filters:['community']},
@@ -646,9 +646,9 @@ function qtSubjectCombo(){
       <strong style="color:var(--text);font-family:'Montserrat',sans-serif">${escapeHtml(course)}</strong><br>
       ${subjects.length?`<div style="margin-top:6px"><span style="font-size:.66rem;font-weight:700;color:var(--muted)">JAMB SUBJECTS:</span><br><span style="font-weight:600">${fmt(subjects[0])}</span></div>`:''}
       ${olevel.length?`<div style="margin-top:5px"><span style="font-size:.66rem;font-weight:700;color:var(--muted)">O'LEVEL:</span><br><span style="font-weight:600">${fmt(olevel[0])}</span></div>`:''}
-      <a href="subject-combo.html" style="display:inline-block;margin-top:8px;color:var(--blue);font-weight:700;font-size:.72rem">Full combo guide →</a>`;
+      <a href="academic-tools.html#combo" style="display:inline-block;margin-top:8px;color:var(--blue);font-weight:700;font-size:.72rem">Full combo guide →</a>`;
   } else {
-    res.innerHTML=`<strong>${escapeHtml(course)}</strong><br><a href="subject-combo.html" style="color:var(--blue);font-weight:700">View full subject combination →</a>`;
+    res.innerHTML=`<strong>${escapeHtml(course)}</strong><br><a href="academic-tools.html#combo" style="color:var(--blue);font-weight:700">View full subject combination →</a>`;
   }
   res.classList.add('show');
 }

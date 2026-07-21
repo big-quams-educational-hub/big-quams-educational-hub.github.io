@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RCLYVCZY2K');</script>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Academic Tools — GPA, Post-UTME Aggregate &amp; Subject Combo | Big Quams Media®</title>
+<meta name="description" content="Calculate your GPA/CGPA, your Post-UTME aggregate score, or look up JAMB subject combinations for any course — all in one place.">
+<meta property="og:title" content="Academic Tools — Big Quams Media®">
+<meta property="og:description" content="GPA Calculator, Post-UTME Aggregate Calculator and Subject Combo Finder in one hub.">
+<meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
+<meta property="og:url" content="https://bigquamsmedia.com.ng/academic-tools.html">
+<link rel="icon" href="https://bigquamsmedia.com.ng/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Firebase (modular v9+ SDK) -->
+<script type="module">
+import{initializeApp}from'https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js';
+import{getFirestore,collection,getDocs,query,orderBy}from'https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js';
+try{
+  const app=initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
+  window._db=getFirestore(app);
+  window._fs={collection,getDocs,query,orderBy};
+}catch(e){console.warn('Firebase:',e.message);}
+</script>
+<style>
+:root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:12px;--shadow:0 8px 28px rgba(26,63,168,.11);--green:#16a34a;--red:#dc2626;--amber:#b45309}
+body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;background:var(--surface2);color:var(--text);line-height:1.6;overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+img{max-width:100%;display:block}
+
+/* ── HEADER ── */
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.35)}
+.hbar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.logo-sub{font-size:.52rem;color:rgba(255,255,255,.42);display:block}
+.main-nav{display:flex;align-items:center;gap:2px}
+.main-nav a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
+.main-nav a:hover,.main-nav a.active{color:#fff;background:rgba(255,255,255,.12)}
+.nav-cta{background:var(--orange)!important;color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.88rem;cursor:pointer}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:860px){.main-nav{display:none}.hamburger{display:flex}}
+@media(max-width:360px){.logo-sub{display:none}.hbar{gap:6px;padding:0 10px}}
+.mobile-nav{visibility:hidden;position:fixed;inset:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s ease,visibility 0s linear .3s}
+.mobile-nav.open{visibility:visible;transform:translateX(0);transition:transform .3s ease}
+.mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:60px}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
+.mobile-nav a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
+.mobile-nav a:hover{background:rgba(255,255,255,.06);color:#fff}
+.mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
+.nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+
+/* ── HERO ── */
+.page-hero{background:linear-gradient(150deg,rgba(8,21,48,.9),rgba(15,32,96,.85),rgba(26,63,168,.8)),url('https://bigquamsmedia.com.ng/explore.png') center/cover no-repeat;padding:44px 16px 40px;text-align:center;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 18px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:14px}
+.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.2rem);font-weight:800;color:#fff;line-height:1.25;margin-bottom:10px}
+.page-hero h1 span{color:var(--orange)}
+.page-hero p{font-size:.86rem;color:rgba(255,255,255,.65);max-width:480px;margin:0 auto}
+
+/* ── LAYOUT ── */
+.wrap{max-width:640px;margin:0 auto;padding:0 16px}
+.sec{padding:26px 0 56px}
+@media(min-width:900px){.wrap{max-width:720px}.sec{padding:36px 0 70px}}
+
+/* ── TABS ── */
+.tool-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px;position:sticky;top:60px;z-index:60;background:var(--surface2);padding:10px 0}
+body.dark .tool-tabs{background:#0d1117}
+.tool-tab{border:1.5px solid var(--border);background:var(--surface);border-radius:10px;padding:12px 6px;text-align:center;font-size:.72rem;font-weight:700;color:var(--muted);cursor:pointer;transition:.15s;min-width:0}
+.tool-tab.active{border-color:var(--blue);background:var(--blue-lt);color:var(--blue)}
+body.dark .tool-tab.active{background:#1a2d5a;color:#93c5fd}
+.tool-panel{display:none}
+.tool-panel.active{display:block}
+
+/* ── SHARED CARD ── */
+.card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
+body.dark .card{background:#161b27}
+@media(max-width:380px){.card{padding:16px}}
+.card-title{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text);margin-bottom:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+@media(max-width:520px){.form-row{grid-template-columns:1fr}}
+.form-group{margin-bottom:12px;min-width:0}
+.form-group label{display:block;font-size:.74rem;font-weight:700;color:var(--text);margin-bottom:5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:9px;background:var(--surface2);color:var(--text);font-size:16px;font-family:inherit;outline:none;transition:.15s;min-width:0}
+body.dark .form-group input,body.dark .form-group select{background:#0d1117}
+.form-group input:focus,.form-group select:focus{border-color:var(--blue)}
+.form-hint{font-size:.68rem;color:var(--muted);margin-top:4px}
+.btn-main{width:100%;background:linear-gradient(135deg,#1a3fa8,#0c1f6e);color:#fff;border:none;border-radius:12px;padding:15px;font-size:.9rem;font-weight:800;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-main:hover{filter:brightness(1.08)}
+.btn-ghost-full{width:100%;background:var(--blue-lt);color:var(--blue);border:none;border-radius:10px;padding:11px;font-size:.8rem;font-weight:700;margin-top:8px}
+body.dark .btn-ghost-full{background:#1a2d5a;color:#93c5fd}
+.add-row-btn{background:var(--blue-lt);color:var(--blue);border:none;border-radius:8px;padding:9px 14px;font-size:.78rem;font-weight:700;margin-top:4px}
+body.dark .add-row-btn{background:#1a2d5a;color:#93c5fd}
+
+/* GPA-specific */
+.scale-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.scale-btn{border:1.5px solid var(--border);background:var(--surface2);border-radius:10px;padding:11px 8px;text-align:center;font-size:.78rem;font-weight:700;color:var(--muted)}
+.scale-btn.active{border-color:var(--blue);background:var(--blue-lt);color:var(--blue)}
+body.dark .scale-btn.active{background:#1a2d5a;color:#93c5fd}
+.course-row{display:grid;grid-template-columns:1fr 70px 55px 32px;gap:6px;margin-bottom:8px;align-items:center}
+.course-row input,.course-row select{padding:9px 6px;font-size:.76rem;min-width:0}
+@media(min-width:460px){.course-row{grid-template-columns:1fr 80px 60px 34px;gap:8px}.course-row input,.course-row select{padding:9px 10px;font-size:.8rem}}
+.remove-row-btn{background:#fee2e2;color:#b91c1c;border:none;border-radius:8px;width:100%;height:100%;min-height:38px;font-size:.9rem;display:flex;align-items:center;justify-content:center}
+.result-box{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border-radius:14px;padding:24px;text-align:center;margin-top:16px}
+.result-box .num{font-size:2.6rem;font-weight:800;font-family:'Montserrat',sans-serif}
+.result-box .lbl{font-size:.72rem;opacity:.7;text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.result-box .cls{margin-top:10px;font-size:.84rem;font-weight:700;background:rgba(255,255,255,.12);display:inline-block;padding:6px 16px;border-radius:20px}
+
+/* Post-UTME specific */
+.olevel-row{display:grid;grid-template-columns:1fr 78px 32px;gap:6px;margin-bottom:8px;align-items:center}
+.olevel-row select,.olevel-row input{padding:9px 6px;font-size:.76rem;min-width:0}
+@media(min-width:420px){.olevel-row{grid-template-columns:1fr 90px 34px;gap:8px}.olevel-row select,.olevel-row input{padding:9px 10px;font-size:.8rem}}
+.school-search-results{max-height:260px;overflow-y:auto;border:1.5px solid var(--border);border-radius:10px;margin-top:8px}
+.school-opt{padding:10px 12px;border-bottom:1px solid var(--border);cursor:pointer;font-size:.8rem}
+.school-opt:last-child{border-bottom:none}
+.school-opt:hover{background:var(--surface2)}
+.school-opt b{display:block;color:var(--text)}
+.school-opt span{font-size:.68rem;color:var(--muted)}
+.selected-school-box{background:var(--blue-lt);border-radius:10px;padding:10px 14px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;font-weight:700;color:var(--blue)}
+body.dark .selected-school-box{background:#1a2d5a;color:#93c5fd}
+.verdict-box{padding:12px 16px;border-radius:10px;font-weight:700;font-size:.8rem;margin-top:14px}
+.verdict-great{background:#dcfce7;color:#15803d}
+.verdict-good{background:#fef9c3;color:#92400e}
+.verdict-low{background:#fee2e2;color:#b91c1c}
+
+/* Subject combo specific */
+.dept-filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.dept-filters::-webkit-scrollbar{display:none}
+.dept-btn{flex-shrink:0;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);padding:8px 14px;border-radius:20px;font-size:.74rem;font-weight:700;white-space:nowrap}
+.dept-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.combo-card{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:.15s}
+.combo-card:hover{border-color:var(--blue)}
+.combo-dept-tag{font-size:.62rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px}
+.combo-course-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.9rem;color:var(--text);margin:4px 0 8px}
+.combo-subjects{display:flex;flex-wrap:wrap;gap:5px}
+.subj-pill{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:3px 9px;font-size:.68rem;color:var(--muted)}
+.subj-pill.compulsory{background:var(--blue-lt);color:var(--blue);font-weight:700;border-color:transparent}
+body.dark .subj-pill.compulsory{background:#1a2d5a;color:#93c5fd}
+.combo-meta{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+.combo-tag{font-size:.64rem;color:var(--muted);background:var(--surface2);padding:3px 9px;border-radius:8px}
+
+/* Combo modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(5,10,30,.6);z-index:500;display:none;align-items:flex-end;justify-content:center}
+.modal-overlay.open{display:flex}
+@media(min-width:640px){.modal-overlay{align-items:center}}
+.modal-box{background:var(--surface);border-radius:18px 18px 0 0;max-width:520px;width:100%;max-height:88vh;overflow-y:auto;padding:22px}
+@media(min-width:640px){.modal-box{border-radius:18px}}
+body.dark .modal-box{background:#161b27}
+.modal-close-x{float:right;background:var(--surface2);border:none;border-radius:8px;width:32px;height:32px;color:var(--muted);font-size:1rem}
+.modal-dept{font-size:.64rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.5px}
+.modal-course-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.2rem;color:var(--text);margin:6px 0 16px}
+.modal-section{margin-bottom:16px}
+.modal-sec-title{font-size:.68rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+
+.skeleton{background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:8px;height:44px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ── FOOTER ── */
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:28px;margin-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-logo{width:42px;height:42px;border-radius:50%;border:2px solid #f97316;object-fit:cover;flex-shrink:0}
+.footer-bname{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:#fff;letter-spacing:.3px}
+.footer-bsub{font-size:.68rem;color:rgba(255,255,255,.4);margin-top:3px;max-width:340px;line-height:1.4}
+.footer-cta{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 18px;border-radius:8px;font-weight:700;font-size:.86rem;transition:.2s;white-space:nowrap}
+.footer-cta:hover{background:#1db954;transform:translateY(-1px)}
+.footer-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px 16px;margin-bottom:26px}
+.footer-heading{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:1.3px;color:rgba(255,255,255,.3);margin-bottom:11px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:.76rem;color:rgba(255,255,255,.52);transition:.18s;display:inline-flex;align-items:center;gap:7px;width:fit-content}
+.footer-links a:hover,.footer-links a:focus-visible{color:#fff;transform:translateX(3px)}
+.footer-social{display:flex;gap:9px;margin-top:6px}
+.footer-social a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.18s}
+.footer-social a:hover,.footer-social a:focus-visible{background:rgba(249,115,22,.2);border-color:rgba(249,115,22,.45);transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 20px}
+.footer-copy{font-size:.7rem;color:rgba(255,255,255,.35);line-height:1.6}
+.footer-copy a{color:#f97316;font-weight:700}
+.footer-legal{display:flex;flex-wrap:wrap;gap:5px 16px}
+.footer-legal a{font-size:.7rem;color:rgba(255,255,255,.45);transition:.18s}
+.footer-legal a:hover,.footer-legal a:focus-visible{color:#fff}
+.footer-credit{text-align:center;font-size:.7rem;color:rgba(255,255,255,.35);margin-top:16px}
+.footer-credit a{color:#f97316;font-weight:700}
+@media(max-width:640px){.footer-top{flex-direction:column;align-items:flex-start}.footer-bottom{flex-direction:column;align-items:center;text-align:center}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hbar">
+    <a href="index.html" class="logo-link">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
+      <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
+    </a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="newsroom.html">Newsroom</a>
+      <a href="explore.html">Explore</a>
+      <a href="cbt.html">CBT</a>
+      <a href="academic-tools.html" class="active">Academic Tools</a>
+      <a href="index.html#contact" class="nav-cta">💬 Contact</a>
+    </nav>
+    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
+    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <div class="mnav-header">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
+    </div>
+    <button class="mnav-close" onclick="toggleNav()">✕</button>
+  </div>
+  <div class="mnav-lbl">Main</div>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <div class="mnav-lbl">Exam Tools</div>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="practice-test.html" onclick="toggleNav()">📝 Full Mock Exam</a>
+  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
+  <a href="academic-tools.html#gpa" onclick="toggleNav()">🎓 GPA Calculator</a>
+  <a href="academic-tools.html#postutme" onclick="toggleNav()">🧮 Post-UTME Aggregate</a>
+  <a href="academic-tools.html#combo" onclick="toggleNav()">📋 Subject Combo</a>
+  <a href="admissioncalculator.html" onclick="toggleNav()">🎯 Admission Chances</a>
+  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
+  <div class="mnav-lbl">Resources</div>
+  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
+  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🧮 All Your Calculators, One Place</div>
+    <h1>Academic <span>Tools</span></h1>
+    <p>GPA/CGPA Calculator, Post-UTME Aggregate Calculator, and Subject Combo Finder — everything you need for the numbers side of admission.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+
+    <div class="tool-tabs">
+      <button class="tool-tab active" id="tabBtnGpa" onclick="switchTool('gpa')">🎓 GPA/CGPA</button>
+      <button class="tool-tab" id="tabBtnPostutme" onclick="switchTool('postutme')">🧮 Aggregate</button>
+      <button class="tool-tab" id="tabBtnCombo" onclick="switchTool('combo')">📋 Subject Combo</button>
+    </div>
+
+    <!-- ═══════════ GPA/CGPA PANEL ═══════════ -->
+    <div class="tool-panel active" id="panelGpa">
+      <div class="card">
+        <div class="card-title">🎓 GPA / CGPA Calculator</div>
+        <div class="scale-toggle">
+          <button class="scale-btn active" id="scaleBtn5" onclick="setScale(5)">University (5.0 Scale)</button>
+          <button class="scale-btn" id="scaleBtn4" onclick="setScale(4)">Polytechnic (4.0 Scale)</button>
+        </div>
+        <div id="gpaCourseRows"></div>
+        <button type="button" class="add-row-btn" onclick="addGpaCourseRow()">+ Add Course</button>
+        <button class="btn-main" style="margin-top:16px" onclick="calculateGpa()">Calculate GPA</button>
+        <div id="gpaResultBox"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════ POST-UTME AGGREGATE PANEL ═══════════ -->
+    <div class="tool-panel" id="panelPostutme">
+      <div class="card">
+        <div class="card-title">🏫 Step 1 — Find Your School</div>
+        <div class="form-group">
+          <label>Search School Name</label>
+          <input type="text" id="schoolSearchInput" placeholder="e.g. University of Lagos" oninput="renderSchoolSearch()">
+        </div>
+        <div id="schoolSearchResults" class="school-search-results" style="display:none"></div>
+        <div id="selectedSchoolBox"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📊 Step 2 — Your Scores</div>
+        <div class="form-group">
+          <label>JAMB (UTME) Score *</label>
+          <input type="number" id="jambScore" placeholder="e.g. 245" min="0" max="400">
+        </div>
+        <label style="display:block;font-size:.74rem;font-weight:700;color:var(--text);margin-bottom:5px">O-Level Grades (at least 5 subjects)</label>
+        <div id="pOlevelRows"></div>
+        <button type="button" class="add-row-btn" onclick="addPOlevelRow()">+ Add Subject</button>
+        <button class="btn-main" style="margin-top:16px" onclick="calculatePostUtme()">Calculate Aggregate</button>
+        <div id="resultBox"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════ SUBJECT COMBO PANEL ═══════════ -->
+    <div class="tool-panel" id="panelCombo">
+      <div class="card">
+        <div class="card-title">📋 Subject Combo Finder</div>
+        <div class="form-group">
+          <label>Search Course</label>
+          <input type="text" id="comboSearchInput" placeholder="e.g. Medicine, Law, Computer Science" oninput="renderCombos()">
+        </div>
+        <div class="dept-filters" id="deptFilters"></div>
+        <div id="comboResults"><div class="skeleton"></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Combo detail modal -->
+<div class="modal-overlay" id="comboModal" onclick="handleComboOverlay(event)">
+  <div class="modal-box">
+    <button class="modal-close-x" onclick="closeComboModal()">✕</button>
+    <div id="comboModalBody"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img class="footer-logo" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media logo">
+        <div>
+          <div class="footer-bname">BIG QUAMS MEDIA®</div>
+          <p class="footer-bsub">Free tools, news and resources built for Nigerian undergraduates — from admission to graduation.</p>
+        </div>
+      </div>
+      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="footer-cta">💬 Chat on WhatsApp</a>
+    </div>
+
+    <nav class="footer-cols" aria-label="Footer navigation">
+      <div>
+        <h3 class="footer-heading">Main</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">🏠 Home</a></li>
+          <li><a href="newsroom.html">📰 Newsroom</a></li>
+          <li><a href="explore.html">🗂 Explore Tools</a></li>
+          <li><a href="campus-life.html">🎮 Campus Life</a></li>
+          <li><a href="community.html">🤝 Community</a></li>
+          <li><a href="daily.html">📅 Daily Hub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Exam Tools</h3>
+        <ul class="footer-links">
+          <li><a href="cbt.html">👨🏽‍💻 JAMB CBT Practice</a></li>
+          <li><a href="practice-test.html">📝 Full Mock Exam</a></li>
+          <li><a href="postutme-prep.html">📖 Post-UTME Prep</a></li>
+          <li><a href="academic-tools.html">🧮 Academic Tools</a></li>
+          <li><a href="admissioncalculator.html">🎯 Admission Chances</a></li>
+          <li><a href="results.html">📊 Results Checker</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Resources</h3>
+        <ul class="footer-links">
+          <li><a href="elibrary.html">📚 eLibrary</a></li>
+          <li><a href="scholarship.html">💰 Scholarships</a></li>
+          <li><a href="student-loan.html">💳 Student Loan</a></li>
+          <li><a href="spotlight.html">🌟 Student Spotlight</a></li>
+          <li><a href="dyk.html">💡 Did You Know</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Connect</h3>
+        <ul class="footer-links">
+          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer">👥 Join WhatsApp Group</a></li>
+          <li><a href="index.html#install-app">📲 Install App</a></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📸</a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="cookie-policy.html">Cookie Policy</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-credit">Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer">Abdulrasaq Quwamdeen</a></div>
+  </div>
+</footer>
+
+<script>
+function escapeHtml(str){
+  return String(str==null?'':str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+function toggleNav(){
+  const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');
+  n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');
+  document.body.style.overflow=n.classList.contains('open')?'hidden':'';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.getElementById('mobileNav');if(nav.classList.contains('open'))toggleNav();closeComboModal();}});
+
+// ── TAB SWITCHING ──
+function switchTool(tool){
+  ['gpa','postutme','combo'].forEach(t=>{
+    document.getElementById('panel'+t.charAt(0).toUpperCase()+t.slice(1)).classList.toggle('active',t===tool);
+    document.getElementById('tabBtn'+t.charAt(0).toUpperCase()+t.slice(1)).classList.toggle('active',t===tool);
+  });
+  history.replaceState(null,'','#'+tool);
+}
+window.switchTool=switchTool;
+
+/* ══════════════════ GPA/CGPA CALCULATOR ══════════════════ */
+let currentScale=5;
+const GRADE5={A:5,B:4,C:3,D:2,E:1,F:0};
+const GRADE4={A:4,B:3.5,BC:3,C:3,CD:2.5,D:2,E:1.5,F:0};
+
+function setScale(scale){
+  currentScale=scale;
+  document.getElementById('scaleBtn5').classList.toggle('active',scale===5);
+  document.getElementById('scaleBtn4').classList.toggle('active',scale===4);
+  document.querySelectorAll('.gpa-grade-select').forEach(sel=>{
+    const opts=scale===5?Object.keys(GRADE5):Object.keys(GRADE4);
+    sel.innerHTML=opts.map(g=>`<option>${g}</option>`).join('');
+  });
+}
+window.setScale=setScale;
+
+function addGpaCourseRow(){
+  const wrap=document.getElementById('gpaCourseRows');
+  const row=document.createElement('div');
+  row.className='course-row';
+  const opts=currentScale===5?Object.keys(GRADE5):Object.keys(GRADE4);
+  row.innerHTML=`
+    <input type="text" class="gpa-course-name" placeholder="Course title">
+    <input type="number" class="gpa-course-units" placeholder="Units" min="1" max="10">
+    <select class="gpa-grade-select">${opts.map(g=>`<option>${g}</option>`).join('')}</select>
+    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()">✕</button>`;
+  wrap.appendChild(row);
+}
+window.addGpaCourseRow=addGpaCourseRow;
+
+function calculateGpa(){
+  const rows=document.querySelectorAll('#gpaCourseRows .course-row');
+  const scaleMap=currentScale===5?GRADE5:GRADE4;
+  let totalUnits=0,totalPoints=0,count=0;
+  rows.forEach(row=>{
+    const units=parseFloat(row.querySelector('.gpa-course-units').value)||0;
+    const grade=row.querySelector('.gpa-grade-select').value;
+    if(units>0){
+      totalUnits+=units;
+      totalPoints+=units*(scaleMap[grade]||0);
+      count++;
+    }
+  });
+  if(count<1){ alert('Add at least one course with units.'); return; }
+  const gpa=(totalPoints/totalUnits).toFixed(2);
+  let cls,clsColor;
+  if(currentScale===5){
+    if(gpa>=4.5){cls='First Class';}
+    else if(gpa>=3.5){cls='Second Class Upper';}
+    else if(gpa>=2.4){cls='Second Class Lower';}
+    else if(gpa>=1.5){cls='Third Class';}
+    else{cls='Pass';}
+  }else{
+    if(gpa>=3.5){cls='Distinction';}
+    else if(gpa>=3.0){cls='Upper Credit';}
+    else if(gpa>=2.5){cls='Lower Credit';}
+    else if(gpa>=2.0){cls='Pass';}
+    else{cls='Fail';}
+  }
+  document.getElementById('gpaResultBox').innerHTML=`
+    <div class="result-box">
+      <div class="num">${gpa}</div>
+      <div class="lbl">${currentScale===5?'CGPA':'CGPA'} out of ${currentScale}.0</div>
+      <div class="cls">${cls}</div>
+    </div>`;
+}
+window.calculateGpa=calculateGpa;
+
+/* ══════════════════ POST-UTME AGGREGATE CALCULATOR ══════════════════ */
+const OL_GRADES={A1:6,B2:5,B3:4,C4:3,C5:2,C6:1,D7:0,E8:0,F9:0};
+let postutmeSchools=[];
+let selectedSchool=null;
+let calcResult=null;
+
+async function loadPostutmeSchools(){
+  if(!window._db) return;
+  try{
+    const snap=await window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_postutme_schools'),window._fs.orderBy('name','asc')));
+    postutmeSchools=snap.docs.map(d=>({_id:d.id,...d.data()}));
+  }catch(e){ console.warn('Failed to load schools:',e.message); }
+}
+
+function renderSchoolSearch(){
+  const q=document.getElementById('schoolSearchInput').value.trim().toLowerCase();
+  const resultsEl=document.getElementById('schoolSearchResults');
+  if(!q){ resultsEl.style.display='none'; return; }
+  const matches=postutmeSchools.filter(s=>(s.name||'').toLowerCase().includes(q)||(s.abbr||'').toLowerCase().includes(q));
+  if(!matches.length){ resultsEl.style.display='block'; resultsEl.innerHTML='<div class="school-opt">No schools found — try a different search.</div>'; return; }
+  resultsEl.style.display='block';
+  resultsEl.innerHTML=matches.slice(0,15).map((s,i)=>`
+    <div class="school-opt" onclick="selectSchool(${postutmeSchools.indexOf(s)})">
+      <b>${escapeHtml(s.name)}</b>
+      <span>${escapeHtml(s.abbr||'')} ${s.type?'· '+escapeHtml(s.type):''}</span>
+    </div>`).join('');
+}
+window.renderSchoolSearch=renderSchoolSearch;
+
+function selectSchool(idx){
+  selectedSchool=postutmeSchools[idx];
+  document.getElementById('schoolSearchResults').style.display='none';
+  document.getElementById('schoolSearchInput').value='';
+  document.getElementById('selectedSchoolBox').innerHTML=`
+    <div class="selected-school-box">
+      <span>✅ ${escapeHtml(selectedSchool.name)} (${escapeHtml(selectedSchool.abbr||'')})</span>
+      <button type="button" onclick="clearSelectedSchool()" style="background:none;border:none;color:inherit;font-weight:800;cursor:pointer">✕</button>
+    </div>`;
+}
+window.selectSchool=selectSchool;
+
+function clearSelectedSchool(){
+  selectedSchool=null;
+  document.getElementById('selectedSchoolBox').innerHTML='';
+}
+window.clearSelectedSchool=clearSelectedSchool;
+
+function addPOlevelRow(subject,grade){
+  const wrap=document.getElementById('pOlevelRows');
+  const row=document.createElement('div');
+  row.className='olevel-row';
+  row.innerHTML=`
+    <input type="text" class="p-ol-subject" placeholder="Subject" value="${subject?escapeHtml(subject):''}">
+    <select class="p-ol-grade">${Object.keys(OL_GRADES).map(g=>`<option${g===grade?' selected':''}>${g}</option>`).join('')}</select>
+    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()">✕</button>`;
+  wrap.appendChild(row);
+}
+window.addPOlevelRow=addPOlevelRow;
+
+function calculatePostUtme(){
+  if(!selectedSchool){ alert('Please search and select a school first.'); return; }
+  const jamb=parseFloat(document.getElementById('jambScore').value)||0;
+  if(jamb<0||jamb>400){ alert('Enter a valid JAMB score between 0 and 400.'); return; }
+  const rows=document.querySelectorAll('#pOlevelRows .olevel-row');
+  let gradeSum=0,gradeCount=0;
+  const gradeList=[];
+  rows.forEach(row=>{
+    const subj=row.querySelector('.p-ol-subject').value.trim();
+    const gradeVal=row.querySelector('.p-ol-grade').value;
+    if(gradeVal&&subj){
+      gradeSum+=OL_GRADES[gradeVal]||0;
+      gradeCount++;
+      gradeList.push({subj,grade:gradeVal,pts:OL_GRADES[gradeVal]||0});
+    }
+  });
+  if(gradeCount<5){ alert("Enter at least 5 O-Level subject grades for an accurate calculation."); return; }
+
+  const formula=selectedSchool.formula||'50-50';
+  const jambNorm=(jamb/400)*100;
+  const olevelNorm=gradeCount>0?(gradeSum/(gradeCount*6))*100:0;
+  let jambPart=0,olevelPart=0;
+  if(formula==='50-50'){jambPart=jambNorm*0.5;olevelPart=olevelNorm*0.5;}
+  else if(formula==='40-60'){jambPart=jambNorm*0.4;olevelPart=olevelNorm*0.6;}
+  else if(formula==='60-40'){jambPart=jambNorm*0.6;olevelPart=olevelNorm*0.4;}
+  else if(formula==='jamb-only'){jambPart=jambNorm;olevelPart=0;}
+  else{jambPart=jambNorm*0.5;olevelPart=olevelNorm*0.5;}
+  const aggregate=Math.round(jambPart+olevelPart);
+  const cutoff=parseInt(selectedSchool.cutoff)||0;
+
+  let verdict,verdictClass;
+  if(aggregate>=65){verdict='🎉 Excellent aggregate! Very competitive for admission.';verdictClass='verdict-great';}
+  else if(aggregate>=50){verdict='👍 Good aggregate. You stand a decent chance.';verdictClass='verdict-good';}
+  else{verdict='⚠️ Below average. Work on improving your scores.';verdictClass='verdict-low';}
+
+  calcResult={school:selectedSchool,jamb,jambPart,olevelPart,aggregate,gradeList,formula,cutoff,verdict};
+
+  document.getElementById('resultBox').innerHTML=`
+    <div class="result-box">
+      <div class="num">${aggregate}</div>
+      <div class="lbl">Aggregate Score — ${escapeHtml(selectedSchool.name)}</div>
+    </div>
+    <div class="verdict-box ${verdictClass}">${verdict}</div>
+    ${cutoff?`<div class="form-hint" style="margin-top:8px;text-align:center">Cutoff: ${cutoff} — ${aggregate>=cutoff?'✅ You meet it':'❌ Below cutoff'}</div>`:''}
+    <button class="btn-ghost-full" onclick="downloadPostutmePDF()">📄 Download Result</button>`;
+  window.scrollTo({top:document.getElementById('resultBox').getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});
+}
+window.calculatePostUtme=calculatePostUtme;
+
+function downloadPostutmePDF(){
+  if(!calcResult) return;
+  const {school,jamb,jambPart,olevelPart,aggregate,gradeList,formula,cutoff,verdict}=calcResult;
+  const fmtMap={'50-50':"JAMB 50% + O-Level 50%",'40-60':"JAMB 40% + O-Level 60%",'60-40':"JAMB 60% + O-Level 40%",'jamb-only':'JAMB Score Only','custom':school.customFormula||'Custom'};
+  const now=new Date();
+  const dateStr=now.toLocaleDateString('en-NG',{day:'numeric',month:'long',year:'numeric'});
+  const timeStr=now.toLocaleTimeString('en-NG',{hour:'2-digit',minute:'2-digit'});
+  const gradesTable=gradeList.map(g=>`<tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${escapeHtml(g.subj)}</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700;color:#1a3fa8">${g.grade}</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${g.pts}/6 pts</td></tr>`).join('');
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Post-UTME Aggregate Result — BQM</title>
+  <style>body{font-family:Arial,sans-serif;margin:0;padding:0;color:#1e2749}
+  .page{max-width:700px;margin:0 auto;padding:30px}
+  .watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-30deg);font-size:72px;color:rgba(26,63,168,.06);font-weight:900;pointer-events:none;white-space:nowrap;z-index:0}
+  .content{position:relative;z-index:1}
+  .header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;padding:24px 28px;border-radius:12px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center}
+  .header h1{font-size:18px;margin:0;font-weight:900}
+  .header p{font-size:11px;opacity:.7;margin:4px 0 0}
+  .score-box{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;border-radius:12px;padding:28px;text-align:center;margin-bottom:20px}
+  .score-num{font-size:64px;font-weight:900;line-height:1}
+  .score-lbl{font-size:12px;opacity:.6;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+  .section{background:#f0f5ff;border-radius:10px;padding:16px 20px;margin-bottom:14px}
+  .section h3{font-size:12px;font-weight:800;color:#0c1f6e;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#1a3fa8;color:#fff;padding:8px 10px;text-align:left;font-size:11px}
+  .verdict{padding:12px 16px;border-radius:8px;background:#dcfce7;color:#15803d;font-weight:700;font-size:13px;margin-bottom:14px}
+  .disclaimer{background:#fef9c3;border:1.5px solid #fde68a;border-radius:8px;padding:12px 16px;font-size:11px;color:#92400e;line-height:1.6}
+  .footer{text-align:center;font-size:10px;color:#94a3b8;margin-top:20px;padding-top:14px;border-top:1px solid #e2e8f4}
+  </style></head>
+  <body><div class="page">
+  <div class="watermark">BIG QUAMS MEDIA®</div>
+  <div class="content">
+  <div class="header">
+    <div><h1>🧮 Post-UTME Aggregate Result</h1><p>Calculated by Big Quams Media® · ${dateStr} at ${timeStr}</p></div>
+    <div style="text-align:right;font-size:11px;opacity:.7">${escapeHtml(school.abbr||'')}<br>${escapeHtml(school.type||'')}</div>
+  </div>
+  <div class="score-box">
+    <div class="score-num">${aggregate}</div>
+    <div class="score-lbl">Aggregate Score / 100 — ${escapeHtml(school.name)}</div>
+  </div>
+  <div class="section">
+    <h3>Score Breakdown</h3>
+    <table><tr><th>Component</th><th>Score</th><th>Contribution</th></tr>
+    <tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">JAMB UTME Score</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700">${jamb} / 400</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${jambPart.toFixed(2)} pts</td></tr>
+    <tr><td style="padding:6px 10px">O-Level Grades (avg)</td><td style="padding:6px 10px;font-weight:700">${(gradeList.reduce((a,g)=>a+g.pts,0)/gradeList.length).toFixed(2)} / 6</td><td style="padding:6px 10px">${olevelPart.toFixed(2)} pts</td></tr>
+    </table>
+  </div>
+  <div class="section">
+    <h3>O-Level Grades Entered</h3>
+    <table><tr><th>Subject</th><th>Grade</th><th>Points</th></tr>${gradesTable}</table>
+  </div>
+  <div class="section">
+    <h3>School Information</h3>
+    <table>
+    <tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700;width:40%">School</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${escapeHtml(school.name)}</td></tr>
+    <tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700">Formula Used</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${escapeHtml(fmtMap[formula]||formula)}</td></tr>
+    ${cutoff?`<tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700">Minimum Cut-off</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${cutoff} ${aggregate>=cutoff?'✅ Met':'❌ Below'}</td></tr>`:''}
+    </table>
+  </div>
+  <div class="verdict">${verdict}</div>
+  <div class="disclaimer">⚠️ IMPORTANT NOTICE: This document is generated by Big Quams Media® (bigquamsmedia.com.ng) for personal record and self-assessment purposes only. It is NOT an official result, NOT issued by any university or examination body, and must NOT be submitted to any institution as an official document. Actual admission is determined solely by the respective institution's official screening process.</div>
+  <div class="footer">Big Quams Media® · Nigeria's Trusted Student Success Platform · bigquamsmedia.com.ng<br>Generated: ${dateStr} ${timeStr} · For record purposes only</div>
+  </div></div></body></html>`;
+  const blob=new Blob([html],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=`BQM_PostUTME_${(school.abbr||'result').replace(/\s+/g,'_')}_${aggregate}.html`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+window.downloadPostutmePDF=downloadPostutmePDF;
+
+/* ══════════════════ SUBJECT COMBO FINDER ══════════════════ */
+let allCombos=[],currentDept='',currentComboIdx=-1;
+const DEPTS=['All','Medicine & Health','Engineering','Sciences','Social Sciences','Arts & Humanities','Agriculture','Education','Law','Management'];
+
+async function loadCombos(){
+  const resultsEl=document.getElementById('comboResults');
+  document.getElementById('deptFilters').innerHTML=DEPTS.map(d=>`<button class="dept-btn${d==='All'?' active':''}" onclick="filterDept('${d==='All'?'':escapeHtml(d)}',this)">${d}</button>`).join('');
+  if(!window._db){ resultsEl.innerHTML='<div class="form-hint">Subject combos are temporarily unavailable.</div>'; return; }
+  try{
+    const snap=await window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_subject_combo'),window._fs.orderBy('course','asc')));
+    allCombos=snap.docs.map(d=>({_id:d.id,...d.data()}));
+    renderCombos();
+  }catch(e){
+    resultsEl.innerHTML='<div class="form-hint">Could not load subject combinations. Please try again.</div>';
+    console.warn('loadCombos:',e.message);
+  }
+}
+
+function filterDept(dept,btn){
+  currentDept=dept;
+  document.querySelectorAll('.dept-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCombos();
+}
+window.filterDept=filterDept;
+
+function getComboSubjects(c){
+  if(c.subjects&&c.subjects.length) return c.subjects;
+  const s=['English Language'];
+  if(c.s2) s.push(c.s2);
+  if(c.s3) s.push(c.s3);
+  if(c.s4) s.push(c.s4);
+  return s;
+}
+
+function renderCombos(){
+  const q=(document.getElementById('comboSearchInput').value||'').trim().toLowerCase();
+  const filtered=allCombos.filter(c=>{
+    const matchDept=!currentDept||c.dept===currentDept;
+    const matchQ=!q||(c.course||'').toLowerCase().includes(q);
+    return matchDept&&matchQ;
+  });
+  const resultsEl=document.getElementById('comboResults');
+  if(!filtered.length){ resultsEl.innerHTML='<div class="form-hint" style="padding:20px 0;text-align:center">No courses match your search.</div>'; return; }
+  resultsEl.innerHTML=filtered.map((c,i)=>{
+    const subjects=getComboSubjects(c);
+    return `<div class="combo-card" onclick="openComboModal(${allCombos.indexOf(c)})">
+      <div class="combo-dept-tag">${escapeHtml(c.dept||'General')}</div>
+      <div class="combo-course-name">${escapeHtml(c.course)}</div>
+      <div class="combo-subjects">
+        ${subjects.map((s,idx)=>`<span class="subj-pill${idx===0?' compulsory':''}">${escapeHtml(s)}</span>`).join('')}
+      </div>
+      <div class="combo-meta">
+        ${c.cutoff?`<span class="combo-tag">📊 Min: ${escapeHtml(c.cutoff)}</span>`:''}
+        ${c.duration?`<span class="combo-tag">⏱ ${escapeHtml(c.duration)}</span>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+window.renderCombos=renderCombos;
+
+function openComboModal(idx){
+  const c=allCombos[idx]; if(!c) return;
+  currentComboIdx=idx;
+  const subjects=getComboSubjects(c);
+  document.getElementById('comboModalBody').innerHTML=`
+    <div class="modal-dept">${escapeHtml(c.dept||'General')}</div>
+    <div class="modal-course-name">${escapeHtml(c.course)}</div>
+    <div class="modal-section">
+      <div class="modal-sec-title">📝 JAMB Subject Combination</div>
+      <div class="combo-subjects" style="gap:6px">
+        ${subjects.map((s,i)=>`<span class="subj-pill${i===0?' compulsory':''}" style="font-size:.76rem;padding:5px 12px">${i===0?'🔒 ':''}${escapeHtml(s)}</span>`).join('')}
+      </div>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:8px">🔒 English Language is compulsory for all courses</div>
+    </div>
+    ${c.olevel?`<div class="modal-section"><div class="modal-sec-title">📋 O-Level Requirements</div><div style="font-size:.82rem;color:var(--muted);line-height:1.7">${escapeHtml(c.olevel)}</div></div>`:''}
+    <div class="modal-section">
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        ${c.cutoff?`<div style="background:var(--surface2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue)">${escapeHtml(c.cutoff)}</div><div style="font-size:.64rem;color:var(--muted)">Min JAMB Score</div></div>`:''}
+        ${c.duration?`<div style="background:var(--surface2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text)">${escapeHtml(c.duration)}</div><div style="font-size:.64rem;color:var(--muted)">Programme Duration</div></div>`:''}
+      </div>
+    </div>
+    ${c.notes?`<div class="modal-section"><div class="modal-sec-title">💡 Additional Notes</div><div style="font-size:.82rem;color:var(--muted);line-height:1.7">${escapeHtml(c.notes)}</div></div>`:''}
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button onclick="switchTool('postutme');closeComboModal()" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;border:none;cursor:pointer">🧮 Calculate Aggregate →</button>
+      <a href="results.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--surface2);color:var(--blue);border:1.5px solid var(--border);padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem">📊 Check Results →</a>
+    </div>`;
+  document.getElementById('comboModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+window.openComboModal=openComboModal;
+
+function closeComboModal(){
+  document.getElementById('comboModal').classList.remove('open');
+  document.body.style.overflow='';
+  currentComboIdx=-1;
+}
+window.closeComboModal=closeComboModal;
+function handleComboOverlay(e){ if(e.target===document.getElementById('comboModal')) closeComboModal(); }
+window.handleComboOverlay=handleComboOverlay;
+
+/* ══════════════════ INIT ══════════════════ */
+document.addEventListener('DOMContentLoaded',()=>{
+  if(localStorage.getItem('bqm-theme')==='dark'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  addGpaCourseRow(); addGpaCourseRow(); addGpaCourseRow();
+  addPOlevelRow('English Language','C6'); addPOlevelRow('Mathematics','C6'); addPOlevelRow(); addPOlevelRow(); addPOlevelRow();
+  loadPostutmeSchools();
+  loadCombos();
+
+  const hash=location.hash.replace('#','');
+  if(['gpa','postutme','combo'].includes(hash)) switchTool(hash);
+});
+</script>
+</body>
+</html>

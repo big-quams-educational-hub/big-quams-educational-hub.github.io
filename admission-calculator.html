@@ -9,7 +9,7 @@
 <meta property="og:title" content="Admission Chances Calculator — Big Quams Media®">
 <meta property="og:description" content="Check your admission chances for any Nigerian university course based on your actual scores.">
 <meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
-<meta property="og:url" content="https://bigquamsmedia.com.ng/admissioncalculator.html">
+<meta property="og:url" content="https://bigquamsmedia.com.ng/admission-calculator.html">
 <link rel="icon" href="https://bigquamsmedia.com.ng/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -208,7 +208,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
       <a href="explore.html">Explore</a>
       <a href="cbt.html">CBT</a>
       <a href="scholarship.html">Scholarships</a>
-      <a href="admissioncalculator.html" class="active">Admission Chances</a>
+      <a href="admission-calculator.html" class="active">Admission Chances</a>
       <a href="index.html#contact" class="nav-cta">💬 Contact</a>
     </nav>
     <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
@@ -236,7 +236,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
   <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
   <a href="academic-tools.html#postutme" onclick="toggleNav()">🧮 Aggregate Calculator</a>
-  <a href="admissioncalculator.html" onclick="toggleNav()">🎯 Admission Chances</a>
+  <a href="admission-calculator.html" onclick="toggleNav()">🎯 Admission Chances</a>
   <a href="academic-tools.html#gpa" onclick="toggleNav()">🎓 GPA Calculator</a>
   <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
   <div class="mnav-lbl">Resources</div>
@@ -423,7 +423,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
           <li><a href="cbt.html">👨🏽‍💻 JAMB CBT Practice</a></li>
           <li><a href="postutme-prep.html">📖 Post-UTME Prep</a></li>
           <li><a href="academic-tools.html#postutme">🧮 Aggregate Calc</a></li>
-          <li><a href="admissioncalculator.html">🎯 Admission Chances</a></li>
+          <li><a href="admission-calculator.html">🎯 Admission Chances</a></li>
           <li><a href="academic-tools.html#gpa">🎓 GPA Calculator</a></li>
           <li><a href="results.html">📊 Results Checker</a></li>
         </ul>
@@ -486,7 +486,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.
 // ── DATA ──
 let admissionReqs=[];
 let calculatorPrice=0;
-let priceConfigured=false;
 const SUBJECTS=['English Language','Mathematics','Biology','Chemistry','Physics','Economics','Government','Literature in English','Geography','Agricultural Science','Commerce','Accounting','Christian Religious Studies','Islamic Religious Studies','History','Civic Education','Further Mathematics','Yoruba','Igbo','Hausa','Fine Art','Food and Nutrition','Health Science'];
 const GRADES=['A1','B2','B3','C4','C5','C6','D7','E8','F9'];
 const CREDIT_GRADES=['A1','B2','B3','C4','C5','C6'];
@@ -531,27 +530,16 @@ async function loadCalculatorData(){
   let priceLoadError=null;
   try{
     const pd=await window._fs.getDoc(window._fs.doc(window._db,'fs_admission_settings','price'));
-    priceConfigured=pd.exists();
     calculatorPrice=pd.exists()?(pd.data().price||0):0;
   }catch(e){ calculatorPrice=0; priceLoadError=e.message; console.warn('Failed to load price:',e.message); }
   const priceEl=document.getElementById('priceDisplay');
-  const payBtn=document.getElementById('payBtn');
   if(priceLoadError){
     priceEl.textContent='Could not load price — try refreshing';
     priceEl.title=priceLoadError;
-    payBtn.disabled=true;
-  }else if(!priceConfigured){
-    priceEl.textContent='Not set yet — check back soon';
-    payBtn.disabled=true;
-  }else if(calculatorPrice===0){
-    priceEl.textContent='Free 🎉';
-    payBtn.disabled=false;
-    payBtn.textContent='🎉 See My Chances (Free)';
   }else{
-    priceEl.textContent='₦'+calculatorPrice.toLocaleString();
-    payBtn.disabled=false;
-    payBtn.textContent='🔒 Pay & See My Chances';
+    priceEl.textContent=calculatorPrice?('₦'+calculatorPrice.toLocaleString()):'Not set yet — check back soon';
   }
+  document.getElementById('payBtn').disabled=!calculatorPrice;
 
   // If the student arrived here via "Check This →" from a course suggestion,
   // pre-select that school/course now that the dropdowns are populated.
@@ -969,7 +957,7 @@ function validateForm(d){
     if(usesCgpa&&!d.deCgpa) return 'Please enter your CGPA / class of degree.';
     if(!usesCgpa&&d.deSubjects.length<2) return 'Please add your Direct Entry subjects and grades.';
   }
-  if(!priceConfigured) return 'The calculator price has not been set yet — please check back later.';
+  if(!calculatorPrice) return 'The calculator price has not been set yet — please check back later.';
   return null;
 }
 
@@ -980,10 +968,24 @@ function makeSessionId(){
   return 'sess_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);
 }
 
-// Logs the attempt before the outcome is known — before payment opens, or
-// before a free result is generated — so it shows up in Admin →
-// Submissions even if something fails or the student never completes.
-async function logStartedAttempt(data, sessionId){
+async function startPayment(){
+  const data=collectFormData();
+  const err=validateForm(data);
+  if(err){ alert(err); return; }
+
+  const req=findRequirement(data.school,data.course);
+  if(!req){ alert('Could not find requirements for this school/course. Please try another.'); return; }
+
+  if(typeof PaystackPop==='undefined'){
+    alert('Payment system failed to load. Please check your connection and try again.');
+    return;
+  }
+
+  const sessionId=makeSessionId();
+
+  // Log the attempt immediately — before payment — so it shows up in
+  // Admin → Submissions even if the student closes the popup or the
+  // payment never completes. Status gets updated to 'paid' on success.
   try{
     await window._fs.addDoc(window._fs.collection(window._db,'fs_admission_submissions'),{
       sessionId, status:'started',
@@ -994,35 +996,8 @@ async function logStartedAttempt(data, sessionId){
       createdAt:window._fs.serverTimestamp()
     });
   }catch(e){ console.warn('Could not log attempt:',e.message); }
-}
 
-async function startPayment(){
-  const data=collectFormData();
-  const err=validateForm(data);
-  if(err){ alert(err); return; }
-
-  const req=findRequirement(data.school,data.course);
-  if(!req){ alert('Could not find requirements for this school/course. Please try another.'); return; }
-
-  const sessionId=makeSessionId();
   const btn=document.getElementById('payBtn');
-
-  // ── FREE PATH: admin set price to 0, no payment needed ──
-  if(calculatorPrice===0){
-    btn.disabled=true; btn.textContent='Checking your chances…';
-    await logStartedAttempt(data, sessionId);
-    await handlePaymentSuccess(data, req, 'FREE', sessionId, true);
-    return;
-  }
-
-  // ── PAID PATH ──
-  if(typeof PaystackPop==='undefined'){
-    alert('Payment system failed to load. Please check your connection and try again.');
-    return;
-  }
-
-  await logStartedAttempt(data, sessionId);
-
   btn.disabled=true; btn.textContent='Opening payment…';
 
   const handler=PaystackPop.setup({
@@ -1036,7 +1011,7 @@ async function startPayment(){
       // NOTE: response.reference here is reported by the client-side
       // popup only — there is no server-side verification against
       // Paystack's API. See the admin panel warning on this feature.
-      handlePaymentSuccess(data, req, response.reference, sessionId, false);
+      handlePaymentSuccess(data, req, response.reference, sessionId);
     },
     onClose:function(){
       btn.disabled=false; btn.textContent='🔒 Pay & See My Chances';
@@ -1046,21 +1021,21 @@ async function startPayment(){
 }
 window.startPayment=startPayment;
 
-async function handlePaymentSuccess(data, req, paymentRef, sessionId, isFree){
+async function handlePaymentSuccess(data, req, paymentRef, sessionId){
   const result=calculateChance(data, req);
 
   // Log the completed record (separate document, same sessionId — see
   // makeSessionId() comment above for why this isn't an update).
   try{
     await window._fs.addDoc(window._fs.collection(window._db,'fs_admission_submissions'),{
-      sessionId, status:isFree?'free':'paid',
+      sessionId, status:'paid',
       name:data.name, phone:data.phone, email:data.email||'',
       jambScore:data.jambScore, postUtmeScore:data.postUtmeScore||null,
       school:data.school, course:data.course, category:data.category||'',
       olevel:data.olevel, jambSubjects:data.jambSubjects||[],
       candidateType:data.candidateType, deQualType:data.deQualType||'', deCgpa:data.deCgpa||'', deSubjects:data.deSubjects||[],
       resultTier:result.tierLabel,
-      paymentRef, amountPaid:isFree?0:calculatorPrice,
+      paymentRef, amountPaid:calculatorPrice,
       createdAt:window._fs.serverTimestamp()
     });
   }catch(e){ console.warn('Could not save submission:',e.message); }
