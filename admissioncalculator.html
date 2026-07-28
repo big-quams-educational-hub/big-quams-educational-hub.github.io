@@ -370,9 +370,26 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
       <div class="calc-card">
         <div class="calc-step-label">Step 4</div>
         <div class="calc-step-title">O-Level Results (WAEC/NECO)</div>
+        <div class="form-group" style="margin-bottom:14px">
+          <label>How many sittings are your results from? *</label>
+          <div class="type-toggle">
+            <div class="type-btn active" id="sitBtn1" onclick="setSittingCount(1)">1️⃣ One Sitting<br><span style="font-weight:400;font-size:.68rem">All subjects, same exam diet</span></div>
+            <div class="type-btn" id="sitBtn2" onclick="setSittingCount(2)">2️⃣ Two Sittings<br><span style="font-weight:400;font-size:.68rem">e.g. WAEC + NECO</span></div>
+          </div>
+          <div id="sittingCourseWarning"></div>
+        </div>
+
+        <div id="sittingLabel1" style="display:none;font-size:.72rem;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">First Sitting</div>
         <div id="olevelRows"></div>
-        <button type="button" class="add-row-btn" onclick="addOlevelRow()">+ Add Subject</button>
-        <div class="form-hint" style="margin-top:10px">Include at least 5 subjects with your best sitting, including English Language and Mathematics.</div>
+        <button type="button" class="add-row-btn" onclick="addOlevelRow(undefined,undefined,1)">+ Add Subject</button>
+
+        <div id="sittingTwoWrap" style="display:none;margin-top:18px;padding-top:16px;border-top:1.5px dashed var(--border)">
+          <div style="font-size:.72rem;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Second Sitting</div>
+          <div id="olevelRowsSitting2"></div>
+          <button type="button" class="add-row-btn" onclick="addOlevelRow(undefined,undefined,2)">+ Add Subject</button>
+        </div>
+
+        <div class="form-hint" style="margin-top:10px">Add every subject you have a result for — if you used two sittings, we'll automatically use your <strong>best grade per subject</strong> across both when checking your chances.</div>
       </div>
 
       <div class="calc-card">
@@ -491,8 +508,8 @@ const SUBJECTS=['English Language','Mathematics','Biology','Chemistry','Physics'
 const GRADES=['A1','B2','B3','C4','C5','C6','D7','E8','F9'];
 const CREDIT_GRADES=['A1','B2','B3','C4','C5','C6'];
 
-function addOlevelRow(subject,grade){
-  const wrap=document.getElementById('olevelRows');
+function addOlevelRow(subject,grade,sitting){
+  const wrap=document.getElementById(sitting===2?'olevelRowsSitting2':'olevelRows');
   const row=document.createElement('div');
   row.className='olevel-row';
   row.innerHTML=`
@@ -500,6 +517,46 @@ function addOlevelRow(subject,grade){
     <select class="ol-grade">${GRADES.map(g=>`<option${g===grade?' selected':''}>${g}</option>`).join('')}</select>
     <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()">✕</button>`;
   wrap.appendChild(row);
+}
+window.addOlevelRow=addOlevelRow;
+
+// ── SITTINGS TOGGLE ──
+// Defaults to 1 sitting. Switching to 2 reveals a second row set; results
+// from both are later merged to the BEST grade per subject when calculating
+// chances (see mergeOlevelBest). Switching back to 1 just hides sitting 2 —
+// its rows are kept in the DOM (not deleted) so nothing is lost if the
+// student toggles back and forth while double-checking their entries.
+let sittingCount=1;
+function setSittingCount(n){
+  sittingCount=n;
+  document.getElementById('sitBtn1').classList.toggle('active',n===1);
+  document.getElementById('sitBtn2').classList.toggle('active',n===2);
+  document.getElementById('sittingTwoWrap').style.display=n===2?'block':'none';
+  document.getElementById('sittingLabel1').style.display=n===2?'block':'none';
+  if(n===2 && !document.getElementById('olevelRowsSitting2').children.length){
+    addOlevelRow(undefined,undefined,2);
+    addOlevelRow(undefined,undefined,2);
+    addOlevelRow(undefined,undefined,2);
+  }
+  if(document.getElementById('targetCourse').value) onCourseSelected();
+}
+window.setSittingCount=setSittingCount;
+
+// Merges rows from both sittings down to ONE entry per subject — keeping
+// whichever grade is BEST (highest GRADE_POINTS value) if the same subject
+// appears in both sittings. This is what actually gets checked against a
+// course's requirements, so students don't need to manually figure out
+// which sitting's result to use for each subject.
+function mergeOlevelBest(rows){
+  const bestBySubject={};
+  rows.forEach(r=>{
+    const key=r.subject.toLowerCase().trim();
+    const pts=GRADE_POINTS[r.grade]??-1;
+    if(!bestBySubject[key]||pts>bestBySubject[key]._pts){
+      bestBySubject[key]={subject:r.subject,grade:r.grade,_pts:pts};
+    }
+  });
+  return Object.values(bestBySubject).map(({subject,grade})=>({subject,grade}));
 }
 
 // ── LOAD SCHOOLS/COURSES + PRICE FROM FIREBASE ──
@@ -599,6 +656,7 @@ function resetScoreFields(){
   document.getElementById('scoreFieldsHint').textContent='Select a school and course above to see which scores are needed.';
   document.getElementById('categoryFieldGroup').style.display='none';
   document.getElementById('jambComboHint').textContent='';
+  document.getElementById('sittingCourseWarning').innerHTML='';
 }
 
 let candidateType='utme';
@@ -706,6 +764,20 @@ function onCourseSelected(){
     categoryGroup.style.display='none';
   }
 
+  // Max sittings this course allows — most schools allow 2; some (often
+  // Medicine, Pharmacy, Nursing) require 1. Doesn't force the toggle, since
+  // the student may be comparing several courses with different rules — just
+  // warns clearly when what they've entered wouldn't be accepted here.
+  const maxSit=req.maxSittings||2;
+  const sitWarnEl=document.getElementById('sittingCourseWarning');
+  if(maxSit===1&&sittingCount===2){
+    sitWarnEl.innerHTML=`<div class="disclaimer-box" style="margin-top:8px">⚠️ ${escapeHtml(req.course)} at ${escapeHtml(req.school)} accepts O-Level results from <strong>ONE sitting only</strong>. When you check your chances, we'll test each of your sittings separately — if either one alone meets the requirement, you're fine; if not, we'll suggest similar courses your JAMB score and single-sitting results actually qualify for.</div>`;
+  }else if(maxSit===1){
+    sitWarnEl.innerHTML=`<div class="form-hint" style="margin-top:6px">ℹ️ This course requires results from one sitting only.</div>`;
+  }else{
+    sitWarnEl.innerHTML='';
+  }
+
   // Pre-fill JAMB subject combo (UTME path)
   populateJambOtherRows(req.jambSubjects||[]);
 
@@ -763,6 +835,49 @@ function findSuggestedCourses(data){
   return matches;
 }
 
+// ── SCORE-AWARE SUGGESTIONS FOR THE ONE-SITTING HARD BLOCK ──
+// Unlike findSuggestedCourses (a free, subject-match-only filter shown to
+// everyone), this is specifically for when a course is hard-blocked because
+// the school only accepts one sitting and neither of the student's sittings
+// alone qualifies. It checks a SINGLE sitting's O-Level results (since that's
+// what's actually usable at most other schools too) AND the student's JAMB
+// score/subjects against each candidate course's real minimum — so what's
+// suggested here is genuinely something they meet, not just a subject match.
+function findSuggestedCoursesScored(singleSittingOlevel, jambSubjects, jambScore, excludeSchool, excludeCourse){
+  const creditSubjects=singleSittingOlevel.filter(o=>CREDIT_GRADES.includes(o.grade)).map(o=>o.subject.toLowerCase());
+  if(creditSubjects.length<5 || !admissionReqs.length) return [];
+  const jambSubjectsLower=jambSubjects?jambSubjects.map(s=>s.toLowerCase()):null;
+
+  const matches=[];
+  const seen=new Set();
+  for(const req of admissionReqs){
+    const key=req.school+'|'+req.course;
+    if(seen.has(key)) continue;
+    if(req.school===excludeSchool && req.course===excludeCourse) continue;
+
+    const requiredSubjects=(req.subjects||[]).map(s=>s.toLowerCase().trim());
+    if(!requiredSubjects.every(rs=>creditSubjects.includes(rs))) continue;
+
+    if(jambSubjectsLower && (req.jambSubjects||[]).length){
+      const requiredJamb=req.jambSubjects.map(s=>s.toLowerCase());
+      if(!requiredJamb.every(rs=>jambSubjectsLower.includes(rs))) continue;
+    }
+
+    // Score check — the whole point of this being "scored" vs the free
+    // general suggester. Uses the lowest available category cutoff if the
+    // school splits by category, since we don't know the student's category
+    // in this context; otherwise the plain minJamb.
+    const effMinJamb=req.useCategories&&(req.categories||[]).length
+      ? Math.min(...req.categories.map(c=>c.minJamb))
+      : req.minJamb;
+    if(effMinJamb && jambScore<effMinJamb) continue;
+
+    seen.add(key);
+    matches.push(req);
+  }
+  return matches;
+}
+
 function renderSuggestions(matches){
   if(!matches.length){
     return `<div class="suggest-box"><div style="font-weight:800;font-size:.84rem;color:var(--text)">🔍 Other courses you might qualify for</div><div class="form-hint" style="margin-top:6px">No other exact matches found in our current database, based on your O-Level results${candidateType==='utme'?' and JAMB subjects':''}. This only checks schools/courses already added to our system.</div></div>`;
@@ -798,33 +913,69 @@ window.pickSuggestedCourse=pickSuggestedCourse;
 // Post-UTME minimums (using category-specific cutoffs like Merit/Catchment/
 // ELDS or Indigene/Non-Indigene if the school has them) — then estimates a
 // chance tier based on how far above/below the minimums the student is.
-function calculateChance(student, req){
-  const reasons=[];
-  const method=req.method||'aggregate';
-
-  // ── O-LEVEL CHECK (credit-count or percentage) ──
-  const creditSubjects=student.olevel.filter(o=>CREDIT_GRADES.includes(o.grade));
+// Reusable O-Level check against a course's requirement — used both for the
+// student's merged (best-per-subject) results, and for checking ONE sitting
+// alone (needed when a school only accepts one sitting).
+function checkOlevelAgainstReq(olevelArr, req){
+  const creditSubjects=olevelArr.filter(o=>CREDIT_GRADES.includes(o.grade));
   const studentSubjectNames=creditSubjects.map(o=>o.subject.toLowerCase());
   const missingRequired=(req.subjects||[]).filter(rs=>!studentSubjectNames.includes(rs.toLowerCase().trim()));
-  let olevelOk;
-
   if(req.olevelMethod==='percentage'){
     const points=(req.subjects||[]).map(rs=>{
-      const match=student.olevel.find(o=>o.subject.toLowerCase()===rs.toLowerCase().trim());
+      const match=olevelArr.find(o=>o.subject.toLowerCase()===rs.toLowerCase().trim());
       return match?(GRADE_POINTS[match.grade]||0):0;
     });
     const maxPoints=(req.subjects||[]).length*8;
     const pct=maxPoints?((points.reduce((a,b)=>a+b,0)/maxPoints)*100):0;
-    olevelOk=pct>=(req.minOlevelPct||0)&&!missingRequired.length;
-    reasons.push(`Your estimated O-Level percentage across required subjects is ${pct.toFixed(1)}% (minimum: ${req.minOlevelPct}%). This is an approximate conversion, not an official calculation.`);
-    if(missingRequired.length) reasons.push(`Missing a result for: ${missingRequired.join(', ')}.`);
-  }else{
-    const hasEnoughCredits=creditSubjects.length>=(req.minOlevel||5);
-    if(missingRequired.length) reasons.push(`Missing a credit pass in: ${missingRequired.join(', ')}.`);
-    if(!hasEnoughCredits) reasons.push(`You have ${creditSubjects.length} credit pass(es); this course requires at least ${req.minOlevel||5}.`);
-    olevelOk=!missingRequired.length && hasEnoughCredits;
+    return {ok:pct>=(req.minOlevelPct||0)&&!missingRequired.length, pct, missingRequired, creditCount:creditSubjects.length};
   }
-  if(olevelOk) reasons.push(`Your O-Level results meet the requirements.`);
+  const hasEnoughCredits=creditSubjects.length>=(req.minOlevel||5);
+  return {ok:!missingRequired.length&&hasEnoughCredits, missingRequired, creditCount:creditSubjects.length};
+}
+
+function calculateChance(student, req){
+  const reasons=[];
+  const method=req.method||'aggregate';
+
+  // ── O-LEVEL CHECK (credit-count or percentage), using best-per-subject
+  // results across whatever sittings were entered ──
+  const olevelResult=checkOlevelAgainstReq(student.olevel, req);
+  let olevelOk=olevelResult.ok;
+  if(req.olevelMethod==='percentage'){
+    reasons.push(`Your estimated O-Level percentage across required subjects is ${olevelResult.pct.toFixed(1)}% (minimum: ${req.minOlevelPct}%). This is an approximate conversion, not an official calculation.`);
+    if(olevelResult.missingRequired.length) reasons.push(`Missing a result for: ${olevelResult.missingRequired.join(', ')}.`);
+  }else{
+    if(olevelResult.missingRequired.length) reasons.push(`Missing a credit pass in: ${olevelResult.missingRequired.join(', ')}.`);
+    if(olevelResult.creditCount<(req.minOlevel||5)) reasons.push(`You have ${olevelResult.creditCount} credit pass(es); this course requires at least ${req.minOlevel||5}.`);
+  }
+
+  // ── ONE-SITTING SCHOOLS: if the student entered two sittings but this
+  // course only accepts one, their COMBINED best-per-subject result above
+  // isn't actually what the school would accept. Check each sitting on its
+  // own — if either alone already satisfies the requirement, that's good
+  // news and we tell them exactly which one to submit. If neither does
+  // alone, this is a genuine hard block: override olevelOk to false (which
+  // forces 'ineligible' below in every method branch) and build real
+  // alternative-course suggestions using their JAMB score + subjects. ──
+  let sittingSuggestions=null;
+  const maxSit=req.maxSittings||2;
+  const sittingMismatch=maxSit===1 && (student.sittingCount||1)===2 && olevelResult.ok;
+  if(sittingMismatch){
+    const s1=checkOlevelAgainstReq(student.olevelSitting1||[], req);
+    const s2=checkOlevelAgainstReq(student.olevelSitting2||[], req);
+    if(s1.ok || s2.ok){
+      olevelOk=true;
+      const which=s1.ok&&s2.ok?'either your First Sitting or your Second Sitting alone':(s1.ok?'your First Sitting alone':'your Second Sitting alone');
+      reasons.push(`✅ ${escapeHtml(req.school)} accepts O-Level results from ONE sitting only — but good news, ${which} already meets this course's requirement without needing to combine both. Submit just that one sitting's results to the school, not both.`);
+    }else{
+      olevelOk=false;
+      reasons.push(`❌ ${escapeHtml(req.school)} accepts O-Level results from ONE sitting only. Your combined best-per-subject results above meet the requirement, but neither your First Sitting nor your Second Sitting alone does — so this specific course won't accept your results as they stand.`);
+      const bestSingleSitting=(s1.creditCount>=s2.creditCount)?(student.olevelSitting1||[]):(student.olevelSitting2||[]);
+      sittingSuggestions=findSuggestedCoursesScored(bestSingleSitting, student.candidateType==='utme'?student.jambSubjects:null, student.jambScore, req.school, req.course);
+    }
+  }
+
+  if(olevelOk && !sittingMismatch) reasons.push(`Your O-Level results meet the requirements.`);
 
   // ── DIRECT ENTRY: no DE-specific cutoff data exists per school yet, so
   // give an honest, O-Level-based read rather than fabricate a JAMB-style
@@ -834,11 +985,11 @@ function calculateChance(student, req){
     // take priority over the softer "we can't calculate this yet" message.
     if(req.acceptsDE===false){
       reasons.push(`This course does not accept Direct Entry candidates — it's UTME only.`);
-      return {tier:'ineligible',tierLabel:'🚫 Direct Entry Not Accepted',tierColor:'var(--red)',reasons,olevelOk,jambOk:null};
+      return {tier:'ineligible',tierLabel:'🚫 Direct Entry Not Accepted',tierColor:'var(--red)',reasons,olevelOk,jambOk:null,sittingSuggestions};
     }
     if((req.deAcceptedTypes||[]).length && !req.deAcceptedTypes.includes(student.deQualType)){
       reasons.push(`This course only accepts Direct Entry via: ${req.deAcceptedTypes.join(', ')}. Your qualification (${student.deQualType}) isn't on that list.`);
-      return {tier:'ineligible',tierLabel:'🚫 Your Qualification Not Accepted Here',tierColor:'var(--red)',reasons,olevelOk,jambOk:null};
+      return {tier:'ineligible',tierLabel:'🚫 Your Qualification Not Accepted Here',tierColor:'var(--red)',reasons,olevelOk,jambOk:null,sittingSuggestions};
     }
     reasons.push(`You're applying via Direct Entry (${student.deQualType}${student.deCgpa?', '+student.deCgpa:''}) — this school's cutoff data in our system is set up for UTME, so we can't give a precise DE chance tier yet.`);
     reasons.push(`Direct Entry candidates are typically admitted into 200 level subject to the department confirming your qualification is equivalent — it's worth confirming your specific result with the school's admissions office directly.`);
@@ -848,7 +999,7 @@ function calculateChance(student, req){
     if(['ineligible','de_unclear'].includes(tier) && (req.altCourses||[]).length){
       reasons.push(`This school also considers these related courses: ${req.altCourses.join(', ')}. Worth checking separately.`);
     }
-    return {tier,tierLabel,tierColor,reasons,olevelOk,jambOk:null};
+    return {tier,tierLabel,tierColor,reasons,olevelOk,jambOk:null,sittingSuggestions};
   }
 
   // ── JAMB SUBJECT COMBINATION CHECK ──
@@ -920,7 +1071,7 @@ function calculateChance(student, req){
     reasons.push(`This school also considers these related courses, which may have different requirements: ${req.altCourses.join(', ')}. Worth checking separately.`);
   }
 
-  return {tier,tierLabel,tierColor,reasons,olevelOk,jambOk};
+  return {tier,tierLabel,tierColor,reasons,olevelOk,jambOk,sittingSuggestions};
 }
 
 function collectFormData(){
@@ -930,10 +1081,16 @@ function collectFormData(){
   const school=document.getElementById('targetSchool').value;
   const course=document.getElementById('targetCourse').value;
   const category=document.getElementById('categoryFieldGroup').style.display!=='none'?document.getElementById('candCategory').value:'';
-  const olevel=[...document.querySelectorAll('.olevel-row')].map(row=>({
+  const olevelSitting1=[...document.querySelectorAll('#olevelRows .olevel-row')].map(row=>({
     subject:row.querySelector('.ol-subject').value,
     grade:row.querySelector('.ol-grade').value
   }));
+  const olevelSitting2=sittingCount===2?[...document.querySelectorAll('#olevelRowsSitting2 .olevel-row')].map(row=>({
+    subject:row.querySelector('.ol-subject').value,
+    grade:row.querySelector('.ol-grade').value
+  })):[];
+  const olevelRaw=[...olevelSitting1,...olevelSitting2];
+  const olevel=mergeOlevelBest(olevelRaw);
 
   let jambScore=0, postUtmeScore=0, jambSubjects=[];
   let deQualType='', deCgpa='', deSubjects=[];
@@ -952,7 +1109,7 @@ function collectFormData(){
     postUtmeScore=parseInt(document.getElementById('postUtmeScoreDe').value)||0;
   }
 
-  return {name,phone,email,jambScore,postUtmeScore,school,course,category,jambSubjects,olevel,candidateType,deQualType,deCgpa,deSubjects};
+  return {name,phone,email,jambScore,postUtmeScore,school,course,category,jambSubjects,olevel,olevelSitting1,olevelSitting2,sittingCount,candidateType,deQualType,deCgpa,deSubjects};
 }
 
 function validateForm(d){
@@ -1057,7 +1214,7 @@ async function handlePaymentSuccess(data, req, paymentRef, sessionId, isFree){
       name:data.name, phone:data.phone, email:data.email||'',
       jambScore:data.jambScore, postUtmeScore:data.postUtmeScore||null,
       school:data.school, course:data.course, category:data.category||'',
-      olevel:data.olevel, jambSubjects:data.jambSubjects||[],
+      olevel:data.olevel, jambSubjects:data.jambSubjects||[], sittingCount:data.sittingCount||1,
       candidateType:data.candidateType, deQualType:data.deQualType||'', deCgpa:data.deCgpa||'', deSubjects:data.deSubjects||[],
       resultTier:result.tierLabel,
       paymentRef, amountPaid:isFree?0:calculatorPrice,
@@ -1068,18 +1225,48 @@ async function handlePaymentSuccess(data, req, paymentRef, sessionId, isFree){
   renderResult(data, result);
 }
 
+function renderSittingSuggestions(matches, excludeSchool){
+  if(!matches) return '';
+  if(!matches.length){
+    return `<div class="disclaimer-box" style="margin-top:10px">We couldn't find another course in our system that your single-sitting results and JAMB score currently qualify for. It's worth checking directly with ${escapeHtml(excludeSchool)} whether they'd make an exception, or looking at a fresh sitting to strengthen your results.</div>`;
+  }
+  window._sittingMatches=matches;
+  return `<div class="suggest-box" style="border-color:var(--blue);background:#eff6ff">
+    <div style="font-weight:800;font-size:.84rem;color:var(--text)">✅ Courses you already qualify for instead</div>
+    <div class="form-hint" style="margin-top:4px">Based on your best single sitting's O-Level results${window._lastResult&&window._lastResult.data.candidateType==='utme'?' and JAMB subjects':''}, PLUS your actual JAMB score meeting the minimum — these are real matches, not just a subject-list check.</div>
+    <div class="suggest-list">${matches.slice(0,15).map((r,i)=>`
+      <div class="suggest-item" onclick="pickSittingSuggestedCourse(${i})">
+        <div><b>${escapeHtml(r.course)}</b><br><span>${escapeHtml(r.school)}</span></div>
+        <button type="button" class="suggest-pick-btn">Check This →</button>
+      </div>`).join('')}</div>
+    <div class="form-hint" style="margin-top:8px">${matches.length>15?`Showing 15 of ${matches.length} matches. `:''}Checking one of these fully (Post-UTME score, category, etc.) will need its own payment.</div>
+  </div>`;
+}
+
+function pickSittingSuggestedCourse(idx){
+  const req=window._sittingMatches[idx];
+  if(!req) return;
+  sessionStorage.setItem('bqm_presel_school',req.school);
+  sessionStorage.setItem('bqm_presel_course',req.course);
+  location.reload();
+}
+window.pickSittingSuggestedCourse=pickSittingSuggestedCourse;
+
 function renderResult(data, result){
   document.getElementById('calcForm').style.display='none';
   const bg={high:'#f0fdf4',moderate:'#fffbeb',borderline:'#fff7ed',low:'#fef2f2',ineligible:'#fef2f2',de_unclear:'#eff6ff'}[result.tier]||'#f8fafc';
   const el=document.getElementById('resultArea');
   el.style.display='block';
   const suggestionsHtml=renderSuggestions(findSuggestedCourses(data));
+  const sittingSuggestionsHtml=result.sittingSuggestions!==undefined&&result.sittingSuggestions!==null
+    ? `<div style="margin-top:14px">${renderSittingSuggestions(result.sittingSuggestions, data.school)}</div>` : '';
   el.innerHTML=`
     <div class="result-card" style="background:${bg};border:2px solid ${result.tierColor}">
       <div style="font-size:.76rem;color:var(--muted);margin-bottom:6px">${escapeHtml(data.name)}'s estimated chance for</div>
       <div style="font-weight:700;font-size:.9rem;margin-bottom:10px">${escapeHtml(data.course)} at ${escapeHtml(data.school)}</div>
       <div class="result-tier" style="color:${result.tierColor}">${result.tierLabel}</div>
       <ul class="result-reasons">${result.reasons.map(r=>`<li>${escapeHtml(r)}</li>`).join('')}</ul>
+      ${sittingSuggestionsHtml}
       <div class="disclaimer-box">
         ⚠️ This is an <strong>estimate only</strong> based on requirements set by our team, not the official admissions office. It does not guarantee admission or rejection.
       </div>
@@ -1134,6 +1321,7 @@ function downloadResultPdf(){
   line('JAMB Score:',data.jambScore);
   if(data.postUtmeScore) line('Post-UTME/DE Score:',data.postUtmeScore);
   if(data.jambSubjects&&data.jambSubjects.length) line('JAMB Subjects:',data.jambSubjects.join(', '));
+  line('O-Level Sittings:',(data.sittingCount||1)+(data.sittingCount===2?' (best grade per subject used)':''));
   y+=4;
 
   doc.setFont('helvetica','bold'); doc.setFontSize(14);
@@ -1159,11 +1347,11 @@ window.downloadResultPdf=downloadResultPdf;
 document.addEventListener('DOMContentLoaded',()=>{
   if(localStorage.getItem('bqm-theme')==='dark'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}
   document.getElementById('yr').textContent=new Date().getFullYear();
-  addOlevelRow('English Language','C6');
-  addOlevelRow('Mathematics','C6');
-  addOlevelRow();
-  addOlevelRow();
-  addOlevelRow();
+  addOlevelRow('English Language','C6',1);
+  addOlevelRow('Mathematics','C6',1);
+  addOlevelRow(undefined,undefined,1);
+  addOlevelRow(undefined,undefined,1);
+  addOlevelRow(undefined,undefined,1);
   populateJambOtherRows([]);
   loadCalculatorData();
 });
