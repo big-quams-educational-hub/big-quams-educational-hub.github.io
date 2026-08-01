@@ -1,12 +1,13 @@
 {
-  "name": "bqm-fcm-server",
-  "version": "1.0.0",
-  "description": "BIG QUAMS MEDIA FCM Push Notification Server",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
+  "name": "bqm-functions",
+  "description": "Big Quams Media — Cloud Functions",
   "engines": {
-    "node": ">=18"
-  }
+    "node": "20"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-functions": "^5.0.0",
+    "firebase-admin": "^12.0.0"
+  },
+  "private": true
 }

@@ -261,8 +261,8 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
   <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
   <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
   <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
-  <a href="academic-tools.html#postutme" onclick="toggleNav()">🧮 Aggregate Calculator</a>
-  <a href="academic-tools.html#gpa" onclick="toggleNav()">🎓 GPA Calculator</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
   <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
   <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
   <div class="mnav-lbl">Resources</div>
@@ -271,7 +271,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
   <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
   <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
   <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
-  <a href="academic-tools.html#combo" onclick="toggleNav()">📋 Subject Combination</a>
+  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
   <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 
@@ -353,7 +353,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
         <div class="qt-title">📚 Subject Combo Finder</div>
         <select class="qt-sel" id="qt_course" onchange="qtSubjectCombo()"><option value="">Select your course…</option></select>
         <div class="qt-result" id="qt_comboResult"></div>
-        <a href="academic-tools.html#combo" class="qt-link">Full subject combo guide →</a>
+        <a href="subject-combo.html" class="qt-link">Full subject combo guide →</a>
       </div>
 
       <!-- Results Checker -->
@@ -380,7 +380,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
         </select>
         <input class="qt-inp" type="number" id="qt_gpaInput" placeholder="Your current GPA (e.g. 4.2)" step="0.01" min="0" max="5" oninput="qtCheckGPA()">
         <div class="qt-result" id="qt_gpaResult"></div>
-        <a href="academic-tools.html#gpa" class="qt-link">Full GPA calculator →</a>
+        <a href="gpa-calculator.html" class="qt-link">Full GPA calculator →</a>
       </div>
 
     </div>
@@ -491,9 +491,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
         <ul class="footer-links">
           <li><a href="cbt.html">👨🏽‍💻 JAMB CBT Practice</a></li>
           <li><a href="postutme-prep.html">📖 Post-UTME Prep</a></li>
-          <li><a href="academic-tools.html#postutme">🧮 Aggregate Calc</a></li>
+          <li><a href="postutme-calculator.html">🧮 Aggregate Calc</a></li>
           <li><a href="admissioncalculator.html">🎯 Admission Chances</a></li>
-          <li><a href="academic-tools.html#gpa">🎓 GPA Calculator</a></li>
+          <li><a href="gpa-calculator.html">🎓 GPA Calculator</a></li>
           <li><a href="results.html">📊 Results Checker</a></li>
           <li><a href="Jamb_Profile_Code.html">🔑 JAMB Profile Code</a></li>
         </ul>
@@ -506,7 +506,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
           <li><a href="student-loan.html">💳 Student Loan</a></li>
           <li><a href="spotlight.html">🌟 Student Spotlight</a></li>
           <li><a href="dyk.html">💡 Did You Know</a></li>
-          <li><a href="academic-tools.html#combo">📋 Subject Combo</a></li>
+          <li><a href="subject-combo.html">📋 Subject Combo</a></li>
         </ul>
       </div>
       <div>
@@ -565,11 +565,11 @@ const TOOLS=[
   {title:'Student Loan (NELFUND)',icon:'💳',color:'#ede9fe',text:'#6d28d9',tag:'Resources',tagBg:'#ede9fe',tagTxt:'#6d28d9',desc:'Complete step-by-step NELFUND student loan guide — eligibility, application, repayment and FAQs.',url:'student-loan.html',filters:['resources','inschool'],featured:true},
   {title:'eLibrary',icon:'📚',color:'#fef3c7',text:'#92400e',tag:'Resources',tagBg:'#fef3c7',tagTxt:'#92400e',desc:'100+ free textbooks, past question papers, lecture notes and academic materials.',url:'elibrary.html',filters:['resources','inschool'],featured:true},
   {title:'Post-UTME Prep',icon:'📖',color:'#fef9c3',text:'#92400e',tag:'Exam Prep',tagBg:'#fef9c3',tagTxt:'#92400e',desc:'School-specific Post-UTME preparation guides, past questions and cut-off mark information.',url:'postutme-prep.html',filters:['exam','admission'],featured:true},
-  {title:'Aggregate Calculator',icon:'🧮',color:'#dbeafe',text:'#1d4ed8',tag:'Admission',tagBg:'#dbeafe',tagTxt:'#1d4ed8',desc:'Calculate your Post-UTME aggregate score instantly. Know your chances before screening day.',url:'academic-tools.html#postutme',filters:['admission','exam']},
-  {title:'GPA Calculator',icon:'🎓',color:'#f0fdf4',text:'#15803d',tag:'In School',tagBg:'#f0fdf4',tagTxt:'#15803d',desc:'Calculate your GPA and CGPA on both 5.0 and 4.0 scales. Plan your semester grades.',url:'academic-tools.html#gpa',filters:['inschool']},
+  {title:'Aggregate Calculator',icon:'🧮',color:'#dbeafe',text:'#1d4ed8',tag:'Admission',tagBg:'#dbeafe',tagTxt:'#1d4ed8',desc:'Calculate your Post-UTME aggregate score instantly. Know your chances before screening day.',url:'postutme-calculator.html',filters:['admission','exam']},
+  {title:'GPA Calculator',icon:'🎓',color:'#f0fdf4',text:'#15803d',tag:'In School',tagBg:'#f0fdf4',tagTxt:'#15803d',desc:'Calculate your GPA and CGPA on both 5.0 and 4.0 scales. Plan your semester grades.',url:'gpa-calculator.html',filters:['inschool']},
   {title:'Results Checker',icon:'📊',color:'#e0f2fe',text:'#0369a1',tag:'Exam Prep',tagBg:'#e0f2fe',tagTxt:'#0369a1',desc:'Direct links and step-by-step guides to check JAMB, WAEC, NECO, NABTEB and CAPS results.',url:'results.html',filters:['exam','admission']},
   {title:'JAMB Profile Code',icon:'🔑',color:'#fce7f3',text:'#9d174d',tag:'Admission',tagBg:'#fce7f3',tagTxt:'#9d174d',desc:'Step-by-step guide to generate your JAMB profile code, create your e-Facility account and register.',url:'Jamb_Profile_Code.html',filters:['admission'],isNew:true},
-  {title:'Subject Combination',icon:'📋',color:'#dcfce7',text:'#15803d',tag:'Admission',tagBg:'#dcfce7',tagTxt:'#15803d',desc:'Find the correct O\'Level and JAMB subject combinations for any course and university in Nigeria.',url:'academic-tools.html#combo',filters:['admission','exam']},
+  {title:'Subject Combination',icon:'📋',color:'#dcfce7',text:'#15803d',tag:'Admission',tagBg:'#dcfce7',tagTxt:'#15803d',desc:'Find the correct O\'Level and JAMB subject combinations for any course and university in Nigeria.',url:'subject-combo.html',filters:['admission','exam']},
   {title:'Student Spotlight',icon:'🌟',color:'#fef3c7',text:'#92400e',tag:'Community',tagBg:'#fef3c7',tagTxt:'#92400e',desc:'Celebrating Nigerian students with outstanding achievements. Get inspired by your peers.',url:'spotlight.html',filters:['community']},
   {title:'Did You Know?',icon:'💡',color:'#dbeafe',text:'#1d4ed8',tag:'Community',tagBg:'#dbeafe',tagTxt:'#1d4ed8',desc:'Interesting facts about Nigerian universities, admission, academics and campus life.',url:'dyk.html',filters:['community']},
   {title:'Community Hub',icon:'🤝',color:'#ede9fe',text:'#6d28d9',tag:'Community',tagBg:'#ede9fe',tagTxt:'#6d28d9',desc:'Student Q&A, peer reviews, academic calendars and community discussions.',url:'community.html',filters:['community']},
@@ -646,9 +646,9 @@ function qtSubjectCombo(){
       <strong style="color:var(--text);font-family:'Montserrat',sans-serif">${escapeHtml(course)}</strong><br>
       ${subjects.length?`<div style="margin-top:6px"><span style="font-size:.66rem;font-weight:700;color:var(--muted)">JAMB SUBJECTS:</span><br><span style="font-weight:600">${fmt(subjects[0])}</span></div>`:''}
       ${olevel.length?`<div style="margin-top:5px"><span style="font-size:.66rem;font-weight:700;color:var(--muted)">O'LEVEL:</span><br><span style="font-weight:600">${fmt(olevel[0])}</span></div>`:''}
-      <a href="academic-tools.html#combo" style="display:inline-block;margin-top:8px;color:var(--blue);font-weight:700;font-size:.72rem">Full combo guide →</a>`;
+      <a href="subject-combo.html" style="display:inline-block;margin-top:8px;color:var(--blue);font-weight:700;font-size:.72rem">Full combo guide →</a>`;
   } else {
-    res.innerHTML=`<strong>${escapeHtml(course)}</strong><br><a href="academic-tools.html#combo" style="color:var(--blue);font-weight:700">View full subject combination →</a>`;
+    res.innerHTML=`<strong>${escapeHtml(course)}</strong><br><a href="subject-combo.html" style="color:var(--blue);font-weight:700">View full subject combination →</a>`;
   }
   res.classList.add('show');
 }
@@ -829,6 +829,130 @@ function installApp(){
 }
 </script>
 
-<script src="studybuddy.js" defer></script>
+<style>
+#bqm-buddy-fab{position:fixed;bottom:90px;right:22px;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border:2px solid #f97316;color:#fff;font-size:1.5rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:410;box-shadow:0 6px 24px rgba(12,31,110,.35);transition:transform .2s}
+#bqm-buddy-fab:hover{transform:scale(1.08)}
+#bqm-buddy-fab .bqm-fab-dot{position:absolute;top:6px;right:6px;width:11px;height:11px;border-radius:50%;background:#f97316;border:2px solid #fff}
+#bqm-buddy-panel{position:fixed;bottom:158px;right:22px;width:360px;max-width:92vw;height:480px;max-height:70vh;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(12,31,110,.3);display:flex;flex-direction:column;overflow:hidden;z-index:420;opacity:0;pointer-events:none;transform:translateY(16px) scale(.96);transition:opacity .22s ease,transform .22s ease;font-family:'Roboto',sans-serif}
+#bqm-buddy-panel.bqm-open{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+.bqm-bp-head{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:14px 16px;display:flex;align-items:center;gap:10px;color:#fff;flex-shrink:0}
+.bqm-bp-avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid #f97316;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.05rem}
+.bqm-bp-title{flex:1;min-width:0}
+.bqm-bp-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem}
+.bqm-bp-sub{font-size:.6rem;color:rgba(255,255,255,.65);margin-top:2px}
+.bqm-bp-close{background:rgba(255,255,255,.12);border:none;color:#fff;width:26px;height:26px;border-radius:50%;cursor:pointer;flex-shrink:0;font-size:.8rem}
+.bqm-bp-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#f0f4ff}
+.bqm-msg{max-width:82%;padding:9px 13px;border-radius:14px;font-size:.8rem;line-height:1.5}
+.bqm-msg.bot{align-self:flex-start;background:#fff;border:1px solid #e2e8f4;border-bottom-left-radius:4px;color:#1e2749}
+.bqm-msg.user{align-self:flex-end;background:#1a3fa8;color:#fff;border-bottom-right-radius:4px}
+.bqm-msg.typing{align-self:flex-start;background:#fff;border:1px solid #e2e8f4;font-size:.72rem;color:#64748b}
+.bqm-msg.gate{align-self:center;max-width:100%;background:#fef3e7;border:1px solid #fcd9a8;color:#9a3412;text-align:center;font-size:.75rem}
+.bqm-msg.gate a{color:#0c1f6e;font-weight:700;text-decoration:underline}
+.bqm-bp-suggest{display:flex;gap:6px;flex-wrap:wrap;padding:10px 12px;background:#fff;border-top:1px solid #e2e8f4;flex-shrink:0}
+.bqm-bp-suggest button{font-size:.65rem;padding:6px 10px;border-radius:14px;border:1px solid #e2e8f4;background:#f0f4ff;color:#64748b;cursor:pointer}
+.bqm-bp-suggest button:hover{border-color:#1a3fa8;color:#1a3fa8}
+.bqm-bp-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid #e2e8f4;background:#fff;flex-shrink:0}
+#bqm-bp-input{flex:1;padding:10px 13px;border-radius:20px;border:1.5px solid #e2e8f4;font-size:.8rem;font-family:inherit}
+#bqm-bp-input:focus-visible{outline:none;border-color:#1a3fa8}
+#bqm-bp-send{padding:10px 16px;background:#f97316;color:#fff;border:none;border-radius:20px;font-weight:700;font-size:.78rem;cursor:pointer;font-family:'Montserrat',sans-serif}
+#bqm-bp-send:hover{background:#e56b0f}
+#bqm-bp-send:disabled,#bqm-bp-input:disabled{opacity:.5;cursor:not-allowed}
+@media(max-width:760px){#bqm-buddy-fab{bottom:80px;right:14px;width:50px;height:50px;font-size:1.25rem}#bqm-buddy-panel{right:8px;left:8px;width:auto;bottom:140px}}
+</style>
+<script>
+(function(){
+  var FREE_LIMIT=3, askedCount=0, gated=false;
+
+  var fab=document.createElement('button');
+  fab.id='bqm-buddy-fab';
+  fab.setAttribute('aria-label','Open Study Buddy');
+  fab.innerHTML='🤖<span class="bqm-fab-dot"></span>';
+  document.body.appendChild(fab);
+
+  var panel=document.createElement('div');
+  panel.id='bqm-buddy-panel';
+  panel.innerHTML=
+    '<div class="bqm-bp-head">'+
+      '<div class="bqm-bp-avatar">🤖</div>'+
+      '<div class="bqm-bp-title"><div class="bqm-bp-name">Study Buddy</div><div class="bqm-bp-sub">'+FREE_LIMIT+' free questions/day &middot; Unlimited for signed-in users</div></div>'+
+      '<button class="bqm-bp-close" aria-label="Close Study Buddy">&#10005;</button>'+
+    '</div>'+
+    '<div class="bqm-bp-body" id="bqm-bp-body"></div>'+
+    '<div class="bqm-bp-suggest">'+
+      '<button data-q="What subject combination do I need for Law?">Subject combos</button>'+
+      '<button data-q="What is the cutoff mark for Medicine?">Cutoff marks</button>'+
+      '<button data-q="Any scholarships open right now?">Scholarships</button>'+
+      '<button data-q="Tips for JAMB prep">JAMB tips</button>'+
+    '</div>'+
+    '<div class="bqm-bp-input-row">'+
+      '<input type="text" id="bqm-bp-input" placeholder="Ask Study Buddy anything...">'+
+      '<button id="bqm-bp-send">Send</button>'+
+    '</div>';
+  document.body.appendChild(panel);
+
+  var body=panel.querySelector('#bqm-bp-body');
+  var input=panel.querySelector('#bqm-bp-input');
+  var sendBtn=panel.querySelector('#bqm-bp-send');
+
+  function addMsg(text,cls){
+    var div=document.createElement('div');
+    div.className='bqm-msg '+cls;
+    div.innerHTML=text;
+    body.appendChild(div);
+    body.scrollTop=body.scrollHeight;
+    return div;
+  }
+
+  function botReply(text){
+    var t=text.toLowerCase();
+    if(t.indexOf('combo')>-1||t.indexOf('subject')>-1) return "Subject combinations depend on the course. For Law, most schools want English, Literature-in-English and one of History/CRK/IRK at O'Level, with English required at UTME. Tell me the course you're after and I'll narrow it down.";
+    if(t.indexOf('cutoff')>-1||t.indexOf('cut off')>-1||t.indexOf('cut-off')>-1) return "Cutoff marks vary by school and course each year. Medicine typically sits high (usually 260+ at competitive schools). Use the Admission Chances Calculator with your JAMB score and course for a precise estimate.";
+    if(t.indexOf('scholarship')>-1) return "There are scholarships open right now on the Scholarship Finder page — filter by your level and course for the best match. Deadlines move fast, so I'd apply early.";
+    if(t.indexOf('jamb')>-1||t.indexOf('utme')>-1) return "For JAMB prep: do timed practice daily using the Practice Test tool, focus on your weakest subject first, and revise past questions rather than just textbooks — the exam repeats patterns more than people expect.";
+    if(t.indexOf('cgpa')>-1||t.indexOf('gpa')>-1) return "CGPA is your grade points earned divided by total units attempted, on a 5.00 scale. Try the CGPA Calculator tool for an instant, accurate result including your cumulative total.";
+    if(t.indexOf('overwhelm')>-1||t.indexOf('stress')>-1||t.indexOf('tired')>-1||t.indexOf('sad')>-1) return "That sounds like a lot to carry. You're not alone in feeling this way. Consider reaching out to someone you trust or your school's counselling unit for support.";
+    if(t.indexOf('hi')===0||t.indexOf('hello')>-1||t.indexOf('hey')>-1) return "Hey there! Ask me about subject combinations, cutoff marks, scholarships, JAMB prep or your CGPA.";
+    return "Good question — I'm running in demo mode right now so my answers are limited to a few topics. Try asking about subject combinations, cutoff marks, scholarships, JAMB prep or CGPA.";
+  }
+
+  function showGate(){
+    gated=true;
+    addMsg("You've used your "+FREE_LIMIT+" free questions for today. <a href='#'>Sign up free</a> for unlimited access to Study Buddy.",'gate');
+    input.disabled=true;
+    sendBtn.disabled=true;
+    input.placeholder='Sign up for unlimited questions';
+  }
+
+  function sendMsg(text){
+    if(!text || !text.trim() || gated) return;
+    addMsg(text,'user');
+    input.value='';
+    askedCount++;
+    var typing=addMsg('Study Buddy is typing...','typing');
+    setTimeout(function(){
+      typing.remove();
+      addMsg(botReply(text),'bot');
+      if(askedCount>=FREE_LIMIT){ showGate(); }
+    },700);
+  }
+
+  sendBtn.addEventListener('click',function(){ sendMsg(input.value); });
+  input.addEventListener('keydown',function(e){ if(e.key==='Enter') sendMsg(input.value); });
+  panel.querySelectorAll('.bqm-bp-suggest button').forEach(function(b){
+    b.addEventListener('click',function(){ sendMsg(b.getAttribute('data-q')); });
+  });
+  panel.querySelector('.bqm-bp-close').addEventListener('click',function(){ window.bqmToggleBuddy(); });
+  fab.addEventListener('click',function(){ window.bqmToggleBuddy(); });
+
+  var greeted=false;
+  window.bqmToggleBuddy=function(){
+    panel.classList.toggle('bqm-open');
+    if(panel.classList.contains('bqm-open') && !greeted){
+      greeted=true;
+      addMsg("Hey! I'm Study Buddy 🤖 Ask me about subject combinations, cutoff marks, scholarships, JAMB prep or your CGPA.",'bot');
+    }
+  };
+})();
+</script>
 </body>
 </html>
