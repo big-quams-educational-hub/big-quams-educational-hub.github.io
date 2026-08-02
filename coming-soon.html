@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Coming Soon | Big Quams Media®</title>
+<meta name="description" content="This part of Big Quams Media® is still under construction. Check back soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue-deep:#0c1f6e; --blue-main:#1a3fa8; --blue-light:#dde9ff;
+  --orange:#f97316; --orange-dark:#e56b0f;
+  --surface:#fff; --surface-alt:#f0f4ff; --border:#e2e8f4;
+  --text-main:#1e2749; --text-muted:#64748b; --text-faint:#94a3b8;
+  --radius-md:14px; --radius-lg:20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Roboto',sans-serif;background:linear-gradient(180deg,#eef3ff 0%,#f7f9ff 55%,#fff 100%);color:var(--text-main);min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+
+/* ===== MINI HEADER ===== */
+.mini-hbar{display:flex;align-items:center;justify-content:center;padding:18px 24px;max-width:1000px;margin:0 auto;width:100%}
+.logo-link{display:flex;align-items:center;gap:10px}
+.logo-img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2.5px solid var(--orange);background:#fff}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:var(--blue-deep)}
+
+/* ===== MAIN ===== */
+main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 20px 40px;text-align:center}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fef3e7;border:1px solid #fcd9a8;color:var(--orange-dark);padding:7px 16px;border-radius:20px;font-size:.72rem;font-weight:800;letter-spacing:.3px;text-transform:uppercase;margin-bottom:20px}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);animation:blink 1.3s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,5vw,2.5rem);font-weight:800;color:var(--blue-deep);line-height:1.25;max-width:600px;margin-bottom:12px}
+h1 span{color:var(--orange)}
+
+/* ===== TYPEWRITER TEXT ===== */
+.type-line{
+  display:inline-block;overflow:hidden;white-space:nowrap;
+  border-right:3px solid var(--orange);
+  font-family:'Montserrat',sans-serif;font-weight:700;font-size:.92rem;color:var(--blue-main);
+  width:0ch;max-width:100%;
+  animation:typeReveal 13s infinite, caretBlink .7s step-end infinite;
+  margin:16px auto 30px;
+}
+@keyframes typeReveal{
+  0%{width:0ch}
+  35%{width:44ch;animation-timing-function:steps(44,end)}
+  80%{width:44ch}
+  92%{width:0ch}
+  100%{width:0ch}
+}
+@keyframes caretBlink{0%,100%{border-color:var(--orange)}50%{border-color:transparent}}
+
+/* ===== CONSTRUCTION SCENE ===== */
+.scene{position:relative;width:min(94vw,560px);height:280px;margin:10px auto 30px}
+.ground{position:absolute;bottom:0;left:0;right:0;height:4px;background:var(--border);border-radius:2px}
+.ground::before{content:'';position:absolute;left:-4px;right:-4px;bottom:-8px;height:8px;background:repeating-linear-gradient(115deg,var(--orange) 0 14px,#fff 14px 24px);border-radius:2px;opacity:.85}
+
+/* Brick pile (source of bricks, static decorative marker) */
+.pile{position:absolute;bottom:4px;left:2%;display:flex;gap:2px;align-items:flex-end}
+.pile .brick{width:12px;height:8px;background:var(--orange);border:1px solid var(--orange-dark);border-radius:1px}
+.pile .brick:nth-child(2){height:14px}
+.pile .brick:nth-child(3){height:10px}
+
+/* Buildings (the "complex" = two structures) */
+.building{position:absolute;bottom:4px;display:flex;flex-direction:column-reverse;align-items:center}
+.building.b-short{left:16%;width:20%}
+.building.b-tall{left:40%;width:24%}
+.floor{width:100%;height:30px;background:linear-gradient(135deg,var(--blue-main),var(--blue-deep));border:1.5px solid rgba(255,255,255,.15);border-radius:3px;margin-bottom:3px;display:flex;align-items:center;justify-content:space-evenly;opacity:0;transform:translateY(70px) scale(.9);box-shadow:0 4px 10px rgba(12,31,110,.18);animation-duration:26s;animation-iteration-count:infinite;animation-timing-function:ease-out}
+.floor .window{width:7px;height:9px;background:#fdba74;border-radius:1px;opacity:.9}
+.roof{width:110%;height:7px;background:var(--orange);border-radius:2px 2px 0 0;margin-bottom:-1px;opacity:0;animation-duration:26s;animation-iteration-count:infinite}
+
+/* Each floor/roof gets its own keyframes so they pop in at a distinct moment
+   on one shared 26s master timeline, hold while "complete", then reset together. */
+@keyframes deliverAt04{0%,4%{opacity:0;transform:translateY(70px) scale(.9)}9%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+@keyframes deliverAt10{0%,10%{opacity:0;transform:translateY(70px) scale(.9)}15%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+@keyframes deliverAt17{0%,17%{opacity:0;transform:translateY(70px) scale(.9)}22%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+@keyframes deliverAt23{0%,23%{opacity:0;transform:translateY(70px) scale(.9)}28%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+@keyframes deliverAt30{0%,30%{opacity:0;transform:translateY(70px) scale(.9)}35%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+@keyframes deliverAt36{0%,36%{opacity:0;transform:translateY(70px) scale(.9)}41%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+@keyframes deliverAt43{0%,43%{opacity:0;transform:translateY(70px) scale(.9)}48%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+@keyframes deliverAt49{0%,49%{opacity:0;transform:translateY(70px) scale(.9)}54%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+@keyframes deliverAt56{0%,56%{opacity:0;transform:translateY(70px) scale(.9)}61%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+@keyframes deliverAt62{0%,62%{opacity:0;transform:translateY(70px) scale(.9)}67%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+@keyframes deliverAt69{0%,69%{opacity:0;transform:translateY(70px) scale(.9)}74%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+@keyframes deliverAt75{0%,75%{opacity:0;transform:translateY(70px) scale(.9)}80%{opacity:1;transform:translateY(0) scale(1)}90%{opacity:1;transform:translateY(0) scale(1)}96%,100%{opacity:0;transform:translateY(70px) scale(.9)}}
+
+.b-short .floor:nth-child(1){animation-name:deliverAt04}
+.b-tall  .floor:nth-child(1){animation-name:deliverAt10}
+.b-short .floor:nth-child(2){animation-name:deliverAt17}
+.b-tall  .floor:nth-child(2){animation-name:deliverAt23}
+.b-short .floor:nth-child(3){animation-name:deliverAt30}
+.b-tall  .floor:nth-child(3){animation-name:deliverAt36}
+.b-short .floor:nth-child(4){animation-name:deliverAt43}
+.b-tall  .floor:nth-child(4){animation-name:deliverAt49}
+.b-tall  .floor:nth-child(5){animation-name:deliverAt56}
+.b-tall  .floor:nth-child(6){animation-name:deliverAt62}
+.b-short .roof{animation-name:deliverAt69}
+.b-tall  .roof{animation-name:deliverAt75}
+
+/* Crane — moves on its own faster repeating cycle: sweeps from the pile,
+   grabs a brick, carries it over, lowers, drops it, and returns empty. */
+.crane{position:absolute;bottom:4px;right:6%;width:170px;height:262px}
+.crane-mast{position:absolute;bottom:0;right:8px;width:8px;height:100%;background:linear-gradient(180deg,var(--orange),var(--orange-dark));border-radius:2px}
+.crane-mast::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(255,255,255,.35) 6px 7px)}
+.crane-jib{position:absolute;top:6px;right:-150px;width:170px;height:6px;background:linear-gradient(90deg,var(--orange-dark),var(--orange));border-radius:2px}
+.crane-jib::after{content:'';position:absolute;right:-14px;top:-8px;width:0;height:0;border-left:14px solid var(--orange-dark);border-top:9px solid transparent;border-bottom:9px solid transparent}
+.crane-trolley{position:absolute;top:6px;left:6px;animation:trolleySweep 3.25s ease-in-out infinite}
+.crane-cable{width:1.5px;height:56px;background:var(--text-faint);margin:0 auto;animation:hookDrop 3.25s ease-in-out infinite}
+.crane-hook{width:16px;height:12px;background:var(--blue-deep);border-radius:2px;margin:0 auto;position:relative;animation:hookDrop 3.25s ease-in-out infinite}
+.crane-brick{position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:14px;height:10px;background:var(--orange);border:1px solid var(--orange-dark);border-radius:1px;opacity:0;animation:brickCarry 3.25s ease-in-out infinite}
+
+@keyframes trolleySweep{
+  0%,22%{transform:translateX(0)}           /* parked over the pile */
+  48%,78%{transform:translateX(-118px)}     /* over the buildings */
+  100%{transform:translateX(0)}
+}
+@keyframes hookDrop{
+  0%,6%{transform:translateY(0)}
+  16%,26%{transform:translateY(52px)}       /* down to grab a brick */
+  40%{transform:translateY(0)}              /* lifted, carrying */
+  58%,68%{transform:translateY(40px)}       /* lowered over the building */
+  82%{transform:translateY(0)}              /* empty, rising back up */
+  100%{transform:translateY(0)}
+}
+@keyframes brickCarry{
+  0%,20%{opacity:0}
+  26%,64%{opacity:1}                        /* attached: grabbed → carried → held over building */
+  70%,100%{opacity:0}                       /* dropped */
+}
+
+/* Cone decoration */
+.cone{position:absolute;bottom:2px;right:2%;width:0;height:0;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:20px solid var(--orange)}
+.cone::after{content:'';position:absolute;bottom:0;left:-13px;width:26px;height:4px;background:var(--orange-dark);border-radius:1px}
+
+/* ===== CTAs ===== */
+.ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
+.btn-orange{background:var(--orange);color:#fff;padding:13px 24px;border-radius:8px;font-weight:700;font-size:.85rem;font-family:'Montserrat',sans-serif;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.btn-orange:hover{background:var(--orange-dark);transform:translateY(-2px)}
+
+footer{text-align:center;padding:20px;font-size:.7rem;color:var(--text-faint)}
+
+@media(max-width:520px){
+  .scene{height:250px}
+  .crane{right:2%;width:140px}
+  .crane-jib{right:-120px;width:140px}
+  .building.b-tall{left:36%;width:26%}
+  .building.b-short{left:12%;width:22%}
+  @keyframes trolleySweep{0%,22%{transform:translateX(0)}48%,78%{transform:translateX(-95px)}100%{transform:translateX(0)}}
+}
+@media(prefers-reduced-motion:reduce){
+  .floor,.roof,.crane-trolley,.crane-cable,.crane-hook,.crane-brick,.badge-dot,.type-line{animation:none!important;opacity:1!important;transform:none!important;width:44ch!important;border-right-color:transparent!important}
+}
+</style>
+</head>
+<body>
+
+<div class="mini-hbar">
+  <span class="logo-link">
+    <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media logo" class="logo-img">
+    <span class="logo-name">Big Quams Media<sup style="font-size:.55em">®</sup></span>
+  </span>
+</div>
+
+<main>
+  <span class="badge"><span class="badge-dot"></span> Under Construction</span>
+  <h1>We're building something <span>better</span> here.</h1>
+
+  <span class="type-line">We're under construction — check back later.</span>
+
+  <div class="scene" aria-hidden="true">
+    <div class="pile">
+      <div class="brick"></div>
+      <div class="brick"></div>
+      <div class="brick"></div>
+    </div>
+
+    <div class="building b-short">
+      <div class="floor"><span class="window"></span><span class="window"></span></div>
+      <div class="floor"><span class="window"></span><span class="window"></span></div>
+      <div class="floor"><span class="window"></span><span class="window"></span></div>
+      <div class="floor"><span class="window"></span><span class="window"></span></div>
+      <div class="roof"></div>
+    </div>
+
+    <div class="building b-tall">
+      <div class="floor"><span class="window"></span><span class="window"></span></div>
+      <div class="floor"><span class="window"></span><span class="window"></span></div>
+      <div class="floor"><span class="window"></span><span class="window"></span></div>
+      <div class="floor"><span class="window"></span><span class="window"></span></div>
+      <div class="floor"><span class="window"></span><span class="window"></span></div>
+      <div class="floor"><span class="window"></span><span class="window"></span></div>
+      <div class="roof"></div>
+    </div>
+
+    <div class="crane">
+      <div class="crane-mast"></div>
+      <div class="crane-jib"></div>
+      <div class="crane-trolley">
+        <div class="crane-cable"></div>
+        <div class="crane-hook">
+          <div class="crane-brick"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cone"></div>
+  </div>
+
+  <div class="ctas">
+    <a href="https://wa.me/2349049871643" class="btn-orange">💬 Get notified on WhatsApp</a>
+  </div>
+</main>
+
+<footer>© 2026 Big Quams Media®. We're always improving — thanks for your patience.</footer>
+
+</body>
+</html>
