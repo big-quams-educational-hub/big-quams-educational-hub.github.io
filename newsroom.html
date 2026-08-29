@@ -166,6 +166,9 @@ body.dark .art-hero-img{background:#1a2236}
 .art-content em{font-style:italic}
 .art-content ul,.art-content ol{margin:4px 0 16px;padding-left:22px}
 .art-content li{margin-bottom:7px}
+.art-content s{opacity:.6}
+.art-content code{background:var(--surface2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:.88em}
+.art-content blockquote{margin:0 0 16px;padding:10px 18px;border-left:3px solid var(--blue);background:var(--surface2);border-radius:0 8px 8px 0;font-style:italic;color:var(--muted)}
 .art-content a{color:var(--blue);text-decoration:underline;word-break:break-word}
 
 /* ── LIKE / COPY-LINK ── */
@@ -507,7 +510,7 @@ function catStyle(c){const v=CAT_COLORS[c]||'#f0f4ff,#1a3fa8';const[bg,col]=v.sp
 // ── Helpers ──
 function readingTime(txt){return Math.max(1,Math.round((txt||'').split(/\s+/).filter(Boolean).length/200));}
 function stripHtml(t){return(t||'').replace(/<[^>]*>/g,'');}
-function plainPreview(t){return stripHtml(t).replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/[*_]/g,'').replace(/^[-•]\s+/gm,'').replace(/^\d+[.)]\s+/gm,'').replace(/\s+/g,' ').trim();}
+function plainPreview(t){return stripHtml(t).replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/[*_~`]/g,'').replace(/^>\s?/gm,'').replace(/^[-•]\s+/gm,'').replace(/^\d+[.)]\s+/gm,'').replace(/\s+/g,' ').trim();}
 function linkify(t){
   if(!t) return '';
   const esc=t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -524,16 +527,19 @@ function formatArticleBody(raw){
     let t=esc(line);
     t=t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,(m,txt,url)=>`<a href="${url}" target="_blank" rel="noopener">${txt}</a>`);
     t=t.replace(/(https?:\/\/[^\s<>"']+)/g,u=>u.match(/^<a /)?u:`<a href="${u}" target="_blank" rel="noopener">${u}</a>`);
+    t=t.replace(/`([^`\n]+)`/g,'<code>$1</code>');
     t=t.replace(/\*([^\*\n]+)\*/g,'<strong>$1</strong>');
     t=t.replace(/_([^_\n]+)_/g,'<em>$1</em>');
+    t=t.replace(/~([^~\n]+)~/g,'<s>$1</s>');
     return t;
   };
   const lines=raw.replace(/\r\n/g,'\n').split('\n');
-  let html='',buf=[],mode=null; // mode: null|'ul'|'ol'|'p'
+  let html='',buf=[],mode=null; // mode: null|'ul'|'ol'|'p'|'bq'
   const flush=()=>{
     if(!buf.length){mode=null;return;}
     if(mode==='ul') html+='<ul>'+buf.map(l=>`<li>${inline(l)}</li>`).join('')+'</ul>';
     else if(mode==='ol') html+='<ol>'+buf.map(l=>`<li>${inline(l)}</li>`).join('')+'</ol>';
+    else if(mode==='bq') html+='<blockquote>'+buf.map(inline).join('<br>')+'</blockquote>';
     else html+=`<p>${buf.map(inline).join('<br>')}</p>`;
     buf=[];mode=null;
   };
@@ -542,12 +548,16 @@ function formatArticleBody(raw){
     if(!t){flush();return;}
     const bullet=/^[-•]\s+(.*)/.exec(t);
     const numbered=/^\d+[.)]\s+(.*)/.exec(t);
+    const quote=/^>\s?(.*)/.exec(t);
     if(bullet){
       if(mode&&mode!=='ul') flush();
       mode='ul'; buf.push(bullet[1]);
     } else if(numbered){
       if(mode&&mode!=='ol') flush();
       mode='ol'; buf.push(numbered[1]);
+    } else if(quote){
+      if(mode&&mode!=='bq') flush();
+      mode='bq'; buf.push(quote[1]);
     } else {
       if(mode&&mode!=='p') flush();
       mode='p'; buf.push(t);
@@ -589,10 +599,41 @@ async function toggleLike(id){
   if(btn){btn.classList.toggle('liked',!already);btn.querySelector('.heart').textContent=already?'🤍':'❤️';}
   if(cntEl&&n) cntEl.textContent=n.likes;
   try{
-    if(window._fsDb) await window._fsDb.collection('fs_news').doc(id).update({likes:firebase.firestore.FieldValue.increment(delta)});
-  }catch(e){console.warn('Like sync failed:',e.message);}
+    if(!window._fsDb) throw new Error('offline');
+    await window._fsDb.collection('fs_news').doc(id).update({likes:firebase.firestore.FieldValue.increment(delta)});
+  }catch(e){
+    console.warn('Like sync failed:',e.message);
+    // Roll back — the like didn't actually save, so don't count or remember it
+    const rollbackIds=likedIds();
+    if(already && !rollbackIds.includes(id)) rollbackIds.push(id);
+    else if(!already){const ri=rollbackIds.indexOf(id); if(ri>-1) rollbackIds.splice(ri,1);}
+    localStorage.setItem('bqm-liked',JSON.stringify(rollbackIds));
+    if(n){n.likes=(n.likes||0)-delta; if(n.likes<0)n.likes=0;}
+    if(btn){btn.classList.toggle('liked',already);btn.querySelector('.heart').textContent=already?'❤️':'🤍';}
+    if(cntEl&&n) cntEl.textContent=n.likes;
+    showToast('⚠️ Could not save like — check your connection');
+  }
 }
 window.toggleLike=toggleLike;
+
+// ── View counting (once per session per article) ──
+function viewedIds(){try{return JSON.parse(sessionStorage.getItem('bqm-viewed')||'[]');}catch(e){return [];}}
+async function recordView(id){
+  if(!id) return;
+  const ids=viewedIds();
+  if(ids.includes(id)) return; // already counted this session
+  ids.push(id);
+  sessionStorage.setItem('bqm-viewed',JSON.stringify(ids));
+  const n=allNews.find(x=>x._id===id);
+  if(n) n.views=(n.views||0)+1;
+  const vEl=document.getElementById('viewCount');
+  if(vEl&&n) vEl.textContent=n.views;
+  try{
+    if(!window._fsDb) throw new Error('offline');
+    await window._fsDb.collection('fs_news').doc(id).update({views:firebase.firestore.FieldValue.increment(1)});
+  }catch(e){console.warn('View sync failed:',e.message);}
+}
+window.recordView=recordView;
 
 function copyArticleLinkOnly(){
   if(currentIdx<0) return;
@@ -728,6 +769,7 @@ function render(){
           <span>${p.date||''}</span>
           ${p.author?`<span>✍️ ${p.author}</span>`:''}
           <span>⏱ ${readingTime(p.fullContent||'')} min read</span>
+          ${p.views?`<span>👁 ${p.views}</span>`:''}
           ${p.likes?`<span>❤️ ${p.likes}</span>`:''}
           <span class="pinned-read">Read Article →</span>
         </div>
@@ -755,6 +797,7 @@ function render(){
           <span>${n.date||''}</span>
           ${n.author?`<span>· ✍️ ${n.author}</span>`:''}
           <span>· ⏱ ${mins} min</span>
+          ${n.views?`<span>· 👁 ${n.views}</span>`:''}
           ${n.likes?`<span>· ❤️ ${n.likes}</span>`:''}
           <button class="share-btn" onclick="shareCard(event,${idx})">🔗 Share</button>
         </div>
@@ -790,6 +833,7 @@ function openArticle(idx){
 
   const liked=isLiked(n._id);
   const likeCount=n.likes||0;
+  const viewCount=n.views||0;
 
   document.getElementById('artHeaderTitle').textContent=n.title;
   document.getElementById('artContent').innerHTML=`
@@ -802,6 +846,7 @@ function openArticle(idx){
         ${n.updatedDate&&n.updatedDate!==n.date?`<span>· Updated ${n.updatedDate}</span>`:''}
         ${n.author?`<span>· ✍️ ${n.author}</span>`:''}
         <span>· ⏱ ${mins} min read</span>
+        <span>· 👁 <span id="viewCount">${viewCount}</span> views</span>
       </div>
       <div class="art-content">${formatArticleBody(n.fullContent||'')}</div>
       <div class="art-actions">
@@ -843,6 +888,7 @@ function openArticle(idx){
   document.getElementById('artOverlay').classList.add('open');
   document.getElementById('artBox').scrollTop=0;
   document.body.style.overflow='hidden';
+  recordView(n._id);
 }
 
 function closeArticle(){
