@@ -169,10 +169,17 @@ body.dark .art-hero-img{background:#1a2236}
 .art-content s{opacity:.6}
 .art-content code{background:var(--surface2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:.88em}
 .art-content blockquote{margin:0 0 16px;padding:10px 18px;border-left:3px solid var(--blue);background:var(--surface2);border-radius:0 8px 8px 0;font-style:italic;color:var(--muted)}
+.art-content h3.art-h{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;margin:20px 0 10px;color:var(--text)}
+.art-table-wrap{overflow-x:auto;margin:0 0 16px;-webkit-overflow-scrolling:touch}
+.art-table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:420px}
+.art-table th,.art-table td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+.art-table th{background:var(--surface2);font-weight:800}
+.art-table tr:nth-child(even) td{background:var(--surface2)}
 .art-content a{color:var(--blue);text-decoration:underline;word-break:break-word}
 
 /* ── LIKE / COPY-LINK ── */
-.art-actions{display:flex;align-items:center;gap:10px;margin:2px 0 18px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.art-actions{display:flex;align-items:center;gap:10px;margin:2px 0 18px;padding-bottom:16px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+@media(min-width:741px){.art-actions{position:sticky;top:0;z-index:5;background:var(--card);padding-top:10px;margin-top:-10px}}
 .like-btn{display:flex;align-items:center;gap:7px;background:var(--surface2);border:1.5px solid var(--border);color:var(--text);padding:8px 16px;border-radius:24px;font-size:.8rem;font-weight:700;transition:.18s}
 body.dark .like-btn{background:#1a2236}
 .like-btn:hover{border-color:#f472b6}
@@ -181,6 +188,17 @@ body.dark .like-btn{background:#1a2236}
 .copylink-btn{display:flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);color:var(--text);padding:8px 16px;border-radius:24px;font-size:.8rem;font-weight:700;transition:.18s}
 body.dark .copylink-btn{background:#1a2236}
 .copylink-btn:hover{border-color:var(--blue);color:var(--blue)}
+.share-social-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;background:var(--surface2);border:1.5px solid var(--border);color:var(--text);border-radius:50%;font-size:.95rem;transition:.18s}
+body.dark .share-social-btn{background:#1a2236}
+.share-social-btn:hover{border-color:var(--blue);transform:translateY(-1px)}
+.art-tags{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0 6px}
+.art-tag-chip{font-size:.7rem;font-weight:700;background:var(--surface2);border:1px solid var(--border);padding:4px 12px;border-radius:20px;color:var(--muted)}
+.art-byline{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:10px 12px;background:var(--surface2);border-radius:10px}
+.art-byline img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.art-byline-name{font-size:.78rem;font-weight:800;color:var(--text)}
+.art-byline-bio{font-size:.7rem;color:var(--muted);margin-top:1px}
+.back-to-top{display:none;position:sticky;bottom:18px;align-self:flex-end;margin-right:18px;width:42px;height:42px;flex-shrink:0;border-radius:50%;background:var(--blue);color:#fff;font-size:1.1rem;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:6;border:0}
+.back-to-top.show{display:block}
 .art-related{margin-top:28px;padding-top:18px;border-top:2px solid var(--surface2)}
 body.dark .art-related{border-color:var(--border)}
 .art-related-title{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text);margin-bottom:12px}
@@ -238,6 +256,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 <script>
 (function(){
   try{
@@ -260,6 +279,15 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       try{const r=await fetch('news.json?v='+Date.now());const d=await r.json();return d||[];}
       catch(e){return [];}
     };
+    // Anonymous auth — gives every visitor a stable uid (persisted across
+    // visits on the same browser) so likes can be tracked one-per-person
+    // in a subcollection, instead of trusting localStorage alone.
+    window._fsAuthReady=new Promise(resolve=>{
+      firebase.auth().onAuthStateChanged(user=>{
+        if(user){ window._fsUid=user.uid; resolve(user.uid); }
+      });
+      firebase.auth().signInAnonymously().catch(e=>{console.warn('Anon auth failed:',e.message); resolve(null);});
+    });
     window._firebaseReady=true;
     if(window._onFirebaseReady) window._onFirebaseReady();
   }catch(e){
@@ -269,6 +297,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       try{const r=await fetch('news.json?v='+Date.now());const d=await r.json();return d||[];}
       catch(e){return [];}
     };
+    window._fsAuthReady=Promise.resolve(null);
     window._firebaseReady=true;
     if(window._onFirebaseReady) window._onFirebaseReady();
   }
@@ -413,6 +442,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       <button class="art-share-btn" onclick="shareArticle()">🔗 Share</button>
     </div>
     <div id="artContent"></div>
+    <button class="back-to-top" id="backToTopBtn" onclick="scrollArtToTop()" title="Back to top">↑</button>
   </div>
 </div>
 
@@ -520,21 +550,43 @@ function linkify(t){
 // ── WhatsApp-style body → professional web typography ──
 // Supports: *bold*, _italic_, [text](url) links, bare URLs, "- "/"• " bullet
 // lists, "1. " numbered lists, and blank-line-separated paragraphs.
+function preprocessPastedHtml(raw){
+  // Convert raw pasted <a href="URL">text</a> tags (common when copying from
+  // web pages) into clean markdown links so they render correctly, instead
+  // of leaking raw HTML into the article body.
+  let t=raw.replace(/<a\s+[^>]*?href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi,(m,url,txt)=>{
+    const clean=txt.replace(/<[^>]+>/g,'').trim();
+    return `[${clean||url}](${url})`;
+  });
+  // Strip any other stray HTML tags that slipped in via paste (keep the text).
+  t=t.replace(/<\/?[a-z][^>]*>/gi,'');
+  return t;
+}
+
+// ── WhatsApp-style body → professional web typography ──
+// Supports: *bold*, _italic_, ~strike~, `mono`, [text](url) links, bare
+// URLs, "## " headings, "> " quotes, "- "/"• " bullets, "1. " numbered
+// lists, simple "| a | b |" tables, and blank-line-separated paragraphs.
 function formatArticleBody(raw){
   if(!raw) return '';
+  raw=preprocessPastedHtml(raw);
   const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const isValidUrl=u=>{try{const p=new URL(u);return p.protocol==='http:'||p.protocol==='https:';}catch(e){return false;}};
   const inline=line=>{
     let t=esc(line);
-    t=t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,(m,txt,url)=>`<a href="${url}" target="_blank" rel="noopener">${txt}</a>`);
-    t=t.replace(/(https?:\/\/[^\s<>"']+)/g,u=>u.match(/^<a /)?u:`<a href="${u}" target="_blank" rel="noopener">${u}</a>`);
+    t=t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,(m,txt,url)=>isValidUrl(url)?`<a href="${url}" target="_blank" rel="noopener">${txt}</a>`:m);
+    t=t.replace(/(https?:\/\/[^\s<>"']+)/g,u=>u.match(/^<a /)||!isValidUrl(u)?u:`<a href="${u}" target="_blank" rel="noopener">${u}</a>`);
     t=t.replace(/`([^`\n]+)`/g,'<code>$1</code>');
     t=t.replace(/\*([^\*\n]+)\*/g,'<strong>$1</strong>');
     t=t.replace(/_([^_\n]+)_/g,'<em>$1</em>');
     t=t.replace(/~([^~\n]+)~/g,'<s>$1</s>');
     return t;
   };
+  const isTableRow=l=>/^\|.*\|$/.test(l.trim());
+  const isTableSep=l=>/^\|?[\s:|-]+\|?$/.test(l.trim())&&l.includes('-');
+  const parseRow=l=>l.trim().replace(/^\||\|$/g,'').split('|').map(c=>c.trim());
   const lines=raw.replace(/\r\n/g,'\n').split('\n');
-  let html='',buf=[],mode=null; // mode: null|'ul'|'ol'|'p'|'bq'
+  let html='',buf=[],mode=null; // null|'ul'|'ol'|'p'|'bq'
   const flush=()=>{
     if(!buf.length){mode=null;return;}
     if(mode==='ul') html+='<ul>'+buf.map(l=>`<li>${inline(l)}</li>`).join('')+'</ul>';
@@ -543,26 +595,31 @@ function formatArticleBody(raw){
     else html+=`<p>${buf.map(inline).join('<br>')}</p>`;
     buf=[];mode=null;
   };
-  lines.forEach(line=>{
-    const t=line.trim();
-    if(!t){flush();return;}
+  for(let i=0;i<lines.length;i++){
+    const line=lines[i],t=line.trim();
+    if(!t){flush();continue;}
+    // Table block: a header row immediately followed by a separator row
+    if(isTableRow(t)&&lines[i+1]&&isTableSep(lines[i+1])){
+      flush();
+      const header=parseRow(t);
+      let j=i+2,rows=[];
+      while(j<lines.length&&isTableRow(lines[j].trim())){rows.push(parseRow(lines[j]));j++;}
+      html+='<div class="art-table-wrap"><table class="art-table"><thead><tr>'+
+        header.map(h=>`<th>${inline(h)}</th>`).join('')+'</tr></thead><tbody>'+
+        rows.map(r=>'<tr>'+r.map(c=>`<td>${inline(c||'')}</td>`).join('')+'</tr>').join('')+
+        '</tbody></table></div>';
+      i=j-1; continue;
+    }
+    const heading=/^#{2,3}\s+(.*)/.exec(t);
     const bullet=/^[-•]\s+(.*)/.exec(t);
     const numbered=/^\d+[.)]\s+(.*)/.exec(t);
     const quote=/^>\s?(.*)/.exec(t);
-    if(bullet){
-      if(mode&&mode!=='ul') flush();
-      mode='ul'; buf.push(bullet[1]);
-    } else if(numbered){
-      if(mode&&mode!=='ol') flush();
-      mode='ol'; buf.push(numbered[1]);
-    } else if(quote){
-      if(mode&&mode!=='bq') flush();
-      mode='bq'; buf.push(quote[1]);
-    } else {
-      if(mode&&mode!=='p') flush();
-      mode='p'; buf.push(t);
-    }
-  });
+    if(heading){ flush(); html+=`<h3 class="art-h">${inline(heading[1])}</h3>`; }
+    else if(bullet){ if(mode&&mode!=='ul') flush(); mode='ul'; buf.push(bullet[1]); }
+    else if(numbered){ if(mode&&mode!=='ol') flush(); mode='ol'; buf.push(numbered[1]); }
+    else if(quote){ if(mode&&mode!=='bq') flush(); mode='bq'; buf.push(quote[1]); }
+    else { if(mode&&mode!=='p') flush(); mode='p'; buf.push(t); }
+  }
   flush();
   return html;
 }
@@ -578,40 +635,79 @@ function articleUrl(item){
   return base+'#'+hash;
 }
 
+// ── Author profiles (for byline photo + bio) — loaded once, cached by nickname ──
+window._authorProfileCache=null;
+async function getAuthorProfile(authorName){
+  if(!authorName) return null;
+  try{
+    if(!window._authorProfileCache){
+      if(!window._fsDb) return null;
+      const snap=await window._fsDb.collection('admin_profiles').get();
+      window._authorProfileCache={};
+      snap.docs.forEach(d=>{
+        const data=d.data();
+        const name=data.nickname||data.name;
+        if(name) window._authorProfileCache[name]=data;
+      });
+    }
+    return window._authorProfileCache[authorName]||null;
+  }catch(e){ console.warn('Author profile fetch failed:',e.message); return null; }
+}
+
 // ── Toast ──
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
 
-// ── Like / unlike (one toggle per session per article, via localStorage) ──
-function likedIds(){try{return JSON.parse(localStorage.getItem('bqm-liked')||'[]');}catch(e){return [];}}
-function isLiked(id){return id&&likedIds().includes(id);}
+// ── Like / unlike — one like per person, enforced server-side ──
+// Each article has a `likes/{uid}` subcollection; a visitor's like/unlike is
+// a document create/delete there, and the aggregate `likes` count on the
+// article only moves in lockstep with it (Firestore rules require both to
+// happen in the same transaction — see firestore.rules).
+async function checkLiked(id){
+  try{
+    const uid=await window._fsAuthReady;
+    if(!uid||!window._fsDb) return false;
+    const snap=await window._fsDb.collection('fs_news').doc(id).collection('likes').doc(uid).get();
+    return snap.exists;
+  }catch(e){ console.warn('Like status check failed:',e.message); return false; }
+}
 async function toggleLike(id){
   if(!id) return;
-  const ids=likedIds();
-  const already=ids.includes(id);
-  const delta=already?-1:1;
-  const idxIn=ids.indexOf(id);
-  if(already) ids.splice(idxIn,1); else ids.push(id);
-  localStorage.setItem('bqm-liked',JSON.stringify(ids));
-  // Optimistic UI update
   const btn=document.getElementById('likeBtn'),cntEl=document.getElementById('likeCount');
+  if(!btn) return;
+  const wasLiked=btn.classList.contains('liked');
+  const delta=wasLiked?-1:1;
   const n=allNews.find(x=>x._id===id);
+  // Optimistic UI
   if(n){n.likes=(n.likes||0)+delta; if(n.likes<0)n.likes=0;}
-  if(btn){btn.classList.toggle('liked',!already);btn.querySelector('.heart').textContent=already?'🤍':'❤️';}
+  btn.classList.toggle('liked',!wasLiked);
+  btn.querySelector('.heart').textContent=wasLiked?'🤍':'❤️';
   if(cntEl&&n) cntEl.textContent=n.likes;
+  btn.disabled=true;
   try{
-    if(!window._fsDb) throw new Error('offline');
-    await window._fsDb.collection('fs_news').doc(id).update({likes:firebase.firestore.FieldValue.increment(delta)});
+    const uid=await window._fsAuthReady;
+    if(!uid||!window._fsDb) throw new Error('offline or not signed in');
+    const newsRef=window._fsDb.collection('fs_news').doc(id);
+    const likeRef=newsRef.collection('likes').doc(uid);
+    await window._fsDb.runTransaction(async tx=>{
+      const likeSnap=await tx.get(likeRef);
+      if(likeSnap.exists){
+        tx.delete(likeRef);
+        tx.update(newsRef,{likes:firebase.firestore.FieldValue.increment(-1)});
+      } else {
+        tx.set(likeRef,{likedAt:firebase.firestore.FieldValue.serverTimestamp()});
+        tx.update(newsRef,{likes:firebase.firestore.FieldValue.increment(1)});
+      }
+    });
   }catch(e){
     console.warn('Like sync failed:',e.message);
-    // Roll back — the like didn't actually save, so don't count or remember it
-    const rollbackIds=likedIds();
-    if(already && !rollbackIds.includes(id)) rollbackIds.push(id);
-    else if(!already){const ri=rollbackIds.indexOf(id); if(ri>-1) rollbackIds.splice(ri,1);}
-    localStorage.setItem('bqm-liked',JSON.stringify(rollbackIds));
+    // Roll back — the like didn't actually save
     if(n){n.likes=(n.likes||0)-delta; if(n.likes<0)n.likes=0;}
-    if(btn){btn.classList.toggle('liked',already);btn.querySelector('.heart').textContent=already?'❤️':'🤍';}
+    btn.classList.toggle('liked',wasLiked);
+    btn.querySelector('.heart').textContent=wasLiked?'❤️':'🤍';
     if(cntEl&&n) cntEl.textContent=n.likes;
     showToast('⚠️ Could not save like — check your connection');
+  }finally{
+    btn.disabled=false;
   }
 }
 window.toggleLike=toggleLike;
@@ -638,9 +734,42 @@ window.recordView=recordView;
 function copyArticleLinkOnly(){
   if(currentIdx<0) return;
   const url=articleUrl(allNews[currentIdx]);
-  navigator.clipboard.writeText(url).then(()=>showToast('🔗 Link copied!')).catch(()=>showToast('🔗 '+url));
+  navigator.clipboard.writeText(url).then(()=>showToast('✓ Link copied')).catch(()=>showToast('✓ '+url));
 }
 window.copyArticleLinkOnly=copyArticleLinkOnly;
+
+// ── Social share — headline + short excerpt + link only, never the whole article ──
+function shareText(n){
+  const excerpt=plainPreview(n.fullContent||'').substring(0,120);
+  return `${n.title} — ${excerpt}${excerpt.length>=120?'…':''}`;
+}
+function shareTo(platform){
+  if(currentIdx<0) return;
+  const n=allNews[currentIdx];
+  const url=articleUrl(n);
+  const text=shareText(n);
+  let shareUrl='';
+  if(platform==='whatsapp') shareUrl='https://wa.me/?text='+encodeURIComponent(text+' '+url);
+  else if(platform==='facebook') shareUrl='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
+  else if(platform==='x') shareUrl='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);
+  if(shareUrl) window.open(shareUrl,'_blank','noopener,width=600,height=520');
+}
+window.shareTo=shareTo;
+
+// ── Back to top (inside the article scroll box) ──
+function scrollArtToTop(){
+  const box=document.getElementById('artBox');
+  if(box) box.scrollTo({top:0,behavior:'smooth'});
+}
+window.scrollArtToTop=scrollArtToTop;
+(function(){
+  const box=document.getElementById('artBox');
+  if(!box) return;
+  box.addEventListener('scroll',()=>{
+    const btn=document.getElementById('backToTopBtn');
+    if(btn) btn.classList.toggle('show',box.scrollTop>500);
+  });
+})();
 
 // ── Init ──
 async function init(){
@@ -829,11 +958,17 @@ function openArticle(idx){
   currentIdx=idx;
   const mins=readingTime(n.fullContent||'');
   const preview=plainPreview(n.fullContent||'').substring(0,160);
-  const related=allNews.filter((x,i)=>i!==idx&&x.category===n.category).slice(0,3);
+  // Related: score by shared tags (weighted higher) + same category, best 3
+  const related=allNews
+    .map((x,i)=>({x,i,score:i===idx?-1:(x.category===n.category?1:0)+((x.tags||[]).filter(t=>(n.tags||[]).includes(t)).length*2)}))
+    .filter(o=>o.score>0)
+    .sort((a,b)=>b.score-a.score)
+    .slice(0,3)
+    .map(o=>o.x);
 
-  const liked=isLiked(n._id);
   const likeCount=n.likes||0;
   const viewCount=n.views||0;
+  const tags=n.tags||[];
 
   document.getElementById('artHeaderTitle').textContent=n.title;
   document.getElementById('artContent').innerHTML=`
@@ -844,16 +979,20 @@ function openArticle(idx){
       <div class="art-meta">
         <span>Published ${n.date||''}</span>
         ${n.updatedDate&&n.updatedDate!==n.date?`<span>· Updated ${n.updatedDate}</span>`:''}
-        ${n.author?`<span>· ✍️ ${n.author}</span>`:''}
         <span>· ⏱ ${mins} min read</span>
         <span>· 👁 <span id="viewCount">${viewCount}</span> views</span>
       </div>
+      <div id="artByline"></div>
       <div class="art-content">${formatArticleBody(n.fullContent||'')}</div>
+      ${tags.length?`<div class="art-tags">${tags.map(t=>`<span class="art-tag-chip">#${t}</span>`).join('')}</div>`:''}
       <div class="art-actions">
-        <button class="like-btn${liked?' liked':''}" id="likeBtn" onclick="toggleLike('${n._id||''}')">
-          <span class="heart">${liked?'❤️':'🤍'}</span><span id="likeCount">${likeCount}</span>
+        <button class="like-btn" id="likeBtn" onclick="toggleLike('${n._id||''}')">
+          <span class="heart">🤍</span><span id="likeCount">${likeCount}</span>
         </button>
         <button class="copylink-btn" onclick="copyArticleLinkOnly()">🔗 Copy link</button>
+        <button class="share-social-btn" onclick="shareTo('whatsapp')" title="Share on WhatsApp">🟢</button>
+        <button class="share-social-btn" onclick="shareTo('facebook')" title="Share on Facebook">📘</button>
+        <button class="share-social-btn" onclick="shareTo('x')" title="Share on X">✕</button>
       </div>
       ${related.length?`
         <div class="art-related">
@@ -871,24 +1010,53 @@ function openArticle(idx){
         </div>`:''}
     </div>`;
 
+  // Byline — plain text immediately, upgraded with photo/bio if a matching
+  // admin profile is found (async, non-blocking)
+  const bylineEl=document.getElementById('artByline');
+  if(n.author){
+    bylineEl.innerHTML=`<div class="art-meta" style="margin:-8px 0 14px;border:0;padding:0">· ✍️ ${n.author}</div>`;
+    const openAuthor=n.author, openArtId=n._id;
+    getAuthorProfile(n.author).then(prof=>{
+      if(!prof||currentIdx<0||allNews[currentIdx]._id!==openArtId) return;
+      const el=document.getElementById('artByline'); if(!el) return;
+      el.innerHTML=`<div class="art-byline">
+        ${prof.photo?`<img src="${prof.photo}" alt="${openAuthor}">`:`<div style="width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">${openAuthor.charAt(0).toUpperCase()}</div>`}
+        <div><div class="art-byline-name">By ${openAuthor}</div>${prof.bio?`<div class="art-byline-bio">${prof.bio}</div>`:''}</div>
+      </div>`;
+    });
+  } else {
+    bylineEl.innerHTML='';
+  }
+
   // Stable hash URL: #slug--id
   const slug=n.slug||makeSlug(n.title||'');
   const hash=slug+(n._id?'--'+n._id:'');
   history.replaceState({},'',location.pathname+'#'+hash);
 
-  // OG meta for share
+  // OG / SEO meta for share — SEO overrides fall back to sensible defaults
   const artLink=articleUrl(n);
+  const seoTitle=(n.seoTitle||n.title)+' — Big Quams Media®';
+  const seoDesc=n.seoDesc||preview;
   const setMeta=(p,v)=>{let m=document.querySelector(`meta[property="${p}"]`);if(!m){m=document.createElement('meta');m.setAttribute('property',p);document.head.appendChild(m);}m.setAttribute('content',v);};
-  setMeta('og:title',n.title+' — Big Quams Media®');
-  setMeta('og:description',preview);
+  const setNameMeta=(nm,v)=>{let m=document.querySelector(`meta[name="${nm}"]`);if(!m){m=document.createElement('meta');m.setAttribute('name',nm);document.head.appendChild(m);}m.setAttribute('content',v);};
+  setMeta('og:title',seoTitle);
+  setMeta('og:description',seoDesc);
   setMeta('og:image',n.image||'https://bigquamsmedia.com.ng/bigquamsmedia-admin/1001736174.png');
   setMeta('og:url',artLink);
-  document.title=n.title+' — Big Quams Media®';
+  setNameMeta('description',seoDesc);
+  document.title=seoTitle;
 
   document.getElementById('artOverlay').classList.add('open');
   document.getElementById('artBox').scrollTop=0;
   document.body.style.overflow='hidden';
   recordView(n._id);
+  const openId=n._id;
+  checkLiked(openId).then(liked=>{
+    const btn=document.getElementById('likeBtn');
+    if(!btn||btn.getAttribute('onclick')!==`toggleLike('${openId}')`) return; // article changed since
+    btn.classList.toggle('liked',liked);
+    btn.querySelector('.heart').textContent=liked?'❤️':'🤍';
+  });
 }
 
 function closeArticle(){
