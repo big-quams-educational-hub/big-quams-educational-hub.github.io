@@ -16,6 +16,7 @@
 <link rel="icon" type="image/png" href="https://bigquamsmedia.com.ng/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:12px;--shadow:0 8px 28px rgba(26,63,168,.11)}
 body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
@@ -188,9 +189,13 @@ body.dark .like-btn{background:#1a2236}
 .copylink-btn{display:flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);color:var(--text);padding:8px 16px;border-radius:24px;font-size:.8rem;font-weight:700;transition:.18s}
 body.dark .copylink-btn{background:#1a2236}
 .copylink-btn:hover{border-color:var(--blue);color:var(--blue)}
-.share-social-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;background:var(--surface2);border:1.5px solid var(--border);color:var(--text);border-radius:50%;font-size:.95rem;transition:.18s}
+.share-social-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;background:var(--surface2);border:1.5px solid var(--border);color:var(--text);border-radius:50%;font-size:1rem;transition:.18s}
 body.dark .share-social-btn{background:#1a2236}
-.share-social-btn:hover{border-color:var(--blue);transform:translateY(-1px)}
+.share-social-btn:hover{transform:translateY(-1px)}
+.share-social-btn.wa:hover{border-color:#25d366;color:#25d366}
+.share-social-btn.fb:hover{border-color:#1877f2;color:#1877f2}
+.share-social-btn.xt:hover{border-color:#000;color:#000}
+body.dark .share-social-btn.xt:hover{border-color:#fff;color:#fff}
 .art-tags{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0 6px}
 .art-tag-chip{font-size:.7rem;font-weight:700;background:var(--surface2);border:1px solid var(--border);padding:4px 12px;border-radius:20px;color:var(--muted)}
 .art-byline{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:10px 12px;background:var(--surface2);border-radius:10px}
@@ -200,6 +205,8 @@ body.dark .share-social-btn{background:#1a2236}
 .back-to-top{display:none;position:sticky;bottom:18px;align-self:flex-end;margin-right:18px;width:42px;height:42px;flex-shrink:0;border-radius:50%;background:var(--blue);color:#fff;font-size:1.1rem;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:6;border:0}
 .back-to-top.show{display:block}
 .art-related{margin-top:28px;padding-top:18px;border-top:2px solid var(--surface2)}
+.art-cancel-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:28px;padding:13px;background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;font-size:.85rem;font-weight:700;color:var(--text);transition:.18s}
+.art-cancel-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
 body.dark .art-related{border-color:var(--border)}
 .art-related-title{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text);margin-bottom:12px}
 .rel-card{display:flex;align-items:flex-start;gap:10px;padding:10px 11px;background:var(--surface2);border-radius:9px;cursor:pointer;transition:.18s;margin-bottom:7px}
@@ -437,9 +444,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <div class="art-overlay" id="artOverlay" onclick="handleOverlayClick(event)">
   <div class="art-box" id="artBox">
     <div class="art-header">
-      <button class="art-close" onclick="closeArticle()">✕</button>
+      <button class="art-close" onclick="closeArticle()" title="Close" aria-label="Close article"><i class="fas fa-xmark"></i></button>
       <div class="art-header-title" id="artHeaderTitle">Article</div>
-      <button class="art-share-btn" onclick="shareArticle()">🔗 Share</button>
+      <button class="art-share-btn" onclick="shareArticle()"><i class="fas fa-share-alt"></i> Share</button>
     </div>
     <div id="artContent"></div>
     <button class="back-to-top" id="backToTopBtn" onclick="scrollArtToTop()" title="Back to top">↑</button>
@@ -928,7 +935,7 @@ function render(){
           <span>· ⏱ ${mins} min</span>
           ${n.views?`<span>· 👁 ${n.views}</span>`:''}
           ${n.likes?`<span>· ❤️ ${n.likes}</span>`:''}
-          <button class="share-btn" onclick="shareCard(event,${idx})">🔗 Share</button>
+          <button class="share-btn" onclick="shareCard(event,${idx})"><i class="fas fa-share-alt"></i> Share</button>
         </div>
       </div></div>`;
   }).join('');
@@ -989,10 +996,10 @@ function openArticle(idx){
         <button class="like-btn" id="likeBtn" onclick="toggleLike('${n._id||''}')">
           <span class="heart">🤍</span><span id="likeCount">${likeCount}</span>
         </button>
-        <button class="copylink-btn" onclick="copyArticleLinkOnly()">🔗 Copy link</button>
-        <button class="share-social-btn" onclick="shareTo('whatsapp')" title="Share on WhatsApp">🟢</button>
-        <button class="share-social-btn" onclick="shareTo('facebook')" title="Share on Facebook">📘</button>
-        <button class="share-social-btn" onclick="shareTo('x')" title="Share on X">✕</button>
+        <button class="copylink-btn" onclick="copyArticleLinkOnly()"><i class="fas fa-link"></i> Copy link</button>
+        <button class="share-social-btn wa" onclick="shareTo('whatsapp')" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></button>
+        <button class="share-social-btn fb" onclick="shareTo('facebook')" title="Share on Facebook"><i class="fab fa-facebook"></i></button>
+        <button class="share-social-btn xt" onclick="shareTo('x')" title="Share on X"><i class="fab fa-x-twitter"></i></button>
       </div>
       ${related.length?`
         <div class="art-related">
@@ -1008,6 +1015,9 @@ function openArticle(idx){
             </div>`;
           }).join('')}
         </div>`:''}
+      <button class="art-cancel-btn" onclick="closeArticle()">
+        <i class="fas fa-xmark"></i> Close &amp; back to news
+      </button>
     </div>`;
 
   // Byline — plain text immediately, upgraded with photo/bio if a matching
@@ -1078,7 +1088,7 @@ function shareArticle(){
   if(navigator.share){
     navigator.share({title:n.title+' — Big Quams Media®',text:preview||n.title,url}).catch(()=>{});
   } else {
-    navigator.clipboard.writeText('📰 '+n.title+'\n\nRead more: '+url).then(()=>showToast('🔗 Link copied!')).catch(()=>showToast('🔗 '+url));
+    navigator.clipboard.writeText(n.title+'\n\nRead more: '+url).then(()=>showToast('✓ Link copied')).catch(()=>showToast('✓ '+url));
   }
 }
 
@@ -1090,7 +1100,7 @@ function shareCard(e,idx){
   if(navigator.share){
     navigator.share({title:n.title+' — Big Quams Media®',text:preview||n.title,url}).catch(()=>{});
   } else {
-    navigator.clipboard.writeText('📰 '+n.title+'\n\nRead more: '+url).then(()=>showToast('🔗 Link copied!')).catch(()=>showToast('🔗 '+url));
+    navigator.clipboard.writeText(n.title+'\n\nRead more: '+url).then(()=>showToast('✓ Link copied')).catch(()=>showToast('✓ '+url));
   }
 }
 window.shareCard=shareCard;
