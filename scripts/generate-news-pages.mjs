@@ -18,10 +18,14 @@
  *     /news/<slug>--<id>/index.html
  *
  * A crawler hitting that URL sees the correct preview instantly. A human
- * visitor is redirected (via <meta http-equiv="refresh"> AND a JS
- * location.replace, so it works with or without JS) straight into the
- * normal interactive newsroom.html SPA, landing on the same article via
- * its existing hash-routing (#slug--id).
+ * visitor is redirected via a JS-only `location.replace()` straight into
+ * the normal interactive newsroom.html SPA, landing on the same article via
+ * its existing hash-routing (#slug--id). This is deliberately JS-only, NOT
+ * a <meta http-equiv="refresh"> — Facebook's crawler follows refresh
+ * redirects even though it doesn't run JS, which would make it bounce
+ * through to newsroom.html and steal ITS generic Open Graph tags instead
+ * of this article's. Real browsers all run JS, so this is sufficient; a
+ * visible "tap here" link is the only fallback needed for no-JS visitors.
  *
  * No Firebase credentials are needed — `fs_news` and `fs_config` are
  * public-read in firestore.rules, so this hits the public REST API.
@@ -105,13 +109,39 @@ function decodeFields(fields) {
   return out;
 }
 
+// Retries transient failures (429 rate-limits, 5xx server errors, and
+// network hiccups) with exponential backoff + jitter. GitHub Actions'
+// shared runner IPs sometimes get rate-limited by Google's APIs even under
+// very light real usage — this is what actually failed the first few runs
+// of this workflow, not a config or permissions problem.
+async function fetchWithRetry(url, { retries = 5, baseDelayMs = 1000 } = {}) {
+  let lastErr;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(url);
+      if (res.status === 429 || res.status >= 500) {
+        lastErr = new Error(`HTTP ${res.status}: ${await res.text()}`);
+        throw lastErr;
+      }
+      return res; // includes 2xx, 404, and other non-retryable statuses
+    } catch (err) {
+      lastErr = err;
+      if (attempt === retries) break;
+      const delay = baseDelayMs * 2 ** attempt + Math.random() * 500;
+      console.warn(`  Request failed (attempt ${attempt + 1}/${retries + 1}), retrying in ${Math.round(delay)}ms: ${err.message}`);
+      await new Promise((r) => setTimeout(r, delay));
+    }
+  }
+  throw lastErr;
+}
+
 async function fetchCollection(name) {
   const base = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${name}?pageSize=300`;
   const docs = [];
   let pageToken = '';
   do {
     const url = pageToken ? `${base}&pageToken=${pageToken}` : base;
-    const res = await fetch(url);
+    const res = await fetchWithRetry(url);
     if (!res.ok) {
       throw new Error(`Firestore fetch failed for ${name}: ${res.status} ${await res.text()}`);
     }
@@ -127,7 +157,7 @@ async function fetchCollection(name) {
 
 async function fetchDoc(name, id) {
   const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${name}/${id}`;
-  const res = await fetch(url);
+  const res = await fetchWithRetry(url);
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`Firestore fetch failed for ${name}/${id}: ${res.status}`);
   const data = await res.json();
@@ -185,10 +215,18 @@ ${publishedTime ? `<meta property="article:published_time" content="${escapeHtml
 <meta name="twitter:image" content="${image}">
 
 <!-- Human visitors: redirect straight into the interactive newsroom app,
-     which opens this same article via its existing hash router. Both a
-     no-JS meta-refresh AND a JS redirect are included so it works either
-     way; crawlers stop at the <head> above and never reach this part. -->
-<meta http-equiv="refresh" content="0; url=${spaTarget}">
+     which opens this same article via its existing hash router. This is a
+     JS-only redirect on purpose — WhatsApp/Facebook/X/Telegram crawlers do
+     not execute JavaScript, so they stop right here and read the <meta>
+     tags above.
+     IMPORTANT: do NOT add a <meta http-equiv="refresh"> fallback here.
+     Facebook's crawler (unlike the others) DOES follow refresh redirects
+     even though it doesn't run JS — it will bounce straight through to
+     newsroom.html and pick up THAT page's generic Open Graph tags instead
+     of this article's, silently breaking every link preview. Real humans'
+     browsers all run JS, so location.replace() alone is sufficient; the
+     visible link below is the only fallback needed for the rare no-JS
+     visitor. -->
 <script>location.replace(${JSON.stringify(spaTarget)});</script>
 <link rel="icon" type="image/png" href="${SITE_ORIGIN}/logo.png">
 </head>
