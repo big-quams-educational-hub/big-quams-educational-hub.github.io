@@ -576,6 +576,24 @@ function catStyle(c){const v=CAT_COLORS[c]||'#f0f4ff,#1a3fa8';const[bg,col]=v.sp
 function readingTime(txt){return Math.max(1,Math.round((txt||'').split(/\s+/).filter(Boolean).length/200));}
 function stripHtml(t){return(t||'').replace(/<[^>]*>/g,'');}
 function plainPreview(t){return stripHtml(t).replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/[*_~`]/g,'').replace(/^>\s?/gm,'').replace(/^[-•]\s+/gm,'').replace(/^\d+[.)]\s+/gm,'').replace(/\s+/g,' ').trim();}
+// Standard news-site practice: use the article's lead sentence as the
+// auto-generated share/meta description, rather than an arbitrary
+// character slice — lands on a clean sentence boundary instead of cutting
+// off mid-word. Mirrors firstSentenceExcerpt() in generate-news-pages.mjs.
+function firstSentenceExcerpt(t,hardCap){
+  hardCap=hardCap||320;
+  const clean=plainPreview(t);
+  if(!clean) return '';
+  const m=/[.!?](?:\s|$)/.exec(clean);
+  if(m){
+    const end=m.index+1;
+    if(end>=20&&end<=hardCap) return clean.slice(0,end).trim();
+  }
+  if(clean.length<=hardCap) return clean;
+  const truncated=clean.slice(0,hardCap);
+  const lastSpace=truncated.lastIndexOf(' ');
+  return (lastSpace>40?truncated.slice(0,lastSpace):truncated).trim();
+}
 function linkify(t){
   if(!t) return '';
   const esc=t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -673,17 +691,21 @@ function articleUrl(item){
 }
 
 // ── Author profiles (for byline photo + bio) — loaded once, cached by nickname ──
+// Reads from fs_author_profiles, a public-safe subset (nickname/photo/bio
+// only) kept in sync by admin.html. Deliberately NOT reading admin_profiles
+// here — that collection also holds each admin's email and role, and must
+// stay admin-only readable.
 window._authorProfileCache=null;
 async function getAuthorProfile(authorName){
   if(!authorName) return null;
   try{
     if(!window._authorProfileCache){
       if(!window._fsDb) return null;
-      const snap=await window._fsDb.collection('admin_profiles').get();
+      const snap=await window._fsDb.collection('fs_author_profiles').get();
       window._authorProfileCache={};
       snap.docs.forEach(d=>{
         const data=d.data();
-        const name=data.nickname||data.name;
+        const name=data.nickname;
         if(name) window._authorProfileCache[name]=data;
       });
     }
@@ -1001,7 +1023,7 @@ function openArticle(idx){
   const n=allNews[idx]; if(!n) return;
   currentIdx=idx;
   const mins=readingTime(n.fullContent||'');
-  const preview=plainPreview(n.fullContent||'').substring(0,160);
+  const preview=firstSentenceExcerpt(n.fullContent||'');
   // Related: score by shared tags (weighted higher) + same category, best 3
   const related=allNews
     .map((x,i)=>({x,i,score:i===idx?-1:(x.category===n.category?1:0)+((x.tags||[]).filter(t=>(n.tags||[]).includes(t)).length*2)}))
@@ -1132,7 +1154,7 @@ function shareArticle(){
   if(currentIdx<0) return;
   const n=allNews[currentIdx];
   const url=articleUrl(n);
-  const preview=plainPreview(n.fullContent||'').substring(0,120);
+  const preview=firstSentenceExcerpt(n.fullContent||'');
   if(navigator.share){
     navigator.share({title:n.title+' — Big Quams Media®',text:preview||n.title,url}).catch(()=>{});
   } else {
@@ -1144,7 +1166,7 @@ function shareCard(e,idx){
   e.stopPropagation();
   const n=allNews[idx];
   const url=articleUrl(n);
-  const preview=plainPreview(n.fullContent||'').substring(0,120);
+  const preview=firstSentenceExcerpt(n.fullContent||'');
   if(navigator.share){
     navigator.share({title:n.title+' — Big Quams Media®',text:preview||n.title,url}).catch(()=>{});
   } else {
