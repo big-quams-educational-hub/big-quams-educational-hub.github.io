@@ -87,6 +87,46 @@ function escapeHtml(s) {
 }
 
 // ---------------------------------------------------------------------
+// Base64 image materialization
+//
+// Every image in the admin panel (Featured Image, Link Preview Image,
+// category defaults) is stored as an inline base64 data: URI in Firestore
+// — fine for a normal <img> tag in a browser, but WhatsApp/Facebook/X
+// crawlers treat og:image strictly as a URL they fetch themselves; a
+// data: URI isn't fetchable and gets silently ignored (Facebook's own
+// Sharing Debugger reports this as "og:image not yet available"). So any
+// base64 image gets decoded here and written out as a real file next to
+// the generated page, and og:image/twitter:image point at THAT file's
+// real https:// URL instead of the raw base64 string.
+// ---------------------------------------------------------------------
+
+const DATA_URI_RE = /^data:(image\/[a-zA-Z0-9.+-]+);base64,(.+)$/s;
+const MIME_EXT = {
+  'image/jpeg': 'jpg',
+  'image/jpg': 'jpg',
+  'image/png': 'png',
+  'image/webp': 'webp',
+  'image/gif': 'gif',
+};
+
+async function materializeImage(src, outDir) {
+  if (!src) return null;
+  const match = DATA_URI_RE.exec(src);
+  if (!match) return src; // already a normal fetchable URL — use as-is
+  const [, mime, b64] = match;
+  const ext = MIME_EXT[mime.toLowerCase()] || 'jpg';
+  let buffer;
+  try {
+    buffer = Buffer.from(b64, 'base64');
+  } catch {
+    return null; // malformed base64 — fall through to the next fallback tier
+  }
+  const filename = `preview.${ext}`;
+  await writeFile(path.join(outDir, filename), buffer);
+  return filename; // caller resolves this against the page's own public URL
+}
+
+// ---------------------------------------------------------------------
 // Minimal Firestore REST decoder — only the value types this app uses
 // ---------------------------------------------------------------------
 
@@ -181,14 +221,14 @@ function resolvePreviewImage(article, categoryDefaults) {
   return GLOBAL_NEWS_DEFAULT_IMAGE || SITE_DEFAULT_IMAGE;
 }
 
-function renderPage(article, categoryDefaults) {
+function renderPage(article, categoryDefaults, resolvedImage) {
   const slug = article.slug || makeSlug(article.title || '');
   const seg = `${slug}--${article._id}`;
   const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
   const title = escapeHtml(`${article.seoTitle || article.title || 'News'} — Big Quams Media®`);
   const rawDesc = article.seoDesc || plainPreview(article.fullContent || '').slice(0, 160);
   const desc = escapeHtml(rawDesc);
-  const image = escapeHtml(resolvePreviewImage(article, categoryDefaults));
+  const image = escapeHtml(resolvedImage || GLOBAL_NEWS_DEFAULT_IMAGE || SITE_DEFAULT_IMAGE);
   const spaTarget = `${SITE_ORIGIN}/newsroom.html#${seg}`;
   const publishedTime = typeof article.createdAt === 'string' ? article.createdAt : '';
 
@@ -259,7 +299,16 @@ async function main() {
     const seg = `${slug}--${article._id}`;
     const dir = path.join(OUTPUT_DIR, seg);
     await mkdir(dir, { recursive: true });
-    await writeFile(path.join(dir, 'index.html'), renderPage(article, categoryDefaults), 'utf8');
+    const rawImage = resolvePreviewImage(article, categoryDefaults);
+    const materialized = await materializeImage(rawImage, dir);
+    // materializeImage returns either the original URL unchanged (already
+    // fetchable), a bare filename (base64 was decoded to a file in `dir`),
+    // or null (malformed data) — resolve each case to a final public URL.
+    const resolvedImage =
+      materialized && materialized !== rawImage
+        ? `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/${materialized}`
+        : materialized || GLOBAL_NEWS_DEFAULT_IMAGE || SITE_DEFAULT_IMAGE;
+    await writeFile(path.join(dir, 'index.html'), renderPage(article, categoryDefaults, resolvedImage), 'utf8');
     sitemapUrls.push(`${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`);
     written++;
   }
