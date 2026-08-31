@@ -1,19 +1,44 @@
-- name: Setup Node
-    uses: actions/setup-node@v4
-    with:
-      node-version: '20'
+name: Generate News Preview Pages
 
-  - name: Generate static article pages
-    run: node scripts/generate-news-pages.mjs
+# Firestore changes (new/edited articles from the admin panel) don't trigger
+# a git push, so this can't be a simple "on: push" workflow. It runs on a
+# schedule to pick up new/edited articles automatically, and can also be
+# triggered manually right after publishing something important.
+on:
+  schedule:
+    - cron: '*/20 * * * *'   # every 20 minutes
+  workflow_dispatch: {}       # "Run workflow" button in the Actions tab
 
-  - name: Commit and push if anything changed
-    run: |
-      git config user.name "news-page-bot"
-      git config user.email "actions@users.noreply.github.com"
-      git add news/ sitemap-news.xml
-      if git diff --staged --quiet; then
-        echo "No article changes — nothing to commit."
-      else
-        git commit -m "Auto-generate news preview pages [skip ci]"
-        git push
-      fi
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-news-pages
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate static article pages
+        run: node scripts/generate-news-pages.mjs
+
+      - name: Commit and push if anything changed
+        run: |
+          git config user.name "news-page-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add news/ sitemap-news.xml
+          if git diff --staged --quiet; then
+            echo "No article changes — nothing to commit."
+          else
+            git commit -m "Auto-generate news preview pages [skip ci]"
+            git push
+          fi
