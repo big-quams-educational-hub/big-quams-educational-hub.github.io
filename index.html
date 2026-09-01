@@ -34,6 +34,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- Firebase (modular v9+ SDK) -->
 <script type="module">
 try{
@@ -313,7 +314,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
 
 
 .success-item{padding:0 28px;font-size:.72rem;color:rgba(255,255,255,.75);white-space:nowrap;line-height:34px}
-.success-item::after{content:'🎉';margin-left:12px}
+.success-item::after{content:'\f79f';font-family:'Font Awesome 6 Free';font-weight:900;margin-left:12px}
 
 /* EXPLORE BANNER used in quick-access strip below hero */
 
@@ -484,10 +485,10 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
 
 <!-- TOP BAR -->
 <div class="top-bar" id="topBar">
-  <div>🔔 <strong>Stay updated!</strong> Enable notifications for instant JAMB, scholarship &amp; admission alerts.</div>
+  <div><i class="fas fa-bell"></i> <strong>Stay updated!</strong> Enable notifications for instant JAMB, scholarship &amp; admission alerts.</div>
   <div class="top-bar-btns">
     <button class="top-bar-allow" onclick="enableNotifications()">Enable</button>
-    <button class="top-bar-dismiss" onclick="dismissTopBar()">✕</button>
+    <button class="top-bar-dismiss" onclick="dismissTopBar()"><i class="fas fa-xmark"></i></button>
   </div>
 </div>
 
@@ -505,10 +506,10 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
       <a href="cbt.html">CBT</a>
       <a href="scholarship.html">Scholarships</a>
       <a href="elibrary.html">eLibrary</a>
-      <a href="profile.html">👤 Login</a><a href="#contact" class="nav-cta">💬 Contact</a>
+      <a href="profile.html"><i class="fas fa-user"></i> Login</a><a href="#contact" class="nav-cta"><i class="fas fa-comment-dots"></i> Contact</a>
     </nav>
     <div class="hdr-right">
-      <button class="hdr-btn" id="darkToggle" onclick="toggleDarkMode()" aria-label="Switch to dark mode">🌙</button>
+      <button class="hdr-btn" id="darkToggle" onclick="toggleDarkMode()" aria-label="Switch to dark mode"><i class="fas fa-moon"></i></button>
       <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -526,42 +527,42 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
         <div class="mnav-bsub">Nigeria's Trusted Student Platform</div>
       </div>
     </div>
-    <button class="mnav-close" onclick="toggleNav()" aria-label="Close menu">✕</button>
+    <button class="mnav-close" onclick="toggleNav()" aria-label="Close menu"><i class="fas fa-xmark"></i></button>
   </div>
-  <a href="profile.html" onclick="toggleNav()" style="background:rgba(249,115,22,.12);font-weight:700">👤 Login / My Account</a>
+  <a href="profile.html" onclick="toggleNav()" style="background:rgba(249,115,22,.12);font-weight:700"><i class="fas fa-user"></i> Login / My Account</a>
 
   <div class="mnav-section">Main</div>
-  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
-  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
-  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
-  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
-  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
-  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
-  <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
+  <a href="index.html" onclick="toggleNav()"><i class="fas fa-house"></i> Home</a>
+  <a href="newsroom.html" onclick="toggleNav()"><i class="fas fa-newspaper"></i> Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()"><i class="fas fa-folder-open"></i> Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()"><i class="fas fa-gamepad"></i> Campus Life</a>
+  <a href="community.html" onclick="toggleNav()"><i class="fas fa-handshake"></i> Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()"><i class="fas fa-calendar-days"></i> Daily Hub</a>
+  <a href="profile.html" onclick="toggleNav()"><i class="fas fa-user"></i> My Profile</a>
 
   <div class="mnav-section">Exam Tools</div>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
-  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
-  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+  <a href="cbt.html" onclick="toggleNav()"><i class="fas fa-laptop-code"></i> JAMB CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()"><i class="fas fa-book-open"></i> Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()"><i class="fas fa-calculator"></i> Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()"><i class="fas fa-graduation-cap"></i> GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()"><i class="fas fa-chart-column"></i> Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()"><i class="fas fa-key"></i> JAMB Profile Code</a>
 
   <div class="mnav-section">Resources</div>
-  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
-  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
-  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
-  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
-  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
-  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
+  <a href="elibrary.html" onclick="toggleNav()"><i class="fas fa-book"></i> eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()"><i class="fas fa-sack-dollar"></i> Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()"><i class="fas fa-credit-card"></i> Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()"><i class="fas fa-star"></i> Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()"><i class="fas fa-lightbulb"></i> Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()"><i class="fas fa-clipboard-list"></i> Subject Combination</a>
 
-  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
+  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
 </nav>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
 
 <!-- TICKER -->
 <div class="ticker-bar" id="tickerBar">
-  <div class="ticker-tag">⚡ Live</div>
+  <div class="ticker-tag"><i class="fas fa-bolt"></i> Live</div>
   <div class="ticker-scroll-wrap"><div class="ticker-track" id="tickerTrack"></div></div>
 </div>
 
@@ -580,31 +581,31 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
 
     <!-- TRUST BADGES -->
     <div class="hero-trust">
-      <div class="trust-badge">✅ 100% Free</div>
-      <div class="trust-badge">📱 Mobile Friendly</div>
-      <div class="trust-badge">⚡ PWA Supported</div>
-      <div class="trust-badge">🔄 Always Updated</div>
-      <div class="trust-badge">💬 WhatsApp Support</div>
+      <div class="trust-badge"><i class="fas fa-circle-check"></i> 100% Free</div>
+      <div class="trust-badge"><i class="fas fa-mobile-screen"></i> Mobile Friendly</div>
+      <div class="trust-badge"><i class="fas fa-bolt"></i> PWA Supported</div>
+      <div class="trust-badge"><i class="fas fa-rotate"></i> Always Updated</div>
+      <div class="trust-badge"><i class="fab fa-whatsapp"></i> WhatsApp Support</div>
     </div>
 
     <!-- SEARCH BAR -->
     <div class="hero-search-wrap">
       <div class="hero-search">
-        <span class="hero-search-icon">🔍</span>
+        <span class="hero-search-icon"><i class="fas fa-magnifying-glass"></i></span>
         <input type="text" id="heroSearch" class="hero-search-input" placeholder="Search scholarships, schools, news, tools…" onkeydown="if(event.key==='Enter')heroSearchGo()" autocomplete="off">
         <button class="hero-search-btn" onclick="heroSearchGo()">Search</button>
       </div>
       <div class="hero-search-tags" style="margin-top:10px">
-        <button onclick="heroSearchTag('CBT Practice')">👨🏽‍💻 CBT</button>
-        <button onclick="heroSearchTag('Scholarship')">💰 Scholarships</button>
-        <button onclick="heroSearchTag('Post-UTME')">📖 Post-UTME</button>
-        <button onclick="heroSearchTag('Student Loan')">💳 NELFUND</button>
+        <button onclick="heroSearchTag('CBT Practice')"><i class="fas fa-laptop-code"></i> CBT</button>
+        <button onclick="heroSearchTag('Scholarship')"><i class="fas fa-sack-dollar"></i> Scholarships</button>
+        <button onclick="heroSearchTag('Post-UTME')"><i class="fas fa-book-open"></i> Post-UTME</button>
+        <button onclick="heroSearchTag('Student Loan')"><i class="fas fa-credit-card"></i> NELFUND</button>
       </div>
     </div>
 
     <div class="hero-ctas" style="margin-top:24px">
-      <a href="explore.html" class="btn-orange">🗂 Explore All Tools</a>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa">💬 Chat on WhatsApp</a>
+      <a href="explore.html" class="btn-orange"><i class="fas fa-folder-open"></i> Explore All Tools</a>
+      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
     </div>
 
     <!-- STATS -->
@@ -626,10 +627,10 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
         <h2 class="sec-title">Built for Every Stage of <span>Your Journey</span></h2>
         <p style="font-size:.92rem;color:var(--text-muted);line-height:1.75;margin:12px 0 20px">From pre-admission to graduation — Big Quams Media® gives you the tools, news, and resources to stay ahead on campus.</p>
         <div class="vh-features">
-          <div class="vh-feat"><span class="vh-feat-icon" style="background:#fee2e2">👨🏽‍💻</span><div><div class="vh-feat-name">JAMB CBT Practice</div><div class="vh-feat-desc">515+ past questions</div></div></div>
-          <div class="vh-feat"><span class="vh-feat-icon" style="background:#dcfce7">💰</span><div><div class="vh-feat-name">Scholarship Finder</div><div class="vh-feat-desc">50+ live opportunities</div></div></div>
-          <div class="vh-feat"><span class="vh-feat-icon" style="background:#ede9fe">💳</span><div><div class="vh-feat-name">NELFUND Student Loan</div><div class="vh-feat-desc">Step-by-step guide</div></div></div>
-          <div class="vh-feat"><span class="vh-feat-icon" style="background:#fef3c7">📚</span><div><div class="vh-feat-name">Free eLibrary</div><div class="vh-feat-desc">100+ textbooks & notes</div></div></div>
+          <div class="vh-feat"><span class="vh-feat-icon" style="background:#fee2e2"><i class="fas fa-laptop-code"></i></span><div><div class="vh-feat-name">JAMB CBT Practice</div><div class="vh-feat-desc">515+ past questions</div></div></div>
+          <div class="vh-feat"><span class="vh-feat-icon" style="background:#dcfce7"><i class="fas fa-sack-dollar"></i></span><div><div class="vh-feat-name">Scholarship Finder</div><div class="vh-feat-desc">50+ live opportunities</div></div></div>
+          <div class="vh-feat"><span class="vh-feat-icon" style="background:#ede9fe"><i class="fas fa-credit-card"></i></span><div><div class="vh-feat-name">NELFUND Student Loan</div><div class="vh-feat-desc">Step-by-step guide</div></div></div>
+          <div class="vh-feat"><span class="vh-feat-icon" style="background:#fef3c7"><i class="fas fa-book"></i></span><div><div class="vh-feat-name">Free eLibrary</div><div class="vh-feat-desc">100+ textbooks & notes</div></div></div>
         </div>
         <a href="explore.html" class="btn-orange" style="margin-top:8px">See All 12 Tools →</a>
       </div>
@@ -646,17 +647,17 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
               <div style="font-size:.42rem;color:rgba(255,255,255,.55)">Simplifying Campus Life</div>
             </div>
           </div>
-          <div class="vh-phone-welcome">Welcome, Student! 🎓<br><span>What would you like to explore?</span></div>
+          <div class="vh-phone-welcome">Welcome, Student! <i class="fas fa-graduation-cap"></i><br><span>What would you like to explore?</span></div>
           <div class="vh-phone-grid">
-            <a href="newsroom.html" class="vh-phone-tile" style="--tc:#dbeafe;--ti:#1d4ed8">📰<span>Campus News</span></a>
-            <a href="student-loan.html" class="vh-phone-tile" style="--tc:#ede9fe;--ti:#6d28d9">💳<span>Student Loan</span></a>
-            <a href="scholarship.html" class="vh-phone-tile" style="--tc:#dcfce7;--ti:#15803d">💰<span>Scholarships</span></a>
-            <a href="gpa-calculator.html" class="vh-phone-tile" style="--tc:#fef3c7;--ti:#92400e">📊<span>GPA Calc</span></a>
-            <a href="elibrary.html" class="vh-phone-tile" style="--tc:#fef9c3;--ti:#92400e">📚<span>eLibrary</span></a>
-            <a href="cbt.html" class="vh-phone-tile" style="--tc:#fee2e2;--ti:#b91c1c">👨🏽‍💻<span>JAMB CBT</span></a>
+            <a href="newsroom.html" class="vh-phone-tile" style="--tc:#dbeafe;--ti:#1d4ed8"><i class="fas fa-newspaper"></i><span>Campus News</span></a>
+            <a href="student-loan.html" class="vh-phone-tile" style="--tc:#ede9fe;--ti:#6d28d9"><i class="fas fa-credit-card"></i><span>Student Loan</span></a>
+            <a href="scholarship.html" class="vh-phone-tile" style="--tc:#dcfce7;--ti:#15803d"><i class="fas fa-sack-dollar"></i><span>Scholarships</span></a>
+            <a href="gpa-calculator.html" class="vh-phone-tile" style="--tc:#fef3c7;--ti:#92400e"><i class="fas fa-chart-column"></i><span>GPA Calc</span></a>
+            <a href="elibrary.html" class="vh-phone-tile" style="--tc:#fef9c3;--ti:#92400e"><i class="fas fa-book"></i><span>eLibrary</span></a>
+            <a href="cbt.html" class="vh-phone-tile" style="--tc:#fee2e2;--ti:#b91c1c"><i class="fas fa-laptop-code"></i><span>JAMB CBT</span></a>
           </div>
           <div class="vh-phone-footer">
-            <span>🏠</span><span>🗂</span><span>📰</span><span>📚</span><span>👤</span>
+            <span><i class="fas fa-house"></i></span><span><i class="fas fa-folder-open"></i></span><span><i class="fas fa-newspaper"></i></span><span><i class="fas fa-book"></i></span><span><i class="fas fa-user"></i></span>
           </div>
         </div>
         <div class="vh-badge-free">100%<br>FREE</div>
@@ -668,13 +669,13 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
 <!-- TOOLS BAR -->
 <div class="tools-bar">
   <div class="tools-scroll">
-    <button class="tool-tab active" onclick="document.getElementById('news-updates').scrollIntoView({behavior:'smooth'})">📰 Latest News</button>
-    <button class="tool-tab" onclick="location.href='cbt.html'">👨🏽‍💻 CBT Practice</button>
-    <button class="tool-tab" onclick="document.getElementById('scholarship-preview').scrollIntoView({behavior:'smooth'})">💰 Scholarships</button>
-    <button class="tool-tab" onclick="location.href='elibrary.html'">📖 eLibrary</button>
-    <button class="tool-tab" onclick="location.href='daily.html'">📅 Daily Hub</button>
-    <button class="tool-tab" onclick="location.href='campus-life.html'">🎮 Campus Life</button>
-    <button class="tool-tab" onclick="location.href='explore.html'">🗂 All Tools</button>
+    <button class="tool-tab active" onclick="document.getElementById('news-updates').scrollIntoView({behavior:'smooth'})"><i class="fas fa-newspaper"></i> Latest News</button>
+    <button class="tool-tab" onclick="location.href='cbt.html'"><i class="fas fa-laptop-code"></i> CBT Practice</button>
+    <button class="tool-tab" onclick="document.getElementById('scholarship-preview').scrollIntoView({behavior:'smooth'})"><i class="fas fa-sack-dollar"></i> Scholarships</button>
+    <button class="tool-tab" onclick="location.href='elibrary.html'"><i class="fas fa-book-open"></i> eLibrary</button>
+    <button class="tool-tab" onclick="location.href='daily.html'"><i class="fas fa-calendar-days"></i> Daily Hub</button>
+    <button class="tool-tab" onclick="location.href='campus-life.html'"><i class="fas fa-gamepad"></i> Campus Life</button>
+    <button class="tool-tab" onclick="location.href='explore.html'"><i class="fas fa-folder-open"></i> All Tools</button>
   </div>
 </div>
 
@@ -687,62 +688,62 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
     </div>
     <div class="qt-grid">
       <a href="cbt.html" class="qt-card" style="--qt-color:#fee2e2;--qt-text:#b91c1c">
-        <span class="qt-icon">👨🏽‍💻</span>
+        <span class="qt-icon"><i class="fas fa-laptop-code"></i></span>
         <div class="qt-name">CBT Practice</div>
         <div class="qt-desc">515+ JAMB questions</div>
       </a>
       <a href="newsroom.html" class="qt-card" style="--qt-color:#dbeafe;--qt-text:#1d4ed8">
-        <span class="qt-icon">📰</span>
+        <span class="qt-icon"><i class="fas fa-newspaper"></i></span>
         <div class="qt-name">Campus Newsroom</div>
         <div class="qt-desc">Latest campus updates</div>
       </a>
       <a href="scholarship.html" class="qt-card" style="--qt-color:#dcfce7;--qt-text:#15803d">
-        <span class="qt-icon">💰</span>
+        <span class="qt-icon"><i class="fas fa-sack-dollar"></i></span>
         <div class="qt-name">Scholarships</div>
         <div class="qt-desc">50+ opportunities</div>
       </a>
       <a href="student-loan.html" class="qt-card" style="--qt-color:#ede9fe;--qt-text:#6d28d9">
-        <span class="qt-icon">💳</span>
+        <span class="qt-icon"><i class="fas fa-credit-card"></i></span>
         <div class="qt-name">Student Loan</div>
         <div class="qt-desc">NELFUND guide</div>
       </a>
       <a href="gpa-calculator.html" class="qt-card" style="--qt-color:#f0fdf4;--qt-text:#15803d">
-        <span class="qt-icon">📊</span>
+        <span class="qt-icon"><i class="fas fa-chart-column"></i></span>
         <div class="qt-name">GPA Calculator</div>
         <div class="qt-desc">5.0 & 4.0 scales</div>
       </a>
       <a href="elibrary.html" class="qt-card" style="--qt-color:#fef3c7;--qt-text:#92400e">
-        <span class="qt-icon">📚</span>
+        <span class="qt-icon"><i class="fas fa-book"></i></span>
         <div class="qt-name">eLibrary</div>
         <div class="qt-desc">100+ free eBooks</div>
       </a>
       <a href="postutme-prep.html" class="qt-card" style="--qt-color:#fef9c3;--qt-text:#92400e">
-        <span class="qt-icon">📖</span>
+        <span class="qt-icon"><i class="fas fa-book-open"></i></span>
         <div class="qt-name">Post-UTME Prep</div>
         <div class="qt-desc">School-specific guides</div>
       </a>
       <a href="postutme-calculator.html" class="qt-card" style="--qt-color:#dbeafe;--qt-text:#1d4ed8">
-        <span class="qt-icon">🧮</span>
+        <span class="qt-icon"><i class="fas fa-calculator"></i></span>
         <div class="qt-name">Aggregate Calc</div>
         <div class="qt-desc">Know your chances</div>
       </a>
       <a href="daily.html" class="qt-card" style="--qt-color:#fef9c3;--qt-text:#92400e">
-        <span class="qt-icon">📅</span>
+        <span class="qt-icon"><i class="fas fa-calendar-days"></i></span>
         <div class="qt-name">Daily Hub</div>
         <div class="qt-desc">Daily challenge + DYK</div>
       </a>
       <a href="campus-life.html" class="qt-card" style="--qt-color:#fce7f3;--qt-text:#9d174d">
-        <span class="qt-icon">🎮</span>
+        <span class="qt-icon"><i class="fas fa-gamepad"></i></span>
         <div class="qt-name">Campus Life</div>
         <div class="qt-desc">Gist, polls & games</div>
       </a>
       <a href="subject-combo.html" class="qt-card" style="--qt-color:#dcfce7;--qt-text:#15803d">
-        <span class="qt-icon">📋</span>
+        <span class="qt-icon"><i class="fas fa-clipboard-list"></i></span>
         <div class="qt-name">Subject Combo</div>
         <div class="qt-desc">JAMB combinations</div>
       </a>
       <a href="results.html" class="qt-card" style="--qt-color:#e0f2fe;--qt-text:#0369a1">
-        <span class="qt-icon">📋</span>
+        <span class="qt-icon"><i class="fas fa-clipboard-list"></i></span>
         <div class="qt-name">Results Checker</div>
         <div class="qt-desc">JAMB, WAEC, NECO</div>
       </a>
@@ -791,17 +792,17 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
     </div>
     <div class="testimonials-grid">
       <div class="testi-card">
-        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-stars"><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i></div>
         <div class="testi-text">"I got verified admission information through Big Quams Media® when I was confused about Post-UTME screening. No fake news, just facts."</div>
         <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Aisha M.</div><div class="testi-school">KWASU Student</div></div></div>
       </div>
       <div class="testi-card">
-        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-stars"><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i></div>
         <div class="testi-text">"The Post-UTME aggregate calculator showed me exactly where I stood before screening. I went in confident and got admitted. Thank you Big Quams Media®!"</div>
         <div class="testi-author"><div class="testi-avatar">T</div><div><div class="testi-name">Tobiloba A.</div><div class="testi-school">UNIOSUN Applicant</div></div></div>
       </div>
       <div class="testi-card">
-        <div class="testi-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testi-stars"><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i></div>
         <div class="testi-text">"The CBT practice questions are exactly like the real JAMB exam. I practised every day and improved my score from 187 to 241. This platform is a must!"</div>
         <div class="testi-author"><div class="testi-avatar">E</div><div><div class="testi-name">Emmanuel O.</div><div class="testi-school">UNILAG Applicant</div></div></div>
       </div>
@@ -822,8 +823,8 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
           <div class="install-step"><span class="install-num">2</span><span>Tap the <strong>menu icon</strong> (⋮ on Android · Share ⬆ on iPhone)</span></div>
           <div class="install-step"><span class="install-num">3</span><span>Select <strong>"Add to Home Screen"</strong> and tap Add</span></div>
         </div>
-        <button class="btn-orange" onclick="installApp()" id="installBtn" style="display:flex;width:100%;justify-content:center;margin-bottom:10px;align-items:center;gap:8px">📲 Install App Now</button>
-        <div class="install-note" id="installNote" style="font-size:.76rem;color:var(--text-muted);margin-top:6px;line-height:1.6">💡 <strong>iPhone:</strong> tap Share ⬆ in Safari → "Add to Home Screen"<br>💡 <strong>Android:</strong> tap ⋮ in Chrome → "Add to Home screen"</div>
+        <button class="btn-orange" onclick="installApp()" id="installBtn" style="display:flex;width:100%;justify-content:center;margin-bottom:10px;align-items:center;gap:8px"><i class="fas fa-mobile-screen-button"></i> Install App Now</button>
+        <div class="install-note" id="installNote" style="font-size:.76rem;color:var(--text-muted);margin-top:6px;line-height:1.6"><i class="fas fa-lightbulb"></i> <strong>iPhone:</strong> tap Share ⬆ in Safari → "Add to Home Screen"<br><i class="fas fa-lightbulb"></i> <strong>Android:</strong> tap ⋮ in Chrome → "Add to Home screen"</div>
       </div>
       <div class="install-visual">
         <div class="phone-mockup">
@@ -833,15 +834,15 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
               <span style="font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</span>
             </div>
             <div class="phone-tools">
-              <div class="phone-tool" style="background:#fee2e2">👨🏽‍💻</div>
-              <div class="phone-tool" style="background:#dbeafe">📰</div>
-              <div class="phone-tool" style="background:#dcfce7">💰</div>
-              <div class="phone-tool" style="background:#ede9fe">💳</div>
-              <div class="phone-tool" style="background:#fef3c7">📚</div>
-              <div class="phone-tool" style="background:#fce7f3">🎮</div>
+              <div class="phone-tool" style="background:#fee2e2"><i class="fas fa-laptop-code"></i></div>
+              <div class="phone-tool" style="background:#dbeafe"><i class="fas fa-newspaper"></i></div>
+              <div class="phone-tool" style="background:#dcfce7"><i class="fas fa-sack-dollar"></i></div>
+              <div class="phone-tool" style="background:#ede9fe"><i class="fas fa-credit-card"></i></div>
+              <div class="phone-tool" style="background:#fef3c7"><i class="fas fa-book"></i></div>
+              <div class="phone-tool" style="background:#fce7f3"><i class="fas fa-gamepad"></i></div>
             </div>
             <div class="phone-notif">
-              <span>🔔</span>
+              <span><i class="fas fa-bell"></i></span>
               <div style="flex:1">
                 <div style="font-size:.5rem;font-weight:700;color:#1e2749">New Scholarship Alert!</div>
                 <div style="font-size:.44rem;color:#64748b">MTN Foundation — Apply now</div>
@@ -866,15 +867,15 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
         <p>Whether you're seeking admission, preparing for screenings, searching for scholarships, or looking for verified school updates, Big Quams Media® is your trusted companion.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin:16px 0">
           <div style="flex:1;min-width:140px;background:var(--blue-lt,#dde9ff);border-radius:10px;padding:12px 14px">
-            <div style="font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:var(--blue-main,#1a3fa8);margin-bottom:4px">🎯 Our Vision</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:var(--blue-main,#1a3fa8);margin-bottom:4px"><i class="fas fa-bullseye"></i> Our Vision</div>
             <div style="font-size:.78rem;color:var(--text-muted);line-height:1.5">To become the most trusted digital platform for students in Nigeria and beyond.</div>
           </div>
           <div style="flex:1;min-width:140px;background:#fff7ed;border-radius:10px;padding:12px 14px">
-            <div style="font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:#c2410c;margin-bottom:4px">🚀 Our Mission</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:#c2410c;margin-bottom:4px"><i class="fas fa-rocket"></i> Our Mission</div>
             <div style="font-size:.78rem;color:var(--text-muted);line-height:1.5">To empower students with accurate information, valuable resources, and opportunities that enhance their academic growth.</div>
           </div>
         </div>
-        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa" style="display:inline-flex;">💬 Chat with Us</a>
+        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa" style="display:inline-flex;"><i class="fab fa-whatsapp"></i> Chat with Us</a>
       </div>
       <div class="stats-grid">
         <div class="stat-box"><div class="stat-num" data-target="10000" data-suffix="+" data-divisor="1000">10K+</div><div class="stat-lbl">Students Reached</div></div>
@@ -895,8 +896,8 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
         <p>Join thousands of Nigerian students using Big Quams Media® — completely free.</p>
       </div>
       <div class="cta-banner-btns">
-        <a href="explore.html" class="btn-orange">🗂 Explore Tools</a>
-        <a href="cbt.html" class="btn-blue">👨🏽‍💻 Start JAMB Practice</a>
+        <a href="explore.html" class="btn-orange"><i class="fas fa-folder-open"></i> Explore Tools</a>
+        <a href="cbt.html" class="btn-blue"><i class="fas fa-laptop-code"></i> Start JAMB Practice</a>
       </div>
     </div>
   </div>
@@ -920,10 +921,10 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
         </form>
       </div>
       <div class="contact-channels">
-        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon">💬</span><div><div class="ch-label">Chat on WhatsApp</div><div class="ch-sub">Direct message — fastest response</div></div></a>
-        <a href="mailto:bigquamsmedia@gmail.com" class="ch-card"><span class="ch-icon">📧</span><div><div class="ch-label">Send an Email</div><div class="ch-sub">bigquamsmedia@gmail.com</div></div></a>
-        <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon">👥</span><div><div class="ch-label">Join Brainy Buddies Group</div><div class="ch-sub">Community of Nigerian students</div></div></a>
-        <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon">📢</span><div><div class="ch-label">Join Our WhatsApp Channel</div><div class="ch-sub">10K+ students already subscribed</div></div></a>
+        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon"><i class="fab fa-whatsapp"></i></span><div><div class="ch-label">Chat on WhatsApp</div><div class="ch-sub">Direct message — fastest response</div></div></a>
+        <a href="mailto:bigquamsmedia@gmail.com" class="ch-card"><span class="ch-icon"><i class="fas fa-envelope"></i></span><div><div class="ch-label">Send an Email</div><div class="ch-sub">bigquamsmedia@gmail.com</div></div></a>
+        <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon"><i class="fas fa-users"></i></span><div><div class="ch-label">Join Brainy Buddies Group</div><div class="ch-sub">Community of Nigerian students</div></div></a>
+        <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon"><i class="fas fa-bullhorn"></i></span><div><div class="ch-label">Join Our WhatsApp Channel</div><div class="ch-sub">10K+ students already subscribed</div></div></a>
       </div>
     </div>
   </div>
@@ -941,54 +942,54 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
           <p class="footer-bsub">Free tools, news and resources built for Nigerian undergraduates — from admission to graduation.</p>
         </div>
       </div>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa footer-cta">💬 Chat on WhatsApp</a>
+      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa footer-cta"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
     </div>
 
     <nav class="footer-cols" aria-label="Footer navigation">
       <div>
         <h3 class="footer-heading">Main</h3>
         <ul class="footer-links">
-          <li><a href="index.html">🏠 Home</a></li>
-          <li><a href="newsroom.html">📰 Newsroom</a></li>
-          <li><a href="explore.html">🗂 Explore Tools</a></li>
-          <li><a href="campus-life.html">🎮 Campus Life</a></li>
-          <li><a href="community.html">🤝 Community</a></li>
-          <li><a href="daily.html">📅 Daily Hub</a></li>
+          <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
+          <li><a href="newsroom.html"><i class="fas fa-newspaper"></i> Newsroom</a></li>
+          <li><a href="explore.html"><i class="fas fa-folder-open"></i> Explore Tools</a></li>
+          <li><a href="campus-life.html"><i class="fas fa-gamepad"></i> Campus Life</a></li>
+          <li><a href="community.html"><i class="fas fa-handshake"></i> Community</a></li>
+          <li><a href="daily.html"><i class="fas fa-calendar-days"></i> Daily Hub</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Exam Tools</h3>
         <ul class="footer-links">
-          <li><a href="cbt.html">👨🏽‍💻 JAMB CBT Practice</a></li>
-          <li><a href="postutme-prep.html">📖 Post-UTME Prep</a></li>
-          <li><a href="postutme-calculator.html">🧮 Aggregate Calc</a></li>
-          <li><a href="admissioncalculator.html">🎯 Admission Chances</a></li>
-          <li><a href="gpa-calculator.html">🎓 GPA Calculator</a></li>
-          <li><a href="results.html">📊 Results Checker</a></li>
-          <li><a href="Jamb_Profile_Code.html">🔑 JAMB Profile Code</a></li>
+          <li><a href="cbt.html"><i class="fas fa-laptop-code"></i> JAMB CBT Practice</a></li>
+          <li><a href="postutme-prep.html"><i class="fas fa-book-open"></i> Post-UTME Prep</a></li>
+          <li><a href="postutme-calculator.html"><i class="fas fa-calculator"></i> Aggregate Calc</a></li>
+          <li><a href="admissioncalculator.html"><i class="fas fa-bullseye"></i> Admission Chances</a></li>
+          <li><a href="gpa-calculator.html"><i class="fas fa-graduation-cap"></i> GPA Calculator</a></li>
+          <li><a href="results.html"><i class="fas fa-chart-column"></i> Results Checker</a></li>
+          <li><a href="Jamb_Profile_Code.html"><i class="fas fa-key"></i> JAMB Profile Code</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Resources</h3>
         <ul class="footer-links">
-          <li><a href="elibrary.html">📚 eLibrary</a></li>
-          <li><a href="scholarship.html">💰 Scholarships</a></li>
-          <li><a href="student-loan.html">💳 Student Loan</a></li>
-          <li><a href="spotlight.html">🌟 Student Spotlight</a></li>
-          <li><a href="dyk.html">💡 Did You Know</a></li>
-          <li><a href="subject-combo.html">📋 Subject Combo</a></li>
+          <li><a href="elibrary.html"><i class="fas fa-book"></i> eLibrary</a></li>
+          <li><a href="scholarship.html"><i class="fas fa-sack-dollar"></i> Scholarships</a></li>
+          <li><a href="student-loan.html"><i class="fas fa-credit-card"></i> Student Loan</a></li>
+          <li><a href="spotlight.html"><i class="fas fa-star"></i> Student Spotlight</a></li>
+          <li><a href="dyk.html"><i class="fas fa-lightbulb"></i> Did You Know</a></li>
+          <li><a href="subject-combo.html"><i class="fas fa-clipboard-list"></i> Subject Combo</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Connect</h3>
         <ul class="footer-links">
-          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer">👥 Join WhatsApp Group</a></li>
-          <li><a href="#install-app">📲 Install App</a></li>
+          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer"><i class="fas fa-users"></i> Join WhatsApp Group</a></li>
+          <li><a href="#install-app"><i class="fas fa-mobile-screen-button"></i> Install App</a></li>
         </ul>
         <div class="footer-social">
-          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
-          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📸</a>
-          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok">🎵</a>
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
       </div>
     </nav>
@@ -1007,7 +1008,7 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
   </div>
 </footer>
 
-<a id="wa-float" href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬</a>
+<a id="wa-float" href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
 <button id="backToTop" aria-label="Back to top">↑</button>
 <div id="toast-wrap"></div>
 
@@ -1019,14 +1020,14 @@ function toggleDarkMode(){
   const btn=document.getElementById('darkToggle');
   document.body.classList.toggle('dark');
   const dark=document.body.classList.contains('dark');
-  if(btn){btn.textContent=dark?'☀️':'🌙';btn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');}
+  if(btn){btn.innerHTML=dark?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';btn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');}
   localStorage.setItem('bqm-theme',dark?'dark':'light');
 }
 (function(){
   const btn=document.getElementById('darkToggle');
   const saved=localStorage.getItem('bqm-theme');
   const sys=!saved&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
-  if(saved==='dark'||sys){document.body.classList.add('dark');if(btn){btn.textContent='☀️';btn.setAttribute('aria-label','Switch to light mode');}if(sys)localStorage.setItem('bqm-theme','dark');}
+  if(saved==='dark'||sys){document.body.classList.add('dark');if(btn){btn.innerHTML='<i class="fas fa-sun"></i>';btn.setAttribute('aria-label','Switch to light mode');}if(sys)localStorage.setItem('bqm-theme','dark');}
 })();
 
 /* NAV */
@@ -1043,10 +1044,10 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.
 /* TOP BAR */
 function dismissTopBar(){document.getElementById('topBar').classList.remove('show');sessionStorage.setItem('bqm_tb','1');}
 function enableNotifications(){
-  if(!('Notification'in window)){showToast('⚠️ Notifications not supported');return;}
+  if(!('Notification'in window)){showToast('<i class="fas fa-triangle-exclamation"></i> Notifications not supported');return;}
   Notification.requestPermission().then(p=>{
-    if(p==='granted'){localStorage.setItem('bqm_notif','1');document.getElementById('topBar').classList.remove('show');showToast('✅ Notifications enabled!');}
-    else if(p==='denied')showToast('⚠️ Notifications blocked in browser settings');
+    if(p==='granted'){localStorage.setItem('bqm_notif','1');document.getElementById('topBar').classList.remove('show');showToast('<i class="fas fa-circle-check"></i> Notifications enabled!');}
+    else if(p==='denied')showToast('<i class="fas fa-triangle-exclamation"></i> Notifications blocked in browser settings');
   });
 }
 (function(){
@@ -1056,7 +1057,7 @@ function enableNotifications(){
 
 /* TOAST */
 function showToast(msg){
-  const t=document.createElement('div');t.className='toast';t.textContent=msg;
+  const t=document.createElement('div');t.className='toast';t.innerHTML=msg;
   document.getElementById('toast-wrap').appendChild(t);
   requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('show')));
   setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),350);},2800);
@@ -1066,7 +1067,7 @@ function showToast(msg){
 function initTicker(){
   const track=document.getElementById('tickerTrack'),bar=document.getElementById('tickerBar');
   if(!track||!bar)return;
-  const seed=['📢 JAMB 2026 UTME Results Released — Check yours on the JAMB portal','🎓 Post-UTME Screening begins June 2026 — 15 universities confirmed','💳 NELFUND Student Loan portal is open — Apply before the deadline','💰 New scholarships added regularly — check the Scholarships page','📰 WAEC 2026 Results expected August — stay updated on BQM','🔔 Monitor your JAMB CAPS portal daily for admission updates'];
+  const seed=['<i class="fas fa-bullhorn"></i> JAMB 2026 UTME Results Released — Check yours on the JAMB portal','<i class="fas fa-graduation-cap"></i> Post-UTME Screening begins June 2026 — 15 universities confirmed','<i class="fas fa-credit-card"></i> NELFUND Student Loan portal is open — Apply before the deadline','<i class="fas fa-sack-dollar"></i> New scholarships added regularly — check the Scholarships page','<i class="fas fa-newspaper"></i> WAEC 2026 Results expected August — stay updated on BQM','<i class="fas fa-bell"></i> Monitor your JAMB CAPS portal daily for admission updates'];
   function render(items){track.innerHTML=[...items,...items].map(t=>`<span class="ticker-item">${t}</span>`).join('');bar.classList.add('show');}
   render(seed);
   // Pull live ticker items from Firestore; keep the seed text if it fails or is empty
@@ -1100,7 +1101,7 @@ function renderNewsCards(items){
   const preview=n=>(n.fullContent||n.summary||n.excerpt||'').replace(/<[^>]*>/g,'').substring(0,100);
   grid.innerHTML=top.map(n=>`
     <a class="news-card" href="${newsArticleUrl(n)}">
-      ${n.image?`<img class="news-img" src="${escapeHtml(n.image)}" alt="${escapeHtml(n.title)}" loading="lazy">`:`<div class="news-img-ph">${escapeHtml(n.emoji||'📰')}</div>`}
+      ${n.image?`<img class="news-img" src="${escapeHtml(n.image)}" alt="${escapeHtml(n.title)}" loading="lazy">`:`<div class="news-img-ph">${n.emoji?escapeHtml(n.emoji):'<i class="fas fa-newspaper"></i>'}</div>`}
       <div class="news-body">
         ${n.category?`<span class="news-tag">${escapeHtml(n.category)}</span>`:''}
         <div class="news-title">${escapeHtml(n.title)}</div>
@@ -1114,7 +1115,7 @@ function fbErrorBlock(what,reason,retryFnName,extraLinkHtml){
   return `<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem;grid-column:1/-1">
     ${what} could not load right now.<br>
     <span style="font-size:.72rem;color:var(--text-faint);display:block;margin-top:4px">Reason: ${safeReason}</span>
-    <button onclick="${retryFnName}()" style="margin-top:12px;padding:8px 18px;background:var(--blue-main,#1a3fa8);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:.78rem;cursor:pointer;font-family:'Montserrat',sans-serif">🔄 Retry</button>
+    <button onclick="${retryFnName}()" style="margin-top:12px;padding:8px 18px;background:var(--blue-main,#1a3fa8);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:.78rem;cursor:pointer;font-family:'Montserrat',sans-serif"><i class="fas fa-rotate"></i> Retry</button>
     ${extraLinkHtml||''}
   </div>`;
 }
@@ -1154,11 +1155,11 @@ function loadScholarships(){
   const grid=document.getElementById('scholarship-preview-grid');if(!grid)return;
   const tM={federal:['#dbeafe','#1d4ed8','#eff6ff'],corporate:['#fff7ed','#c2410c','#fff7ed'],international:['#ede9fe','#7c3aed','#f5f3ff'],state:['#dcfce7','#15803d','#f0fdf4']};
   const sC={open:'ss-open',ongoing:'ss-ongoing',soon:'ss-soon',closed:'ss-closed'};
-  const sL={open:'🟢 Open',ongoing:'🔵 Ongoing',soon:'🟡 Soon',closed:'🔴 Closed'};
+  const sL={open:'<i class="fas fa-circle"></i> Open',ongoing:'<i class="fas fa-circle"></i> Ongoing',soon:'<i class="fas fa-circle"></i> Soon',closed:'<i class="fas fa-circle"></i> Closed'};
   function render(items){
     grid.innerHTML=items.slice(0,3).map(s=>{
       const[tc,tx,ic]=tM[s.type||'federal']||tM.federal;
-      return`<div class="sch-card" onclick="location.href='scholarship.html'"><div class="sch-top"><div class="sch-icon-box" style="background:${ic}">${escapeHtml(s.icon||'💰')}</div><div class="sch-meta"><span class="sch-type-tag" style="background:${tc};color:${tx}">${escapeHtml((s.type||'federal').toUpperCase())}</span><div class="sch-name">${escapeHtml(s.name)}</div><div class="sch-org">${escapeHtml(s.org||'')}</div></div></div><div class="sch-body"><div class="sch-desc">${escapeHtml(s.desc||s.description||'')}</div></div><div class="sch-foot"><span class="sch-deadline">📅 ${escapeHtml(s.deadline||'Check portal')}</span><span class="sch-amount">${escapeHtml(s.amount||'')}</span><span class="sch-status ${sC[s.status]||'ss-ongoing'}">${sL[s.status]||'🔵 Ongoing'}</span></div><a href="https://wa.me/2349049871643?text=${encodeURIComponent('Hello BQM, I need help applying for: '+s.name)}" target="_blank" rel="noopener noreferrer" class="sch-apply-btn">💬 Get Help Applying →</a></div>`;
+      return`<div class="sch-card" onclick="location.href='scholarship.html'"><div class="sch-top"><div class="sch-icon-box" style="background:${ic}">${s.icon?escapeHtml(s.icon):'<i class="fas fa-sack-dollar"></i>'}</div><div class="sch-meta"><span class="sch-type-tag" style="background:${tc};color:${tx}">${escapeHtml((s.type||'federal').toUpperCase())}</span><div class="sch-name">${escapeHtml(s.name)}</div><div class="sch-org">${escapeHtml(s.org||'')}</div></div></div><div class="sch-body"><div class="sch-desc">${escapeHtml(s.desc||s.description||'')}</div></div><div class="sch-foot"><span class="sch-deadline"><i class="fas fa-calendar-days"></i> ${escapeHtml(s.deadline||'Check portal')}</span><span class="sch-amount">${escapeHtml(s.amount||'')}</span><span class="sch-status ${sC[s.status]||'ss-ongoing'}">${sL[s.status]||'<i class="fas fa-circle"></i> Ongoing'}</span></div><a href="https://wa.me/2349049871643?text=${encodeURIComponent('Hello BQM, I need help applying for: '+s.name)}" target="_blank" rel="noopener noreferrer" class="sch-apply-btn"><i class="fab fa-whatsapp"></i> Get Help Applying →</a></div>`;
     }).join('');
   }
   if(!window._db){
@@ -1201,18 +1202,18 @@ function submitContactForm(e){
   e.preventDefault();
   const name=document.getElementById('cf_name').value.trim(),email=document.getElementById('cf_email').value.trim(),msg=document.getElementById('cf_message').value.trim();
   const btn=document.getElementById('cf_submit');
-  if(!name||!email||!msg){showFb('⚠ Please fill in all fields.','error');return;}
+  if(!name||!email||!msg){showFb('<i class="fas fa-triangle-exclamation"></i> Please fill in all fields.','error');return;}
   btn.textContent='Sending…';btn.disabled=true;
   fetch('https://formspree.io/f/mqegznag',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name,email,message:msg})})
-    .then(r=>{if(r.ok){showFb('✅ Message sent! We\'ll reply within 24 hours.','success');document.getElementById('contactForm').reset();}else throw 0;})
-    .catch(()=>{showFb('📱 Opening WhatsApp instead…','warn');setTimeout(()=>open('https://wa.me/2349049871643?text='+encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nMessage: '+msg),'_blank'),1200);})
+    .then(r=>{if(r.ok){showFb('<i class="fas fa-circle-check"></i> Message sent! We\'ll reply within 24 hours.','success');document.getElementById('contactForm').reset();}else throw 0;})
+    .catch(()=>{showFb('<i class="fas fa-mobile-screen"></i> Opening WhatsApp instead…','warn');setTimeout(()=>open('https://wa.me/2349049871643?text='+encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nMessage: '+msg),'_blank'),1200);})
     .finally(()=>{btn.textContent='Send Message →';btn.disabled=false;});
 }
 function showFb(msg,type){
   const fb=document.getElementById('cf_feedback');if(!fb)return;
   const s={success:'background:#dcfce7;color:#15803d',error:'background:#fee2e2;color:#dc2626',warn:'background:#fef9c3;color:#854d0e'};
   fb.style.cssText=(s[type]||s.warn)+';display:block;padding:12px 14px;border-radius:8px;font-size:.85rem;font-weight:600;margin-top:10px;text-align:center';
-  fb.textContent=msg;if(type==='success')setTimeout(()=>{fb.style.display='none';},6000);
+  fb.innerHTML=msg;if(type==='success')setTimeout(()=>{fb.style.display='none';},6000);
 }
 
 /* INIT */
@@ -1232,11 +1233,11 @@ if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch((
 
 <!-- STICKY BOTTOM NAV -->
 <nav class="bottom-nav" id="bottomNav">
-  <a href="index.html" class="bn-item active"><span class="bn-icon">🏠</span>Home</a>
-  <a href="newsroom.html" class="bn-item"><span class="bn-icon">📰</span>News</a>
-  <a href="explore.html" class="bn-item"><span class="bn-icon">🗂</span>Tools</a>
-  <a href="scholarship.html" class="bn-item"><span class="bn-icon">💰</span>Scholarships</a>
-  <a href="cbt.html" class="bn-item"><span class="bn-icon">👨🏽‍💻</span>CBT</a>
+  <a href="index.html" class="bn-item active"><span class="bn-icon"><i class="fas fa-house"></i></span>Home</a>
+  <a href="newsroom.html" class="bn-item"><span class="bn-icon"><i class="fas fa-newspaper"></i></span>News</a>
+  <a href="explore.html" class="bn-item"><span class="bn-icon"><i class="fas fa-folder-open"></i></span>Tools</a>
+  <a href="scholarship.html" class="bn-item"><span class="bn-icon"><i class="fas fa-sack-dollar"></i></span>Scholarships</a>
+  <a href="cbt.html" class="bn-item"><span class="bn-icon"><i class="fas fa-laptop-code"></i></span>CBT</a>
 </nav>
 
 
@@ -1312,8 +1313,8 @@ function installApp(){
     deferredInstall.prompt();
     deferredInstall.userChoice.then(r=>{
       if(r.outcome==='accepted'){
-        showToast('✅ App installed! Find Big Quams Media® on your home screen.');
-        if(btn){btn.textContent='✅ Installed';btn.disabled=true;}
+        showToast('<i class="fas fa-circle-check"></i> App installed! Find Big Quams Media® on your home screen.');
+        if(btn){btn.innerHTML='<i class="fas fa-circle-check"></i> Installed';btn.disabled=true;}
       }
       deferredInstall=null;
     });
@@ -1321,13 +1322,13 @@ function installApp(){
     const ua=navigator.userAgent.toLowerCase();
     const note=document.getElementById('installNote');
     if(/iphone|ipad|ipod/.test(ua)){
-      showToast('📲 Tap Share ⬆ in Safari → "Add to Home Screen"');
-      if(note) note.textContent='📲 Safari: tap Share ⬆ → "Add to Home Screen"';
+      showToast('<i class="fas fa-mobile-screen-button"></i> Tap Share in Safari → "Add to Home Screen"');
+      if(note) note.innerHTML='<i class="fas fa-mobile-screen-button"></i> Safari: tap Share → "Add to Home Screen"';
     } else if(/android/.test(ua)){
-      showToast('📲 Tap ⋮ in Chrome → "Add to Home screen"');
-      if(note) note.textContent='📲 Chrome: tap ⋮ menu → "Add to Home screen"';
+      showToast('<i class="fas fa-mobile-screen-button"></i> Tap ⋮ in Chrome → "Add to Home screen"');
+      if(note) note.innerHTML='<i class="fas fa-mobile-screen-button"></i> Chrome: tap ⋮ menu → "Add to Home screen"';
     } else {
-      showToast('📲 Use your browser menu → "Add to Home Screen"');
+      showToast('<i class="fas fa-mobile-screen-button"></i> Use your browser menu → "Add to Home Screen"');
     }
   }
 }
@@ -1374,14 +1375,14 @@ window.installApp=installApp;
   var fab=document.createElement('button');
   fab.id='bqm-buddy-fab';
   fab.setAttribute('aria-label','Open Study Buddy');
-  fab.innerHTML='🤖<span class="bqm-fab-dot"></span>';
+  fab.innerHTML='<i class="fas fa-robot"></i><span class="bqm-fab-dot"></span>';
   document.body.appendChild(fab);
 
   var panel=document.createElement('div');
   panel.id='bqm-buddy-panel';
   panel.innerHTML=
     '<div class="bqm-bp-head">'+
-      '<div class="bqm-bp-avatar">🤖</div>'+
+      '<div class="bqm-bp-avatar"><i class="fas fa-robot"></i></div>'+
       '<div class="bqm-bp-title"><div class="bqm-bp-name">Study Buddy</div><div class="bqm-bp-sub">'+FREE_LIMIT+' free questions/day &middot; Unlimited for signed-in users</div></div>'+
       '<button class="bqm-bp-close" aria-label="Close Study Buddy">&#10005;</button>'+
     '</div>'+
@@ -1457,7 +1458,7 @@ window.installApp=installApp;
     panel.classList.toggle('bqm-open');
     if(panel.classList.contains('bqm-open') && !greeted){
       greeted=true;
-      addMsg("Hey! I'm Study Buddy 🤖 Ask me about subject combinations, cutoff marks, scholarships, JAMB prep or your CGPA.",'bot');
+      addMsg("Hey! I'm Study Buddy <i class='fas fa-robot'></i> Ask me about subject combinations, cutoff marks, scholarships, JAMB prep or your CGPA.",'bot');
     }
   };
 })();
