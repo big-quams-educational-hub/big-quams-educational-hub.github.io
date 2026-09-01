@@ -37,20 +37,39 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- Firebase (modular v9+ SDK) -->
 <script type="module">
-try{
-  const{initializeApp}=await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js');
-  const{getFirestore,collection,getDocs,query,orderBy,limit}=await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js');
-  const app=initializeApp({
-    apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',
-    authDomain:'big-quams-media.firebaseapp.com',
-    projectId:'big-quams-media'
-  });
-  window._db=getFirestore(app);
-  window._fs={collection,getDocs,query,orderBy,limit};
-}catch(e){
-  console.warn('Firebase init:',e.message);
-  window._fbInitError=e.message||'Failed to load Firebase SDK (check network/ad-blocker/CDN access)';
-}
+window._authUser = undefined; // undefined = not yet resolved, null = signed out, object = signed in
+window._authListeners = [];
+window.onAuthChange = function(fn){
+  window._authListeners.push(fn);
+  if(window._authUser!==undefined) fn(window._authUser);
+};
+window._dbReady = (async () => {
+  try{
+    const{initializeApp}=await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js');
+    const{getFirestore,collection,getDocs,query,orderBy,limit}=await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js');
+    const{getAuth,onAuthStateChanged}=await import('https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js');
+    const app=initializeApp({
+      apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',
+      authDomain:'big-quams-media.firebaseapp.com',
+      projectId:'big-quams-media'
+    });
+    window._db=getFirestore(app);
+    window._fs={collection,getDocs,query,orderBy,limit};
+    const auth=getAuth(app);
+    window._auth=auth;
+    onAuthStateChanged(auth,(user)=>{
+      window._authUser=user||null;
+      window._authListeners.forEach(fn=>{try{fn(window._authUser);}catch(e){console.warn('Auth listener error:',e);}});
+    });
+    return true;
+  }catch(e){
+    console.warn('Firebase init:',e.message);
+    window._fbInitError=e.message||'Failed to load Firebase SDK (check network/ad-blocker/CDN access)';
+    window._authUser=null; // fail safe to signed-out so the app doesn't hang waiting for auth
+    window._authListeners.forEach(fn=>{try{fn(null);}catch(er){}});
+    return false;
+  }
+})();
 </script>
 <style>
 :root{--blue-deep:#0c1f6e;--blue-main:#1a3fa8;--blue-light:#dde9ff;--orange:#f97316;--orange-dark:#e56b0f;--surface:#fff;--surface-alt:#f0f4ff;--border:#e2e8f4;--text-main:#1e2749;--text-muted:#64748b;--text-faint:#94a3b8;--radius-sm:8px;--radius-md:14px;--radius-lg:20px;--shadow-md:0 8px 28px rgba(26,63,168,.12)}
@@ -62,6 +81,22 @@ body.dark{background:#0d1117}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;font-family:inherit}
+
+/* Accessible focus states — visible only for keyboard/assistive-tech navigation, not mouse clicks.
+   Specific components (e.g. the Study Buddy input) may define a more tailored focus style; this is the sitewide default. */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
+  outline:2.5px solid var(--orange,#f97316);outline-offset:2px;border-radius:4px;
+}
+
+/* Respect the user's OS-level motion preference */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:0.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:0.01ms!important;
+    scroll-behavior:auto!important;
+  }
+}
 
 /* NOTIFICATION BAR */
 .top-bar{background:#1a3fa8;color:#fff;padding:9px 16px;display:none;align-items:center;justify-content:space-between;gap:10px;font-size:.78rem;flex-wrap:wrap}
@@ -182,7 +217,10 @@ body.dark .sec-link{color:#93c5fd}
 .news-grid{display:grid;grid-template-columns:1fr;gap:14px}
 @media(min-width:500px){.news-grid{grid-template-columns:1fr 1fr}}
 @media(min-width:860px){.news-grid{grid-template-columns:repeat(3,1fr)}}
-.news-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column;transition:all .22s;cursor:pointer}
+.news-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s,box-shadow .22s;cursor:pointer;animation:cardIn .45s ease both}
+.news-grid .news-card:nth-child(1){animation-delay:0s}
+.news-grid .news-card:nth-child(2){animation-delay:.08s}
+.news-grid .news-card:nth-child(3){animation-delay:.16s}
 body.dark .news-card{background:#1a2236;border-color:var(--border)}
 .news-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
 .news-img{width:100%;height:140px;object-fit:cover}
@@ -191,29 +229,34 @@ body.dark .news-img-ph{background:linear-gradient(135deg,#111d36,#142040)}
 .news-body{padding:13px;flex:1;display:flex;flex-direction:column;gap:5px}
 .news-tag{display:inline-block;background:#dbeafe;color:#1d4ed8;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;padding:2px 8px;border-radius:10px;align-self:flex-start}
 body.dark .news-tag{background:#1e3060;color:#93c5fd}
-.news-title{font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;color:var(--text-main);line-height:1.35}
-.news-excerpt{font-size:.78rem;color:var(--text-muted);line-height:1.5;flex:1}
+.news-title{font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;color:var(--text-main);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news-excerpt{font-size:.78rem;color:var(--text-muted);line-height:1.5;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .news-foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px;border-top:1px solid var(--border)}
 .news-date{font-size:.68rem;color:var(--text-faint)}
 .news-more{font-size:.72rem;font-weight:700;color:var(--blue-main)}
+@media(min-width:860px){.news-card{min-height:340px}.news-img,.news-img-ph{height:150px}}
 
 /* SCHOLARSHIPS */
 .sch-grid{display:grid;grid-template-columns:1fr;gap:12px}
 @media(min-width:500px){.sch-grid{grid-template-columns:1fr 1fr}}
 @media(min-width:860px){.sch-grid{grid-template-columns:repeat(3,1fr)}}
-.sch-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column;transition:all .22s;cursor:pointer}
+.sch-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);overflow:hidden;display:flex;flex-direction:column;transition:transform .22s,box-shadow .22s;cursor:pointer;animation:cardIn .45s ease both}
+.sch-grid .sch-card:nth-child(1){animation-delay:0s}
+.sch-grid .sch-card:nth-child(2){animation-delay:.08s}
+.sch-grid .sch-card:nth-child(3){animation-delay:.16s}
 body.dark .sch-card{background:#1a2236;border-color:var(--border)}
 .sch-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
 .sch-top{padding:16px 16px 10px;display:flex;gap:10px;align-items:flex-start}
 .sch-icon-box{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
 .sch-meta{flex:1;min-width:0}
 .sch-type-tag{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:4px}
-.sch-name{font-family:'Montserrat',sans-serif;font-size:.83rem;font-weight:800;color:var(--text-main);line-height:1.3}
-.sch-org{font-size:.7rem;color:var(--text-muted);margin-top:2px}
+.sch-name{font-family:'Montserrat',sans-serif;font-size:.83rem;font-weight:800;color:var(--text-main);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sch-org{font-size:.7rem;color:var(--text-muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sch-body{padding:0 16px 10px;flex:1}
-.sch-desc{font-size:.77rem;color:var(--text-muted);line-height:1.5}
+.sch-desc{font-size:.77rem;color:var(--text-muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .sch-foot{padding:10px 16px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
 .sch-deadline{font-size:.68rem;font-weight:600;color:#16a34a}
+@media(min-width:860px){.sch-card{min-height:300px}}
 .sch-amount{font-size:.7rem;font-weight:800;color:var(--orange)}
 .sch-status{font-size:.6rem;font-weight:800;padding:3px 9px;border-radius:20px}
 .ss-open{background:#dcfce7;color:#15803d}.ss-ongoing{background:#dbeafe;color:#1d4ed8}.ss-soon{background:#fef9c3;color:#854d0e}.ss-closed{background:#fee2e2;color:#dc2626}
@@ -313,8 +356,6 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
 
-.success-item{padding:0 28px;font-size:.72rem;color:rgba(255,255,255,.75);white-space:nowrap;line-height:34px}
-.success-item::after{content:'\f79f';font-family:'Font Awesome 6 Free';font-weight:900;margin-left:12px}
 
 /* EXPLORE BANNER used in quick-access strip below hero */
 
@@ -386,14 +427,18 @@ body.dark .skeleton-card{background:#161b27}
 .skeleton{background:linear-gradient(90deg,var(--border) 25%,var(--surface-alt,#f0f4ff) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:6px}
 body.dark .skeleton{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:200% 100%}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .sk-img{height:120px;width:100%;margin-bottom:10px;border-radius:8px}
 .sk-line{height:12px;margin-bottom:8px}
 .sk-w80{width:80%}.sk-w60{width:60%}.sk-w40{width:40%}
 
+/* Reusable loading/empty/error state blocks — used by any Firebase-powered section (news, scholarships, future ones) */
+.fb-state{grid-column:1/-1;text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem}
+.fb-state-msg{line-height:1.6}
+.fb-state-retry{margin-top:12px;padding:8px 18px;background:var(--blue-main,#1a3fa8);color:#fff;border:none;border-radius:var(--radius-sm);font-weight:700;font-size:.78rem;cursor:pointer;font-family:'Montserrat',sans-serif}
+.fb-state-retry:hover{background:var(--blue-deep,#0c1f6e)}
+
 /* ── STATS SECTION ── */
-.stats-section{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);padding:52px 16px}
-.stats-cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:800px;margin:0 auto}
-@media(min-width:600px){.stats-cards-grid{grid-template-columns:repeat(4,1fr)}}
 .stats-card{border-radius:16px;padding:20px 16px;text-align:center;position:relative;overflow:hidden;transition:.2s}
 .stats-card:hover{transform:translateY(-3px)}
 .stats-card.blue{background:rgba(59,130,246,.2);border:1.5px solid rgba(59,130,246,.3)}
@@ -487,8 +532,8 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
 <div class="top-bar" id="topBar">
   <div><i class="fas fa-bell"></i> <strong>Stay updated!</strong> Enable notifications for instant JAMB, scholarship &amp; admission alerts.</div>
   <div class="top-bar-btns">
-    <button class="top-bar-allow" onclick="enableNotifications()">Enable</button>
-    <button class="top-bar-dismiss" onclick="dismissTopBar()"><i class="fas fa-xmark"></i></button>
+    <button type="button" class="top-bar-allow" onclick="enableNotifications()">Enable</button>
+    <button type="button" class="top-bar-dismiss" onclick="dismissTopBar()"><i class="fas fa-xmark"></i></button>
   </div>
 </div>
 
@@ -509,8 +554,8 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
       <a href="profile.html"><i class="fas fa-user"></i> Login</a><a href="#contact" class="nav-cta"><i class="fas fa-comment-dots"></i> Contact</a>
     </nav>
     <div class="hdr-right">
-      <button class="hdr-btn" id="darkToggle" onclick="toggleDarkMode()" aria-label="Switch to dark mode"><i class="fas fa-moon"></i></button>
-      <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false">
+      <button type="button" class="hdr-btn" id="darkToggle" onclick="toggleDarkMode()" aria-label="Switch to dark mode"><i class="fas fa-moon"></i></button>
+      <button type="button" class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -527,7 +572,7 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
         <div class="mnav-bsub">Nigeria's Trusted Student Platform</div>
       </div>
     </div>
-    <button class="mnav-close" onclick="toggleNav()" aria-label="Close menu"><i class="fas fa-xmark"></i></button>
+    <button type="button" class="mnav-close" onclick="toggleNav()" aria-label="Close menu"><i class="fas fa-xmark"></i></button>
   </div>
   <a href="profile.html" onclick="toggleNav()" style="background:rgba(249,115,22,.12);font-weight:700"><i class="fas fa-user"></i> Login / My Account</a>
 
@@ -592,14 +637,14 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
     <div class="hero-search-wrap">
       <div class="hero-search">
         <span class="hero-search-icon"><i class="fas fa-magnifying-glass"></i></span>
-        <input type="text" id="heroSearch" class="hero-search-input" placeholder="Search scholarships, schools, news, tools…" onkeydown="if(event.key==='Enter')heroSearchGo()" autocomplete="off">
-        <button class="hero-search-btn" onclick="heroSearchGo()">Search</button>
+        <input type="text" id="heroSearch" class="hero-search-input" placeholder="Search scholarships, schools, news, tools…" onkeydown="if(event.key==='Enter')heroSearchGo()" autocomplete="off" aria-label="Search scholarships, schools, news, and tools">
+        <button type="button" class="hero-search-btn" onclick="heroSearchGo()">Search</button>
       </div>
       <div class="hero-search-tags" style="margin-top:10px">
-        <button onclick="heroSearchTag('CBT Practice')"><i class="fas fa-laptop-code"></i> CBT</button>
-        <button onclick="heroSearchTag('Scholarship')"><i class="fas fa-sack-dollar"></i> Scholarships</button>
-        <button onclick="heroSearchTag('Post-UTME')"><i class="fas fa-book-open"></i> Post-UTME</button>
-        <button onclick="heroSearchTag('Student Loan')"><i class="fas fa-credit-card"></i> NELFUND</button>
+        <button type="button" onclick="heroSearchTag('CBT Practice')"><i class="fas fa-laptop-code"></i> CBT</button>
+        <button type="button" onclick="heroSearchTag('Scholarship')"><i class="fas fa-sack-dollar"></i> Scholarships</button>
+        <button type="button" onclick="heroSearchTag('Post-UTME')"><i class="fas fa-book-open"></i> Post-UTME</button>
+        <button type="button" onclick="heroSearchTag('Student Loan')"><i class="fas fa-credit-card"></i> NELFUND</button>
       </div>
     </div>
 
@@ -669,13 +714,13 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
 <!-- TOOLS BAR -->
 <div class="tools-bar">
   <div class="tools-scroll">
-    <button class="tool-tab active" onclick="document.getElementById('news-updates').scrollIntoView({behavior:'smooth'})"><i class="fas fa-newspaper"></i> Latest News</button>
-    <button class="tool-tab" onclick="location.href='cbt.html'"><i class="fas fa-laptop-code"></i> CBT Practice</button>
-    <button class="tool-tab" onclick="document.getElementById('scholarship-preview').scrollIntoView({behavior:'smooth'})"><i class="fas fa-sack-dollar"></i> Scholarships</button>
-    <button class="tool-tab" onclick="location.href='elibrary.html'"><i class="fas fa-book-open"></i> eLibrary</button>
-    <button class="tool-tab" onclick="location.href='daily.html'"><i class="fas fa-calendar-days"></i> Daily Hub</button>
-    <button class="tool-tab" onclick="location.href='campus-life.html'"><i class="fas fa-gamepad"></i> Campus Life</button>
-    <button class="tool-tab" onclick="location.href='explore.html'"><i class="fas fa-folder-open"></i> All Tools</button>
+    <button type="button" class="tool-tab active" onclick="document.getElementById('news-updates').scrollIntoView({behavior:'smooth'})"><i class="fas fa-newspaper"></i> Latest News</button>
+    <button type="button" class="tool-tab" onclick="location.href='cbt.html'"><i class="fas fa-laptop-code"></i> CBT Practice</button>
+    <button type="button" class="tool-tab" onclick="document.getElementById('scholarship-preview').scrollIntoView({behavior:'smooth'})"><i class="fas fa-sack-dollar"></i> Scholarships</button>
+    <button type="button" class="tool-tab" onclick="location.href='elibrary.html'"><i class="fas fa-book-open"></i> eLibrary</button>
+    <button type="button" class="tool-tab" onclick="location.href='daily.html'"><i class="fas fa-calendar-days"></i> Daily Hub</button>
+    <button type="button" class="tool-tab" onclick="location.href='campus-life.html'"><i class="fas fa-gamepad"></i> Campus Life</button>
+    <button type="button" class="tool-tab" onclick="location.href='explore.html'"><i class="fas fa-folder-open"></i> All Tools</button>
   </div>
 </div>
 
@@ -823,7 +868,7 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
           <div class="install-step"><span class="install-num">2</span><span>Tap the <strong>menu icon</strong> (⋮ on Android · Share ⬆ on iPhone)</span></div>
           <div class="install-step"><span class="install-num">3</span><span>Select <strong>"Add to Home Screen"</strong> and tap Add</span></div>
         </div>
-        <button class="btn-orange" onclick="installApp()" id="installBtn" style="display:flex;width:100%;justify-content:center;margin-bottom:10px;align-items:center;gap:8px"><i class="fas fa-mobile-screen-button"></i> Install App Now</button>
+        <button type="button" class="btn-orange" onclick="installApp()" id="installBtn" style="display:flex;width:100%;justify-content:center;margin-bottom:10px;align-items:center;gap:8px"><i class="fas fa-mobile-screen-button"></i> Install App Now</button>
         <div class="install-note" id="installNote" style="font-size:.76rem;color:var(--text-muted);margin-top:6px;line-height:1.6"><i class="fas fa-lightbulb"></i> <strong>iPhone:</strong> tap Share ⬆ in Safari → "Add to Home Screen"<br><i class="fas fa-lightbulb"></i> <strong>Android:</strong> tap ⋮ in Chrome → "Add to Home screen"</div>
       </div>
       <div class="install-visual">
@@ -913,9 +958,9 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
       <div class="contact-form-box">
         <h3>Send Us a Message</h3>
         <form id="contactForm" onsubmit="submitContactForm(event)">
-          <div class="form-row"><label>Your Name</label><input type="text" id="cf_name" placeholder="e.g. Anthony Daniel" required></div>
-          <div class="form-row"><label>Email Address</label><input type="email" id="cf_email" placeholder="yourname@gmail.com" required></div>
-          <div class="form-row"><label>Message</label><textarea id="cf_message" placeholder="How can we help you?" required></textarea></div>
+          <div class="form-row"><label for="cf_name">Your Name</label><input type="text" id="cf_name" name="name" autocomplete="name" placeholder="e.g. Anthony Daniel" required></div>
+          <div class="form-row"><label for="cf_email">Email Address</label><input type="email" id="cf_email" name="email" autocomplete="email" placeholder="yourname@gmail.com" required></div>
+          <div class="form-row"><label for="cf_message">Message</label><textarea id="cf_message" name="message" placeholder="How can we help you?" required></textarea></div>
           <button type="submit" class="form-submit" id="cf_submit">Send Message →</button>
           <div id="cf_feedback" style="display:none;padding:12px 14px;border-radius:var(--radius-sm);font-size:.85rem;font-weight:600;margin-top:10px;text-align:center"></div>
         </form>
@@ -1009,11 +1054,23 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
 </footer>
 
 <a id="wa-float" href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-<button id="backToTop" aria-label="Back to top">↑</button>
+<button type="button" id="backToTop" aria-label="Back to top">↑</button>
 <div id="toast-wrap"></div>
 
 <script>
 'use strict';
+
+/* Centralized business config — single source of truth for contact details used across JS-generated content.
+   (Static HTML anchors elsewhere on the page are hand-authored with the same values and left as plain markup —
+   this centralizes the ones that are dynamically built in JS, where a config object actually avoids duplication.) */
+const BQM_CONFIG={
+  brand:"Big Quams Media®",
+  contact:{
+    email:"bigquamsmedia@gmail.com",
+    whatsapp:"2349049871643",
+    supportWhatsapp:"2348069821664"
+  }
+};
 
 /* DARK MODE */
 function toggleDarkMode(){
@@ -1068,17 +1125,19 @@ function initTicker(){
   const track=document.getElementById('tickerTrack'),bar=document.getElementById('tickerBar');
   if(!track||!bar)return;
   const seed=['<i class="fas fa-bullhorn"></i> JAMB 2026 UTME Results Released — Check yours on the JAMB portal','<i class="fas fa-graduation-cap"></i> Post-UTME Screening begins June 2026 — 15 universities confirmed','<i class="fas fa-credit-card"></i> NELFUND Student Loan portal is open — Apply before the deadline','<i class="fas fa-sack-dollar"></i> New scholarships added regularly — check the Scholarships page','<i class="fas fa-newspaper"></i> WAEC 2026 Results expected August — stay updated on BQM','<i class="fas fa-bell"></i> Monitor your JAMB CAPS portal daily for admission updates'];
-  function render(items){track.innerHTML=[...items,...items].map(t=>`<span class="ticker-item">${t}</span>`).join('');bar.classList.add('show');}
-  render(seed);
-  // Pull live ticker items from Firestore; keep the seed text if it fails or is empty
-  if(window._db){
+  function render(items,trusted){track.innerHTML=[...items,...items].map(t=>`<span class="ticker-item">${trusted?t:escapeHtml(t)}</span>`).join('');bar.classList.add('show');}
+  render(seed,true);
+  // Pull live ticker items from Firestore; keep the seed text if it fails, is empty, or Firebase isn't ready
+  (async()=>{
+    await waitForDb();
+    if(!window._db)return;
     window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_ticker'),window._fs.orderBy('createdAt','asc')))
       .then(snap=>{
         const items=snap.docs.map(d=>d.data().text).filter(Boolean);
-        if(items.length) render(items);
+        if(items.length) render(items,false); // untrusted Firestore content — always escaped
       })
       .catch(e=>console.warn('Ticker fetch failed, keeping default items:',e.message));
-  }
+  })();
 }
 
 /* Escape untrusted Firestore text before inserting into innerHTML */
@@ -1091,8 +1150,8 @@ function makeNewsSlug(title){
   return(title||'').toLowerCase().replace(/[^a-z0-9\s-]/g,' ').trim().replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'').substring(0,70);
 }
 function newsArticleUrl(n){
-  const slug=n.slug||makeNewsSlug(n.title||'');
-  const id=n._id||'';
+  const slug=makeNewsSlug(n.slug||n.title||'');
+  const id=(n._id||'').replace(/[^a-zA-Z0-9_-]/g,'');
   return 'newsroom.html#'+slug+(id?'--'+id:'');
 }
 function renderNewsCards(items){
@@ -1100,7 +1159,7 @@ function renderNewsCards(items){
   const top=[...items.filter(n=>n.pinned),...items.filter(n=>!n.pinned)].slice(0,3);
   const preview=n=>(n.fullContent||n.summary||n.excerpt||'').replace(/<[^>]*>/g,'').substring(0,100);
   grid.innerHTML=top.map(n=>`
-    <a class="news-card" href="${newsArticleUrl(n)}">
+    <a class="news-card" href="${escapeHtml(newsArticleUrl(n))}">
       ${n.image?`<img class="news-img" src="${escapeHtml(n.image)}" alt="${escapeHtml(n.title)}" loading="lazy">`:`<div class="news-img-ph">${n.emoji?escapeHtml(n.emoji):'<i class="fas fa-newspaper"></i>'}</div>`}
       <div class="news-body">
         ${n.category?`<span class="news-tag">${escapeHtml(n.category)}</span>`:''}
@@ -1110,14 +1169,26 @@ function renderNewsCards(items){
       </div>
     </a>`).join('');
 }
-function fbErrorBlock(what,reason,retryFnName,extraLinkHtml){
-  const safeReason=escapeHtml(reason||'Unknown error');
-  return `<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem;grid-column:1/-1">
-    ${what} could not load right now.<br>
-    <span style="font-size:.72rem;color:var(--text-faint);display:block;margin-top:4px">Reason: ${safeReason}</span>
-    <button onclick="${retryFnName}()" style="margin-top:12px;padding:8px 18px;background:var(--blue-main,#1a3fa8);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:.78rem;cursor:pointer;font-family:'Montserrat',sans-serif"><i class="fas fa-rotate"></i> Retry</button>
+/* User-facing error card for a failed Firebase load. The technical reason is logged to the
+   console for developers only — never shown in the UI (Firebase error codes/messages are not
+   meaningful to a normal user and shouldn't be exposed). */
+function fbErrorBlock(what,technicalReason,retryFnName,extraLinkHtml){
+  console.error('['+what+' load failed] '+(technicalReason||'Unknown error'));
+  return `<div class="fb-state fb-state-error">
+    <div class="fb-state-msg">${escapeHtml(what)} couldn't load right now.<br>Please check your connection and try again.</div>
+    <button type="button" onclick="${retryFnName}()" class="fb-state-retry"><i class="fas fa-rotate"></i> Try Again</button>
     ${extraLinkHtml||''}
   </div>`;
+}
+function fbEmptyBlock(msg){
+  return `<div class="fb-state fb-state-empty">${escapeHtml(msg)}</div>`;
+}
+/* Wait for Firebase to finish initializing (in parallel with the rest of the page), with a timeout so a stalled network doesn't leave the skeleton spinning forever */
+function waitForDb(timeoutMs){
+  return Promise.race([
+    window._dbReady||Promise.resolve(!!window._db),
+    new Promise(res=>setTimeout(()=>res(false),timeoutMs||8000))
+  ]);
 }
 async function loadNews(){
   const grid=document.getElementById('newsGrid');if(!grid)return;
@@ -1127,6 +1198,7 @@ async function loadNews(){
     <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
     <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w40"></div></div>
   </div>`;
+  await waitForDb();
   if(!window._db){
     grid.innerHTML=fbErrorBlock('News',window._fbInitError||'Connection to database not established','loadNews','<a href="newsroom.html" style="color:#1a3fa8;font-weight:700;display:block;margin-top:8px">Go to Newsroom →</a>');
     return;
@@ -1142,7 +1214,7 @@ async function loadNews(){
       });
       renderNewsCards(items);
     } else {
-      grid.innerHTML='<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem">No news yet — check back soon.</div>';
+      grid.innerHTML=fbEmptyBlock('No news yet — check back soon.');
     }
   }catch(e){
     console.warn('Firebase news fetch failed:',e.message);
@@ -1151,17 +1223,24 @@ async function loadNews(){
 }
 
 /* SCHOLARSHIPS */
-function loadScholarships(){
+async function loadScholarships(){
   const grid=document.getElementById('scholarship-preview-grid');if(!grid)return;
+  // Show skeleton while loading (matches loadNews' LOADING state so retries also give visible feedback)
+  grid.innerHTML=`<div class="skeleton-grid">
+    <div class="skeleton-card"><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w40"></div></div>
+    <div class="skeleton-card"><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w40"></div></div>
+    <div class="skeleton-card"><div class="skeleton sk-line sk-w60"></div><div class="skeleton sk-line sk-w80"></div><div class="skeleton sk-line sk-w40"></div></div>
+  </div>`;
   const tM={federal:['#dbeafe','#1d4ed8','#eff6ff'],corporate:['#fff7ed','#c2410c','#fff7ed'],international:['#ede9fe','#7c3aed','#f5f3ff'],state:['#dcfce7','#15803d','#f0fdf4']};
   const sC={open:'ss-open',ongoing:'ss-ongoing',soon:'ss-soon',closed:'ss-closed'};
   const sL={open:'<i class="fas fa-circle"></i> Open',ongoing:'<i class="fas fa-circle"></i> Ongoing',soon:'<i class="fas fa-circle"></i> Soon',closed:'<i class="fas fa-circle"></i> Closed'};
   function render(items){
     grid.innerHTML=items.slice(0,3).map(s=>{
       const[tc,tx,ic]=tM[s.type||'federal']||tM.federal;
-      return`<div class="sch-card" onclick="location.href='scholarship.html'"><div class="sch-top"><div class="sch-icon-box" style="background:${ic}">${s.icon?escapeHtml(s.icon):'<i class="fas fa-sack-dollar"></i>'}</div><div class="sch-meta"><span class="sch-type-tag" style="background:${tc};color:${tx}">${escapeHtml((s.type||'federal').toUpperCase())}</span><div class="sch-name">${escapeHtml(s.name)}</div><div class="sch-org">${escapeHtml(s.org||'')}</div></div></div><div class="sch-body"><div class="sch-desc">${escapeHtml(s.desc||s.description||'')}</div></div><div class="sch-foot"><span class="sch-deadline"><i class="fas fa-calendar-days"></i> ${escapeHtml(s.deadline||'Check portal')}</span><span class="sch-amount">${escapeHtml(s.amount||'')}</span><span class="sch-status ${sC[s.status]||'ss-ongoing'}">${sL[s.status]||'<i class="fas fa-circle"></i> Ongoing'}</span></div><a href="https://wa.me/2349049871643?text=${encodeURIComponent('Hello BQM, I need help applying for: '+s.name)}" target="_blank" rel="noopener noreferrer" class="sch-apply-btn"><i class="fab fa-whatsapp"></i> Get Help Applying →</a></div>`;
+      return`<div class="sch-card" onclick="location.href='scholarship.html'"><div class="sch-top"><div class="sch-icon-box" style="background:${ic}">${s.icon?escapeHtml(s.icon):'<i class="fas fa-sack-dollar"></i>'}</div><div class="sch-meta"><span class="sch-type-tag" style="background:${tc};color:${tx}">${escapeHtml((s.type||'federal').toUpperCase())}</span><div class="sch-name">${escapeHtml(s.name)}</div><div class="sch-org">${escapeHtml(s.org||'')}</div></div></div><div class="sch-body"><div class="sch-desc">${escapeHtml(s.desc||s.description||'')}</div></div><div class="sch-foot"><span class="sch-deadline"><i class="fas fa-calendar-days"></i> ${escapeHtml(s.deadline||'Check portal')}</span><span class="sch-amount">${escapeHtml(s.amount||'')}</span><span class="sch-status ${sC[s.status]||'ss-ongoing'}">${sL[s.status]||'<i class="fas fa-circle"></i> Ongoing'}</span></div><a href="https://wa.me/${BQM_CONFIG.contact.whatsapp}?text=${encodeURIComponent('Hello BQM, I need help applying for: '+s.name)}" target="_blank" rel="noopener noreferrer" class="sch-apply-btn"><i class="fab fa-whatsapp"></i> Get Help Applying →</a></div>`;
     }).join('');
   }
+  await waitForDb();
   if(!window._db){
     grid.innerHTML=fbErrorBlock('Scholarships',window._fbInitError||'Connection to database not established','loadScholarships');
     return;
@@ -1172,7 +1251,7 @@ function loadScholarships(){
       if(items.length){
         render([...items].sort((a,b)=>(b.featured?1:0)-(a.featured?1:0)));
       } else {
-        grid.innerHTML='<div style="text-align:center;padding:32px;color:var(--text-muted);font-size:.84rem;grid-column:1/-1">No scholarships yet — check back soon.</div>';
+        grid.innerHTML=fbEmptyBlock('No scholarships yet — check back soon.');
       }
     })
     .catch(e=>{
@@ -1181,12 +1260,16 @@ function loadScholarships(){
     });
 }
 
-/* STAT COUNTERS */
+/* STAT COUNTERS — single source of truth (see init block below for the trigger) */
 function runCounters(){
+  const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('[data-target]').forEach(el=>{
     const target=parseInt(el.getAttribute('data-target')),suffix=el.getAttribute('data-suffix')||'+',divisor=parseInt(el.getAttribute('data-divisor')||'1');
-    if(isNaN(target))return;let count=0;const steps=60;
-    const t=setInterval(()=>{count++;const raw=Math.min(Math.round((target/steps)*count),target);el.textContent=divisor>1?Math.round(raw/divisor)+'K+':raw+suffix;if(count>=steps)clearInterval(t);},1800/steps);
+    if(isNaN(target))return;
+    const finalText=(divisor>1?Math.round(target/divisor)+'K':target)+suffix;
+    if(reduceMotion){el.textContent=finalText;return;}
+    let count=0;const steps=60;
+    const t=setInterval(()=>{count++;const raw=Math.min(Math.round((target/steps)*count),target);el.textContent=(divisor>1?Math.round(raw/divisor)+'K':raw)+suffix;if(count>=steps)clearInterval(t);},1800/steps);
   });
 }
 
@@ -1206,7 +1289,7 @@ function submitContactForm(e){
   btn.textContent='Sending…';btn.disabled=true;
   fetch('https://formspree.io/f/mqegznag',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name,email,message:msg})})
     .then(r=>{if(r.ok){showFb('<i class="fas fa-circle-check"></i> Message sent! We\'ll reply within 24 hours.','success');document.getElementById('contactForm').reset();}else throw 0;})
-    .catch(()=>{showFb('<i class="fas fa-mobile-screen"></i> Opening WhatsApp instead…','warn');setTimeout(()=>open('https://wa.me/2349049871643?text='+encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nMessage: '+msg),'_blank'),1200);})
+    .catch(()=>{showFb('<i class="fas fa-mobile-screen"></i> Opening WhatsApp instead…','warn');setTimeout(()=>open('https://wa.me/'+BQM_CONFIG.contact.whatsapp+'?text='+encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nMessage: '+msg),'_blank'),1200);})
     .finally(()=>{btn.textContent='Send Message →';btn.disabled=false;});
 }
 function showFb(msg,type){
@@ -1274,29 +1357,7 @@ window.heroSearchTag=heroSearchTag;
 
 // ── (legacy loadScholarshipPreview removed — loadScholarships() above handles Firebase + fallback) ──
 
-// ── STATS COUNTER ANIMATION ──
-function animateCounters(){
-  document.querySelectorAll('[data-target]').forEach(el=>{
-    const target=parseInt(el.getAttribute('data-target'));
-    const suffix=el.getAttribute('data-suffix')||'';
-    const divisor=parseInt(el.getAttribute('data-divisor')||'1');
-    const display=target/divisor;
-    let start=0;
-    const step=display/40;
-    const timer=setInterval(()=>{
-      start+=step;
-      if(start>=display){start=display;clearInterval(timer);}
-      el.textContent=(start>=1000?Math.floor(start/1000)+'K':Math.floor(start))+suffix;
-    },30);
-  });
-}
-
-// Observer for stats animation
-const statsObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){animateCounters();statsObs.disconnect();}});
-},{threshold:.3});
-const statsEl=document.querySelector('.stats-section')||document.querySelector('.stats-grid');
-if(statsEl) statsObs.observe(statsEl);
+// ── (legacy animateCounters + statsObs removed — runCounters() + the #about IntersectionObserver in the init block is the single counter system) ──
 
 // ── PWA INSTALL ──
 let deferredInstall=null;
@@ -1370,43 +1431,74 @@ window.installApp=installApp;
 </style>
 <script>
 (function(){
-  var FREE_LIMIT=3, askedCount=0, gated=false;
+  var FREE_LIMIT=3;
+  var gated=false;
+  var isSignedIn=false; // updated by onAuthChange below; defaults to false (safe/limited) until Firebase resolves
+
+  var USAGE_KEY='bqm_sb_usage';
+  function todayStr(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+  function getUsage(){
+    try{
+      var raw=localStorage.getItem(USAGE_KEY);
+      if(!raw) return {date:todayStr(),count:0};
+      var obj=JSON.parse(raw);
+      if(!obj||typeof obj.count!=='number'||obj.count<0||typeof obj.date!=='string'||!isFinite(obj.count)){
+        return {date:todayStr(),count:0}; // corrupted — reset rather than trust it
+      }
+      if(obj.date!==todayStr()) return {date:todayStr(),count:0}; // new calendar day
+      return {date:obj.date,count:Math.floor(obj.count)};
+    }catch(e){
+      return {date:todayStr(),count:0};
+    }
+  }
+  function saveUsage(u){
+    try{localStorage.setItem(USAGE_KEY,JSON.stringify(u));}catch(e){/* private mode / storage full — degrade gracefully, just won't persist */}
+  }
 
   var fab=document.createElement('button');
   fab.id='bqm-buddy-fab';
   fab.setAttribute('aria-label','Open Study Buddy');
+  fab.setAttribute('aria-haspopup','dialog');
+  fab.setAttribute('aria-expanded','false');
   fab.innerHTML='<i class="fas fa-robot"></i><span class="bqm-fab-dot"></span>';
   document.body.appendChild(fab);
 
   var panel=document.createElement('div');
   panel.id='bqm-buddy-panel';
+  panel.setAttribute('role','dialog');
+  panel.setAttribute('aria-label','Study Buddy chat');
+  panel.setAttribute('aria-hidden','true');
   panel.innerHTML=
     '<div class="bqm-bp-head">'+
       '<div class="bqm-bp-avatar"><i class="fas fa-robot"></i></div>'+
-      '<div class="bqm-bp-title"><div class="bqm-bp-name">Study Buddy</div><div class="bqm-bp-sub">'+FREE_LIMIT+' free questions/day &middot; Unlimited for signed-in users</div></div>'+
-      '<button class="bqm-bp-close" aria-label="Close Study Buddy">&#10005;</button>'+
+      '<div class="bqm-bp-title"><div class="bqm-bp-name">Study Buddy</div><div class="bqm-bp-sub" id="bqm-bp-subtext">'+FREE_LIMIT+' free questions/day &middot; Unlimited for signed-in users</div></div>'+
+      '<button type="button" class="bqm-bp-close" aria-label="Close Study Buddy">&#10005;</button>'+
     '</div>'+
-    '<div class="bqm-bp-body" id="bqm-bp-body"></div>'+
+    '<div class="bqm-bp-body" id="bqm-bp-body" role="log" aria-live="polite"></div>'+
     '<div class="bqm-bp-suggest">'+
-      '<button data-q="What subject combination do I need for Law?">Subject combos</button>'+
-      '<button data-q="What is the cutoff mark for Medicine?">Cutoff marks</button>'+
-      '<button data-q="Any scholarships open right now?">Scholarships</button>'+
-      '<button data-q="Tips for JAMB prep">JAMB tips</button>'+
+      '<button type="button" data-q="What subject combination do I need for Law?">Subject combos</button>'+
+      '<button type="button" data-q="What is the cutoff mark for Medicine?">Cutoff marks</button>'+
+      '<button type="button" data-q="Any scholarships open right now?">Scholarships</button>'+
+      '<button type="button" data-q="Tips for JAMB prep">JAMB tips</button>'+
     '</div>'+
     '<div class="bqm-bp-input-row">'+
-      '<input type="text" id="bqm-bp-input" placeholder="Ask Study Buddy anything...">'+
-      '<button id="bqm-bp-send">Send</button>'+
+      '<input type="text" id="bqm-bp-input" placeholder="Ask Study Buddy anything..." aria-label="Ask Study Buddy a question">'+
+      '<button type="button" id="bqm-bp-send">Send</button>'+
     '</div>';
   document.body.appendChild(panel);
 
   var body=panel.querySelector('#bqm-bp-body');
   var input=panel.querySelector('#bqm-bp-input');
   var sendBtn=panel.querySelector('#bqm-bp-send');
+  var subtext=panel.querySelector('#bqm-bp-subtext');
 
+  /* SECURITY: user-typed text is never trusted as HTML — always textContent.
+     Bot/gate/typing messages are fixed strings we author ourselves (may include safe, hand-written markup like icons/links). */
   function addMsg(text,cls){
     var div=document.createElement('div');
     div.className='bqm-msg '+cls;
-    div.innerHTML=text;
+    if(cls==='user'){ div.textContent=text; }
+    else { div.innerHTML=text; }
     body.appendChild(div);
     body.scrollTop=body.scrollHeight;
     return div;
@@ -1424,24 +1516,50 @@ window.installApp=installApp;
     return "Good question — I'm running in demo mode right now so my answers are limited to a few topics. Try asking about subject combinations, cutoff marks, scholarships, JAMB prep or CGPA.";
   }
 
+  function remaining(){
+    return Math.max(0,FREE_LIMIT-getUsage().count);
+  }
+
   function showGate(){
     gated=true;
-    addMsg("You've used your "+FREE_LIMIT+" free questions for today. <a href='#'>Sign up free</a> for unlimited access to Study Buddy.",'gate');
+    addMsg("You've used your "+FREE_LIMIT+" free questions for today. <a href=\"profile.html?redirect=study-buddy\">Sign up free</a> for unlimited access to Study Buddy.",'gate');
     input.disabled=true;
     sendBtn.disabled=true;
     input.placeholder='Sign up for unlimited questions';
+  }
+
+  function ungate(){
+    gated=false;
+    input.disabled=false;
+    sendBtn.disabled=false;
+    input.placeholder='Ask Study Buddy anything...';
+  }
+
+  function applyAuthState(){
+    if(isSignedIn){
+      subtext.textContent='Unlimited access — signed in';
+      if(gated) ungate();
+    } else {
+      var left=remaining();
+      subtext.textContent=FREE_LIMIT+' free questions/day · Unlimited for signed-in users'+(left<FREE_LIMIT?' ('+left+' left today)':'');
+      if(left<=0 && !gated) showGate();
+    }
   }
 
   function sendMsg(text){
     if(!text || !text.trim() || gated) return;
     addMsg(text,'user');
     input.value='';
-    askedCount++;
     var typing=addMsg('Study Buddy is typing...','typing');
     setTimeout(function(){
       typing.remove();
       addMsg(botReply(text),'bot');
-      if(askedCount>=FREE_LIMIT){ showGate(); }
+      if(!isSignedIn){
+        var usage=getUsage();
+        usage.count++;
+        saveUsage(usage);
+        applyAuthState();
+      }
     },700);
   }
 
@@ -1452,15 +1570,30 @@ window.installApp=installApp;
   });
   panel.querySelector('.bqm-bp-close').addEventListener('click',function(){ window.bqmToggleBuddy(); });
   fab.addEventListener('click',function(){ window.bqmToggleBuddy(); });
+  panel.addEventListener('keydown',function(e){ if(e.key==='Escape') window.bqmToggleBuddy(); });
 
   var greeted=false;
   window.bqmToggleBuddy=function(){
-    panel.classList.toggle('bqm-open');
-    if(panel.classList.contains('bqm-open') && !greeted){
+    var open=panel.classList.toggle('bqm-open');
+    fab.setAttribute('aria-expanded',open?'true':'false');
+    panel.setAttribute('aria-hidden',open?'false':'true');
+    if(open && !greeted){
       greeted=true;
       addMsg("Hey! I'm Study Buddy <i class='fas fa-robot'></i> Ask me about subject combinations, cutoff marks, scholarships, JAMB prep or your CGPA.",'bot');
     }
+    if(open) input.focus();
   };
+
+  // React to real Firebase Auth state (set up in the module script in <head>). Falls back to
+  // signed-out/limited behavior if auth hasn't resolved yet or fails to load.
+  if(typeof window.onAuthChange==='function'){
+    window.onAuthChange(function(user){
+      isSignedIn=!!user;
+      applyAuthState();
+    });
+  } else {
+    applyAuthState();
+  }
 })();
 </script>
 </body>
