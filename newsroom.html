@@ -198,10 +198,13 @@ body.dark .share-social-btn{background:#1a2236}
 body.dark .share-social-btn.xt:hover{border-color:#fff;color:#fff}
 .art-tags{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0 6px}
 .art-tag-chip{font-size:.7rem;font-weight:700;background:var(--surface2);border:1px solid var(--border);padding:4px 12px;border-radius:20px;color:var(--muted)}
-.art-byline{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:10px 12px;background:var(--surface2);border-radius:10px}
+.art-byline{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:10px 12px;background:var(--surface2);border-radius:10px;cursor:default}
 .art-byline img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .art-byline-name{font-size:.78rem;font-weight:800;color:var(--text)}
-.art-byline-bio{font-size:.7rem;color:var(--muted);margin-top:1px}
+.art-byline-toggle{margin-left:auto;flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .18s}
+.art-byline-toggle.open{transform:rotate(180deg)}
+.art-byline-bio{font-size:.74rem;color:var(--muted);line-height:1.6;padding:0 12px;max-height:0;overflow:hidden;transition:max-height .2s ease,padding .2s ease;margin:0 0 0}
+.art-byline-bio.open{max-height:200px;padding:10px 12px;margin-bottom:6px;background:var(--surface2);border-radius:0 0 10px 10px;margin-top:-6px}
 .back-to-top{display:none;position:sticky;bottom:18px;align-self:flex-end;margin-right:18px;width:42px;height:42px;flex-shrink:0;border-radius:50%;background:var(--blue);color:#fff;font-size:1.1rem;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:6;border:0}
 .back-to-top.show{display:block}
 .art-related{margin-top:28px;padding-top:18px;border-top:2px solid var(--surface2)}
@@ -241,34 +244,15 @@ body.dark .sk-pinned{background:#161b27}
 .toast.show{opacity:1}
 
 /* ── FOOTER ── */
-footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;margin-top:40px}
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
 .footer-inner{max-width:1100px;margin:0 auto}
-.footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:28px;margin-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08)}
-.footer-brand{display:flex;align-items:center;gap:12px}
-.footer-logo{width:42px;height:42px;border-radius:50%;border:2px solid #f97316;object-fit:cover;flex-shrink:0}
-.footer-bname{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:#fff;letter-spacing:.3px}
-.footer-bsub{font-size:.68rem;color:rgba(255,255,255,.4);margin-top:3px;max-width:340px;line-height:1.4}
-.footer-cta{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 18px;border-radius:8px;font-weight:700;font-size:.86rem;transition:.2s;white-space:nowrap}
-.footer-cta:hover{background:#1db954;transform:translateY(-1px)}
-.footer-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px 16px;margin-bottom:26px}
-.footer-heading{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:1.3px;color:rgba(255,255,255,.3);margin-bottom:11px}
-.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
-.footer-links a{font-size:.76rem;color:rgba(255,255,255,.52);transition:.18s;display:inline-flex;align-items:center;gap:7px;width:fit-content}
-.footer-links a:hover,.footer-links a:focus-visible{color:#fff;transform:translateX(3px)}
-.footer-social{display:flex;gap:9px;margin-top:6px}
-.footer-social a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.18s}
-.footer-social a:hover,.footer-social a:focus-visible{background:rgba(249,115,22,.2);border-color:rgba(249,115,22,.45);transform:translateY(-2px)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 20px}
-.footer-copy{font-size:.7rem;color:rgba(255,255,255,.35);line-height:1.6}
-.footer-copy a{color:#f97316;font-weight:700}
-.footer-legal{display:flex;flex-wrap:wrap;gap:5px 16px}
-.footer-legal a{font-size:.7rem;color:rgba(255,255,255,.45);transition:.18s}
-.footer-legal a:hover,.footer-legal a:focus-visible{color:#fff}
-.footer-support{font-size:.68rem;color:rgba(255,255,255,.4);text-align:center;margin-top:14px;line-height:1.7}
-.footer-support strong{color:rgba(255,255,255,.65)}
-.footer-credit{text-align:center;font-size:.7rem;color:rgba(255,255,255,.35);margin-top:16px}
-.footer-credit a{color:#f97316;font-weight:700}
-@media(max-width:640px){.footer-top{flex-direction:column;align-items:flex-start}.footer-bottom{flex-direction:column;align-items:center;text-align:center}}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.footer-brand img{width:36px;height:36px;border-radius:50%;border:2px solid #f97316}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-direction:column;gap:5px}
+.footer-links a{font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)}
 
 
 
@@ -344,9 +328,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
       <a href="explore.html">Explore</a>
       <a href="elibrary.html">eLibrary</a>
       <a href="scholarship.html">Scholarships</a>
-      <a href="index.html#contact" class="nav-cta"><i class="fas fa-comment-dots"></i> Contact</a>
+      <a href="index.html#contact" class="nav-cta">💬 Contact</a>
     </nav>
-    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()"><i class="fas fa-moon"></i></button>
+    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
     <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -358,35 +342,35 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
       <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
       <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
     </div>
-    <button class="mnav-close" onclick="toggleNav()"><i class="fas fa-xmark"></i></button>
+    <button class="mnav-close" onclick="toggleNav()">✕</button>
   </div>
   <div class="mnav-lbl">Main</div>
-  <a href="index.html" onclick="toggleNav()"><i class="fas fa-house"></i> Home</a>
-  <a href="newsroom.html" onclick="toggleNav()"><i class="fas fa-newspaper"></i> Newsroom</a>
-  <a href="explore.html" onclick="toggleNav()"><i class="fas fa-folder-open"></i> Explore All Tools</a>
+  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
+  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
   <div class="mnav-lbl">Resources</div>
-  <a href="elibrary.html" onclick="toggleNav()"><i class="fas fa-book"></i> eLibrary</a>
-  <a href="scholarship.html" onclick="toggleNav()"><i class="fas fa-sack-dollar"></i> Scholarships</a>
-  <a href="student-loan.html" onclick="toggleNav()"><i class="fas fa-credit-card"></i> Student Loan</a>
-  <a href="spotlight.html" onclick="toggleNav()"><i class="fas fa-star"></i> Student Spotlight</a>
+  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan</a>
+  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
   <div class="mnav-lbl">Exam Tools</div>
-  <a href="cbt.html" onclick="toggleNav()"><i class="fas fa-laptop-code"></i> JAMB CBT Practice</a>
-  <a href="practice-test.html" onclick="toggleNav()"><i class="fas fa-pen-to-square"></i> Big Quams Practice Test</a>
-  <a href="postutme-prep.html" onclick="toggleNav()"><i class="fas fa-book-open"></i> Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()"><i class="fas fa-calculator"></i> Aggregate Calc</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()"><i class="fas fa-graduation-cap"></i> GPA Calculator</a>
-  <a href="results.html" onclick="toggleNav()"><i class="fas fa-chart-column"></i> Results Checker</a>
+  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
+  <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
+  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calc</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
   <div class="mnav-lbl">Community</div>
-  <a href="dyk.html" onclick="toggleNav()"><i class="fas fa-lightbulb"></i> Did You Know</a>
-  <a href="community.html" onclick="toggleNav()"><i class="fas fa-handshake"></i> Community Hub</a>
-  <a href="campus-life.html" onclick="toggleNav()"><i class="fas fa-gamepad"></i> Campus Life</a>
-  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
+  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
+  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
+  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
 </nav>
 
 <!-- HERO -->
 <section class="page-hero">
   <div class="hero-inner">
-    <div class="hero-badge"><i class="fas fa-newspaper"></i> Stay Informed</div>
+    <div class="hero-badge">📰 Stay Informed</div>
     <h1>BQM <span>Newsroom</span></h1>
     <p>Latest updates on JAMB, Post-UTME, scholarships, campus news and everything Nigerian students need to know.</p>
     <div class="hero-stats">
@@ -407,7 +391,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
     <button class="cat-btn" onclick="setCategory('Campus News',this)">Campus</button>
     <button class="cat-btn" onclick="setCategory('Announcement',this)">BQM News</button>
     <div class="search-wrap">
-      <span style="font-size:.8rem;color:var(--muted)"><i class="fas fa-magnifying-glass"></i></span>
+      <span style="font-size:.8rem;color:var(--muted)">🔍</span>
       <input type="text" id="newsSearch" placeholder="Search articles…" oninput="render()" autocomplete="off">
     </div>
   </div>
@@ -437,22 +421,22 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
       <!-- SIDEBAR -->
       <aside>
         <div class="sb-card">
-          <div class="sb-title"><i class="fas fa-fire"></i> Most Recent</div>
+          <div class="sb-title">🔥 Most Recent</div>
           <div id="recentList"></div>
         </div>
         <div class="sb-card">
-          <div class="sb-title"><i class="fas fa-folder-open"></i> Browse by Category</div>
+          <div class="sb-title">📂 Browse by Category</div>
           <div id="catList"></div>
         </div>
         <div class="sb-card" style="background:linear-gradient(135deg,#064e3b,#065f46);border-color:#065f46">
-          <div style="font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:#fff;margin-bottom:6px"><i class="fab fa-whatsapp"></i> Join Our Community</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:#fff;margin-bottom:6px">💬 Join Our Community</div>
           <div style="font-size:.74rem;color:rgba(255,255,255,.62);margin-bottom:14px;line-height:1.5">Get news alerts before anyone else. 10,000+ students already in.</div>
           <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#fff;padding:10px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem">Join Brainy Buddies →</a>
         </div>
         <div class="sb-card" style="background:linear-gradient(135deg,#1e3a5f,#1a3fa8);border:none">
-          <div style="font-size:.72rem;font-weight:800;color:#fdba74;margin-bottom:6px;font-family:'Montserrat',sans-serif"><i class="fas fa-mobile-screen-button"></i> Get Notified First</div>
+          <div style="font-size:.72rem;font-weight:800;color:#fdba74;margin-bottom:6px;font-family:'Montserrat',sans-serif">📲 Get Notified First</div>
           <div style="font-size:.74rem;color:rgba(255,255,255,.62);margin-bottom:12px;line-height:1.5">Install BQM on your phone for instant scholarship & JAMB alerts.</div>
-          <a href="index.html#install-app" style="display:flex;align-items:center;justify-content:center;gap:6px;background:var(--orange);color:#fff;padding:9px;border-radius:8px;font-weight:800;font-size:.76rem"><i class="fas fa-mobile-screen-button"></i> Install App</a>
+          <a href="index.html#install-app" style="display:flex;align-items:center;justify-content:center;gap:6px;background:var(--orange);color:#fff;padding:9px;border-radius:8px;font-weight:800;font-size:.76rem">📲 Install App</a>
         </div>
       </aside>
     </div>
@@ -474,78 +458,60 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img class="footer-logo" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media logo">
-        <div>
-          <div class="footer-bname">BIG QUAMS MEDIA®</div>
-          <p class="footer-bsub">Free tools, news and resources built for Nigerian undergraduates — from admission to graduation.</p>
-        </div>
-      </div>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="footer-cta"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
-    </div>
-
-    <nav class="footer-cols" aria-label="Footer navigation">
+    <div class="footer-brand">
+      <img src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
       <div>
-        <h3 class="footer-heading">Main</h3>
-        <ul class="footer-links">
-          <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
-          <li><a href="newsroom.html"><i class="fas fa-newspaper"></i> Newsroom</a></li>
-          <li><a href="explore.html"><i class="fas fa-folder-open"></i> Explore Tools</a></li>
-          <li><a href="campus-life.html"><i class="fas fa-gamepad"></i> Campus Life</a></li>
-          <li><a href="community.html"><i class="fas fa-handshake"></i> Community</a></li>
-          <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
-          <li><a href="daily.html"><i class="fas fa-calendar-days"></i> Daily Hub</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="footer-heading">Exam Tools</h3>
-        <ul class="footer-links">
-          <li><a href="cbt.html"><i class="fas fa-laptop-code"></i> JAMB CBT Practice</a></li>
-          <li><a href="postutme-prep.html"><i class="fas fa-book-open"></i> Post-UTME Prep</a></li>
-          <li><a href="postutme-calculator.html"><i class="fas fa-calculator"></i> Aggregate Calc</a></li>
-          <li><a href="admissioncalculator.html"><i class="fas fa-bullseye"></i> Admission Chances</a></li>
-          <li><a href="gpa-calculator.html"><i class="fas fa-graduation-cap"></i> GPA Calculator</a></li>
-          <li><a href="results.html"><i class="fas fa-chart-column"></i> Results Checker</a></li>
-          <li><a href="Jamb_Profile_Code.html"><i class="fas fa-key"></i> JAMB Profile Code</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="footer-heading">Resources</h3>
-        <ul class="footer-links">
-          <li><a href="elibrary.html"><i class="fas fa-book"></i> eLibrary</a></li>
-          <li><a href="scholarship.html"><i class="fas fa-sack-dollar"></i> Scholarships</a></li>
-          <li><a href="student-loan.html"><i class="fas fa-credit-card"></i> Student Loan</a></li>
-          <li><a href="spotlight.html"><i class="fas fa-star"></i> Student Spotlight</a></li>
-          <li><a href="dyk.html"><i class="fas fa-lightbulb"></i> Did You Know</a></li>
-          <li><a href="subject-combo.html"><i class="fas fa-clipboard-list"></i> Subject Combo</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="footer-heading">Connect</h3>
-        <ul class="footer-links">
-          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer"><i class="fas fa-users"></i> Join WhatsApp Group</a></li>
-          <li><a href="index.html#install-app"><i class="fas fa-mobile-screen-button"></i> Install App</a></li>
-        </ul>
-        <div class="footer-social">
-          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-        </div>
-      </div>
-    </nav>
-
-    <div class="footer-bottom">
-      <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved.</div>
-      <div class="footer-legal">
-        <a href="terms.html">Terms &amp; Conditions</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="cookie-policy.html">Cookie Policy</a>
-        <a href="disclaimer.html">Disclaimer</a>
+        <div class="footer-brand-name">Big Quams Media®</div>
+        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Nigeria's Trusted Student Platform</div>
       </div>
     </div>
-    <div class="footer-support"><strong>Big Quams Media</strong> +2349049871643 · <strong>Big Quams Media | Support</strong> +2348069821664</div>
-    <div class="footer-credit">Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer">Abdulrasaq Quwamdeen</a></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="index.html">🏠 Home</a>
+          <a href="newsroom.html">📰 Newsroom</a>
+          <a href="explore.html">🗂 Explore Tools</a>
+          <a href="campus-life.html">🎮 Campus Life</a>
+          <a href="community.html">🤝 Community</a>
+          <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
+  <a href="daily.html">📅 Daily Hub</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="cbt.html">👨🏽‍💻 JAMB CBT Practice</a>
+          <a href="postutme-prep.html">📖 Post-UTME Prep</a>
+          <a href="postutme-calculator.html">🧮 Aggregate Calc</a>
+          <a href="gpa-calculator.html">🎓 GPA Calculator</a>
+          <a href="results.html">📊 Results Checker</a>
+          <a href="Jamb_Profile_Code.html">🔑 JAMB Profile Code</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="elibrary.html">📚 eLibrary</a>
+          <a href="scholarship.html">💰 Scholarships</a>
+          <a href="student-loan.html">💳 Student Loan</a>
+          <a href="spotlight.html">🌟 Student Spotlight</a>
+          <a href="dyk.html">💡 Did You Know</a>
+          <a href="subject-combo.html">📋 Subject Combo</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener">💬 WhatsApp Us</a>
+          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener">👥 Join Group</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener">📸 Instagram</a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener">🎵 TikTok</a>
+          <a href="index.html#install-app">📲 Install App</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
   </div>
 </footer>
 
@@ -554,9 +520,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
 <script>
 // ── Dark mode ──
 (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
-function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').innerHTML=d?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';}
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
 document.addEventListener('DOMContentLoaded',()=>{
-  if(document.body.classList.contains('dark'))document.getElementById('darkBtn').innerHTML='<i class="fas fa-sun"></i>';
+  if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';
   document.getElementById('yr').textContent=new Date().getFullYear();
 });
 
@@ -751,7 +717,17 @@ async function getAuthorProfile(authorName){
 }
 
 // ── Toast ──
-function showToast(msg){const t=document.getElementById('toast');t.innerHTML=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+
+function toggleAuthorBio(bylineEl){
+  if(!bylineEl) return;
+  const btn=bylineEl.querySelector('.art-byline-toggle');
+  const bioEl=bylineEl.nextElementSibling;
+  if(!bioEl||!bioEl.classList.contains('art-byline-bio')) return;
+  const open=bioEl.classList.toggle('open');
+  if(btn) btn.classList.toggle('open',open);
+}
+window.toggleAuthorBio=toggleAuthorBio;
 
 // ── Like / unlike — one like per person, enforced server-side ──
 // Each article has a `likes/{uid}` subcollection; a visitor's like/unlike is
@@ -776,7 +752,7 @@ async function toggleLike(id){
   // Optimistic UI
   if(n){n.likes=(n.likes||0)+delta; if(n.likes<0)n.likes=0;}
   btn.classList.toggle('liked',!wasLiked);
-  btn.querySelector('.heart').innerHTML=wasLiked?'<i class="far fa-heart"></i>':'<i class="fas fa-heart"></i>';
+  btn.querySelector('.heart').textContent=wasLiked?'🤍':'❤️';
   if(cntEl&&n) cntEl.textContent=n.likes;
   btn.disabled=true;
   try{
@@ -799,9 +775,9 @@ async function toggleLike(id){
     // Roll back — the like didn't actually save
     if(n){n.likes=(n.likes||0)-delta; if(n.likes<0)n.likes=0;}
     btn.classList.toggle('liked',wasLiked);
-    btn.querySelector('.heart').innerHTML=wasLiked?'<i class="fas fa-heart"></i>':'<i class="far fa-heart"></i>';
+    btn.querySelector('.heart').textContent=wasLiked?'❤️':'🤍';
     if(cntEl&&n) cntEl.textContent=n.likes;
-    showToast('<i class="fas fa-triangle-exclamation"></i> Could not save like — check your connection');
+    showToast('⚠️ Could not save like — check your connection');
   }finally{
     btn.disabled=false;
   }
@@ -830,14 +806,14 @@ window.recordView=recordView;
 function copyArticleLinkOnly(){
   if(currentIdx<0) return;
   const url=articleUrl(allNews[currentIdx]);
-  navigator.clipboard.writeText(url).then(()=>showToast('<i class="fas fa-check"></i> Link copied')).catch(()=>showToast('<i class="fas fa-check"></i> '+url));
+  navigator.clipboard.writeText(url).then(()=>showToast('✓ Link copied')).catch(()=>showToast('✓ '+url));
 }
 window.copyArticleLinkOnly=copyArticleLinkOnly;
 
 // ── Social share — headline + short excerpt + link only, never the whole article ──
 function shareText(n){
-  const excerpt=plainPreview(n.fullContent||'').substring(0,120);
-  return `${n.title} — ${excerpt}${excerpt.length>=120?'…':''}`;
+  const excerpt=firstSentenceExcerpt(n.fullContent||'',140);
+  return `${n.title} — ${excerpt}`;
 }
 function shareTo(platform){
   if(currentIdx<0) return;
@@ -923,7 +899,7 @@ async function init(){
     });
   }catch(e){
     document.getElementById('skPinned')&&document.getElementById('skPinned').remove();
-    document.getElementById('newsList').innerHTML='<div class="empty"><div class="ei"><i class="fas fa-triangle-exclamation"></i></div><p>Could not load articles. Please try again.</p></div>';
+    document.getElementById('newsList').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load articles. Please try again.</p></div>';
   }
 }
 
@@ -989,20 +965,20 @@ function render(){
   if(pinned.length&&!currentCat&&!q){
     const p=pinned[0];
     const pidx=allNews.indexOf(p);
-    const preview=plainPreview(p.fullContent||'').substring(0,160);
+    const preview=firstSentenceExcerpt(p.fullContent||'',160);
     pw.innerHTML=`<div class="pinned-card" onclick="openArticle(${pidx})">
       ${p.image?`<img class="pinned-img" src="${p.image}" alt="${p.title}" loading="lazy">`:`<img class="pinned-img" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media®" loading="lazy" style="object-fit:contain;background:#f0f4ff;padding:8px">`}
       <div class="pinned-body">
-        <span class="pinned-badge"><i class="fas fa-thumbtack"></i> Featured Story</span>
+        <span class="pinned-badge">📌 Featured Story</span>
         <div class="pinned-title">${p.title}</div>
-        <div class="pinned-preview">${preview}${preview?'…':''}</div>
+        <div class="pinned-preview">${preview}${preview&&!/[.!?]$/.test(preview)?'…':''}</div>
         <div class="pinned-meta">
           <span style="${catStyle(p.category||'')};padding:2px 8px;border-radius:12px;font-size:.62rem;font-weight:800">${p.category||'News'}</span>
           <span>${p.date||''}</span>
-          ${p.author?`<span><i class="fas fa-pen-nib"></i> ${p.author}</span>`:''}
-          <span><i class="fas fa-stopwatch"></i> ${readingTime(p.fullContent||'')} min read</span>
-          ${p.views?`<span><i class="fas fa-eye"></i> ${p.views}</span>`:''}
-          ${p.likes?`<span><i class="fas fa-heart"></i> ${p.likes}</span>`:''}
+          ${p.author?`<span>✍️ ${p.author}</span>`:''}
+          <span>⏱ ${readingTime(p.fullContent||'')} min read</span>
+          ${p.views?`<span>👁 ${p.views}</span>`:''}
+          ${p.likes?`<span>❤️ ${p.likes}</span>`:''}
           <span class="pinned-read">Read Article →</span>
         </div>
       </div></div>`;
@@ -1011,26 +987,26 @@ function render(){
   // News list
   const el=document.getElementById('newsList');
   if(!pageItems.length&&!pinned.length){
-    el.innerHTML='<div class="empty"><div class="ei"><i class="fas fa-magnifying-glass"></i></div><p>No articles match your search.</p></div>';
+    el.innerHTML='<div class="empty"><div class="ei">🔍</div><p>No articles match your search.</p></div>';
     document.getElementById('pagination').innerHTML='';
     return;
   }
   el.innerHTML=pageItems.map(n=>{
     const idx=allNews.indexOf(n);
     const mins=readingTime(n.fullContent||'');
-    const preview=plainPreview(n.fullContent||'').substring(0,130);
+    const preview=firstSentenceExcerpt(n.fullContent||'',130);
     return`<div class="news-card" onclick="openArticle(${idx})">
       ${n.image?`<img class="nc-img" src="${n.image}" alt="${n.title}" loading="lazy">`:`<img class="nc-img" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media®" loading="lazy" style="object-fit:contain;background:#f0f4ff;padding:8px">`}
       <div class="nc-body">
         <span class="nc-cat" style="${catStyle(n.category||'')}">${n.category||'News'}</span>
         <div class="nc-title">${n.title}</div>
-        <div class="nc-preview">${preview}${preview?'…':''}</div>
+        <div class="nc-preview">${preview}${preview&&!/[.!?]$/.test(preview)?'…':''}</div>
         <div class="nc-meta">
           <span>${n.date||''}</span>
-          ${n.author?`<span>· <i class="fas fa-pen-nib"></i> ${n.author}</span>`:''}
-          <span>· <i class="fas fa-stopwatch"></i> ${mins} min</span>
-          ${n.views?`<span>· <i class="fas fa-eye"></i> ${n.views}</span>`:''}
-          ${n.likes?`<span>· <i class="fas fa-heart"></i> ${n.likes}</span>`:''}
+          ${n.author?`<span>· ✍️ ${n.author}</span>`:''}
+          <span>· ⏱ ${mins} min</span>
+          ${n.views?`<span>· 👁 ${n.views}</span>`:''}
+          ${n.likes?`<span>· ❤️ ${n.likes}</span>`:''}
           <button class="share-btn" onclick="shareCard(event,${idx})"><i class="fas fa-share-alt"></i> Share</button>
         </div>
       </div></div>`;
@@ -1060,7 +1036,7 @@ function openArticle(idx){
   const n=allNews[idx]; if(!n) return;
   currentIdx=idx;
   const mins=readingTime(n.fullContent||'');
-  const preview=firstSentenceExcerpt(n.fullContent||'');
+  const preview=firstSentenceExcerpt(n.fullContent||'',260); // capped a bit tighter here — leaves room for " — By {author}" appended below without risking Facebook's own truncation cutting that off mid-word
   // Related: score by shared tags (weighted higher) + same category, best 3
   const related=allNews
     .map((x,i)=>({x,i,score:i===idx?-1:(x.category===n.category?1:0)+((x.tags||[]).filter(t=>(n.tags||[]).includes(t)).length*2)}))
@@ -1082,15 +1058,15 @@ function openArticle(idx){
       <div class="art-meta">
         <span>Published ${n.date||''}</span>
         ${n.updatedDate&&n.updatedDate!==n.date?`<span>· Updated ${n.updatedDate}</span>`:''}
-        <span>· <i class="fas fa-stopwatch"></i> ${mins} min read</span>
-        <span>· <i class="fas fa-eye"></i> <span id="viewCount">${viewCount}</span> views</span>
+        <span>· ⏱ ${mins} min read</span>
+        <span>· 👁 <span id="viewCount">${viewCount}</span> views</span>
       </div>
       <div id="artByline"></div>
       <div class="art-content">${formatArticleBody(n.fullContent||'')}</div>
       ${tags.length?`<div class="art-tags">${tags.map(t=>`<span class="art-tag-chip">#${t}</span>`).join('')}</div>`:''}
       <div class="art-actions">
         <button class="like-btn" id="likeBtn" onclick="toggleLike('${n._id||''}')">
-          <span class="heart"><i class="far fa-heart"></i></span><span id="likeCount">${likeCount}</span>
+          <span class="heart">🤍</span><span id="likeCount">${likeCount}</span>
         </button>
         <button class="copylink-btn" onclick="copyArticleLinkOnly()"><i class="fas fa-link"></i> Copy link</button>
         <button class="share-social-btn wa" onclick="shareTo('whatsapp')" title="Share on WhatsApp"><i class="fab fa-whatsapp"></i></button>
@@ -1099,7 +1075,7 @@ function openArticle(idx){
       </div>
       ${related.length?`
         <div class="art-related">
-          <div class="art-related-title"><i class="fas fa-newspaper"></i> Related Articles</div>
+          <div class="art-related-title">📰 Related Articles</div>
           ${related.map(r=>{
             const ridx=allNews.indexOf(r);
             return`<div class="rel-card" onclick="openArticle(${ridx})">
@@ -1116,19 +1092,23 @@ function openArticle(idx){
       </button>
     </div>`;
 
-  // Byline — plain text immediately, upgraded with photo/bio if a matching
-  // admin profile is found (async, non-blocking)
+  // Byline — plain text immediately, upgraded with photo + name (and a
+  // bio dropdown, if they have one) once a matching admin profile is
+  // found (async, non-blocking)
   const bylineEl=document.getElementById('artByline');
   if(n.author){
-    bylineEl.innerHTML=`<div class="art-meta" style="margin:-8px 0 14px;border:0;padding:0">· <i class="fas fa-pen-nib"></i> ${n.author}</div>`;
+    bylineEl.innerHTML=`<div class="art-meta" style="margin:-8px 0 14px;border:0;padding:0">· By ${n.author}</div>`;
     const openAuthor=n.author, openArtId=n._id;
     getAuthorProfile(n.author).then(prof=>{
       if(!prof||currentIdx<0||allNews[currentIdx]._id!==openArtId) return;
       const el=document.getElementById('artByline'); if(!el) return;
-      el.innerHTML=`<div class="art-byline">
+      const hasBio=!!(prof.bio&&prof.bio.trim());
+      el.innerHTML=`<div class="art-byline"${hasBio?' onclick="toggleAuthorBio(this)"':''} style="${hasBio?'cursor:pointer':''}">
         ${prof.photo?`<img src="${prof.photo}" alt="${openAuthor}">`:`<div style="width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">${openAuthor.charAt(0).toUpperCase()}</div>`}
-        <div><div class="art-byline-name">By ${openAuthor}</div>${prof.bio?`<div class="art-byline-bio">${prof.bio}</div>`:''}</div>
-      </div>`;
+        <div class="art-byline-name">By ${openAuthor}</div>
+        ${hasBio?'<button type="button" class="art-byline-toggle" aria-label="Show author bio" onclick="event.stopPropagation();toggleAuthorBio(this.closest(\'.art-byline\'))"><i class="fas fa-chevron-down"></i></button>':''}
+      </div>
+      ${hasBio?`<div class="art-byline-bio">${prof.bio}</div>`:''}`;
     });
   } else {
     bylineEl.innerHTML='';
@@ -1144,8 +1124,9 @@ function openArticle(idx){
   // WhatsApp/Facebook/X previews is the static page at articleUrl(n),
   // generated by scripts/generate-news-pages.mjs (see canonical link below).
   const artLink=articleUrl(n);
-  const seoTitle=(n.seoTitle||n.title)+' — Big Quams Media®';
-  const seoDesc=n.seoDesc||preview;
+  const seoTitle=n.seoTitle||n.title; // no "— Big Quams Media®" suffix — the site name is already in the URL itself
+  const baseDesc=n.seoDesc||preview;
+  const seoDesc=n.author?`${baseDesc} — By ${n.author}`:baseDesc;
   const previewImg=resolvePreviewImage(n);
   const setMeta=(p,v)=>{let m=document.querySelector(`meta[property="${p}"]`);if(!m){m=document.createElement('meta');m.setAttribute('property',p);document.head.appendChild(m);}m.setAttribute('content',v);};
   const setNameMeta=(nm,v)=>{let m=document.querySelector(`meta[name="${nm}"]`);if(!m){m=document.createElement('meta');m.setAttribute('name',nm);document.head.appendChild(m);}m.setAttribute('content',v);};
@@ -1172,7 +1153,7 @@ function openArticle(idx){
     const btn=document.getElementById('likeBtn');
     if(!btn||btn.getAttribute('onclick')!==`toggleLike('${openId}')`) return; // article changed since
     btn.classList.toggle('liked',liked);
-    btn.querySelector('.heart').innerHTML=liked?'<i class="fas fa-heart"></i>':'<i class="far fa-heart"></i>';
+    btn.querySelector('.heart').textContent=liked?'❤️':'🤍';
   });
 }
 
@@ -1193,9 +1174,9 @@ function shareArticle(){
   const url=articleUrl(n);
   const preview=firstSentenceExcerpt(n.fullContent||'');
   if(navigator.share){
-    navigator.share({title:n.title+' — Big Quams Media®',text:preview||n.title,url}).catch(()=>{});
+    navigator.share({title:n.title,text:preview||n.title,url}).catch(()=>{});
   } else {
-    navigator.clipboard.writeText(n.title+'\n\nRead more: '+url).then(()=>showToast('<i class="fas fa-check"></i> Link copied')).catch(()=>showToast('<i class="fas fa-check"></i> '+url));
+    navigator.clipboard.writeText(n.title+'\n\nRead more: '+url).then(()=>showToast('✓ Link copied')).catch(()=>showToast('✓ '+url));
   }
 }
 
@@ -1205,9 +1186,9 @@ function shareCard(e,idx){
   const url=articleUrl(n);
   const preview=firstSentenceExcerpt(n.fullContent||'');
   if(navigator.share){
-    navigator.share({title:n.title+' — Big Quams Media®',text:preview||n.title,url}).catch(()=>{});
+    navigator.share({title:n.title,text:preview||n.title,url}).catch(()=>{});
   } else {
-    navigator.clipboard.writeText(n.title+'\n\nRead more: '+url).then(()=>showToast('<i class="fas fa-check"></i> Link copied')).catch(()=>showToast('<i class="fas fa-check"></i> '+url));
+    navigator.clipboard.writeText(n.title+'\n\nRead more: '+url).then(()=>showToast('✓ Link copied')).catch(()=>showToast('✓ '+url));
   }
 }
 window.shareCard=shareCard;
