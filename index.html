@@ -34,7 +34,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <!-- Firebase (modular v9+ SDK) -->
 <script type="module">
 window._authUser = undefined; // undefined = not yet resolved, null = signed out, object = signed in
@@ -523,17 +522,22 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
 /* Countdown */
 @media(max-width:480px){.tool-tab{padding:11px 12px;font-size:.68rem}}
 
+/* ── ICON SYSTEM (inline SVG sprite, replaces Font Awesome) ── */
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-fill{fill:currentColor;stroke:none}
+.icon-dot{fill:currentColor;stroke:none}
 </style>
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="icon-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9"/></symbol><symbol id="icon-newspaper" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H7"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12.5" x2="13" y2="12.5"/><line x1="7" y1="16" x2="11" y2="16"/></symbol><symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></symbol><symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></symbol><symbol id="icon-graduation-cap" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5-10-5z"/><path d="M6 11v5c0 1 3 2 6 2s6-1 6-2v-5"/><path d="M22 9v6"/></symbol><symbol id="icon-book-open" viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8 4.5 4 5v13c4-.5 6.5 0 8 1.5V6.5z"/><path d="M12 6.5C13.5 5 16 4.5 20 5v13c-4-.5-6.5 0-8 1.5V6.5z"/></symbol><symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3z"/></symbol><symbol id="icon-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></symbol><symbol id="icon-bar-chart" viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></symbol><symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5 20 3"/><path d="M17 6l3 3"/><path d="M14 9l2.5 2.5"/></symbol><symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></symbol><symbol id="icon-landmark" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><path d="M3 10 12 4l9 6"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z"/></symbol><symbol id="icon-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z"/></symbol><symbol id="icon-clipboard-list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="12" y2="19"/></symbol><symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 4 1.5 5.5 2 6.5H4c.5-1 2-2.5 2-6.5z"/><path d="M10 19a2 2 0 0 0 4 0"/></symbol><symbol id="icon-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol><symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol><symbol id="icon-message-circle" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4A8.6 8.6 0 0 1 8 19l-4 1 1.3-3.9A8.4 8.4 0 1 1 21 11.5z"/><line x1="8.5" y1="12" x2="8.5" y2="12"/><line x1="12" y1="12" x2="12" y2="12"/><line x1="15.5" y1="12" x2="15.5" y2="12"/></symbol><symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></symbol><symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></symbol><symbol id="icon-building" viewBox="0 0 24 24"><rect x="5" y="3" width="9" height="18" rx="1"/><rect x="15" y="9" width="4" height="12" rx="1"/><line x1="8" y1="7" x2="8" y2="7"/><line x1="11" y1="7" x2="11" y2="7"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="11" y1="11" x2="11" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="11" y1="15" x2="11" y2="15"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.5.3 4.5 2.3 4.5 5.3"/></symbol><symbol id="icon-calendar-days" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="7" y1="14" x2="7" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="17" y1="14" x2="17" y2="14"/><line x1="7" y1="17.5" x2="7" y2="17.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-smartphone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18.5" x2="13" y2="18.5"/></symbol><symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><polyline points="20 4 20 8 16 8"/></symbol><symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="20" y2="20"/></symbol><symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol><symbol id="icon-rocket" viewBox="0 0 24 24"><path d="M12 2c3 1 5.5 4 5.5 8.5 0 2-1 3.8-2.2 5.2l-1 3.8-2.3-1.8-2.3 1.8-1-3.8C7.5 14.3 6.5 12.5 6.5 10.5 6.5 6 9 3 12 2z"/><circle cx="12" cy="10" r="1.7"/><path d="M9 17.5 7 21l3-1"/><path d="M15 17.5 17 21l-3-1"/></symbol><symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></symbol><symbol id="icon-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l7 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/><path d="M19.5 6.5a8 8 0 0 1 0 11"/></symbol><symbol id="icon-alert-triangle" viewBox="0 0 24 24"><path d="M12 3.5 22 20H2L12 3.5z"/><line x1="12" y1="10" x2="12" y2="14.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 11 15.5 16 9"/></symbol><symbol id="icon-robot" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="2"/><line x1="9" y1="13" x2="9" y2="13"/><line x1="15" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><line x1="12" y1="5" x2="12" y2="8"/><circle cx="12" cy="3.5" r="1"/></symbol><symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 8.7c.2-.3.6-.6 1.1-.6.4 0 .6.3.9 1 .2.5.5 1.1.4 1.4-.1.4-.4.6-.7.9-.2.2-.3.4-.1.7.4.7 1 1.3 1.7 1.7.3.2.5.1.7-.1.3-.3.5-.6.9-.7.3-.1.9.2 1.4.4.7.3 1 .5 1 .9 0 .5-.3.9-.6 1.1-.6.4-1.4.5-2.2.2-1.6-.5-3.4-2.3-4.2-3.9-.4-.7-.5-1.4-.3-2z"/></symbol><symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17" y1="7" x2="17" y2="7"/></symbol><symbol id="icon-tiktok" viewBox="0 0 24 24"><path d="M13.5 3v11.2a3.3 3.3 0 1 1-2.8-3.3"/><path d="M13.5 3.2c.4 2.4 2.2 4.2 4.5 4.5"/></symbol><symbol id="icon-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></symbol><symbol id="icon-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></symbol><symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 9 22 20 9 13 9 13 2"/></symbol></defs></svg>
 <a href="#main-content" style="position:absolute;left:-9999px;top:4px;background:#f97316;color:#fff;padding:8px 16px;border-radius:6px;font-weight:700;font-size:.85rem;z-index:9999" onfocus="this.style.left='16px'" onblur="this.style.left='-9999px'">Skip to main content</a>
 
 <!-- TOP BAR -->
 <div class="top-bar" id="topBar">
-  <div><i class="fas fa-bell"></i> <strong>Stay updated!</strong> Enable notifications for instant JAMB, scholarship &amp; admission alerts.</div>
+  <div><svg class="icon" aria-hidden="true"><use href="#icon-bell"></use></svg> <strong>Stay updated!</strong> Enable notifications for instant JAMB, scholarship &amp; admission alerts.</div>
   <div class="top-bar-btns">
     <button type="button" class="top-bar-allow" onclick="enableNotifications()">Enable</button>
-    <button type="button" class="top-bar-dismiss" onclick="dismissTopBar()"><i class="fas fa-xmark"></i></button>
+    <button type="button" class="top-bar-dismiss" onclick="dismissTopBar()"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
   </div>
 </div>
 
@@ -551,10 +555,10 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
       <a href="cbt.html">CBT</a>
       <a href="scholarship.html">Scholarships</a>
       <a href="elibrary.html">eLibrary</a>
-      <a href="profile.html"><i class="fas fa-user"></i> Login</a><a href="#contact" class="nav-cta"><i class="fas fa-comment-dots"></i> Contact</a>
+      <a href="profile.html"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> Login</a><a href="#contact" class="nav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-message-circle"></use></svg> Contact</a>
     </nav>
     <div class="hdr-right">
-      <button type="button" class="hdr-btn" id="darkToggle" onclick="toggleDarkMode()" aria-label="Switch to dark mode"><i class="fas fa-moon"></i></button>
+      <button type="button" class="hdr-btn" id="darkToggle" onclick="toggleDarkMode()" aria-label="Switch to dark mode"><svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg></button>
       <button type="button" class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -572,42 +576,42 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
         <div class="mnav-bsub">Nigeria's Trusted Student Platform</div>
       </div>
     </div>
-    <button type="button" class="mnav-close" onclick="toggleNav()" aria-label="Close menu"><i class="fas fa-xmark"></i></button>
+    <button type="button" class="mnav-close" onclick="toggleNav()" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
   </div>
-  <a href="profile.html" onclick="toggleNav()" style="background:rgba(249,115,22,.12);font-weight:700"><i class="fas fa-user"></i> Login / My Account</a>
+  <a href="profile.html" onclick="toggleNav()" style="background:rgba(249,115,22,.12);font-weight:700"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> Login / My Account</a>
 
   <div class="mnav-section">Main</div>
-  <a href="index.html" onclick="toggleNav()"><i class="fas fa-house"></i> Home</a>
-  <a href="newsroom.html" onclick="toggleNav()"><i class="fas fa-newspaper"></i> Newsroom</a>
-  <a href="explore.html" onclick="toggleNav()"><i class="fas fa-folder-open"></i> Explore All Tools</a>
-  <a href="campus-life.html" onclick="toggleNav()"><i class="fas fa-gamepad"></i> Campus Life</a>
-  <a href="community.html" onclick="toggleNav()"><i class="fas fa-handshake"></i> Community Hub</a>
-  <a href="daily.html" onclick="toggleNav()"><i class="fas fa-calendar-days"></i> Daily Hub</a>
-  <a href="profile.html" onclick="toggleNav()"><i class="fas fa-user"></i> My Profile</a>
+  <a href="index.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a>
+  <a href="newsroom.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a>
+  <a href="community.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a>
+  <a href="profile.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> My Profile</a>
 
   <div class="mnav-section">Exam Tools</div>
-  <a href="cbt.html" onclick="toggleNav()"><i class="fas fa-laptop-code"></i> JAMB CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()"><i class="fas fa-book-open"></i> Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()"><i class="fas fa-calculator"></i> Aggregate Calculator</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()"><i class="fas fa-graduation-cap"></i> GPA Calculator</a>
-  <a href="results.html" onclick="toggleNav()"><i class="fas fa-chart-column"></i> Results Checker</a>
-  <a href="Jamb_Profile_Code.html" onclick="toggleNav()"><i class="fas fa-key"></i> JAMB Profile Code</a>
+  <a href="cbt.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> JAMB CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a>
 
   <div class="mnav-section">Resources</div>
-  <a href="elibrary.html" onclick="toggleNav()"><i class="fas fa-book"></i> eLibrary</a>
-  <a href="scholarship.html" onclick="toggleNav()"><i class="fas fa-sack-dollar"></i> Scholarships</a>
-  <a href="student-loan.html" onclick="toggleNav()"><i class="fas fa-credit-card"></i> Student Loan (NELFUND)</a>
-  <a href="spotlight.html" onclick="toggleNav()"><i class="fas fa-star"></i> Student Spotlight</a>
-  <a href="dyk.html" onclick="toggleNav()"><i class="fas fa-lightbulb"></i> Did You Know</a>
-  <a href="subject-combo.html" onclick="toggleNav()"><i class="fas fa-clipboard-list"></i> Subject Combination</a>
+  <a href="elibrary.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combination</a>
 
-  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
 </nav>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
 
 <!-- TICKER -->
 <div class="ticker-bar" id="tickerBar">
-  <div class="ticker-tag"><i class="fas fa-bolt"></i> Live</div>
+  <div class="ticker-tag"><svg class="icon" aria-hidden="true"><use href="#icon-zap"></use></svg> Live</div>
   <div class="ticker-scroll-wrap"><div class="ticker-track" id="tickerTrack"></div></div>
 </div>
 
@@ -626,31 +630,31 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
 
     <!-- TRUST BADGES -->
     <div class="hero-trust">
-      <div class="trust-badge"><i class="fas fa-circle-check"></i> 100% Free</div>
-      <div class="trust-badge"><i class="fas fa-mobile-screen"></i> Mobile Friendly</div>
-      <div class="trust-badge"><i class="fas fa-bolt"></i> PWA Supported</div>
-      <div class="trust-badge"><i class="fas fa-rotate"></i> Always Updated</div>
-      <div class="trust-badge"><i class="fab fa-whatsapp"></i> WhatsApp Support</div>
+      <div class="trust-badge"><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> 100% Free</div>
+      <div class="trust-badge"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Mobile Friendly</div>
+      <div class="trust-badge"><svg class="icon" aria-hidden="true"><use href="#icon-zap"></use></svg> PWA Supported</div>
+      <div class="trust-badge"><svg class="icon" aria-hidden="true"><use href="#icon-refresh"></use></svg> Always Updated</div>
+      <div class="trust-badge"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> WhatsApp Support</div>
     </div>
 
     <!-- SEARCH BAR -->
     <div class="hero-search-wrap">
       <div class="hero-search">
-        <span class="hero-search-icon"><i class="fas fa-magnifying-glass"></i></span>
+        <span class="hero-search-icon"><svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg></span>
         <input type="text" id="heroSearch" class="hero-search-input" placeholder="Search scholarships, schools, news, tools…" onkeydown="if(event.key==='Enter')heroSearchGo()" autocomplete="off" aria-label="Search scholarships, schools, news, and tools">
         <button type="button" class="hero-search-btn" onclick="heroSearchGo()">Search</button>
       </div>
       <div class="hero-search-tags" style="margin-top:10px">
-        <button type="button" onclick="heroSearchTag('CBT Practice')"><i class="fas fa-laptop-code"></i> CBT</button>
-        <button type="button" onclick="heroSearchTag('Scholarship')"><i class="fas fa-sack-dollar"></i> Scholarships</button>
-        <button type="button" onclick="heroSearchTag('Post-UTME')"><i class="fas fa-book-open"></i> Post-UTME</button>
-        <button type="button" onclick="heroSearchTag('Student Loan')"><i class="fas fa-credit-card"></i> NELFUND</button>
+        <button type="button" onclick="heroSearchTag('CBT Practice')"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT</button>
+        <button type="button" onclick="heroSearchTag('Scholarship')"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</button>
+        <button type="button" onclick="heroSearchTag('Post-UTME')"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> Post-UTME</button>
+        <button type="button" onclick="heroSearchTag('Student Loan')"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> NELFUND</button>
       </div>
     </div>
 
     <div class="hero-ctas" style="margin-top:24px">
-      <a href="explore.html" class="btn-orange"><i class="fas fa-folder-open"></i> Explore All Tools</a>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+      <a href="explore.html" class="btn-orange"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore All Tools</a>
+      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
     </div>
 
     <!-- STATS -->
@@ -672,10 +676,10 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
         <h2 class="sec-title">Built for Every Stage of <span>Your Journey</span></h2>
         <p style="font-size:.92rem;color:var(--text-muted);line-height:1.75;margin:12px 0 20px">From pre-admission to graduation — Big Quams Media® gives you the tools, news, and resources to stay ahead on campus.</p>
         <div class="vh-features">
-          <div class="vh-feat"><span class="vh-feat-icon" style="background:#fee2e2"><i class="fas fa-laptop-code"></i></span><div><div class="vh-feat-name">JAMB CBT Practice</div><div class="vh-feat-desc">515+ past questions</div></div></div>
-          <div class="vh-feat"><span class="vh-feat-icon" style="background:#dcfce7"><i class="fas fa-sack-dollar"></i></span><div><div class="vh-feat-name">Scholarship Finder</div><div class="vh-feat-desc">50+ live opportunities</div></div></div>
-          <div class="vh-feat"><span class="vh-feat-icon" style="background:#ede9fe"><i class="fas fa-credit-card"></i></span><div><div class="vh-feat-name">NELFUND Student Loan</div><div class="vh-feat-desc">Step-by-step guide</div></div></div>
-          <div class="vh-feat"><span class="vh-feat-icon" style="background:#fef3c7"><i class="fas fa-book"></i></span><div><div class="vh-feat-name">Free eLibrary</div><div class="vh-feat-desc">100+ textbooks & notes</div></div></div>
+          <div class="vh-feat"><span class="vh-feat-icon" style="background:#fee2e2"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg></span><div><div class="vh-feat-name">JAMB CBT Practice</div><div class="vh-feat-desc">515+ past questions</div></div></div>
+          <div class="vh-feat"><span class="vh-feat-icon" style="background:#dcfce7"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg></span><div><div class="vh-feat-name">Scholarship Finder</div><div class="vh-feat-desc">50+ live opportunities</div></div></div>
+          <div class="vh-feat"><span class="vh-feat-icon" style="background:#ede9fe"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg></span><div><div class="vh-feat-name">NELFUND Student Loan</div><div class="vh-feat-desc">Step-by-step guide</div></div></div>
+          <div class="vh-feat"><span class="vh-feat-icon" style="background:#fef3c7"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg></span><div><div class="vh-feat-name">Free eLibrary</div><div class="vh-feat-desc">100+ textbooks & notes</div></div></div>
         </div>
         <a href="explore.html" class="btn-orange" style="margin-top:8px">See All 12 Tools →</a>
       </div>
@@ -692,17 +696,17 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
               <div style="font-size:.42rem;color:rgba(255,255,255,.55)">Simplifying Campus Life</div>
             </div>
           </div>
-          <div class="vh-phone-welcome">Welcome, Student! <i class="fas fa-graduation-cap"></i><br><span>What would you like to explore?</span></div>
+          <div class="vh-phone-welcome">Welcome, Student! <svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg><br><span>What would you like to explore?</span></div>
           <div class="vh-phone-grid">
-            <a href="newsroom.html" class="vh-phone-tile" style="--tc:#dbeafe;--ti:#1d4ed8"><i class="fas fa-newspaper"></i><span>Campus News</span></a>
-            <a href="student-loan.html" class="vh-phone-tile" style="--tc:#ede9fe;--ti:#6d28d9"><i class="fas fa-credit-card"></i><span>Student Loan</span></a>
-            <a href="scholarship.html" class="vh-phone-tile" style="--tc:#dcfce7;--ti:#15803d"><i class="fas fa-sack-dollar"></i><span>Scholarships</span></a>
-            <a href="gpa-calculator.html" class="vh-phone-tile" style="--tc:#fef3c7;--ti:#92400e"><i class="fas fa-chart-column"></i><span>GPA Calc</span></a>
-            <a href="elibrary.html" class="vh-phone-tile" style="--tc:#fef9c3;--ti:#92400e"><i class="fas fa-book"></i><span>eLibrary</span></a>
-            <a href="cbt.html" class="vh-phone-tile" style="--tc:#fee2e2;--ti:#b91c1c"><i class="fas fa-laptop-code"></i><span>JAMB CBT</span></a>
+            <a href="newsroom.html" class="vh-phone-tile" style="--tc:#dbeafe;--ti:#1d4ed8"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg><span>Campus News</span></a>
+            <a href="student-loan.html" class="vh-phone-tile" style="--tc:#ede9fe;--ti:#6d28d9"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg><span>Student Loan</span></a>
+            <a href="scholarship.html" class="vh-phone-tile" style="--tc:#dcfce7;--ti:#15803d"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg><span>Scholarships</span></a>
+            <a href="gpa-calculator.html" class="vh-phone-tile" style="--tc:#fef3c7;--ti:#92400e"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg><span>GPA Calc</span></a>
+            <a href="elibrary.html" class="vh-phone-tile" style="--tc:#fef9c3;--ti:#92400e"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg><span>eLibrary</span></a>
+            <a href="cbt.html" class="vh-phone-tile" style="--tc:#fee2e2;--ti:#b91c1c"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg><span>JAMB CBT</span></a>
           </div>
           <div class="vh-phone-footer">
-            <span><i class="fas fa-house"></i></span><span><i class="fas fa-folder-open"></i></span><span><i class="fas fa-newspaper"></i></span><span><i class="fas fa-book"></i></span><span><i class="fas fa-user"></i></span>
+            <span><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg></span><span><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg></span><span><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg></span><span><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg></span><span><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg></span>
           </div>
         </div>
         <div class="vh-badge-free">100%<br>FREE</div>
@@ -714,13 +718,13 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
 <!-- TOOLS BAR -->
 <div class="tools-bar">
   <div class="tools-scroll">
-    <button type="button" class="tool-tab active" onclick="document.getElementById('news-updates').scrollIntoView({behavior:'smooth'})"><i class="fas fa-newspaper"></i> Latest News</button>
-    <button type="button" class="tool-tab" onclick="location.href='cbt.html'"><i class="fas fa-laptop-code"></i> CBT Practice</button>
-    <button type="button" class="tool-tab" onclick="document.getElementById('scholarship-preview').scrollIntoView({behavior:'smooth'})"><i class="fas fa-sack-dollar"></i> Scholarships</button>
-    <button type="button" class="tool-tab" onclick="location.href='elibrary.html'"><i class="fas fa-book-open"></i> eLibrary</button>
-    <button type="button" class="tool-tab" onclick="location.href='daily.html'"><i class="fas fa-calendar-days"></i> Daily Hub</button>
-    <button type="button" class="tool-tab" onclick="location.href='campus-life.html'"><i class="fas fa-gamepad"></i> Campus Life</button>
-    <button type="button" class="tool-tab" onclick="location.href='explore.html'"><i class="fas fa-folder-open"></i> All Tools</button>
+    <button type="button" class="tool-tab active" onclick="document.getElementById('news-updates').scrollIntoView({behavior:'smooth'})"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Latest News</button>
+    <button type="button" class="tool-tab" onclick="location.href='cbt.html'"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</button>
+    <button type="button" class="tool-tab" onclick="document.getElementById('scholarship-preview').scrollIntoView({behavior:'smooth'})"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</button>
+    <button type="button" class="tool-tab" onclick="location.href='elibrary.html'"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</button>
+    <button type="button" class="tool-tab" onclick="location.href='daily.html'"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</button>
+    <button type="button" class="tool-tab" onclick="location.href='campus-life.html'"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</button>
+    <button type="button" class="tool-tab" onclick="location.href='explore.html'"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> All Tools</button>
   </div>
 </div>
 
@@ -733,62 +737,62 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
     </div>
     <div class="qt-grid">
       <a href="cbt.html" class="qt-card" style="--qt-color:#fee2e2;--qt-text:#b91c1c">
-        <span class="qt-icon"><i class="fas fa-laptop-code"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg></span>
         <div class="qt-name">CBT Practice</div>
         <div class="qt-desc">515+ JAMB questions</div>
       </a>
       <a href="newsroom.html" class="qt-card" style="--qt-color:#dbeafe;--qt-text:#1d4ed8">
-        <span class="qt-icon"><i class="fas fa-newspaper"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg></span>
         <div class="qt-name">Campus Newsroom</div>
         <div class="qt-desc">Latest campus updates</div>
       </a>
       <a href="scholarship.html" class="qt-card" style="--qt-color:#dcfce7;--qt-text:#15803d">
-        <span class="qt-icon"><i class="fas fa-sack-dollar"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg></span>
         <div class="qt-name">Scholarships</div>
         <div class="qt-desc">50+ opportunities</div>
       </a>
       <a href="student-loan.html" class="qt-card" style="--qt-color:#ede9fe;--qt-text:#6d28d9">
-        <span class="qt-icon"><i class="fas fa-credit-card"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg></span>
         <div class="qt-name">Student Loan</div>
         <div class="qt-desc">NELFUND guide</div>
       </a>
       <a href="gpa-calculator.html" class="qt-card" style="--qt-color:#f0fdf4;--qt-text:#15803d">
-        <span class="qt-icon"><i class="fas fa-chart-column"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg></span>
         <div class="qt-name">GPA Calculator</div>
         <div class="qt-desc">5.0 & 4.0 scales</div>
       </a>
       <a href="elibrary.html" class="qt-card" style="--qt-color:#fef3c7;--qt-text:#92400e">
-        <span class="qt-icon"><i class="fas fa-book"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg></span>
         <div class="qt-name">eLibrary</div>
         <div class="qt-desc">100+ free eBooks</div>
       </a>
       <a href="postutme-prep.html" class="qt-card" style="--qt-color:#fef9c3;--qt-text:#92400e">
-        <span class="qt-icon"><i class="fas fa-book-open"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg></span>
         <div class="qt-name">Post-UTME Prep</div>
         <div class="qt-desc">School-specific guides</div>
       </a>
       <a href="postutme-calculator.html" class="qt-card" style="--qt-color:#dbeafe;--qt-text:#1d4ed8">
-        <span class="qt-icon"><i class="fas fa-calculator"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg></span>
         <div class="qt-name">Aggregate Calc</div>
         <div class="qt-desc">Know your chances</div>
       </a>
       <a href="daily.html" class="qt-card" style="--qt-color:#fef9c3;--qt-text:#92400e">
-        <span class="qt-icon"><i class="fas fa-calendar-days"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg></span>
         <div class="qt-name">Daily Hub</div>
         <div class="qt-desc">Daily challenge + DYK</div>
       </a>
       <a href="campus-life.html" class="qt-card" style="--qt-color:#fce7f3;--qt-text:#9d174d">
-        <span class="qt-icon"><i class="fas fa-gamepad"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg></span>
         <div class="qt-name">Campus Life</div>
         <div class="qt-desc">Gist, polls & games</div>
       </a>
       <a href="subject-combo.html" class="qt-card" style="--qt-color:#dcfce7;--qt-text:#15803d">
-        <span class="qt-icon"><i class="fas fa-clipboard-list"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg></span>
         <div class="qt-name">Subject Combo</div>
         <div class="qt-desc">JAMB combinations</div>
       </a>
       <a href="results.html" class="qt-card" style="--qt-color:#e0f2fe;--qt-text:#0369a1">
-        <span class="qt-icon"><i class="fas fa-clipboard-list"></i></span>
+        <span class="qt-icon"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg></span>
         <div class="qt-name">Results Checker</div>
         <div class="qt-desc">JAMB, WAEC, NECO</div>
       </a>
@@ -837,17 +841,17 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
     </div>
     <div class="testimonials-grid">
       <div class="testi-card">
-        <div class="testi-stars"><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i></div>
+        <div class="testi-stars"><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg></div>
         <div class="testi-text">"I got verified admission information through Big Quams Media® when I was confused about Post-UTME screening. No fake news, just facts."</div>
         <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Aisha M.</div><div class="testi-school">KWASU Student</div></div></div>
       </div>
       <div class="testi-card">
-        <div class="testi-stars"><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i></div>
+        <div class="testi-stars"><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg></div>
         <div class="testi-text">"The Post-UTME aggregate calculator showed me exactly where I stood before screening. I went in confident and got admitted. Thank you Big Quams Media®!"</div>
         <div class="testi-author"><div class="testi-avatar">T</div><div><div class="testi-name">Tobiloba A.</div><div class="testi-school">UNIOSUN Applicant</div></div></div>
       </div>
       <div class="testi-card">
-        <div class="testi-stars"><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i><i class="fas fa-star" style="color:#f59e0b"></i></div>
+        <div class="testi-stars"><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg><svg class="icon icon-fill" aria-hidden="true" style="color:#f59e0b"><use href="#icon-star"></use></svg></div>
         <div class="testi-text">"The CBT practice questions are exactly like the real JAMB exam. I practised every day and improved my score from 187 to 241. This platform is a must!"</div>
         <div class="testi-author"><div class="testi-avatar">E</div><div><div class="testi-name">Emmanuel O.</div><div class="testi-school">UNILAG Applicant</div></div></div>
       </div>
@@ -868,8 +872,8 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
           <div class="install-step"><span class="install-num">2</span><span>Tap the <strong>menu icon</strong> (⋮ on Android · Share ⬆ on iPhone)</span></div>
           <div class="install-step"><span class="install-num">3</span><span>Select <strong>"Add to Home Screen"</strong> and tap Add</span></div>
         </div>
-        <button type="button" class="btn-orange" onclick="installApp()" id="installBtn" style="display:flex;width:100%;justify-content:center;margin-bottom:10px;align-items:center;gap:8px"><i class="fas fa-mobile-screen-button"></i> Install App Now</button>
-        <div class="install-note" id="installNote" style="font-size:.76rem;color:var(--text-muted);margin-top:6px;line-height:1.6"><i class="fas fa-lightbulb"></i> <strong>iPhone:</strong> tap Share ⬆ in Safari → "Add to Home Screen"<br><i class="fas fa-lightbulb"></i> <strong>Android:</strong> tap ⋮ in Chrome → "Add to Home screen"</div>
+        <button type="button" class="btn-orange" onclick="installApp()" id="installBtn" style="display:flex;width:100%;justify-content:center;margin-bottom:10px;align-items:center;gap:8px"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Install App Now</button>
+        <div class="install-note" id="installNote" style="font-size:.76rem;color:var(--text-muted);margin-top:6px;line-height:1.6"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> <strong>iPhone:</strong> tap Share ⬆ in Safari → "Add to Home Screen"<br><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> <strong>Android:</strong> tap ⋮ in Chrome → "Add to Home screen"</div>
       </div>
       <div class="install-visual">
         <div class="phone-mockup">
@@ -879,15 +883,15 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
               <span style="font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</span>
             </div>
             <div class="phone-tools">
-              <div class="phone-tool" style="background:#fee2e2"><i class="fas fa-laptop-code"></i></div>
-              <div class="phone-tool" style="background:#dbeafe"><i class="fas fa-newspaper"></i></div>
-              <div class="phone-tool" style="background:#dcfce7"><i class="fas fa-sack-dollar"></i></div>
-              <div class="phone-tool" style="background:#ede9fe"><i class="fas fa-credit-card"></i></div>
-              <div class="phone-tool" style="background:#fef3c7"><i class="fas fa-book"></i></div>
-              <div class="phone-tool" style="background:#fce7f3"><i class="fas fa-gamepad"></i></div>
+              <div class="phone-tool" style="background:#fee2e2"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg></div>
+              <div class="phone-tool" style="background:#dbeafe"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg></div>
+              <div class="phone-tool" style="background:#dcfce7"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg></div>
+              <div class="phone-tool" style="background:#ede9fe"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg></div>
+              <div class="phone-tool" style="background:#fef3c7"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg></div>
+              <div class="phone-tool" style="background:#fce7f3"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg></div>
             </div>
             <div class="phone-notif">
-              <span><i class="fas fa-bell"></i></span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-bell"></use></svg></span>
               <div style="flex:1">
                 <div style="font-size:.5rem;font-weight:700;color:#1e2749">New Scholarship Alert!</div>
                 <div style="font-size:.44rem;color:#64748b">MTN Foundation — Apply now</div>
@@ -912,15 +916,15 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
         <p>Whether you're seeking admission, preparing for screenings, searching for scholarships, or looking for verified school updates, Big Quams Media® is your trusted companion.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin:16px 0">
           <div style="flex:1;min-width:140px;background:var(--blue-lt,#dde9ff);border-radius:10px;padding:12px 14px">
-            <div style="font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:var(--blue-main,#1a3fa8);margin-bottom:4px"><i class="fas fa-bullseye"></i> Our Vision</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:var(--blue-main,#1a3fa8);margin-bottom:4px"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Our Vision</div>
             <div style="font-size:.78rem;color:var(--text-muted);line-height:1.5">To become the most trusted digital platform for students in Nigeria and beyond.</div>
           </div>
           <div style="flex:1;min-width:140px;background:#fff7ed;border-radius:10px;padding:12px 14px">
-            <div style="font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:#c2410c;margin-bottom:4px"><i class="fas fa-rocket"></i> Our Mission</div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:#c2410c;margin-bottom:4px"><svg class="icon" aria-hidden="true"><use href="#icon-rocket"></use></svg> Our Mission</div>
             <div style="font-size:.78rem;color:var(--text-muted);line-height:1.5">To empower students with accurate information, valuable resources, and opportunities that enhance their academic growth.</div>
           </div>
         </div>
-        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa" style="display:inline-flex;"><i class="fab fa-whatsapp"></i> Chat with Us</a>
+        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa" style="display:inline-flex;"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat with Us</a>
       </div>
       <div class="stats-grid">
         <div class="stat-box"><div class="stat-num" data-target="10000" data-suffix="+" data-divisor="1000">10K+</div><div class="stat-lbl">Students Reached</div></div>
@@ -941,8 +945,8 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
         <p>Join thousands of Nigerian students using Big Quams Media® — completely free.</p>
       </div>
       <div class="cta-banner-btns">
-        <a href="explore.html" class="btn-orange"><i class="fas fa-folder-open"></i> Explore Tools</a>
-        <a href="cbt.html" class="btn-blue"><i class="fas fa-laptop-code"></i> Start JAMB Practice</a>
+        <a href="explore.html" class="btn-orange"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore Tools</a>
+        <a href="cbt.html" class="btn-blue"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> Start JAMB Practice</a>
       </div>
     </div>
   </div>
@@ -966,10 +970,10 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
         </form>
       </div>
       <div class="contact-channels">
-        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon"><i class="fab fa-whatsapp"></i></span><div><div class="ch-label">Chat on WhatsApp</div><div class="ch-sub">Direct message — fastest response</div></div></a>
-        <a href="mailto:bigquamsmedia@gmail.com" class="ch-card"><span class="ch-icon"><i class="fas fa-envelope"></i></span><div><div class="ch-label">Send an Email</div><div class="ch-sub">bigquamsmedia@gmail.com</div></div></a>
-        <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon"><i class="fas fa-users"></i></span><div><div class="ch-label">Join Brainy Buddies Group</div><div class="ch-sub">Community of Nigerian students</div></div></a>
-        <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon"><i class="fas fa-bullhorn"></i></span><div><div class="ch-label">Join Our WhatsApp Channel</div><div class="ch-sub">10K+ students already subscribed</div></div></a>
+        <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg></span><div><div class="ch-label">Chat on WhatsApp</div><div class="ch-sub">Direct message — fastest response</div></div></a>
+        <a href="mailto:bigquamsmedia@gmail.com" class="ch-card"><span class="ch-icon"><svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg></span><div><div class="ch-label">Send an Email</div><div class="ch-sub">bigquamsmedia@gmail.com</div></div></a>
+        <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg></span><div><div class="ch-label">Join Brainy Buddies Group</div><div class="ch-sub">Community of Nigerian students</div></div></a>
+        <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener noreferrer" class="ch-card"><span class="ch-icon"><svg class="icon" aria-hidden="true"><use href="#icon-megaphone"></use></svg></span><div><div class="ch-label">Join Our WhatsApp Channel</div><div class="ch-sub">10K+ students already subscribed</div></div></a>
       </div>
     </div>
   </div>
@@ -987,54 +991,54 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
           <p class="footer-bsub">Free tools, news and resources built for Nigerian undergraduates — from admission to graduation.</p>
         </div>
       </div>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa footer-cta"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="btn-wa footer-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
     </div>
 
     <nav class="footer-cols" aria-label="Footer navigation">
       <div>
         <h3 class="footer-heading">Main</h3>
         <ul class="footer-links">
-          <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
-          <li><a href="newsroom.html"><i class="fas fa-newspaper"></i> Newsroom</a></li>
-          <li><a href="explore.html"><i class="fas fa-folder-open"></i> Explore Tools</a></li>
-          <li><a href="campus-life.html"><i class="fas fa-gamepad"></i> Campus Life</a></li>
-          <li><a href="community.html"><i class="fas fa-handshake"></i> Community</a></li>
-          <li><a href="daily.html"><i class="fas fa-calendar-days"></i> Daily Hub</a></li>
+          <li><a href="index.html"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a></li>
+          <li><a href="newsroom.html"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a></li>
+          <li><a href="explore.html"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore Tools</a></li>
+          <li><a href="campus-life.html"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a></li>
+          <li><a href="community.html"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community</a></li>
+          <li><a href="daily.html"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Exam Tools</h3>
         <ul class="footer-links">
-          <li><a href="cbt.html"><i class="fas fa-laptop-code"></i> JAMB CBT Practice</a></li>
-          <li><a href="postutme-prep.html"><i class="fas fa-book-open"></i> Post-UTME Prep</a></li>
-          <li><a href="postutme-calculator.html"><i class="fas fa-calculator"></i> Aggregate Calc</a></li>
-          <li><a href="admissioncalculator.html"><i class="fas fa-bullseye"></i> Admission Chances</a></li>
-          <li><a href="gpa-calculator.html"><i class="fas fa-graduation-cap"></i> GPA Calculator</a></li>
-          <li><a href="results.html"><i class="fas fa-chart-column"></i> Results Checker</a></li>
-          <li><a href="Jamb_Profile_Code.html"><i class="fas fa-key"></i> JAMB Profile Code</a></li>
+          <li><a href="cbt.html"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> JAMB CBT Practice</a></li>
+          <li><a href="postutme-prep.html"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> Post-UTME Prep</a></li>
+          <li><a href="postutme-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calc</a></li>
+          <li><a href="admissioncalculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Admission Chances</a></li>
+          <li><a href="gpa-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a></li>
+          <li><a href="results.html"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a></li>
+          <li><a href="Jamb_Profile_Code.html"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Resources</h3>
         <ul class="footer-links">
-          <li><a href="elibrary.html"><i class="fas fa-book"></i> eLibrary</a></li>
-          <li><a href="scholarship.html"><i class="fas fa-sack-dollar"></i> Scholarships</a></li>
-          <li><a href="student-loan.html"><i class="fas fa-credit-card"></i> Student Loan</a></li>
-          <li><a href="spotlight.html"><i class="fas fa-star"></i> Student Spotlight</a></li>
-          <li><a href="dyk.html"><i class="fas fa-lightbulb"></i> Did You Know</a></li>
-          <li><a href="subject-combo.html"><i class="fas fa-clipboard-list"></i> Subject Combo</a></li>
+          <li><a href="elibrary.html"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> eLibrary</a></li>
+          <li><a href="scholarship.html"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a></li>
+          <li><a href="student-loan.html"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan</a></li>
+          <li><a href="spotlight.html"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a></li>
+          <li><a href="dyk.html"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a></li>
+          <li><a href="subject-combo.html"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Connect</h3>
         <ul class="footer-links">
-          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer"><i class="fas fa-users"></i> Join WhatsApp Group</a></li>
-          <li><a href="#install-app"><i class="fas fa-mobile-screen-button"></i> Install App</a></li>
+          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Join WhatsApp Group</a></li>
+          <li><a href="#install-app"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Install App</a></li>
         </ul>
         <div class="footer-social">
-          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg></a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg></a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg class="icon" aria-hidden="true"><use href="#icon-tiktok"></use></svg></a>
         </div>
       </div>
     </nav>
@@ -1053,8 +1057,8 @@ body.dark .sch-prev-card{background:#161b27;border-color:var(--border)}
   </div>
 </footer>
 
-<a id="wa-float" href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
-<button type="button" id="backToTop" aria-label="Back to top">↑</button>
+<a id="wa-float" href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg></a>
+<button type="button" id="backToTop" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"></use></svg></button>
 <div id="toast-wrap"></div>
 
 <script>
@@ -1077,14 +1081,14 @@ function toggleDarkMode(){
   const btn=document.getElementById('darkToggle');
   document.body.classList.toggle('dark');
   const dark=document.body.classList.contains('dark');
-  if(btn){btn.innerHTML=dark?'<i class="fas fa-sun"></i>':'<i class="fas fa-moon"></i>';btn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');}
+  if(btn){btn.innerHTML=dark?'<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>':'<svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>';btn.setAttribute('aria-label',dark?'Switch to light mode':'Switch to dark mode');}
   localStorage.setItem('bqm-theme',dark?'dark':'light');
 }
 (function(){
   const btn=document.getElementById('darkToggle');
   const saved=localStorage.getItem('bqm-theme');
   const sys=!saved&&window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
-  if(saved==='dark'||sys){document.body.classList.add('dark');if(btn){btn.innerHTML='<i class="fas fa-sun"></i>';btn.setAttribute('aria-label','Switch to light mode');}if(sys)localStorage.setItem('bqm-theme','dark');}
+  if(saved==='dark'||sys){document.body.classList.add('dark');if(btn){btn.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>';btn.setAttribute('aria-label','Switch to light mode');}if(sys)localStorage.setItem('bqm-theme','dark');}
 })();
 
 /* NAV */
@@ -1101,10 +1105,10 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.
 /* TOP BAR */
 function dismissTopBar(){document.getElementById('topBar').classList.remove('show');sessionStorage.setItem('bqm_tb','1');}
 function enableNotifications(){
-  if(!('Notification'in window)){showToast('<i class="fas fa-triangle-exclamation"></i> Notifications not supported');return;}
+  if(!('Notification'in window)){showToast('<svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Notifications not supported');return;}
   Notification.requestPermission().then(p=>{
-    if(p==='granted'){localStorage.setItem('bqm_notif','1');document.getElementById('topBar').classList.remove('show');showToast('<i class="fas fa-circle-check"></i> Notifications enabled!');}
-    else if(p==='denied')showToast('<i class="fas fa-triangle-exclamation"></i> Notifications blocked in browser settings');
+    if(p==='granted'){localStorage.setItem('bqm_notif','1');document.getElementById('topBar').classList.remove('show');showToast('<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> Notifications enabled!');}
+    else if(p==='denied')showToast('<svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Notifications blocked in browser settings');
   });
 }
 (function(){
@@ -1124,7 +1128,7 @@ function showToast(msg){
 function initTicker(){
   const track=document.getElementById('tickerTrack'),bar=document.getElementById('tickerBar');
   if(!track||!bar)return;
-  const seed=['<i class="fas fa-bullhorn"></i> JAMB 2026 UTME Results Released — Check yours on the JAMB portal','<i class="fas fa-graduation-cap"></i> Post-UTME Screening begins June 2026 — 15 universities confirmed','<i class="fas fa-credit-card"></i> NELFUND Student Loan portal is open — Apply before the deadline','<i class="fas fa-sack-dollar"></i> New scholarships added regularly — check the Scholarships page','<i class="fas fa-newspaper"></i> WAEC 2026 Results expected August — stay updated on BQM','<i class="fas fa-bell"></i> Monitor your JAMB CAPS portal daily for admission updates'];
+  const seed=['<svg class="icon" aria-hidden="true"><use href="#icon-megaphone"></use></svg> JAMB 2026 UTME Results Released — Check yours on the JAMB portal','<svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> Post-UTME Screening begins June 2026 — 15 universities confirmed','<svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> NELFUND Student Loan portal is open — Apply before the deadline','<svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> New scholarships added regularly — check the Scholarships page','<svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> WAEC 2026 Results expected August — stay updated on BQM','<svg class="icon" aria-hidden="true"><use href="#icon-bell"></use></svg> Monitor your JAMB CAPS portal daily for admission updates'];
   function render(items,trusted){track.innerHTML=[...items,...items].map(t=>`<span class="ticker-item">${trusted?t:escapeHtml(t)}</span>`).join('');bar.classList.add('show');}
   render(seed,true);
   // Pull live ticker items from Firestore; keep the seed text if it fails, is empty, or Firebase isn't ready
@@ -1160,7 +1164,7 @@ function renderNewsCards(items){
   const preview=n=>(n.fullContent||n.summary||n.excerpt||'').replace(/<[^>]*>/g,'').substring(0,100);
   grid.innerHTML=top.map(n=>`
     <a class="news-card" href="${escapeHtml(newsArticleUrl(n))}">
-      ${n.image?`<img class="news-img" src="${escapeHtml(n.image)}" alt="${escapeHtml(n.title)}" loading="lazy">`:`<div class="news-img-ph">${n.emoji?escapeHtml(n.emoji):'<i class="fas fa-newspaper"></i>'}</div>`}
+      ${n.image?`<img class="news-img" src="${escapeHtml(n.image)}" alt="${escapeHtml(n.title)}" loading="lazy">`:`<div class="news-img-ph">${n.emoji?escapeHtml(n.emoji):'<svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg>'}</div>`}
       <div class="news-body">
         ${n.category?`<span class="news-tag">${escapeHtml(n.category)}</span>`:''}
         <div class="news-title">${escapeHtml(n.title)}</div>
@@ -1176,7 +1180,7 @@ function fbErrorBlock(what,technicalReason,retryFnName,extraLinkHtml){
   console.error('['+what+' load failed] '+(technicalReason||'Unknown error'));
   return `<div class="fb-state fb-state-error">
     <div class="fb-state-msg">${escapeHtml(what)} couldn't load right now.<br>Please check your connection and try again.</div>
-    <button type="button" onclick="${retryFnName}()" class="fb-state-retry"><i class="fas fa-rotate"></i> Try Again</button>
+    <button type="button" onclick="${retryFnName}()" class="fb-state-retry"><svg class="icon" aria-hidden="true"><use href="#icon-refresh"></use></svg> Try Again</button>
     ${extraLinkHtml||''}
   </div>`;
 }
@@ -1233,11 +1237,11 @@ async function loadScholarships(){
   </div>`;
   const tM={federal:['#dbeafe','#1d4ed8','#eff6ff'],corporate:['#fff7ed','#c2410c','#fff7ed'],international:['#ede9fe','#7c3aed','#f5f3ff'],state:['#dcfce7','#15803d','#f0fdf4']};
   const sC={open:'ss-open',ongoing:'ss-ongoing',soon:'ss-soon',closed:'ss-closed'};
-  const sL={open:'<i class="fas fa-circle"></i> Open',ongoing:'<i class="fas fa-circle"></i> Ongoing',soon:'<i class="fas fa-circle"></i> Soon',closed:'<i class="fas fa-circle"></i> Closed'};
+  const sL={open:'<svg class="icon icon-dot" aria-hidden="true"><use href="#icon-dot"></use></svg> Open',ongoing:'<svg class="icon icon-dot" aria-hidden="true"><use href="#icon-dot"></use></svg> Ongoing',soon:'<svg class="icon icon-dot" aria-hidden="true"><use href="#icon-dot"></use></svg> Soon',closed:'<svg class="icon icon-dot" aria-hidden="true"><use href="#icon-dot"></use></svg> Closed'};
   function render(items){
     grid.innerHTML=items.slice(0,3).map(s=>{
       const[tc,tx,ic]=tM[s.type||'federal']||tM.federal;
-      return`<div class="sch-card" onclick="location.href='scholarship.html'"><div class="sch-top"><div class="sch-icon-box" style="background:${ic}">${s.icon?escapeHtml(s.icon):'<i class="fas fa-sack-dollar"></i>'}</div><div class="sch-meta"><span class="sch-type-tag" style="background:${tc};color:${tx}">${escapeHtml((s.type||'federal').toUpperCase())}</span><div class="sch-name">${escapeHtml(s.name)}</div><div class="sch-org">${escapeHtml(s.org||'')}</div></div></div><div class="sch-body"><div class="sch-desc">${escapeHtml(s.desc||s.description||'')}</div></div><div class="sch-foot"><span class="sch-deadline"><i class="fas fa-calendar-days"></i> ${escapeHtml(s.deadline||'Check portal')}</span><span class="sch-amount">${escapeHtml(s.amount||'')}</span><span class="sch-status ${sC[s.status]||'ss-ongoing'}">${sL[s.status]||'<i class="fas fa-circle"></i> Ongoing'}</span></div><a href="https://wa.me/${BQM_CONFIG.contact.whatsapp}?text=${encodeURIComponent('Hello BQM, I need help applying for: '+s.name)}" target="_blank" rel="noopener noreferrer" class="sch-apply-btn"><i class="fab fa-whatsapp"></i> Get Help Applying →</a></div>`;
+      return`<div class="sch-card" onclick="location.href='scholarship.html'"><div class="sch-top"><div class="sch-icon-box" style="background:${ic}">${s.icon?escapeHtml(s.icon):'<svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg>'}</div><div class="sch-meta"><span class="sch-type-tag" style="background:${tc};color:${tx}">${escapeHtml((s.type||'federal').toUpperCase())}</span><div class="sch-name">${escapeHtml(s.name)}</div><div class="sch-org">${escapeHtml(s.org||'')}</div></div></div><div class="sch-body"><div class="sch-desc">${escapeHtml(s.desc||s.description||'')}</div></div><div class="sch-foot"><span class="sch-deadline"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> ${escapeHtml(s.deadline||'Check portal')}</span><span class="sch-amount">${escapeHtml(s.amount||'')}</span><span class="sch-status ${sC[s.status]||'ss-ongoing'}">${sL[s.status]||'<svg class="icon icon-dot" aria-hidden="true"><use href="#icon-dot"></use></svg> Ongoing'}</span></div><a href="https://wa.me/${BQM_CONFIG.contact.whatsapp}?text=${encodeURIComponent('Hello BQM, I need help applying for: '+s.name)}" target="_blank" rel="noopener noreferrer" class="sch-apply-btn"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Get Help Applying →</a></div>`;
     }).join('');
   }
   await waitForDb();
@@ -1285,11 +1289,11 @@ function submitContactForm(e){
   e.preventDefault();
   const name=document.getElementById('cf_name').value.trim(),email=document.getElementById('cf_email').value.trim(),msg=document.getElementById('cf_message').value.trim();
   const btn=document.getElementById('cf_submit');
-  if(!name||!email||!msg){showFb('<i class="fas fa-triangle-exclamation"></i> Please fill in all fields.','error');return;}
+  if(!name||!email||!msg){showFb('<svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Please fill in all fields.','error');return;}
   btn.textContent='Sending…';btn.disabled=true;
   fetch('https://formspree.io/f/mqegznag',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name,email,message:msg})})
-    .then(r=>{if(r.ok){showFb('<i class="fas fa-circle-check"></i> Message sent! We\'ll reply within 24 hours.','success');document.getElementById('contactForm').reset();}else throw 0;})
-    .catch(()=>{showFb('<i class="fas fa-mobile-screen"></i> Opening WhatsApp instead…','warn');setTimeout(()=>open('https://wa.me/'+BQM_CONFIG.contact.whatsapp+'?text='+encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nMessage: '+msg),'_blank'),1200);})
+    .then(r=>{if(r.ok){showFb('<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> Message sent! We\'ll reply within 24 hours.','success');document.getElementById('contactForm').reset();}else throw 0;})
+    .catch(()=>{showFb('<svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Opening WhatsApp instead…','warn');setTimeout(()=>open('https://wa.me/'+BQM_CONFIG.contact.whatsapp+'?text='+encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nMessage: '+msg),'_blank'),1200);})
     .finally(()=>{btn.textContent='Send Message →';btn.disabled=false;});
 }
 function showFb(msg,type){
@@ -1316,11 +1320,11 @@ if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch((
 
 <!-- STICKY BOTTOM NAV -->
 <nav class="bottom-nav" id="bottomNav">
-  <a href="index.html" class="bn-item active"><span class="bn-icon"><i class="fas fa-house"></i></span>Home</a>
-  <a href="newsroom.html" class="bn-item"><span class="bn-icon"><i class="fas fa-newspaper"></i></span>News</a>
-  <a href="explore.html" class="bn-item"><span class="bn-icon"><i class="fas fa-folder-open"></i></span>Tools</a>
-  <a href="scholarship.html" class="bn-item"><span class="bn-icon"><i class="fas fa-sack-dollar"></i></span>Scholarships</a>
-  <a href="cbt.html" class="bn-item"><span class="bn-icon"><i class="fas fa-laptop-code"></i></span>CBT</a>
+  <a href="index.html" class="bn-item active"><span class="bn-icon"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg></span>Home</a>
+  <a href="newsroom.html" class="bn-item"><span class="bn-icon"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg></span>News</a>
+  <a href="explore.html" class="bn-item"><span class="bn-icon"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg></span>Tools</a>
+  <a href="scholarship.html" class="bn-item"><span class="bn-icon"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg></span>Scholarships</a>
+  <a href="cbt.html" class="bn-item"><span class="bn-icon"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg></span>CBT</a>
 </nav>
 
 
@@ -1374,8 +1378,8 @@ function installApp(){
     deferredInstall.prompt();
     deferredInstall.userChoice.then(r=>{
       if(r.outcome==='accepted'){
-        showToast('<i class="fas fa-circle-check"></i> App installed! Find Big Quams Media® on your home screen.');
-        if(btn){btn.innerHTML='<i class="fas fa-circle-check"></i> Installed';btn.disabled=true;}
+        showToast('<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> App installed! Find Big Quams Media® on your home screen.');
+        if(btn){btn.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> Installed';btn.disabled=true;}
       }
       deferredInstall=null;
     });
@@ -1383,13 +1387,13 @@ function installApp(){
     const ua=navigator.userAgent.toLowerCase();
     const note=document.getElementById('installNote');
     if(/iphone|ipad|ipod/.test(ua)){
-      showToast('<i class="fas fa-mobile-screen-button"></i> Tap Share in Safari → "Add to Home Screen"');
-      if(note) note.innerHTML='<i class="fas fa-mobile-screen-button"></i> Safari: tap Share → "Add to Home Screen"';
+      showToast('<svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Tap Share in Safari → "Add to Home Screen"');
+      if(note) note.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Safari: tap Share → "Add to Home Screen"';
     } else if(/android/.test(ua)){
-      showToast('<i class="fas fa-mobile-screen-button"></i> Tap ⋮ in Chrome → "Add to Home screen"');
-      if(note) note.innerHTML='<i class="fas fa-mobile-screen-button"></i> Chrome: tap ⋮ menu → "Add to Home screen"';
+      showToast('<svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Tap ⋮ in Chrome → "Add to Home screen"');
+      if(note) note.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Chrome: tap ⋮ menu → "Add to Home screen"';
     } else {
-      showToast('<i class="fas fa-mobile-screen-button"></i> Use your browser menu → "Add to Home Screen"');
+      showToast('<svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Use your browser menu → "Add to Home Screen"');
     }
   }
 }
@@ -1460,7 +1464,7 @@ window.installApp=installApp;
   fab.setAttribute('aria-label','Open Study Buddy');
   fab.setAttribute('aria-haspopup','dialog');
   fab.setAttribute('aria-expanded','false');
-  fab.innerHTML='<i class="fas fa-robot"></i><span class="bqm-fab-dot"></span>';
+  fab.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-robot"></use></svg><span class="bqm-fab-dot"></span>';
   document.body.appendChild(fab);
 
   var panel=document.createElement('div');
@@ -1470,9 +1474,9 @@ window.installApp=installApp;
   panel.setAttribute('aria-hidden','true');
   panel.innerHTML=
     '<div class="bqm-bp-head">'+
-      '<div class="bqm-bp-avatar"><i class="fas fa-robot"></i></div>'+
+      '<div class="bqm-bp-avatar"><svg class="icon" aria-hidden="true"><use href="#icon-robot"></use></svg></div>'+
       '<div class="bqm-bp-title"><div class="bqm-bp-name">Study Buddy</div><div class="bqm-bp-sub" id="bqm-bp-subtext">'+FREE_LIMIT+' free questions/day &middot; Unlimited for signed-in users</div></div>'+
-      '<button type="button" class="bqm-bp-close" aria-label="Close Study Buddy">&#10005;</button>'+
+      '<button type="button" class="bqm-bp-close" aria-label="Close Study Buddy"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>'+
     '</div>'+
     '<div class="bqm-bp-body" id="bqm-bp-body" role="log" aria-live="polite"></div>'+
     '<div class="bqm-bp-suggest">'+
@@ -1579,7 +1583,7 @@ window.installApp=installApp;
     panel.setAttribute('aria-hidden',open?'false':'true');
     if(open && !greeted){
       greeted=true;
-      addMsg("Hey! I'm Study Buddy <i class='fas fa-robot'></i> Ask me about subject combinations, cutoff marks, scholarships, JAMB prep or your CGPA.",'bot');
+      addMsg("Hey! I'm Study Buddy <svg class='icon' aria-hidden='true'><use href='#icon-robot'></use></svg> Ask me about subject combinations, cutoff marks, scholarships, JAMB prep or your CGPA.",'bot');
     }
     if(open) input.focus();
   };
