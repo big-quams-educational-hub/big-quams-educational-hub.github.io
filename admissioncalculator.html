@@ -10,6 +10,7 @@
 <meta property="og:description" content="Check your admission chances for any Nigerian university course based on your actual scores.">
 <meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
 <meta property="og:url" content="https://bigquamsmedia.com.ng/admissioncalculator.html">
+<link rel="canonical" href="https://bigquamsmedia.com.ng/admissioncalculator.html">
 <link rel="icon" href="https://bigquamsmedia.com.ng/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -192,9 +193,14 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
 .footer-credit{text-align:center;font-size:.7rem;color:rgba(255,255,255,.35);margin-top:16px}
 .footer-credit a{color:#f97316;font-weight:700}
 @media(max-width:640px){.footer-top{flex-direction:column;align-items:flex-start}.footer-bottom{flex-direction:column;align-items:center;text-align:center}}
+/* ── ICON SYSTEM (inline SVG sprite, replaces Font Awesome) ── */
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-fill{fill:currentColor;stroke:none}
+.icon-dot{fill:currentColor;stroke:none}
 </style>
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="icon-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9"/></symbol><symbol id="icon-newspaper" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H7"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12.5" x2="13" y2="12.5"/><line x1="7" y1="16" x2="11" y2="16"/></symbol><symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></symbol><symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></symbol><symbol id="icon-graduation-cap" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5-10-5z"/><path d="M6 11v5c0 1 3 2 6 2s6-1 6-2v-5"/><path d="M22 9v6"/></symbol><symbol id="icon-book-open" viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8 4.5 4 5v13c4-.5 6.5 0 8 1.5V6.5z"/><path d="M12 6.5C13.5 5 16 4.5 20 5v13c-4-.5-6.5 0-8 1.5V6.5z"/></symbol><symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3z"/></symbol><symbol id="icon-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></symbol><symbol id="icon-bar-chart" viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></symbol><symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5 20 3"/><path d="M17 6l3 3"/><path d="M14 9l2.5 2.5"/></symbol><symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></symbol><symbol id="icon-landmark" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><path d="M3 10 12 4l9 6"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z"/></symbol><symbol id="icon-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z"/></symbol><symbol id="icon-clipboard-list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="12" y2="19"/></symbol><symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 4 1.5 5.5 2 6.5H4c.5-1 2-2.5 2-6.5z"/><path d="M10 19a2 2 0 0 0 4 0"/></symbol><symbol id="icon-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol><symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol><symbol id="icon-message-circle" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4A8.6 8.6 0 0 1 8 19l-4 1 1.3-3.9A8.4 8.4 0 1 1 21 11.5z"/><line x1="8.5" y1="12" x2="8.5" y2="12"/><line x1="12" y1="12" x2="12" y2="12"/><line x1="15.5" y1="12" x2="15.5" y2="12"/></symbol><symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></symbol><symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></symbol><symbol id="icon-building" viewBox="0 0 24 24"><rect x="5" y="3" width="9" height="18" rx="1"/><rect x="15" y="9" width="4" height="12" rx="1"/><line x1="8" y1="7" x2="8" y2="7"/><line x1="11" y1="7" x2="11" y2="7"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="11" y1="11" x2="11" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="11" y1="15" x2="11" y2="15"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.5.3 4.5 2.3 4.5 5.3"/></symbol><symbol id="icon-calendar-days" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="7" y1="14" x2="7" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="17" y1="14" x2="17" y2="14"/><line x1="7" y1="17.5" x2="7" y2="17.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-smartphone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18.5" x2="13" y2="18.5"/></symbol><symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><polyline points="20 4 20 8 16 8"/></symbol><symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="20" y2="20"/></symbol><symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol><symbol id="icon-rocket" viewBox="0 0 24 24"><path d="M12 2c3 1 5.5 4 5.5 8.5 0 2-1 3.8-2.2 5.2l-1 3.8-2.3-1.8-2.3 1.8-1-3.8C7.5 14.3 6.5 12.5 6.5 10.5 6.5 6 9 3 12 2z"/><circle cx="12" cy="10" r="1.7"/><path d="M9 17.5 7 21l3-1"/><path d="M15 17.5 17 21l-3-1"/></symbol><symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></symbol><symbol id="icon-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l7 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/><path d="M19.5 6.5a8 8 0 0 1 0 11"/></symbol><symbol id="icon-alert-triangle" viewBox="0 0 24 24"><path d="M12 3.5 22 20H2L12 3.5z"/><line x1="12" y1="10" x2="12" y2="14.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 11 15.5 16 9"/></symbol><symbol id="icon-robot" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="2"/><line x1="9" y1="13" x2="9" y2="13"/><line x1="15" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><line x1="12" y1="5" x2="12" y2="8"/><circle cx="12" cy="3.5" r="1"/></symbol><symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 8.7c.2-.3.6-.6 1.1-.6.4 0 .6.3.9 1 .2.5.5 1.1.4 1.4-.1.4-.4.6-.7.9-.2.2-.3.4-.1.7.4.7 1 1.3 1.7 1.7.3.2.5.1.7-.1.3-.3.5-.6.9-.7.3-.1.9.2 1.4.4.7.3 1 .5 1 .9 0 .5-.3.9-.6 1.1-.6.4-1.4.5-2.2.2-1.6-.5-3.4-2.3-4.2-3.9-.4-.7-.5-1.4-.3-2z"/></symbol><symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17" y1="7" x2="17" y2="7"/></symbol><symbol id="icon-tiktok" viewBox="0 0 24 24"><path d="M13.5 3v11.2a3.3 3.3 0 1 1-2.8-3.3"/><path d="M13.5 3.2c.4 2.4 2.2 4.2 4.5 4.5"/></symbol><symbol id="icon-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></symbol><symbol id="icon-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></symbol><symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 9 22 20 9 13 9 13 2"/></symbol><symbol id="icon-champagne" viewBox="0 0 24 24"><path d="M6 3h5l-1 7a2.5 2.5 0 0 1-5 0z"/><path d="M13 5h5l-.8 6a2.5 2.5 0 0 1-4.9-.6"/><line x1="8.5" y1="15" x2="8.5" y2="21"/><line x1="6" y1="21" x2="11" y2="21"/><line x1="15.5" y1="12" x2="15.5" y2="21"/></symbol><symbol id="icon-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></symbol><symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></symbol><symbol id="icon-hourglass" viewBox="0 0 24 24"><path d="M6 3h12"/><path d="M6 21h12"/><path d="M7 3c0 4 3 5 5 6-2 1-5 2-5 6"/><path d="M17 3c0 4-3 5-5 6 2 1 5 2 5 6"/></symbol><symbol id="icon-link" viewBox="0 0 24 24"><path d="M8.5 12.5 6 15a3.5 3.5 0 0 0 5 5l2.5-2.5"/><path d="M15.5 11.5 18 9a3.5 3.5 0 0 0-5-5l-2.5 2.5"/><line x1="9" y1="15" x2="15" y2="9"/></symbol><symbol id="icon-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></symbol><symbol id="icon-edit" viewBox="0 0 24 24"><path d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/><path d="M20.4 4.6a1.9 1.9 0 0 1 0 2.7L13 15l-3.5.8L10.3 12l7.4-7.4a1.9 1.9 0 0 1 2.7 0z"/></symbol><symbol id="icon-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol><symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M14 8.5h2.5V4.5h-2.5c-2.5 0-4 1.6-4 4v2.5H8v4h2.5V21h4v-8h2.7l.5-4h-3.2V9c0-.4.3-.5.5-.5z"/></symbol><symbol id="icon-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><line x1="8" y1="10.8" x2="16" y2="7.2"/><line x1="8" y1="13.2" x2="16" y2="16.8"/></symbol><symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-10-9.3C.5 8 2 4.5 5.5 4c2-.3 3.8.6 5 2.2C11.7 4.6 13.5 3.7 15.5 4 19 4.5 20.5 8 19 11.2c-2.5 4.7-7 9.3-7 9.3z"/></symbol><symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></symbol><symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="icon-pin" viewBox="0 0 24 24"><path d="M9 4h6"/><path d="M10 4v5.5L7 12h10l-3-2.5V4"/><line x1="12" y1="12" x2="12" y2="21"/></symbol><symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 2c1 3-2 4-2 7a3 3 0 0 0 6 0c0-1-.5-2-.5-2 2 1 3 3 3 5.5A6.5 6.5 0 0 1 12 19a6.5 6.5 0 0 1-6.5-6.5C5.5 8 8 6 9 4c.5 2 1 2.5 1.5 2.5S12 5 12 2z"/></symbol><symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v1H5.5a2 2 0 0 0-1.9 1.4L2 17V7z"/><path d="M2.3 17.3 4.3 10a2 2 0 0 1 1.9-1.4H21l-2.2 7.7A2 2 0 0 1 16.9 18H4a2 2 0 0 1-1.7-2.7z"/></symbol><symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol><symbol id="icon-send" viewBox="0 0 24 24"><line x1="21" y1="3" x2="11" y2="13"/><path d="M21 3 14.5 21 11 13 3 9.5z"/></symbol><symbol id="icon-thumbs-up" viewBox="0 0 24 24"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3z"/><path d="M7 11l4-7a2 2 0 0 1 2 2l-1 4h5.5a2 2 0 0 1 1.9 2.6l-1.8 6A2 2 0 0 1 15.7 20H10a3 3 0 0 1-3-3"/></symbol><symbol id="icon-file-text" viewBox="0 0 24 24"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4a1 1 0 0 0 1 1h4"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="16.5" x2="13" y2="16.5"/></symbol><symbol id="icon-scroll" viewBox="0 0 24 24"><path d="M4 4h13a3 3 0 0 1 3 3 3 3 0 0 1-3 3H4"/><path d="M4 4a2 2 0 0 0 0 4"/><path d="M20 20H7a3 3 0 0 1-3-3 3 3 0 0 1 3-3h13"/><path d="M20 20a2 2 0 0 0 0-4"/></symbol></defs></svg>
 
 <header>
   <div class="hbar">
@@ -209,10 +215,10 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
       <a href="cbt.html">CBT</a>
       <a href="scholarship.html">Scholarships</a>
       <a href="admissioncalculator.html" class="active">Admission Chances</a>
-      <a href="index.html#contact" class="nav-cta">💬 Contact</a>
+      <a href="index.html#contact" class="nav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-message-circle"></use></svg> Contact</a>
     </nav>
-    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
-    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    <button type="button" class="hdr-btn" id="darkBtn" onclick="toggleDark()" aria-label="Switch to dark mode"><svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg></button>
+    <button type="button" class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -223,36 +229,36 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
       <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
       <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
     </div>
-    <button class="mnav-close" onclick="toggleNav()">✕</button>
+    <button type="button" class="mnav-close" onclick="toggleNav()" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
   </div>
   <div class="mnav-lbl">Main</div>
-  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
-  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
-  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
-  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
-  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
-  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <a href="index.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a>
+  <a href="newsroom.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a>
+  <a href="community.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a>
   <div class="mnav-lbl">Exam Tools</div>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
-  <a href="academic-tools.html#postutme" onclick="toggleNav()">🧮 Aggregate Calculator</a>
-  <a href="admissioncalculator.html" onclick="toggleNav()">🎯 Admission Chances</a>
-  <a href="academic-tools.html#gpa" onclick="toggleNav()">🎓 GPA Calculator</a>
-  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
+  <a href="cbt.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> JAMB CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a>
+  <a href="academic-tools.html#postutme" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calculator</a>
+  <a href="admissioncalculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Admission Chances</a>
+  <a href="academic-tools.html#gpa" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a>
   <div class="mnav-lbl">Resources</div>
-  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
-  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
-  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
-  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
-  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
-  <a href="academic-tools.html#combo" onclick="toggleNav()">📋 Subject Combination</a>
-  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
+  <a href="elibrary.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a>
+  <a href="academic-tools.html#combo" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combination</a>
+  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
 </nav>
 
 <!-- HERO -->
 <section class="page-hero">
   <div class="hero-inner">
-    <div class="hero-badge">🎯 Know Before You Apply</div>
+    <div class="hero-badge"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Know Before You Apply</div>
     <h1>What Are Your <span>Admission Chances?</span></h1>
     <p>Enter your JAMB, Post-UTME/DE and O-Level results — we'll compare them against real school requirements and tell you where you stand.</p>
   </div>
@@ -283,8 +289,8 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
         <div class="form-group" style="margin-bottom:0">
           <label>Which route are you applying through? *</label>
           <div class="type-toggle">
-            <div class="type-btn active" id="typeBtnUtme" onclick="setCandidateType('utme')">🎓 UTME<br><span style="font-weight:400;font-size:.68rem">First-degree, JAMB</span></div>
-            <div class="type-btn" id="typeBtnDe" onclick="setCandidateType('de')">📜 Direct Entry<br><span style="font-weight:400;font-size:.68rem">A-Level, ND/HND, IJMB, JUPEB</span></div>
+            <div class="type-btn active" id="typeBtnUtme" onclick="setCandidateType('utme')"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> UTME<br><span style="font-weight:400;font-size:.68rem">First-degree, JAMB</span></div>
+            <div class="type-btn" id="typeBtnDe" onclick="setCandidateType('de')"><svg class="icon" aria-hidden="true"><use href="#icon-scroll"></use></svg> Direct Entry<br><span style="font-weight:400;font-size:.68rem">A-Level, ND/HND, IJMB, JUPEB</span></div>
           </div>
         </div>
       </div>
@@ -358,7 +364,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
             <input type="number" id="postUtmeScoreDe" placeholder="Leave blank if not applicable" min="0">
           </div>
           <div class="disclaimer-box" style="margin-top:12px">
-            ⚠️ Direct Entry cutoffs aren't set up for every school yet — we'll check your O-Level and subject match, but the exact chance for your specific qualification may need confirming with the school's admissions office.
+            <svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Direct Entry cutoffs aren't set up for every school yet — we'll check your O-Level and subject match, but the exact chance for your specific qualification may need confirming with the school's admissions office.
           </div>
         </div>
 
@@ -373,8 +379,8 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
         <div class="form-group" style="margin-bottom:14px">
           <label>How many sittings are your results from? *</label>
           <div class="type-toggle">
-            <div class="type-btn active" id="sitBtn1" onclick="setSittingCount(1)">1️⃣ One Sitting<br><span style="font-weight:400;font-size:.68rem">All subjects, same exam diet</span></div>
-            <div class="type-btn" id="sitBtn2" onclick="setSittingCount(2)">2️⃣ Two Sittings<br><span style="font-weight:400;font-size:.68rem">e.g. WAEC + NECO</span></div>
+            <div class="type-btn active" id="sitBtn1" onclick="setSittingCount(1)">One Sitting<br><span style="font-weight:400;font-size:.68rem">All subjects, same exam diet</span></div>
+            <div class="type-btn" id="sitBtn2" onclick="setSittingCount(2)">Two Sittings<br><span style="font-weight:400;font-size:.68rem">e.g. WAEC + NECO</span></div>
           </div>
           <div id="sittingCourseWarning"></div>
         </div>
@@ -394,9 +400,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
 
       <div class="calc-card">
         <div class="price-tag">One-time fee: <b id="priceDisplay">—</b></div>
-        <button class="btn-pay" id="payBtn" onclick="startPayment()" disabled>🔒 Pay &amp; See My Chances</button>
+        <button type="button" class="btn-pay" id="payBtn" onclick="startPayment()" disabled><svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg> Pay &amp; See My Chances</button>
         <div class="disclaimer-box">
-          ⚠️ This tool gives an <strong>estimate only</strong>, based on requirements set by our team — it is not affiliated with or guaranteed by any university's admissions office, and does not guarantee admission.
+          <svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> This tool gives an <strong>estimate only</strong>, based on requirements set by our team — it is not affiliated with or guaranteed by any university's admissions office, and does not guarantee admission.
         </div>
       </div>
 
@@ -419,53 +425,53 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
           <p class="footer-bsub">Free tools, news and resources built for Nigerian undergraduates — from admission to graduation.</p>
         </div>
       </div>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="footer-cta">💬 Chat on WhatsApp</a>
+      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="footer-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
     </div>
 
     <nav class="footer-cols" aria-label="Footer navigation">
       <div>
         <h3 class="footer-heading">Main</h3>
         <ul class="footer-links">
-          <li><a href="index.html">🏠 Home</a></li>
-          <li><a href="newsroom.html">📰 Newsroom</a></li>
-          <li><a href="explore.html">🗂 Explore Tools</a></li>
-          <li><a href="campus-life.html">🎮 Campus Life</a></li>
-          <li><a href="community.html">🤝 Community</a></li>
-          <li><a href="daily.html">📅 Daily Hub</a></li>
+          <li><a href="index.html"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a></li>
+          <li><a href="newsroom.html"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a></li>
+          <li><a href="explore.html"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore Tools</a></li>
+          <li><a href="campus-life.html"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a></li>
+          <li><a href="community.html"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community</a></li>
+          <li><a href="daily.html"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Exam Tools</h3>
         <ul class="footer-links">
-          <li><a href="cbt.html">👨🏽‍💻 JAMB CBT Practice</a></li>
-          <li><a href="postutme-prep.html">📖 Post-UTME Prep</a></li>
-          <li><a href="academic-tools.html#postutme">🧮 Aggregate Calc</a></li>
-          <li><a href="admissioncalculator.html">🎯 Admission Chances</a></li>
-          <li><a href="academic-tools.html#gpa">🎓 GPA Calculator</a></li>
-          <li><a href="results.html">📊 Results Checker</a></li>
+          <li><a href="cbt.html"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> JAMB CBT Practice</a></li>
+          <li><a href="postutme-prep.html"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a></li>
+          <li><a href="academic-tools.html#postutme"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calc</a></li>
+          <li><a href="admissioncalculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Admission Chances</a></li>
+          <li><a href="academic-tools.html#gpa"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a></li>
+          <li><a href="results.html"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Resources</h3>
         <ul class="footer-links">
-          <li><a href="elibrary.html">📚 eLibrary</a></li>
-          <li><a href="scholarship.html">💰 Scholarships</a></li>
-          <li><a href="student-loan.html">💳 Student Loan</a></li>
-          <li><a href="spotlight.html">🌟 Student Spotlight</a></li>
-          <li><a href="dyk.html">💡 Did You Know</a></li>
-          <li><a href="academic-tools.html#combo">📋 Subject Combo</a></li>
+          <li><a href="elibrary.html"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a></li>
+          <li><a href="scholarship.html"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a></li>
+          <li><a href="student-loan.html"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan</a></li>
+          <li><a href="spotlight.html"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a></li>
+          <li><a href="dyk.html"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a></li>
+          <li><a href="academic-tools.html#combo"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Connect</h3>
         <ul class="footer-links">
-          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer">👥 Join WhatsApp Group</a></li>
-          <li><a href="index.html#install-app">📲 Install App</a></li>
+          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Join WhatsApp Group</a></li>
+          <li><a href="index.html#install-app"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Install App</a></li>
         </ul>
         <div class="footer-social">
-          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
-          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📸</a>
-          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok">🎵</a>
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg></a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg></a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg class="icon" aria-hidden="true"><use href="#icon-tiktok"></use></svg></a>
         </div>
       </div>
     </nav>
@@ -492,7 +498,7 @@ function escapeHtml(str){
   return String(str==null?'':str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
-function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');const btn=document.getElementById('darkBtn');btn.innerHTML=d?'<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>':'<svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>';btn.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode');}
 function toggleNav(){
   const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');
   n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');
@@ -515,7 +521,7 @@ function addOlevelRow(subject,grade,sitting){
   row.innerHTML=`
     <select class="ol-subject">${SUBJECTS.map(s=>`<option${s===subject?' selected':''}>${s}</option>`).join('')}</select>
     <select class="ol-grade">${GRADES.map(g=>`<option${g===grade?' selected':''}>${g}</option>`).join('')}</select>
-    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()">✕</button>`;
+    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()" aria-label="Remove subject"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>`;
   wrap.appendChild(row);
 }
 window.addOlevelRow=addOlevelRow;
@@ -565,7 +571,7 @@ async function loadCalculatorData(){
   const diagEl=document.getElementById('loadDiagnostic');
   if(!window._db){
     schoolSelect.innerHTML='<option value="">Unavailable right now</option>';
-    if(diagEl) diagEl.innerHTML='<div class="disclaimer-box">⚠️ Firebase failed to initialize. Check your internet connection and reload.</div>';
+    if(diagEl) diagEl.innerHTML='<div class="disclaimer-box"><svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Firebase failed to initialize. Check your internet connection and reload.</div>';
     return;
   }
   try{
@@ -581,7 +587,7 @@ async function loadCalculatorData(){
     }
   }catch(e){
     schoolSelect.innerHTML='<option value="">Could not load schools</option>';
-    if(diagEl) diagEl.innerHTML=`<div class="disclaimer-box">⚠️ Could not load schools: ${escapeHtml(e.message)}. If you're the admin and just set this up, double-check the Firestore rules have been published.</div>`;
+    if(diagEl) diagEl.innerHTML=`<div class="disclaimer-box"><svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Could not load schools: ${escapeHtml(e.message)}. If you're the admin and just set this up, double-check the Firestore rules have been published.</div>`;
     console.warn('Failed to load admission requirements:',e.message);
   }
 
@@ -601,13 +607,13 @@ async function loadCalculatorData(){
     priceEl.textContent='Not set yet — check back soon';
     payBtn.disabled=true;
   }else if(calculatorPrice===0){
-    priceEl.textContent='Free 🎉';
+    priceEl.textContent='Free';
     payBtn.disabled=false;
-    payBtn.textContent='🎉 See My Chances (Free)';
+    payBtn.textContent='See My Chances (Free)';
   }else{
     priceEl.textContent='₦'+calculatorPrice.toLocaleString();
     payBtn.disabled=false;
-    payBtn.textContent='🔒 Pay & See My Chances';
+    payBtn.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg> Pay & See My Chances';
   }
 
   // If the student arrived here via "Check This →" from a course suggestion,
@@ -721,7 +727,7 @@ function addDeRow(subject,grade){
   row.innerHTML=`
     <select class="de-subject">${SUBJECTS.map(s=>`<option${s===subject?' selected':''}>${s}</option>`).join('')}</select>
     <select class="de-grade">${DE_GRADES.map(g=>`<option${g===grade?' selected':''}>${g}</option>`).join('')}</select>
-    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()">✕</button>`;
+    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()" aria-label="Remove subject"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>`;
   wrap.appendChild(row);
 }
 window.addDeRow=addDeRow;
@@ -771,7 +777,7 @@ function onCourseSelected(){
   const maxSit=req.maxSittings||2;
   const sitWarnEl=document.getElementById('sittingCourseWarning');
   if(maxSit===1&&sittingCount===2){
-    sitWarnEl.innerHTML=`<div class="disclaimer-box" style="margin-top:8px">⚠️ ${escapeHtml(req.course)} at ${escapeHtml(req.school)} accepts O-Level results from <strong>ONE sitting only</strong>. When you check your chances, we'll test each of your sittings separately — if either one alone meets the requirement, you're fine; if not, we'll suggest similar courses your JAMB score and single-sitting results actually qualify for.</div>`;
+    sitWarnEl.innerHTML=`<div class="disclaimer-box" style="margin-top:8px"><svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> ${escapeHtml(req.course)} at ${escapeHtml(req.school)} accepts O-Level results from <strong>ONE sitting only</strong>. When you check your chances, we'll test each of your sittings separately — if either one alone meets the requirement, you're fine; if not, we'll suggest similar courses your JAMB score and single-sitting results actually qualify for.</div>`;
   }else if(maxSit===1){
     sitWarnEl.innerHTML=`<div class="form-hint" style="margin-top:6px">ℹ️ This course requires results from one sitting only.</div>`;
   }else{
@@ -785,9 +791,9 @@ function onCourseSelected(){
   let deWarningHtml='';
   if(candidateType==='de'){
     if(req.acceptsDE===false){
-      deWarningHtml=`<div class="disclaimer-box" style="margin-top:10px">🚫 This course does not accept Direct Entry candidates — it's UTME only. You can still check it, but admission via DE isn't possible here based on what the school has told us.</div>`;
+      deWarningHtml=`<div class="disclaimer-box" style="margin-top:10px"><svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg> This course does not accept Direct Entry candidates — it's UTME only. You can still check it, but admission via DE isn't possible here based on what the school has told us.</div>`;
     }else if((req.deAcceptedTypes||[]).length && !req.deAcceptedTypes.includes(document.getElementById('deQualType').value)){
-      deWarningHtml=`<div class="disclaimer-box" style="margin-top:10px">⚠️ This course only accepts Direct Entry via: ${req.deAcceptedTypes.join(', ')}. Your selected qualification may not be accepted here — double check with the school.</div>`;
+      deWarningHtml=`<div class="disclaimer-box" style="margin-top:10px"><svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> This course only accepts Direct Entry via: ${req.deAcceptedTypes.join(', ')}. Your selected qualification may not be accepted here — double check with the school.</div>`;
     }
   }
 
@@ -880,11 +886,11 @@ function findSuggestedCoursesScored(singleSittingOlevel, jambSubjects, jambScore
 
 function renderSuggestions(matches){
   if(!matches.length){
-    return `<div class="suggest-box"><div style="font-weight:800;font-size:.84rem;color:var(--text)">🔍 Other courses you might qualify for</div><div class="form-hint" style="margin-top:6px">No other exact matches found in our current database, based on your O-Level results${candidateType==='utme'?' and JAMB subjects':''}. This only checks schools/courses already added to our system.</div></div>`;
+    return `<div class="suggest-box"><div style="font-weight:800;font-size:.84rem;color:var(--text)"><svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg> Other courses you might qualify for</div><div class="form-hint" style="margin-top:6px">No other exact matches found in our current database, based on your O-Level results${candidateType==='utme'?' and JAMB subjects':''}. This only checks schools/courses already added to our system.</div></div>`;
   }
   window._suggestedMatches=matches;
   return `<div class="suggest-box">
-    <div style="font-weight:800;font-size:.84rem;color:var(--text)">🔍 Other courses you might qualify for</div>
+    <div style="font-weight:800;font-size:.84rem;color:var(--text)"><svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg> Other courses you might qualify for</div>
     <div class="form-hint" style="margin-top:4px">Based on your O-Level results${candidateType==='utme'?' and JAMB subjects':''} — worth checking these too.</div>
     <div class="suggest-list">${matches.slice(0,25).map((r,i)=>`
       <div class="suggest-item" onclick="pickSuggestedCourse(${i})">
@@ -966,10 +972,10 @@ function calculateChance(student, req){
     if(s1.ok || s2.ok){
       olevelOk=true;
       const which=s1.ok&&s2.ok?'either your First Sitting or your Second Sitting alone':(s1.ok?'your First Sitting alone':'your Second Sitting alone');
-      reasons.push(`✅ ${escapeHtml(req.school)} accepts O-Level results from ONE sitting only — but good news, ${which} already meets this course's requirement without needing to combine both. Submit just that one sitting's results to the school, not both.`);
+      reasons.push(`Good news: ${escapeHtml(req.school)} accepts O-Level results from ONE sitting only — but good news, ${which} already meets this course's requirement without needing to combine both. Submit just that one sitting's results to the school, not both.`);
     }else{
       olevelOk=false;
-      reasons.push(`❌ ${escapeHtml(req.school)} accepts O-Level results from ONE sitting only. Your combined best-per-subject results above meet the requirement, but neither your First Sitting nor your Second Sitting alone does — so this specific course won't accept your results as they stand.`);
+      reasons.push(`Note: ${escapeHtml(req.school)} accepts O-Level results from ONE sitting only. Your combined best-per-subject results above meet the requirement, but neither your First Sitting nor your Second Sitting alone does — so this specific course won't accept your results as they stand.`);
       const bestSingleSitting=(s1.creditCount>=s2.creditCount)?(student.olevelSitting1||[]):(student.olevelSitting2||[]);
       sittingSuggestions=findSuggestedCoursesScored(bestSingleSitting, student.candidateType==='utme'?student.jambSubjects:null, student.jambScore, req.school, req.course);
     }
@@ -985,17 +991,17 @@ function calculateChance(student, req){
     // take priority over the softer "we can't calculate this yet" message.
     if(req.acceptsDE===false){
       reasons.push(`This course does not accept Direct Entry candidates — it's UTME only.`);
-      return {tier:'ineligible',tierLabel:'🚫 Direct Entry Not Accepted',tierColor:'var(--red)',reasons,olevelOk,jambOk:null,sittingSuggestions};
+      return {tier:'ineligible',tierLabel:'<svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg> Direct Entry Not Accepted',tierColor:'var(--red)',reasons,olevelOk,jambOk:null,sittingSuggestions};
     }
     if((req.deAcceptedTypes||[]).length && !req.deAcceptedTypes.includes(student.deQualType)){
       reasons.push(`This course only accepts Direct Entry via: ${req.deAcceptedTypes.join(', ')}. Your qualification (${student.deQualType}) isn't on that list.`);
-      return {tier:'ineligible',tierLabel:'🚫 Your Qualification Not Accepted Here',tierColor:'var(--red)',reasons,olevelOk,jambOk:null,sittingSuggestions};
+      return {tier:'ineligible',tierLabel:'<svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg> Your Qualification Not Accepted Here',tierColor:'var(--red)',reasons,olevelOk,jambOk:null,sittingSuggestions};
     }
     reasons.push(`You're applying via Direct Entry (${student.deQualType}${student.deCgpa?', '+student.deCgpa:''}) — this school's cutoff data in our system is set up for UTME, so we can't give a precise DE chance tier yet.`);
     reasons.push(`Direct Entry candidates are typically admitted into 200 level subject to the department confirming your qualification is equivalent — it's worth confirming your specific result with the school's admissions office directly.`);
     let tier,tierLabel,tierColor;
-    if(!olevelOk){ tier='ineligible'; tierLabel='❌ O-Level Requirements Not Met'; tierColor='var(--red)'; }
-    else{ tier='de_unclear'; tierLabel='📋 O-Level OK — DE Chance Not Yet Calculable'; tierColor='var(--blue)'; }
+    if(!olevelOk){ tier='ineligible'; tierLabel='<svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg> O-Level Requirements Not Met'; tierColor='var(--red)'; }
+    else{ tier='de_unclear'; tierLabel='<svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> O-Level OK — DE Chance Not Yet Calculable'; tierColor='var(--blue)'; }
     if(['ineligible','de_unclear'].includes(tier) && (req.altCourses||[]).length){
       reasons.push(`This school also considers these related courses: ${req.altCourses.join(', ')}. Worth checking separately.`);
     }
@@ -1033,20 +1039,20 @@ function calculateChance(student, req){
     const aggregate=(jambPct*(req.jambWeight/100))+(postPct*(req.postWeight/100));
     const aggMargin=aggregate-effCutoffAggregate;
     reasons.push(`Your weighted aggregate is ${aggregate.toFixed(1)} (JAMB ${req.jambWeight}% + Post-UTME ${req.postWeight}%), against a cutoff of ${effCutoffAggregate}.`);
-    if(!olevelOk||!comboOk){ tier='ineligible'; tierLabel='❌ Not Eligible'; tierColor='var(--red)'; }
-    else if(aggMargin<0){ tier='low'; tierLabel='🔴 Low Chance'; tierColor='var(--red)'; }
-    else if(aggMargin>=10){ tier='high'; tierLabel='🟢 High Chance'; tierColor='var(--green)'; }
-    else if(aggMargin>=3){ tier='moderate'; tierLabel='🟡 Moderate Chance'; tierColor='var(--amber)'; }
-    else{ tier='borderline'; tierLabel='🟠 Borderline Chance'; tierColor='#c2410c'; }
+    if(!olevelOk||!comboOk){ tier='ineligible'; tierLabel='<svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg> Not Eligible'; tierColor='var(--red)'; }
+    else if(aggMargin<0){ tier='low'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> Low Chance'; tierColor='var(--red)'; }
+    else if(aggMargin>=10){ tier='high'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> High Chance'; tierColor='var(--green)'; }
+    else if(aggMargin>=3){ tier='moderate'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> Moderate Chance'; tierColor='var(--amber)'; }
+    else{ tier='borderline'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> Borderline Chance'; tierColor='#c2410c'; }
   }else if(method==='screening'){
     reasons.push(`This school uses a screening process — document verification and/or interview also affect the outcome, which this tool cannot evaluate.`);
-    if(!olevelOk||!comboOk){ tier='ineligible'; tierLabel='❌ Not Eligible'; tierColor='var(--red)'; }
-    else if(!jambOk){ tier='low'; tierLabel='🔴 Low Chance'; tierColor='var(--red)'; }
+    if(!olevelOk||!comboOk){ tier='ineligible'; tierLabel='<svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg> Not Eligible'; tierColor='var(--red)'; }
+    else if(!jambOk){ tier='low'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> Low Chance'; tierColor='var(--red)'; }
     else{
       const jambMargin=student.jambScore-effMinJamb;
-      if(jambMargin>=30){ tier='high'; tierLabel='🟢 High Chance (screening still applies)'; tierColor='var(--green)'; }
-      else if(jambMargin>=10){ tier='moderate'; tierLabel='🟡 Moderate Chance (screening still applies)'; tierColor='var(--amber)'; }
-      else{ tier='borderline'; tierLabel='🟠 Borderline Chance (screening still applies)'; tierColor='#c2410c'; }
+      if(jambMargin>=30){ tier='high'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> High Chance (screening still applies)'; tierColor='var(--green)'; }
+      else if(jambMargin>=10){ tier='moderate'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> Moderate Chance (screening still applies)'; tierColor='var(--amber)'; }
+      else{ tier='borderline'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> Borderline Chance (screening still applies)'; tierColor='#c2410c'; }
     }
   }else{
     let postUtmeOk=true, postUtmeMargin=0;
@@ -1056,13 +1062,13 @@ function calculateChance(student, req){
       reasons.push(postUtmeOk?`Your Post-UTME/DE score meets the minimum (${effMinPostUtme}).`:`Your Post-UTME/DE score is below the minimum required (${effMinPostUtme}).`);
     }
     const jambMargin=student.jambScore-effMinJamb;
-    if(!olevelOk||!comboOk){ tier='ineligible'; tierLabel='❌ Not Eligible'; tierColor='var(--red)'; }
-    else if(!jambOk||!postUtmeOk){ tier='low'; tierLabel='🔴 Low Chance'; tierColor='var(--red)'; }
+    if(!olevelOk||!comboOk){ tier='ineligible'; tierLabel='<svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg> Not Eligible'; tierColor='var(--red)'; }
+    else if(!jambOk||!postUtmeOk){ tier='low'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> Low Chance'; tierColor='var(--red)'; }
     else{
       const margin=jambMargin+(effMinPostUtme?postUtmeMargin:0);
-      if(margin>=20){ tier='high'; tierLabel='🟢 High Chance'; tierColor='var(--green)'; }
-      else if(margin>=5){ tier='moderate'; tierLabel='🟡 Moderate Chance'; tierColor='var(--amber)'; }
-      else{ tier='borderline'; tierLabel='🟠 Borderline Chance'; tierColor='#c2410c'; }
+      if(margin>=20){ tier='high'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> High Chance'; tierColor='var(--green)'; }
+      else if(margin>=5){ tier='moderate'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> Moderate Chance'; tierColor='var(--amber)'; }
+      else{ tier='borderline'; tierLabel='<svg class="icon icon-fill" aria-hidden="true"><use href="#icon-dot"></use></svg> Borderline Chance'; tierColor='#c2410c'; }
     }
   }
 
@@ -1196,7 +1202,7 @@ async function startPayment(){
       handlePaymentSuccess(data, req, response.reference, sessionId, false);
     },
     onClose:function(){
-      btn.disabled=false; btn.textContent='🔒 Pay & See My Chances';
+      btn.disabled=false; btn.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg> Pay & See My Chances';
     }
   });
   handler.openIframe();
@@ -1232,7 +1238,7 @@ function renderSittingSuggestions(matches, excludeSchool){
   }
   window._sittingMatches=matches;
   return `<div class="suggest-box" style="border-color:var(--blue);background:#eff6ff">
-    <div style="font-weight:800;font-size:.84rem;color:var(--text)">✅ Courses you already qualify for instead</div>
+    <div style="font-weight:800;font-size:.84rem;color:var(--text)"><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> Courses you already qualify for instead</div>
     <div class="form-hint" style="margin-top:4px">Based on your best single sitting's O-Level results${window._lastResult&&window._lastResult.data.candidateType==='utme'?' and JAMB subjects':''}, PLUS your actual JAMB score meeting the minimum — these are real matches, not just a subject-list check.</div>
     <div class="suggest-list">${matches.slice(0,15).map((r,i)=>`
       <div class="suggest-item" onclick="pickSittingSuggestedCourse(${i})">
@@ -1268,13 +1274,13 @@ function renderResult(data, result){
       <ul class="result-reasons">${result.reasons.map(r=>`<li>${escapeHtml(r)}</li>`).join('')}</ul>
       ${sittingSuggestionsHtml}
       <div class="disclaimer-box">
-        ⚠️ This is an <strong>estimate only</strong> based on requirements set by our team, not the official admissions office. It does not guarantee admission or rejection.
+        <svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> This is an <strong>estimate only</strong> based on requirements set by our team, not the official admissions office. It does not guarantee admission or rejection.
       </div>
     </div>
     ${suggestionsHtml}
-    <button class="btn-pay" style="margin:12px 0 10px" onclick="downloadResultPdf()">📄 Download as PDF</button>
-    <button class="support-cta" onclick="contactSupportWithResult()">💬 Contact Support About This Result</button>
-    <button class="add-row-btn" style="width:100%;padding:12px;font-size:.82rem" onclick="location.reload()">🔄 Check Another Course</button>
+    <button type="button" class="btn-pay" style="margin:12px 0 10px" onclick="downloadResultPdf()"><svg class="icon" aria-hidden="true"><use href="#icon-file-text"></use></svg> Download as PDF</button>
+    <button type="button" class="support-cta" onclick="contactSupportWithResult()"><svg class="icon" aria-hidden="true"><use href="#icon-message-circle"></use></svg> Contact Support About This Result</button>
+    <button type="button" class="add-row-btn" style="width:100%;padding:12px;font-size:.82rem" onclick="location.reload()"><svg class="icon" aria-hidden="true"><use href="#icon-refresh"></use></svg> Check Another Course</button>
   `;
   window._lastResult={data,result};
   window.scrollTo({top:0,behavior:'smooth'});
@@ -1283,7 +1289,7 @@ function renderResult(data, result){
 function contactSupportWithResult(){
   if(!window._lastResult){ window.open('https://wa.me/2349049871643','_blank'); return; }
   const {data,result}=window._lastResult;
-  const tierPlain=result.tierLabel.replace(/[\u{1F534}\u{1F7E2}\u{1F7E1}\u{1F7E0}\u274C\u{1F4CB}]/gu,'').trim();
+  const tierPlain=result.tierLabel.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
   const lines=[
     `Hi BQM, I just used the Admission Chances Calculator and have a question.`,
     ``,
@@ -1325,7 +1331,7 @@ function downloadResultPdf(){
   y+=4;
 
   doc.setFont('helvetica','bold'); doc.setFontSize(14);
-  doc.text('Result: '+result.tierLabel.replace(/[\u{1F534}\u{1F7E2}\u{1F7E1}\u{1F7E0}\u274C]/gu,'').trim(),20,y); y+=10;
+  doc.text('Result: '+result.tierLabel.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim(),20,y); y+=10;
 
   doc.setFont('helvetica','bold'); doc.setFontSize(11);
   doc.text('Breakdown:',20,y); y+=7;
@@ -1345,7 +1351,7 @@ function downloadResultPdf(){
 window.downloadResultPdf=downloadResultPdf;
 
 document.addEventListener('DOMContentLoaded',()=>{
-  if(localStorage.getItem('bqm-theme')==='dark'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}
+  if(localStorage.getItem('bqm-theme')==='dark'){document.body.classList.add('dark');const btn=document.getElementById('darkBtn');btn.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>';btn.setAttribute('aria-label','Switch to light mode');}
   document.getElementById('yr').textContent=new Date().getFullYear();
   addOlevelRow('English Language','C6',1);
   addOlevelRow('Mathematics','C6',1);
