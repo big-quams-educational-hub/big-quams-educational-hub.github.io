@@ -79,13 +79,6 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 @media(min-width:900px){.wrap{max-width:720px}.sec{padding:36px 0 70px}}
 
 /* ── TABS ── */
-.tool-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px;position:sticky;top:60px;z-index:60;background:var(--surface2);padding:10px 0}
-body.dark .tool-tabs{background:#0d1117}
-.tool-tab{border:1.5px solid var(--border);background:var(--surface);border-radius:10px;padding:12px 6px;text-align:center;font-size:.72rem;font-weight:700;color:var(--muted);cursor:pointer;transition:.15s;min-width:0}
-.tool-tab.active{border-color:var(--blue);background:var(--blue-lt);color:var(--blue)}
-body.dark .tool-tab.active{background:#1a2d5a;color:#93c5fd}
-.tool-panel{display:none}
-.tool-panel.active{display:block}
 
 /* ── SHARED CARD ── */
 .card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
@@ -169,6 +162,80 @@ body.dark .modal-box{background:#161b27}
 
 .skeleton{background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:8px;height:44px}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ── TOOL HUB (replaces old tabs) ── */
+.tool-hub-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+@media(min-width:600px){.tool-hub-grid{grid-template-columns:repeat(3,1fr)}}
+.tool-hub-card{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:16px 14px;text-align:left;display:flex;flex-direction:column;gap:6px;transition:.15s}
+body.dark .tool-hub-card{background:#161b27}
+.tool-hub-card:hover,.tool-hub-card:focus-visible{border-color:var(--blue);transform:translateY(-2px)}
+.tool-hub-card .thc-icon{width:34px;height:34px;border-radius:9px;background:var(--blue-lt);color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+body.dark .tool-hub-card .thc-icon{background:#1a2d5a;color:#93c5fd}
+.tool-hub-card .thc-icon svg{width:18px;height:18px}
+.tool-hub-card .thc-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.84rem;color:var(--text)}
+.tool-hub-card .thc-desc{font-size:.7rem;color:var(--muted);line-height:1.5;flex:1}
+.tool-hub-card .thc-link{font-size:.7rem;font-weight:800;color:var(--blue);margin-top:4px}
+.tool-hub-card.soon{opacity:.6;cursor:default}
+body.dark .tool-hub-card .thc-link{color:#93c5fd}
+
+.tool-section{scroll-margin-top:130px;margin-bottom:36px}
+.tool-section-head{margin-bottom:14px}
+.tool-section-lbl{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:1.3px;color:var(--muted)}
+.tool-section-title{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-top:2px}
+
+/* ── VALIDATION ── */
+.field-error{font-size:.68rem;color:var(--red);margin-top:4px;display:flex;align-items:center;gap:5px}
+.field-error svg{width:12px;height:12px;flex-shrink:0}
+.form-group.has-error input,.form-group.has-error select{border-color:var(--red)}
+.inline-alert{display:flex;align-items:flex-start;gap:9px;background:#fef2f2;border:1.5px solid #fecaca;color:#b91c1c;border-radius:10px;padding:10px 14px;font-size:.78rem;margin-top:10px;line-height:1.5}
+body.dark .inline-alert{background:#2a1518;border-color:#5c2626;color:#fca5a5}
+.inline-alert svg{width:16px;height:16px;flex-shrink:0;margin-top:1px}
+
+/* ── RESULT ACTIONS ── */
+.result-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn-sm{display:inline-flex;align-items:center;gap:6px;background:var(--surface2);color:var(--text);border:1.5px solid var(--border);border-radius:8px;padding:8px 13px;font-size:.72rem;font-weight:700}
+body.dark .btn-sm{background:#0d1117}
+.btn-sm:hover{border-color:var(--blue);color:var(--blue)}
+.btn-sm svg{width:14px;height:14px}
+
+/* ── FORMULA / VERIFICATION NOTES ── */
+.formula-note{background:var(--blue-lt);color:var(--blue);border-radius:10px;padding:10px 14px;font-size:.76rem;font-weight:700;margin-top:12px;display:flex;gap:8px;align-items:flex-start}
+body.dark .formula-note{background:#1a2d5a;color:#93c5fd}
+.formula-note svg{width:15px;height:15px;flex-shrink:0;margin-top:1px}
+.verify-badge{display:inline-flex;align-items:center;gap:5px;font-size:.64rem;font-weight:800;padding:3px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.4px}
+.verify-badge.unverified{background:#fef9c3;color:#92400e}
+.verify-badge.verified{background:#dcfce7;color:#15803d}
+.cached-note{background:#fef9c3;color:#92400e;border-radius:8px;padding:8px 12px;font-size:.7rem;margin-top:8px;display:flex;gap:7px;align-items:flex-start}
+body.dark .cached-note{background:#2a2410;color:#fcd34d}
+.cached-note svg{width:13px;height:13px;flex-shrink:0;margin-top:1px}
+
+/* ── CONTEXTUAL DISCLAIMER ── */
+.ctx-disclaimer{background:var(--surface2);border-left:3px solid var(--orange);border-radius:0 8px 8px 0;padding:10px 14px;font-size:.72rem;color:var(--muted);line-height:1.6;margin-top:12px}
+body.dark .ctx-disclaimer{background:#0d1117}
+
+/* ── SAVED CALCULATIONS ── */
+.saved-panel{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:16px;margin-bottom:22px}
+body.dark .saved-panel{background:#161b27}
+.saved-panel-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:.84rem;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.saved-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.saved-item:last-child{border-bottom:none}
+.saved-item-main{font-size:.78rem;color:var(--text)}
+.saved-item-sub{font-size:.66rem;color:var(--muted);margin-top:2px}
+.saved-item-del{background:none;border:none;color:var(--muted);flex-shrink:0}
+.saved-item-del:hover{color:var(--red)}
+.saved-item-del svg{width:15px;height:15px}
+.saved-empty{font-size:.76rem;color:var(--muted)}
+
+/* ── TARGET / CLASSOF ── */
+.mini-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:420px){.mini-form-row{grid-template-columns:1fr}}
+.how-it-works-list{display:flex;flex-direction:column;gap:14px}
+.hiw-item{display:flex;gap:12px}
+.hiw-num{width:26px;height:26px;border-radius:50%;background:var(--blue-lt);color:var(--blue);font-weight:800;font-size:.78rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+body.dark .hiw-num{background:#1a2d5a;color:#93c5fd}
+.hiw-text b{display:block;font-size:.84rem;color:var(--text);margin-bottom:2px}
+.hiw-text span{font-size:.78rem;color:var(--muted);line-height:1.6}
+
 
 /* ── FOOTER ── */
 footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
@@ -264,70 +331,202 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
   <div class="hero-inner">
     <div class="hero-badge"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> All Your Calculators, One Place</div>
     <h1>Academic <span>Tools</span></h1>
-    <p>GPA/CGPA Calculator, Post-UTME Aggregate Calculator, and Subject Combo Finder — everything you need for the numbers side of admission.</p>
+    <p>Calculate, compare and understand the academic numbers behind your admission and school journey.</p>
   </div>
 </section>
 
 <section class="sec">
   <div class="wrap">
 
-    <div class="tool-tabs" role="tablist">
-      <button type="button" class="tool-tab active" id="tabBtnGpa" onclick="switchTool('gpa')" role="tab" aria-selected="true" aria-controls="panelGpa"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA/CGPA</button>
-      <button type="button" class="tool-tab" id="tabBtnPostutme" onclick="switchTool('postutme')" role="tab" aria-selected="false" aria-controls="panelPostutme"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate</button>
-      <button type="button" class="tool-tab" id="tabBtnCombo" onclick="switchTool('combo')" role="tab" aria-selected="false" aria-controls="panelCombo"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo</button>
+    <!-- TOOL HUB -->
+    <div class="tool-section-lbl">Popular Academic Tools</div>
+    <div class="tool-section-title" style="margin-bottom:14px">Jump straight to a tool</div>
+    <div class="tool-hub-grid">
+      <a class="tool-hub-card" href="#gpa">
+        <div class="thc-icon"><svg aria-hidden="true"><use href="#icon-graduation-cap"></use></svg></div>
+        <div class="thc-title">GPA &amp; CGPA Calculator</div>
+        <div class="thc-desc">Work out your current GPA or your projected CGPA after a new semester.</div>
+        <div class="thc-link">Open Tool →</div>
+      </a>
+      <a class="tool-hub-card" href="#postutme">
+        <div class="thc-icon"><svg aria-hidden="true"><use href="#icon-bar-chart"></use></svg></div>
+        <div class="thc-title">Post-UTME Aggregate</div>
+        <div class="thc-desc">Estimate your admission aggregate using your chosen school's screening formula.</div>
+        <div class="thc-link">Open Tool →</div>
+      </a>
+      <a class="tool-hub-card" href="#combo">
+        <div class="thc-icon"><svg aria-hidden="true"><use href="#icon-clipboard-list"></use></svg></div>
+        <div class="thc-title">Subject Combination Finder</div>
+        <div class="thc-desc">Look up the JAMB UTME subjects typically required for your course.</div>
+        <div class="thc-link">Open Tool →</div>
+      </a>
+      <a class="tool-hub-card" href="#target">
+        <div class="thc-icon"><svg aria-hidden="true"><use href="#icon-target"></use></svg></div>
+        <div class="thc-title">Target CGPA Calculator</div>
+        <div class="thc-desc">Find out what GPA you'll need this semester to hit a CGPA goal.</div>
+        <div class="thc-link">Open Tool →</div>
+      </a>
+      <a class="tool-hub-card" href="#classof">
+        <div class="thc-icon"><svg aria-hidden="true"><use href="#icon-award"></use></svg></div>
+        <div class="thc-title">Class of Degree Lookup</div>
+        <div class="thc-desc">Check what classification a final CGPA falls into on your scale.</div>
+        <div class="thc-link">Open Tool →</div>
+      </a>
+      <div class="tool-hub-card soon">
+        <div class="thc-icon"><svg aria-hidden="true"><use href="#icon-clock"></use></svg></div>
+        <div class="thc-title">More Tools Coming Soon</div>
+        <div class="thc-desc">We're adding more academic calculators. Check back or follow our WhatsApp channel for updates.</div>
+      </div>
     </div>
 
-    <!-- ═══════════ GPA/CGPA PANEL ═══════════ -->
-    <div class="tool-panel active" id="panelGpa">
+    <!-- SAVED CALCULATIONS -->
+    <div class="saved-panel">
+      <div class="saved-panel-title"><svg class="icon" aria-hidden="true"><use href="#icon-file-text"></use></svg> Your Saved Calculations</div>
+      <div id="savedList"></div>
+    </div>
+
+    <!-- ═══════════ GPA / CGPA ═══════════ -->
+    <div class="tool-section" id="gpa">
+      <div class="tool-section-head">
+        <div class="tool-section-lbl">Tool</div>
+        <h2 class="tool-section-title">GPA &amp; CGPA Calculator</h2>
+      </div>
       <div class="card">
-        <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA / CGPA Calculator</div>
+        <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> Calculate Your GPA</div>
         <div class="scale-toggle">
-          <button type="button" class="scale-btn active" id="scaleBtn5" onclick="setScale(5)">University (5.0 Scale)</button>
-          <button type="button" class="scale-btn" id="scaleBtn4" onclick="setScale(4)">Polytechnic (4.0 Scale)</button>
+          <button type="button" class="scale-btn active" id="scaleBtn5" onclick="setScale('scale5')">5.0 Scale</button>
+          <button type="button" class="scale-btn" id="scaleBtn4" onclick="setScale('scale4')">4.0 Scale</button>
         </div>
         <div id="gpaCourseRows"></div>
         <button type="button" class="add-row-btn" onclick="addGpaCourseRow()">+ Add Course</button>
         <button type="button" class="btn-main" style="margin-top:16px" onclick="calculateGpa()">Calculate GPA</button>
+        <div id="gpaFormError" role="alert"></div>
         <div id="gpaResultBox"></div>
+        <div class="ctx-disclaimer">Your institution may use a different grading scale or classification policy — the classification shown here follows a common Nigerian university convention, not a rule set by JAMB or NUC. Confirm your school's actual Senate policy.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Projected CGPA</div>
+        <div class="tool-desc" style="font-size:.78rem;color:var(--muted);margin-bottom:12px">Combine your previous CGPA with a new semester's GPA to see your projected CGPA.</div>
+        <div class="mini-form-row">
+          <div class="form-group"><label for="prevCgpa">Previous CGPA</label><input type="number" step="0.01" id="prevCgpa" placeholder="e.g. 3.60"></div>
+          <div class="form-group"><label for="prevUnits">Previous Total Units</label><input type="number" id="prevUnits" placeholder="e.g. 90"></div>
+          <div class="form-group"><label for="newGpa">New Semester GPA</label><input type="number" step="0.01" id="newGpa" placeholder="e.g. 4.10"></div>
+          <div class="form-group"><label for="newUnits">New Semester Units</label><input type="number" id="newUnits" placeholder="e.g. 21"></div>
+        </div>
+        <button type="button" class="btn-main" onclick="calculateProjectedCgpa()">Calculate Projected CGPA</button>
+        <div id="cgpaFormError" role="alert"></div>
+        <div id="cgpaResultBox"></div>
       </div>
     </div>
 
-    <!-- ═══════════ POST-UTME AGGREGATE PANEL ═══════════ -->
-    <div class="tool-panel" id="panelPostutme">
+    <!-- ═══════════ TARGET CGPA ═══════════ -->
+    <div class="tool-section" id="target">
+      <div class="tool-section-head">
+        <div class="tool-section-lbl">Tool</div>
+        <h2 class="tool-section-title">Target CGPA Calculator</h2>
+      </div>
+      <div class="card">
+        <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> How much GPA do I need?</div>
+        <div class="scale-toggle">
+          <button type="button" class="scale-btn active" id="scaleBtnT5" onclick="setTargetScale('scale5')">5.0 Scale</button>
+          <button type="button" class="scale-btn" id="scaleBtnT4" onclick="setTargetScale('scale4')">4.0 Scale</button>
+        </div>
+        <div class="mini-form-row">
+          <div class="form-group"><label for="tgtCurrentCgpa">Current CGPA</label><input type="number" step="0.01" id="tgtCurrentCgpa" placeholder="e.g. 3.20"></div>
+          <div class="form-group"><label for="tgtCompletedUnits">Completed Units</label><input type="number" id="tgtCompletedUnits" placeholder="e.g. 60"></div>
+          <div class="form-group"><label for="tgtRemainingUnits">Remaining Units</label><input type="number" id="tgtRemainingUnits" placeholder="e.g. 30"></div>
+          <div class="form-group"><label for="tgtTargetCgpa">Target CGPA</label><input type="number" step="0.01" id="tgtTargetCgpa" placeholder="e.g. 4.50"></div>
+        </div>
+        <button type="button" class="btn-main" onclick="calculateTargetGpa()">Calculate Required GPA</button>
+        <div id="tgtFormError" role="alert"></div>
+        <div id="tgtResultBox"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════ CLASS OF DEGREE ═══════════ -->
+    <div class="tool-section" id="classof">
+      <div class="tool-section-head">
+        <div class="tool-section-lbl">Tool</div>
+        <h2 class="tool-section-title">Class of Degree Lookup</h2>
+      </div>
+      <div class="card">
+        <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Check a Classification</div>
+        <div class="scale-toggle">
+          <button type="button" class="scale-btn active" id="scaleBtnC5" onclick="setClassofScale('scale5')">5.0 Scale</button>
+          <button type="button" class="scale-btn" id="scaleBtnC4" onclick="setClassofScale('scale4')">4.0 Scale</button>
+        </div>
+        <div class="form-group"><label for="classofCgpa">Final CGPA</label><input type="number" step="0.01" id="classofCgpa" placeholder="e.g. 4.55"></div>
+        <button type="button" class="btn-main" onclick="calculateClassOf()">Check Classification</button>
+        <div id="classofFormError" role="alert"></div>
+        <div id="classofResultBox"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════ POST-UTME AGGREGATE ═══════════ -->
+    <div class="tool-section" id="postutme">
+      <div class="tool-section-head">
+        <div class="tool-section-lbl">Tool</div>
+        <h2 class="tool-section-title">Post-UTME Aggregate Calculator</h2>
+      </div>
       <div class="card">
         <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Step 1 — Find Your School</div>
         <div class="form-group">
-          <label>Search School Name</label>
+          <label for="schoolSearchInput">Search School Name</label>
           <input type="text" id="schoolSearchInput" placeholder="e.g. University of Lagos" oninput="renderSchoolSearch()">
         </div>
         <div id="schoolSearchResults" class="school-search-results" style="display:none"></div>
         <div id="selectedSchoolBox"></div>
+        <div id="schoolCachedNote"></div>
       </div>
 
       <div class="card">
         <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Step 2 — Your Scores</div>
         <div class="form-group">
-          <label>JAMB (UTME) Score *</label>
+          <label for="jambScore">JAMB (UTME) Score *</label>
           <input type="number" id="jambScore" placeholder="e.g. 245" min="0" max="400">
         </div>
         <label style="display:block;font-size:.74rem;font-weight:700;color:var(--text);margin-bottom:5px">O-Level Grades (at least 5 subjects)</label>
         <div id="pOlevelRows"></div>
         <button type="button" class="add-row-btn" onclick="addPOlevelRow()">+ Add Subject</button>
         <button type="button" class="btn-main" style="margin-top:16px" onclick="calculatePostUtme()">Calculate Aggregate</button>
+        <div id="postutmeFormError" role="alert"></div>
         <div id="resultBox"></div>
+        <div class="ctx-disclaimer">Aggregate formulas vary by institution and admission cycle. This calculator uses your selected institution's configured formula where available — otherwise it clearly labels the estimate as unverified. This is not an official admission decision.</div>
       </div>
     </div>
 
-    <!-- ═══════════ SUBJECT COMBO PANEL ═══════════ -->
-    <div class="tool-panel" id="panelCombo">
+    <!-- ═══════════ SUBJECT COMBO ═══════════ -->
+    <div class="tool-section" id="combo">
+      <div class="tool-section-head">
+        <div class="tool-section-lbl">Tool</div>
+        <h2 class="tool-section-title">Subject Combination Finder</h2>
+      </div>
       <div class="card">
-        <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo Finder</div>
+        <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Find Your Course</div>
         <div class="form-group">
-          <label>Search Course</label>
+          <label for="comboSearchInput">Search Course</label>
           <input type="text" id="comboSearchInput" placeholder="e.g. Medicine, Law, Computer Science" oninput="renderCombos()">
         </div>
         <div class="dept-filters" id="deptFilters"></div>
         <div id="comboResults"><div class="skeleton"></div></div>
+        <div id="comboCachedNote"></div>
+        <div class="ctx-disclaimer">Subject combinations and programme requirements may vary by institution and may change. Verify the specific programme in JAMB's IBASS/Eligibility Checker before registration.</div>
+      </div>
+    </div>
+
+    <!-- ═══════════ HOW THESE TOOLS WORK ═══════════ -->
+    <div class="tool-section" id="how-it-works">
+      <div class="tool-section-head">
+        <div class="tool-section-lbl">Good to Know</div>
+        <h2 class="tool-section-title">How These Tools Work</h2>
+      </div>
+      <div class="card how-it-works-list">
+        <div class="hiw-item"><div class="hiw-num">1</div><div class="hiw-text"><b>GPA is Quality Points ÷ Units</b><span>Not a plain average — each course's grade point is multiplied by its unit load first.</span></div></div>
+        <div class="hiw-item"><div class="hiw-num">2</div><div class="hiw-text"><b>Classification bands are a default, not a universal law</b><span>First Class/2:1/2:2/Third-Class boundaries are set by each institution's Senate. What you see here is a common convention.</span></div></div>
+        <div class="hiw-item"><div class="hiw-num">3</div><div class="hiw-text"><b>Aggregate formulas are school-specific</b><span>Where we have a school's actual screening formula on file, we show it and label it. Where we don't, we say so — we never guess and present it as fact.</span></div></div>
+        <div class="hiw-item"><div class="hiw-num">4</div><div class="hiw-text"><b>Subject combinations are a general reference</b><span>Always cross-check the exact institution/programme combination on JAMB's IBASS before you register.</span></div></div>
+        <div class="hiw-item"><div class="hiw-num">5</div><div class="hiw-text"><b>Nothing here is stored on a server</b><span>Saved calculations live only in your browser's local storage — we don't collect or transmit them.</span></div></div>
       </div>
     </div>
 
@@ -428,29 +627,137 @@ function toggleNav(){
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.getElementById('mobileNav');if(nav.classList.contains('open'))toggleNav();closeComboModal();}});
 
-// ── TAB SWITCHING ──
-function switchTool(tool){
-  ['gpa','postutme','combo'].forEach(t=>{
-    document.getElementById('panel'+t.charAt(0).toUpperCase()+t.slice(1)).classList.toggle('active',t===tool);
-    const btn=document.getElementById('tabBtn'+t.charAt(0).toUpperCase()+t.slice(1));
-    btn.classList.toggle('active',t===tool);
-    btn.setAttribute('aria-selected',String(t===tool));
-  });
-  history.replaceState(null,'','#'+tool);
+/* ══════════════════ ACADEMIC CONFIG (evergreen data, not year-bound) ══════════════════ */
+const academicConfig={
+  gradingScales:{
+    scale5:{
+      label:'5.0 Scale',
+      max:5,
+      grades:{A:5,B:4,C:3,D:2,E:1,F:0},
+      classification:[
+        {min:4.5,label:'First Class'},
+        {min:3.5,label:'Second Class Upper'},
+        {min:2.4,label:'Second Class Lower'},
+        {min:1.5,label:'Third Class'},
+        {min:0,label:'Pass'}
+      ],
+      note:"This is a common Nigerian university convention, not a rule set by JAMB or NUC. Your institution's Senate policy may set different boundaries."
+    },
+    scale4:{
+      label:'4.0 Scale',
+      max:4,
+      grades:{A:4,B:3.5,BC:3,C:3,CD:2.5,D:2,E:1.5,F:0},
+      classification:[
+        {min:3.5,label:'Distinction'},
+        {min:3.0,label:'Upper Credit'},
+        {min:2.5,label:'Lower Credit'},
+        {min:2.0,label:'Pass'},
+        {min:0,label:'Fail'}
+      ],
+      note:'This is a common convention on 4.0-scale institutions, not a universal rule. Confirm your own institution\u2019s classification policy.'
+    }
+  },
+  olevelDefaultScale:{
+    points:{A1:6,B2:5,B3:4,C4:3,C5:2,C6:1,D7:0,E8:0,F9:0},
+    max:6
+  },
+  maxUtmeScore:400,
+  defaultFormula:{jambWeight:0.5,screeningWeight:0.5,label:"JAMB 50% + O'Level 50% (default \u2014 not verified for this school)"}
+};
+
+function classify(value,scaleKey){
+  const scale=academicConfig.gradingScales[scaleKey];
+  const band=scale.classification.find(b=>value>=b.min);
+  return band?band.label:scale.classification[scale.classification.length-1].label;
 }
-window.switchTool=switchTool;
 
-/* ══════════════════ GPA/CGPA CALCULATOR ══════════════════ */
-let currentScale=5;
-const GRADE5={A:5,B:4,C:3,D:2,E:1,F:0};
-const GRADE4={A:4,B:3.5,BC:3,C:3,CD:2.5,D:2,E:1.5,F:0};
+/* ══════════════════ VALIDATION / RESULT-ACTION HELPERS ══════════════════ */
+function showFieldError(id,msg){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.innerHTML=`<div class="inline-alert"><svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg><span>${escapeHtml(msg)}</span></div>`;
+}
+function clearFieldError(id){ const el=document.getElementById(id); if(el) el.innerHTML=''; }
 
-function setScale(scale){
-  currentScale=scale;
-  document.getElementById('scaleBtn5').classList.toggle('active',scale===5);
-  document.getElementById('scaleBtn4').classList.toggle('active',scale===4);
+function resultActionsHtml(kind){
+  return `<div class="result-actions">
+    <button type="button" class="btn-sm" onclick="copyResult('${kind}')"><svg aria-hidden="true"><use href="#icon-file-text"></use></svg> Copy Result</button>
+    <button type="button" class="btn-sm" onclick="shareResultTool('${kind}')"><svg aria-hidden="true"><use href="#icon-share"></use></svg> Share</button>
+    <button type="button" class="btn-sm" onclick="saveResultTool('${kind}')"><svg aria-hidden="true"><use href="#icon-check-circle"></use></svg> Save</button>
+  </div>`;
+}
+const resultRegistry={};
+function copyResult(kind){
+  const text=resultRegistry[kind]; if(!text)return;
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(()=>toast('Result copied')).catch(()=>fallbackCopy(text));
+  }else{ fallbackCopy(text); }
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');toast('Result copied');}catch(e){}
+  document.body.removeChild(ta);
+}
+function shareResultTool(kind){
+  const text=resultRegistry[kind]; if(!text)return;
+  if(navigator.share){ navigator.share({title:'Big Quams Media \u2014 Academic Tools',text}).catch(()=>{}); }
+  else{ copyResult(kind); }
+}
+function saveResultTool(kind){
+  const text=resultRegistry[kind]; if(!text)return;
+  saveCalculation(kind,text.split('\n')[0],text);
+  toast('Saved to your calculations');
+}
+let toastTimer=null;
+function toast(msg){
+  let t=document.getElementById('bqmToast');
+  if(!t){ t=document.createElement('div'); t.id='bqmToast';
+    t.style.cssText='position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--blue-main,#1a3fa8);color:#fff;padding:10px 18px;border-radius:8px;font-size:.8rem;font-weight:600;z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:opacity .25s';
+    document.body.appendChild(t);
+  }
+  t.textContent=msg; t.style.opacity='1';
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{t.style.opacity='0';},2200);
+}
+
+/* ══════════════════ SAVED CALCULATIONS (localStorage) ══════════════════ */
+const SAVED_KEY='bqm-academic-saved';
+function getSaved(){ try{ return JSON.parse(localStorage.getItem(SAVED_KEY)||'[]'); }catch(e){ return []; } }
+function saveCalculation(type,label,detail){
+  const list=getSaved();
+  list.unshift({id:Date.now()+Math.random().toString(36).slice(2,7),type,label,detail,ts:Date.now()});
+  localStorage.setItem(SAVED_KEY,JSON.stringify(list.slice(0,20)));
+  renderSavedList();
+}
+function deleteSaved(id){
+  localStorage.setItem(SAVED_KEY,JSON.stringify(getSaved().filter(x=>x.id!==id)));
+  renderSavedList();
+}
+window.deleteSaved=deleteSaved;
+function renderSavedList(){
+  const el=document.getElementById('savedList'); if(!el)return;
+  const list=getSaved();
+  if(!list.length){ el.innerHTML='<div class="saved-empty">Nothing saved yet \u2014 use the Save button under any result to keep it here (stored only in this browser).</div>'; return; }
+  el.innerHTML=list.map(item=>`
+    <div class="saved-item">
+      <div>
+        <div class="saved-item-main">${escapeHtml(item.label)}</div>
+        <div class="saved-item-sub">${new Date(item.ts).toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'})}</div>
+      </div>
+      <button type="button" class="saved-item-del" onclick="deleteSaved('${item.id}')" aria-label="Delete saved calculation"><svg aria-hidden="true"><use href="#icon-x"></use></svg></button>
+    </div>`).join('');
+}
+
+/* ══════════════════ GPA / CGPA CALCULATOR ══════════════════ */
+let currentScale='scale5';
+
+function setScale(scaleKey){
+  currentScale=scaleKey;
+  document.getElementById('scaleBtn5').classList.toggle('active',scaleKey==='scale5');
+  document.getElementById('scaleBtn4').classList.toggle('active',scaleKey==='scale4');
   document.querySelectorAll('.gpa-grade-select').forEach(sel=>{
-    const opts=scale===5?Object.keys(GRADE5):Object.keys(GRADE4);
+    const opts=Object.keys(academicConfig.gradingScales[scaleKey].grades);
     sel.innerHTML=opts.map(g=>`<option>${g}</option>`).join('');
   });
 }
@@ -460,79 +767,182 @@ function addGpaCourseRow(){
   const wrap=document.getElementById('gpaCourseRows');
   const row=document.createElement('div');
   row.className='course-row';
-  const opts=currentScale===5?Object.keys(GRADE5):Object.keys(GRADE4);
+  const opts=Object.keys(academicConfig.gradingScales[currentScale].grades);
   row.innerHTML=`
-    <input type="text" class="gpa-course-name" placeholder="Course title">
-    <input type="number" class="gpa-course-units" placeholder="Units" min="1" max="10">
-    <select class="gpa-grade-select">${opts.map(g=>`<option>${g}</option>`).join('')}</select>
-    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>`;
+    <input type="text" class="gpa-course-name" placeholder="Course title" aria-label="Course title">
+    <input type="number" class="gpa-course-units" placeholder="Units" min="1" max="10" aria-label="Course units">
+    <select class="gpa-grade-select" aria-label="Grade">${opts.map(g=>`<option>${g}</option>`).join('')}</select>
+    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()" aria-label="Remove course"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>`;
   wrap.appendChild(row);
 }
 window.addGpaCourseRow=addGpaCourseRow;
 
-function calculateGpa(){
-  const rows=document.querySelectorAll('#gpaCourseRows .course-row');
-  const scaleMap=currentScale===5?GRADE5:GRADE4;
+function computeGpaFromRows(rows,scaleKey){
+  const scale=academicConfig.gradingScales[scaleKey];
   let totalUnits=0,totalPoints=0,count=0;
   rows.forEach(row=>{
     const units=parseFloat(row.querySelector('.gpa-course-units').value)||0;
     const grade=row.querySelector('.gpa-grade-select').value;
-    if(units>0){
-      totalUnits+=units;
-      totalPoints+=units*(scaleMap[grade]||0);
-      count++;
-    }
+    if(units>0){ totalUnits+=units; totalPoints+=units*(scale.grades[grade]||0); count++; }
   });
-  if(count<1){ alert('Add at least one course with units.'); return; }
+  return {totalUnits,totalPoints,count};
+}
+
+function calculateGpa(){
+  clearFieldError('gpaFormError');
+  const rows=document.querySelectorAll('#gpaCourseRows .course-row');
+  const {totalUnits,totalPoints,count}=computeGpaFromRows(rows,currentScale);
+  if(count<1){ showFieldError('gpaFormError','Add at least one course with a valid unit load before calculating.'); return; }
+  const scale=academicConfig.gradingScales[currentScale];
   const gpa=(totalPoints/totalUnits).toFixed(2);
-  let cls,clsColor;
-  if(currentScale===5){
-    if(gpa>=4.5){cls='First Class';}
-    else if(gpa>=3.5){cls='Second Class Upper';}
-    else if(gpa>=2.4){cls='Second Class Lower';}
-    else if(gpa>=1.5){cls='Third Class';}
-    else{cls='Pass';}
-  }else{
-    if(gpa>=3.5){cls='Distinction';}
-    else if(gpa>=3.0){cls='Upper Credit';}
-    else if(gpa>=2.5){cls='Lower Credit';}
-    else if(gpa>=2.0){cls='Pass';}
-    else{cls='Fail';}
-  }
+  const cls=classify(parseFloat(gpa),currentScale);
   document.getElementById('gpaResultBox').innerHTML=`
     <div class="result-box">
       <div class="num">${gpa}</div>
-      <div class="lbl">${currentScale===5?'CGPA':'CGPA'} out of ${currentScale}.0</div>
+      <div class="lbl">GPA out of ${scale.max}.00</div>
       <div class="cls">${cls}</div>
-    </div>`;
+    </div>
+    <div class="formula-note"><svg aria-hidden="true"><use href="#icon-lightbulb"></use></svg><span>Total Units: ${totalUnits} \u00b7 Quality Points: ${totalPoints.toFixed(2)} \u00b7 ${scale.note}</span></div>
+    ${resultActionsHtml('gpa')}`;
+  resultRegistry.gpa=`My GPA: ${gpa} / ${scale.max}.00 (${cls}) \u2014 Total Units: ${totalUnits}, Quality Points: ${totalPoints.toFixed(2)}. Calculated on Big Quams Media Academic Tools.`;
 }
 window.calculateGpa=calculateGpa;
 
+function calculateProjectedCgpa(){
+  clearFieldError('cgpaFormError');
+  const prevCgpa=parseFloat(document.getElementById('prevCgpa').value);
+  const prevUnits=parseFloat(document.getElementById('prevUnits').value);
+  const newGpa=parseFloat(document.getElementById('newGpa').value);
+  const newUnits=parseFloat(document.getElementById('newUnits').value);
+  if([prevCgpa,prevUnits,newGpa,newUnits].some(v=>isNaN(v)||v<0)||prevUnits+newUnits<=0){
+    showFieldError('cgpaFormError','Fill in all four fields with valid, non-negative numbers.'); return;
+  }
+  const scale=academicConfig.gradingScales[currentScale];
+  if(prevCgpa>scale.max||newGpa>scale.max){
+    showFieldError('cgpaFormError',`Values can't exceed the ${scale.max}.00 maximum on the ${scale.label}.`); return;
+  }
+  const projected=((prevCgpa*prevUnits)+(newGpa*newUnits))/(prevUnits+newUnits);
+  const cls=classify(projected,currentScale);
+  document.getElementById('cgpaResultBox').innerHTML=`
+    <div class="result-box">
+      <div class="num">${projected.toFixed(2)}</div>
+      <div class="lbl">Projected CGPA out of ${scale.max}.00</div>
+      <div class="cls">${cls}</div>
+    </div>
+    ${resultActionsHtml('cgpa')}`;
+  resultRegistry.cgpa=`My projected CGPA: ${projected.toFixed(2)} / ${scale.max}.00 (${cls}). Calculated on Big Quams Media Academic Tools.`;
+}
+window.calculateProjectedCgpa=calculateProjectedCgpa;
+
+/* ══════════════════ TARGET CGPA ══════════════════ */
+let targetScale='scale5';
+function setTargetScale(scaleKey){
+  targetScale=scaleKey;
+  document.getElementById('scaleBtnT5').classList.toggle('active',scaleKey==='scale5');
+  document.getElementById('scaleBtnT4').classList.toggle('active',scaleKey==='scale4');
+}
+window.setTargetScale=setTargetScale;
+
+function calculateTargetGpa(){
+  clearFieldError('tgtFormError');
+  const current=parseFloat(document.getElementById('tgtCurrentCgpa').value);
+  const completed=parseFloat(document.getElementById('tgtCompletedUnits').value);
+  const remaining=parseFloat(document.getElementById('tgtRemainingUnits').value);
+  const target=parseFloat(document.getElementById('tgtTargetCgpa').value);
+  if([current,completed,remaining,target].some(v=>isNaN(v)||v<0)||remaining<=0){
+    showFieldError('tgtFormError','Fill in all fields with valid numbers, and remaining units must be greater than 0.'); return;
+  }
+  const scale=academicConfig.gradingScales[targetScale];
+  if(current>scale.max||target>scale.max){
+    showFieldError('tgtFormError',`CGPA values can't exceed the ${scale.max}.00 maximum on the ${scale.label}.`); return;
+  }
+  const requiredGpa=((target*(completed+remaining))-(current*completed))/remaining;
+  let resultHtml;
+  if(requiredGpa<=0){
+    resultHtml=`<div class="result-box"><div class="num">0.00+</div><div class="lbl">Required GPA</div></div>
+    <div class="formula-note"><svg aria-hidden="true"><use href="#icon-check-circle"></use></svg><span>You've already reached or passed this target \u2014 any GPA in your remaining units keeps you at or above ${target.toFixed(2)}.</span></div>`;
+    resultRegistry.target=`I only need to maintain my current pace to reach a CGPA of ${target.toFixed(2)}. Calculated on Big Quams Media Academic Tools.`;
+  }else if(requiredGpa>scale.max){
+    resultHtml=`<div class="inline-alert"><svg aria-hidden="true"><use href="#icon-alert-triangle"></use></svg><span>You would need a GPA of ${requiredGpa.toFixed(2)}, above the maximum available on the ${scale.label} (${scale.max}.00) \u2014 this target cannot be reached with only ${remaining} remaining units.</span></div>`;
+    resultRegistry.target=`My target CGPA of ${target.toFixed(2)} isn't reachable with ${remaining} remaining units on the ${scale.label}. Checked on Big Quams Media Academic Tools.`;
+  }else{
+    resultHtml=`<div class="result-box"><div class="num">${requiredGpa.toFixed(2)}</div><div class="lbl">Required GPA out of ${scale.max}.00 for the rest of your programme</div></div>
+    ${resultActionsHtml('target')}`;
+    resultRegistry.target=`I need an average GPA of ${requiredGpa.toFixed(2)} / ${scale.max}.00 over my remaining ${remaining} units to reach a CGPA of ${target.toFixed(2)}. Calculated on Big Quams Media Academic Tools.`;
+  }
+  document.getElementById('tgtResultBox').innerHTML=resultHtml;
+}
+window.calculateTargetGpa=calculateTargetGpa;
+
+/* ══════════════════ CLASS OF DEGREE ══════════════════ */
+let classofScale='scale5';
+function setClassofScale(scaleKey){
+  classofScale=scaleKey;
+  document.getElementById('scaleBtnC5').classList.toggle('active',scaleKey==='scale5');
+  document.getElementById('scaleBtnC4').classList.toggle('active',scaleKey==='scale4');
+}
+window.setClassofScale=setClassofScale;
+
+function calculateClassOf(){
+  clearFieldError('classofFormError');
+  const cgpa=parseFloat(document.getElementById('classofCgpa').value);
+  const scale=academicConfig.gradingScales[classofScale];
+  if(isNaN(cgpa)||cgpa<0||cgpa>scale.max){
+    showFieldError('classofFormError',`Enter a CGPA between 0 and ${scale.max}.00.`); return;
+  }
+  const cls=classify(cgpa,classofScale);
+  document.getElementById('classofResultBox').innerHTML=`
+    <div class="result-box"><div class="num">${cgpa.toFixed(2)}</div><div class="lbl">on the ${scale.label}</div><div class="cls">${cls}</div></div>
+    <div class="ctx-disclaimer">${scale.note}</div>
+    ${resultActionsHtml('classof')}`;
+  resultRegistry.classof=`A CGPA of ${cgpa.toFixed(2)} on the ${scale.label} typically falls under ${cls} (institution policy may vary). Checked on Big Quams Media Academic Tools.`;
+}
+window.calculateClassOf=calculateClassOf;
+
 /* ══════════════════ POST-UTME AGGREGATE CALCULATOR ══════════════════ */
-const OL_GRADES={A1:6,B2:5,B3:4,C4:3,C5:2,C6:1,D7:0,E8:0,F9:0};
+const SCHOOLS_CACHE_KEY='bqm-cache-schools';
 let postutmeSchools=[];
 let selectedSchool=null;
 let calcResult=null;
 
 async function loadPostutmeSchools(){
-  if(!window._db) return;
+  if(window._db){
+    try{
+      const snap=await window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_postutme_schools'),window._fs.orderBy('name','asc')));
+      postutmeSchools=snap.docs.map(d=>({_id:d.id,...d.data()}));
+      localStorage.setItem(SCHOOLS_CACHE_KEY,JSON.stringify({data:postutmeSchools,cachedAt:Date.now()}));
+      return;
+    }catch(e){ console.warn('Failed to load schools:',e.message); }
+  }
+  // Firebase unavailable or failed \u2014 fall back to a dated local cache, clearly labeled
   try{
-    const snap=await window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_postutme_schools'),window._fs.orderBy('name','asc')));
-    postutmeSchools=snap.docs.map(d=>({_id:d.id,...d.data()}));
-  }catch(e){ console.warn('Failed to load schools:',e.message); }
+    const cached=JSON.parse(localStorage.getItem(SCHOOLS_CACHE_KEY)||'null');
+    if(cached&&cached.data&&cached.data.length){
+      postutmeSchools=cached.data;
+      const d=new Date(cached.cachedAt);
+      document.getElementById('schoolCachedNote').innerHTML=`<div class="cached-note"><svg aria-hidden="true"><use href="#icon-clock"></use></svg><span>You're viewing school data cached on ${d.toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'})}. Verify the latest details before applying.</span></div>`;
+    }else{
+      document.getElementById('schoolCachedNote').innerHTML=`<div class="cached-note"><svg aria-hidden="true"><use href="#icon-alert-triangle"></use></svg><span>School data is temporarily unavailable and no cached copy exists yet. Please try again shortly.</span></div>`;
+    }
+  }catch(e){}
 }
 
 function renderSchoolSearch(){
   const q=document.getElementById('schoolSearchInput').value.trim().toLowerCase();
   const resultsEl=document.getElementById('schoolSearchResults');
   if(!q){ resultsEl.style.display='none'; return; }
+  if(!postutmeSchools.length){
+    resultsEl.style.display='block';
+    resultsEl.innerHTML='<div class="school-opt">School data isn\u2019t available right now \u2014 this isn\u2019t a "no match", the list simply hasn\u2019t loaded. Try again shortly.</div>';
+    return;
+  }
   const matches=postutmeSchools.filter(s=>(s.name||'').toLowerCase().includes(q)||(s.abbr||'').toLowerCase().includes(q));
-  if(!matches.length){ resultsEl.style.display='block'; resultsEl.innerHTML='<div class="school-opt">No schools found — try a different search.</div>'; return; }
+  if(!matches.length){ resultsEl.style.display='block'; resultsEl.innerHTML='<div class="school-opt">No schools found in our list for that search \u2014 try a different spelling.</div>'; return; }
   resultsEl.style.display='block';
-  resultsEl.innerHTML=matches.slice(0,15).map((s,i)=>`
+  resultsEl.innerHTML=matches.slice(0,15).map((s)=>`
     <div class="school-opt" onclick="selectSchool(${postutmeSchools.indexOf(s)})">
       <b>${escapeHtml(s.name)}</b>
-      <span>${escapeHtml(s.abbr||'')} ${s.type?'· '+escapeHtml(s.type):''}</span>
+      <span>${escapeHtml(s.abbr||'')} ${s.type?'\u00b7 '+escapeHtml(s.type):''}</span>
     </div>`).join('');
 }
 window.renderSchoolSearch=renderSchoolSearch;
@@ -541,11 +951,13 @@ function selectSchool(idx){
   selectedSchool=postutmeSchools[idx];
   document.getElementById('schoolSearchResults').style.display='none';
   document.getElementById('schoolSearchInput').value='';
+  const hasFormula=!!selectedSchool.formula;
   document.getElementById('selectedSchoolBox').innerHTML=`
     <div class="selected-school-box">
       <span><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> ${escapeHtml(selectedSchool.name)} (${escapeHtml(selectedSchool.abbr||'')})</span>
       <button type="button" onclick="clearSelectedSchool()" style="background:none;border:none;color:inherit;font-weight:800;cursor:pointer" aria-label="Clear selected school"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
-    </div>`;
+    </div>
+    <span class="verify-badge ${hasFormula?'verified':'unverified'}">${hasFormula?'Formula on file':'Formula not verified'}</span>`;
 }
 window.selectSchool=selectSchool;
 
@@ -559,35 +971,41 @@ function addPOlevelRow(subject,grade){
   const wrap=document.getElementById('pOlevelRows');
   const row=document.createElement('div');
   row.className='olevel-row';
+  const opts=academicConfig.olevelDefaultScale.points;
   row.innerHTML=`
-    <input type="text" class="p-ol-subject" placeholder="Subject" value="${subject?escapeHtml(subject):''}">
-    <select class="p-ol-grade">${Object.keys(OL_GRADES).map(g=>`<option${g===grade?' selected':''}>${g}</option>`).join('')}</select>
-    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>`;
+    <input type="text" class="p-ol-subject" placeholder="Subject" aria-label="Subject" value="${subject?escapeHtml(subject):''}">
+    <select class="p-ol-grade" aria-label="Grade">${Object.keys(opts).map(g=>`<option${g===grade?' selected':''}>${g}</option>`).join('')}</select>
+    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()" aria-label="Remove subject"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>`;
   wrap.appendChild(row);
 }
 window.addPOlevelRow=addPOlevelRow;
 
 function calculatePostUtme(){
-  if(!selectedSchool){ alert('Please search and select a school first.'); return; }
-  const jamb=parseFloat(document.getElementById('jambScore').value)||0;
-  if(jamb<0||jamb>400){ alert('Enter a valid JAMB score between 0 and 400.'); return; }
+  clearFieldError('postutmeFormError');
+  if(!selectedSchool){ showFieldError('postutmeFormError','Search and select a school before calculating.'); return; }
+  const jamb=parseFloat(document.getElementById('jambScore').value);
+  if(isNaN(jamb)||jamb<0||jamb>academicConfig.maxUtmeScore){ showFieldError('postutmeFormError',`Enter a valid JAMB score between 0 and ${academicConfig.maxUtmeScore}.`); return; }
   const rows=document.querySelectorAll('#pOlevelRows .olevel-row');
+  const olPoints=academicConfig.olevelDefaultScale.points;
+  const olMax=academicConfig.olevelDefaultScale.max;
   let gradeSum=0,gradeCount=0;
   const gradeList=[];
   rows.forEach(row=>{
     const subj=row.querySelector('.p-ol-subject').value.trim();
     const gradeVal=row.querySelector('.p-ol-grade').value;
     if(gradeVal&&subj){
-      gradeSum+=OL_GRADES[gradeVal]||0;
+      gradeSum+=olPoints[gradeVal]||0;
       gradeCount++;
-      gradeList.push({subj,grade:gradeVal,pts:OL_GRADES[gradeVal]||0});
+      gradeList.push({subj,grade:gradeVal,pts:olPoints[gradeVal]||0});
     }
   });
-  if(gradeCount<5){ alert("Enter at least 5 O-Level subject grades for an accurate calculation."); return; }
+  if(gradeCount<5){ showFieldError('postutmeFormError','Enter at least 5 O-Level subject grades for an accurate calculation.'); return; }
 
+  const hasFormula=!!selectedSchool.formula;
   const formula=selectedSchool.formula||'50-50';
-  const jambNorm=(jamb/400)*100;
-  const olevelNorm=gradeCount>0?(gradeSum/(gradeCount*6))*100:0;
+  const fmtMap={'50-50':"JAMB 50% + O'Level 50%",'40-60':"JAMB 40% + O'Level 60%",'60-40':"JAMB 60% + O'Level 40%",'jamb-only':'JAMB Score Only','custom':selectedSchool.customFormula||'Custom'};
+  const jambNorm=(jamb/academicConfig.maxUtmeScore)*100;
+  const olevelNorm=gradeCount>0?(gradeSum/(gradeCount*olMax))*100:0;
   let jambPart=0,olevelPart=0;
   if(formula==='50-50'){jambPart=jambNorm*0.5;olevelPart=olevelNorm*0.5;}
   else if(formula==='40-60'){jambPart=jambNorm*0.4;olevelPart=olevelNorm*0.6;}
@@ -598,33 +1016,38 @@ function calculatePostUtme(){
   const cutoff=parseInt(selectedSchool.cutoff)||0;
 
   let verdict,verdictClass;
-  if(aggregate>=65){verdict='<svg class="icon" aria-hidden="true"><use href="#icon-champagne"></use></svg> Excellent aggregate! Very competitive for admission.';verdictClass='verdict-great';}
-  else if(aggregate>=50){verdict='<svg class="icon" aria-hidden="true"><use href="#icon-thumbs-up"></use></svg> Good aggregate. You stand a decent chance.';verdictClass='verdict-good';}
-  else{verdict='<svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Below average. Work on improving your scores.';verdictClass='verdict-low';}
+  if(aggregate>=65){verdict='<svg class="icon" aria-hidden="true"><use href="#icon-champagne"></use></svg> Strong estimated aggregate against common benchmarks.';verdictClass='verdict-great';}
+  else if(aggregate>=50){verdict='<svg class="icon" aria-hidden="true"><use href="#icon-thumbs-up"></use></svg> Reasonable estimated aggregate \u2014 competitiveness still depends on your course and institution.';verdictClass='verdict-good';}
+  else{verdict='<svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Below-average estimate. Consider improving your scores where possible.';verdictClass='verdict-low';}
 
-  calcResult={school:selectedSchool,jamb,jambPart,olevelPart,aggregate,gradeList,formula,cutoff,verdict};
+  calcResult={school:selectedSchool,jamb,jambPart,olevelPart,aggregate,gradeList,formula,hasFormula,cutoff,verdict};
 
+  const cutoffLabel=selectedSchool.cutoff?'Published benchmark':null;
   document.getElementById('resultBox').innerHTML=`
     <div class="result-box">
       <div class="num">${aggregate}</div>
-      <div class="lbl">Aggregate Score — ${escapeHtml(selectedSchool.name)}</div>
+      <div class="lbl">Estimated Aggregate \u2014 ${escapeHtml(selectedSchool.name)}</div>
     </div>
+    <div class="formula-note"><svg aria-hidden="true"><use href="#icon-lightbulb"></use></svg><span>Formula used: ${fmtMap[formula]||formula} ${hasFormula?'':'\u2014 not verified for this school, shown as a default estimate only'}.</span></div>
     <div class="verdict-box ${verdictClass}">${verdict}</div>
-    ${cutoff?`<div class="form-hint" style="margin-top:8px;text-align:center">Cutoff: ${cutoff} — ${aggregate>=cutoff?'<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> You meet it':'<svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg> Below cutoff'}</div>`:''}
-    <button type="button" class="btn-ghost-full" onclick="downloadPostutmePDF()"><svg class="icon" aria-hidden="true"><use href="#icon-file-text"></use></svg> Download Result</button>`;
+    ${cutoff?`<div class="form-hint" style="margin-top:8px;text-align:center">${cutoffLabel}: ${cutoff} \u2014 ${aggregate>=cutoff?'<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> Meets this threshold':'<svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg> Below this threshold'}</div>`:''}
+    <div class="ctx-disclaimer">This is an estimate, not a guaranteed admission score. A published cutoff is a benchmark \u2014 the actual competitive score for your course may be higher.</div>
+    <button type="button" class="btn-ghost-full" onclick="downloadPostutmePDF()"><svg class="icon" aria-hidden="true"><use href="#icon-file-text"></use></svg> Download Result</button>
+    ${resultActionsHtml('postutme')}`;
+  resultRegistry.postutme=`My estimated Post-UTME aggregate for ${selectedSchool.name}: ${aggregate}/100 (${fmtMap[formula]||formula}${hasFormula?'':', unverified default'}). Calculated on Big Quams Media Academic Tools.`;
   window.scrollTo({top:document.getElementById('resultBox').getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});
 }
 window.calculatePostUtme=calculatePostUtme;
 
 function downloadPostutmePDF(){
   if(!calcResult) return;
-  const {school,jamb,jambPart,olevelPart,aggregate,gradeList,formula,cutoff,verdict}=calcResult;
+  const {school,jamb,jambPart,olevelPart,aggregate,gradeList,formula,hasFormula,cutoff,verdict}=calcResult;
   const fmtMap={'50-50':"JAMB 50% + O-Level 50%",'40-60':"JAMB 40% + O-Level 60%",'60-40':"JAMB 60% + O-Level 40%",'jamb-only':'JAMB Score Only','custom':school.customFormula||'Custom'};
   const now=new Date();
   const dateStr=now.toLocaleDateString('en-NG',{day:'numeric',month:'long',year:'numeric'});
   const timeStr=now.toLocaleTimeString('en-NG',{hour:'2-digit',minute:'2-digit'});
   const gradesTable=gradeList.map(g=>`<tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${escapeHtml(g.subj)}</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700;color:#1a3fa8">${g.grade}</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${g.pts}/6 pts</td></tr>`).join('');
-  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Post-UTME Aggregate Result — BQM</title>
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Post-UTME Aggregate Result \u2014 BQM</title>
   <style>body{font-family:Arial,sans-serif;margin:0;padding:0;color:#1e2749}
   .page{max-width:700px;margin:0 auto;padding:30px}
   .watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-30deg);font-size:72px;color:rgba(26,63,168,.06);font-weight:900;pointer-events:none;white-space:nowrap;z-index:0}
@@ -644,15 +1067,15 @@ function downloadPostutmePDF(){
   .footer{text-align:center;font-size:10px;color:#94a3b8;margin-top:20px;padding-top:14px;border-top:1px solid #e2e8f4}
   </style></head>
   <body><div class="page">
-  <div class="watermark">BIG QUAMS MEDIA®</div>
+  <div class="watermark">BIG QUAMS MEDIA\u00ae</div>
   <div class="content">
   <div class="header">
-    <div><h1><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></svg>Post-UTME Aggregate Result</h1><p>Calculated by Big Quams Media® · ${dateStr} at ${timeStr}</p></div>
+    <div><h1><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></svg>Post-UTME Aggregate Result (Estimate)</h1><p>Calculated by Big Quams Media\u00ae \u00b7 ${dateStr} at ${timeStr}</p></div>
     <div style="text-align:right;font-size:11px;opacity:.7">${escapeHtml(school.abbr||'')}<br>${escapeHtml(school.type||'')}</div>
   </div>
   <div class="score-box">
     <div class="score-num">${aggregate}</div>
-    <div class="score-lbl">Aggregate Score / 100 — ${escapeHtml(school.name)}</div>
+    <div class="score-lbl">Estimated Aggregate / 100 \u2014 ${escapeHtml(school.name)}</div>
   </div>
   <div class="section">
     <h3>Score Breakdown</h3>
@@ -669,13 +1092,13 @@ function downloadPostutmePDF(){
     <h3>School Information</h3>
     <table>
     <tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700;width:40%">School</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${escapeHtml(school.name)}</td></tr>
-    <tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700">Formula Used</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${escapeHtml(fmtMap[formula]||formula)}</td></tr>
-    ${cutoff?`<tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700">Minimum Cut-off</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${cutoff} ${aggregate>=cutoff?'Met ✓':'Below ✗'}</td></tr>`:''}
+    <tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700">Formula Used</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${escapeHtml(fmtMap[formula]||formula)}${hasFormula?'':' (not verified for this school \u2014 default estimate)'}</td></tr>
+    ${cutoff?`<tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700">Published Benchmark</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${cutoff} ${aggregate>=cutoff?'Meets it \u2713':'Below it \u2717'}</td></tr>`:''}
     </table>
   </div>
-  <div class="verdict">${verdict}</div>
-  <div class="disclaimer">IMPORTANT NOTICE: This document is generated by Big Quams Media® (bigquamsmedia.com.ng) for personal record and self-assessment purposes only. It is NOT an official result, NOT issued by any university or examination body, and must NOT be submitted to any institution as an official document. Actual admission is determined solely by the respective institution's official screening process.</div>
-  <div class="footer">Big Quams Media® · Nigeria's Trusted Student Success Platform · bigquamsmedia.com.ng<br>Generated: ${dateStr} ${timeStr} · For record purposes only</div>
+  <div class="verdict">${verdict.replace(/<[^>]+>/g,'')}</div>
+  <div class="disclaimer">IMPORTANT NOTICE: This document is generated by Big Quams Media\u00ae (bigquamsmedia.com.ng) for personal record and self-assessment purposes only. It is an ESTIMATE, NOT an official result, NOT issued by any university or examination body, and must NOT be submitted to any institution as an official document. Actual admission is determined solely by the respective institution's official screening process.</div>
+  <div class="footer">Big Quams Media\u00ae \u00b7 Nigeria's Trusted Student Success Platform \u00b7 bigquamsmedia.com.ng<br>Generated: ${dateStr} ${timeStr} \u00b7 For record purposes only</div>
   </div></div></body></html>`;
   const blob=new Blob([html],{type:'text/html'});
   const url=URL.createObjectURL(blob);
@@ -688,20 +1111,34 @@ function downloadPostutmePDF(){
 window.downloadPostutmePDF=downloadPostutmePDF;
 
 /* ══════════════════ SUBJECT COMBO FINDER ══════════════════ */
+const COMBOS_CACHE_KEY='bqm-cache-combos';
 let allCombos=[],currentDept='',currentComboIdx=-1;
 const DEPTS=['All','Medicine & Health','Engineering','Sciences','Social Sciences','Arts & Humanities','Agriculture','Education','Law','Management'];
 
 async function loadCombos(){
   const resultsEl=document.getElementById('comboResults');
   document.getElementById('deptFilters').innerHTML=DEPTS.map(d=>`<button type="button" class="dept-btn${d==='All'?' active':''}" onclick="filterDept('${d==='All'?'':escapeHtml(d)}',this)">${d}</button>`).join('');
-  if(!window._db){ resultsEl.innerHTML='<div class="form-hint">Subject combos are temporarily unavailable.</div>'; return; }
+  if(window._db){
+    try{
+      const snap=await window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_subject_combo'),window._fs.orderBy('course','asc')));
+      allCombos=snap.docs.map(d=>({_id:d.id,...d.data()}));
+      localStorage.setItem(COMBOS_CACHE_KEY,JSON.stringify({data:allCombos,cachedAt:Date.now()}));
+      renderCombos();
+      return;
+    }catch(e){ console.warn('loadCombos:',e.message); }
+  }
   try{
-    const snap=await window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_subject_combo'),window._fs.orderBy('course','asc')));
-    allCombos=snap.docs.map(d=>({_id:d.id,...d.data()}));
-    renderCombos();
+    const cached=JSON.parse(localStorage.getItem(COMBOS_CACHE_KEY)||'null');
+    if(cached&&cached.data&&cached.data.length){
+      allCombos=cached.data;
+      const d=new Date(cached.cachedAt);
+      document.getElementById('comboCachedNote').innerHTML=`<div class="cached-note"><svg aria-hidden="true"><use href="#icon-clock"></use></svg><span>You're viewing subject-combination data cached on ${d.toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'})}. Verify the latest requirements in JAMB IBASS before registration.</span></div>`;
+      renderCombos();
+    }else{
+      resultsEl.innerHTML='<div class="form-hint">Subject combinations are temporarily unavailable and no cached copy exists yet. Please try again shortly.</div>';
+    }
   }catch(e){
     resultsEl.innerHTML='<div class="form-hint">Could not load subject combinations. Please try again.</div>';
-    console.warn('loadCombos:',e.message);
   }
 }
 
@@ -731,7 +1168,7 @@ function renderCombos(){
   });
   const resultsEl=document.getElementById('comboResults');
   if(!filtered.length){ resultsEl.innerHTML='<div class="form-hint" style="padding:20px 0;text-align:center">No courses match your search.</div>'; return; }
-  resultsEl.innerHTML=filtered.map((c,i)=>{
+  resultsEl.innerHTML=filtered.map((c)=>{
     const subjects=getComboSubjects(c);
     return `<div class="combo-card" onclick="openComboModal(${allCombos.indexOf(c)})">
       <div class="combo-dept-tag">${escapeHtml(c.dept||'General')}</div>
@@ -756,23 +1193,24 @@ function openComboModal(idx){
     <div class="modal-dept">${escapeHtml(c.dept||'General')}</div>
     <div class="modal-course-name">${escapeHtml(c.course)}</div>
     <div class="modal-section">
-      <div class="modal-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> JAMB Subject Combination</div>
+      <div class="modal-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> UTME Subject Combination</div>
       <div class="combo-subjects" style="gap:6px">
         ${subjects.map((s,i)=>`<span class="subj-pill${i===0?' compulsory':''}" style="font-size:.76rem;padding:5px 12px">${i===0?'<svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg> ':''}${escapeHtml(s)}</span>`).join('')}
       </div>
       <div style="font-size:.72rem;color:var(--muted);margin-top:8px"><svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg> English Language is compulsory for all courses</div>
+      <div class="ctx-disclaimer">Requirements can vary by institution. Verify the specific institution/programme in JAMB IBASS before registration \u2014 this is a general reference, not a claim that every university uses this exact combination.</div>
     </div>
     ${c.olevel?`<div class="modal-section"><div class="modal-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> O-Level Requirements</div><div style="font-size:.82rem;color:var(--muted);line-height:1.7">${escapeHtml(c.olevel)}</div></div>`:''}
     <div class="modal-section">
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        ${c.cutoff?`<div style="background:var(--surface2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue)">${escapeHtml(c.cutoff)}</div><div style="font-size:.64rem;color:var(--muted)">Min JAMB Score</div></div>`:''}
+        ${c.cutoff?`<div style="background:var(--surface2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue)">${escapeHtml(c.cutoff)}</div><div style="font-size:.64rem;color:var(--muted)">Published Benchmark</div></div>`:''}
         ${c.duration?`<div style="background:var(--surface2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text)">${escapeHtml(c.duration)}</div><div style="font-size:.64rem;color:var(--muted)">Programme Duration</div></div>`:''}
       </div>
     </div>
     ${c.notes?`<div class="modal-section"><div class="modal-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Additional Notes</div><div style="font-size:.82rem;color:var(--muted);line-height:1.7">${escapeHtml(c.notes)}</div></div>`:''}
     <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button type="button" onclick="switchTool('postutme');closeComboModal()" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;border:none;cursor:pointer"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Calculate Aggregate →</button>
-      <a href="results.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--surface2);color:var(--blue);border:1.5px solid var(--border);padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Check Results →</a>
+      <button type="button" onclick="closeComboModal();document.getElementById('postutme').scrollIntoView({behavior:'smooth'})" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;border:none;cursor:pointer"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Calculate Aggregate \u2192</button>
+      <a href="results.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--surface2);color:var(--blue);border:1.5px solid var(--border);padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Check Results \u2192</a>
     </div>`;
   document.getElementById('comboModal').classList.add('open');
   document.body.style.overflow='hidden';
@@ -780,7 +1218,8 @@ function openComboModal(idx){
 window.openComboModal=openComboModal;
 
 function closeComboModal(){
-  document.getElementById('comboModal').classList.remove('open');
+  const m=document.getElementById('comboModal'); if(!m)return;
+  m.classList.remove('open');
   document.body.style.overflow='';
   currentComboIdx=-1;
 }
@@ -797,9 +1236,10 @@ document.addEventListener('DOMContentLoaded',()=>{
   addPOlevelRow('English Language','C6'); addPOlevelRow('Mathematics','C6'); addPOlevelRow(); addPOlevelRow(); addPOlevelRow();
   loadPostutmeSchools();
   loadCombos();
+  renderSavedList();
 
   const hash=location.hash.replace('#','');
-  if(['gpa','postutme','combo'].includes(hash)) switchTool(hash);
+  if(hash){ const el=document.getElementById(hash); if(el) setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),200); }
 });
 </script>
 </body>
