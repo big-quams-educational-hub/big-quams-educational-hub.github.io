@@ -197,9 +197,14 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
 .footer-credit{text-align:center;font-size:.7rem;color:rgba(255,255,255,.35);margin-top:16px}
 .footer-credit a{color:#f97316;font-weight:700}
 @media(max-width:640px){.footer-top{flex-direction:column;align-items:flex-start}.footer-bottom{flex-direction:column;align-items:center;text-align:center}}
+/* ── ICON SYSTEM (inline SVG sprite, replaces Font Awesome) ── */
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-fill{fill:currentColor;stroke:none}
+.icon-dot{fill:currentColor;stroke:none}
 </style>
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="icon-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9"/></symbol><symbol id="icon-newspaper" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H7"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12.5" x2="13" y2="12.5"/><line x1="7" y1="16" x2="11" y2="16"/></symbol><symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></symbol><symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></symbol><symbol id="icon-graduation-cap" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5-10-5z"/><path d="M6 11v5c0 1 3 2 6 2s6-1 6-2v-5"/><path d="M22 9v6"/></symbol><symbol id="icon-book-open" viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8 4.5 4 5v13c4-.5 6.5 0 8 1.5V6.5z"/><path d="M12 6.5C13.5 5 16 4.5 20 5v13c-4-.5-6.5 0-8 1.5V6.5z"/></symbol><symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3z"/></symbol><symbol id="icon-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></symbol><symbol id="icon-bar-chart" viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></symbol><symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5 20 3"/><path d="M17 6l3 3"/><path d="M14 9l2.5 2.5"/></symbol><symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></symbol><symbol id="icon-landmark" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><path d="M3 10 12 4l9 6"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z"/></symbol><symbol id="icon-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z"/></symbol><symbol id="icon-clipboard-list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="12" y2="19"/></symbol><symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 4 1.5 5.5 2 6.5H4c.5-1 2-2.5 2-6.5z"/><path d="M10 19a2 2 0 0 0 4 0"/></symbol><symbol id="icon-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol><symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol><symbol id="icon-message-circle" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4A8.6 8.6 0 0 1 8 19l-4 1 1.3-3.9A8.4 8.4 0 1 1 21 11.5z"/><line x1="8.5" y1="12" x2="8.5" y2="12"/><line x1="12" y1="12" x2="12" y2="12"/><line x1="15.5" y1="12" x2="15.5" y2="12"/></symbol><symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></symbol><symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></symbol><symbol id="icon-building" viewBox="0 0 24 24"><rect x="5" y="3" width="9" height="18" rx="1"/><rect x="15" y="9" width="4" height="12" rx="1"/><line x1="8" y1="7" x2="8" y2="7"/><line x1="11" y1="7" x2="11" y2="7"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="11" y1="11" x2="11" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="11" y1="15" x2="11" y2="15"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.5.3 4.5 2.3 4.5 5.3"/></symbol><symbol id="icon-calendar-days" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="7" y1="14" x2="7" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="17" y1="14" x2="17" y2="14"/><line x1="7" y1="17.5" x2="7" y2="17.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-smartphone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18.5" x2="13" y2="18.5"/></symbol><symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><polyline points="20 4 20 8 16 8"/></symbol><symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="20" y2="20"/></symbol><symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol><symbol id="icon-rocket" viewBox="0 0 24 24"><path d="M12 2c3 1 5.5 4 5.5 8.5 0 2-1 3.8-2.2 5.2l-1 3.8-2.3-1.8-2.3 1.8-1-3.8C7.5 14.3 6.5 12.5 6.5 10.5 6.5 6 9 3 12 2z"/><circle cx="12" cy="10" r="1.7"/><path d="M9 17.5 7 21l3-1"/><path d="M15 17.5 17 21l-3-1"/></symbol><symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></symbol><symbol id="icon-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l7 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/><path d="M19.5 6.5a8 8 0 0 1 0 11"/></symbol><symbol id="icon-alert-triangle" viewBox="0 0 24 24"><path d="M12 3.5 22 20H2L12 3.5z"/><line x1="12" y1="10" x2="12" y2="14.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 11 15.5 16 9"/></symbol><symbol id="icon-robot" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="2"/><line x1="9" y1="13" x2="9" y2="13"/><line x1="15" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><line x1="12" y1="5" x2="12" y2="8"/><circle cx="12" cy="3.5" r="1"/></symbol><symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 8.7c.2-.3.6-.6 1.1-.6.4 0 .6.3.9 1 .2.5.5 1.1.4 1.4-.1.4-.4.6-.7.9-.2.2-.3.4-.1.7.4.7 1 1.3 1.7 1.7.3.2.5.1.7-.1.3-.3.5-.6.9-.7.3-.1.9.2 1.4.4.7.3 1 .5 1 .9 0 .5-.3.9-.6 1.1-.6.4-1.4.5-2.2.2-1.6-.5-3.4-2.3-4.2-3.9-.4-.7-.5-1.4-.3-2z"/></symbol><symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17" y1="7" x2="17" y2="7"/></symbol><symbol id="icon-tiktok" viewBox="0 0 24 24"><path d="M13.5 3v11.2a3.3 3.3 0 1 1-2.8-3.3"/><path d="M13.5 3.2c.4 2.4 2.2 4.2 4.5 4.5"/></symbol><symbol id="icon-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></symbol><symbol id="icon-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></symbol><symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 9 22 20 9 13 9 13 2"/></symbol><symbol id="icon-champagne" viewBox="0 0 24 24"><path d="M6 3h5l-1 7a2.5 2.5 0 0 1-5 0z"/><path d="M13 5h5l-.8 6a2.5 2.5 0 0 1-4.9-.6"/><line x1="8.5" y1="15" x2="8.5" y2="21"/><line x1="6" y1="21" x2="11" y2="21"/><line x1="15.5" y1="12" x2="15.5" y2="21"/></symbol><symbol id="icon-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></symbol><symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></symbol><symbol id="icon-hourglass" viewBox="0 0 24 24"><path d="M6 3h12"/><path d="M6 21h12"/><path d="M7 3c0 4 3 5 5 6-2 1-5 2-5 6"/><path d="M17 3c0 4-3 5-5 6 2 1 5 2 5 6"/></symbol><symbol id="icon-link" viewBox="0 0 24 24"><path d="M8.5 12.5 6 15a3.5 3.5 0 0 0 5 5l2.5-2.5"/><path d="M15.5 11.5 18 9a3.5 3.5 0 0 0-5-5l-2.5 2.5"/><line x1="9" y1="15" x2="15" y2="9"/></symbol><symbol id="icon-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></symbol><symbol id="icon-edit" viewBox="0 0 24 24"><path d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/><path d="M20.4 4.6a1.9 1.9 0 0 1 0 2.7L13 15l-3.5.8L10.3 12l7.4-7.4a1.9 1.9 0 0 1 2.7 0z"/></symbol><symbol id="icon-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol><symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M14 8.5h2.5V4.5h-2.5c-2.5 0-4 1.6-4 4v2.5H8v4h2.5V21h4v-8h2.7l.5-4h-3.2V9c0-.4.3-.5.5-.5z"/></symbol><symbol id="icon-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><line x1="8" y1="10.8" x2="16" y2="7.2"/><line x1="8" y1="13.2" x2="16" y2="16.8"/></symbol><symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-10-9.3C.5 8 2 4.5 5.5 4c2-.3 3.8.6 5 2.2C11.7 4.6 13.5 3.7 15.5 4 19 4.5 20.5 8 19 11.2c-2.5 4.7-7 9.3-7 9.3z"/></symbol><symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></symbol><symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="icon-pin" viewBox="0 0 24 24"><path d="M9 4h6"/><path d="M10 4v5.5L7 12h10l-3-2.5V4"/><line x1="12" y1="12" x2="12" y2="21"/></symbol><symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 2c1 3-2 4-2 7a3 3 0 0 0 6 0c0-1-.5-2-.5-2 2 1 3 3 3 5.5A6.5 6.5 0 0 1 12 19a6.5 6.5 0 0 1-6.5-6.5C5.5 8 8 6 9 4c.5 2 1 2.5 1.5 2.5S12 5 12 2z"/></symbol><symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v1H5.5a2 2 0 0 0-1.9 1.4L2 17V7z"/><path d="M2.3 17.3 4.3 10a2 2 0 0 1 1.9-1.4H21l-2.2 7.7A2 2 0 0 1 16.9 18H4a2 2 0 0 1-1.7-2.7z"/></symbol><symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol><symbol id="icon-send" viewBox="0 0 24 24"><line x1="21" y1="3" x2="11" y2="13"/><path d="M21 3 14.5 21 11 13 3 9.5z"/></symbol><symbol id="icon-thumbs-up" viewBox="0 0 24 24"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3z"/><path d="M7 11l4-7a2 2 0 0 1 2 2l-1 4h5.5a2 2 0 0 1 1.9 2.6l-1.8 6A2 2 0 0 1 15.7 20H10a3 3 0 0 1-3-3"/></symbol><symbol id="icon-file-text" viewBox="0 0 24 24"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4a1 1 0 0 0 1 1h4"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="16.5" x2="13" y2="16.5"/></symbol></defs></svg>
 
 <header>
   <div class="hbar">
@@ -213,10 +218,10 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
       <a href="explore.html">Explore</a>
       <a href="cbt.html">CBT</a>
       <a href="academic-tools.html" class="active">Academic Tools</a>
-      <a href="index.html#contact" class="nav-cta">💬 Contact</a>
+      <a href="index.html#contact" class="nav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-message-circle"></use></svg> Contact</a>
     </nav>
-    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
-    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    <button type="button" class="hdr-btn" id="darkBtn" onclick="toggleDark()" aria-label="Switch to dark mode"><svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg></button>
+    <button type="button" class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -227,37 +232,37 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
       <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
       <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
     </div>
-    <button class="mnav-close" onclick="toggleNav()">✕</button>
+    <button type="button" class="mnav-close" onclick="toggleNav()" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
   </div>
   <div class="mnav-lbl">Main</div>
-  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
-  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
-  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
-  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
-  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
-  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
+  <a href="index.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a>
+  <a href="newsroom.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a>
+  <a href="community.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a>
   <div class="mnav-lbl">Exam Tools</div>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
-  <a href="practice-test.html" onclick="toggleNav()">📝 Full Mock Exam</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
-  <a href="academic-tools.html#gpa" onclick="toggleNav()">🎓 GPA Calculator</a>
-  <a href="academic-tools.html#postutme" onclick="toggleNav()">🧮 Post-UTME Aggregate</a>
-  <a href="academic-tools.html#combo" onclick="toggleNav()">📋 Subject Combo</a>
-  <a href="admissioncalculator.html" onclick="toggleNav()">🎯 Admission Chances</a>
-  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
+  <a href="cbt.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> JAMB CBT Practice</a>
+  <a href="practice-test.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> Full Mock Exam</a>
+  <a href="postutme-prep.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a>
+  <a href="academic-tools.html#gpa" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a>
+  <a href="academic-tools.html#postutme" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Post-UTME Aggregate</a>
+  <a href="academic-tools.html#combo" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo</a>
+  <a href="admissioncalculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Admission Chances</a>
+  <a href="results.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a>
   <div class="mnav-lbl">Resources</div>
-  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
-  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
-  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
-  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
-  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
-  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
+  <a href="elibrary.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a>
+  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
 </nav>
 
 <!-- HERO -->
 <section class="page-hero">
   <div class="hero-inner">
-    <div class="hero-badge">🧮 All Your Calculators, One Place</div>
+    <div class="hero-badge"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> All Your Calculators, One Place</div>
     <h1>Academic <span>Tools</span></h1>
     <p>GPA/CGPA Calculator, Post-UTME Aggregate Calculator, and Subject Combo Finder — everything you need for the numbers side of admission.</p>
   </div>
@@ -266,23 +271,23 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
 <section class="sec">
   <div class="wrap">
 
-    <div class="tool-tabs">
-      <button class="tool-tab active" id="tabBtnGpa" onclick="switchTool('gpa')">🎓 GPA/CGPA</button>
-      <button class="tool-tab" id="tabBtnPostutme" onclick="switchTool('postutme')">🧮 Aggregate</button>
-      <button class="tool-tab" id="tabBtnCombo" onclick="switchTool('combo')">📋 Subject Combo</button>
+    <div class="tool-tabs" role="tablist">
+      <button type="button" class="tool-tab active" id="tabBtnGpa" onclick="switchTool('gpa')" role="tab" aria-selected="true" aria-controls="panelGpa"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA/CGPA</button>
+      <button type="button" class="tool-tab" id="tabBtnPostutme" onclick="switchTool('postutme')" role="tab" aria-selected="false" aria-controls="panelPostutme"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate</button>
+      <button type="button" class="tool-tab" id="tabBtnCombo" onclick="switchTool('combo')" role="tab" aria-selected="false" aria-controls="panelCombo"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo</button>
     </div>
 
     <!-- ═══════════ GPA/CGPA PANEL ═══════════ -->
     <div class="tool-panel active" id="panelGpa">
       <div class="card">
-        <div class="card-title">🎓 GPA / CGPA Calculator</div>
+        <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA / CGPA Calculator</div>
         <div class="scale-toggle">
-          <button class="scale-btn active" id="scaleBtn5" onclick="setScale(5)">University (5.0 Scale)</button>
-          <button class="scale-btn" id="scaleBtn4" onclick="setScale(4)">Polytechnic (4.0 Scale)</button>
+          <button type="button" class="scale-btn active" id="scaleBtn5" onclick="setScale(5)">University (5.0 Scale)</button>
+          <button type="button" class="scale-btn" id="scaleBtn4" onclick="setScale(4)">Polytechnic (4.0 Scale)</button>
         </div>
         <div id="gpaCourseRows"></div>
         <button type="button" class="add-row-btn" onclick="addGpaCourseRow()">+ Add Course</button>
-        <button class="btn-main" style="margin-top:16px" onclick="calculateGpa()">Calculate GPA</button>
+        <button type="button" class="btn-main" style="margin-top:16px" onclick="calculateGpa()">Calculate GPA</button>
         <div id="gpaResultBox"></div>
       </div>
     </div>
@@ -290,7 +295,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
     <!-- ═══════════ POST-UTME AGGREGATE PANEL ═══════════ -->
     <div class="tool-panel" id="panelPostutme">
       <div class="card">
-        <div class="card-title">🏫 Step 1 — Find Your School</div>
+        <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Step 1 — Find Your School</div>
         <div class="form-group">
           <label>Search School Name</label>
           <input type="text" id="schoolSearchInput" placeholder="e.g. University of Lagos" oninput="renderSchoolSearch()">
@@ -300,7 +305,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
       </div>
 
       <div class="card">
-        <div class="card-title">📊 Step 2 — Your Scores</div>
+        <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Step 2 — Your Scores</div>
         <div class="form-group">
           <label>JAMB (UTME) Score *</label>
           <input type="number" id="jambScore" placeholder="e.g. 245" min="0" max="400">
@@ -308,7 +313,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
         <label style="display:block;font-size:.74rem;font-weight:700;color:var(--text);margin-bottom:5px">O-Level Grades (at least 5 subjects)</label>
         <div id="pOlevelRows"></div>
         <button type="button" class="add-row-btn" onclick="addPOlevelRow()">+ Add Subject</button>
-        <button class="btn-main" style="margin-top:16px" onclick="calculatePostUtme()">Calculate Aggregate</button>
+        <button type="button" class="btn-main" style="margin-top:16px" onclick="calculatePostUtme()">Calculate Aggregate</button>
         <div id="resultBox"></div>
       </div>
     </div>
@@ -316,7 +321,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
     <!-- ═══════════ SUBJECT COMBO PANEL ═══════════ -->
     <div class="tool-panel" id="panelCombo">
       <div class="card">
-        <div class="card-title">📋 Subject Combo Finder</div>
+        <div class="card-title"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo Finder</div>
         <div class="form-group">
           <label>Search Course</label>
           <input type="text" id="comboSearchInput" placeholder="e.g. Medicine, Law, Computer Science" oninput="renderCombos()">
@@ -332,7 +337,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
 <!-- Combo detail modal -->
 <div class="modal-overlay" id="comboModal" onclick="handleComboOverlay(event)">
   <div class="modal-box">
-    <button class="modal-close-x" onclick="closeComboModal()">✕</button>
+    <button type="button" class="modal-close-x" onclick="closeComboModal()" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
     <div id="comboModalBody"></div>
   </div>
 </div>
@@ -347,52 +352,52 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
           <p class="footer-bsub">Free tools, news and resources built for Nigerian undergraduates — from admission to graduation.</p>
         </div>
       </div>
-      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="footer-cta">💬 Chat on WhatsApp</a>
+      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="footer-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
     </div>
 
     <nav class="footer-cols" aria-label="Footer navigation">
       <div>
         <h3 class="footer-heading">Main</h3>
         <ul class="footer-links">
-          <li><a href="index.html">🏠 Home</a></li>
-          <li><a href="newsroom.html">📰 Newsroom</a></li>
-          <li><a href="explore.html">🗂 Explore Tools</a></li>
-          <li><a href="campus-life.html">🎮 Campus Life</a></li>
-          <li><a href="community.html">🤝 Community</a></li>
-          <li><a href="daily.html">📅 Daily Hub</a></li>
+          <li><a href="index.html"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a></li>
+          <li><a href="newsroom.html"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a></li>
+          <li><a href="explore.html"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore Tools</a></li>
+          <li><a href="campus-life.html"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a></li>
+          <li><a href="community.html"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community</a></li>
+          <li><a href="daily.html"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Exam Tools</h3>
         <ul class="footer-links">
-          <li><a href="cbt.html">👨🏽‍💻 JAMB CBT Practice</a></li>
-          <li><a href="practice-test.html">📝 Full Mock Exam</a></li>
-          <li><a href="postutme-prep.html">📖 Post-UTME Prep</a></li>
-          <li><a href="academic-tools.html">🧮 Academic Tools</a></li>
-          <li><a href="admissioncalculator.html">🎯 Admission Chances</a></li>
-          <li><a href="results.html">📊 Results Checker</a></li>
+          <li><a href="cbt.html"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> JAMB CBT Practice</a></li>
+          <li><a href="practice-test.html"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> Full Mock Exam</a></li>
+          <li><a href="postutme-prep.html"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a></li>
+          <li><a href="academic-tools.html"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Academic Tools</a></li>
+          <li><a href="admissioncalculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Admission Chances</a></li>
+          <li><a href="results.html"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Resources</h3>
         <ul class="footer-links">
-          <li><a href="elibrary.html">📚 eLibrary</a></li>
-          <li><a href="scholarship.html">💰 Scholarships</a></li>
-          <li><a href="student-loan.html">💳 Student Loan</a></li>
-          <li><a href="spotlight.html">🌟 Student Spotlight</a></li>
-          <li><a href="dyk.html">💡 Did You Know</a></li>
+          <li><a href="elibrary.html"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a></li>
+          <li><a href="scholarship.html"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a></li>
+          <li><a href="student-loan.html"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan</a></li>
+          <li><a href="spotlight.html"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a></li>
+          <li><a href="dyk.html"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a></li>
         </ul>
       </div>
       <div>
         <h3 class="footer-heading">Connect</h3>
         <ul class="footer-links">
-          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer">👥 Join WhatsApp Group</a></li>
-          <li><a href="index.html#install-app">📲 Install App</a></li>
+          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Join WhatsApp Group</a></li>
+          <li><a href="index.html#install-app"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Install App</a></li>
         </ul>
         <div class="footer-social">
-          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
-          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram">📸</a>
-          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok">🎵</a>
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg></a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg></a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg class="icon" aria-hidden="true"><use href="#icon-tiktok"></use></svg></a>
         </div>
       </div>
     </nav>
@@ -414,11 +419,12 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
 function escapeHtml(str){
   return String(str==null?'':str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
-function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');const btn=document.getElementById('darkBtn');btn.innerHTML=d?'<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>':'<svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>';btn.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode');}
 function toggleNav(){
   const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');
-  n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');
-  document.body.style.overflow=n.classList.contains('open')?'hidden':'';
+  const open=n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');
+  h.setAttribute('aria-expanded',String(open));
+  document.body.style.overflow=open?'hidden':'';
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.getElementById('mobileNav');if(nav.classList.contains('open'))toggleNav();closeComboModal();}});
 
@@ -426,7 +432,9 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.
 function switchTool(tool){
   ['gpa','postutme','combo'].forEach(t=>{
     document.getElementById('panel'+t.charAt(0).toUpperCase()+t.slice(1)).classList.toggle('active',t===tool);
-    document.getElementById('tabBtn'+t.charAt(0).toUpperCase()+t.slice(1)).classList.toggle('active',t===tool);
+    const btn=document.getElementById('tabBtn'+t.charAt(0).toUpperCase()+t.slice(1));
+    btn.classList.toggle('active',t===tool);
+    btn.setAttribute('aria-selected',String(t===tool));
   });
   history.replaceState(null,'','#'+tool);
 }
@@ -457,7 +465,7 @@ function addGpaCourseRow(){
     <input type="text" class="gpa-course-name" placeholder="Course title">
     <input type="number" class="gpa-course-units" placeholder="Units" min="1" max="10">
     <select class="gpa-grade-select">${opts.map(g=>`<option>${g}</option>`).join('')}</select>
-    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()">✕</button>`;
+    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>`;
   wrap.appendChild(row);
 }
 window.addGpaCourseRow=addGpaCourseRow;
@@ -535,8 +543,8 @@ function selectSchool(idx){
   document.getElementById('schoolSearchInput').value='';
   document.getElementById('selectedSchoolBox').innerHTML=`
     <div class="selected-school-box">
-      <span>✅ ${escapeHtml(selectedSchool.name)} (${escapeHtml(selectedSchool.abbr||'')})</span>
-      <button type="button" onclick="clearSelectedSchool()" style="background:none;border:none;color:inherit;font-weight:800;cursor:pointer">✕</button>
+      <span><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> ${escapeHtml(selectedSchool.name)} (${escapeHtml(selectedSchool.abbr||'')})</span>
+      <button type="button" onclick="clearSelectedSchool()" style="background:none;border:none;color:inherit;font-weight:800;cursor:pointer" aria-label="Clear selected school"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
     </div>`;
 }
 window.selectSchool=selectSchool;
@@ -554,7 +562,7 @@ function addPOlevelRow(subject,grade){
   row.innerHTML=`
     <input type="text" class="p-ol-subject" placeholder="Subject" value="${subject?escapeHtml(subject):''}">
     <select class="p-ol-grade">${Object.keys(OL_GRADES).map(g=>`<option${g===grade?' selected':''}>${g}</option>`).join('')}</select>
-    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()">✕</button>`;
+    <button type="button" class="remove-row-btn" onclick="this.parentElement.remove()"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>`;
   wrap.appendChild(row);
 }
 window.addPOlevelRow=addPOlevelRow;
@@ -590,9 +598,9 @@ function calculatePostUtme(){
   const cutoff=parseInt(selectedSchool.cutoff)||0;
 
   let verdict,verdictClass;
-  if(aggregate>=65){verdict='🎉 Excellent aggregate! Very competitive for admission.';verdictClass='verdict-great';}
-  else if(aggregate>=50){verdict='👍 Good aggregate. You stand a decent chance.';verdictClass='verdict-good';}
-  else{verdict='⚠️ Below average. Work on improving your scores.';verdictClass='verdict-low';}
+  if(aggregate>=65){verdict='<svg class="icon" aria-hidden="true"><use href="#icon-champagne"></use></svg> Excellent aggregate! Very competitive for admission.';verdictClass='verdict-great';}
+  else if(aggregate>=50){verdict='<svg class="icon" aria-hidden="true"><use href="#icon-thumbs-up"></use></svg> Good aggregate. You stand a decent chance.';verdictClass='verdict-good';}
+  else{verdict='<svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Below average. Work on improving your scores.';verdictClass='verdict-low';}
 
   calcResult={school:selectedSchool,jamb,jambPart,olevelPart,aggregate,gradeList,formula,cutoff,verdict};
 
@@ -602,8 +610,8 @@ function calculatePostUtme(){
       <div class="lbl">Aggregate Score — ${escapeHtml(selectedSchool.name)}</div>
     </div>
     <div class="verdict-box ${verdictClass}">${verdict}</div>
-    ${cutoff?`<div class="form-hint" style="margin-top:8px;text-align:center">Cutoff: ${cutoff} — ${aggregate>=cutoff?'✅ You meet it':'❌ Below cutoff'}</div>`:''}
-    <button class="btn-ghost-full" onclick="downloadPostutmePDF()">📄 Download Result</button>`;
+    ${cutoff?`<div class="form-hint" style="margin-top:8px;text-align:center">Cutoff: ${cutoff} — ${aggregate>=cutoff?'<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> You meet it':'<svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg> Below cutoff'}</div>`:''}
+    <button type="button" class="btn-ghost-full" onclick="downloadPostutmePDF()"><svg class="icon" aria-hidden="true"><use href="#icon-file-text"></use></svg> Download Result</button>`;
   window.scrollTo({top:document.getElementById('resultBox').getBoundingClientRect().top+window.scrollY-80,behavior:'smooth'});
 }
 window.calculatePostUtme=calculatePostUtme;
@@ -639,7 +647,7 @@ function downloadPostutmePDF(){
   <div class="watermark">BIG QUAMS MEDIA®</div>
   <div class="content">
   <div class="header">
-    <div><h1>🧮 Post-UTME Aggregate Result</h1><p>Calculated by Big Quams Media® · ${dateStr} at ${timeStr}</p></div>
+    <div><h1><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:4px"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></svg>Post-UTME Aggregate Result</h1><p>Calculated by Big Quams Media® · ${dateStr} at ${timeStr}</p></div>
     <div style="text-align:right;font-size:11px;opacity:.7">${escapeHtml(school.abbr||'')}<br>${escapeHtml(school.type||'')}</div>
   </div>
   <div class="score-box">
@@ -662,11 +670,11 @@ function downloadPostutmePDF(){
     <table>
     <tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700;width:40%">School</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${escapeHtml(school.name)}</td></tr>
     <tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700">Formula Used</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${escapeHtml(fmtMap[formula]||formula)}</td></tr>
-    ${cutoff?`<tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700">Minimum Cut-off</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${cutoff} ${aggregate>=cutoff?'✅ Met':'❌ Below'}</td></tr>`:''}
+    ${cutoff?`<tr><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4;font-weight:700">Minimum Cut-off</td><td style="padding:6px 10px;border-bottom:1px solid #e2e8f4">${cutoff} ${aggregate>=cutoff?'Met ✓':'Below ✗'}</td></tr>`:''}
     </table>
   </div>
   <div class="verdict">${verdict}</div>
-  <div class="disclaimer">⚠️ IMPORTANT NOTICE: This document is generated by Big Quams Media® (bigquamsmedia.com.ng) for personal record and self-assessment purposes only. It is NOT an official result, NOT issued by any university or examination body, and must NOT be submitted to any institution as an official document. Actual admission is determined solely by the respective institution's official screening process.</div>
+  <div class="disclaimer">IMPORTANT NOTICE: This document is generated by Big Quams Media® (bigquamsmedia.com.ng) for personal record and self-assessment purposes only. It is NOT an official result, NOT issued by any university or examination body, and must NOT be submitted to any institution as an official document. Actual admission is determined solely by the respective institution's official screening process.</div>
   <div class="footer">Big Quams Media® · Nigeria's Trusted Student Success Platform · bigquamsmedia.com.ng<br>Generated: ${dateStr} ${timeStr} · For record purposes only</div>
   </div></div></body></html>`;
   const blob=new Blob([html],{type:'text/html'});
@@ -685,7 +693,7 @@ const DEPTS=['All','Medicine & Health','Engineering','Sciences','Social Sciences
 
 async function loadCombos(){
   const resultsEl=document.getElementById('comboResults');
-  document.getElementById('deptFilters').innerHTML=DEPTS.map(d=>`<button class="dept-btn${d==='All'?' active':''}" onclick="filterDept('${d==='All'?'':escapeHtml(d)}',this)">${d}</button>`).join('');
+  document.getElementById('deptFilters').innerHTML=DEPTS.map(d=>`<button type="button" class="dept-btn${d==='All'?' active':''}" onclick="filterDept('${d==='All'?'':escapeHtml(d)}',this)">${d}</button>`).join('');
   if(!window._db){ resultsEl.innerHTML='<div class="form-hint">Subject combos are temporarily unavailable.</div>'; return; }
   try{
     const snap=await window._fs.getDocs(window._fs.query(window._fs.collection(window._db,'fs_subject_combo'),window._fs.orderBy('course','asc')));
@@ -732,8 +740,8 @@ function renderCombos(){
         ${subjects.map((s,idx)=>`<span class="subj-pill${idx===0?' compulsory':''}">${escapeHtml(s)}</span>`).join('')}
       </div>
       <div class="combo-meta">
-        ${c.cutoff?`<span class="combo-tag">📊 Min: ${escapeHtml(c.cutoff)}</span>`:''}
-        ${c.duration?`<span class="combo-tag">⏱ ${escapeHtml(c.duration)}</span>`:''}
+        ${c.cutoff?`<span class="combo-tag"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Min: ${escapeHtml(c.cutoff)}</span>`:''}
+        ${c.duration?`<span class="combo-tag"><svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg> ${escapeHtml(c.duration)}</span>`:''}
       </div>
     </div>`;
   }).join('');
@@ -748,23 +756,23 @@ function openComboModal(idx){
     <div class="modal-dept">${escapeHtml(c.dept||'General')}</div>
     <div class="modal-course-name">${escapeHtml(c.course)}</div>
     <div class="modal-section">
-      <div class="modal-sec-title">📝 JAMB Subject Combination</div>
+      <div class="modal-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> JAMB Subject Combination</div>
       <div class="combo-subjects" style="gap:6px">
-        ${subjects.map((s,i)=>`<span class="subj-pill${i===0?' compulsory':''}" style="font-size:.76rem;padding:5px 12px">${i===0?'🔒 ':''}${escapeHtml(s)}</span>`).join('')}
+        ${subjects.map((s,i)=>`<span class="subj-pill${i===0?' compulsory':''}" style="font-size:.76rem;padding:5px 12px">${i===0?'<svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg> ':''}${escapeHtml(s)}</span>`).join('')}
       </div>
-      <div style="font-size:.72rem;color:var(--muted);margin-top:8px">🔒 English Language is compulsory for all courses</div>
+      <div style="font-size:.72rem;color:var(--muted);margin-top:8px"><svg class="icon" aria-hidden="true"><use href="#icon-lock"></use></svg> English Language is compulsory for all courses</div>
     </div>
-    ${c.olevel?`<div class="modal-section"><div class="modal-sec-title">📋 O-Level Requirements</div><div style="font-size:.82rem;color:var(--muted);line-height:1.7">${escapeHtml(c.olevel)}</div></div>`:''}
+    ${c.olevel?`<div class="modal-section"><div class="modal-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> O-Level Requirements</div><div style="font-size:.82rem;color:var(--muted);line-height:1.7">${escapeHtml(c.olevel)}</div></div>`:''}
     <div class="modal-section">
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         ${c.cutoff?`<div style="background:var(--surface2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--blue)">${escapeHtml(c.cutoff)}</div><div style="font-size:.64rem;color:var(--muted)">Min JAMB Score</div></div>`:''}
         ${c.duration?`<div style="background:var(--surface2);border-radius:8px;padding:10px 14px;text-align:center"><div style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text)">${escapeHtml(c.duration)}</div><div style="font-size:.64rem;color:var(--muted)">Programme Duration</div></div>`:''}
       </div>
     </div>
-    ${c.notes?`<div class="modal-section"><div class="modal-sec-title">💡 Additional Notes</div><div style="font-size:.82rem;color:var(--muted);line-height:1.7">${escapeHtml(c.notes)}</div></div>`:''}
+    ${c.notes?`<div class="modal-section"><div class="modal-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Additional Notes</div><div style="font-size:.82rem;color:var(--muted);line-height:1.7">${escapeHtml(c.notes)}</div></div>`:''}
     <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button onclick="switchTool('postutme');closeComboModal()" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;border:none;cursor:pointer">🧮 Calculate Aggregate →</button>
-      <a href="results.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--surface2);color:var(--blue);border:1.5px solid var(--border);padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem">📊 Check Results →</a>
+      <button type="button" onclick="switchTool('postutme');closeComboModal()" style="display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);color:#fff;padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;border:none;cursor:pointer"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Calculate Aggregate →</button>
+      <a href="results.html" style="display:inline-flex;align-items:center;gap:6px;background:var(--surface2);color:var(--blue);border:1.5px solid var(--border);padding:10px 16px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Check Results →</a>
     </div>`;
   document.getElementById('comboModal').classList.add('open');
   document.body.style.overflow='hidden';
@@ -782,7 +790,7 @@ window.handleComboOverlay=handleComboOverlay;
 
 /* ══════════════════ INIT ══════════════════ */
 document.addEventListener('DOMContentLoaded',()=>{
-  if(localStorage.getItem('bqm-theme')==='dark'){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}
+  if(localStorage.getItem('bqm-theme')==='dark'){document.body.classList.add('dark');const btn=document.getElementById('darkBtn');btn.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>';btn.setAttribute('aria-label','Switch to light mode');}
   document.getElementById('yr').textContent=new Date().getFullYear();
 
   addGpaCourseRow(); addGpaCourseRow(); addGpaCourseRow();
