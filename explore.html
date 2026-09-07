@@ -265,7 +265,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
   <a href="daily.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a>
   <a href="profile.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> My Profile</a>
   <div class="mnav-lbl">Exam Tools</div>
-  <a href="cbt.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> JAMB CBT Practice</a>
+  <a href="cbt.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a>
   <a href="practice-test.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> Big Quams Practice Test</a>
   <a href="postutme-prep.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> Post-UTME Prep</a>
   <a href="postutme-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calculator</a>
@@ -496,7 +496,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;marg
       <div>
         <h3 class="footer-heading">Exam Tools</h3>
         <ul class="footer-links">
-          <li><a href="cbt.html"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> JAMB CBT Practice</a></li>
+          <li><a href="cbt.html"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a></li>
           <li><a href="postutme-prep.html"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> Post-UTME Prep</a></li>
           <li><a href="postutme-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calc</a></li>
           <li><a href="admissioncalculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Admission Chances</a></li>
@@ -565,7 +565,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.
 
 // ── TOOLS DATA ──
 const TOOLS=[
-  {title:'JAMB CBT Practice',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg>',color:'#fee2e2',text:'#b91c1c',tag:'Exam Prep',tagBg:'#fee2e2',tagTxt:'#b91c1c',desc:'515+ real JAMB questions. Timed mock exams, instant scoring, subject filtering and performance tracking.',url:'cbt.html',filters:['exam','admission'],featured:true},
+  {title:'CBT Practice',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg>',color:'#fee2e2',text:'#b91c1c',tag:'Exam Prep',tagBg:'#fee2e2',tagTxt:'#b91c1c',desc:'515+ real JAMB questions. Timed mock exams, instant scoring, subject filtering and performance tracking.',url:'cbt.html',filters:['exam','admission'],featured:true},
   {title:'Admission Chances Calculator',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg>',color:'#dcfce7',text:'#15803d',tag:'NEW',tagBg:'#16a34a',tagTxt:'#fff',desc:'Upload your JAMB, Post-UTME/DE and O-Level results and find out your estimated chances of admission for any course.',url:'admissioncalculator.html',filters:['admission'],featured:true},
   {title:'Big Quams Practice Test',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg>',color:'#ede9fe',text:'#7c3aed',tag:'NEW',tagBg:'#7c3aed',tagTxt:'#fff',desc:'Full 180-question timed exam simulation across 4 subjects. Real exam conditions, instant performance breakdown and shareable result slip.',url:'practice-test.html',filters:['exam','admission'],featured:true},
   {title:'Big Quams Study Buddy',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-robot"></use></svg>',color:'#fef9c3',text:'#92400e',tag:'AI · NEW',tagBg:'#f97316',tagTxt:'#fff',desc:'AI-powered study assistant on every page. Ask anything about JAMB, Post-UTME, university courses, scholarships and study tips — instant answers powered by Claude.',url:'#',onclick:"window.bqmToggleBuddy&&window.bqmToggleBuddy()",filters:['ai','exam','resources'],featured:true},

@@ -351,7 +351,7 @@ body.dark .nick-input{background:#0f172a;border-color:#334155;color:#e2e8f0}
 .ach-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 /* Streak banner */
 .streak-banner{background:linear-gradient(135deg,#ff6b35,#f97316);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.streak-fire{font-size:1.6rem}
+.streak-fire{font-size:1.6rem;color:#f97316}
 .streak-info{flex:1}
 .streak-days{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:#fff}
 .streak-label{font-size:.66rem;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.5px}
@@ -497,6 +497,35 @@ body.dark .weak-topic-tip{background:#1a2236}
 
 /* ── ANSWER FEEDBACK ANIMATION ── */
 @keyframes correctPop{0%{transform:scale(1)}30%{transform:scale(1.04)}100%{transform:scale(1)}}
+
+/* ── FOOTER (matches site-wide canonical footer) ── */
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:28px;margin-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-logo{width:42px;height:42px;border-radius:50%;border:2px solid #f97316;object-fit:cover;flex-shrink:0}
+.footer-bname{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:#fff;letter-spacing:.3px}
+.footer-bsub{font-size:.68rem;color:rgba(255,255,255,.4);margin-top:3px;max-width:340px;line-height:1.4}
+.footer-cta{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 18px;border-radius:8px;font-weight:700;font-size:.86rem;transition:.2s;white-space:nowrap}
+.footer-cta:hover{background:#1db954;transform:translateY(-1px)}
+.footer-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px 16px;margin-bottom:26px}
+.footer-heading{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:1.3px;color:rgba(255,255,255,.3);margin-bottom:11px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:.76rem;color:rgba(255,255,255,.52);transition:.18s;display:inline-flex;align-items:center;gap:7px;width:fit-content}
+.footer-links a:hover,.footer-links a:focus-visible{color:#fff;transform:translateX(3px)}
+.footer-social{display:flex;gap:9px;margin-top:6px}
+.footer-social a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.18s}
+.footer-social a:hover,.footer-social a:focus-visible{background:rgba(249,115,22,.2);border-color:rgba(249,115,22,.45);transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 20px}
+.footer-copy{font-size:.7rem;color:rgba(255,255,255,.35);line-height:1.6}
+.footer-copy a{color:#f97316;font-weight:700}
+.footer-legal{display:flex;flex-wrap:wrap;gap:5px 16px}
+.footer-legal a{font-size:.7rem;color:rgba(255,255,255,.45);transition:.18s}
+.footer-legal a:hover,.footer-legal a:focus-visible{color:#fff}
+.footer-credit{text-align:center;font-size:.7rem;color:rgba(255,255,255,.35);margin-top:16px}
+.footer-credit a{color:#f97316;font-weight:700}
+@media(max-width:640px){.footer-top{flex-direction:column;align-items:flex-start}.footer-bottom{flex-direction:column;align-items:center;text-align:center}}
+
 @keyframes wrongShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
 .option-btn.correct-anim{animation:correctPop .3s ease}
 .option-btn.wrong-anim{animation:wrongShake .35s ease}
@@ -510,6 +539,10 @@ body.dark .weak-topic-tip{background:#1a2236}
 
 
 
+/* ── ICON SYSTEM (inline SVG sprite, replaces Font Awesome/emoji) ── */
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-fill{fill:currentColor;stroke:none}
+.icon-dot{fill:currentColor;stroke:none}
 </style>
 <meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -517,6 +550,7 @@ body.dark .weak-topic-tip{background:#1a2236}
 <link rel="canonical" href="https://bigquamsmedia.com.ng/cbt.html">
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="icon-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9"/></symbol><symbol id="icon-newspaper" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H7"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12.5" x2="13" y2="12.5"/><line x1="7" y1="16" x2="11" y2="16"/></symbol><symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></symbol><symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></symbol><symbol id="icon-graduation-cap" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5-10-5z"/><path d="M6 11v5c0 1 3 2 6 2s6-1 6-2v-5"/><path d="M22 9v6"/></symbol><symbol id="icon-book-open" viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8 4.5 4 5v13c4-.5 6.5 0 8 1.5V6.5z"/><path d="M12 6.5C13.5 5 16 4.5 20 5v13c-4-.5-6.5 0-8 1.5V6.5z"/></symbol><symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3z"/></symbol><symbol id="icon-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></symbol><symbol id="icon-bar-chart" viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></symbol><symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5 20 3"/><path d="M17 6l3 3"/><path d="M14 9l2.5 2.5"/></symbol><symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></symbol><symbol id="icon-landmark" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><path d="M3 10 12 4l9 6"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z"/></symbol><symbol id="icon-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z"/></symbol><symbol id="icon-clipboard-list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="12" y2="19"/></symbol><symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 4 1.5 5.5 2 6.5H4c.5-1 2-2.5 2-6.5z"/><path d="M10 19a2 2 0 0 0 4 0"/></symbol><symbol id="icon-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol><symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol><symbol id="icon-message-circle" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4A8.6 8.6 0 0 1 8 19l-4 1 1.3-3.9A8.4 8.4 0 1 1 21 11.5z"/><line x1="8.5" y1="12" x2="8.5" y2="12"/><line x1="12" y1="12" x2="12" y2="12"/><line x1="15.5" y1="12" x2="15.5" y2="12"/></symbol><symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></symbol><symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></symbol><symbol id="icon-building" viewBox="0 0 24 24"><rect x="5" y="3" width="9" height="18" rx="1"/><rect x="15" y="9" width="4" height="12" rx="1"/><line x1="8" y1="7" x2="8" y2="7"/><line x1="11" y1="7" x2="11" y2="7"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="11" y1="11" x2="11" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="11" y1="15" x2="11" y2="15"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.5.3 4.5 2.3 4.5 5.3"/></symbol><symbol id="icon-calendar-days" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="7" y1="14" x2="7" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="17" y1="14" x2="17" y2="14"/><line x1="7" y1="17.5" x2="7" y2="17.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-smartphone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18.5" x2="13" y2="18.5"/></symbol><symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><polyline points="20 4 20 8 16 8"/></symbol><symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="20" y2="20"/></symbol><symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol><symbol id="icon-rocket" viewBox="0 0 24 24"><path d="M12 2c3 1 5.5 4 5.5 8.5 0 2-1 3.8-2.2 5.2l-1 3.8-2.3-1.8-2.3 1.8-1-3.8C7.5 14.3 6.5 12.5 6.5 10.5 6.5 6 9 3 12 2z"/><circle cx="12" cy="10" r="1.7"/><path d="M9 17.5 7 21l3-1"/><path d="M15 17.5 17 21l-3-1"/></symbol><symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></symbol><symbol id="icon-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l7 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/><path d="M19.5 6.5a8 8 0 0 1 0 11"/></symbol><symbol id="icon-alert-triangle" viewBox="0 0 24 24"><path d="M12 3.5 22 20H2L12 3.5z"/><line x1="12" y1="10" x2="12" y2="14.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 11 15.5 16 9"/></symbol><symbol id="icon-robot" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="2"/><line x1="9" y1="13" x2="9" y2="13"/><line x1="15" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><line x1="12" y1="5" x2="12" y2="8"/><circle cx="12" cy="3.5" r="1"/></symbol><symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 8.7c.2-.3.6-.6 1.1-.6.4 0 .6.3.9 1 .2.5.5 1.1.4 1.4-.1.4-.4.6-.7.9-.2.2-.3.4-.1.7.4.7 1 1.3 1.7 1.7.3.2.5.1.7-.1.3-.3.5-.6.9-.7.3-.1.9.2 1.4.4.7.3 1 .5 1 .9 0 .5-.3.9-.6 1.1-.6.4-1.4.5-2.2.2-1.6-.5-3.4-2.3-4.2-3.9-.4-.7-.5-1.4-.3-2z"/></symbol><symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17" y1="7" x2="17" y2="7"/></symbol><symbol id="icon-tiktok" viewBox="0 0 24 24"><path d="M13.5 3v11.2a3.3 3.3 0 1 1-2.8-3.3"/><path d="M13.5 3.2c.4 2.4 2.2 4.2 4.5 4.5"/></symbol><symbol id="icon-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></symbol><symbol id="icon-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></symbol><symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 9 22 20 9 13 9 13 2"/></symbol><symbol id="icon-champagne" viewBox="0 0 24 24"><path d="M6 3h5l-1 7a2.5 2.5 0 0 1-5 0z"/><path d="M13 5h5l-.8 6a2.5 2.5 0 0 1-4.9-.6"/><line x1="8.5" y1="15" x2="8.5" y2="21"/><line x1="6" y1="21" x2="11" y2="21"/><line x1="15.5" y1="12" x2="15.5" y2="21"/></symbol><symbol id="icon-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></symbol><symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></symbol><symbol id="icon-hourglass" viewBox="0 0 24 24"><path d="M6 3h12"/><path d="M6 21h12"/><path d="M7 3c0 4 3 5 5 6-2 1-5 2-5 6"/><path d="M17 3c0 4-3 5-5 6 2 1 5 2 5 6"/></symbol><symbol id="icon-link" viewBox="0 0 24 24"><path d="M8.5 12.5 6 15a3.5 3.5 0 0 0 5 5l2.5-2.5"/><path d="M15.5 11.5 18 9a3.5 3.5 0 0 0-5-5l-2.5 2.5"/><line x1="9" y1="15" x2="15" y2="9"/></symbol><symbol id="icon-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></symbol><symbol id="icon-edit" viewBox="0 0 24 24"><path d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/><path d="M20.4 4.6a1.9 1.9 0 0 1 0 2.7L13 15l-3.5.8L10.3 12l7.4-7.4a1.9 1.9 0 0 1 2.7 0z"/></symbol><symbol id="icon-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol><symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M14 8.5h2.5V4.5h-2.5c-2.5 0-4 1.6-4 4v2.5H8v4h2.5V21h4v-8h2.7l.5-4h-3.2V9c0-.4.3-.5.5-.5z"/></symbol><symbol id="icon-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><line x1="8" y1="10.8" x2="16" y2="7.2"/><line x1="8" y1="13.2" x2="16" y2="16.8"/></symbol><symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-10-9.3C.5 8 2 4.5 5.5 4c2-.3 3.8.6 5 2.2C11.7 4.6 13.5 3.7 15.5 4 19 4.5 20.5 8 19 11.2c-2.5 4.7-7 9.3-7 9.3z"/></symbol><symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></symbol><symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="icon-pin" viewBox="0 0 24 24"><path d="M9 4h6"/><path d="M10 4v5.5L7 12h10l-3-2.5V4"/><line x1="12" y1="12" x2="12" y2="21"/></symbol><symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 2c1 3-2 4-2 7a3 3 0 0 0 6 0c0-1-.5-2-.5-2 2 1 3 3 3 5.5A6.5 6.5 0 0 1 12 19a6.5 6.5 0 0 1-6.5-6.5C5.5 8 8 6 9 4c.5 2 1 2.5 1.5 2.5S12 5 12 2z"/></symbol><symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v1H5.5a2 2 0 0 0-1.9 1.4L2 17V7z"/><path d="M2.3 17.3 4.3 10a2 2 0 0 1 1.9-1.4H21l-2.2 7.7A2 2 0 0 1 16.9 18H4a2 2 0 0 1-1.7-2.7z"/></symbol><symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol><symbol id="icon-send" viewBox="0 0 24 24"><line x1="21" y1="3" x2="11" y2="13"/><path d="M21 3 14.5 21 11 13 3 9.5z"/></symbol><symbol id="icon-thumbs-up" viewBox="0 0 24 24"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3z"/><path d="M7 11l4-7a2 2 0 0 1 2 2l-1 4h5.5a2 2 0 0 1 1.9 2.6l-1.8 6A2 2 0 0 1 15.7 20H10a3 3 0 0 1-3-3"/></symbol><symbol id="icon-file-text" viewBox="0 0 24 24"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4a1 1 0 0 0 1 1h4"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="16.5" x2="13" y2="16.5"/></symbol><symbol id="icon-scroll" viewBox="0 0 24 24"><path d="M4 4h13a3 3 0 0 1 3 3 3 3 0 0 1-3 3H4"/><path d="M4 4a2 2 0 0 0 0 4"/><path d="M20 20H7a3 3 0 0 1-3-3 3 3 0 0 1 3-3h13"/><path d="M20 20a2 2 0 0 0 0-4"/></symbol><symbol id="icon-trending-up" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 5"/><polyline points="15 5 21 5 21 11"/></symbol><symbol id="icon-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9.5c0-1 1-1.8 3-1.8s3 .8 3 1.8-1 1.3-3 1.8c-2 .5-3 .8-3 1.8s1 1.8 3 1.8 3-.8 3-1.8"/></symbol><symbol id="icon-gift" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 9h16v3H4z"/><line x1="12" y1="9" x2="12" y2="20"/><path d="M12 9c-1.2-4-4.5-4.5-5.5-3S7 9 12 9z"/><path d="M12 9c1.2-4 4.5-4.5 5.5-3S17 9 12 9z"/></symbol><symbol id="icon-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h11l-2.5 4L17 12H6"/></symbol><symbol id="icon-flask" viewBox="0 0 24 24"><path d="M9 3h6"/><path d="M10 3v6.5L4.5 19a1.5 1.5 0 0 0 1.3 2.3h12.4a1.5 1.5 0 0 0 1.3-2.3L14 9.5V3"/><line x1="7.5" y1="15" x2="16.5" y2="15"/></symbol><symbol id="icon-leaf" viewBox="0 0 24 24"><path d="M5 21c0-9 6-16 15-16 0 9-6 16-15 16z"/><path d="M5 21c3-3 6-7 8-11"/></symbol><symbol id="icon-cross" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><line x1="6" y1="9" x2="18" y2="9"/></symbol><symbol id="icon-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="3" y1="12" x2="21" y2="12"/></symbol><symbol id="icon-crown" viewBox="0 0 24 24"><path d="M4 8l4 4 4-6 4 6 4-4-2 10H6z"/></symbol><symbol id="icon-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5.5A3 3 0 0 0 9 20V4z"/><path d="M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5.5A3 3 0 0 1 15 20V4z"/></symbol><symbol id="icon-hash" viewBox="0 0 24 24"><line x1="9" y1="3" x2="7" y2="21"/><line x1="17" y1="3" x2="15" y2="21"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/></symbol><symbol id="icon-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M3 4h2l2.4 11.5a2 2 0 0 0 2 1.5h7.2a2 2 0 0 0 2-1.6L21 8H6"/></symbol><symbol id="icon-trophy" viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 5"/><path d="M16 5h3a3 3 0 0 1-3 5"/><line x1="12" y1="14" x2="12" y2="18"/><path d="M8 20h8"/><path d="M9.5 18h5l.5 2h-6z"/></symbol></defs></svg>
 <header>
   <div class="header-bar">
     <a href="index.html" class="logo-link">
@@ -524,10 +558,10 @@ body.dark .weak-topic-tip{background:#1a2236}
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
     <nav class="main-nav">
-      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a><a href="scholarship.html">Scholarships</a><a href="profile.html">👤 Login</a><a href="index.html#contact" class="nav-cta">💬 Contact</a>
+      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a><a href="scholarship.html">Scholarships</a><a href="profile.html"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> Login</a><a href="index.html#contact" class="nav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-message-circle"></use></svg> Contact</a>
     </nav>
-    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
-    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    <button type="button" class="hdr-btn" id="darkBtn" onclick="toggleDark()" aria-label="Switch to dark mode"><svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg></button>
+    <button type="button" class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
@@ -537,32 +571,32 @@ body.dark .weak-topic-tip{background:#1a2236}
       <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
       <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
     </div>
-    <button class="mnav-close" onclick="toggleNav()">✕</button>
+    <button type="button" class="mnav-close" onclick="toggleNav()" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
   </div>
-  <a href="profile.html" onclick="toggleNav()" style="background:rgba(249,115,22,.12);font-weight:700">👤 Login / My Account</a>
+  <a href="profile.html" onclick="toggleNav()" style="background:rgba(249,115,22,.12);font-weight:700"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> Login / My Account</a>
   <div class="mnav-lbl">Main</div>
-  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
-  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
-  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
-  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
-  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
-  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
-  <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
+  <a href="index.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a>
+  <a href="newsroom.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a>
+  <a href="community.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a>
+  <a href="profile.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> My Profile</a>
   <div class="mnav-lbl">Exam Tools</div>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
-  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
-  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+  <a href="cbt.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a>
   <div class="mnav-lbl">Resources</div>
-  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
-  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
-  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
-  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
-  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
-  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
-  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
+  <a href="elibrary.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combination</a>
+  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
 </nav>
 
 <main id="main-content">
@@ -575,15 +609,15 @@ body.dark .weak-topic-tip{background:#1a2236}
     <div class="auth-title">Unlock Full CBT Access</div>
     <div class="auth-sub">Sign in or create a free account to practise all subjects, save your scores, earn achievements and track your progress.</div>
     <div class="auth-tabs">
-      <button class="auth-tab-btn active" onclick="switchCbtTab('signin',this)">Sign In</button>
-      <button class="auth-tab-btn" onclick="switchCbtTab('register',this)">Email Sign Up</button>
-      <button class="auth-tab-btn" onclick="switchCbtTab('phone',this)">📱 Phone</button>
+      <button type="button" class="auth-tab-btn active" onclick="switchCbtTab('signin',this)">Sign In</button>
+      <button type="button" class="auth-tab-btn" onclick="switchCbtTab('register',this)">Email Sign Up</button>
+      <button type="button" class="auth-tab-btn" onclick="switchCbtTab('phone',this)"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Phone</button>
     </div>
-    <button class="google-auth-btn" onclick="cbtGoogleSignIn()">
+    <button type="button" class="google-auth-btn" onclick="cbtGoogleSignIn()">
       <svg width="17" height="17" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.5 3.1 29.6 1 24 1 14.8 1 7 6.7 3.7 14.6l7 5.4C12.5 13.8 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.8-2.1 5.2-4.5 6.8l7 5.4C43.1 36.8 46.1 31.1 46.1 24.5z"/><path fill="#FBBC05" d="M10.7 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7-5.4C2.2 17.1 1 20.4 1 24s1.2 6.9 3.7 9.9l7-5.3z"/><path fill="#34A853" d="M24 47c5.6 0 10.4-1.9 13.8-5.1l-7-5.4c-1.9 1.3-4.2 2-6.8 2-6.2 0-11.5-4.3-13.3-10l-7 5.4C7 41.3 14.8 47 24 47z"/></svg>
       Continue with Google
     </button>
-    <button class="google-auth-btn" onclick="cbtAppleSignIn()" style="background:#000;color:#fff;border-color:#000">
+    <button type="button" class="google-auth-btn" onclick="cbtAppleSignIn()" style="background:#000;color:#fff;border-color:#000">
       <svg width="17" height="17" viewBox="0 0 814 1000" fill="white"><path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.9 137.8-317.9 272.5-317.9 64.4 0 118.1 42.4 158.6 42.4 36.7 0 95.2-44.9 169.6-44.9 27.3 0 108.2 2.6 168.4 101.1zm-199.2-175.7c31.8-40.5 53.3-95.3 53.3-150.1 0-7.7-.6-15.4-1.9-22.4-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 87.2-55.1 142.7 0 8.3 1.3 16.6 1.9 19.2 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.3-66.5z"/></svg>
       Continue with Apple
     </button>
@@ -594,8 +628,8 @@ body.dark .weak-topic-tip{background:#1a2236}
       <input class="auth-input" type="email" id="cbtEmail" placeholder="Email address" autocomplete="email">
       <input class="auth-input" type="password" id="cbtPassword" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key==='Enter')cbtEmailSignIn()">
       <div class="auth-error" id="cbtAuthError"></div>
-      <button class="auth-btn" id="cbtSignInBtn" onclick="cbtEmailSignIn()">Sign In →</button>
-      <button class="auth-link-btn" onclick="cbtForgotPw()">Forgot password?</button>
+      <button type="button" class="auth-btn" id="cbtSignInBtn" onclick="cbtEmailSignIn()">Sign In →</button>
+      <button type="button" class="auth-link-btn" onclick="cbtForgotPw()">Forgot password?</button>
     </div>
 
     <!-- EMAIL REGISTER -->
@@ -609,9 +643,9 @@ body.dark .weak-topic-tip{background:#1a2236}
       <input class="auth-input" type="email" id="cbtRegEmail" placeholder="Email address" autocomplete="email">
       <input class="auth-input" type="password" id="cbtRegPw" placeholder="Password (min 6 chars)" autocomplete="new-password" onkeydown="if(event.key==='Enter')cbtCreateAccount()">
       <div class="auth-error" id="cbtRegError"></div>
-      <button class="auth-btn" id="cbtRegBtn" onclick="cbtCreateAccount()">Create Free Account →</button>
+      <button type="button" class="auth-btn" id="cbtRegBtn" onclick="cbtCreateAccount()">Create Free Account →</button>
       <div id="verifyEmailNotice" style="display:none;background:#fef9c3;border:1px solid #fde68a;border-radius:9px;padding:10px 12px;font-size:.74rem;color:#92400e;margin-top:8px;line-height:1.5">
-        📧 A verification email has been sent to your inbox. Please verify your email before signing in. Check your spam folder if you don't see it.
+        <svg class="icon" aria-hidden="true"><use href="#icon-mail"></use></svg> A verification email has been sent to your inbox. Please verify your email before signing in. Check your spam folder if you don't see it.
       </div>
     </div>
 
@@ -622,28 +656,28 @@ body.dark .weak-topic-tip{background:#1a2236}
         <input class="auth-input" type="tel" id="cbtPhone" placeholder="+2348012345678" autocomplete="tel">
         <div class="auth-error" id="cbtPhoneError"></div>
         <div id="recaptcha-container" style="margin:10px 0"></div>
-        <button class="auth-btn" id="cbtSendOTPBtn" onclick="cbtSendOTP()">Send OTP →</button>
+        <button type="button" class="auth-btn" id="cbtSendOTPBtn" onclick="cbtSendOTP()">Send OTP →</button>
       </div>
       <div id="cbtPhoneStep2" style="display:none">
-        <div style="font-size:.74rem;color:var(--text-muted);margin-bottom:10px">📱 Enter the 6-digit OTP sent to <strong id="cbtPhoneDisplay"></strong></div>
+        <div style="font-size:.74rem;color:var(--text-muted);margin-bottom:10px"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Enter the 6-digit OTP sent to <strong id="cbtPhoneDisplay"></strong></div>
         <input class="auth-input" type="number" id="cbtOTP" placeholder="6-digit OTP" maxlength="6" onkeydown="if(event.key==='Enter')cbtVerifyOTP()">
         <div class="auth-error" id="cbtOTPError"></div>
-        <button class="auth-btn" id="cbtVerifyOTPBtn" onclick="cbtVerifyOTP()">Verify & Sign In →</button>
-        <button class="auth-link-btn" onclick="cbtResendOTP()">Resend OTP</button>
+        <button type="button" class="auth-btn" id="cbtVerifyOTPBtn" onclick="cbtVerifyOTP()">Verify & Sign In →</button>
+        <button type="button" class="auth-link-btn" onclick="cbtResendOTP()">Resend OTP</button>
       </div>
     </div>
 
-    <button class="auth-skip" onclick="closeAuthAsGuest()">Skip — try 10 free questions</button>
+    <button type="button" class="auth-skip" onclick="closeAuthAsGuest()">Skip — try 10 free questions</button>
   </div>
 </div>
 
 <!-- NICKNAME MODAL -->
 <div class="nick-modal" id="nickModal" style="display:none">
   <div class="nick-modal-card">
-    <div class="nick-modal-title">✏️ Set Your Nickname</div>
+    <div class="nick-modal-title"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> Set Your Nickname</div>
     <div class="nick-modal-sub">This is how you'll appear on your dashboard. Choose something fun!</div>
     <input class="nick-input" type="text" id="nickInput" placeholder="e.g. JAMB Slayer, Science King…" maxlength="24">
-    <button class="nick-save-btn" onclick="saveNickname()">Save Nickname →</button>
+    <button type="button" class="nick-save-btn" onclick="saveNickname()">Save Nickname →</button>
   </div>
 </div>
 
@@ -654,38 +688,38 @@ body.dark .weak-topic-tip{background:#1a2236}
 <div id="cbtHomeScreen">
   <div class="setup-hero">
     <div class="setup-hero-inner">
-      <div class="hero-badge">🎯 Free CBT Practice</div>
+      <div class="hero-badge"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Free CBT Practice</div>
       <h1>CBT <span>Practice</span></h1>
       <p>Prepare for exams, practise your subjects and test your knowledge.</p>
     </div>
   </div>
   <div class="wrap">
     <div class="user-banner" id="userBannerHome" style="display:none;max-width:640px;margin:20px auto 0">
-      <div class="user-banner-avatar" id="userAvatarWrapHome">👤</div>
+      <div class="user-banner-avatar" id="userAvatarWrapHome"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg></div>
       <div style="flex:1;min-width:0">
         <div class="user-banner-name" id="userBannerNameHome">Loading…</div>
-        <div class="user-banner-sub">✅ Full access — scores saved automatically</div>
+        <div class="user-banner-sub"><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> Full access — scores saved automatically</div>
       </div>
-      <button class="sign-out-link" onclick="cbtSignOut()">Sign Out</button>
+      <button type="button" class="sign-out-link" onclick="cbtSignOut()">Sign Out</button>
     </div>
 
     <div class="cbt-cat-grid">
       <div class="cbt-cat-card" id="catCardUtme">
-        <div class="cbt-cat-icon">🎓</div>
+        <div class="cbt-cat-icon"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg></div>
         <div class="cbt-cat-title">JAMB UTME</div>
         <div class="cbt-cat-desc">Practise UTME subjects with timed and practice-based CBT questions.</div>
         <div class="cbt-cat-count" id="catCountUtme">Checking availability…</div>
         <button type="button" class="cbt-cat-btn" id="catBtnUtme" onclick="openJambHome()" disabled>Start JAMB Practice</button>
       </div>
       <div class="cbt-cat-card" id="catCardPostutme">
-        <div class="cbt-cat-icon">🏫</div>
+        <div class="cbt-cat-icon"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg></div>
         <div class="cbt-cat-title">Post-UTME</div>
         <div class="cbt-cat-desc">Prepare for institution-specific screening and Post-UTME tests.</div>
         <div class="cbt-cat-count" id="catCountPostutme">Checking availability…</div>
         <button type="button" class="cbt-cat-btn" id="catBtnPostutme" onclick="openPostutmeHome()" disabled>Explore Post-UTME</button>
       </div>
       <div class="cbt-cat-card" id="catCardCampus">
-        <div class="cbt-cat-icon">📘</div>
+        <div class="cbt-cat-icon"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg></div>
         <div class="cbt-cat-title">Campus Courses</div>
         <div class="cbt-cat-desc">Practise CBT questions for your university or polytechnic courses.</div>
         <div class="cbt-cat-count" id="catCountCampus">Checking availability…</div>
@@ -695,11 +729,11 @@ body.dark .weak-topic-tip{background:#1a2236}
 
     <!-- Dashboard button for signed-in users -->
     <div id="dashBtn" style="display:none;text-align:center;margin:-8px auto 32px;max-width:640px">
-      <button onclick="showDashboard()" style="background:none;border:1.5px solid var(--blue-main);color:var(--blue-main);padding:10px 20px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer">📊 View My Dashboard →</button>
+      <button type="button" onclick="showDashboard()" style="background:none;border:1.5px solid var(--blue-main);color:var(--blue-main);padding:10px 20px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> View My Dashboard →</button>
     </div>
 
     <div class="dash-section" style="max-width:640px;margin:0 auto 32px">
-      <div class="dash-sec-title">💡 How CBT Practice Works</div>
+      <div class="dash-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> How CBT Practice Works</div>
       <div style="display:flex;flex-direction:column;gap:10px;font-size:.8rem;color:var(--text-muted);line-height:1.6">
         <div><strong style="color:var(--text-main)">1. Choose</strong> — pick JAMB, Post-UTME or a Campus Course.</div>
         <div><strong style="color:var(--text-main)">2. Practise</strong> — answer questions in Practice or timed Exam mode.</div>
@@ -715,20 +749,20 @@ body.dark .weak-topic-tip{background:#1a2236}
   <div class="wrap">
     <div style="max-width:640px;margin:20px auto 0" class="flow-back" onclick="showCbtHome()">← Back to CBT Home</div>
     <div class="setup-card">
-      <div class="setup-title">📚 Select Your Subjects</div>
+      <div class="setup-title"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> Select Your Subjects</div>
       <div class="subject-grid" id="subjectGrid">
-        <button class="subj-btn selected" data-subj="english" onclick="toggleSubject(this)"><span class="subj-icon">📝</span>Use of English</button>
-        <button class="subj-btn" data-subj="maths" onclick="toggleSubject(this)"><span class="subj-icon">🔢</span>Mathematics</button>
-        <button class="subj-btn" data-subj="physics" onclick="toggleSubject(this)"><span class="subj-icon">⚡</span>Physics</button>
-        <button class="subj-btn" data-subj="chemistry" onclick="toggleSubject(this)"><span class="subj-icon">🧪</span>Chemistry</button>
-        <button class="subj-btn" data-subj="biology" onclick="toggleSubject(this)"><span class="subj-icon">🌿</span>Biology</button>
-        <button class="subj-btn" data-subj="economics" onclick="toggleSubject(this)"><span class="subj-icon">📊</span>Economics</button>
-        <button class="subj-btn" data-subj="gov" onclick="toggleSubject(this)"><span class="subj-icon">🏛️</span>Government</button>
-        <button class="subj-btn" data-subj="literature" onclick="toggleSubject(this)"><span class="subj-icon">📖</span>Literature</button>
-        <button class="subj-btn" data-subj="geography" onclick="toggleSubject(this)"><span class="subj-icon">🌍</span>Geography</button>
-        <button class="subj-btn" data-subj="agric" onclick="toggleSubject(this)"><span class="subj-icon">🌾</span>Agriculture</button>
-        <button class="subj-btn" data-subj="crk" onclick="toggleSubject(this)"><span class="subj-icon">✝️</span>CRK</button>
-        <button class="subj-btn" data-subj="accounts" onclick="toggleSubject(this)"><span class="subj-icon">💼</span>Fin. Accounting</button>
+        <button type="button" class="subj-btn selected" data-subj="english" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg></span>Use of English</button>
+        <button type="button" class="subj-btn" data-subj="maths" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-hash"></use></svg></span>Mathematics</button>
+        <button type="button" class="subj-btn" data-subj="physics" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-zap"></use></svg></span>Physics</button>
+        <button type="button" class="subj-btn" data-subj="chemistry" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-flask"></use></svg></span>Chemistry</button>
+        <button type="button" class="subj-btn" data-subj="biology" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-leaf"></use></svg></span>Biology</button>
+        <button type="button" class="subj-btn" data-subj="economics" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg></span>Economics</button>
+        <button type="button" class="subj-btn" data-subj="gov" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg></span>Government</button>
+        <button type="button" class="subj-btn" data-subj="literature" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg></span>Literature</button>
+        <button type="button" class="subj-btn" data-subj="geography" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-globe"></use></svg></span>Geography</button>
+        <button type="button" class="subj-btn" data-subj="agric" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-leaf"></use></svg></span>Agriculture</button>
+        <button type="button" class="subj-btn" data-subj="crk" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-cross"></use></svg></span>CRK</button>
+        <button type="button" class="subj-btn" data-subj="accounts" onclick="toggleSubject(this)"><span class="subj-icon"><svg class="icon" aria-hidden="true"><use href="#icon-briefcase"></use></svg></span>Fin. Accounting</button>
       </div>
       <div class="mode-toggle">
         <button type="button" class="mode-btn selected" id="modeBtnPractice" onclick="setCbtMode('practice')">Practice<small>See answers as you go</small></button>
@@ -764,12 +798,12 @@ body.dark .weak-topic-tip{background:#1a2236}
           <option value="hard">Hard Only</option>
         </select>
       </div>
-      <button class="start-btn" id="startBtn" onclick="checkAuthThenStart()">🎯 Start Practice Exam →</button>
-      <div style="text-align:center;font-size:.7rem;color:var(--text-muted);margin-top:8px">💡 Tip: Use <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">A B C D</kbd> keys to answer · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">← →</kbd> to navigate · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">F</kbd> to flag</div>
+      <button type="button" class="start-btn" id="startBtn" onclick="checkAuthThenStart()"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Start Practice Exam →</button>
+      <div style="text-align:center;font-size:.7rem;color:var(--text-muted);margin-top:8px"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Tip: Use <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">A B C D</kbd> keys to answer · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">← →</kbd> to navigate · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:.68rem">F</kbd> to flag</div>
       <div id="setupStatus" style="text-align:center;margin-top:12px;font-size:.8rem;color:var(--text-muted)">Select at least 1 subject to start</div>
       <div id="guestNotice" style="display:none;text-align:center;margin-top:10px;padding:10px 14px;background:#fef9c3;border:1px solid #fde68a;border-radius:9px;font-size:.76rem;color:#92400e">
-        ⚠️ Guest mode — <strong>limited to 10 questions</strong>. 
-        <button onclick="showAuthOverlay()" style="background:none;border:none;color:var(--blue-main);font-weight:700;cursor:pointer;font-size:.76rem">Sign in for full access →</button>
+        <svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Guest mode — <strong>limited to 10 questions</strong>. 
+        <button type="button" onclick="showAuthOverlay()" style="background:none;border:none;color:var(--blue-main);font-weight:700;cursor:pointer;font-size:.76rem">Sign in for full access →</button>
       </div>
     </div>
   </div>
@@ -780,7 +814,7 @@ body.dark .weak-topic-tip{background:#1a2236}
   <div class="wrap" style="padding-top:24px">
     <div class="flow-back" onclick="showCbtHome()">← Back to CBT Home</div>
     <div class="setup-card">
-      <div class="setup-title">🏫 Select Institution</div>
+      <div class="setup-title"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Select Institution</div>
       <input type="text" class="flow-search" id="postutmeSearch" placeholder="Search institution…" oninput="renderPostutmeInstitutions()">
       <div class="flow-list" id="postutmeInstList"></div>
     </div>
@@ -846,19 +880,19 @@ body.dark .weak-topic-tip{background:#1a2236}
   <div class="dash-hero">
     <div class="dash-hero-inner">
       <div class="dash-profile">
-        <div id="dashAvatarEl" class="dash-avatar-placeholder">👤</div>
+        <div id="dashAvatarEl" class="dash-avatar-placeholder"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg></div>
         <div class="dash-profile-info">
           <div class="dash-nick" id="dashNick">Loading…
-            <button class="nick-edit-btn" onclick="openNickModal()">✏️ Edit</button>
+            <button type="button" class="nick-edit-btn" onclick="openNickModal()"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> Edit</button>
           </div>
           <div class="dash-email" id="dashEmail"></div>
         </div>
-        <button onclick="cbtSignOut()" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:.66rem;padding:6px 10px;border-radius:7px;cursor:pointer;font-weight:700;white-space:nowrap">Sign Out</button>
+        <button type="button" onclick="cbtSignOut()" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:.66rem;padding:6px 10px;border-radius:7px;cursor:pointer;font-weight:700;white-space:nowrap">Sign Out</button>
       </div>
       <div class="dash-stats-row">
         <div class="dash-stat"><div class="dash-stat-num" id="dSessions">0</div><div class="dash-stat-lbl">Sessions</div></div>
         <div class="dash-stat"><div class="dash-stat-num" id="dBestScore">0%</div><div class="dash-stat-lbl">Best Score</div></div>
-        <div class="dash-stat"><div class="dash-stat-num" id="dStreak">0🔥</div><div class="dash-stat-lbl">Day Streak</div></div>
+        <div class="dash-stat"><div class="dash-stat-num"><svg class="icon icon-fill" aria-hidden="true" style="color:#f97316"><use href="#icon-flame"></use></svg> <span id="dStreak">0</span></div><div class="dash-stat-lbl">Day Streak</div></div>
         <div class="dash-stat"><div class="dash-stat-num" id="dReferrals">0</div><div class="dash-stat-lbl">Referrals</div></div>
       </div>
     </div>
@@ -867,7 +901,7 @@ body.dark .weak-topic-tip{background:#1a2236}
   <div class="dash-body">
     <!-- Streak Banner -->
     <div class="streak-banner" id="streakBanner" style="display:none">
-      <div class="streak-fire">🔥</div>
+      <div class="streak-fire"><svg class="icon icon-fill" aria-hidden="true"><use href="#icon-flame"></use></svg></div>
       <div class="streak-info">
         <div class="streak-days" id="streakDays">3 Day Streak!</div>
         <div class="streak-label">Keep practising daily to maintain your streak</div>
@@ -876,12 +910,12 @@ body.dark .weak-topic-tip{background:#1a2236}
 
     <!-- Start Practice from Dashboard -->
     <div class="dash-section">
-      <button class="start-btn" onclick="backToSetup()" style="max-width:100%;margin-bottom:8px">🎯 Start New Practice Session →</button>
+      <button type="button" class="start-btn" onclick="backToSetup()" style="max-width:100%;margin-bottom:8px"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Start New Practice Session →</button>
     </div>
 
     <!-- Subjects -->
     <div class="dash-section">
-      <div class="dash-sec-title">📚 Practice by Subject</div>
+      <div class="dash-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> Practice by Subject</div>
       <div class="cat-grid" id="catGrid">
         <div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted);font-size:.8rem">Loading…</div>
       </div>
@@ -889,25 +923,25 @@ body.dark .weak-topic-tip{background:#1a2236}
 
     <!-- Weekly Performance Chart -->
     <div class="dash-section">
-      <div class="dash-sec-title">📈 This Week's Performance</div>
+      <div class="dash-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-trending-up"></use></svg> This Week's Performance</div>
       <div class="perf-chart-wrap">
         <div class="perf-chart-header">
           <div class="perf-chart-title">Score trend — last 7 days</div>
           <div class="perf-chart-avg" id="weekAvgBadge">Avg: —</div>
         </div>
         <div class="perf-bars" id="perfBars">
-          <div class="perf-empty" style="width:100%">Complete a session to see your chart 📊</div>
+          <div class="perf-empty" style="width:100%">Complete a session to see your chart <svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg></div>
         </div>
       </div>
     </div>
 
     <!-- Streak Calendar -->
     <div class="dash-section">
-      <div class="dash-sec-title">🗓️ Practice Calendar</div>
+      <div class="dash-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Practice Calendar</div>
       <div class="streak-cal-wrap">
         <div class="streak-cal-header">
           <div class="streak-cal-title" id="streakCalMonthLabel">This Month</div>
-          <div class="streak-cal-badge" id="streakCalBadge">🔥 0 day streak</div>
+          <div class="streak-cal-badge"><svg class="icon icon-fill" aria-hidden="true" style="color:#f97316"><use href="#icon-flame"></use></svg> <span id="streakCalBadge">0 day streak</span></div>
         </div>
         <div class="streak-cal-grid" id="streakCalGrid"></div>
         <div class="streak-cal-legend">
@@ -920,7 +954,7 @@ body.dark .weak-topic-tip{background:#1a2236}
 
     <!-- Recent History -->
     <div class="dash-section">
-      <div class="dash-sec-title">📋 Recent Sessions</div>
+      <div class="dash-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Recent Sessions</div>
       <div class="history-list" id="historyList">
         <div style="text-align:center;padding:20px;color:var(--text-muted);font-size:.8rem">No sessions yet. Start practising!</div>
       </div>
@@ -928,13 +962,13 @@ body.dark .weak-topic-tip{background:#1a2236}
 
     <!-- Achievements -->
     <div class="dash-section">
-      <div class="dash-sec-title">🏆 Achievements</div>
+      <div class="dash-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-trophy"></use></svg> Achievements</div>
       <div class="ach-grid" id="achGrid"></div>
     </div>
 
     <!-- Referral -->
     <div class="dash-section">
-      <div class="dash-sec-title">🔗 Refer & Grow</div>
+      <div class="dash-sec-title"><svg class="icon" aria-hidden="true"><use href="#icon-link"></use></svg> Refer &amp; Grow</div>
 
       <!-- Big referral count banner -->
       <div class="ref-count-banner" id="refCountBanner">
@@ -945,22 +979,22 @@ body.dark .weak-topic-tip{background:#1a2236}
 
       <!-- Share card -->
       <div class="ref-card">
-        <div class="ref-title">📤 Your Referral Link</div>
+        <div class="ref-title"><svg class="icon" aria-hidden="true"><use href="#icon-share"></use></svg> Your Referral Link</div>
         <div class="ref-sub">Anyone who signs up through your link is counted as your referral.</div>
         <div class="ref-link-box">
           <input class="ref-link-input" type="text" id="refLinkInput" readonly>
-          <button class="ref-copy-btn" onclick="copyRefLink()">📋 Copy</button>
+          <button type="button" class="ref-copy-btn" onclick="copyRefLink()"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Copy</button>
         </div>
         <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-          <button onclick="shareRefWhatsApp()" style="flex:1;padding:9px;background:#25d366;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px">📱 Share on WhatsApp</button>
-          <button onclick="shareRefNative()" style="flex:1;padding:9px;background:var(--surface-alt);color:var(--text-main);border:1.5px solid var(--border);border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;cursor:pointer">↗️ Share</button>
+          <button type="button" onclick="shareRefWhatsApp()" style="flex:1;padding:9px;background:#25d366;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Share on WhatsApp</button>
+          <button type="button" onclick="shareRefNative()" style="flex:1;padding:9px;background:var(--surface-alt);color:var(--text-main);border:1.5px solid var(--border);border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.74rem;cursor:pointer">↗️ Share</button>
         </div>
       </div>
 
       <!-- Tabs -->
       <div class="ref-tabs">
-        <button class="ref-tab active" onclick="switchRefTab('people',this)">👥 Who Joined (<span id="refTabCount">0</span>)</button>
-        <button class="ref-tab" onclick="switchRefTab('claim',this)">🎁 Claim Reward</button>
+        <button type="button" class="ref-tab active" onclick="switchRefTab('people',this)"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Who Joined (<span id="refTabCount">0</span>)</button>
+        <button type="button" class="ref-tab" onclick="switchRefTab('claim',this)"><svg class="icon" aria-hidden="true"><use href="#icon-gift"></use></svg> Claim Reward</button>
       </div>
 
       <!-- Who joined tab -->
@@ -975,7 +1009,7 @@ body.dark .weak-topic-tip{background:#1a2236}
         <div class="coins-panel">
           <!-- Coins balance -->
           <div class="coins-balance-card">
-            <div class="coins-icon">🪙</div>
+            <div class="coins-icon"><svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg></div>
             <div class="coins-amount" id="coinsBalance">0</div>
             <div class="coins-label">BQM Coins</div>
             <div class="coins-sub">1 referral = 10 coins · Redeemable in future updates</div>
@@ -983,40 +1017,40 @@ body.dark .weak-topic-tip{background:#1a2236}
           <!-- Breakdown -->
           <div class="coins-breakdown">
             <div class="coins-row">
-              <span>👥 People referred</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> People referred</span>
               <strong id="coinsPeopleCount">0</strong>
             </div>
             <div class="coins-row">
-              <span>🪙 Coins per referral</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg> Coins per referral</span>
               <strong>10</strong>
             </div>
             <div class="coins-row" style="border-top:1.5px solid var(--border);padding-top:10px;margin-top:4px">
-              <span>💰 Total coins earned</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg> Total coins earned</span>
               <strong id="coinsTotalEarned" style="color:var(--orange)">0</strong>
             </div>
             <div class="coins-row">
-              <span>✅ Coins claimed</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> Coins claimed</span>
               <strong id="coinsAlreadyClaimed">0</strong>
             </div>
             <div class="coins-row">
-              <span>🪙 Available balance</span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg> Available balance</span>
               <strong id="coinsAvailable" style="color:var(--green)">0</strong>
             </div>
           </div>
           <!-- Claim button -->
           <div id="claimSection">
-            <button class="claim-btn" id="claimBtn" onclick="attemptClaim()">🎁 Claim My Coins</button>
+            <button type="button" class="claim-btn" id="claimBtn" onclick="attemptClaim()"><svg class="icon" aria-hidden="true"><use href="#icon-gift"></use></svg> Claim My Coins</button>
             <div class="claim-sorry-badge" id="claimResult" style="display:none">
-              😔 Sorry, you're not eligible for this bonus/credit yet
+              <svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Sorry, you're not eligible for this bonus/credit yet
             </div>
             <div id="claimSuccess" style="display:none;background:#dcfce7;border:1.5px solid #bbf7d0;border-radius:12px;padding:14px;text-align:center;margin-top:10px">
-              <div style="font-size:1.5rem;margin-bottom:4px">🎉</div>
+              <div style="font-size:1.5rem;margin-bottom:4px"><svg class="icon" aria-hidden="true"><use href="#icon-champagne"></use></svg></div>
               <div style="font-family:'Montserrat',sans-serif;font-weight:800;color:#15803d;font-size:.9rem">Coins Claimed!</div>
               <div style="font-size:.74rem;color:#16a34a;margin-top:4px">Your balance has been updated</div>
             </div>
           </div>
           <div style="margin-top:14px;font-size:.7rem;color:var(--text-muted);text-align:center;line-height:1.6">
-            🔮 Coming soon: use your coins to unlock premium features, study materials and more on BQM!
+            <svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Coming soon: use your coins to unlock premium features, study materials and more on BQM!
           </div>
         </div>
       </div>
@@ -1034,18 +1068,18 @@ body.dark .weak-topic-tip{background:#1a2236}
       </div>
       <span class="q-diff-badge" id="examModeTag" style="background:var(--blue-light);color:var(--blue-main)">Practice Mode</span>
       <div class="timer-box" id="timerBox">
-        <span>⏱</span><span class="timer-num" id="timerNum">30:00</span>
+        <span><svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg></span><span class="timer-num" id="timerNum">30:00</span>
       </div>
       <span class="q-counter" id="answeredCount">0/40 answered</span>
-      <button class="flag-btn" id="flagBtn" onclick="toggleFlag()" title="Flag for review">🚩</button>
-      <button class="submit-early-btn" onclick="confirmSubmit()">Submit →</button>
+      <button type="button" class="flag-btn" id="flagBtn" onclick="toggleFlag()" title="Flag for review" aria-label="Flag question for review"><svg class="icon" aria-hidden="true"><use href="#icon-flag"></use></svg></button>
+      <button type="button" class="submit-early-btn" onclick="confirmSubmit()">Submit →</button>
     </div>
   </div>
   <div class="q-wrap">
     <div class="q-card" id="questionCard"></div>
     <div class="q-nav">
-      <button class="nav-btn btn-prev" onclick="goQuestion(currentQ-1)" id="prevBtn">← Previous</button>
-      <button class="nav-btn btn-next" onclick="goQuestion(currentQ+1)" id="nextBtn">Next →</button>
+      <button type="button" class="nav-btn btn-prev" onclick="goQuestion(currentQ-1)" id="prevBtn">← Previous</button>
+      <button type="button" class="nav-btn btn-next" onclick="goQuestion(currentQ+1)" id="nextBtn">Next →</button>
     </div>
   </div>
   <div class="q-grid-wrap" id="qGridWrap">
@@ -1082,34 +1116,34 @@ body.dark .weak-topic-tip{background:#1a2236}
     <div class="result-stats" id="resultStats"></div>
   </div>
   <div class="result-actions">
-    <button class="ra-btn ra-btn-primary" onclick="restartExam()">🔄 Try Again</button>
-    <button class="ra-btn ra-btn-primary" onclick="showDashboard()" id="dashFromResult" style="display:none;background:linear-gradient(135deg,#059669,#10b981)">📊 My Dashboard</button>
-    <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="ra-btn ra-btn-wa">💬 Get Help</a>
-    <a href="explore.html" class="ra-btn" style="background:var(--surface-alt);color:var(--text-muted)">🗂 Explore More</a>
+    <button type="button" class="ra-btn ra-btn-primary" onclick="restartExam()"><svg class="icon" aria-hidden="true"><use href="#icon-refresh"></use></svg> Try Again</button>
+    <button type="button" class="ra-btn ra-btn-primary" onclick="showDashboard()" id="dashFromResult" style="display:none;background:linear-gradient(135deg,#059669,#10b981)"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> My Dashboard</button>
+    <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="ra-btn ra-btn-wa"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Get Help</a>
+    <a href="explore.html" class="ra-btn" style="background:var(--surface-alt);color:var(--text-muted)"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore More</a>
   </div>
 
   <!-- Share Score Card -->
   <div style="max-width:860px;margin:0 auto;padding:0 16px">
     <div class="share-card-wrap">
-      <div class="share-card-title">📤 Share Your Score</div>
+      <div class="share-card-title"><svg class="icon" aria-hidden="true"><use href="#icon-share"></use></svg> Share Your Score</div>
       <canvas id="scoreCardCanvas" width="720" height="400"></canvas>
       <div class="share-caption-box" id="shareCaption">
         Loading caption…
-        <button class="share-caption-copy" onclick="copyShareCaption()">Copy</button>
+        <button type="button" class="share-caption-copy" onclick="copyShareCaption()">Copy</button>
       </div>
       <div class="share-card-btns">
-        <button class="share-card-btn scb-dl" onclick="downloadScoreCard()">⬇️ Download Image</button>
-        <button class="share-card-btn scb-wa" onclick="shareScoreWhatsApp()">📱 WhatsApp</button>
-        <button class="share-card-btn scb-copy" onclick="copyShareCaption()">📋 Copy Caption</button>
+        <button type="button" class="share-card-btn scb-dl" onclick="downloadScoreCard()"><svg class="icon" aria-hidden="true"><use href="#icon-file-text"></use></svg> Download Image</button>
+        <button type="button" class="share-card-btn scb-wa" onclick="shareScoreWhatsApp()"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> WhatsApp</button>
+        <button type="button" class="share-card-btn scb-copy" onclick="copyShareCaption()"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Copy Caption</button>
       </div>
     </div>
   </div>
   <div class="review-section">
-    <div class="review-title">📋 Question Review</div>
+    <div class="review-title"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Question Review</div>
     <div id="reviewList"></div>
   </div>
   <div class="review-section" id="weakTopicsSection" style="display:none">
-    <div class="review-title">🧠 Weak Topics Detector</div>
+    <div class="review-title"><svg class="icon" aria-hidden="true"><use href="#icon-brain"></use></svg> Weak Topics Detector</div>
     <div id="weakTopicsList"></div>
   </div>
 </div>
@@ -1118,24 +1152,75 @@ body.dark .weak-topic-tip{background:#1a2236}
 
 <footer id="mainFooter">
   <div class="footer-inner">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-      <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
-      <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a><a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a><a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a><a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a><a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a><a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div><div style="display:flex;flex-direction:column;gap:5px"><a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a><a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a><a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a><a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a><a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a><a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div><div style="display:flex;flex-direction:column;gap:5px"><a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a><a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a><a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a><a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a><a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a><a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
-    </div>
-    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
-    <div style="font-size:.68rem;color:rgba(255,255,255,.35);margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 14px">
-      <a href="terms.html" style="color:rgba(255,255,255,.4)">Terms &amp; Conditions</a>
-      <a href="privacy.html" style="color:rgba(255,255,255,.4)">Privacy Policy</a>
-      <a href="cookie-policy.html" style="color:rgba(255,255,255,.4)">Cookie Policy</a>
-      <a href="disclaimer.html" style="color:rgba(255,255,255,.4)">Disclaimer</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img class="footer-logo" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media logo">
+        <div>
+          <div class="footer-bname">BIG QUAMS MEDIA®</div>
+          <p class="footer-bsub">Built for Nigerian undergraduates — from admission to graduation.</p>
+        </div>
+      </div>
+      <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" class="footer-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
     </div>
 
+    <nav class="footer-cols" aria-label="Footer navigation">
+      <div>
+        <h3 class="footer-heading">Main</h3>
+        <ul class="footer-links">
+          <li><a href="index.html"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a></li>
+          <li><a href="newsroom.html"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a></li>
+          <li><a href="explore.html"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore Tools</a></li>
+          <li><a href="campus-life.html"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a></li>
+          <li><a href="community.html"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community</a></li>
+          <li><a href="daily.html"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Exam Tools</h3>
+        <ul class="footer-links">
+          <li><a href="cbt.html"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a></li>
+          <li><a href="postutme-prep.html"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a></li>
+          <li><a href="postutme-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calc</a></li>
+          <li><a href="gpa-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a></li>
+          <li><a href="results.html"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a></li>
+          <li><a href="Jamb_Profile_Code.html"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Resources</h3>
+        <ul class="footer-links">
+          <li><a href="elibrary.html"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a></li>
+          <li><a href="scholarship.html"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a></li>
+          <li><a href="student-loan.html"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan</a></li>
+          <li><a href="spotlight.html"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a></li>
+          <li><a href="dyk.html"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a></li>
+          <li><a href="subject-combo.html"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Connect</h3>
+        <ul class="footer-links">
+          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Join Group</a></li>
+          <li><a href="index.html#install-app"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Install App</a></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg></a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg></a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg class="icon" aria-hidden="true"><use href="#icon-tiktok"></use></svg></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="cookie-policy.html">Cookie Policy</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-credit">Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer">Abdulrasaq Quwamdeen</a></div>
   </div>
 </footer>
 
@@ -1181,7 +1266,7 @@ window._onAuthStateChanged=(cb)=>onAuthStateChanged(auth,cb);
 const GUEST_LIMIT=10;
 const SITE_URL='https://bigquamsmedia.com.ng/cbt.html';
 const SUBJ_LABELS={english:'Use of English',maths:'Mathematics',physics:'Physics',chemistry:'Chemistry',biology:'Biology',economics:'Economics',gov:'Government',literature:'Literature in English',geography:'Geography',agric:'Agricultural Science',crk:'CRK',accounts:'Financial Accounting',commerce:'Commerce',history:'History',ict:'ICT'};
-const SUBJ_ICONS={english:'📝',maths:'🔢',physics:'⚡',chemistry:'🧪',biology:'🌿',economics:'📊',gov:'🏛️',literature:'📖',geography:'🌍',agric:'🌾',crk:'✝️',accounts:'💼',commerce:'🛒',history:'🏺',ict:'💻'};
+const SUBJ_ICONS={english:'<svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg>',maths:'<svg class="icon" aria-hidden="true"><use href="#icon-hash"></use></svg>',physics:'<svg class="icon" aria-hidden="true"><use href="#icon-zap"></use></svg>',chemistry:'<svg class="icon" aria-hidden="true"><use href="#icon-flask"></use></svg>',biology:'<svg class="icon" aria-hidden="true"><use href="#icon-leaf"></use></svg>',economics:'<svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg>',gov:'<svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg>',literature:'<svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg>',geography:'<svg class="icon" aria-hidden="true"><use href="#icon-globe"></use></svg>',agric:'<svg class="icon" aria-hidden="true"><use href="#icon-leaf"></use></svg>',crk:'<svg class="icon" aria-hidden="true"><use href="#icon-cross"></use></svg>',accounts:'<svg class="icon" aria-hidden="true"><use href="#icon-briefcase"></use></svg>',commerce:'<svg class="icon" aria-hidden="true"><use href="#icon-cart"></use></svg>',history:'<svg class="icon" aria-hidden="true"><use href="#icon-scroll"></use></svg>',ict:'<svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg>'};
 
 // ── CBT ENGINE CONFIG (site-wide defaults — change here, not throughout the code) ──
 const CBT_CONFIG={
@@ -1189,11 +1274,11 @@ const CBT_CONFIG={
   guestLimit:GUEST_LIMIT,
   scoring:{correct:1,wrong:0,unanswered:0},
   gradeBands:[
-    {min:80,grade:'Excellent! 🌟',color:'#10b981'},
-    {min:65,grade:'Very Good 👍',color:'#3b82f6'},
-    {min:50,grade:'Average 📈',color:'#f59e0b'},
-    {min:40,grade:'Keep Trying 💪',color:'#f97316'},
-    {min:0,grade:'Need More Practice 📚',color:'#ef4444'}
+    {min:80,grade:'Excellent!',icon:'star',color:'#10b981'},
+    {min:65,grade:'Very Good',icon:'thumbs-up',color:'#3b82f6'},
+    {min:50,grade:'Average',icon:'trending-up',color:'#f59e0b'},
+    {min:40,grade:'Keep Trying',icon:'flame',color:'#f97316'},
+    {min:0,grade:'Need More Practice',icon:'book-open',color:'#ef4444'}
   ]
 };
 
@@ -1532,18 +1617,18 @@ function applyUrlState(){
 
 // ── ACHIEVEMENTS DEFINITION ──
 const ACHIEVEMENTS=[
-  {id:'first_session',icon:'🎯',name:'First Step',desc:'Complete your first practice session'},
-  {id:'score_80',icon:'🌟',name:'Star Performer',desc:'Score 80% or above in any session'},
-  {id:'score_100',icon:'💯',name:'Perfect Score',desc:'Score 100% in any session'},
-  {id:'sessions_5',icon:'🔥',name:'On Fire',desc:'Complete 5 practice sessions'},
-  {id:'sessions_10',icon:'⚡',name:'Dedicated',desc:'Complete 10 practice sessions'},
-  {id:'sessions_25',icon:'👑',name:'CBT Champion',desc:'Complete 25 practice sessions'},
-  {id:'streak_3',icon:'📅',name:'3-Day Streak',desc:'Practise 3 days in a row'},
-  {id:'streak_7',icon:'🗓️',name:'Weekly Warrior',desc:'Practise 7 days in a row'},
-  {id:'referral_1',icon:'🤝',name:'Team Player',desc:'Refer your first classmate'},
-  {id:'referral_5',icon:'🚀',name:'BQM Ambassador',desc:'Refer 5 classmates'},
-  {id:'multi_subj',icon:'📚',name:'All-Rounder',desc:'Practice at least 4 different subjects'},
-  {id:'night_owl',icon:'🦉',name:'Night Owl',desc:'Complete a session after 10 PM'},
+  {id:'first_session',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg>',name:'First Step',desc:'Complete your first practice session'},
+  {id:'score_80',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg>',name:'Star Performer',desc:'Score 80% or above in any session'},
+  {id:'score_100',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg>',name:'Perfect Score',desc:'Score 100% in any session'},
+  {id:'sessions_5',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-flame"></use></svg>',name:'On Fire',desc:'Complete 5 practice sessions'},
+  {id:'sessions_10',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-zap"></use></svg>',name:'Dedicated',desc:'Complete 10 practice sessions'},
+  {id:'sessions_25',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-crown"></use></svg>',name:'CBT Champion',desc:'Complete 25 practice sessions'},
+  {id:'streak_3',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg>',name:'3-Day Streak',desc:'Practise 3 days in a row'},
+  {id:'streak_7',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg>',name:'Weekly Warrior',desc:'Practise 7 days in a row'},
+  {id:'referral_1',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>',name:'Team Player',desc:'Refer your first classmate'},
+  {id:'referral_5',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-rocket"></use></svg>',name:'BQM Ambassador',desc:'Refer 5 classmates'},
+  {id:'multi_subj',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg>',name:'All-Rounder',desc:'Practice at least 4 different subjects'},
+  {id:'night_owl',icon:'<svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>',name:'Night Owl',desc:'Complete a session after 10 PM'},
 ];
 
 // ── STATE ──
@@ -1624,7 +1709,7 @@ function startProfileListener(uid){
             `🎉 ${newCount} classmates have joined through your link!`;
           // If count increased show a toast
           if(newCount>prevRefCount){
-            showAchToast('🔗','New referral! Someone joined through your link!');
+            showAchToast('<svg class="icon" aria-hidden="true"><use href="#icon-link"></use></svg>','New referral! Someone joined through your link!');
           }
           // Rebuild referred users list
           const referred=fresh.referredUsers||[];
@@ -1640,7 +1725,7 @@ function startProfileListener(uid){
                     <div class="referred-name">${u.name||'Student'}</div>
                     <div class="referred-date">${u.email||''}</div>
                   </div>
-                  <div class="referred-date">📅 ${joined}</div>
+                  <div class="referred-date"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> ${joined}</div>
                 </div>`;
               }).join('');
             } else {
@@ -1653,7 +1738,7 @@ function startProfileListener(uid){
           const bestEl=document.getElementById('dBestScore');
           if(bestEl) bestEl.textContent=(fresh.bestScore||0)+'%';
           const streakEl=document.getElementById('dStreak');
-          if(streakEl) streakEl.textContent=(fresh.streak||0)+'🔥';
+          if(streakEl) streakEl.textContent=(fresh.streak||0);
         }
       },
       (err)=>{ console.warn('Profile listener error:',err.message); }
@@ -1845,19 +1930,19 @@ function populateDashboard(){
     avatarEl.outerHTML=`<img id="dashAvatarEl" class="dash-avatar" src="${cbtUser.photoURL}" alt="">`;
   }
   // Nick & email
-  document.getElementById('dashNick').innerHTML=(p.nickname||p.displayName||'Student')+`<button class="nick-edit-btn" onclick="openNickModal()">✏️ Edit</button>`;
+  document.getElementById('dashNick').innerHTML=(p.nickname||p.displayName||'Student')+`<button type="button" class="nick-edit-btn" onclick="openNickModal()"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> Edit</button>`;
   document.getElementById('dashEmail').textContent=cbtUser.email;
   // Stats
   document.getElementById('dSessions').textContent=p.sessions||0;
   document.getElementById('dBestScore').textContent=(p.bestScore||0)+'%';
-  document.getElementById('dStreak').textContent=(p.streak||0)+'🔥';
+  document.getElementById('dStreak').textContent=(p.streak||0);
   document.getElementById('dReferrals').textContent=p.referralCount||0;
   // Streak banner
   const streak=p.streak||0;
   const sb=document.getElementById('streakBanner');
   if(streak>=2){
     sb.style.display='flex';
-    document.getElementById('streakDays').textContent=streak+' Day Streak! Keep it up! 🔥';
+    document.getElementById('streakDays').textContent=streak+' Day Streak! Keep it up!';
   }
   // Referral
   const refCode=p.referralCode||generateReferralCode(p.name||p.displayName||'');
@@ -1892,9 +1977,9 @@ function populateDashboard(){
         <div class="referred-avatar">${initial}</div>
         <div style="flex:1;min-width:0">
           <div class="referred-name">${u.name||'Student'}</div>
-          <div class="referred-date">${u.email||''} · 🪙 +${COINS_PER_REFERRAL} coins</div>
+          <div class="referred-date">${u.email||''} · <svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg> +${COINS_PER_REFERRAL} coins</div>
         </div>
-        <div class="referred-date">📅 ${joined}</div>
+        <div class="referred-date"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> ${joined}</div>
       </div>`;
     }).join('');
   } else {
@@ -1925,7 +2010,7 @@ function buildSubjectCats(p){
     const bestPct=info?info.bestPct:null;
     const sessions=info?info.sessions:0;
     html+=`<div class="cat-card${info?' has-score':''}" onclick="quickStart('${s}')">
-      <div class="cat-card-icon">${SUBJ_ICONS[s]||'📚'}</div>
+      <div class="cat-card-icon">${SUBJ_ICONS[s]||'<svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg>'}</div>
       <div class="cat-card-name">${SUBJ_LABELS[s]}</div>
       <div class="cat-card-count">${sessions?sessions+' session'+(sessions>1?'s':''):'Not started yet'}</div>
       ${bestPct!==null?`<div class="cat-card-score">Best: ${bestPct}%</div>`:''}
@@ -1965,7 +2050,7 @@ function buildHistory(p){
         <div class="history-subj">${subj}</div>
         <div class="history-meta">${s.correct||0} correct · ${s.total||0} questions · ${formatDate(s.date)}</div>
       </div>
-      <div class="history-pct" style="color:${color}">${pct>=80?'✅':pct>=50?'📈':'💪'}</div>
+      <div class="history-pct" style="color:${color}">${pct>=80?'<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg>':pct>=50?'<svg class="icon" aria-hidden="true"><use href="#icon-trending-up"></use></svg>':'<svg class="icon" aria-hidden="true"><use href="#icon-thumbs-up"></use></svg>'}</div>
     </div>`;
   }).join('');
 }
@@ -2013,7 +2098,7 @@ async function saveNickname(){
     await window._updateDoc(window._doc(window._db,'cbt_users',cbtUser.uid),{nickname:nick});
     if(userProfile) userProfile.nickname=nick;
     document.getElementById('nickModal').style.display='none';
-    document.getElementById('dashNick').innerHTML=nick+`<button class="nick-edit-btn" onclick="openNickModal()">✏️ Edit</button>`;
+    document.getElementById('dashNick').innerHTML=nick+`<button type="button" class="nick-edit-btn" onclick="openNickModal()"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> Edit</button>`;
     const _ubn=document.getElementById('userBannerNameHome'); if(_ubn) _ubn.textContent=nick;
   }catch(e){alert('Could not save nickname. Try again.');}
 }
@@ -2024,8 +2109,8 @@ function copyRefLink(){
   const val=document.getElementById('refLinkInput').value;
   navigator.clipboard.writeText(val).then(()=>{
     const btn=document.querySelector('.ref-copy-btn');
-    btn.textContent='✅ Copied!';
-    setTimeout(()=>btn.textContent='📋 Copy',2000);
+    btn.textContent='Copied!';
+    setTimeout(()=>btn.textContent='Copy',2000);
   });
 }
 window.copyRefLink=copyRefLink;
@@ -2067,9 +2152,9 @@ async function attemptClaim(){
     document.getElementById('coinsAlreadyClaimed').textContent=newClaimed;
     btn.style.display='none';
     document.getElementById('claimSuccess').style.display='block';
-    showAchToast('🪙',`You claimed ${available} BQM Coins!`);
+    showAchToast('<svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg>',`You claimed ${available} BQM Coins!`);
   }catch(e){
-    btn.disabled=false;btn.textContent='🎁 Claim My Coins';
+    btn.disabled=false;btn.textContent='Claim My Coins';
     alert('Could not claim coins: '+e.message);
   }
 }
@@ -2085,7 +2170,7 @@ window.shareRefWhatsApp=shareRefWhatsApp;
 function shareRefNative(){
   const link=document.getElementById('refLinkInput').value;
   if(navigator.share){
-    navigator.share({title:'Big Quams Media® — Free JAMB Practice',text:'Join me on Big Quams Media® for free JAMB CBT practice!',url:link}).catch(()=>{});
+    navigator.share({title:'Big Quams Media® — Free CBT Practice',text:'Join me on Big Quams Media® for free CBT practice!',url:link}).catch(()=>{});
   } else {
     navigator.clipboard.writeText(link).then(()=>alert('Link copied! Share it with your classmates.'));
   }
@@ -2175,7 +2260,7 @@ window.cbtResendOTP=cbtResendOTP;
 
 function showCbtError(id,msg){
   const el=document.getElementById(id);
-  el.textContent='❌ '+msg; el.style.display='block';
+  el.textContent=msg; el.style.display='block';
   setTimeout(()=>el.style.display='none',5000);
 }
 
@@ -2191,7 +2276,7 @@ async function cbtEmailSignIn(){
       // Send another verification email
       try{ await window._sendEmailVerification(cred.user); }catch(ve){}
       await window._signOut().catch(()=>{});
-      showCbtError('cbtAuthError','📧 Please verify your email first. A new verification link has been sent to '+email+'. Check your spam folder too.');
+      showCbtError('cbtAuthError','Please verify your email first. A new verification link has been sent to '+email+'. Check your spam folder too.');
       btn.disabled=false;btn.textContent='Sign In →';
       return;
     }
@@ -2230,7 +2315,7 @@ async function cbtCreateAccount(){
         // Switch to sign-in tab with message
         const signinBtn=document.querySelector('.auth-tab-btn');
         if(signinBtn) switchCbtTab('signin',signinBtn);
-        showCbtError('cbtAuthError','✅ Account created! Check your email to verify, then sign in here.');
+        showCbtError('cbtAuthError','Account created! Check your email to verify, then sign in here.');
         document.getElementById('cbtAuthError').style.background='#dcfce7';
         document.getElementById('cbtAuthError').style.color='#15803d';
         document.getElementById('cbtAuthError').style.display='block';
@@ -2271,7 +2356,7 @@ async function cbtForgotPw(){
   try{
     await window._resetPw(email);
     const el=document.getElementById('cbtAuthError');
-    el.textContent='✅ Reset email sent to '+email;
+    el.textContent='Reset email sent to '+email;
     el.style.color='#15803d';el.style.background='#dcfce7';el.style.display='block';
     setTimeout(()=>{el.style.display='none';el.style.color='';el.style.background='';},5000);
   }catch(e){showCbtError('cbtAuthError',e.message);}
@@ -2336,7 +2421,7 @@ async function startExam(){
   const isPostutme=currentCbtContext.examType==='postutme';
   const btnId=isJamb?'startBtn':isPostutme?'postutmeStartBtn':'campusStartBtn';
   const statusId=isJamb?'setupStatus':isPostutme?'postutmeSetupStatus':'campusSetupStatus';
-  const defaultLabel=isJamb?'🎯 Start Practice Exam →':isPostutme?'Start Practice →':'Start CBT →';
+  const defaultLabel=isJamb?'Start Practice Exam →':isPostutme?'Start Practice →':'Start CBT →';
   const btn=document.getElementById(btnId);
   const statusEl=document.getElementById(statusId);
   btn.disabled=true;btn.textContent='Loading questions…';
@@ -2388,7 +2473,7 @@ async function startExam(){
       statusEl.textContent=`Only ${availableCount} question${availableCount===1?'':'s'} are currently available — starting with all of them.`;
     }
     if(!cbtUser && availableCount>=GUEST_LIMIT){
-      statusEl.textContent=`⚠️ Guest mode: limited to ${GUEST_LIMIT} questions. Sign in for full access.`;
+      statusEl.textContent=`Guest mode: limited to ${GUEST_LIMIT} questions. Sign in for full access.`;
     }
     examQuestions=pool;
     userAnswers={};currentQ=0;flaggedQs.clear();
@@ -2430,7 +2515,7 @@ function startTimer(){
 // ── QUESTION GRID ──
 function buildQGrid(){
   const grid=document.getElementById('qGrid');
-  grid.innerHTML=examQuestions.map((_,i)=>`<button class="q-dot${i===0?' current':''}" id="dot-${i}" onclick="goQuestion(${i})">${i+1}</button>`).join('');
+  grid.innerHTML=examQuestions.map((_,i)=>`<button type="button" class="q-dot${i===0?' current':''}" id="dot-${i}" onclick="goQuestion(${i})">${i+1}</button>`).join('');
 }
 
 // ── FLAG SYSTEM ──
@@ -2503,7 +2588,7 @@ function renderQuestion(idx){
       ${subjOrTopicBadge}
       ${q.difficulty?`<span class="q-diff-badge diff-${q.difficulty}">${q.difficulty}</span>`:''}
       ${q.year?`<span style="font-size:.64rem;color:var(--text-muted)">${q.year}</span>`:''}
-      ${flaggedQs.has(idx)?'<span style="font-size:.7rem;color:#eab308;font-weight:700">🚩 Flagged</span>':''}
+      ${flaggedQs.has(idx)?'<span style="font-size:.7rem;color:#eab308;font-weight:700"><svg class="icon" aria-hidden="true"><use href="#icon-flag"></use></svg> Flagged</span>':''}
     </div>
     <div class="q-text">${q.q}</div>
     <div class="options-list" id="optList">
@@ -2513,11 +2598,11 @@ function renderQuestion(idx){
           if(i===q.ans) cls+=' correct';
           else if(i===ua) cls+=' wrong';
         } else if(i===ua) cls+=' selected';
-        return`<button class="${cls}" ${revealed?'disabled':''} onclick="selectAnswer(${idx},${i})" data-opt="${i}">
+        return`<button type="button" class="${cls}" ${revealed?'disabled':''} onclick="selectAnswer(${idx},${i})" data-opt="${i}">
           <span class="opt-letter">${letters[i]}</span>${opt}</button>`;
       }).join('')}
     </div>
-    ${revealed&&q.exp?`<div class="explanation show">💡 <strong>Explanation:</strong> ${q.exp}</div>`:''}
+    ${revealed&&q.exp?`<div class="explanation show"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> <strong>Explanation:</strong> ${q.exp}</div>`:''}
     <div style="text-align:right;margin-top:8px;font-size:.62rem;color:var(--text-muted)">Press <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 5px;border-radius:3px">F</kbd> to flag · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 5px;border-radius:3px">A B C D</kbd> to answer · <kbd style="background:var(--surface-alt);border:1px solid var(--border);padding:1px 5px;border-radius:3px">← →</kbd> navigate</div>`;
 }
 window.renderQuestion=renderQuestion;
@@ -2578,7 +2663,7 @@ async function submitExam(){
   document.getElementById('resultTypeLabel').textContent=currentCbtContext.label;
   document.getElementById('scoreNum').textContent=correct;
   document.getElementById('scoreDenom').textContent='/ '+total;
-  document.getElementById('resultGrade').textContent=grade;
+  document.getElementById('resultGrade').innerHTML=`<svg class="icon" aria-hidden="true"><use href="#icon-${band.icon}"></use></svg> ${grade}`;
   document.getElementById('resultGrade').style.color=gradeColor;
   document.getElementById('resultSub').textContent=pct+'% score — '+correct+' correct, '+wrong+' wrong, '+skipped+' skipped';
   document.getElementById('resultStats').innerHTML=`
@@ -2612,9 +2697,9 @@ async function submitExam(){
     const badge=q.subject?`<span class="q-subj-badge">${SUBJ_LABELS[q.subject]||q.subject}</span>`:q.topic?`<span class="q-subj-badge">${escapeHtml(q.topic)}</span>`:'';
     return`<div class="review-q">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-        <span style="font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:20px;background:${isCorrect?'#dcfce7':'#fee2e2'};color:${isCorrect?'#15803d':'#b91c1c'}">${isCorrect?'✅ Correct':'❌ Wrong'}</span>
+        <span style="font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:20px;background:${isCorrect?'#dcfce7':'#fee2e2'};color:${isCorrect?'#15803d':'#b91c1c'}">${isCorrect?'<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> Correct':'<svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg> Wrong'}</span>
         ${badge}
-        ${flaggedQs.has(i)?'<span style="font-size:.7rem;color:#eab308">🚩 Flagged</span>':''}
+        ${flaggedQs.has(i)?'<span style="font-size:.7rem;color:#eab308"><svg class="icon" aria-hidden="true"><use href="#icon-flag"></use></svg> Flagged</span>':''}
       </div>
       <div class="review-q-text">Q${i+1}. ${q.q}</div>
       <div class="review-opts">
@@ -2622,10 +2707,10 @@ async function submitExam(){
           let cls='review-opt';
           if(j===q.ans) cls+=' correct-answer';
           else if(j===ua&&ua!==q.ans) cls+=' user-wrong';
-          return`<div class="${cls}"><span style="font-weight:800;min-width:20px">${letters[j]}.</span>${opt}${j===q.ans?' ✓':j===ua?' ✗':''}</div>`;
+          return`<div class="${cls}"><span style="font-weight:800;min-width:20px">${letters[j]}.</span>${opt}${j===q.ans?' <svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg>':j===ua?' <svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg>':''}</div>`;
         }).join('')}
       </div>
-      ${q.exp?`<div class="review-exp">💡 ${q.exp}</div>`:''}
+      ${q.exp?`<div class="review-exp"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> ${q.exp}</div>`:''}
     </div>`;
   }).join('');
   // ── WEAK TOPICS DETECTOR (JAMB-subject-specific tips — see report) ──
@@ -2706,13 +2791,13 @@ function buildWeakTopics(){
     const tip=worstTopics.length?getTopicTip(subj,worstTopics[0][0]):getTopicTip(subj,'');
     return`<div class="weak-topic-card">
       <div class="weak-topic-head">
-        <div class="weak-topic-name">⚠️ ${SUBJ_LABELS[subj]||subj}</div>
+        <div class="weak-topic-name"><svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> ${SUBJ_LABELS[subj]||subj}</div>
         <div class="weak-topic-score">${pct}% wrong (${data.wrong}/${data.total})</div>
       </div>
       <div class="weak-topic-bar"><div class="weak-topic-fill" style="width:${pct}%"></div></div>
       ${worstTopics.length?`<div style="font-size:.72rem;color:var(--muted);margin-bottom:8px">Struggling most with: <strong>${worstTopics.map(([t])=>t).join(', ')}</strong></div>`:''}
-      <div class="weak-topic-tip">💡 ${tip}</div>
-      <a href="cbt.html?subject=${encodeURIComponent(subj)}" style="display:inline-block;margin-top:8px;font-size:.74rem;font-weight:700;color:var(--blue-main);text-decoration:none">🎯 Practise ${SUBJ_LABELS[subj]||subj} only →</a>
+      <div class="weak-topic-tip"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> ${tip}</div>
+      <a href="cbt.html?subject=${encodeURIComponent(subj)}" style="display:inline-block;margin-top:8px;font-size:.74rem;font-weight:700;color:var(--blue-main);text-decoration:none"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg> Practise ${SUBJ_LABELS[subj]||subj} only →</a>
     </div>`;
   }).join('');
 }
@@ -2831,7 +2916,7 @@ function restartExam(){
 }
 window.restartExam=restartExam;
 
-function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');const btn=document.getElementById('darkBtn');btn.innerHTML=d?'<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>':'<svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>';btn.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode');}
 function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
 
 // ── WEEKLY PERFORMANCE CHART ──
@@ -2857,7 +2942,7 @@ function buildWeeklyChart(profile){
   const hasSessions=days.some(d=>d.pct!==null);
   const container=document.getElementById('perfBars');
   if(!hasSessions){
-    container.innerHTML='<div class="perf-empty" style="width:100%">Complete a session to see your chart 📊</div>';
+    container.innerHTML='<div class="perf-empty" style="width:100%">Complete a session to see your chart <svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg></div>';
     document.getElementById('weekAvgBadge').textContent='Avg: —';
     return;
   }
@@ -2887,7 +2972,7 @@ function buildStreakCalendar(profile){
   const month=now.getMonth();
   const monthNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
   document.getElementById('streakCalMonthLabel').textContent=monthNames[month]+' '+year;
-  document.getElementById('streakCalBadge').textContent='🔥 '+(profile.streak||0)+' day streak';
+  document.getElementById('streakCalBadge').textContent=(profile.streak||0)+' day streak';
   const firstDay=new Date(year,month,1).getDay(); // 0=Sun
   const daysInMonth=new Date(year,month+1,0).getDate();
   const dows=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
@@ -3029,7 +3114,7 @@ function buildShareCaption(pct,grade,refLink){
   const detail=getCbtDetailText();
   const emoji=pct>=80?'🏆':pct>=65?'🎯':pct>=50?'📈':'💪';
   const caption=`${emoji} I just scored ${pct}% on my ${currentCbtContext.label}!\n\n${detail}\nGrade: ${grade}\n\n📚 Big Quams Media® — Nigeria's Trusted Student Success Platform\n\nPractise for free 👇\n${refLink||'https://bigquamsmedia.com.ng/cbt.html'}`;
-  document.getElementById('shareCaption').innerHTML=caption.replace(/\n/g,'<br>')+`<button class="share-caption-copy" onclick="copyShareCaption()">Copy</button>`;
+  document.getElementById('shareCaption').innerHTML=caption.replace(/\n/g,'<br>')+`<button type="button" class="share-caption-copy" onclick="copyShareCaption()">Copy</button>`;
   return caption;
 }
 
@@ -3059,14 +3144,14 @@ function copyShareCaption(){
   const caption=`${emoji} I just scored ${pct}% on my ${currentCbtContext.label}!\n\n${detail}\nGrade: ${grade}\n\n📚 Big Quams Media® — Nigeria's Trusted Student Success Platform\nPractise for free 👇\n${refLink}`;
   navigator.clipboard.writeText(caption).then(()=>{
     const btns=document.querySelectorAll('.share-caption-copy,.scb-copy');
-    btns.forEach(b=>{const orig=b.textContent;b.textContent='✅ Copied!';setTimeout(()=>b.textContent=orig,2000);});
+    btns.forEach(b=>{const orig=b.textContent;b.textContent='Copied!';setTimeout(()=>b.textContent=orig,2000);});
   }).catch(()=>alert(caption));
 }
 window.downloadScoreCard=downloadScoreCard;
 window.shareScoreWhatsApp=shareScoreWhatsApp;
 window.copyShareCaption=copyShareCaption;
 document.addEventListener('DOMContentLoaded',function(){
-  if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';
+  if(document.body.classList.contains('dark')){const btn=document.getElementById('darkBtn');btn.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>';btn.setAttribute('aria-label','Switch to light mode');}
   document.getElementById('yr').textContent=new Date().getFullYear();
   document.getElementById('setupStatus').textContent=`1 subject selected (max ${CBT_CONFIG.maxJambSubjects})`;
   discoverCbtAvailability();
