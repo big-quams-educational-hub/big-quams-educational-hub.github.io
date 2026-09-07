@@ -10,8 +10,8 @@
   gtag('config', 'G-RCLYVCZY2K');
 </script>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>JAMB CBT Practice | Big Quams Media®</title>
-<meta name="description" content="Free JAMB CBT practice on Big Quams Media®. 500+ questions across all subjects, timed mock tests, performance tracking, streak calendar and coins rewards.">
+<title>CBT Practice — JAMB UTME, Post-UTME &amp; Campus Courses | Big Quams Media®</title>
+<meta name="description" content="Practise JAMB UTME, Post-UTME and campus course CBT questions on Big Quams Media®. Take practice tests, timed exams and track your performance.">
 <link rel="icon" type="image/jpeg" href="https://bigquamsmedia.com.ng/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -79,6 +79,49 @@ body.dark .option-group select{background:#111624;border-color:var(--border);col
 .start-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff;border:none;border-radius:var(--radius-sm);font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:.2s}
 .start-btn:hover{opacity:.9;transform:translateY(-1px)}
 .start-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* ── CBT HOME (category hub) ── */
+.cbt-cat-grid{display:flex;flex-direction:column;gap:16px;margin:32px auto;max-width:640px}
+.cbt-cat-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:22px;box-shadow:var(--shadow-md);display:flex;flex-direction:column;gap:8px}
+body.dark .cbt-cat-card{background:#161b27}
+.cbt-cat-card.disabled{opacity:.55}
+.cbt-cat-icon{width:44px;height:44px;border-radius:12px;background:var(--blue-light);color:var(--blue-main);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+body.dark .cbt-cat-icon{background:#1a2d5a}
+.cbt-cat-title{font-family:'Montserrat',sans-serif;font-size:1.02rem;font-weight:800;color:var(--text-main)}
+.cbt-cat-desc{font-size:.82rem;color:var(--text-muted);line-height:1.55}
+.cbt-cat-count{font-size:.68rem;font-weight:700;color:var(--blue-main)}
+body.dark .cbt-cat-count{color:#93c5fd}
+.cbt-cat-btn{margin-top:6px;align-self:flex-start;padding:11px 20px;background:linear-gradient(135deg,var(--blue-deep),var(--blue-main));color:#fff;border:none;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer}
+.cbt-cat-btn:disabled{background:var(--border);color:var(--text-muted);cursor:not-allowed}
+.cbt-empty-note{font-size:.76rem;color:var(--text-muted);background:var(--surface-alt);border-radius:9px;padding:10px 14px;margin-top:4px}
+
+/* ── DRILL-DOWN FLOW (Post-UTME / Campus) ── */
+.flow-back{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;color:var(--blue-main);margin-bottom:14px;cursor:pointer}
+.flow-breadcrumb{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;font-size:.72rem;color:var(--text-muted)}
+.flow-breadcrumb b{color:var(--text-main)}
+.flow-search{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--surface-alt);color:var(--text-main);font-size:.88rem;margin-bottom:14px;font-family:inherit}
+body.dark .flow-search{background:#111624}
+.flow-list{display:flex;flex-direction:column;gap:8px;max-height:400px;overflow-y:auto}
+.flow-item{padding:13px 16px;border:1.5px solid var(--border);border-radius:10px;background:var(--surface-alt);cursor:pointer;font-size:.85rem;font-weight:600;color:var(--text-main);display:flex;justify-content:space-between;align-items:center;gap:10px}
+body.dark .flow-item{background:#1a2236}
+.flow-item:hover{border-color:var(--blue-main);color:var(--blue-main)}
+.flow-item-count{font-size:.68rem;font-weight:700;color:var(--text-muted);white-space:nowrap}
+.flow-empty{text-align:center;padding:30px 14px;color:var(--text-muted);font-size:.82rem}
+.course-summary-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:22px;box-shadow:var(--shadow-md);margin-bottom:18px}
+body.dark .course-summary-card{background:#161b27}
+.course-summary-title{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text-main)}
+.course-summary-sub{font-size:.8rem;color:var(--text-muted);margin-top:2px}
+.course-summary-count{font-size:.74rem;font-weight:700;color:var(--blue-main);margin-top:10px}
+.qty-btn-row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.qty-btn{padding:9px 16px;border:1.5px solid var(--border);border-radius:9px;background:var(--surface-alt);font-size:.8rem;font-weight:700;color:var(--text-muted);cursor:pointer}
+.qty-btn.selected{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
+body.dark .qty-btn{background:#1a2236}
+.mode-toggle{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.mode-btn{padding:12px 10px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface-alt);font-size:.78rem;font-weight:700;color:var(--text-muted);cursor:pointer;text-align:center}
+body.dark .mode-btn{background:#1a2236}
+.mode-btn.selected{background:var(--blue-main);color:#fff;border-color:var(--blue-main)}
+.mode-btn small{display:block;font-weight:400;font-size:.66rem;margin-top:2px;opacity:.85}
+
 
 /* ── EXAM SCREEN ── */
 #examScreen{display:none}
@@ -607,24 +650,70 @@ body.dark .weak-topic-tip{background:#1a2236}
 <!-- ACHIEVEMENT TOAST -->
 <div class="ach-toast" id="achToast"></div>
 
-<!-- ══════════════ SETUP SCREEN ══════════════ -->
-<div id="setupScreen">
+<!-- ══════════════ CBT HOME (category hub) ══════════════ -->
+<div id="cbtHomeScreen">
   <div class="setup-hero">
     <div class="setup-hero-inner">
       <div class="hero-badge">🎯 Free CBT Practice</div>
-      <h1>JAMB <span>CBT Practice</span></h1>
-      <p>Practice with real past questions. Timed exam with instant scoring, explanations and performance review.</p>
+      <h1>CBT <span>Practice</span></h1>
+      <p>Prepare for exams, practise your subjects and test your knowledge.</p>
     </div>
   </div>
   <div class="wrap">
-    <div class="user-banner" id="userBanner" style="display:none;max-width:640px;margin:20px auto 0">
-      <div class="user-banner-avatar" id="userAvatarWrap">👤</div>
+    <div class="user-banner" id="userBannerHome" style="display:none;max-width:640px;margin:20px auto 0">
+      <div class="user-banner-avatar" id="userAvatarWrapHome">👤</div>
       <div style="flex:1;min-width:0">
-        <div class="user-banner-name" id="userBannerName">Loading…</div>
+        <div class="user-banner-name" id="userBannerNameHome">Loading…</div>
         <div class="user-banner-sub">✅ Full access — scores saved automatically</div>
       </div>
       <button class="sign-out-link" onclick="cbtSignOut()">Sign Out</button>
     </div>
+
+    <div class="cbt-cat-grid">
+      <div class="cbt-cat-card" id="catCardUtme">
+        <div class="cbt-cat-icon">🎓</div>
+        <div class="cbt-cat-title">JAMB UTME</div>
+        <div class="cbt-cat-desc">Practise UTME subjects with timed and practice-based CBT questions.</div>
+        <div class="cbt-cat-count" id="catCountUtme">Checking availability…</div>
+        <button type="button" class="cbt-cat-btn" id="catBtnUtme" onclick="openJambHome()" disabled>Start JAMB Practice</button>
+      </div>
+      <div class="cbt-cat-card" id="catCardPostutme">
+        <div class="cbt-cat-icon">🏫</div>
+        <div class="cbt-cat-title">Post-UTME</div>
+        <div class="cbt-cat-desc">Prepare for institution-specific screening and Post-UTME tests.</div>
+        <div class="cbt-cat-count" id="catCountPostutme">Checking availability…</div>
+        <button type="button" class="cbt-cat-btn" id="catBtnPostutme" onclick="openPostutmeHome()" disabled>Explore Post-UTME</button>
+      </div>
+      <div class="cbt-cat-card" id="catCardCampus">
+        <div class="cbt-cat-icon">📘</div>
+        <div class="cbt-cat-title">Campus Courses</div>
+        <div class="cbt-cat-desc">Practise CBT questions for your university or polytechnic courses.</div>
+        <div class="cbt-cat-count" id="catCountCampus">Checking availability…</div>
+        <button type="button" class="cbt-cat-btn" id="catBtnCampus" onclick="openCampusHome()" disabled>Browse Campus CBTs</button>
+      </div>
+    </div>
+
+    <!-- Dashboard button for signed-in users -->
+    <div id="dashBtn" style="display:none;text-align:center;margin:-8px auto 32px;max-width:640px">
+      <button onclick="showDashboard()" style="background:none;border:1.5px solid var(--blue-main);color:var(--blue-main);padding:10px 20px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer">📊 View My Dashboard →</button>
+    </div>
+
+    <div class="dash-section" style="max-width:640px;margin:0 auto 32px">
+      <div class="dash-sec-title">💡 How CBT Practice Works</div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:.8rem;color:var(--text-muted);line-height:1.6">
+        <div><strong style="color:var(--text-main)">1. Choose</strong> — pick JAMB, Post-UTME or a Campus Course.</div>
+        <div><strong style="color:var(--text-main)">2. Practise</strong> — answer questions in Practice or timed Exam mode.</div>
+        <div><strong style="color:var(--text-main)">3. Submit</strong> — get an instant score and full review.</div>
+        <div><strong style="color:var(--text-main)">4. Improve</strong> — see your weak topics and practise again.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ JAMB SETUP SCREEN ══════════════ -->
+<div id="setupScreen" style="display:none">
+  <div class="wrap">
+    <div style="max-width:640px;margin:20px auto 0" class="flow-back" onclick="showCbtHome()">← Back to CBT Home</div>
     <div class="setup-card">
       <div class="setup-title">📚 Select Your Subjects</div>
       <div class="subject-grid" id="subjectGrid">
@@ -640,6 +729,10 @@ body.dark .weak-topic-tip{background:#1a2236}
         <button class="subj-btn" data-subj="agric" onclick="toggleSubject(this)"><span class="subj-icon">🌾</span>Agriculture</button>
         <button class="subj-btn" data-subj="crk" onclick="toggleSubject(this)"><span class="subj-icon">✝️</span>CRK</button>
         <button class="subj-btn" data-subj="accounts" onclick="toggleSubject(this)"><span class="subj-icon">💼</span>Fin. Accounting</button>
+      </div>
+      <div class="mode-toggle">
+        <button type="button" class="mode-btn selected" id="modeBtnPractice" onclick="setCbtMode('practice')">Practice<small>See answers as you go</small></button>
+        <button type="button" class="mode-btn" id="modeBtnExam" onclick="setCbtMode('exam')">Exam<small>Results only at the end</small></button>
       </div>
       <div class="options-row">
         <div class="option-group">
@@ -679,12 +772,74 @@ body.dark .weak-topic-tip{background:#1a2236}
         <button onclick="showAuthOverlay()" style="background:none;border:none;color:var(--blue-main);font-weight:700;cursor:pointer;font-size:.76rem">Sign in for full access →</button>
       </div>
     </div>
-    <!-- Dashboard button for signed-in users -->
-    <div id="dashBtn" style="display:none;text-align:center;margin:-12px auto 32px;max-width:640px">
-      <button onclick="showDashboard()" style="background:none;border:1.5px solid var(--blue-main);color:var(--blue-main);padding:10px 20px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem;cursor:pointer">📊 View My Dashboard →</button>
+  </div>
+</div>
+
+<!-- ══════════════ POST-UTME FLOW ══════════════ -->
+<div id="postutmeScreen" style="display:none">
+  <div class="wrap" style="padding-top:24px">
+    <div class="flow-back" onclick="showCbtHome()">← Back to CBT Home</div>
+    <div class="setup-card">
+      <div class="setup-title">🏫 Select Institution</div>
+      <input type="text" class="flow-search" id="postutmeSearch" placeholder="Search institution…" oninput="renderPostutmeInstitutions()">
+      <div class="flow-list" id="postutmeInstList"></div>
+    </div>
+    <div id="postutmeSubjectCard" style="display:none">
+      <div class="setup-card">
+        <div class="setup-title" id="postutmeInstTitle">Select Subject</div>
+        <div class="flow-list" id="postutmeSubjList" style="max-height:none"></div>
+      </div>
+      <div class="setup-card" id="postutmeConfigCard" style="display:none">
+        <div class="setup-title">Practice Options</div>
+        <div class="course-summary-count" id="postutmeQCount"></div>
+        <div class="qty-btn-row" id="postutmeQtyRow"></div>
+        <div class="option-group" style="margin:14px 0"><label>Time</label>
+          <select id="postutmeTimeLimit"><option value="0">No Timer</option><option value="15">15 Minutes</option><option value="30" selected>30 Minutes</option></select>
+        </div>
+        <div class="mode-toggle">
+          <button type="button" class="mode-btn selected" id="postutmeModeBtnPractice" onclick="setCbtMode('practice')">Practice<small>See answers as you go</small></button>
+          <button type="button" class="mode-btn" id="postutmeModeBtnExam" onclick="setCbtMode('exam')">Exam<small>Results only at the end</small></button>
+        </div>
+        <button type="button" class="start-btn" id="postutmeStartBtn" onclick="checkAuthThenStart()">Start Practice →</button>
+        <div id="postutmeSetupStatus" style="text-align:center;margin-top:10px;font-size:.78rem;color:var(--text-muted)"></div>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- ══════════════ CAMPUS COURSE FLOW ══════════════ -->
+<div id="campusScreen" style="display:none">
+  <div class="wrap" style="padding-top:24px">
+    <div class="flow-back" onclick="showCbtHome()">← Back to CBT Home</div>
+    <div class="flow-breadcrumb" id="campusBreadcrumb"></div>
+    <input type="text" class="flow-search" id="campusSearch" placeholder="Search institution, faculty, department or course…" oninput="renderCampusStep()" style="display:none">
+    <div class="setup-card">
+      <div class="setup-title" id="campusStepTitle">Select Institution</div>
+      <div class="flow-list" id="campusList"></div>
+    </div>
+    <div id="campusCourseCard" style="display:none">
+      <div class="course-summary-card">
+        <div class="course-summary-title" id="campusCourseTitle"></div>
+        <div class="course-summary-sub" id="campusCourseSub"></div>
+        <div class="course-summary-count" id="campusQCount"></div>
+      </div>
+      <div class="setup-card">
+        <div class="setup-title">Practice Options</div>
+        <div class="qty-btn-row" id="campusQtyRow"></div>
+        <div class="option-group" style="margin:14px 0"><label>Time</label>
+          <select id="campusTimeLimit"><option value="0" selected>No Timer</option><option value="15">15 Minutes</option><option value="30">30 Minutes</option></select>
+        </div>
+        <div class="mode-toggle">
+          <button type="button" class="mode-btn selected" id="campusModeBtnPractice" onclick="setCbtMode('practice')">Practice<small>See answers as you go</small></button>
+          <button type="button" class="mode-btn" id="campusModeBtnExam" onclick="setCbtMode('exam')">Exam<small>Results only at the end</small></button>
+        </div>
+        <button type="button" class="start-btn" id="campusStartBtn" onclick="checkAuthThenStart()">Start CBT →</button>
+        <div id="campusSetupStatus" style="text-align:center;margin-top:10px;font-size:.78rem;color:var(--text-muted)"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- ══════════════ DASHBOARD SCREEN ══════════════ -->
 <div id="dashboardScreen">
@@ -877,6 +1032,7 @@ body.dark .weak-topic-tip{background:#1a2236}
         <div class="progress-label" id="progressLabel">Question 1 of 40</div>
         <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
       </div>
+      <span class="q-diff-badge" id="examModeTag" style="background:var(--blue-light);color:var(--blue-main)">Practice Mode</span>
       <div class="timer-box" id="timerBox">
         <span>⏱</span><span class="timer-num" id="timerNum">30:00</span>
       </div>
@@ -921,6 +1077,7 @@ body.dark .weak-topic-tip{background:#1a2236}
       </div>
     </div>
     <div class="result-grade" id="resultGrade">—</div>
+    <div class="result-sub" id="resultTypeLabel" style="font-size:.72rem;color:rgba(255,255,255,.6);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px"></div>
     <div class="result-sub" id="resultSub"></div>
     <div class="result-stats" id="resultStats"></div>
   </div>
@@ -985,7 +1142,7 @@ body.dark .weak-topic-tip{background:#1a2236}
 <!-- Firebase App + Firestore -->
 <script type="module">
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-import{getFirestore,collection,getDocs,doc,setDoc,getDoc,updateDoc,increment,serverTimestamp,arrayUnion,onSnapshot}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import{getFirestore,collection,getDocs,doc,setDoc,getDoc,updateDoc,increment,serverTimestamp,arrayUnion,onSnapshot,query,where,orderBy,limit,getCountFromServer}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 import{getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signInWithPopup,GoogleAuthProvider,OAuthProvider,signOut,sendPasswordResetEmail,updateProfile,sendEmailVerification,RecaptchaVerifier,signInWithPhoneNumber}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
 const fbConfig={apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media',storageBucket:'big-quams-media.firebasestorage.app',messagingSenderId:'383186323859',appId:'1:383186323859:web:826d6b9977cfa947730066',measurementId:'G-1FQ3TZXPV9'};
@@ -996,6 +1153,8 @@ const gProvider=new GoogleAuthProvider();
 
 // Expose to global JS
 window._db=db; window._collection=collection; window._getDocs=getDocs;
+window._query=query; window._where=where; window._orderBy=orderBy; window._limit=limit;
+window._getCountFromServer=getCountFromServer;
 window._doc=doc; window._setDoc=(ref,data,opts)=>setDoc(ref,data,opts||{}); window._getDoc=getDoc;
 window._updateDoc=updateDoc; window._increment=increment;
 window._serverTimestamp=serverTimestamp; window._arrayUnion=arrayUnion; window._onSnapshot=onSnapshot;
@@ -1024,6 +1183,353 @@ const SITE_URL='https://bigquamsmedia.com.ng/cbt.html';
 const SUBJ_LABELS={english:'Use of English',maths:'Mathematics',physics:'Physics',chemistry:'Chemistry',biology:'Biology',economics:'Economics',gov:'Government',literature:'Literature in English',geography:'Geography',agric:'Agricultural Science',crk:'CRK',accounts:'Financial Accounting',commerce:'Commerce',history:'History',ict:'ICT'};
 const SUBJ_ICONS={english:'📝',maths:'🔢',physics:'⚡',chemistry:'🧪',biology:'🌿',economics:'📊',gov:'🏛️',literature:'📖',geography:'🌍',agric:'🌾',crk:'✝️',accounts:'💼',commerce:'🛒',history:'🏺',ict:'💻'};
 
+// ── CBT ENGINE CONFIG (site-wide defaults — change here, not throughout the code) ──
+const CBT_CONFIG={
+  maxJambSubjects:4,
+  guestLimit:GUEST_LIMIT,
+  scoring:{correct:1,wrong:0,unanswered:0},
+  gradeBands:[
+    {min:80,grade:'Excellent! 🌟',color:'#10b981'},
+    {min:65,grade:'Very Good 👍',color:'#3b82f6'},
+    {min:50,grade:'Average 📈',color:'#f59e0b'},
+    {min:40,grade:'Keep Trying 💪',color:'#f97316'},
+    {min:0,grade:'Need More Practice 📚',color:'#ef4444'}
+  ]
+};
+
+// ── CBT CONTEXT — describes what the current setup/exam actually is.
+// This is what every generic engine function (loadQuestionsFor, renderQuestion,
+// submitExam, buildScoreCard, saveSessionToFirestore…) reads from, instead of
+// each of them separately assuming "this is JAMB". Set right before an exam
+// starts by openJambHome/openPostutmeHome/openCampusHome + their Start buttons. ──
+let currentCbtContext={
+  examType:'utme', category:'jamb_utme', mode:'practice',
+  label:'JAMB UTME Practice',
+  subject:null, subjects:null,
+  institutionId:null, institutionName:null,
+  faculty:null, department:null, level:null,
+  courseCode:null, courseTitle:null, topic:null
+};
+
+// Backward-compatible normalizer: legacy question docs (pre-multi-category
+// schema) have no examType/category field at all — treat those as JAMB UTME.
+function normalizeQuestion(d){
+  return {...d, examType:d.examType||'utme', category:d.category||'jamb_utme'};
+}
+
+function escapeHtml(str){
+  return String(str==null?'':str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ── CBT MODE TOGGLE (Practice vs Exam — shared across all 3 category screens) ──
+function setCbtMode(mode){
+  currentCbtContext.mode=mode;
+  [['modeBtnPractice','modeBtnExam'],['postutmeModeBtnPractice','postutmeModeBtnExam'],['campusModeBtnPractice','campusModeBtnExam']].forEach(([p,e])=>{
+    const pb=document.getElementById(p),eb=document.getElementById(e);
+    if(pb) pb.classList.toggle('selected',mode==='practice');
+    if(eb) eb.classList.toggle('selected',mode==='exam');
+  });
+}
+window.setCbtMode=setCbtMode;
+
+function selectQtyBtn(btn,rowId){
+  document.querySelectorAll('#'+rowId+' .qty-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+window.selectQtyBtn=selectQtyBtn;
+
+// ── DYNAMIC CATEGORY AVAILABILITY (aggregate count queries — no document downloads) ──
+async function discoverCbtAvailability(){
+  if(!window._db) await new Promise(r=>setTimeout(r,1500));
+  if(!window._db){
+    ['catCountUtme','catCountPostutme','catCountCampus'].forEach(id=>{document.getElementById(id).textContent='Could not connect — try refreshing.';});
+    return;
+  }
+  const db=window._db,col=window._collection,q=window._query,where=window._where,getCount=window._getCountFromServer;
+  const checks=[
+    {examType:'utme',btnId:'catBtnUtme',countId:'catCountUtme'},
+    {examType:'postutme',btnId:'catBtnPostutme',countId:'catCountPostutme'},
+    {examType:'campus_course',btnId:'catBtnCampus',countId:'catCountCampus'}
+  ];
+  for(const c of checks){
+    try{
+      let count=0;
+      const snap=await getCount(q(col(db,'cbt_questions'),where('examType','==',c.examType)));
+      count=snap.data().count;
+      if(c.examType==='utme'&&count===0){
+        // Backward compatibility: pre-migration questions have no examType field
+        // at all, so the query above legitimately finds nothing for them. Rather
+        // than scanning the whole collection just to check "is it empty", we do
+        // a single limit(1) existence probe — negligible cost, and if the
+        // collection has ANY document we treat JAMB as available (documented
+        // migration strategy — see report).
+        const sampleSnap=await window._getDocs(q(col(db,'cbt_questions'),window._limit(1)));
+        count=sampleSnap.size;
+      }
+      const btn=document.getElementById(c.btnId),lbl=document.getElementById(c.countId);
+      if(count>0){
+        btn.disabled=false;
+        lbl.textContent=`${count} question${count===1?'':'s'} available`;
+      }else{
+        lbl.textContent=c.examType==='campus_course'
+          ?'Campus CBTs are coming soon. Check back when your school/course has been added.'
+          :c.examType==='postutme'
+            ?'Post-UTME questions are coming soon for your institution.'
+            :'No questions available yet.';
+      }
+    }catch(e){
+      console.warn('Availability check failed for',c.examType,e.message);
+      document.getElementById(c.countId).textContent='Could not check availability right now.';
+    }
+  }
+}
+
+// ── JAMB ──
+function openJambHome(){
+  currentCbtContext={...currentCbtContext,examType:'utme',category:'jamb_utme',subject:null,institutionId:null,institutionName:null,courseCode:null,courseTitle:null,faculty:null,department:null,level:null,topic:null};
+  hideAll();
+  document.getElementById('setupScreen').style.display='block';
+  document.getElementById('mainFooter').style.display='block';
+  history.replaceState(null,'','cbt.html?type=utme');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+window.openJambHome=openJambHome;
+
+// ── POST-UTME ──
+let _postutmeCache=null;
+async function openPostutmeHome(){
+  currentCbtContext={...currentCbtContext,examType:'postutme',category:'post_utme',subject:null,institutionId:null,institutionName:null};
+  hideAll();
+  document.getElementById('postutmeScreen').style.display='block';
+  document.getElementById('postutmeSubjectCard').style.display='none';
+  document.getElementById('mainFooter').style.display='block';
+  history.replaceState(null,'','cbt.html?type=postutme');
+  window.scrollTo({top:0,behavior:'smooth'});
+  const listEl=document.getElementById('postutmeInstList');
+  listEl.innerHTML='<div class="flow-empty">Loading institutions…</div>';
+  try{
+    if(!_postutmeCache){
+      const db=window._db,col=window._collection,q=window._query,where=window._where;
+      const snap=await window._getDocs(q(col(db,'cbt_questions'),where('examType','==','postutme')));
+      const docs=snap.docs.map(d=>normalizeQuestion({id:d.id,...d.data()}));
+      const byInst={};
+      docs.forEach(d=>{
+        if(!d.institutionId) return;
+        if(!byInst[d.institutionId]) byInst[d.institutionId]={id:d.institutionId,name:d.institutionName||d.institutionId,count:0};
+        byInst[d.institutionId].count++;
+      });
+      _postutmeCache={docs,institutions:Object.values(byInst).sort((a,b)=>a.name.localeCompare(b.name))};
+    }
+    renderPostutmeInstitutions();
+  }catch(e){
+    listEl.innerHTML=`<div class="flow-empty">Could not load Post-UTME institutions: ${escapeHtml(e.message)}. Please try again.</div>`;
+  }
+}
+window.openPostutmeHome=openPostutmeHome;
+
+function renderPostutmeInstitutions(){
+  const q=(document.getElementById('postutmeSearch').value||'').trim().toLowerCase();
+  const list=(_postutmeCache&&_postutmeCache.institutions)||[];
+  const filtered=list.filter(i=>i.name.toLowerCase().includes(q));
+  const el=document.getElementById('postutmeInstList');
+  if(!list.length){ el.innerHTML='<div class="flow-empty">No Post-UTME questions are currently available for any institution yet. Check back when your school has been added.</div>'; return; }
+  if(!filtered.length){ el.innerHTML='<div class="flow-empty">No institutions match your search.</div>'; return; }
+  el.innerHTML=filtered.map(i=>`<div class="flow-item" onclick="selectPostutmeInstitution('${i.id}')"><span>${escapeHtml(i.name)}</span><span class="flow-item-count">${i.count} question${i.count===1?'':'s'}</span></div>`).join('');
+}
+window.renderPostutmeInstitutions=renderPostutmeInstitutions;
+
+function selectPostutmeInstitution(instId){
+  const inst=_postutmeCache.institutions.find(i=>i.id===instId);
+  if(!inst) return;
+  currentCbtContext.institutionId=inst.id;
+  currentCbtContext.institutionName=inst.name;
+  document.getElementById('postutmeInstTitle').textContent='Select Subject — '+inst.name;
+  const docsForInst=_postutmeCache.docs.filter(d=>d.institutionId===instId);
+  const bySubj={};
+  docsForInst.forEach(d=>{
+    const s=d.subject||'general';
+    if(!bySubj[s]) bySubj[s]={key:s,count:0};
+    bySubj[s].count++;
+  });
+  const subjList=Object.values(bySubj).sort((a,b)=>b.count-a.count);
+  document.getElementById('postutmeSubjList').innerHTML=subjList.map(s=>
+    `<div class="flow-item" onclick="selectPostutmeSubject('${s.key}')"><span>${escapeHtml(SUBJ_LABELS[s.key]||s.key)}</span><span class="flow-item-count">${s.count} question${s.count===1?'':'s'}</span></div>`
+  ).join('');
+  document.getElementById('postutmeSubjectCard').style.display='block';
+  document.getElementById('postutmeConfigCard').style.display='none';
+  history.replaceState(null,'','cbt.html?type=postutme&school='+encodeURIComponent(instId));
+  window.scrollTo({top:document.getElementById('postutmeSubjectCard').offsetTop-80,behavior:'smooth'});
+}
+window.selectPostutmeInstitution=selectPostutmeInstitution;
+
+function selectPostutmeSubject(subjKey){
+  currentCbtContext.subject=subjKey;
+  const pool=_postutmeCache.docs.filter(d=>d.institutionId===currentCbtContext.institutionId&&(d.subject||'general')===subjKey);
+  const total=pool.length;
+  document.getElementById('postutmeQCount').textContent=`${total} question${total===1?'':'s'} available`;
+  const opts=[10,20,total].filter((v,i,arr)=>v>0&&v<=total&&arr.indexOf(v)===i);
+  document.getElementById('postutmeQtyRow').innerHTML=opts.map((n,i)=>
+    `<button type="button" class="qty-btn${i===opts.length-1?' selected':''}" data-qty="${n}" onclick="selectQtyBtn(this,'postutmeQtyRow')">${n===total?'All ('+total+')':n+' Questions'}</button>`
+  ).join('');
+  document.getElementById('postutmeConfigCard').style.display='block';
+  document.getElementById('postutmeSetupStatus').textContent='';
+  window.scrollTo({top:document.getElementById('postutmeConfigCard').offsetTop-80,behavior:'smooth'});
+}
+window.selectPostutmeSubject=selectPostutmeSubject;
+
+// ── CAMPUS COURSES ──
+let _campusCache=null;
+let _campusPath={institutionId:null,institutionName:null,faculty:null,department:null,level:null};
+let _campusSelectedCourseDocs=null;
+
+async function openCampusHome(){
+  currentCbtContext={...currentCbtContext,examType:'campus_course',category:'campus'};
+  _campusPath={institutionId:null,institutionName:null,faculty:null,department:null,level:null};
+  hideAll();
+  document.getElementById('campusScreen').style.display='block';
+  document.getElementById('campusCourseCard').style.display='none';
+  document.getElementById('campusSearch').style.display='block';
+  document.getElementById('campusSearch').value='';
+  document.getElementById('mainFooter').style.display='block';
+  history.replaceState(null,'','cbt.html?type=campus');
+  window.scrollTo({top:0,behavior:'smooth'});
+  const listEl=document.getElementById('campusList');
+  listEl.innerHTML='<div class="flow-empty">Loading…</div>';
+  try{
+    if(!_campusCache){
+      const db=window._db,col=window._collection,q=window._query,where=window._where;
+      const snap=await window._getDocs(q(col(db,'cbt_questions'),where('examType','==','campus_course')));
+      _campusCache={docs:snap.docs.map(d=>normalizeQuestion({id:d.id,...d.data()}))};
+    }
+    renderCampusStep();
+  }catch(e){
+    listEl.innerHTML=`<div class="flow-empty">Could not load campus courses: ${escapeHtml(e.message)}. Please try again.</div>`;
+  }
+}
+window.openCampusHome=openCampusHome;
+
+function campusFilteredDocs(){
+  return (_campusCache?_campusCache.docs:[]).filter(d=>
+    (!_campusPath.institutionId||d.institutionId===_campusPath.institutionId)&&
+    (!_campusPath.faculty||d.faculty===_campusPath.faculty)&&
+    (!_campusPath.department||d.department===_campusPath.department)&&
+    (!_campusPath.level||d.level===_campusPath.level)
+  );
+}
+
+function campusGoBackOneLevel(){
+  if(_campusPath.level){_campusPath.level=null;}
+  else if(_campusPath.department){_campusPath.department=null;}
+  else if(_campusPath.faculty){_campusPath.faculty=null;}
+  else if(_campusPath.institutionId){_campusPath.institutionId=null;_campusPath.institutionName=null;}
+  document.getElementById('campusCourseCard').style.display='none';
+  renderCampusStep();
+}
+window.campusGoBackOneLevel=campusGoBackOneLevel;
+
+function renderCampusStep(){
+  const docs=campusFilteredDocs();
+  const searchQ=(document.getElementById('campusSearch').value||'').trim().toLowerCase();
+  const bc=[];
+  if(_campusPath.institutionName) bc.push(`<b>${escapeHtml(_campusPath.institutionName)}</b>`);
+  if(_campusPath.faculty) bc.push(escapeHtml(_campusPath.faculty));
+  if(_campusPath.department) bc.push(escapeHtml(_campusPath.department));
+  if(_campusPath.level) bc.push(escapeHtml(_campusPath.level));
+  const bcEl=document.getElementById('campusBreadcrumb');
+  bcEl.innerHTML=bc.length?(bc.join(' → ')+' &nbsp; <a href="javascript:void(0)" onclick="campusGoBackOneLevel()" style="color:var(--blue-main);font-weight:700">change</a>'):'';
+
+  let field,title,groupFn;
+  if(!_campusPath.institutionId){ field='institutionId'; title='Select Institution'; groupFn=d=>({id:d.institutionId,name:d.institutionName||d.institutionId}); }
+  else if(!_campusPath.faculty){ field='faculty'; title='Select Faculty/School'; groupFn=d=>({id:d.faculty,name:d.faculty||'General'}); }
+  else if(!_campusPath.department){ field='department'; title='Select Department'; groupFn=d=>({id:d.department,name:d.department||'General'}); }
+  else if(!_campusPath.level){ field='level'; title='Select Level'; groupFn=d=>({id:d.level,name:d.level||'General'}); }
+  else { renderCampusCourseList(docs,searchQ); return; }
+
+  document.getElementById('campusStepTitle').textContent=title;
+  document.getElementById('campusCourseCard').style.display='none';
+  const groups={};
+  docs.forEach(d=>{
+    if(!d[field]) return;
+    const g=groupFn(d);
+    if(!groups[g.id]) groups[g.id]={...g,count:0};
+    groups[g.id].count++;
+  });
+  let list=Object.values(groups).sort((a,b)=>a.name.localeCompare(b.name));
+  if(searchQ) list=list.filter(g=>g.name.toLowerCase().includes(searchQ));
+  const el=document.getElementById('campusList');
+  if(!Object.keys(groups).length){
+    el.innerHTML=`<div class="flow-empty">No CBT questions have been uploaded for this selection yet. Campus CBTs are coming soon — check back when your school/course has been added.</div>`;
+    return;
+  }
+  if(!list.length){ el.innerHTML='<div class="flow-empty">No matches for your search.</div>'; return; }
+  el.innerHTML=list.map(g=>`<div class="flow-item" onclick="selectCampusStep('${field}',${JSON.stringify(g.id)},${JSON.stringify(g.name)})"><span>${escapeHtml(g.name)}</span><span class="flow-item-count">${g.count} question${g.count===1?'':'s'}</span></div>`).join('');
+}
+window.renderCampusStep=renderCampusStep;
+
+function selectCampusStep(field,id,name){
+  if(field==='institutionId'){_campusPath.institutionId=id;_campusPath.institutionName=name;}
+  else if(field==='faculty'){_campusPath.faculty=id;}
+  else if(field==='department'){_campusPath.department=id;}
+  else if(field==='level'){_campusPath.level=id;}
+  document.getElementById('campusSearch').value='';
+  renderCampusStep();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+window.selectCampusStep=selectCampusStep;
+
+function renderCampusCourseList(docs,searchQ){
+  document.getElementById('campusStepTitle').textContent='Select Course';
+  document.getElementById('campusCourseCard').style.display='none';
+  const byCourse={};
+  docs.forEach(d=>{
+    if(!d.courseCode) return;
+    if(!byCourse[d.courseCode]) byCourse[d.courseCode]={code:d.courseCode,title:d.courseTitle||'',count:0};
+    byCourse[d.courseCode].count++;
+  });
+  let list=Object.values(byCourse).sort((a,b)=>a.code.localeCompare(b.code));
+  if(searchQ) list=list.filter(c=>c.code.toLowerCase().includes(searchQ)||c.title.toLowerCase().includes(searchQ));
+  const el=document.getElementById('campusList');
+  if(!Object.keys(byCourse).length){ el.innerHTML='<div class="flow-empty">No CBT questions have been uploaded for this course yet.</div>'; return; }
+  if(!list.length){ el.innerHTML='<div class="flow-empty">No matches for your search.</div>'; return; }
+  el.innerHTML=list.map(c=>`<div class="flow-item" onclick="selectCampusCourse(${JSON.stringify(c.code)})"><span>${escapeHtml(c.code)}${c.title?' — '+escapeHtml(c.title):''}</span><span class="flow-item-count">${c.count} question${c.count===1?'':'s'}</span></div>`).join('');
+}
+
+function selectCampusCourse(code){
+  const docs=campusFilteredDocs().filter(d=>d.courseCode===code);
+  _campusSelectedCourseDocs=docs;
+  currentCbtContext.institutionId=_campusPath.institutionId;
+  currentCbtContext.institutionName=_campusPath.institutionName;
+  currentCbtContext.faculty=_campusPath.faculty;
+  currentCbtContext.department=_campusPath.department;
+  currentCbtContext.level=_campusPath.level;
+  currentCbtContext.courseCode=code;
+  currentCbtContext.courseTitle=docs[0]?(docs[0].courseTitle||''):'';
+  document.getElementById('campusCourseTitle').textContent=code+(currentCbtContext.courseTitle?' — '+currentCbtContext.courseTitle:'');
+  document.getElementById('campusCourseSub').textContent=[_campusPath.institutionName,_campusPath.faculty,_campusPath.department,_campusPath.level].filter(Boolean).join(' · ');
+  const total=docs.length;
+  document.getElementById('campusQCount').textContent=`${total} question${total===1?'':'s'} available`;
+  const opts=[10,20,total].filter((v,i,arr)=>v>0&&v<=total&&arr.indexOf(v)===i);
+  document.getElementById('campusQtyRow').innerHTML=opts.map((n,i)=>
+    `<button type="button" class="qty-btn${i===opts.length-1?' selected':''}" data-qty="${n}" onclick="selectQtyBtn(this,'campusQtyRow')">${n===total?'All ('+total+')':n+' Questions'}</button>`
+  ).join('');
+  document.getElementById('campusCourseCard').style.display='block';
+  document.getElementById('campusSetupStatus').textContent='';
+  window.scrollTo({top:document.getElementById('campusCourseCard').offsetTop-80,behavior:'smooth'});
+}
+window.selectCampusCourse=selectCampusCourse;
+
+// ── URL STATE ──
+function applyUrlState(){
+  const params=new URLSearchParams(location.search);
+  const type=params.get('type');
+  if(type==='utme') openJambHome();
+  else if(type==='postutme') openPostutmeHome();
+  else if(type==='campus') openCampusHome();
+}
+
+
+
+
 // ── ACHIEVEMENTS DEFINITION ──
 const ACHIEVEMENTS=[
   {id:'first_session',icon:'🎯',name:'First Step',desc:'Complete your first practice session'},
@@ -1031,7 +1537,7 @@ const ACHIEVEMENTS=[
   {id:'score_100',icon:'💯',name:'Perfect Score',desc:'Score 100% in any session'},
   {id:'sessions_5',icon:'🔥',name:'On Fire',desc:'Complete 5 practice sessions'},
   {id:'sessions_10',icon:'⚡',name:'Dedicated',desc:'Complete 10 practice sessions'},
-  {id:'sessions_25',icon:'👑',name:'JAMB Champion',desc:'Complete 25 practice sessions'},
+  {id:'sessions_25',icon:'👑',name:'CBT Champion',desc:'Complete 25 practice sessions'},
   {id:'streak_3',icon:'📅',name:'3-Day Streak',desc:'Practise 3 days in a row'},
   {id:'streak_7',icon:'🗓️',name:'Weekly Warrior',desc:'Practise 7 days in a row'},
   {id:'referral_1',icon:'🤝',name:'Team Player',desc:'Refer your first classmate'},
@@ -1270,7 +1776,7 @@ function checkReferralInURL(myUid){
 }
 
 function updateUserUI(user){
-  const banner=document.getElementById('userBanner');
+  const banner=document.getElementById('userBannerHome');
   const notice=document.getElementById('guestNotice');
   const dashBtnEl=document.getElementById('dashBtn');
   if(user){
@@ -1278,8 +1784,8 @@ function updateUserUI(user){
     if(banner){
       banner.style.display='flex';
       const nick=(userProfile&&userProfile.nickname)||user.displayName||user.email.split('@')[0];
-      document.getElementById('userBannerName').textContent=nick;
-      const avatarWrap=document.getElementById('userAvatarWrap');
+      document.getElementById('userBannerNameHome').textContent=nick;
+      const avatarWrap=document.getElementById('userAvatarWrapHome');
       if(user.photoURL) avatarWrap.innerHTML=`<img src="${user.photoURL}" alt="" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #10b981">`;
     }
     if(notice) notice.style.display='none';
@@ -1310,15 +1816,23 @@ async function showDashboard(){
 window.showDashboard=showDashboard;
 
 function backToSetup(){
-  hideAll();
-  document.getElementById('setupScreen').style.display='block';
-  document.getElementById('mainFooter').style.display='block';
+  showCbtHome();
 }
 window.backToSetup=backToSetup;
 
+function showCbtHome(){
+  hideAll();
+  document.getElementById('cbtHomeScreen').style.display='block';
+  document.getElementById('mainFooter').style.display='block';
+  history.replaceState(null,'','cbt.html');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+window.showCbtHome=showCbtHome;
+
 function hideAll(){
-  ['setupScreen','dashboardScreen','examScreen','resultScreen'].forEach(id=>{
-    document.getElementById(id).style.display='none';
+  ['cbtHomeScreen','setupScreen','postutmeScreen','campusScreen','dashboardScreen','examScreen','resultScreen'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.style.display='none';
   });
 }
 
@@ -1422,7 +1936,7 @@ function buildSubjectCats(p){
 }
 
 function quickStart(subj){
-  backToSetup();
+  openJambHome();
   // deselect all, select this one
   document.querySelectorAll('.subj-btn').forEach(b=>{
     b.classList.remove('selected');
@@ -1442,7 +1956,7 @@ function buildHistory(p){
   document.getElementById('historyList').innerHTML=hist.map(s=>{
     const pct=s.pct||0;
     const color=pct>=80?'#10b981':pct>=65?'#3b82f6':pct>=50?'#f59e0b':'#ef4444';
-    const subj=s.subjects?s.subjects.map(x=>SUBJ_LABELS[x]||x).join(', '):'Mixed';
+    const subj=s.label?s.label:(s.subjects?s.subjects.map(x=>SUBJ_LABELS[x]||x).join(', '):'Mixed');
     return`<div class="history-item">
       <div class="history-score-badge" style="background:${color}22;border:2px solid ${color}20">
         <span style="color:${color};font-size:.72rem;font-weight:800">${pct}%</span>
@@ -1500,7 +2014,7 @@ async function saveNickname(){
     if(userProfile) userProfile.nickname=nick;
     document.getElementById('nickModal').style.display='none';
     document.getElementById('dashNick').innerHTML=nick+`<button class="nick-edit-btn" onclick="openNickModal()">✏️ Edit</button>`;
-    document.getElementById('userBannerName').textContent=nick;
+    const _ubn=document.getElementById('userBannerNameHome'); if(_ubn) _ubn.textContent=nick;
   }catch(e){alert('Could not save nickname. Try again.');}
 }
 window.saveNickname=saveNickname;
@@ -1777,16 +2291,17 @@ window.cbtSignOut=cbtSignOut;
 // ── SUBJECT SELECTION ──
 function toggleSubject(btn){
   const s=btn.getAttribute('data-subj');
+  const max=CBT_CONFIG.maxJambSubjects;
   if(btn.classList.contains('selected')){
     if(selectedSubjects.length<=1) return;
     btn.classList.remove('selected');
     selectedSubjects=selectedSubjects.filter(x=>x!==s);
   } else {
-    if(selectedSubjects.length>=4){alert('JAMB allows maximum 4 subjects.');return;}
+    if(selectedSubjects.length>=max){alert(`JAMB allows a maximum of ${max} subjects.`);return;}
     btn.classList.add('selected');
     selectedSubjects.push(s);
   }
-  document.getElementById('setupStatus').textContent=selectedSubjects.length+' subject'+(selectedSubjects.length>1?'s':'')+' selected (max 4)';
+  document.getElementById('setupStatus').textContent=selectedSubjects.length+' subject'+(selectedSubjects.length>1?'s':'')+` selected (max ${max})`;
 }
 window.toggleSubject=toggleSubject;
 
@@ -1814,48 +2329,90 @@ window.closeAuthAsGuest=function(){
   }
 };
 
+let examStartTime=0;
+
 async function startExam(){
-  const btn=document.getElementById('startBtn');
+  const isJamb=currentCbtContext.examType==='utme';
+  const isPostutme=currentCbtContext.examType==='postutme';
+  const btnId=isJamb?'startBtn':isPostutme?'postutmeStartBtn':'campusStartBtn';
+  const statusId=isJamb?'setupStatus':isPostutme?'postutmeSetupStatus':'campusSetupStatus';
+  const defaultLabel=isJamb?'🎯 Start Practice Exam →':isPostutme?'Start Practice →':'Start CBT →';
+  const btn=document.getElementById(btnId);
+  const statusEl=document.getElementById(statusId);
   btn.disabled=true;btn.textContent='Loading questions…';
-  document.getElementById('setupStatus').textContent='Fetching questions from database…';
-  const maxQ=!cbtUser?GUEST_LIMIT:parseInt(document.getElementById('qCount').value);
+  statusEl.textContent='Fetching questions from database…';
+  let pool=[],mins=0,requestedMax=Infinity;
   try{
-    if(!window._db) await new Promise(r=>setTimeout(r,1500));
-    const db=window._db,col=window._collection,gDocs=window._getDocs;
-    if(!db) throw new Error('Firebase not ready');
-    const snap=await gDocs(col(db,'cbt_questions'));
-    allQuestions=snap.docs.map(d=>({id:d.id,...d.data()}));
-    const diff=document.getElementById('difficulty').value;
-    let pool=allQuestions.filter(q=>selectedSubjects.includes(q.subject));
-    if(diff) pool=pool.filter(q=>q.difficulty===diff);
+    if(isJamb){
+      if(!window._db) await new Promise(r=>setTimeout(r,1500));
+      const db=window._db,col=window._collection,gDocs=window._getDocs,q=window._query,where=window._where;
+      if(!db) throw new Error('Firebase not ready');
+      // Narrowed server-side query by subject (already-existing field, so this
+      // works for both legacy and newly-tagged docs) instead of downloading the
+      // whole collection.
+      const snap=await gDocs(q(col(db,'cbt_questions'),where('subject','in',selectedSubjects.slice(0,10))));
+      let all=snap.docs.map(d=>normalizeQuestion({id:d.id,...d.data()})).filter(d=>d.examType==='utme');
+      const diff=document.getElementById('difficulty').value;
+      if(diff) all=all.filter(d=>d.difficulty===diff);
+      pool=all;
+      requestedMax=!cbtUser?GUEST_LIMIT:parseInt(document.getElementById('qCount').value);
+      mins=parseInt(document.getElementById('timeLimit').value);
+      currentCbtContext.subjects=[...selectedSubjects];
+      currentCbtContext.label='JAMB UTME Practice';
+      examStartSubjects=[...selectedSubjects];
+    } else if(isPostutme){
+      pool=(_postutmeCache?_postutmeCache.docs:[]).filter(d=>d.institutionId===currentCbtContext.institutionId&&(d.subject||'general')===currentCbtContext.subject);
+      const qtyBtn=document.querySelector('#postutmeQtyRow .qty-btn.selected');
+      requestedMax=!cbtUser?GUEST_LIMIT:(qtyBtn?parseInt(qtyBtn.dataset.qty):pool.length);
+      mins=parseInt(document.getElementById('postutmeTimeLimit').value);
+      currentCbtContext.label=`Post-UTME Practice — ${currentCbtContext.institutionName}`;
+      examStartSubjects=[];
+    } else {
+      pool=_campusSelectedCourseDocs||[];
+      const qtyBtn=document.querySelector('#campusQtyRow .qty-btn.selected');
+      requestedMax=!cbtUser?GUEST_LIMIT:(qtyBtn?parseInt(qtyBtn.dataset.qty):pool.length);
+      mins=parseInt(document.getElementById('campusTimeLimit').value);
+      currentCbtContext.label=`${currentCbtContext.courseCode}${currentCbtContext.courseTitle?' — '+currentCbtContext.courseTitle:''}`;
+      examStartSubjects=[];
+    }
     if(!pool.length){
-      document.getElementById('setupStatus').textContent='No questions found for those subjects/difficulty. Try different options or add questions via the admin panel.';
-      btn.disabled=false;btn.textContent='🎯 Start Practice Exam →';
+      statusEl.textContent='No questions found for this selection. Try different options or check back once more questions are published.';
+      btn.disabled=false;btn.textContent=defaultLabel;
       return;
     }
-    pool=pool.sort(()=>Math.random()-.5).slice(0,Math.min(maxQ,pool.length));
-    if(!cbtUser && pool.length>=GUEST_LIMIT){
-      document.getElementById('setupStatus').textContent=`⚠️ Guest mode: limited to ${GUEST_LIMIT} questions. Sign in for full access.`;
+    pool=pool.sort(()=>Math.random()-.5);
+    const availableCount=pool.length;
+    if(requestedMax<availableCount) pool=pool.slice(0,requestedMax);
+    if(!cbtUser && pool.length>GUEST_LIMIT) pool=pool.slice(0,GUEST_LIMIT);
+    if(requestedMax!==Infinity && requestedMax>availableCount){
+      statusEl.textContent=`Only ${availableCount} question${availableCount===1?'':'s'} are currently available — starting with all of them.`;
+    }
+    if(!cbtUser && availableCount>=GUEST_LIMIT){
+      statusEl.textContent=`⚠️ Guest mode: limited to ${GUEST_LIMIT} questions. Sign in for full access.`;
     }
     examQuestions=pool;
-    examStartSubjects=[...selectedSubjects];
-    userAnswers={};currentQ=0;
-    const mins=parseInt(document.getElementById('timeLimit').value);
+    userAnswers={};currentQ=0;flaggedQs.clear();
     secondsLeft=mins*60;
+    examStartTime=Date.now();
     hideAll();
     document.getElementById('examScreen').style.display='block';
     document.getElementById('mainFooter').style.display='none';
     document.body.style.overflow='';
+    const modeTag=document.getElementById('examModeTag');
+    modeTag.textContent=currentCbtContext.mode==='exam'?'Exam Mode':'Practice Mode';
     buildQGrid();
     renderQuestion(0);
+    document.getElementById('timerBox').style.display='flex';
+    document.getElementById('timerBox').classList.remove('urgent');
     if(mins>0) startTimer();
     else document.getElementById('timerBox').style.display='none';
   }catch(e){
-    document.getElementById('setupStatus').textContent='Error: '+e.message+'. Please refresh and try again.';
-    btn.disabled=false;btn.textContent='🎯 Start Practice Exam →';
+    statusEl.textContent='Error: '+e.message+'. Please refresh and try again.';
+    btn.disabled=false;btn.textContent=defaultLabel;
   }
 }
 window.startExam=startExam;
+
 
 // ── TIMER ──
 function startTimer(){
@@ -1926,22 +2483,24 @@ function selectAnswerByKey(optIdx){
 function renderQuestion(idx){
   currentQ=idx;
   const q=examQuestions[idx];
+  const isExam=currentCbtContext.mode==='exam';
   const total=examQuestions.length;
   const answered=Object.keys(userAnswers).length;
   document.getElementById('progressLabel').textContent=`Question ${idx+1} of ${total}`;
   document.getElementById('progressFill').style.width=((idx+1)/total*100)+'%';
   document.getElementById('answeredCount').textContent=`${answered}/${total} answered`;
   document.getElementById('prevBtn').disabled=idx===0;
-  document.getElementById('nextBtn').textContent=idx===total-1?'Review ✓':'Next →';
+  document.getElementById('nextBtn').textContent=idx===total-1?(isExam?'Review →':'Review ✓'):'Next →';
   updateDotClasses();
   updateFlagBtn();
   const ua=userAnswers[idx];
-  const revealed=ua!==undefined;
+  const revealed=!isExam && ua!==undefined; // exam mode never reveals correctness until submission
   const letters=['A','B','C','D'];
+  const subjOrTopicBadge=q.subject?`<span class="q-subj-badge">${SUBJ_LABELS[q.subject]||q.subject}</span>`:q.topic?`<span class="q-subj-badge">${escapeHtml(q.topic)}</span>`:q.courseCode?`<span class="q-subj-badge">${escapeHtml(q.courseCode)}</span>`:'';
   document.getElementById('questionCard').innerHTML=`
     <div class="q-meta">
       <span class="q-num-badge">Q${idx+1}</span>
-      <span class="q-subj-badge">${SUBJ_LABELS[q.subject]||q.subject}</span>
+      ${subjOrTopicBadge}
       ${q.difficulty?`<span class="q-diff-badge diff-${q.difficulty}">${q.difficulty}</span>`:''}
       ${q.year?`<span style="font-size:.64rem;color:var(--text-muted)">${q.year}</span>`:''}
       ${flaggedQs.has(idx)?'<span style="font-size:.7rem;color:#eab308;font-weight:700">🚩 Flagged</span>':''}
@@ -1964,17 +2523,21 @@ function renderQuestion(idx){
 window.renderQuestion=renderQuestion;
 
 function selectAnswer(qIdx,optIdx){
-  if(userAnswers[qIdx]!==undefined) return;
+  const isExam=currentCbtContext.mode==='exam';
+  // Practice mode locks the question once answered (so the reveal sticks);
+  // Exam mode allows changing your answer freely until you submit.
+  if(!isExam && userAnswers[qIdx]!==undefined) return;
   userAnswers[qIdx]=optIdx;
-  // Animate the selected option
-  const btn=document.querySelector(`[data-opt="${optIdx}"]`);
-  if(btn){
-    const q=examQuestions[qIdx];
-    const isCorrect=optIdx===q.ans;
-    btn.classList.add(isCorrect?'correct-anim':'wrong-anim');
+  if(!isExam){
+    const btn=document.querySelector(`[data-opt="${optIdx}"]`);
+    if(btn){
+      const q=examQuestions[qIdx];
+      const isCorrect=optIdx===q.ans;
+      btn.classList.add(isCorrect?'correct-anim':'wrong-anim');
+    }
   }
   renderQuestion(qIdx);
-  if(qIdx<examQuestions.length-1) setTimeout(()=>goQuestion(qIdx+1),1100);
+  if(!isExam && qIdx<examQuestions.length-1) setTimeout(()=>goQuestion(qIdx+1),1100);
 }
 window.selectAnswer=selectAnswer;
 
@@ -2002,19 +2565,17 @@ async function submitExam(){
   });
   const total=examQuestions.length;
   const pct=Math.round((correct/total)*100);
-  let grade,gradeColor;
-  if(pct>=80){grade='Excellent! 🌟';gradeColor='#10b981';}
-  else if(pct>=65){grade='Very Good 👍';gradeColor='#3b82f6';}
-  else if(pct>=50){grade='Average 📈';gradeColor='#f59e0b';}
-  else if(pct>=40){grade='Keep Trying 💪';gradeColor='#f97316';}
-  else{grade='Need More Practice 📚';gradeColor='#ef4444';}
+  const band=CBT_CONFIG.gradeBands.find(b=>pct>=b.min)||CBT_CONFIG.gradeBands[CBT_CONFIG.gradeBands.length-1];
+  const grade=band.grade,gradeColor=band.color;
+  const durationUsed=examStartTime?Math.round((Date.now()-examStartTime)/1000):0;
   // Save to Firestore if signed in
   if(cbtUser&&userProfile){
-    await saveSessionToFirestore(correct,wrong,skipped,pct);
+    await saveSessionToFirestore(correct,wrong,skipped,pct,total,durationUsed);
   }
   hideAll();
   document.getElementById('resultScreen').style.display='block';
   document.getElementById('mainFooter').style.display='block';
+  document.getElementById('resultTypeLabel').textContent=currentCbtContext.label;
   document.getElementById('scoreNum').textContent=correct;
   document.getElementById('scoreDenom').textContent='/ '+total;
   document.getElementById('resultGrade').textContent=grade;
@@ -2032,7 +2593,7 @@ async function submitExam(){
       const circumference=326.7;
       const offset=circumference-(circumference*(pct/100));
       arc.style.strokeDashoffset=offset;
-      arc.style.stroke=pct>=80?'#10b981':pct>=65?'#3b82f6':pct>=50?'#f59e0b':pct>=40?'#f97316':'#ef4444';
+      arc.style.stroke=gradeColor;
     }
   },200);
   if(cbtUser) document.getElementById('dashFromResult').style.display='flex';
@@ -2040,18 +2601,19 @@ async function submitExam(){
   const refCode=(cbtUser&&userProfile&&(userProfile.referralCode||generateReferralCode(userProfile.name||'')))||null;
   const refLink=refCode?`${SITE_URL}?ref=${refCode}`:'https://bigquamsmedia.com.ng/cbt.html';
   setTimeout(()=>{
-    buildScoreCard(correct,total,pct,grade,examStartSubjects,refLink);
-    buildShareCaption(pct,grade,examStartSubjects,refLink);
+    buildScoreCard(correct,total,pct,grade,refLink);
+    buildShareCaption(pct,grade,refLink);
   },100);
   // Review
   const letters=['A','B','C','D'];
   document.getElementById('reviewList').innerHTML=examQuestions.map((q,i)=>{
     const ua=userAnswers[i];
     const isCorrect=ua===q.ans;
+    const badge=q.subject?`<span class="q-subj-badge">${SUBJ_LABELS[q.subject]||q.subject}</span>`:q.topic?`<span class="q-subj-badge">${escapeHtml(q.topic)}</span>`:'';
     return`<div class="review-q">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
         <span style="font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:20px;background:${isCorrect?'#dcfce7':'#fee2e2'};color:${isCorrect?'#15803d':'#b91c1c'}">${isCorrect?'✅ Correct':'❌ Wrong'}</span>
-        <span class="q-subj-badge">${SUBJ_LABELS[q.subject]||q.subject}</span>
+        ${badge}
         ${flaggedQs.has(i)?'<span style="font-size:.7rem;color:#eab308">🚩 Flagged</span>':''}
       </div>
       <div class="review-q-text">Q${i+1}. ${q.q}</div>
@@ -2066,10 +2628,16 @@ async function submitExam(){
       ${q.exp?`<div class="review-exp">💡 ${q.exp}</div>`:''}
     </div>`;
   }).join('');
-  // ── WEAK TOPICS DETECTOR ──
-  buildWeakTopics();
+  // ── WEAK TOPICS DETECTOR (JAMB-subject-specific tips — see report) ──
+  const weakSection=document.getElementById('weakTopicsSection');
+  if(currentCbtContext.examType==='utme'){
+    buildWeakTopics();
+  } else if(weakSection){
+    weakSection.style.display='none';
+  }
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
 
 // ── WEAK TOPICS DETECTOR ──
 const TOPIC_TIPS={
@@ -2149,29 +2717,60 @@ function buildWeakTopics(){
   }).join('');
 }
 
-async function saveSessionToFirestore(correct,wrong,skipped,pct){
+async function saveSessionToFirestore(correct,wrong,skipped,pct,total,durationUsed){
   try{
     const uid=cbtUser.uid;
     const now=new Date().toISOString();
     const today=now.substring(0,10);
+    const isJamb=currentCbtContext.examType==='utme';
     // Streak
     const lastDate=userProfile.lastPracticeDate||'';
     const yesterday=new Date(Date.now()-86400000).toISOString().substring(0,10);
     let newStreak=(lastDate===yesterday||(lastDate===today))?((userProfile.streak||0)+(lastDate!==today?1:0)):(lastDate===today?userProfile.streak||1:1);
     if(lastDate!==today&&lastDate!==yesterday) newStreak=1;
     if(lastDate===today) newStreak=userProfile.streak||1;
-    // Subject history update
+    // Subject history update — only meaningful for JAMB (subject-keyed structure)
     const sh=userProfile.subjectHistory||{};
-    examStartSubjects.forEach(s=>{
-      if(!sh[s]) sh[s]={sessions:0,bestPct:0,totalCorrect:0};
-      sh[s].sessions++;
-      if(pct>sh[s].bestPct) sh[s].bestPct=pct;
-    });
-    // Session entry
-    const entry={date:now,subjects:examStartSubjects,correct,total:examQuestions.length,pct};
+    if(isJamb){
+      examStartSubjects.forEach(s=>{
+        if(!sh[s]) sh[s]={sessions:0,bestPct:0,totalCorrect:0};
+        sh[s].sessions++;
+        if(pct>sh[s].bestPct) sh[s].bestPct=pct;
+      });
+    }
+    // Course/institution history — same idea as subjectHistory, for Post-UTME
+    // and Campus practice. Data-ready now; the dashboard doesn't visualize
+    // these breakdowns yet (see report), but every session is captured so a
+    // future dashboard section can be added without a data migration.
+    const ch=userProfile.courseHistory||{};
+    if(!isJamb){
+      const key=currentCbtContext.examType==='postutme'
+        ?`postutme:${currentCbtContext.institutionId}:${currentCbtContext.subject}`
+        :`campus:${currentCbtContext.institutionId}:${currentCbtContext.courseCode}`;
+      if(!ch[key]) ch[key]={sessions:0,bestPct:0,label:currentCbtContext.label};
+      ch[key].sessions++;
+      if(pct>ch[key].bestPct) ch[key].bestPct=pct;
+    }
+    // Session entry — new metadata shape (item 15), still includes the legacy
+    // 'subjects' field for JAMB so existing dashboard code keeps working.
+    const entry={
+      date:now,
+      examType:currentCbtContext.examType,
+      category:currentCbtContext.category,
+      subjects:isJamb?examStartSubjects:null,
+      subject:isJamb?null:(currentCbtContext.subject||null),
+      institutionId:currentCbtContext.institutionId||null,
+      institutionName:currentCbtContext.institutionName||null,
+      courseCode:currentCbtContext.courseCode||null,
+      label:currentCbtContext.label,
+      score:correct,correct,total,
+      percentage:pct,pct,
+      durationUsed:durationUsed||0,
+      completedAt:now
+    };
     // Subjects practised list
     const spSet=new Set(userProfile.subjectsPractised||[]);
-    examStartSubjects.forEach(s=>spSet.add(s));
+    if(isJamb) examStartSubjects.forEach(s=>spSet.add(s));
     const newSessions=(userProfile.sessions||0)+1;
     const newBest=Math.max(userProfile.bestScore||0,pct);
     // Check achievements
@@ -2198,14 +2797,15 @@ async function saveSessionToFirestore(correct,wrong,skipped,pct){
       lastPracticeDate:today,
       streak:newStreak,
       subjectHistory:sh,
+      courseHistory:ch,
       subjectsPractised:[...spSet],
       achievements:newAch,
       sessionHistory:window._arrayUnion(entry),
       totalCorrect:window._increment(correct),
-      totalQuestions:window._increment(examQuestions.length),
+      totalQuestions:window._increment(total),
     });
     // Update local profile
-    userProfile={...userProfile,sessions:newSessions,bestScore:newBest,lastPracticeDate:today,streak:newStreak,subjectHistory:sh,achievements:newAch,subjectsPractised:[...spSet]};
+    userProfile={...userProfile,sessions:newSessions,bestScore:newBest,lastPracticeDate:today,streak:newStreak,subjectHistory:sh,courseHistory:ch,achievements:newAch,subjectsPractised:[...spSet]};
     userProfile.sessionHistory=[...(userProfile.sessionHistory||[]),entry];
     // Toast new achievements
     if(freshAch.length){
@@ -2224,15 +2824,10 @@ function showAchToast(icon,name){
 
 function restartExam(){
   clearInterval(timerInterval);
-  hideAll();
-  document.getElementById('setupScreen').style.display='block';
-  document.getElementById('mainFooter').style.display='block';
-  document.getElementById('startBtn').disabled=false;
-  document.getElementById('startBtn').textContent='🎯 Start Practice Exam →';
-  document.getElementById('setupStatus').textContent=selectedSubjects.length+' subject(s) selected';
-  document.getElementById('timerBox').style.display='flex';
-  document.getElementById('timerBox').classList.remove('urgent');
-  userAnswers={};examQuestions=[];currentQ=0;
+  userAnswers={};examQuestions=[];currentQ=0;flaggedQs.clear();
+  if(currentCbtContext.examType==='utme') openJambHome();
+  else if(currentCbtContext.examType==='postutme') openPostutmeHome();
+  else openCampusHome();
 }
 window.restartExam=restartExam;
 
@@ -2325,8 +2920,16 @@ function canvasRoundRect(ctx,x,y,w,h,r){
   ctx.closePath();
 }
 
-function buildScoreCard(correct,total,pct,grade,subjects,refLink){
-  _lastScoreData={correct,total,pct,grade,subjects,refLink};
+// Shared "what did they practise" line — reads currentCbtContext instead of
+// assuming JAMB subjects, so the score card/captions adapt to any CBT type.
+function getCbtDetailText(){
+  if(currentCbtContext.examType==='utme') return (currentCbtContext.subjects||examStartSubjects||[]).map(s=>SUBJ_LABELS[s]||s).join('  •  ');
+  if(currentCbtContext.examType==='postutme') return `${currentCbtContext.institutionName}  •  ${SUBJ_LABELS[currentCbtContext.subject]||currentCbtContext.subject}`;
+  return `${currentCbtContext.institutionName}  •  ${currentCbtContext.courseCode}`;
+}
+
+function buildScoreCard(correct,total,pct,grade,refLink){
+  _lastScoreData={correct,total,pct,grade,refLink};
   var canvas=document.getElementById('scoreCardCanvas');
   if(!canvas) return;
   var ctx=canvas.getContext('2d');
@@ -2368,7 +2971,7 @@ function buildScoreCard(correct,total,pct,grade,subjects,refLink){
   ctx.font='800 13px Montserrat,sans-serif';ctx.fillStyle='rgba(255,255,255,0.9)';ctx.textAlign='left';
   ctx.fillText('Big Quams Media®',30,34);
   ctx.font='500 11px Roboto,sans-serif';ctx.fillStyle='rgba(255,255,255,0.4)';
-  ctx.fillText('JAMB CBT Practice',30,52);
+  ctx.fillText(currentCbtContext.label,30,52);
 
   // Orange accent line
   ctx.fillStyle='#f97316';
@@ -2380,9 +2983,9 @@ function buildScoreCard(correct,total,pct,grade,subjects,refLink){
   ctx.fillText(grade,rx,110);
 
   ctx.font='700 13px Roboto,sans-serif';ctx.fillStyle='rgba(255,255,255,0.55)';
-  ctx.fillText('SUBJECTS PRACTISED',rx,148);
+  ctx.fillText('DETAILS',rx,148);
   ctx.font='500 14px Roboto,sans-serif';ctx.fillStyle='rgba(255,255,255,0.85)';
-  const subjText=subjects.map(s=>SUBJ_LABELS[s]||s).join('  •  ');
+  const subjText=getCbtDetailText();
   // Word-wrap subjects if long
   const words=subjText.split('  •  ');
   let line='',lineY=172;
@@ -2422,10 +3025,10 @@ function buildScoreCard(correct,total,pct,grade,subjects,refLink){
   ctx.fillText('BQM © '+new Date().getFullYear(),W-24,H-16);
 }
 
-function buildShareCaption(pct,grade,subjects,refLink){
-  const subj=subjects.map(s=>SUBJ_LABELS[s]||s).join(', ');
+function buildShareCaption(pct,grade,refLink){
+  const detail=getCbtDetailText();
   const emoji=pct>=80?'🏆':pct>=65?'🎯':pct>=50?'📈':'💪';
-  const caption=`${emoji} I just scored ${pct}% on my JAMB CBT Practice!\n\nSubjects: ${subj}\nGrade: ${grade}\n\n📚 Big Quams Media® — Nigeria's Trusted Student Success Platform\n\nPractise for free 👇\n${refLink||'https://bigquamsmedia.com.ng/cbt.html'}`;
+  const caption=`${emoji} I just scored ${pct}% on my ${currentCbtContext.label}!\n\n${detail}\nGrade: ${grade}\n\n📚 Big Quams Media® — Nigeria's Trusted Student Success Platform\n\nPractise for free 👇\n${refLink||'https://bigquamsmedia.com.ng/cbt.html'}`;
   document.getElementById('shareCaption').innerHTML=caption.replace(/\n/g,'<br>')+`<button class="share-caption-copy" onclick="copyShareCaption()">Copy</button>`;
   return caption;
 }
@@ -2442,20 +3045,18 @@ function shareScoreWhatsApp(){
   const refLink=_lastScoreData.refLink||'https://bigquamsmedia.com.ng/cbt.html';
   const pct=_lastScoreData.pct||0;
   const grade=_lastScoreData.grade||'';
-  const subjects=_lastScoreData.subjects||[];
-  const subj=subjects.map(s=>SUBJ_LABELS[s]||s).join(', ');
+  const detail=getCbtDetailText();
   const emoji=pct>=80?'🏆':pct>=65?'🎯':pct>=50?'📈':'💪';
-  const msg=encodeURIComponent(`${emoji} I just scored ${pct}% on my JAMB CBT Practice on Big Quams Media®!\n\nSubjects: ${subj} | Grade: ${grade}\n\nPractise free here 👇\n${refLink}`);
+  const msg=encodeURIComponent(`${emoji} I just scored ${pct}% on my ${currentCbtContext.label} on Big Quams Media®!\n\n${detail} | Grade: ${grade}\n\nPractise free here 👇\n${refLink}`);
   window.open('https://wa.me/?text='+msg,'_blank');
 }
 
 function copyShareCaption(){
   const pct=_lastScoreData.pct||0;const grade=_lastScoreData.grade||'';
-  const subjects=_lastScoreData.subjects||[];
   const refLink=_lastScoreData.refLink||'https://bigquamsmedia.com.ng/cbt.html';
-  const subj=subjects.map(s=>SUBJ_LABELS[s]||s).join(', ');
+  const detail=getCbtDetailText();
   const emoji=pct>=80?'🏆':pct>=65?'🎯':pct>=50?'📈':'💪';
-  const caption=`${emoji} I just scored ${pct}% on my JAMB CBT Practice!\n\nSubjects: ${subj}\nGrade: ${grade}\n\n📚 Big Quams Media® — Nigeria's Trusted Student Success Platform\nPractise for free 👇\n${refLink}`;
+  const caption=`${emoji} I just scored ${pct}% on my ${currentCbtContext.label}!\n\n${detail}\nGrade: ${grade}\n\n📚 Big Quams Media® — Nigeria's Trusted Student Success Platform\nPractise for free 👇\n${refLink}`;
   navigator.clipboard.writeText(caption).then(()=>{
     const btns=document.querySelectorAll('.share-caption-copy,.scb-copy');
     btns.forEach(b=>{const orig=b.textContent;b.textContent='✅ Copied!';setTimeout(()=>b.textContent=orig,2000);});
@@ -2467,7 +3068,10 @@ window.copyShareCaption=copyShareCaption;
 document.addEventListener('DOMContentLoaded',function(){
   if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';
   document.getElementById('yr').textContent=new Date().getFullYear();
-  document.getElementById('setupStatus').textContent='1 subject selected (max 4)';
+  document.getElementById('setupStatus').textContent=`1 subject selected (max ${CBT_CONFIG.maxJambSubjects})`;
+  discoverCbtAvailability();
+  const hasUrlType=new URLSearchParams(location.search).get('type');
+  if(hasUrlType) applyUrlState();
 });
 </script>
 <script src="studybuddy.js" defer></script>
