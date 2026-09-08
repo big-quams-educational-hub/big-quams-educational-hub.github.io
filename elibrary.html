@@ -4,10 +4,10 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RCLYVCZY2K');</script>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Free eLibrary | Big Quams Media®</title>
-<meta name="description" content="100+ free textbooks, past questions, lecture notes and academic materials for Nigerian students. Download free on Big Quams Media® eLibrary.">
+<title>Free eLibrary — Textbooks, Past Questions &amp; Lecture Notes | Big Quams Media®</title>
+<meta name="description" content="Free textbooks, JAMB/WAEC past questions, Post-UTME materials and lecture notes for Nigerian students. Search, preview and download — 100% free on Big Quams Media® eLibrary.">
 <meta property="og:title" content="Free eLibrary — Big Quams Media®">
-<meta property="og:description" content="100+ free textbooks, past questions and academic materials for Nigerian students.">
+<meta property="og:description" content="Free textbooks, past questions and academic materials for Nigerian students. Search and download — 100% free.">
 <meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
 <meta property="og:url" content="https://bigquamsmedia.com.ng/elibrary.html">
 <link rel="icon" href="https://bigquamsmedia.com.ng/logo.png">
@@ -25,7 +25,7 @@
 })();
 </script>
 <style>
-:root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:14px;--shadow:0 8px 28px rgba(26,63,168,.11)}
+:root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:14px;--shadow:0 8px 28px rgba(26,63,168,.11);--green:#16a34a}
 body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -34,7 +34,14 @@ body.dark{background:#0d1117}
 a{color:inherit;text-decoration:none}
 button{cursor:pointer;font-family:inherit}
 img{max-width:100%;display:block}
-/* HEADER */
+:focus-visible{outline:2.5px solid var(--orange);outline-offset:2px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+
+/* ── ICON SYSTEM ── */
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-fill{fill:currentColor;stroke:none}
+
+/* ── HEADER ── */
 header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.35)}
 .hbar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
 .logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
@@ -44,8 +51,8 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 .main-nav{display:flex;align-items:center;gap:2px}
 .main-nav a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
 .main-nav a:hover,.main-nav a.active{color:#fff;background:rgba(255,255,255,.12)}
-.nav-cta{background:var(--orange)!important;color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important}
-.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.88rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.nav-cta{background:var(--orange)!important;color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important;display:inline-flex;align-items:center;gap:6px}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;font-size:.95rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center}
 .hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -62,74 +69,164 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 .mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
 .nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
 .nav-overlay.show{opacity:1;pointer-events:auto}
-/* HERO */
-.page-hero{background:linear-gradient(150deg,rgba(8,21,48,.88),rgba(15,32,96,.82),rgba(26,63,168,.76)),url('https://bigquamsmedia.com.ng/explore.png') center/cover no-repeat;padding:48px 16px 56px;text-align:center;position:relative;overflow:hidden}
+
+/* ── HERO + SEARCH ── */
+.page-hero{background:linear-gradient(150deg,rgba(8,21,48,.9),rgba(15,32,96,.85),rgba(26,63,168,.8)),url('https://bigquamsmedia.com.ng/explore.png') center/cover no-repeat;padding:44px 16px 40px;text-align:center;position:relative;overflow:hidden}
 .page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
-.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 18px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:14px}
-.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,5vw,2.5rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:10px}
+.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,5vw,2.3rem);font-weight:800;color:#fff;line-height:1.25;margin-bottom:10px}
 .page-hero h1 span{color:var(--orange)}
-.page-hero p{font-size:.88rem;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto 20px}
-.hero-stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap}
-.hero-stat-num{font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;color:#fff}
-.hero-stat-lbl{font-size:.62rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px}
-/* FILTER */
-.filter-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 16px;position:sticky;top:60px;z-index:200}
-body.dark .filter-wrap{background:#161b27}
-.filter-inner{max-width:1100px;margin:0 auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.cat-btn{padding:6px 14px;border-radius:20px;font-size:.74rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:.18s;white-space:nowrap}
-body.dark .cat-btn{background:#1a2236}
-.cat-btn.active,.cat-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
-.search-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:0 12px;height:38px;flex:1;max-width:240px;min-width:0}
-body.dark .search-wrap{background:#111624}
-.search-wrap input{flex:1;border:none;background:transparent;font-size:.82rem;color:var(--text);outline:none;min-width:0;font-family:inherit}
-/* GRID */
-.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
-.sec{padding:36px 0 48px}
+.page-hero p{font-size:.86rem;color:rgba(255,255,255,.68);max-width:480px;margin:0 auto 22px;line-height:1.6}
+.hero-search{display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:6px 8px 6px 18px;box-shadow:0 10px 34px rgba(0,0,4,.28);max-width:520px;margin:0 auto}
+.hero-search svg{color:var(--muted);flex-shrink:0}
+.hero-search input{flex:1;border:none;outline:none;font-size:.9rem;font-family:inherit;color:var(--text);background:transparent;min-width:0;padding:10px 0}
+.hero-search-clear{background:none;border:none;color:var(--muted);display:none;padding:6px;flex-shrink:0}
+.hero-search-clear.show{display:flex}
+.hero-stats{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:22px}
+.hero-stat-num{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff}
+.hero-stat-lbl{font-size:.6rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px}
+
+/* ── CATEGORY CHIPS (browse) ── */
+.cat-section{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 0}
+body.dark .cat-section{background:#161b27}
+.cat-scroll{display:flex;gap:8px;overflow-x:auto;padding:2px 16px 6px;scrollbar-width:none;-ms-overflow-style:none}
+.cat-scroll::-webkit-scrollbar{display:none}
+.cat-chip{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:22px;font-size:.78rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface2);color:var(--muted);white-space:nowrap;flex-shrink:0;transition:.15s}
+body.dark .cat-chip{background:#1a2236}
+.cat-chip svg{width:15px;height:15px}
+.cat-chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.cat-chip:hover:not(.active){border-color:var(--blue)}
+
+/* ── TOOLBAR ── */
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:20px 0 14px}
+.toolbar-count{font-size:.8rem;color:var(--muted)}
+.toolbar-count strong{color:var(--text)}
+.sort-select{border:1.5px solid var(--border);background:var(--surface);color:var(--text);border-radius:9px;padding:8px 30px 8px 12px;font-size:.8rem;font-weight:600;font-family:inherit;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;background-size:16px}
+body.dark .sort-select{background-color:#161b27}
+
+/* ── GRID ── */
+.sec{padding:8px 0 48px}
 .books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
 @media(max-width:480px){.books-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
-/* BOOK CARD */
+
+/* ── FEATURED ── */
+.featured-section{padding:28px 0 8px}
+.featured-heading{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:.92rem;font-weight:800;color:var(--text);margin-bottom:14px}
+.featured-heading svg{color:var(--orange)}
+.featured-scroll{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+.featured-scroll .book-wrap{min-width:200px;max-width:200px;flex-shrink:0}
+
+/* ── BOOK CARD ── */
 .book-wrap{position:relative}
-.book-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:.22s;height:100%}
+.book-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;height:100%;width:100%;text-align:left;transition:.22s;font-family:inherit;color:inherit;padding:0;margin:0}
 body.dark .book-card{background:#161b27;border-color:var(--border)}
 .book-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#bfdbfe}
-.book-cover{width:100%;height:155px;object-fit:cover;background:linear-gradient(135deg,var(--blue-deep),var(--blue));display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.5);flex-shrink:0;overflow:hidden}
+.book-cover{width:100%;height:150px;object-fit:cover;background:linear-gradient(135deg,var(--blue-deep),var(--blue));display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);flex-shrink:0;overflow:hidden}
+.book-cover svg{width:38px;height:38px}
 .book-cover img{width:100%;height:100%;object-fit:cover}
-.featured-badge{position:absolute;top:8px;right:8px;background:var(--orange);color:#fff;font-size:.58rem;font-weight:800;padding:3px 8px;border-radius:20px;z-index:1}
-.book-body{padding:13px;flex:1;display:flex;flex-direction:column;gap:5px}
-.book-cat{font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);align-self:flex-start}
+.featured-badge{position:absolute;top:8px;right:8px;background:var(--orange);color:#fff;font-size:.58rem;font-weight:800;padding:3px 9px;border-radius:20px;z-index:1;display:inline-flex;align-items:center;gap:4px}
+.featured-badge svg{width:10px;height:10px}
+.book-body{padding:13px;flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.book-tags{display:flex;flex-wrap:wrap;gap:5px}
+.book-cat{font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue)}
 body.dark .book-cat{background:#1a2d5a;color:#93c5fd}
+.book-meta-tag{font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
 .book-title{font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:var(--text);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.book-author{font-size:.7rem;color:var(--muted)}
+.book-author{font-size:.7rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.book-author svg{width:11px;height:11px;flex-shrink:0}
 .book-desc{font-size:.72rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
 .book-actions{display:flex;gap:7px;margin-top:auto;padding-top:10px;border-top:1px solid var(--border)}
 .dl-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;background:linear-gradient(135deg,var(--blue-deep),var(--blue));color:#fff;padding:9px 8px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.72rem;border:none;cursor:pointer;transition:.18s;text-decoration:none}
+.dl-btn svg{width:13px;height:13px}
 .dl-btn:hover{opacity:.88}
 .dl-btn.disabled{opacity:.45;cursor:not-allowed;pointer-events:none}
-.view-btn{display:flex;align-items:center;justify-content:center;background:var(--surface2);color:var(--blue);border:1.5px solid var(--border);width:36px;height:36px;border-radius:8px;font-size:.9rem;flex-shrink:0;transition:.18s;text-decoration:none}
+.view-btn{display:flex;align-items:center;justify-content:center;background:var(--surface2);color:var(--blue);border:1.5px solid var(--border);width:36px;height:36px;border-radius:8px;flex-shrink:0;transition:.18s;text-decoration:none}
+.view-btn svg{width:15px;height:15px}
 body.dark .view-btn{background:#1a2236}
 .view-btn:hover{background:var(--blue-lt);border-color:var(--blue)}
-/* SKELETON */
+
+/* ── SKELETON ── */
 @keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
 .sk{background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:6px}
 body.dark .sk{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:600px 100%}
 .sk-book{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden}
 body.dark .sk-book{background:#161b27}
-/* EMPTY */
-.empty{text-align:center;padding:56px 20px;color:var(--muted);grid-column:1/-1}
-.empty .ei{font-size:2.5rem;margin-bottom:10px}
-/* SUGGEST */
-.suggest-box{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:var(--r);padding:28px 24px;text-align:center;margin-top:32px}
-.suggest-box h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:8px}
-.suggest-box p{font-size:.82rem;color:rgba(255,255,255,.62);margin-bottom:18px;line-height:1.5}
-.suggest-btn{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 22px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.84rem}
-/* FOOTER */
-footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
 
+/* ── EMPTY / ERROR STATES ── */
+.empty{text-align:center;padding:56px 20px;color:var(--muted);grid-column:1/-1}
+.empty svg{width:44px;height:44px;color:var(--muted);margin-bottom:14px}
+.empty h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--text);margin-bottom:6px}
+.empty p{font-size:.82rem;max-width:320px;margin:0 auto 18px;line-height:1.6}
+.empty-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.empty-btn{background:var(--blue);color:#fff;border:none;padding:10px 20px;border-radius:9px;font-weight:700;font-size:.78rem}
+.empty-btn.ghost{background:none;border:1.5px solid var(--border);color:var(--text)}
+
+/* ── SUGGEST ── */
+.suggest-box{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);border-radius:var(--r);padding:28px 24px;text-align:center;margin-top:32px}
+.suggest-box svg{width:26px;height:26px;color:var(--orange);margin-bottom:10px}
+.suggest-box h3{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:8px}
+.suggest-box p{font-size:.82rem;color:rgba(255,255,255,.62);margin-bottom:18px;line-height:1.5;max-width:420px;margin-left:auto;margin-right:auto}
+.suggest-btn{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 22px;border-radius:9px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.84rem;border:none}
+.suggest-btn svg{width:16px;height:16px}
+
+/* ── DETAILS MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);backdrop-filter:blur(2px);z-index:500;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .22s}
+.modal-overlay.open{opacity:1;pointer-events:auto}
+@media(min-width:640px){.modal-overlay{align-items:center;padding:20px}}
+.book-modal{background:var(--surface);width:100%;max-width:560px;max-height:92vh;overflow-y:auto;border-radius:18px 18px 0 0;transform:translateY(24px);transition:transform .25s}
+body.dark .book-modal{background:#161b27}
+@media(min-width:640px){.book-modal{border-radius:16px;transform:scale(.96);transition:transform .22s}}
+.modal-overlay.open .book-modal{transform:translateY(0)}
+@media(min-width:640px){.modal-overlay.open .book-modal{transform:scale(1)}}
+.modal-cover{width:100%;height:190px;background:linear-gradient(135deg,var(--blue-deep),var(--blue));display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.55);position:relative;flex-shrink:0}
+.modal-cover img{width:100%;height:100%;object-fit:cover}
+.modal-cover svg{width:48px;height:48px}
+.modal-close{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.4);color:#fff;border:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal-body{padding:22px}
+.modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.modal-title{font-family:'Montserrat',sans-serif;font-size:1.15rem;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:6px}
+.modal-author{font-size:.82rem;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.modal-author svg{width:13px;height:13px}
+.modal-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:16px;padding:14px;background:var(--surface2);border-radius:10px}
+.modal-meta-item{font-size:.72rem}
+.modal-meta-item span{display:block;color:var(--muted);font-size:.62rem;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
+.modal-desc{font-size:.86rem;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.modal-actions{display:flex;gap:10px}
+
+/* ── FOOTER (canonical) ── */
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:28px;margin-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-logo{width:42px;height:42px;border-radius:50%;border:2px solid #f97316;object-fit:cover;flex-shrink:0}
+.footer-bname{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:#fff;letter-spacing:.3px}
+.footer-bsub{font-size:.68rem;color:rgba(255,255,255,.4);margin-top:3px;max-width:340px;line-height:1.4}
+.footer-cta{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 18px;border-radius:8px;font-weight:700;font-size:.86rem;transition:.2s;white-space:nowrap}
+.footer-cta:hover{background:#1db954;transform:translateY(-1px)}
+.footer-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px 16px;margin-bottom:26px}
+.footer-heading{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:1.3px;color:rgba(255,255,255,.3);margin-bottom:11px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:.76rem;color:rgba(255,255,255,.52);transition:.18s;display:inline-flex;align-items:center;gap:7px;width:fit-content}
+.footer-links a:hover,.footer-links a:focus-visible{color:#fff;transform:translateX(3px)}
+.footer-social{display:flex;gap:9px;margin-top:6px}
+.footer-social a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.18s}
+.footer-social a:hover,.footer-social a:focus-visible{background:rgba(249,115,22,.2);border-color:rgba(249,115,22,.45);transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 20px}
+.footer-copy{font-size:.7rem;color:rgba(255,255,255,.35);line-height:1.6}
+.footer-legal{display:flex;flex-wrap:wrap;gap:5px 16px}
+.footer-legal a{font-size:.7rem;color:rgba(255,255,255,.45);transition:.18s}
+.footer-legal a:hover,.footer-legal a:focus-visible{color:#fff}
+.footer-support{font-size:.68rem;color:rgba(255,255,255,.4);text-align:center;margin-top:14px;line-height:1.7}
+.footer-support strong{color:rgba(255,255,255,.65)}
+.footer-credit{text-align:center;font-size:.7rem;color:rgba(255,255,255,.35);margin-top:16px}
+.footer-credit a{color:#f97316;font-weight:700}
+@media(max-width:640px){.footer-top{flex-direction:column;align-items:flex-start}.footer-bottom{flex-direction:column;align-items:center;text-align:center}}
 </style>
 <link rel="canonical" href="https://bigquamsmedia.com.ng/elibrary.html">
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="icon-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9"/></symbol><symbol id="icon-newspaper" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H7"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12.5" x2="13" y2="12.5"/><line x1="7" y1="16" x2="11" y2="16"/></symbol><symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></symbol><symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></symbol><symbol id="icon-graduation-cap" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5-10-5z"/><path d="M6 11v5c0 1 3 2 6 2s6-1 6-2v-5"/><path d="M22 9v6"/></symbol><symbol id="icon-book-open" viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8 4.5 4 5v13c4-.5 6.5 0 8 1.5V6.5z"/><path d="M12 6.5C13.5 5 16 4.5 20 5v13c-4-.5-6.5 0-8 1.5V6.5z"/></symbol><symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3z"/></symbol><symbol id="icon-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></symbol><symbol id="icon-bar-chart" viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></symbol><symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5 20 3"/><path d="M17 6l3 3"/><path d="M14 9l2.5 2.5"/></symbol><symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></symbol><symbol id="icon-landmark" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><path d="M3 10 12 4l9 6"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z"/></symbol><symbol id="icon-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z"/></symbol><symbol id="icon-clipboard-list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="12" y2="19"/></symbol><symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 4 1.5 5.5 2 6.5H4c.5-1 2-2.5 2-6.5z"/><path d="M10 19a2 2 0 0 0 4 0"/></symbol><symbol id="icon-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol><symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol><symbol id="icon-message-circle" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4A8.6 8.6 0 0 1 8 19l-4 1 1.3-3.9A8.4 8.4 0 1 1 21 11.5z"/><line x1="8.5" y1="12" x2="8.5" y2="12"/><line x1="12" y1="12" x2="12" y2="12"/><line x1="15.5" y1="12" x2="15.5" y2="12"/></symbol><symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></symbol><symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></symbol><symbol id="icon-building" viewBox="0 0 24 24"><rect x="5" y="3" width="9" height="18" rx="1"/><rect x="15" y="9" width="4" height="12" rx="1"/><line x1="8" y1="7" x2="8" y2="7"/><line x1="11" y1="7" x2="11" y2="7"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="11" y1="11" x2="11" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="11" y1="15" x2="11" y2="15"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.5.3 4.5 2.3 4.5 5.3"/></symbol><symbol id="icon-calendar-days" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="7" y1="14" x2="7" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="17" y1="14" x2="17" y2="14"/><line x1="7" y1="17.5" x2="7" y2="17.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-smartphone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18.5" x2="13" y2="18.5"/></symbol><symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><polyline points="20 4 20 8 16 8"/></symbol><symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="20" y2="20"/></symbol><symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol><symbol id="icon-rocket" viewBox="0 0 24 24"><path d="M12 2c3 1 5.5 4 5.5 8.5 0 2-1 3.8-2.2 5.2l-1 3.8-2.3-1.8-2.3 1.8-1-3.8C7.5 14.3 6.5 12.5 6.5 10.5 6.5 6 9 3 12 2z"/><circle cx="12" cy="10" r="1.7"/><path d="M9 17.5 7 21l3-1"/><path d="M15 17.5 17 21l-3-1"/></symbol><symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></symbol><symbol id="icon-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l7 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/><path d="M19.5 6.5a8 8 0 0 1 0 11"/></symbol><symbol id="icon-alert-triangle" viewBox="0 0 24 24"><path d="M12 3.5 22 20H2L12 3.5z"/><line x1="12" y1="10" x2="12" y2="14.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 11 15.5 16 9"/></symbol><symbol id="icon-robot" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="2"/><line x1="9" y1="13" x2="9" y2="13"/><line x1="15" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><line x1="12" y1="5" x2="12" y2="8"/><circle cx="12" cy="3.5" r="1"/></symbol><symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 8.7c.2-.3.6-.6 1.1-.6.4 0 .6.3.9 1 .2.5.5 1.1.4 1.4-.1.4-.4.6-.7.9-.2.2-.3.4-.1.7.4.7 1 1.3 1.7 1.7.3.2.5.1.7-.1.3-.3.5-.6.9-.7.3-.1.9.2 1.4.4.7.3 1 .5 1 .9 0 .5-.3.9-.6 1.1-.6.4-1.4.5-2.2.2-1.6-.5-3.4-2.3-4.2-3.9-.4-.7-.5-1.4-.3-2z"/></symbol><symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17" y1="7" x2="17" y2="7"/></symbol><symbol id="icon-tiktok" viewBox="0 0 24 24"><path d="M13.5 3v11.2a3.3 3.3 0 1 1-2.8-3.3"/><path d="M13.5 3.2c.4 2.4 2.2 4.2 4.5 4.5"/></symbol><symbol id="icon-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></symbol><symbol id="icon-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></symbol><symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 9 22 20 9 13 9 13 2"/></symbol><symbol id="icon-champagne" viewBox="0 0 24 24"><path d="M6 3h5l-1 7a2.5 2.5 0 0 1-5 0z"/><path d="M13 5h5l-.8 6a2.5 2.5 0 0 1-4.9-.6"/><line x1="8.5" y1="15" x2="8.5" y2="21"/><line x1="6" y1="21" x2="11" y2="21"/><line x1="15.5" y1="12" x2="15.5" y2="21"/></symbol><symbol id="icon-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></symbol><symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></symbol><symbol id="icon-hourglass" viewBox="0 0 24 24"><path d="M6 3h12"/><path d="M6 21h12"/><path d="M7 3c0 4 3 5 5 6-2 1-5 2-5 6"/><path d="M17 3c0 4-3 5-5 6 2 1 5 2 5 6"/></symbol><symbol id="icon-link" viewBox="0 0 24 24"><path d="M8.5 12.5 6 15a3.5 3.5 0 0 0 5 5l2.5-2.5"/><path d="M15.5 11.5 18 9a3.5 3.5 0 0 0-5-5l-2.5 2.5"/><line x1="9" y1="15" x2="15" y2="9"/></symbol><symbol id="icon-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></symbol><symbol id="icon-edit" viewBox="0 0 24 24"><path d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/><path d="M20.4 4.6a1.9 1.9 0 0 1 0 2.7L13 15l-3.5.8L10.3 12l7.4-7.4a1.9 1.9 0 0 1 2.7 0z"/></symbol><symbol id="icon-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol><symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M14 8.5h2.5V4.5h-2.5c-2.5 0-4 1.6-4 4v2.5H8v4h2.5V21h4v-8h2.7l.5-4h-3.2V9c0-.4.3-.5.5-.5z"/></symbol><symbol id="icon-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><line x1="8" y1="10.8" x2="16" y2="7.2"/><line x1="8" y1="13.2" x2="16" y2="16.8"/></symbol><symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-10-9.3C.5 8 2 4.5 5.5 4c2-.3 3.8.6 5 2.2C11.7 4.6 13.5 3.7 15.5 4 19 4.5 20.5 8 19 11.2c-2.5 4.7-7 9.3-7 9.3z"/></symbol><symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></symbol><symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="icon-pin" viewBox="0 0 24 24"><path d="M9 4h6"/><path d="M10 4v5.5L7 12h10l-3-2.5V4"/><line x1="12" y1="12" x2="12" y2="21"/></symbol><symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 2c1 3-2 4-2 7a3 3 0 0 0 6 0c0-1-.5-2-.5-2 2 1 3 3 3 5.5A6.5 6.5 0 0 1 12 19a6.5 6.5 0 0 1-6.5-6.5C5.5 8 8 6 9 4c.5 2 1 2.5 1.5 2.5S12 5 12 2z"/></symbol><symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v1H5.5a2 2 0 0 0-1.9 1.4L2 17V7z"/><path d="M2.3 17.3 4.3 10a2 2 0 0 1 1.9-1.4H21l-2.2 7.7A2 2 0 0 1 16.9 18H4a2 2 0 0 1-1.7-2.7z"/></symbol><symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol><symbol id="icon-send" viewBox="0 0 24 24"><line x1="21" y1="3" x2="11" y2="13"/><path d="M21 3 14.5 21 11 13 3 9.5z"/></symbol><symbol id="icon-thumbs-up" viewBox="0 0 24 24"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3z"/><path d="M7 11l4-7a2 2 0 0 1 2 2l-1 4h5.5a2 2 0 0 1 1.9 2.6l-1.8 6A2 2 0 0 1 15.7 20H10a3 3 0 0 1-3-3"/></symbol><symbol id="icon-file-text" viewBox="0 0 24 24"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4a1 1 0 0 0 1 1h4"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="16.5" x2="13" y2="16.5"/></symbol><symbol id="icon-scroll" viewBox="0 0 24 24"><path d="M4 4h13a3 3 0 0 1 3 3 3 3 0 0 1-3 3H4"/><path d="M4 4a2 2 0 0 0 0 4"/><path d="M20 20H7a3 3 0 0 1-3-3 3 3 0 0 1 3-3h13"/><path d="M20 20a2 2 0 0 0 0-4"/></symbol><symbol id="icon-trending-up" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 5"/><polyline points="15 5 21 5 21 11"/></symbol><symbol id="icon-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9.5c0-1 1-1.8 3-1.8s3 .8 3 1.8-1 1.3-3 1.8c-2 .5-3 .8-3 1.8s1 1.8 3 1.8 3-.8 3-1.8"/></symbol><symbol id="icon-gift" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 9h16v3H4z"/><line x1="12" y1="9" x2="12" y2="20"/><path d="M12 9c-1.2-4-4.5-4.5-5.5-3S7 9 12 9z"/><path d="M12 9c1.2-4 4.5-4.5 5.5-3S17 9 12 9z"/></symbol><symbol id="icon-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h11l-2.5 4L17 12H6"/></symbol><symbol id="icon-flask" viewBox="0 0 24 24"><path d="M9 3h6"/><path d="M10 3v6.5L4.5 19a1.5 1.5 0 0 0 1.3 2.3h12.4a1.5 1.5 0 0 0 1.3-2.3L14 9.5V3"/><line x1="7.5" y1="15" x2="16.5" y2="15"/></symbol><symbol id="icon-leaf" viewBox="0 0 24 24"><path d="M5 21c0-9 6-16 15-16 0 9-6 16-15 16z"/><path d="M5 21c3-3 6-7 8-11"/></symbol><symbol id="icon-cross" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><line x1="6" y1="9" x2="18" y2="9"/></symbol><symbol id="icon-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="3" y1="12" x2="21" y2="12"/></symbol><symbol id="icon-crown" viewBox="0 0 24 24"><path d="M4 8l4 4 4-6 4 6 4-4-2 10H6z"/></symbol><symbol id="icon-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5.5A3 3 0 0 0 9 20V4z"/><path d="M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5.5A3 3 0 0 1 15 20V4z"/></symbol><symbol id="icon-hash" viewBox="0 0 24 24"><line x1="9" y1="3" x2="7" y2="21"/><line x1="17" y1="3" x2="15" y2="21"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/></symbol><symbol id="icon-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M3 4h2l2.4 11.5a2 2 0 0 0 2 1.5h7.2a2 2 0 0 0 2-1.6L21 8H6"/></symbol><symbol id="icon-trophy" viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 5"/><path d="M16 5h3a3 3 0 0 1-3 5"/><line x1="12" y1="14" x2="12" y2="18"/><path d="M8 20h8"/><path d="M9.5 18h5l.5 2h-6z"/></symbol><symbol id="icon-bookmark" viewBox="0 0 24 24"><path d="M6 4h12v17l-6-4-6 4V4z"/></symbol></defs></svg>
 <header>
   <div class="hbar">
     <a href="index.html" class="logo-link">
@@ -142,238 +239,523 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       <a href="explore.html">Explore</a>
       <a href="elibrary.html" class="active">eLibrary</a>
       <a href="scholarship.html">Scholarships</a>
-      <a href="index.html#contact" class="nav-cta">💬 Contact</a>
+      <a href="index.html#contact" class="nav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-message-circle"></use></svg> Contact</a>
     </nav>
-    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
-    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    <button type="button" class="hdr-btn" id="darkBtn" onclick="toggleDark()" aria-label="Switch to dark mode"><svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg></button>
+    <button type="button" class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
 <nav class="mobile-nav" id="mobileNav">
   <div class="mnav-header">
     <div style="display:flex;align-items:center;gap:10px">
-      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316" alt="">
       <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
     </div>
-    <button class="mnav-close" onclick="toggleNav()">✕</button>
+    <button type="button" class="mnav-close" onclick="toggleNav()" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
   </div>
   <div class="mnav-lbl">Main</div>
-  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
-  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
-  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
-  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
-  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
-  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
-  <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
+  <a href="index.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a>
+  <a href="newsroom.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a>
+  <a href="community.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a>
+  <a href="profile.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> My Profile</a>
   <div class="mnav-lbl">Exam Tools</div>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
-  <a href="practice-test.html" onclick="toggleNav()">📝 Big Quams Practice Test</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
-  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
-  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+  <a href="cbt.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a>
+  <a href="practice-test.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> Big Quams Practice Test</a>
+  <a href="postutme-prep.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a>
   <div class="mnav-lbl">Resources</div>
-  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
-  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
-  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
-  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
-  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
-  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
-  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
+  <a href="elibrary.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combination</a>
+  <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener" class="mnav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
 </nav>
 
-<!-- HERO -->
+<main>
+<!-- HERO + SEARCH -->
 <section class="page-hero">
   <div class="hero-inner">
-    <div class="hero-badge">📚 Free Academic Resources</div>
-    <h1>BQM <span>eLibrary</span></h1>
-    <p>Free textbooks, past question papers, lecture notes and academic materials for Nigerian students. Download and read — completely free.</p>
+    <div class="hero-badge"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> Free Academic Resources</div>
+    <h1>Your Academic <span>Resources</span>, All in One Place</h1>
+    <p>Find textbooks, past questions, lecture notes and exam materials for JAMB, WAEC, Post-UTME and your course — search, preview and download, completely free.</p>
+    <div class="hero-search">
+      <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+      <input type="text" id="bookSearch" placeholder="Search textbooks, subjects, courses, past questions…" aria-label="Search the eLibrary" autocomplete="off">
+      <button type="button" class="hero-search-clear" id="searchClearBtn" onclick="clearSearch()" aria-label="Clear search"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
+    </div>
     <div class="hero-stats">
-      <div><div class="hero-stat-num" id="bookCount">—</div><div class="hero-stat-lbl">Books</div></div>
+      <div><div class="hero-stat-num" id="bookCount">—</div><div class="hero-stat-lbl">Resources</div></div>
       <div><div class="hero-stat-num" id="catCount">—</div><div class="hero-stat-lbl">Categories</div></div>
-      <div><div class="hero-stat-num">100%</div><div class="hero-stat-lbl">Free</div></div>
+      <div><div class="hero-stat-num">100%</div><div class="hero-stat-lbl">Free Access</div></div>
     </div>
   </div>
 </section>
 
-<!-- FILTER -->
-<div class="filter-wrap">
-  <div class="filter-inner">
-    <button class="cat-btn active" onclick="setCategory('',this)">All</button>
-    <button class="cat-btn" onclick="setCategory('JAMB',this)">📝 JAMB</button>
-    <button class="cat-btn" onclick="setCategory('WAEC',this)">📋 WAEC</button>
-    <button class="cat-btn" onclick="setCategory('Post-UTME',this)">🎯 Post-UTME</button>
-    <button class="cat-btn" onclick="setCategory('Textbook',this)">📖 Textbooks</button>
-    <button class="cat-btn" onclick="setCategory('Lecture Notes',this)">📓 Lecture Notes</button>
-    <button class="cat-btn" onclick="setCategory('Novel',this)">📗 Novels</button>
-    <button class="cat-btn" onclick="setCategory('Dictionary',this)">📘 Dictionary</button>
-    <div class="search-wrap">
-      <span style="color:var(--muted);font-size:.82rem">🔍</span>
-      <input type="text" id="bookSearch" placeholder="Search books…" oninput="render()" autocomplete="off">
-    </div>
+<!-- BROWSE BY CATEGORY -->
+<div class="cat-section">
+  <div class="cat-scroll" id="catScroll" role="group" aria-label="Browse by category">
+    <button type="button" class="cat-chip active" data-cat="" onclick="setCategory('',this)" aria-pressed="true"><svg aria-hidden="true"><use href="#icon-grid"></use></svg> All</button>
+    <button type="button" class="cat-chip" data-cat="JAMB" onclick="setCategory('JAMB',this)" aria-pressed="false"><svg aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> JAMB</button>
+    <button type="button" class="cat-chip" data-cat="WAEC" onclick="setCategory('WAEC',this)" aria-pressed="false"><svg aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> WAEC</button>
+    <button type="button" class="cat-chip" data-cat="Post-UTME" onclick="setCategory('Post-UTME',this)" aria-pressed="false"><svg aria-hidden="true"><use href="#icon-target"></use></svg> Post-UTME</button>
+    <button type="button" class="cat-chip" data-cat="Textbook" onclick="setCategory('Textbook',this)" aria-pressed="false"><svg aria-hidden="true"><use href="#icon-book"></use></svg> Textbooks</button>
+    <button type="button" class="cat-chip" data-cat="Lecture Notes" onclick="setCategory('Lecture Notes',this)" aria-pressed="false"><svg aria-hidden="true"><use href="#icon-edit"></use></svg> Lecture Notes</button>
+    <button type="button" class="cat-chip" data-cat="Novel" onclick="setCategory('Novel',this)" aria-pressed="false"><svg aria-hidden="true"><use href="#icon-book-open"></use></svg> Novels</button>
+    <button type="button" class="cat-chip" data-cat="Dictionary" onclick="setCategory('Dictionary',this)" aria-pressed="false"><svg aria-hidden="true"><use href="#icon-bookmark"></use></svg> Dictionary</button>
   </div>
 </div>
 
-<!-- BOOKS -->
-<section class="sec">
-  <div class="wrap">
-    <div id="booksGrid" class="books-grid">
-      <!-- Skeleton -->
-      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
-      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
-      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
-      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
-      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
-      <div class="sk-book"><div class="sk" style="height:155px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
-    </div>
-    <div class="suggest-box">
-      <h3>📖 Don't see the book you need?</h3>
-      <p>Send us a message and tell us what you're looking for. We'll try to add it to the library.</p>
-      <a href="https://wa.me/2349049871643?text=Please%20add%20this%20book%20to%20BQM%20eLibrary%3A%20" target="_blank" rel="noopener" class="suggest-btn">💬 Request a Book →</a>
-    </div>
+<!-- FEATURED (conditional, built by JS) -->
+<section class="wrap" id="featuredSection" style="display:none">
+  <div class="featured-section">
+    <div class="featured-heading"><svg aria-hidden="true"><use href="#icon-star"></use></svg> Featured Resources</div>
+    <div class="featured-scroll" id="featuredScroll"></div>
   </div>
 </section>
 
+<!-- LIBRARY -->
+<section class="sec">
+  <div class="wrap">
+    <div class="toolbar">
+      <div class="toolbar-count" id="resultCount" aria-live="polite">Loading resources…</div>
+      <select class="sort-select" id="sortSelect" onchange="render()" aria-label="Sort resources">
+        <option value="featured">Sort: Featured</option>
+        <option value="newest">Sort: Newest</option>
+        <option value="az">Sort: A–Z</option>
+        <option value="za">Sort: Z–A</option>
+      </select>
+    </div>
+    <div id="booksGrid" class="books-grid" aria-live="polite">
+      <div class="sk-book"><div class="sk" style="height:150px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+      <div class="sk-book"><div class="sk" style="height:150px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+      <div class="sk-book"><div class="sk" style="height:150px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+      <div class="sk-book"><div class="sk" style="height:150px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+      <div class="sk-book"><div class="sk" style="height:150px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+      <div class="sk-book"><div class="sk" style="height:150px;width:100%"></div><div style="padding:13px"><div class="sk" style="height:10px;width:40%;margin-bottom:8px"></div><div class="sk" style="height:13px;width:90%;margin-bottom:6px"></div><div class="sk" style="height:13px;width:70%;margin-bottom:8px"></div><div class="sk" style="height:10px;width:55%;margin-bottom:12px"></div><div class="sk" style="height:34px;border-radius:8px"></div></div></div>
+    </div>
+
+    <div class="suggest-box">
+      <svg aria-hidden="true"><use href="#icon-message-circle"></use></svg>
+      <h3>Can't find what you need?</h3>
+      <p>Tell us what textbook, course material or academic resource you're looking for, and we'll try to add it to the library.</p>
+      <a href="https://wa.me/2349049871643?text=Please%20add%20this%20resource%20to%20BQM%20eLibrary%3A%20" target="_blank" rel="noopener" class="suggest-btn"><svg aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Request a Resource →</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- BOOK DETAILS MODAL -->
+<div class="modal-overlay" id="bookModal" onclick="handleModalOverlay(event)">
+  <div class="book-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" id="bookModalInner">
+    <div id="modalContent"></div>
+  </div>
+</div>
+
 <!-- FOOTER -->
-<footer>
+<footer id="mainFooter">
   <div class="footer-inner">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img class="footer-logo" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media logo">
+        <div>
+          <div class="footer-bname">BIG QUAMS MEDIA®</div>
+          <p class="footer-bsub">Built for Nigerian undergraduates — from admission to graduation.</p>
+        </div>
+      </div>
+      <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" class="footer-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
+    </div>
+
+    <nav class="footer-cols" aria-label="Footer navigation">
       <div>
-        <div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
-        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div>
+        <h3 class="footer-heading">Main</h3>
+        <ul class="footer-links">
+          <li><a href="index.html"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a></li>
+          <li><a href="newsroom.html"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a></li>
+          <li><a href="explore.html"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore Tools</a></li>
+          <li><a href="campus-life.html"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a></li>
+          <li><a href="community.html"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community</a></li>
+          <li><a href="daily.html"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Exam Tools</h3>
+        <ul class="footer-links">
+          <li><a href="cbt.html"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a></li>
+          <li><a href="postutme-prep.html"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a></li>
+          <li><a href="postutme-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calc</a></li>
+          <li><a href="gpa-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a></li>
+          <li><a href="results.html"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a></li>
+          <li><a href="Jamb_Profile_Code.html"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Resources</h3>
+        <ul class="footer-links">
+          <li><a href="elibrary.html"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a></li>
+          <li><a href="scholarship.html"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a></li>
+          <li><a href="student-loan.html"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan</a></li>
+          <li><a href="spotlight.html"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a></li>
+          <li><a href="dyk.html"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a></li>
+          <li><a href="subject-combo.html"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Connect</h3>
+        <ul class="footer-links">
+          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Join Group</a></li>
+          <li><a href="index.html#install-app"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Install App</a></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg></a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg></a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg class="icon" aria-hidden="true"><use href="#icon-tiktok"></use></svg></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="cookie-policy.html">Cookie Policy</a>
+        <a href="disclaimer.html">Disclaimer</a>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
-      <div>
-        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a>
-          <a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a>
-          <a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a>
-          <a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a>
-          <a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a>
-          <a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a>
-          <a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a>
-          <a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a>
-          <a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a>
-          <a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a>
-          <a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a>
-          <a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a>
-          <a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a>
-          <a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a>
-          <a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a>
-          <a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
-        <div style="display:flex;flex-direction:column;gap:5px">
-          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a>
-          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a>
-          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a>
-          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a>
-          <a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a>
-        </div>
-      </div>
-    </div>
-    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
+    <div class="footer-support"><strong>Big Quams Media</strong> +2349049871643 · <strong>Big Quams Campus Support</strong> +2348069821664</div>
+    <div class="footer-credit">Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer">Abdulrasaq Quwamdeen</a></div>
   </div>
 </footer>
-
 <script>
 (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
-function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
-function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){const nav=document.getElementById('mobileNav');if(nav.classList.contains('open'))toggleNav();}});
+
+function escapeHtml(str){
+  return String(str==null?'':str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');const btn=document.getElementById('darkBtn');btn.innerHTML=d?'<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>':'<svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>';btn.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode');}
+function toggleNav(){
+  const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');
+  const open=n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');
+  h.setAttribute('aria-expanded',String(open));
+  document.body.style.overflow=open?'hidden':'';
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    const nav=document.getElementById('mobileNav');
+    if(nav.classList.contains('open')) toggleNav();
+    closeBookModal();
+  }
+});
 document.addEventListener('DOMContentLoaded',()=>{
-  if(document.body.classList.contains('dark')) document.getElementById('darkBtn').textContent='☀️';
+  if(document.body.classList.contains('dark')){const btn=document.getElementById('darkBtn');btn.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>';btn.setAttribute('aria-label','Switch to light mode');}
   document.getElementById('yr').textContent=new Date().getFullYear();
   init();
 });
 
-let allBooks=[], currentCat='';
+/* ══════════════════ DATA / CATEGORIES ══════════════════ */
+const KNOWN_CATEGORIES=['JAMB','WAEC','Post-UTME','Textbook','Lecture Notes','Novel','Dictionary'];
+const CAT_ICONS={JAMB:'graduation-cap',WAEC:'clipboard-list','Post-UTME':'target',Textbook:'book','Lecture Notes':'edit',Novel:'book-open',Dictionary:'bookmark'};
+let allBooks=[],currentCat='',loadFailed=false,lastFocusedEl=null;
+let searchDebounce=null;
 
+/* ══════════════════ INIT / LOAD ══════════════════ */
 async function init(){
+  loadFailed=false;
   try{
     let books=[];
     if(window._db){
-      const snap=await window._db.collection('fs_books').orderBy('createdAt','desc').get();
-      books=snap.docs.map(d=>({_id:d.id,...d.data()}));
+      try{
+        const snap=await window._db.collection('fs_books').orderBy('createdAt','desc').get();
+        books=snap.docs.map(d=>({_id:d.id,...d.data()}));
+      }catch(fireErr){
+        console.warn('Firestore fs_books read failed:',fireErr.message);
+      }
     }
     if(!books.length){
       const r=await fetch('books.json?v='+Date.now());
+      if(!r.ok) throw new Error('books.json HTTP '+r.status);
       books=await r.json();
     }
-    allBooks=books;
-    // Update stats
-    const cats=new Set(books.map(b=>b.category).filter(Boolean));
-    document.getElementById('bookCount').textContent=books.length+'+';
-    document.getElementById('catCount').textContent=cats.size;
+    allBooks=Array.isArray(books)?books:[];
+    buildCategoryChips();
+    updateStats();
     render();
   }catch(e){
-    document.getElementById('booksGrid').innerHTML='<div class="empty"><div class="ei">⚠️</div><p>Could not load books. Please try again later.</p></div>';
+    console.error('eLibrary load failed:',e);
+    loadFailed=true;
+    allBooks=[];
+    updateStats();
+    renderLoadError();
   }
 }
 
-function setCategory(cat,btn){
-  currentCat=cat;
-  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  render();
+function updateStats(){
+  const cats=new Set(allBooks.map(b=>b.category).filter(Boolean));
+  document.getElementById('bookCount').textContent=allBooks.length?allBooks.length+'+':'—';
+  document.getElementById('catCount').textContent=cats.size||'—';
 }
 
+/* Append any category values present in the data but not in our known chip
+   set — keeps the page compatible with new categories an admin adds later
+   without needing a code change, while the original fixed set stays first. */
+function buildCategoryChips(){
+  const present=new Set(allBooks.map(b=>b.category).filter(Boolean));
+  const extra=[...present].filter(c=>!KNOWN_CATEGORIES.includes(c));
+  if(!extra.length) return;
+  const scroll=document.getElementById('catScroll');
+  extra.forEach(cat=>{
+    const btn=document.createElement('button');
+    btn.type='button';
+    btn.className='cat-chip';
+    btn.setAttribute('data-cat',cat);
+    btn.setAttribute('aria-pressed','false');
+    btn.onclick=()=>setCategory(cat,btn);
+    btn.innerHTML=`<svg aria-hidden="true"><use href="#icon-book"></use></svg> ${escapeHtml(cat)}`;
+    scroll.appendChild(btn);
+  });
+}
+
+/* ══════════════════ CATEGORY / SEARCH ══════════════════ */
+function setCategory(cat,btn){
+  currentCat=cat;
+  document.querySelectorAll('.cat-chip').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false');});
+  if(btn){btn.classList.add('active');btn.setAttribute('aria-pressed','true');}
+  render();
+}
+window.setCategory=setCategory;
+
+function clearSearch(){
+  document.getElementById('bookSearch').value='';
+  document.getElementById('searchClearBtn').classList.remove('show');
+  render();
+}
+window.clearSearch=clearSearch;
+
+function clearFilters(){
+  clearSearch();
+  const allChip=document.querySelector('.cat-chip[data-cat=""]');
+  setCategory('',allChip);
+}
+window.clearFilters=clearFilters;
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const input=document.getElementById('bookSearch');
+  input.addEventListener('input',()=>{
+    document.getElementById('searchClearBtn').classList.toggle('show',!!input.value);
+    clearTimeout(searchDebounce);
+    searchDebounce=setTimeout(render,180);
+  });
+});
+
+/* ══════════════════ SORT ══════════════════ */
+function sortBooks(list){
+  const mode=document.getElementById('sortSelect').value;
+  const byTitle=(a,b)=>(a.title||'').localeCompare(b.title||'');
+  if(mode==='az') return [...list].sort(byTitle);
+  if(mode==='za') return [...list].sort((a,b)=>byTitle(b,a));
+  if(mode==='newest') return [...list].sort((a,b)=>toTime(b.createdAt)-toTime(a.createdAt));
+  // 'featured' (default): featured first, then by createdAt desc within each group
+  return [...list].sort((a,b)=>{
+    if(!!b.featured!==!!a.featured) return (b.featured?1:0)-(a.featured?1:0);
+    return toTime(b.createdAt)-toTime(a.createdAt);
+  });
+}
+function toTime(v){
+  if(!v) return 0;
+  if(typeof v.toDate==='function') return v.toDate().getTime(); // Firestore Timestamp
+  const t=new Date(v).getTime();
+  return isNaN(t)?0:t;
+}
+
+/* ══════════════════ RENDER ══════════════════ */
 function render(){
+  if(loadFailed) return; // error state already showing; nothing to re-render
   const q=(document.getElementById('bookSearch').value||'').toLowerCase().trim();
   const filtered=allBooks.filter(b=>{
     const matchCat=!currentCat||(b.category||'')===currentCat;
-    const matchQ=!q||((b.title||'')+(b.description||'')+(b.author||'')).toLowerCase().includes(q);
-    return matchCat&&matchQ;
+    if(!matchCat) return false;
+    if(!q) return true;
+    const haystack=[b.title,b.description,b.author,b.category,b.subject,b.institution,b.course,b.examType,b.tags&&b.tags.join(' '),b.keywords&&b.keywords.join(' ')]
+      .filter(Boolean).join(' ').toLowerCase();
+    return haystack.includes(q);
   });
-  const el=document.getElementById('booksGrid');
+
+  const grid=document.getElementById('booksGrid');
+  const countEl=document.getElementById('resultCount');
+  const featuredSection=document.getElementById('featuredSection');
+
+  // Featured strip only makes sense on the unfiltered "All" view
+  if(!currentCat&&!q){
+    const featured=allBooks.filter(b=>b.featured);
+    if(featured.length){
+      featuredSection.style.display='block';
+      document.getElementById('featuredScroll').innerHTML=featured.map(renderCardHtml).join('');
+    }else{
+      featuredSection.style.display='none';
+    }
+  }else{
+    featuredSection.style.display='none';
+  }
+
+  countEl.textContent=allBooks.length?`Showing ${filtered.length} of ${allBooks.length} resource${allBooks.length===1?'':'s'}`:'';
+
   if(!filtered.length){
-    el.innerHTML='<div class="empty"><div class="ei">🔍</div><p>No books match your search.<br><button onclick="setCategory(\'\',document.querySelector(\'.cat-btn\'))" style="margin-top:12px;background:var(--blue);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-weight:700;cursor:pointer">Clear filter</button></p></div>';
+    grid.innerHTML=renderEmptyState(q,currentCat);
     return;
   }
-  // Sort: featured first
-  const sorted=[...filtered.filter(b=>b.featured),...filtered.filter(b=>!b.featured)];
-  el.innerHTML=sorted.map(b=>`
-    <div class="book-wrap">
-      ${b.featured&&!currentCat&&!q?'<span class="featured-badge">⭐ Featured</span>':''}
-      <div class="book-card">
-        <div class="book-cover">
-          ${b.cover?`<img src="${b.cover}" alt="${b.title}" loading="lazy">`:'📖'}
+
+  const sorted=sortBooks(filtered);
+  const showFeaturedBadge=!currentCat&&!q; // avoid clutter once a filter/search narrows results
+  grid.innerHTML=sorted.map(b=>renderCardHtml(b,showFeaturedBadge)).join('');
+}
+window.render=render;
+
+function renderEmptyState(q,cat){
+  if(!allBooks.length){
+    return `<div class="empty">
+      <svg aria-hidden="true"><use href="#icon-book-open"></use></svg>
+      <h3>The library is empty right now</h3>
+      <p>We're still adding resources. Check back soon, or let us know what you need below.</p>
+    </div>`;
+  }
+  if(q){
+    return `<div class="empty">
+      <svg aria-hidden="true"><use href="#icon-search"></use></svg>
+      <h3>No resources found</h3>
+      <p>We couldn't find a resource matching "${escapeHtml(q)}".</p>
+      <div class="empty-actions">
+        <button type="button" class="empty-btn" onclick="clearFilters()">Browse All Resources</button>
+        <button type="button" class="empty-btn ghost" onclick="clearSearch()">Clear Search</button>
+      </div>
+    </div>`;
+  }
+  if(cat){
+    return `<div class="empty">
+      <svg aria-hidden="true"><use href="#icon-clipboard-list"></use></svg>
+      <h3>No resources in ${escapeHtml(cat)} yet</h3>
+      <p>We haven't added resources to this category yet. Try browsing everything instead.</p>
+      <div class="empty-actions">
+        <button type="button" class="empty-btn" onclick="clearFilters()">Browse All Resources</button>
+      </div>
+    </div>`;
+  }
+  return `<div class="empty"><svg aria-hidden="true"><use href="#icon-search"></use></svg><h3>No resources match your filters</h3></div>`;
+}
+
+function renderLoadError(){
+  document.getElementById('resultCount').textContent='';
+  document.getElementById('featuredSection').style.display='none';
+  document.getElementById('booksGrid').innerHTML=`<div class="empty">
+    <svg aria-hidden="true"><use href="#icon-alert-triangle"></use></svg>
+    <h3>Could not load the library</h3>
+    <p>Something went wrong loading resources. Please check your connection and try again.</p>
+    <div class="empty-actions"><button type="button" class="empty-btn" onclick="init()">Retry</button></div>
+  </div>`;
+}
+
+/* Build the extra metadata tags shown on a card/modal — only fields that
+   actually exist on the document are shown, nothing is fabricated. */
+function metaTags(b){
+  const tags=[];
+  if(b.subject) tags.push(b.subject);
+  if(b.institution) tags.push(b.institution);
+  if(b.course) tags.push(b.course);
+  if(b.year) tags.push(String(b.year));
+  return tags;
+}
+
+function renderCardHtml(b,showFeaturedBadge){
+  const idx=allBooks.indexOf(b);
+  const cover=b.cover
+    ? `<img src="${escapeHtml(b.cover)}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<svg aria-hidden=&quot;true&quot;><use href=&quot;#icon-book-open&quot;></use></svg>'">`
+    : `<svg aria-hidden="true"><use href="#icon-book-open"></use></svg>`;
+  const extraTags=metaTags(b).slice(0,1); // keep the card compact — one extra tag max
+  return `<div class="book-wrap">
+    ${b.featured&&showFeaturedBadge?'<span class="featured-badge"><svg aria-hidden="true"><use href="#icon-star"></use></svg> Featured</span>':''}
+    <button type="button" class="book-card" onclick="openBookModal(${idx})">
+      <div class="book-cover">${cover}</div>
+      <div class="book-body">
+        <div class="book-tags">
+          <span class="book-cat">${escapeHtml(b.category||'General')}</span>
+          ${extraTags.map(t=>`<span class="book-meta-tag">${escapeHtml(t)}</span>`).join('')}
         </div>
-        <div class="book-body">
-          <span class="book-cat">${b.category||'General'}</span>
-          <div class="book-title">${b.title||''}</div>
-          ${b.author?`<div class="book-author">✍️ ${b.author}${b.year?' · '+b.year:''}</div>`:''}
-          <div class="book-desc">${b.description||''}</div>
-          <div class="book-actions">
-            ${b.downloadUrl
-              ?`<a href="${b.downloadUrl}" target="_blank" rel="noopener" class="dl-btn">📥 Download Free</a>`
-              :`<span class="dl-btn disabled">Coming Soon</span>`}
-            ${b.viewUrl?`<a href="${b.viewUrl}" target="_blank" rel="noopener" class="view-btn" title="Preview">👁</a>`:''}
-          </div>
+        <div class="book-title">${escapeHtml(b.title||'Untitled')}</div>
+        ${b.author?`<div class="book-author"><svg aria-hidden="true"><use href="#icon-edit"></use></svg> ${escapeHtml(b.author)}${b.year?' · '+escapeHtml(String(b.year)):''}</div>`:''}
+        ${b.description?`<div class="book-desc">${escapeHtml(b.description)}</div>`:''}
+        <div class="book-actions">
+          ${b.downloadUrl
+            ?`<a href="${escapeHtml(b.downloadUrl)}" target="_blank" rel="noopener" class="dl-btn" onclick="event.stopPropagation()"><svg aria-hidden="true"><use href="#icon-file-text"></use></svg> Download Free</a>`
+            :`<span class="dl-btn disabled">Coming Soon</span>`}
+          ${b.viewUrl?`<a href="${escapeHtml(b.viewUrl)}" target="_blank" rel="noopener" class="view-btn" title="Preview" aria-label="Preview ${escapeHtml(b.title||'resource')}" onclick="event.stopPropagation()"><svg aria-hidden="true"><use href="#icon-eye"></use></svg></a>`:''}
         </div>
       </div>
-    </div>`).join('');
+    </button>
+  </div>`;
 }
-</script>
 
+/* ══════════════════ DETAILS MODAL ══════════════════ */
+function openBookModal(idx){
+  const b=allBooks[idx];
+  if(!b) return;
+  lastFocusedEl=document.activeElement;
+  const cover=b.cover
+    ? `<img src="${escapeHtml(b.cover)}" alt="" onerror="this.parentElement.innerHTML+='<svg aria-hidden=&quot;true&quot;><use href=&quot;#icon-book-open&quot;></use></svg>';this.remove()">`
+    : `<svg aria-hidden="true"><use href="#icon-book-open"></use></svg>`;
+  const metaGrid=[];
+  if(b.category) metaGrid.push(['Category',b.category]);
+  if(b.subject) metaGrid.push(['Subject',b.subject]);
+  if(b.institution) metaGrid.push(['Institution',b.institution]);
+  if(b.course) metaGrid.push(['Course',b.course]);
+  if(b.year) metaGrid.push(['Year',b.year]);
+  if(b.examType) metaGrid.push(['Exam Type',b.examType]);
+
+  document.getElementById('modalContent').innerHTML=`
+    <div class="modal-cover">${cover}
+      <button type="button" class="modal-close" onclick="closeBookModal()" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tags">
+        <span class="book-cat">${escapeHtml(b.category||'General')}</span>
+      </div>
+      <h2 class="modal-title" id="modalTitle">${escapeHtml(b.title||'Untitled')}</h2>
+      ${b.author?`<div class="modal-author"><svg aria-hidden="true"><use href="#icon-edit"></use></svg> ${escapeHtml(b.author)}</div>`:''}
+      ${metaGrid.length?`<div class="modal-meta-grid">${metaGrid.map(([k,v])=>`<div class="modal-meta-item"><span>${escapeHtml(k)}</span>${escapeHtml(String(v))}</div>`).join('')}</div>`:''}
+      ${b.description?`<p class="modal-desc">${escapeHtml(b.description)}</p>`:''}
+      <div class="modal-actions">
+        ${b.downloadUrl
+          ?`<a href="${escapeHtml(b.downloadUrl)}" target="_blank" rel="noopener" class="dl-btn"><svg aria-hidden="true"><use href="#icon-file-text"></use></svg> Download Free</a>`
+          :`<span class="dl-btn disabled">Coming Soon</span>`}
+        ${b.viewUrl?`<a href="${escapeHtml(b.viewUrl)}" target="_blank" rel="noopener" class="view-btn" title="Preview" aria-label="Preview"><svg aria-hidden="true"><use href="#icon-eye"></use></svg></a>`:''}
+      </div>
+    </div>`;
+  const overlay=document.getElementById('bookModal');
+  overlay.classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('bookModalInner').querySelector('.modal-close').focus();
+}
+window.openBookModal=openBookModal;
+
+function closeBookModal(){
+  const overlay=document.getElementById('bookModal');
+  if(!overlay.classList.contains('open')) return;
+  overlay.classList.remove('open');
+  document.body.style.overflow='';
+  if(lastFocusedEl&&typeof lastFocusedEl.focus==='function') lastFocusedEl.focus();
+}
+window.closeBookModal=closeBookModal;
+
+function handleModalOverlay(e){ if(e.target===document.getElementById('bookModal')) closeBookModal(); }
+window.handleModalOverlay=handleModalOverlay;
+</script>
 <script src="studybuddy.js" defer></script>
 </body>
 </html>
