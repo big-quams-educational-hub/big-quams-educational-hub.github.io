@@ -113,7 +113,33 @@ body.dark .channel-card{background:#161b27;border-color:var(--border)}
 body.dark .sk{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:600px 100%}
 .sk-channel{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-md);padding:18px 20px;display:flex;align-items:center;gap:14px}
 body.dark .sk-channel{background:#161b27}
-footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:28px;margin-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-logo{width:42px;height:42px;border-radius:50%;border:2px solid var(--orange);object-fit:cover;flex-shrink:0}
+.footer-bname{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:#fff;letter-spacing:.3px}
+.footer-bsub{font-size:.68rem;color:rgba(255,255,255,.4);margin-top:3px;max-width:340px;line-height:1.4}
+.footer-cta{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 18px;border-radius:8px;font-weight:700;font-size:.86rem;transition:.2s;white-space:nowrap}
+.footer-cta:hover{background:#1db954;transform:translateY(-1px)}
+.footer-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px 16px;margin-bottom:26px}
+.footer-heading{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:1.3px;color:rgba(255,255,255,.3);margin-bottom:11px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:.76rem;color:rgba(255,255,255,.52);transition:.18s;display:inline-flex;align-items:center;gap:7px;width:fit-content}
+.footer-links a:hover,.footer-links a:focus-visible{color:#fff;transform:translateX(3px)}
+.footer-social{display:flex;gap:9px;margin-top:6px}
+.footer-social a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.18s}
+.footer-social a:hover,.footer-social a:focus-visible{background:rgba(249,115,22,.2);border-color:rgba(249,115,22,.45);transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 20px}
+.footer-copy{font-size:.7rem;color:rgba(255,255,255,.35);line-height:1.6}
+.footer-legal{display:flex;flex-wrap:wrap;gap:5px 16px}
+.footer-legal a{font-size:.7rem;color:rgba(255,255,255,.45);transition:.18s}
+.footer-legal a:hover,.footer-legal a:focus-visible{color:#fff}
+.footer-support{font-size:.68rem;color:rgba(255,255,255,.4);text-align:center;margin-top:14px;line-height:1.7}
+.footer-support strong{color:rgba(255,255,255,.65)}
+.footer-credit{text-align:center;font-size:.7rem;color:rgba(255,255,255,.35);margin-top:16px}
+.footer-credit a{color:var(--orange);font-weight:700}
+@media(max-width:640px){.footer-top{flex-direction:column;align-items:flex-start}.footer-bottom{flex-direction:column;align-items:center;text-align:center}}
 
 
 
@@ -122,6 +148,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 
 
 
+/* ── ICON SYSTEM (inline SVG sprite) ── */
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-fill{fill:currentColor;stroke:none}
 </style>
 <meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -129,6 +158,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 <link rel="canonical" href="https://bigquamsmedia.com.ng/community.html">
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="icon-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9"/></symbol><symbol id="icon-newspaper" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H7"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12.5" x2="13" y2="12.5"/><line x1="7" y1="16" x2="11" y2="16"/></symbol><symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></symbol><symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></symbol><symbol id="icon-graduation-cap" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5-10-5z"/><path d="M6 11v5c0 1 3 2 6 2s6-1 6-2v-5"/><path d="M22 9v6"/></symbol><symbol id="icon-book-open" viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8 4.5 4 5v13c4-.5 6.5 0 8 1.5V6.5z"/><path d="M12 6.5C13.5 5 16 4.5 20 5v13c-4-.5-6.5 0-8 1.5V6.5z"/></symbol><symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3z"/></symbol><symbol id="icon-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></symbol><symbol id="icon-bar-chart" viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></symbol><symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5 20 3"/><path d="M17 6l3 3"/><path d="M14 9l2.5 2.5"/></symbol><symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></symbol><symbol id="icon-landmark" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><path d="M3 10 12 4l9 6"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z"/></symbol><symbol id="icon-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z"/></symbol><symbol id="icon-clipboard-list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="12" y2="19"/></symbol><symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 4 1.5 5.5 2 6.5H4c.5-1 2-2.5 2-6.5z"/><path d="M10 19a2 2 0 0 0 4 0"/></symbol><symbol id="icon-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol><symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol><symbol id="icon-message-circle" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4A8.6 8.6 0 0 1 8 19l-4 1 1.3-3.9A8.4 8.4 0 1 1 21 11.5z"/><line x1="8.5" y1="12" x2="8.5" y2="12"/><line x1="12" y1="12" x2="12" y2="12"/><line x1="15.5" y1="12" x2="15.5" y2="12"/></symbol><symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></symbol><symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></symbol><symbol id="icon-building" viewBox="0 0 24 24"><rect x="5" y="3" width="9" height="18" rx="1"/><rect x="15" y="9" width="4" height="12" rx="1"/><line x1="8" y1="7" x2="8" y2="7"/><line x1="11" y1="7" x2="11" y2="7"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="11" y1="11" x2="11" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="11" y1="15" x2="11" y2="15"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.5.3 4.5 2.3 4.5 5.3"/></symbol><symbol id="icon-calendar-days" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="7" y1="14" x2="7" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="17" y1="14" x2="17" y2="14"/><line x1="7" y1="17.5" x2="7" y2="17.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-smartphone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18.5" x2="13" y2="18.5"/></symbol><symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><polyline points="20 4 20 8 16 8"/></symbol><symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="20" y2="20"/></symbol><symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol><symbol id="icon-rocket" viewBox="0 0 24 24"><path d="M12 2c3 1 5.5 4 5.5 8.5 0 2-1 3.8-2.2 5.2l-1 3.8-2.3-1.8-2.3 1.8-1-3.8C7.5 14.3 6.5 12.5 6.5 10.5 6.5 6 9 3 12 2z"/><circle cx="12" cy="10" r="1.7"/><path d="M9 17.5 7 21l3-1"/><path d="M15 17.5 17 21l-3-1"/></symbol><symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></symbol><symbol id="icon-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l7 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/><path d="M19.5 6.5a8 8 0 0 1 0 11"/></symbol><symbol id="icon-alert-triangle" viewBox="0 0 24 24"><path d="M12 3.5 22 20H2L12 3.5z"/><line x1="12" y1="10" x2="12" y2="14.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 11 15.5 16 9"/></symbol><symbol id="icon-robot" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="2"/><line x1="9" y1="13" x2="9" y2="13"/><line x1="15" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><line x1="12" y1="5" x2="12" y2="8"/><circle cx="12" cy="3.5" r="1"/></symbol><symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 8.7c.2-.3.6-.6 1.1-.6.4 0 .6.3.9 1 .2.5.5 1.1.4 1.4-.1.4-.4.6-.7.9-.2.2-.3.4-.1.7.4.7 1 1.3 1.7 1.7.3.2.5.1.7-.1.3-.3.5-.6.9-.7.3-.1.9.2 1.4.4.7.3 1 .5 1 .9 0 .5-.3.9-.6 1.1-.6.4-1.4.5-2.2.2-1.6-.5-3.4-2.3-4.2-3.9-.4-.7-.5-1.4-.3-2z"/></symbol><symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17" y1="7" x2="17" y2="7"/></symbol><symbol id="icon-tiktok" viewBox="0 0 24 24"><path d="M13.5 3v11.2a3.3 3.3 0 1 1-2.8-3.3"/><path d="M13.5 3.2c.4 2.4 2.2 4.2 4.5 4.5"/></symbol><symbol id="icon-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></symbol><symbol id="icon-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></symbol><symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 9 22 20 9 13 9 13 2"/></symbol><symbol id="icon-champagne" viewBox="0 0 24 24"><path d="M6 3h5l-1 7a2.5 2.5 0 0 1-5 0z"/><path d="M13 5h5l-.8 6a2.5 2.5 0 0 1-4.9-.6"/><line x1="8.5" y1="15" x2="8.5" y2="21"/><line x1="6" y1="21" x2="11" y2="21"/><line x1="15.5" y1="12" x2="15.5" y2="21"/></symbol><symbol id="icon-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></symbol><symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></symbol><symbol id="icon-hourglass" viewBox="0 0 24 24"><path d="M6 3h12"/><path d="M6 21h12"/><path d="M7 3c0 4 3 5 5 6-2 1-5 2-5 6"/><path d="M17 3c0 4-3 5-5 6 2 1 5 2 5 6"/></symbol><symbol id="icon-link" viewBox="0 0 24 24"><path d="M8.5 12.5 6 15a3.5 3.5 0 0 0 5 5l2.5-2.5"/><path d="M15.5 11.5 18 9a3.5 3.5 0 0 0-5-5l-2.5 2.5"/><line x1="9" y1="15" x2="15" y2="9"/></symbol><symbol id="icon-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></symbol><symbol id="icon-edit" viewBox="0 0 24 24"><path d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/><path d="M20.4 4.6a1.9 1.9 0 0 1 0 2.7L13 15l-3.5.8L10.3 12l7.4-7.4a1.9 1.9 0 0 1 2.7 0z"/></symbol><symbol id="icon-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol><symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M14 8.5h2.5V4.5h-2.5c-2.5 0-4 1.6-4 4v2.5H8v4h2.5V21h4v-8h2.7l.5-4h-3.2V9c0-.4.3-.5.5-.5z"/></symbol><symbol id="icon-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><line x1="8" y1="10.8" x2="16" y2="7.2"/><line x1="8" y1="13.2" x2="16" y2="16.8"/></symbol><symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-10-9.3C.5 8 2 4.5 5.5 4c2-.3 3.8.6 5 2.2C11.7 4.6 13.5 3.7 15.5 4 19 4.5 20.5 8 19 11.2c-2.5 4.7-7 9.3-7 9.3z"/></symbol><symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></symbol><symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="icon-pin" viewBox="0 0 24 24"><path d="M9 4h6"/><path d="M10 4v5.5L7 12h10l-3-2.5V4"/><line x1="12" y1="12" x2="12" y2="21"/></symbol><symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 2c1 3-2 4-2 7a3 3 0 0 0 6 0c0-1-.5-2-.5-2 2 1 3 3 3 5.5A6.5 6.5 0 0 1 12 19a6.5 6.5 0 0 1-6.5-6.5C5.5 8 8 6 9 4c.5 2 1 2.5 1.5 2.5S12 5 12 2z"/></symbol><symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v1H5.5a2 2 0 0 0-1.9 1.4L2 17V7z"/><path d="M2.3 17.3 4.3 10a2 2 0 0 1 1.9-1.4H21l-2.2 7.7A2 2 0 0 1 16.9 18H4a2 2 0 0 1-1.7-2.7z"/></symbol><symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol><symbol id="icon-send" viewBox="0 0 24 24"><line x1="21" y1="3" x2="11" y2="13"/><path d="M21 3 14.5 21 11 13 3 9.5z"/></symbol><symbol id="icon-thumbs-up" viewBox="0 0 24 24"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3z"/><path d="M7 11l4-7a2 2 0 0 1 2 2l-1 4h5.5a2 2 0 0 1 1.9 2.6l-1.8 6A2 2 0 0 1 15.7 20H10a3 3 0 0 1-3-3"/></symbol><symbol id="icon-file-text" viewBox="0 0 24 24"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4a1 1 0 0 0 1 1h4"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="16.5" x2="13" y2="16.5"/></symbol><symbol id="icon-scroll" viewBox="0 0 24 24"><path d="M4 4h13a3 3 0 0 1 3 3 3 3 0 0 1-3 3H4"/><path d="M4 4a2 2 0 0 0 0 4"/><path d="M20 20H7a3 3 0 0 1-3-3 3 3 0 0 1 3-3h13"/><path d="M20 20a2 2 0 0 0 0-4"/></symbol><symbol id="icon-trending-up" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 5"/><polyline points="15 5 21 5 21 11"/></symbol><symbol id="icon-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9.5c0-1 1-1.8 3-1.8s3 .8 3 1.8-1 1.3-3 1.8c-2 .5-3 .8-3 1.8s1 1.8 3 1.8 3-.8 3-1.8"/></symbol><symbol id="icon-gift" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 9h16v3H4z"/><line x1="12" y1="9" x2="12" y2="20"/><path d="M12 9c-1.2-4-4.5-4.5-5.5-3S7 9 12 9z"/><path d="M12 9c1.2-4 4.5-4.5 5.5-3S17 9 12 9z"/></symbol><symbol id="icon-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h11l-2.5 4L17 12H6"/></symbol><symbol id="icon-flask" viewBox="0 0 24 24"><path d="M9 3h6"/><path d="M10 3v6.5L4.5 19a1.5 1.5 0 0 0 1.3 2.3h12.4a1.5 1.5 0 0 0 1.3-2.3L14 9.5V3"/><line x1="7.5" y1="15" x2="16.5" y2="15"/></symbol><symbol id="icon-leaf" viewBox="0 0 24 24"><path d="M5 21c0-9 6-16 15-16 0 9-6 16-15 16z"/><path d="M5 21c3-3 6-7 8-11"/></symbol><symbol id="icon-cross" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><line x1="6" y1="9" x2="18" y2="9"/></symbol><symbol id="icon-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="3" y1="12" x2="21" y2="12"/></symbol><symbol id="icon-crown" viewBox="0 0 24 24"><path d="M4 8l4 4 4-6 4 6 4-4-2 10H6z"/></symbol><symbol id="icon-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5.5A3 3 0 0 0 9 20V4z"/><path d="M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5.5A3 3 0 0 1 15 20V4z"/></symbol><symbol id="icon-hash" viewBox="0 0 24 24"><line x1="9" y1="3" x2="7" y2="21"/><line x1="17" y1="3" x2="15" y2="21"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/></symbol><symbol id="icon-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M3 4h2l2.4 11.5a2 2 0 0 0 2 1.5h7.2a2 2 0 0 0 2-1.6L21 8H6"/></symbol><symbol id="icon-trophy" viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 5"/><path d="M16 5h3a3 3 0 0 1-3 5"/><line x1="12" y1="14" x2="12" y2="18"/><path d="M8 20h8"/><path d="M9.5 18h5l.5 2h-6z"/></symbol><symbol id="icon-camera" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.5"/></symbol><symbol id="icon-arrow-left" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></symbol><symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="12" y1="8" x2="12" y2="8.01"/></symbol><symbol id="icon-log-out" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol><symbol id="icon-tag" viewBox="0 0 24 24"><path d="M2 12 12 2h8a2 2 0 0 1 2 2v8L12 22 2 12z"/><line x1="16" y1="8" x2="16" y2="8.01"/></symbol></defs></svg>
 <header>
   <div class="header-bar">
     <a href="index.html" class="logo-link">
@@ -136,42 +166,39 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
     <nav class="main-nav">
-      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a><a href="scholarship.html">Scholarships</a><a href="index.html#contact" class="nav-cta">💬 Contact</a>
+      <a href="index.html">Home</a><a href="explore.html">Explore</a><a href="elibrary.html">eLibrary</a><a href="scholarship.html">Scholarships</a><a href="index.html#contact" class="nav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-message-circle"></use></svg> Contact</a>
     </nav>
-    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
-    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    <button type="button" class="hdr-btn" id="darkBtn" onclick="toggleDark()" aria-label="Switch to dark mode"><svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg></button>
+    <button type="button" class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
 <nav class="mobile-nav" id="mobileNav">
 <div class="mnav-header"><div style="display:flex;align-items:center;gap:10px"><img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316"><div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
   </div></div>
-  <div class="mnav-lbl">Navigation</div>
-  <a href="index.html" onclick="toggleNav()">Home</a>
-  <a href="explore.html" onclick="toggleNav()">Explore All Tools</a>
   <div class="mnav-lbl">Main</div>
-  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
-  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
-  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
-  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
-  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
-  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
-  <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
+  <a href="index.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a>
+  <a href="newsroom.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a>
+  <a href="community.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a>
+  <a href="profile.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> My Profile</a>
   <div class="mnav-lbl">Exam Tools</div>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
-  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
-  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+  <a href="cbt.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a>
   <div class="mnav-lbl">Resources</div>
-  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
-  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
-  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
-  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
-  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
-  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
-  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
+  <a href="elibrary.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combination</a>
+  <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener" class="mnav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
 </nav>
 
 <!-- HERO -->
@@ -190,7 +217,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
       <div class="stat-item"><div class="stat-num">36+</div><div class="stat-lbl">States</div></div>
     </div>
     <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" class="join-btn">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Join Brainy Buddies — Free
     </a>
     <div class="join-note">No spam. No payment. Leave anytime.</div>
@@ -203,12 +230,12 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
     <div class="sec-label">Why Join?</div>
     <div class="sec-title">What You Get When You <span>Join</span></div>
     <div class="benefits-grid">
-      <div class="benefit-card"><div class="benefit-icon">⚡</div><div class="benefit-title">Instant Admission Alerts</div><div class="benefit-desc">Be the first to know when JAMB releases results, Post-UTME dates are announced or admission lists are out.</div></div>
-      <div class="benefit-card"><div class="benefit-icon">💰</div><div class="benefit-title">Scholarship Updates</div><div class="benefit-desc">Get notified the moment a scholarship opens — MTN, Dangote, federal government and international awards.</div></div>
-      <div class="benefit-card"><div class="benefit-icon">🧠</div><div class="benefit-title">Peer Study Support</div><div class="benefit-desc">Ask questions, share resources and study alongside thousands of students preparing for the same exams.</div></div>
-      <div class="benefit-card"><div class="benefit-icon">📚</div><div class="benefit-title">Free Resources Shared Daily</div><div class="benefit-desc">Past questions, textbook links, prep tips and guides shared by BQM and community members every day.</div></div>
-      <div class="benefit-card"><div class="benefit-icon">🌍</div><div class="benefit-title">Nationwide Network</div><div class="benefit-desc">Connect with students from all 36 states and FCT. Build friendships and study groups beyond your school.</div></div>
-      <div class="benefit-card"><div class="benefit-icon">👨‍💼</div><div class="benefit-title">BQM Team Support</div><div class="benefit-desc">The BQM team is active in the group. Ask questions and get answers directly from people who care.</div></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg class="icon" aria-hidden="true"><use href="#icon-zap"></use></svg></div><div class="benefit-title">Instant Admission Alerts</div><div class="benefit-desc">Be the first to know when JAMB releases results, Post-UTME dates are announced or admission lists are out.</div></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg></div><div class="benefit-title">Scholarship Updates</div><div class="benefit-desc">Get notified the moment a scholarship opens — MTN, Dangote, federal government and international awards.</div></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg class="icon" aria-hidden="true"><use href="#icon-brain"></use></svg></div><div class="benefit-title">Peer Study Support</div><div class="benefit-desc">Ask questions, share resources and study alongside thousands of students preparing for the same exams.</div></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg></div><div class="benefit-title">Free Resources Shared Daily</div><div class="benefit-desc">Past questions, textbook links, prep tips and guides shared by BQM and community members every day.</div></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg class="icon" aria-hidden="true"><use href="#icon-globe"></use></svg></div><div class="benefit-title">Nationwide Network</div><div class="benefit-desc">Connect with students from all 36 states and FCT. Build friendships and study groups beyond your school.</div></div>
+      <div class="benefit-card"><div class="benefit-icon"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg></div><div class="benefit-title">BQM Team Support</div><div class="benefit-desc">The BQM team is active in the group. Ask questions and get answers directly from people who care.</div></div>
     </div>
   </div>
 </section>
@@ -220,22 +247,22 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
     <div class="sec-title">Choose How You Want to <span>Stay Connected</span></div>
     <div class="channels-grid">
       <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" class="channel-card">
-        <div class="channel-icon" style="background:#dcfce7">💬</div>
+        <div class="channel-icon" style="background:#dcfce7"><svg class="icon" aria-hidden="true"><use href="#icon-message-circle"></use></svg></div>
         <div><div class="channel-name">Brainy Buddies Group</div><div class="channel-desc">Main community — ask questions, share resources, get support</div></div>
         <span class="channel-arrow">→</span>
       </a>
       <a href="https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q" target="_blank" rel="noopener" class="channel-card">
-        <div class="channel-icon" style="background:#dbeafe">📢</div>
+        <div class="channel-icon" style="background:#dbeafe"><svg class="icon" aria-hidden="true"><use href="#icon-bell"></use></svg></div>
         <div><div class="channel-name">BQM WhatsApp Channel</div><div class="channel-desc">Broadcast channel — one-way alerts and updates</div></div>
         <span class="channel-arrow">→</span>
       </a>
       <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="channel-card">
-        <div class="channel-icon" style="background:#dcfce7">🤝</div>
+        <div class="channel-icon" style="background:#dcfce7"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg></div>
         <div><div class="channel-name">Direct Chat with BQM</div><div class="channel-desc">Message us directly for personal guidance</div></div>
         <span class="channel-arrow">→</span>
       </a>
       <a href="https://www.facebook.com/bigquamsmedia" target="_blank" rel="noopener" class="channel-card">
-        <div class="channel-icon" style="background:#dbeafe">📘</div>
+        <div class="channel-icon" style="background:#dbeafe"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg></div>
         <div><div class="channel-name">Facebook Page</div><div class="channel-desc">Follow for news, tips and community highlights</div></div>
         <span class="channel-arrow">→</span>
       </a>
@@ -249,12 +276,12 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
     <div class="sec-label">Community Guidelines</div>
     <div class="sec-title">Community <span>Rules</span></div>
     <div class="rules-list">
-      <div class="rule-item"><div class="rule-icon">✅</div><div><strong>Be respectful.</strong> Treat all members with dignity regardless of school, state or background. Zero tolerance for insults or discrimination.</div></div>
-      <div class="rule-item"><div class="rule-icon">✅</div><div><strong>Share only verified information.</strong> Do not spread unconfirmed JAMB results, fake scholarship deadlines or rumours about admission.</div></div>
-      <div class="rule-item"><div class="rule-icon">✅</div><div><strong>No spamming or advertising.</strong> Do not post unsolicited promotional messages, referral links or adverts without permission from BQM admin.</div></div>
-      <div class="rule-item"><div class="rule-icon">✅</div><div><strong>No fraud or scams.</strong> Do not sell fake admission letters, results or documents. Any attempt will result in immediate removal and reporting.</div></div>
-      <div class="rule-item"><div class="rule-icon">✅</div><div><strong>Stay on topic.</strong> This community is for education, admissions, scholarships and student life. Keep discussions relevant.</div></div>
-      <div class="rule-item"><div class="rule-icon">✅</div><div><strong>Help each other.</strong> If you know the answer, share it. If you found a useful resource, share it. That is the spirit of Brainy Buddies.</div></div>
+      <div class="rule-item"><div class="rule-icon"><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg></div><div><strong>Be respectful.</strong> Treat all members with dignity regardless of school, state or background. Zero tolerance for insults or discrimination.</div></div>
+      <div class="rule-item"><div class="rule-icon"><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg></div><div><strong>Share only verified information.</strong> Do not spread unconfirmed JAMB results, fake scholarship deadlines or rumours about admission.</div></div>
+      <div class="rule-item"><div class="rule-icon"><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg></div><div><strong>No spamming or advertising.</strong> Do not post unsolicited promotional messages, referral links or adverts without permission from BQM admin.</div></div>
+      <div class="rule-item"><div class="rule-icon"><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg></div><div><strong>No fraud or scams.</strong> Do not sell fake admission letters, results or documents. Any attempt will result in immediate removal and reporting.</div></div>
+      <div class="rule-item"><div class="rule-icon"><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg></div><div><strong>Stay on topic.</strong> This community is for education, admissions, scholarships and student life. Keep discussions relevant.</div></div>
+      <div class="rule-item"><div class="rule-icon"><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg></div><div><strong>Help each other.</strong> If you know the answer, share it. If you found a useful resource, share it. That is the spirit of Brainy Buddies.</div></div>
     </div>
   </div>
 </section>
@@ -262,11 +289,11 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 <!-- FINAL CTA -->
 <div style="background:linear-gradient(135deg,#064e3b,#065f46);padding:52px 16px;text-align:center">
   <div style="max-width:560px;margin:0 auto">
-    <div style="font-size:2rem;margin-bottom:14px">👥</div>
+    <div style="font-size:2rem;margin-bottom:14px"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg></div>
     <h2 style="font-family:'Montserrat',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:8px">Ready to Join 10,000+ Students?</h2>
     <p style="font-size:.84rem;color:rgba(255,255,255,.65);margin-bottom:24px;line-height:1.7">One tap and you're in. No registration, no payment — just a community of Nigerian students helping each other succeed.</p>
     <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff;padding:15px 30px;border-radius:12px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.95rem;transition:.2s;box-shadow:0 6px 24px rgba(37,211,102,.3)">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Join Brainy Buddies — Free
     </a>
   </div>
@@ -274,46 +301,103 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px}
 
 <footer>
   <div class="footer-inner">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
-      <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a><a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a><a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a><a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a><a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a><a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div><div style="display:flex;flex-direction:column;gap:5px"><a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a><a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a><a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a><a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a><a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a><a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div><div style="display:flex;flex-direction:column;gap:5px"><a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a><a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a><a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a><a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a><a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a><a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
-    </div>
-    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
-    <div style="font-size:.68rem;color:rgba(255,255,255,.35);margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 14px">
-      <a href="terms.html" style="color:rgba(255,255,255,.4)">Terms &amp; Conditions</a>
-      <a href="privacy.html" style="color:rgba(255,255,255,.4)">Privacy Policy</a>
-      <a href="cookie-policy.html" style="color:rgba(255,255,255,.4)">Cookie Policy</a>
-      <a href="disclaimer.html" style="color:rgba(255,255,255,.4)">Disclaimer</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img class="footer-logo" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media logo">
+        <div>
+          <div class="footer-bname">BIG QUAMS MEDIA®</div>
+          <p class="footer-bsub">Built for Nigerian undergraduates.</p>
+        </div>
+      </div>
+      <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" class="footer-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
     </div>
 
+    <nav class="footer-cols" aria-label="Footer navigation">
+      <div>
+        <h3 class="footer-heading">Main</h3>
+        <ul class="footer-links">
+          <li><a href="index.html"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a></li>
+          <li><a href="newsroom.html"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a></li>
+          <li><a href="explore.html"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore Tools</a></li>
+          <li><a href="campus-life.html"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a></li>
+          <li><a href="community.html"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community</a></li>
+          <li><a href="daily.html"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Exam Tools</h3>
+        <ul class="footer-links">
+          <li><a href="cbt.html"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a></li>
+          <li><a href="postutme-prep.html"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a></li>
+          <li><a href="postutme-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calc</a></li>
+          <li><a href="gpa-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a></li>
+          <li><a href="results.html"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a></li>
+          <li><a href="Jamb_Profile_Code.html"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Resources</h3>
+        <ul class="footer-links">
+          <li><a href="elibrary.html"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a></li>
+          <li><a href="scholarship.html"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a></li>
+          <li><a href="student-loan.html"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan</a></li>
+          <li><a href="spotlight.html"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a></li>
+          <li><a href="dyk.html"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a></li>
+          <li><a href="subject-combo.html"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Connect</h3>
+        <ul class="footer-links">
+          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Join Group</a></li>
+          <li><a href="index.html#install-app"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Install App</a></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg></a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg></a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg class="icon" aria-hidden="true"><use href="#icon-tiktok"></use></svg></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="cookie-policy.html">Cookie Policy</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-support"><strong>Big Quams Media</strong> +2349049871643 · <strong>Big Quams Campus Support</strong> +2348069821664</div>
+    <div class="footer-credit">Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer">Abdulrasaq Quwamdeen</a></div>
   </div>
 </footer>
 <script>
 (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
-function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
-document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark'))document.getElementById('darkBtn').textContent='☀️';document.getElementById('yr').textContent=new Date().getFullYear();});
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');const btn=document.getElementById('darkBtn');btn.innerHTML=d?'<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>':'<svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>';btn.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode');}
+document.addEventListener('DOMContentLoaded',()=>{if(document.body.classList.contains('dark')){const btn=document.getElementById('darkBtn');btn.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>';btn.setAttribute('aria-label','Switch to light mode');}document.getElementById('yr').textContent=new Date().getFullYear();});
 function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
+function escapeHtml(str){
+  return String(str==null?'':str).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 // Default links shown if Firebase has none yet
+// iconSvg = trusted markup we control (our own fallback data only).
+// Firestore-sourced docs use "icon" (admin-typed emoji/text) and always get escaped.
 const DEFAULT_LINKS=[
-  {icon:'💬',bg:'#dcfce7',name:'Brainy Buddies WhatsApp Group',desc:'Active student community — ask questions, get answers, share resources',url:'https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO'},
-  {icon:'📢',bg:'#dbeafe',name:'BQM WhatsApp Channel',desc:'Broadcast channel — one-way alerts and updates',url:'https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q'},
-  {icon:'🤝',bg:'#dcfce7',name:'Direct Chat with BQM',desc:'Message us directly for personal guidance',url:'https://wa.me/2349049871643'},
-  {icon:'📘',bg:'#dbeafe',name:'Facebook Page',desc:'Follow for news, tips and community highlights',url:'https://www.facebook.com/bigquamsmedia'},
+  {iconSvg:'<svg class="icon" aria-hidden="true"><use href="#icon-message-circle"></use></svg>',bg:'#dcfce7',name:'Brainy Buddies WhatsApp Group',desc:'Active student community — ask questions, get answers, share resources',url:'https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO'},
+  {iconSvg:'<svg class="icon" aria-hidden="true"><use href="#icon-bell"></use></svg>',bg:'#dbeafe',name:'BQM WhatsApp Channel',desc:'Broadcast channel — one-way alerts and updates',url:'https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q'},
+  {iconSvg:'<svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg>',bg:'#dcfce7',name:'Direct Chat with BQM',desc:'Message us directly for personal guidance',url:'https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question.'},
+  {iconSvg:'<svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg>',bg:'#dbeafe',name:'Facebook Page',desc:'Follow for news, tips and community highlights',url:'https://www.facebook.com/bigquamsmedia'},
 ];
 
 function renderLinks(links){
   const el=document.getElementById('channelLinks');
   if(!el) return;
   el.innerHTML=links.map(l=>`
-    <a href="${l.url}" target="_blank" rel="noopener" class="channel-card">
-      <div class="channel-icon" style="background:${l.bg||'#f0f4ff'}">${l.icon||'🔗'}</div>
-      <div><div class="channel-name">${l.name}</div><div class="channel-desc">${l.desc||''}</div></div>
+    <a href="${escapeHtml(l.url)}" target="_blank" rel="noopener" class="channel-card">
+      <div class="channel-icon" style="background:${escapeHtml(l.bg||'#f0f4ff')}">${l.iconSvg?l.iconSvg:(l.icon?escapeHtml(l.icon):'<svg class=\"icon\" aria-hidden=\"true\"><use href=\"#icon-link\"></use></svg>')}</div>
+      <div><div class="channel-name">${escapeHtml(l.name)}</div><div class="channel-desc">${escapeHtml(l.desc||'')}</div></div>
       <span class="channel-arrow">→</span>
     </a>`).join('');
 }
