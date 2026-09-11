@@ -84,7 +84,7 @@ body.dark .card{background:#161b27;border-color:var(--border)}
 /* DYK */
 .dyk-card{background:linear-gradient(135deg,#f0f4ff,#e0e9ff);border-radius:12px;padding:20px;margin-bottom:14px;position:relative;overflow:hidden}
 body.dark .dyk-card{background:linear-gradient(135deg,#111624,#141c30)}
-.dyk-card::before{content:'💡';position:absolute;right:16px;top:12px;font-size:2rem;opacity:.15}
+.dyk-card::before{content:'';position:absolute;right:16px;top:12px;width:34px;height:34px;opacity:.15;background:var(--blue-main);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6'/%3E%3Cpath d='M10 22h4'/%3E%3Cpath d='M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6'/%3E%3Cpath d='M10 22h4'/%3E%3Cpath d='M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z'/%3E%3C/svg%3E") center/contain no-repeat}
 .dyk-label{font-size:.66rem;font-weight:800;color:var(--blue-main);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
 .dyk-fact{font-size:.92rem;color:var(--text-main);line-height:1.7;font-weight:500}
 .dyk-source{font-size:.66rem;color:var(--text-muted);margin-top:10px}
@@ -165,7 +165,33 @@ body.dark .history-item{background:#1a2236}
 .history-date{font-size:.64rem;color:var(--text-muted)}
 
 /* FOOTER */
-footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:44px 16px 24px;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-bottom:28px;margin-bottom:28px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand{display:flex;align-items:center;gap:12px}
+.footer-logo{width:42px;height:42px;border-radius:50%;border:2px solid var(--orange);object-fit:cover;flex-shrink:0}
+.footer-bname{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:#fff;letter-spacing:.3px}
+.footer-bsub{font-size:.68rem;color:rgba(255,255,255,.4);margin-top:3px;max-width:340px;line-height:1.4}
+.footer-cta{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:11px 18px;border-radius:8px;font-weight:700;font-size:.86rem;transition:.2s;white-space:nowrap}
+.footer-cta:hover{background:#1db954;transform:translateY(-1px)}
+.footer-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:26px 16px;margin-bottom:26px}
+.footer-heading{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:1.3px;color:rgba(255,255,255,.3);margin-bottom:11px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:.76rem;color:rgba(255,255,255,.52);transition:.18s;display:inline-flex;align-items:center;gap:7px;width:fit-content}
+.footer-links a:hover,.footer-links a:focus-visible{color:#fff;transform:translateX(3px)}
+.footer-social{display:flex;gap:9px;margin-top:6px}
+.footer-social a{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1rem;transition:.18s}
+.footer-social a:hover,.footer-social a:focus-visible{background:rgba(249,115,22,.2);border-color:rgba(249,115,22,.45);transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:18px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 20px}
+.footer-copy{font-size:.7rem;color:rgba(255,255,255,.35);line-height:1.6}
+.footer-legal{display:flex;flex-wrap:wrap;gap:5px 16px}
+.footer-legal a{font-size:.7rem;color:rgba(255,255,255,.45);transition:.18s}
+.footer-legal a:hover,.footer-legal a:focus-visible{color:#fff}
+.footer-support{font-size:.68rem;color:rgba(255,255,255,.4);text-align:center;margin-top:14px;line-height:1.7}
+.footer-support strong{color:rgba(255,255,255,.65)}
+.footer-credit{text-align:center;font-size:.7rem;color:rgba(255,255,255,.35);margin-top:16px}
+.footer-credit a{color:var(--orange);font-weight:700}
+@media(max-width:640px){.footer-top{flex-direction:column;align-items:flex-start}.footer-bottom{flex-direction:column;align-items:center;text-align:center}}
 
 
 
@@ -174,6 +200,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 
 
 
+/* ── ICON SYSTEM (inline SVG sprite) ── */
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-fill{fill:currentColor;stroke:none}
 </style>
 <meta property="og:image" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -181,46 +210,47 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <link rel="canonical" href="https://bigquamsmedia.com.ng/daily.html">
 </head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="icon-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9"/></symbol><symbol id="icon-newspaper" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H7"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12.5" x2="13" y2="12.5"/><line x1="7" y1="16" x2="11" y2="16"/></symbol><symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></symbol><symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></symbol><symbol id="icon-graduation-cap" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5-10-5z"/><path d="M6 11v5c0 1 3 2 6 2s6-1 6-2v-5"/><path d="M22 9v6"/></symbol><symbol id="icon-book-open" viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8 4.5 4 5v13c4-.5 6.5 0 8 1.5V6.5z"/><path d="M12 6.5C13.5 5 16 4.5 20 5v13c-4-.5-6.5 0-8 1.5V6.5z"/></symbol><symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3z"/></symbol><symbol id="icon-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></symbol><symbol id="icon-bar-chart" viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></symbol><symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5 20 3"/><path d="M17 6l3 3"/><path d="M14 9l2.5 2.5"/></symbol><symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></symbol><symbol id="icon-landmark" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><path d="M3 10 12 4l9 6"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z"/></symbol><symbol id="icon-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z"/></symbol><symbol id="icon-clipboard-list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="12" y2="19"/></symbol><symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 4 1.5 5.5 2 6.5H4c.5-1 2-2.5 2-6.5z"/><path d="M10 19a2 2 0 0 0 4 0"/></symbol><symbol id="icon-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol><symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol><symbol id="icon-message-circle" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4A8.6 8.6 0 0 1 8 19l-4 1 1.3-3.9A8.4 8.4 0 1 1 21 11.5z"/><line x1="8.5" y1="12" x2="8.5" y2="12"/><line x1="12" y1="12" x2="12" y2="12"/><line x1="15.5" y1="12" x2="15.5" y2="12"/></symbol><symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></symbol><symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></symbol><symbol id="icon-building" viewBox="0 0 24 24"><rect x="5" y="3" width="9" height="18" rx="1"/><rect x="15" y="9" width="4" height="12" rx="1"/><line x1="8" y1="7" x2="8" y2="7"/><line x1="11" y1="7" x2="11" y2="7"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="11" y1="11" x2="11" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="11" y1="15" x2="11" y2="15"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.5.3 4.5 2.3 4.5 5.3"/></symbol><symbol id="icon-calendar-days" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="7" y1="14" x2="7" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="17" y1="14" x2="17" y2="14"/><line x1="7" y1="17.5" x2="7" y2="17.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-smartphone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18.5" x2="13" y2="18.5"/></symbol><symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><polyline points="20 4 20 8 16 8"/></symbol><symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="20" y2="20"/></symbol><symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol><symbol id="icon-rocket" viewBox="0 0 24 24"><path d="M12 2c3 1 5.5 4 5.5 8.5 0 2-1 3.8-2.2 5.2l-1 3.8-2.3-1.8-2.3 1.8-1-3.8C7.5 14.3 6.5 12.5 6.5 10.5 6.5 6 9 3 12 2z"/><circle cx="12" cy="10" r="1.7"/><path d="M9 17.5 7 21l3-1"/><path d="M15 17.5 17 21l-3-1"/></symbol><symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></symbol><symbol id="icon-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l7 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/><path d="M19.5 6.5a8 8 0 0 1 0 11"/></symbol><symbol id="icon-alert-triangle" viewBox="0 0 24 24"><path d="M12 3.5 22 20H2L12 3.5z"/><line x1="12" y1="10" x2="12" y2="14.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 11 15.5 16 9"/></symbol><symbol id="icon-robot" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="2"/><line x1="9" y1="13" x2="9" y2="13"/><line x1="15" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><line x1="12" y1="5" x2="12" y2="8"/><circle cx="12" cy="3.5" r="1"/></symbol><symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 8.7c.2-.3.6-.6 1.1-.6.4 0 .6.3.9 1 .2.5.5 1.1.4 1.4-.1.4-.4.6-.7.9-.2.2-.3.4-.1.7.4.7 1 1.3 1.7 1.7.3.2.5.1.7-.1.3-.3.5-.6.9-.7.3-.1.9.2 1.4.4.7.3 1 .5 1 .9 0 .5-.3.9-.6 1.1-.6.4-1.4.5-2.2.2-1.6-.5-3.4-2.3-4.2-3.9-.4-.7-.5-1.4-.3-2z"/></symbol><symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17" y1="7" x2="17" y2="7"/></symbol><symbol id="icon-tiktok" viewBox="0 0 24 24"><path d="M13.5 3v11.2a3.3 3.3 0 1 1-2.8-3.3"/><path d="M13.5 3.2c.4 2.4 2.2 4.2 4.5 4.5"/></symbol><symbol id="icon-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></symbol><symbol id="icon-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></symbol><symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 9 22 20 9 13 9 13 2"/></symbol><symbol id="icon-champagne" viewBox="0 0 24 24"><path d="M6 3h5l-1 7a2.5 2.5 0 0 1-5 0z"/><path d="M13 5h5l-.8 6a2.5 2.5 0 0 1-4.9-.6"/><line x1="8.5" y1="15" x2="8.5" y2="21"/><line x1="6" y1="21" x2="11" y2="21"/><line x1="15.5" y1="12" x2="15.5" y2="21"/></symbol><symbol id="icon-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></symbol><symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></symbol><symbol id="icon-hourglass" viewBox="0 0 24 24"><path d="M6 3h12"/><path d="M6 21h12"/><path d="M7 3c0 4 3 5 5 6-2 1-5 2-5 6"/><path d="M17 3c0 4-3 5-5 6 2 1 5 2 5 6"/></symbol><symbol id="icon-link" viewBox="0 0 24 24"><path d="M8.5 12.5 6 15a3.5 3.5 0 0 0 5 5l2.5-2.5"/><path d="M15.5 11.5 18 9a3.5 3.5 0 0 0-5-5l-2.5 2.5"/><line x1="9" y1="15" x2="15" y2="9"/></symbol><symbol id="icon-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></symbol><symbol id="icon-edit" viewBox="0 0 24 24"><path d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/><path d="M20.4 4.6a1.9 1.9 0 0 1 0 2.7L13 15l-3.5.8L10.3 12l7.4-7.4a1.9 1.9 0 0 1 2.7 0z"/></symbol><symbol id="icon-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol><symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M14 8.5h2.5V4.5h-2.5c-2.5 0-4 1.6-4 4v2.5H8v4h2.5V21h4v-8h2.7l.5-4h-3.2V9c0-.4.3-.5.5-.5z"/></symbol><symbol id="icon-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><line x1="8" y1="10.8" x2="16" y2="7.2"/><line x1="8" y1="13.2" x2="16" y2="16.8"/></symbol><symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-10-9.3C.5 8 2 4.5 5.5 4c2-.3 3.8.6 5 2.2C11.7 4.6 13.5 3.7 15.5 4 19 4.5 20.5 8 19 11.2c-2.5 4.7-7 9.3-7 9.3z"/></symbol><symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></symbol><symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="icon-pin" viewBox="0 0 24 24"><path d="M9 4h6"/><path d="M10 4v5.5L7 12h10l-3-2.5V4"/><line x1="12" y1="12" x2="12" y2="21"/></symbol><symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 2c1 3-2 4-2 7a3 3 0 0 0 6 0c0-1-.5-2-.5-2 2 1 3 3 3 5.5A6.5 6.5 0 0 1 12 19a6.5 6.5 0 0 1-6.5-6.5C5.5 8 8 6 9 4c.5 2 1 2.5 1.5 2.5S12 5 12 2z"/></symbol><symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v1H5.5a2 2 0 0 0-1.9 1.4L2 17V7z"/><path d="M2.3 17.3 4.3 10a2 2 0 0 1 1.9-1.4H21l-2.2 7.7A2 2 0 0 1 16.9 18H4a2 2 0 0 1-1.7-2.7z"/></symbol><symbol id="icon-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol><symbol id="icon-send" viewBox="0 0 24 24"><line x1="21" y1="3" x2="11" y2="13"/><path d="M21 3 14.5 21 11 13 3 9.5z"/></symbol><symbol id="icon-thumbs-up" viewBox="0 0 24 24"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3z"/><path d="M7 11l4-7a2 2 0 0 1 2 2l-1 4h5.5a2 2 0 0 1 1.9 2.6l-1.8 6A2 2 0 0 1 15.7 20H10a3 3 0 0 1-3-3"/></symbol><symbol id="icon-file-text" viewBox="0 0 24 24"><path d="M7 3h7l4 4v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4a1 1 0 0 0 1 1h4"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="16.5" x2="13" y2="16.5"/></symbol><symbol id="icon-scroll" viewBox="0 0 24 24"><path d="M4 4h13a3 3 0 0 1 3 3 3 3 0 0 1-3 3H4"/><path d="M4 4a2 2 0 0 0 0 4"/><path d="M20 20H7a3 3 0 0 1-3-3 3 3 0 0 1 3-3h13"/><path d="M20 20a2 2 0 0 0 0-4"/></symbol><symbol id="icon-trending-up" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 5"/><polyline points="15 5 21 5 21 11"/></symbol><symbol id="icon-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9.5c0-1 1-1.8 3-1.8s3 .8 3 1.8-1 1.3-3 1.8c-2 .5-3 .8-3 1.8s1 1.8 3 1.8 3-.8 3-1.8"/></symbol><symbol id="icon-gift" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 9h16v3H4z"/><line x1="12" y1="9" x2="12" y2="20"/><path d="M12 9c-1.2-4-4.5-4.5-5.5-3S7 9 12 9z"/><path d="M12 9c1.2-4 4.5-4.5 5.5-3S17 9 12 9z"/></symbol><symbol id="icon-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h11l-2.5 4L17 12H6"/></symbol><symbol id="icon-flask" viewBox="0 0 24 24"><path d="M9 3h6"/><path d="M10 3v6.5L4.5 19a1.5 1.5 0 0 0 1.3 2.3h12.4a1.5 1.5 0 0 0 1.3-2.3L14 9.5V3"/><line x1="7.5" y1="15" x2="16.5" y2="15"/></symbol><symbol id="icon-leaf" viewBox="0 0 24 24"><path d="M5 21c0-9 6-16 15-16 0 9-6 16-15 16z"/><path d="M5 21c3-3 6-7 8-11"/></symbol><symbol id="icon-cross" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><line x1="6" y1="9" x2="18" y2="9"/></symbol><symbol id="icon-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="3" y1="12" x2="21" y2="12"/></symbol><symbol id="icon-crown" viewBox="0 0 24 24"><path d="M4 8l4 4 4-6 4 6 4-4-2 10H6z"/></symbol><symbol id="icon-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5.5A3 3 0 0 0 9 20V4z"/><path d="M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5.5A3 3 0 0 1 15 20V4z"/></symbol><symbol id="icon-hash" viewBox="0 0 24 24"><line x1="9" y1="3" x2="7" y2="21"/><line x1="17" y1="3" x2="15" y2="21"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/></symbol><symbol id="icon-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M3 4h2l2.4 11.5a2 2 0 0 0 2 1.5h7.2a2 2 0 0 0 2-1.6L21 8H6"/></symbol><symbol id="icon-trophy" viewBox="0 0 24 24"><path d="M8 4h8v6a4 4 0 0 1-8 0V4z"/><path d="M8 5H5a3 3 0 0 0 3 5"/><path d="M16 5h3a3 3 0 0 1-3 5"/><line x1="12" y1="14" x2="12" y2="18"/><path d="M8 20h8"/><path d="M9.5 18h5l.5 2h-6z"/></symbol><symbol id="icon-camera" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.5"/></symbol><symbol id="icon-arrow-left" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></symbol><symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="12" y1="8" x2="12" y2="8.01"/></symbol><symbol id="icon-log-out" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol><symbol id="icon-tag" viewBox="0 0 24 24"><path d="M2 12 12 2h8a2 2 0 0 1 2 2v8L12 22 2 12z"/><line x1="16" y1="8" x2="16" y2="8.01"/></symbol></defs></svg>
 <header>
   <div class="header-bar">
     <a href="index.html" class="logo-link">
       <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
       <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
     </a>
-    <button class="hdr-btn" id="darkBtn" onclick="toggleDark()">🌙</button>
-    <button class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    <button type="button" class="hdr-btn" id="darkBtn" onclick="toggleDark()" aria-label="Switch to dark mode"><svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg></button>
+    <button type="button" class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
 <nav class="mobile-nav" id="mobileNav">
   <div class="mnav-header">
     <div style="display:flex;align-items:center;gap:10px"><img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316"><div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div></div>
-    <button class="mnav-close" onclick="toggleNav()">✕</button>
+    <button type="button" class="mnav-close" onclick="toggleNav()" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
   </div>
-  <a href="profile.html" onclick="toggleNav()" style="background:rgba(249,115,22,.12);font-weight:700">👤 Login / My Account</a>
+  <a href="profile.html" onclick="toggleNav()" style="background:rgba(249,115,22,.12);font-weight:700"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> Login / My Account</a>
   <div class="mnav-lbl">Main</div>
-  <a href="index.html" onclick="toggleNav()">🏠 Home</a>
-  <a href="newsroom.html" onclick="toggleNav()">📰 Newsroom</a>
-  <a href="explore.html" onclick="toggleNav()">🗂 Explore All Tools</a>
-  <a href="campus-life.html" onclick="toggleNav()">🎮 Campus Life</a>
-  <a href="community.html" onclick="toggleNav()">🤝 Community Hub</a>
-  <a href="daily.html" onclick="toggleNav()">📅 Daily Hub</a>
-  <a href="profile.html" onclick="toggleNav()">👤 My Profile</a>
+  <a href="index.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a>
+  <a href="newsroom.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore All Tools</a>
+  <a href="campus-life.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a>
+  <a href="community.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community Hub</a>
+  <a href="daily.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a>
+  <a href="profile.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> My Profile</a>
   <div class="mnav-lbl">Exam Tools</div>
-  <a href="cbt.html" onclick="toggleNav()">👨🏽‍💻 JAMB CBT Practice</a>
-  <a href="postutme-prep.html" onclick="toggleNav()">📖 Post-UTME Prep</a>
-  <a href="postutme-calculator.html" onclick="toggleNav()">🧮 Aggregate Calculator</a>
-  <a href="gpa-calculator.html" onclick="toggleNav()">🎓 GPA Calculator</a>
-  <a href="results.html" onclick="toggleNav()">📊 Results Checker</a>
-  <a href="Jamb_Profile_Code.html" onclick="toggleNav()">🔑 JAMB Profile Code</a>
+  <a href="cbt.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a>
+  <a href="postutme-prep.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calculator</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a>
+  <a href="Jamb_Profile_Code.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a>
   <div class="mnav-lbl">Resources</div>
-  <a href="elibrary.html" onclick="toggleNav()">📚 eLibrary</a>
-  <a href="scholarship.html" onclick="toggleNav()">💰 Scholarships</a>
-  <a href="student-loan.html" onclick="toggleNav()">💳 Student Loan (NELFUND)</a>
-  <a href="spotlight.html" onclick="toggleNav()">🌟 Student Spotlight</a>
-  <a href="dyk.html" onclick="toggleNav()">💡 Did You Know</a>
-  <a href="subject-combo.html" onclick="toggleNav()">📋 Subject Combination</a>
-  <a href="https://wa.me/2349049871643" target="_blank" rel="noopener" class="mnav-cta">💬 Chat on WhatsApp</a>
+  <a href="elibrary.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan (NELFUND)</a>
+  <a href="spotlight.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a>
+  <a href="dyk.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a>
+  <a href="subject-combo.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combination</a>
+  <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener" class="mnav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
 </nav>
 
 <main id="main-content">
@@ -233,10 +263,10 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     <div class="auth-title">Join to Participate</div>
     <div class="auth-sub">Create a free account to answer challenges, earn coins and save your streak.</div>
     <div class="auth-tabs">
-      <button class="auth-tab-btn active" onclick="switchAuthTab('signin',this)">Sign In</button>
-      <button class="auth-tab-btn" onclick="switchAuthTab('register',this)">Sign Up</button>
+      <button type="button" class="auth-tab-btn active" onclick="switchAuthTab('signin',this)">Sign In</button>
+      <button type="button" class="auth-tab-btn" onclick="switchAuthTab('register',this)">Sign Up</button>
     </div>
-    <button class="google-btn" onclick="dailyGoogleSignIn()">
+    <button type="button" class="google-btn" onclick="dailyGoogleSignIn()">
       <svg width="17" height="17" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.5 3.1 29.6 1 24 1 14.8 1 7 6.7 3.7 14.6l7 5.4C12.5 13.8 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.8-2.1 5.2-4.5 6.8l7 5.4C43.1 36.8 46.1 31.1 46.1 24.5z"/><path fill="#FBBC05" d="M10.7 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7-5.4C2.2 17.1 1 20.4 1 24s1.2 6.9 3.7 9.9l7-5.3z"/><path fill="#34A853" d="M24 47c5.6 0 10.4-1.9 13.8-5.1l-7-5.4c-1.9 1.3-4.2 2-6.8 2-6.2 0-11.5-4.3-13.3-10l-7 5.4C7 41.3 14.8 47 24 47z"/></svg>
       Continue with Google
     </button>
@@ -246,7 +276,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       <input class="auth-input" type="password" id="authPw" placeholder="Password" onkeydown="if(event.key==='Enter')dailySignIn()">
       <button type="button" onclick="dailyForgotPassword()" style="background:none;border:none;color:#1a3fa8;font-size:.72rem;font-weight:700;cursor:pointer;display:block;margin:-6px 0 10px;text-decoration:underline;padding:0">Forgot password?</button>
       <div class="auth-error" id="authErr"></div>
-      <button class="auth-btn" onclick="dailySignIn()">Sign In →</button>
+      <button type="button" class="auth-btn" onclick="dailySignIn()">Sign In →</button>
     </div>
     <div id="registerForm" style="display:none">
       <input class="auth-input" type="text" id="regName" placeholder="Your full name">
@@ -259,9 +289,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       <input class="auth-input" type="password" id="regPw" placeholder="Password (min 6 chars)" onkeydown="if(event.key==='Enter')dailyRegister()">
       <div style="font-size:.68rem;color:#64748b;line-height:1.5;margin:2px 0 10px">By creating an account, you agree to our <a href="terms.html" target="_blank" rel="noopener" style="color:#1a3fa8;font-weight:700;text-decoration:underline">Terms</a> and <a href="privacy.html" target="_blank" rel="noopener" style="color:#1a3fa8;font-weight:700;text-decoration:underline">Privacy Policy</a>.</div>
       <div class="auth-error" id="regErr"></div>
-      <button class="auth-btn" onclick="dailyRegister()">Create Free Account →</button>
+      <button type="button" class="auth-btn" onclick="dailyRegister()">Create Free Account →</button>
     </div>
-    <button class="auth-close" onclick="closeAuth()">Maybe later</button>
+    <button type="button" class="auth-close" onclick="closeAuth()">Maybe later</button>
   </div>
 </div>
 
@@ -271,11 +301,11 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 <!-- HERO -->
 <div class="daily-hero">
   <div class="daily-hero-inner">
-    <div class="daily-badge">📅 Daily Hub</div>
+    <div class="daily-badge"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</div>
     <div class="daily-date" id="heroDate">Loading…</div>
     <div class="daily-sub">Your daily dose of knowledge and brain challenges</div>
     <div class="streak-display">
-      <div>🔥</div>
+      <div><svg class="icon" aria-hidden="true"><use href="#icon-flame"></use></svg></div>
       <div class="streak-num" id="streakNum">0</div>
       <div class="streak-lbl"><strong id="streakLabel">Day Streak</strong><span id="streakSub">Visit daily to keep it going!</span></div>
     </div>
@@ -284,7 +314,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px">
         <div style="text-align:left">
           <div style="font-size:.68rem;color:rgba(255,255,255,.5)">Your Balance</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fde68a">🪙 <span id="coinBalance">0</span></div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fde68a"><svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg> <span id="coinBalance">0</span></div>
         </div>
         <div style="text-align:right">
           <div style="font-size:.68rem;color:rgba(255,255,255,.5)">Referrals</div>
@@ -294,7 +324,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       <div style="font-size:.68rem;color:rgba(255,255,255,.5);margin-bottom:5px">Your referral code</div>
       <div style="display:flex;gap:8px;align-items:center">
         <code id="myReferralCode" style="flex:1;background:rgba(0,0,0,.25);padding:7px 10px;border-radius:8px;font-size:.78rem;font-weight:700;color:#fff;letter-spacing:.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</code>
-        <button onclick="shareReferralLink()" style="background:#25d366;border:none;color:#fff;padding:7px 12px;border-radius:8px;font-size:.74rem;font-weight:800;cursor:pointer;flex-shrink:0">📤 Share</button>
+        <button type="button" onclick="shareReferralLink()" style="background:#25d366;border:none;color:#fff;padding:7px 12px;border-radius:8px;font-size:.74rem;font-weight:800;cursor:pointer;flex-shrink:0"><svg class="icon" aria-hidden="true"><use href="#icon-share"></use></svg> Share</button>
       </div>
     </div>
   </div>
@@ -305,7 +335,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   <!-- DYK SECTION -->
   <div class="card">
     <div class="card-header">
-      <span class="card-icon">💡</span>
+      <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg></span>
       <span class="card-title">Did You Know?</span>
       <span class="card-badge badge-daily">Daily Facts</span>
     </div>
@@ -316,13 +346,13 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
         <div class="dyk-source" id="dykSource"></div>
       </div>
       <div class="dyk-nav">
-        <button class="dyk-nav-btn" id="dykPrevBtn" onclick="dykNavigate(-1)" disabled>← Prev</button>
+        <button type="button" class="dyk-nav-btn" id="dykPrevBtn" onclick="dykNavigate(-1)" disabled><svg class="icon" aria-hidden="true"><use href="#icon-arrow-left"></use></svg> Prev</button>
         <span class="dyk-counter" id="dykCounter">1 / 1</span>
-        <button class="dyk-nav-btn" id="dykNextBtn" onclick="dykNavigate(1)">Next →</button>
+        <button type="button" class="dyk-nav-btn" id="dykNextBtn" onclick="dykNavigate(1)">Next <svg class="icon" aria-hidden="true" style="transform:scaleX(-1)"><use href="#icon-arrow-left"></use></svg></button>
       </div>
       <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-        <button class="share-dyk-btn" onclick="shareDYK()">📤 Share this Fact</button>
-        <a href="dyk.html" style="font-size:.74rem;color:var(--blue-main);font-weight:700;display:flex;align-items:center;gap:4px;padding:8px 12px;border:1.5px solid var(--border);border-radius:8px">📚 See All Facts →</a>
+        <button type="button" class="share-dyk-btn" onclick="shareDYK()"><svg class="icon" aria-hidden="true"><use href="#icon-share"></use></svg> Share this Fact</button>
+        <a href="dyk.html" style="font-size:.74rem;color:var(--blue-main);font-weight:700;display:flex;align-items:center;gap:4px;padding:8px 12px;border:1.5px solid var(--border);border-radius:8px"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> See All Facts →</a>
       </div>
     </div>
   </div>
@@ -330,12 +360,12 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   <!-- DAILY CHALLENGE -->
   <div class="card">
     <div class="card-header">
-      <span class="card-icon">🎯</span>
+      <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#icon-target"></use></svg></span>
       <span class="card-title">Daily Challenge</span>
       <span class="card-badge badge-new" id="challengeBadge">New Today</span>
     </div>
     <div class="card-body">
-      <div class="challenge-intro">One new challenge every day. Answer correctly to earn <strong>5 🪙 coins</strong> and keep your streak alive!</div>
+      <div class="challenge-intro">One new challenge every day. Answer correctly to earn <strong>5 coins <svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg></strong> and keep your streak alive!</div>
       <div id="challengeArea">
         <div style="text-align:center;padding:30px;color:var(--text-muted)">Loading today's challenge…</div>
       </div>
@@ -345,7 +375,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   <!-- RECENT HISTORY -->
   <div class="card" id="historyCard" style="display:none">
     <div class="card-header">
-      <span class="card-icon">📋</span>
+      <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg></span>
       <span class="card-title">Your Recent Activity</span>
     </div>
     <div class="card-body">
@@ -359,24 +389,76 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 
 <footer>
   <div class="footer-inner">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
-      <img src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media" style="width:36px;height:36px;border-radius:50%;border:2px solid #f97316">
-      <div><div style="font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div><div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Built for Nigerian Undergraduates</div></div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div><div style="display:flex;flex-direction:column;gap:5px"><a href="index.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🏠 Home</a><a href="newsroom.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📰 Newsroom</a><a href="explore.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🗂 Explore Tools</a><a href="campus-life.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎮 Campus Life</a><a href="community.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🤝 Community</a><a href="daily.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📅 Daily Hub</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div><div style="display:flex;flex-direction:column;gap:5px"><a href="cbt.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">👨🏽‍💻 JAMB CBT Practice</a><a href="postutme-prep.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📖 Post-UTME Prep</a><a href="postutme-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🧮 Aggregate Calc</a><a href="gpa-calculator.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎓 GPA Calculator</a><a href="results.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📊 Results Checker</a><a href="Jamb_Profile_Code.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🔑 JAMB Profile Code</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div><div style="display:flex;flex-direction:column;gap:5px"><a href="elibrary.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📚 eLibrary</a><a href="scholarship.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💰 Scholarships</a><a href="student-loan.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💳 Student Loan</a><a href="spotlight.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">🌟 Student Spotlight</a><a href="dyk.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">💡 Did You Know</a><a href="subject-combo.html" style="font-size:.72rem;color:rgba(255,255,255,.42)">📋 Subject Combo</a></div></div>
-      <div><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div><div style="display:flex;flex-direction:column;gap:5px"><a href="https://wa.me/2349049871643" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">💬 WhatsApp Us</a><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">👥 Join Group</a><a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">📸 Instagram</a><a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener" style="font-size:.72rem;color:rgba(255,255,255,.42)">🎵 TikTok</a><a href="index.html#install-app" style="font-size:.72rem;color:rgba(255,255,255,.42)">📲 Install App</a></div></div>
-    </div>
-    <div style="font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)">© <span id="yr"></span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
-    <div style="font-size:.68rem;color:rgba(255,255,255,.35);margin-top:8px;display:flex;flex-wrap:wrap;gap:4px 14px">
-      <a href="terms.html" style="color:rgba(255,255,255,.4)">Terms &amp; Conditions</a>
-      <a href="privacy.html" style="color:rgba(255,255,255,.4)">Privacy Policy</a>
-      <a href="cookie-policy.html" style="color:rgba(255,255,255,.4)">Cookie Policy</a>
-      <a href="disclaimer.html" style="color:rgba(255,255,255,.4)">Disclaimer</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img class="footer-logo" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media logo">
+        <div>
+          <div class="footer-bname">BIG QUAMS MEDIA®</div>
+          <p class="footer-bsub">Built for Nigerian undergraduates.</p>
+        </div>
+      </div>
+      <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" class="footer-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
     </div>
 
+    <nav class="footer-cols" aria-label="Footer navigation">
+      <div>
+        <h3 class="footer-heading">Main</h3>
+        <ul class="footer-links">
+          <li><a href="index.html"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a></li>
+          <li><a href="newsroom.html"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a></li>
+          <li><a href="explore.html"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore Tools</a></li>
+          <li><a href="campus-life.html"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a></li>
+          <li><a href="community.html"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community</a></li>
+          <li><a href="daily.html"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Exam Tools</h3>
+        <ul class="footer-links">
+          <li><a href="cbt.html"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a></li>
+          <li><a href="postutme-prep.html"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a></li>
+          <li><a href="postutme-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calc</a></li>
+          <li><a href="gpa-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a></li>
+          <li><a href="results.html"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a></li>
+          <li><a href="Jamb_Profile_Code.html"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Resources</h3>
+        <ul class="footer-links">
+          <li><a href="elibrary.html"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a></li>
+          <li><a href="scholarship.html"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a></li>
+          <li><a href="student-loan.html"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan</a></li>
+          <li><a href="spotlight.html"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a></li>
+          <li><a href="dyk.html"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a></li>
+          <li><a href="subject-combo.html"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="footer-heading">Connect</h3>
+        <ul class="footer-links">
+          <li><a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Join Group</a></li>
+          <li><a href="index.html#install-app"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Install App</a></li>
+        </ul>
+        <div class="footer-social">
+          <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg></a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg></a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg class="icon" aria-hidden="true"><use href="#icon-tiktok"></use></svg></a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="cookie-policy.html">Cookie Policy</a>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-support"><strong>Big Quams Media</strong> +2349049871643 · <strong>Big Quams Campus Support</strong> +2348069821664</div>
+    <div class="footer-credit">Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer">Abdulrasaq Quwamdeen</a></div>
   </div>
 </footer>
 
@@ -472,11 +554,11 @@ function showProfileWidget(profile){
 
 function shareReferralLink(){
   const code=document.getElementById('myReferralCode').textContent;
-  if(!code||code==='—'){showToast('⚠️','Sign in first to get your referral code.');return;}
+  if(!code||code==='—'){showToast('<svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg>','Sign in first to get your referral code.');return;}
   const url='https://bigquamsmedia.com.ng/daily.html?ref='+encodeURIComponent(code);
   const text=`🎓 Join me on Big Quams Media®! Daily challenges, JAMB CBT practice, scholarships and more — all free.\n\nSign up with my link and we both earn coins:\n${url}`;
   if(navigator.share){navigator.share({title:'Join Big Quams Media®',text,url}).catch(()=>{});}
-  else{navigator.clipboard.writeText(text).then(()=>showToast('🔗','Referral link copied!')).catch(()=>showToast('🔗',url));}
+  else{navigator.clipboard.writeText(text).then(()=>showToast('<svg class="icon" aria-hidden="true"><use href="#icon-link"></use></svg>','Referral link copied!')).catch(()=>showToast('<svg class="icon" aria-hidden="true"><use href="#icon-link"></use></svg>',url));}
 }
 window.shareReferralLink=shareReferralLink;
 
@@ -498,7 +580,7 @@ async function updateStreakOnVisit(user){
       const newStreak=last===yesterday?(data.dailyStreak||0)+1:1;
       await window._updateDoc(ref,{lastDailyVisit:today,dailyStreak:newStreak});
       updateStreakUI(newStreak);
-      if(newStreak>1) showToast('🔥','Day '+newStreak+' streak! Keep it going!');
+      if(newStreak>1) showToast('<svg class="icon" aria-hidden="true"><use href="#icon-flame"></use></svg>','Day '+newStreak+' streak! Keep it going!');
     }
   }catch(e){}
 }
@@ -506,7 +588,7 @@ async function updateStreakOnVisit(user){
 function updateStreakUI(streak){
   document.getElementById('streakNum').textContent=streak;
   document.getElementById('streakLabel').textContent=streak===1?'Day Streak':'Day Streak';
-  document.getElementById('streakSub').textContent=streak>=7?'You\'re on fire! 🔥':streak>=3?'Great consistency!':'Visit daily to keep it going!';
+  document.getElementById('streakSub').textContent=streak>=7?"You're on fire!":streak>=3?'Great consistency!':'Visit daily to keep it going!';
 }
 
 // ── DYK ──
@@ -559,12 +641,12 @@ function renderChallenge(){
     const wasCorrect=localStorage.getItem('bqm_daily_correct_'+todayKey)==='1';
     area.innerHTML=`
       <div class="already-done">
-        <div class="already-done-icon">${wasCorrect?'✅':'📚'}</div>
-        <div class="already-done-title">${wasCorrect?"You got it right today! 🎉":"You attempted today's challenge"}</div>
+        <div class="already-done-icon">${wasCorrect?'<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg>':'<svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg>'}</div>
+        <div class="already-done-title">${wasCorrect?"You got it right today!":"You attempted today's challenge"}</div>
         <div class="already-done-sub">Come back tomorrow for a new challenge. New challenge in: <strong id="doneCountdown"></strong></div>
-        ${wasCorrect?'<div class="coins-earned" style="margin:10px auto 0">🪙 +5 coins earned today</div>':''}
+        ${wasCorrect?'<div class="coins-earned" style="margin:10px auto 0"><svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg> +5 coins earned today</div>':''}
       </div>`;
-    document.getElementById('challengeBadge').textContent='Done ✓';
+    document.getElementById('challengeBadge').textContent='Done';
     document.getElementById('challengeBadge').style.background='#dcfce7';
     document.getElementById('challengeBadge').style.color='#15803d';
     return;
@@ -578,15 +660,15 @@ function renderChallenge(){
     </div>
     <div class="challenge-opts" id="chOpts">
       ${ch.opts.map((o,i)=>`
-        <button class="ch-opt" onclick="answerChallenge(${i})" id="chOpt-${i}">
+        <button type="button" class="ch-opt" onclick="answerChallenge(${i})" id="chOpt-${i}">
           <span class="ch-opt-letter">${letters[i]}</span>${o}
         </button>`).join('')}
     </div>
     <div class="challenge-result" id="chResult"></div>
     ${!currentUser?`<div class="signin-prompt">
       <div class="signin-prompt-title">Sign in to earn coins!</div>
-      <div class="signin-prompt-sub">Answer correctly and earn 🪙 5 coins added to your CBT balance.</div>
-      <button class="signin-prompt-btn" onclick="showAuth()">Sign In / Sign Up →</button>
+      <div class="signin-prompt-sub">Answer correctly and earn <svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg> 5 coins added to your CBT balance.</div>
+      <button type="button" class="signin-prompt-btn" onclick="showAuth()">Sign In / Sign Up →</button>
     </div>`:''}`;
 }
 
@@ -606,10 +688,10 @@ async function answerChallenge(idx){
   const result=document.getElementById('chResult');
   result.className='challenge-result show '+(isCorrect?'win':'lose');
   result.innerHTML=`
-    <strong>${isCorrect?'🎉 Correct!':'😔 Not quite!'}</strong>
-    <div class="challenge-exp">💡 ${ch.exp}</div>
-    ${isCorrect&&currentUser?'<div class="coins-earned">🪙 +5 coins added to your balance!</div>':''}
-    ${isCorrect&&!currentUser?'<div style="margin-top:8px;font-size:.74rem">Sign in to save your coins! <button onclick="showAuth()" style="background:none;border:none;color:var(--blue-main);font-weight:700;cursor:pointer">Sign In →</button></div>':''}
+    <strong>${isCorrect?'<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg> Correct!':'<svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg> Not quite!'}</strong>
+    <div class="challenge-exp"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> ${ch.exp}</div>
+    ${isCorrect&&currentUser?'<div class="coins-earned"><svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg> +5 coins added to your balance!</div>':''}
+    ${isCorrect&&!currentUser?'<div style="margin-top:8px;font-size:.74rem">Sign in to save your coins! <button type="button" onclick="showAuth()" style="background:none;border:none;color:var(--blue-main);font-weight:700;cursor:pointer">Sign In →</button></div>':''}
   `;
 
   // Save to localStorage
@@ -624,7 +706,7 @@ async function answerChallenge(idx){
         coinsDailyEarned:window._increment(5),
         dailyChallengesCompleted:window._increment(1),
       });
-      showToast('🪙','You earned 5 coins!');
+      showToast('<svg class="icon" aria-hidden="true"><use href="#icon-coin"></use></svg>','You earned 5 coins!');
       // Update live balance display
       const bal=document.getElementById('coinBalance');
       if(bal) bal.textContent=(parseInt(bal.textContent)||0)+5;
@@ -647,7 +729,7 @@ function renderHistory(){
   card.style.display='block';
   list.innerHTML=hist.slice(0,7).map(h=>`
     <div class="history-item">
-      <span class="history-icon">${h.correct?'✅':'❌'}</span>
+      <span class="history-icon">${h.correct?'<svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg>':'<svg class="icon" aria-hidden="true"><use href="#icon-x-circle"></use></svg>'}</span>
       <span class="history-text">${h.q}</span>
       <span class="history-date">${h.date}</span>
     </div>`).join('');
@@ -720,7 +802,7 @@ async function dailyForgotPassword(){
     await window._sendPasswordResetEmail(e);
     const el=document.getElementById('authErr');
     el.style.color='#15803d';el.style.background='#dcfce7';
-    el.textContent='✅ Reset link sent — check your inbox (and spam folder).';
+    el.textContent='Reset link sent — check your inbox (and spam folder).';
     el.style.display='block';
   }catch(err){showAuthErr('authErr',friendlyAuthError(err));}
 }
@@ -824,7 +906,7 @@ async function dailyRegister(){
     await ensureUserProfile(cred.user,{name:n,gender:g});
     try{await window._sendEmailVerification(cred.user);}catch(ve){console.warn('Verification email:',ve.message);}
     closeAuth();
-    showToast('🎉','Welcome, '+n.split(' ')[0]+'! Check your email to verify your account.');
+    showToast('<svg class="icon" aria-hidden="true"><use href="#icon-champagne"></use></svg>','Welcome, '+n.split(' ')[0]+'! Check your email to verify your account.');
   }catch(err){showAuthErr('regErr',friendlyAuthError(err));}
 }
 window.dailyRegister=dailyRegister;
@@ -837,7 +919,7 @@ async function dailyGoogleSignIn(){
   catch(e){if(e.code!=='auth/popup-closed-by-user')showAuthErr('authErr',e.message);}
 }
 window.dailyGoogleSignIn=dailyGoogleSignIn;
-function showAuthErr(id,msg){const el=document.getElementById(id);el.textContent='❌ '+msg;el.style.display='block';}
+function showAuthErr(id,msg){const el=document.getElementById(id);el.textContent=msg;el.style.display='block';}
 
 // ── TOAST ──
 function showToast(icon,msg){
@@ -848,12 +930,12 @@ function showToast(icon,msg){
 }
 
 // ── INIT ──
-function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');document.getElementById('darkBtn').textContent=d?'☀️':'🌙';}
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');const btn=document.getElementById('darkBtn');btn.innerHTML=d?'<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>':'<svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>';btn.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode');}
 function toggleNav(){const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');document.body.style.overflow=n.classList.contains('open')?'hidden':'';}
 window.toggleDark=toggleDark;window.toggleNav=toggleNav;
 
 document.addEventListener('DOMContentLoaded',()=>{
-  (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.body.classList.add('dark');document.getElementById('darkBtn').textContent='☀️';}})();
+  (function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.body.classList.add('dark');const btn=document.getElementById('darkBtn');btn.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>';btn.setAttribute('aria-label','Switch to light mode');}})();
   document.getElementById('yr').textContent=new Date().getFullYear();
   const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
