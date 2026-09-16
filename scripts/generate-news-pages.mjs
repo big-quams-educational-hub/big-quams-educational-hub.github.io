@@ -35,7 +35,7 @@
  * ------------------------------------------------------------------------
  */
 
-import { mkdir, writeFile, rm } from 'node:fs/promises';
+import { mkdir, writeFile, rm, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const PROJECT_ID = 'big-quams-media';
@@ -46,6 +46,20 @@ const OUTPUT_DIR = 'news';
 // see this output), the client-side copy is a secondary/UI-tab convenience.
 const GLOBAL_NEWS_DEFAULT_IMAGE = `${SITE_ORIGIN}/newsroom-default.png`;
 const SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/bigquamsmedia.png`;
+
+// ---------------------------------------------------------------------
+// Facebook auto-posting (optional)
+//
+// Set FB_PAGE_ID and FB_PAGE_ACCESS_TOKEN as GitHub Actions secrets to
+// enable this. Entirely opt-in: if either is missing, the script just
+// skips this step silently — page generation (the critical part) runs
+// exactly as before either way.
+// ---------------------------------------------------------------------
+const FB_PAGE_ID = process.env.FB_PAGE_ID || '';
+const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN || '';
+const FB_ENABLED = Boolean(FB_PAGE_ID && FB_PAGE_ACCESS_TOKEN);
+const FB_POSTED_LOG = 'fb-posted-articles.json';
+const FB_API_VERSION = 'v21.0';
 
 // ---------------------------------------------------------------------
 // Small helpers (deliberately dependency-free — one file, `node` and go)
@@ -84,6 +98,31 @@ function escapeHtml(s) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+// Standard news-site practice for an auto-generated meta description: use
+// the article's lead sentence (journalists write it to stand alone as a
+// summary) rather than an arbitrary character slice, which can chop off
+// mid-word/mid-sentence and look broken in a link preview. Falls back to a
+// word-boundary trim only if no usable sentence break is found.
+function firstSentenceExcerpt(text, hardCap = 320) {
+  const clean = plainPreview(text);
+  if (!clean) return '';
+  const m = /[.!?](?:\s|$)/.exec(clean);
+  if (m) {
+    const end = m.index + 1;
+    // Guard against matching something like "Mr." or "U.S." near the very
+    // start — require a minimally complete-looking sentence before we
+    // trust the match as a real sentence boundary. hardCap is generous
+    // (320 chars) since real news lead sentences commonly run 200-300
+    // characters — it's a safety net for pathological cases (no
+    // punctuation at all), not a normal-case truncation point.
+    if (end >= 20 && end <= hardCap) return clean.slice(0, end).trim();
+  }
+  if (clean.length <= hardCap) return clean;
+  const truncated = clean.slice(0, hardCap);
+  const lastSpace = truncated.lastIndexOf(' ');
+  return (lastSpace > 40 ? truncated.slice(0, lastSpace) : truncated).trim();
 }
 
 // ---------------------------------------------------------------------
@@ -226,7 +265,7 @@ function renderPage(article, categoryDefaults, resolvedImage) {
   const seg = `${slug}--${article._id}`;
   const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
   const title = escapeHtml(`${article.seoTitle || article.title || 'News'} — Big Quams Media®`);
-  const rawDesc = article.seoDesc || plainPreview(article.fullContent || '').slice(0, 160);
+  const rawDesc = article.seoDesc || firstSentenceExcerpt(article.fullContent || '');
   const desc = escapeHtml(rawDesc);
   const image = escapeHtml(resolvedImage || GLOBAL_NEWS_DEFAULT_IMAGE || SITE_DEFAULT_IMAGE);
   const spaTarget = `${SITE_ORIGIN}/newsroom.html#${seg}`;
@@ -280,6 +319,56 @@ ${publishedTime ? `<meta property="article:published_time" content="${escapeHtml
 `;
 }
 
+// ---------------------------------------------------------------------
+// Facebook posting helpers
+// ---------------------------------------------------------------------
+
+// Tracks which article IDs have already been posted to Facebook, in a
+// plain JSON file committed alongside the generated pages. Deliberately
+// NOT stored in Firestore: this script only ever does public, anonymous
+// reads (fs_news/fs_config are public-read) — giving it Firestore WRITE
+// credentials just to track a "posted" flag would mean handing a CI
+// script standing write access to the database, a much bigger security
+// surface than it needs. A committed file is enough, and keeps this
+// script's permission model exactly as narrow as it's always been.
+async function loadPostedLog() {
+  try {
+    const raw = await readFile(FB_POSTED_LOG, 'utf8');
+    const ids = JSON.parse(raw);
+    return new Set(Array.isArray(ids) ? ids : []);
+  } catch {
+    return null; // file doesn't exist yet — caller treats this as "first run"
+  }
+}
+
+async function savePostedLog(idsSet) {
+  await writeFile(FB_POSTED_LOG, JSON.stringify([...idsSet].sort(), null, 2) + '\n', 'utf8');
+}
+
+// Posts one article to the Facebook Page's feed. Facebook's own crawler
+// fetches `link` itself and builds the preview card from ITS og:* tags —
+// the same static page + materialized image this script already
+// generates — so there's nothing extra to attach here beyond the link.
+async function postArticleToFacebook(article, canonicalUrl) {
+  const message = article.title || 'New article on Big Quams Media\u00ae';
+  const url = `https://graph.facebook.com/${FB_API_VERSION}/${FB_PAGE_ID}/feed`;
+  const body = new URLSearchParams({
+    message,
+    link: canonicalUrl,
+    access_token: FB_PAGE_ACCESS_TOKEN,
+  });
+  // A direct fetch, not fetchWithRetry — that helper is built for the
+  // read-only Firestore GETs above and retries on 429/5xx; blindly
+  // retrying a POST that may have actually succeeded server-side risks
+  // posting the same article twice, which is worse than one failed run.
+  const postRes = await fetch(url, { method: 'POST', body });
+  const data = await postRes.json().catch(() => ({}));
+  if (!postRes.ok || data.error) {
+    throw new Error(data.error?.message || `HTTP ${postRes.status}`);
+  }
+  return data.id; // Facebook post ID, e.g. "{page-id}_{post-id}"
+}
+
 async function main() {
   console.log('Fetching articles from Firestore\u2026');
   const [articles, categoryDefaults] = await Promise.all([
@@ -322,6 +411,50 @@ async function main() {
 
   console.log(`Generated ${written} static article page(s) in ./${OUTPUT_DIR}/`);
   console.log(`Wrote sitemap-news.xml with ${sitemapUrls.length} URL(s).`);
+
+  // ---------------------------------------------------------------------
+  // Facebook auto-posting — runs after page generation so every article
+  // already has its real (non-base64) image and canonical URL ready,
+  // which is what Facebook's own crawler will fetch for the post's
+  // preview card.
+  // ---------------------------------------------------------------------
+  if (!FB_ENABLED) {
+    console.log('Facebook posting skipped (FB_PAGE_ID / FB_PAGE_ACCESS_TOKEN not set).');
+  } else {
+    let postedLog = await loadPostedLog();
+    const isFirstRun = postedLog === null;
+    if (isFirstRun) {
+      // No tracking file yet — this is the very first run with Facebook
+      // posting enabled. Mark every CURRENTLY existing article as already
+      // posted rather than flooding the Page with the entire backlog at
+      // once; only articles published from this point forward get posted.
+      postedLog = new Set(articles.map((a) => a._id).filter(Boolean));
+      await savePostedLog(postedLog);
+      console.log(`First run with Facebook posting enabled — marked ${postedLog.size} existing article(s) as already posted (not re-posting the backlog). New articles from here on will post automatically.`);
+    } else {
+      const newArticles = articles.filter((a) => a.title && a._id && !postedLog.has(a._id));
+      if (!newArticles.length) {
+        console.log('Facebook: no new articles to post.');
+      }
+      for (const article of newArticles) {
+        const slug = article.slug || makeSlug(article.title);
+        const seg = `${slug}--${article._id}`;
+        const canonicalUrl = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
+        try {
+          const postId = await postArticleToFacebook(article, canonicalUrl);
+          postedLog.add(article._id);
+          await savePostedLog(postedLog); // save after each post — a later failure in this loop won't lose earlier successes
+          console.log(`Posted to Facebook: "${article.title}" (post ${postId})`);
+        } catch (err) {
+          // A Facebook failure (expired token, rate limit, etc.) should
+          // never fail the whole run — page generation above already
+          // succeeded and is the more important part. Log it and move on;
+          // this article stays unposted and will be retried next run.
+          console.error(`Facebook post failed for "${article.title}": ${err.message}`);
+        }
+      }
+    }
+  }
 }
 
 main().catch((err) => {
