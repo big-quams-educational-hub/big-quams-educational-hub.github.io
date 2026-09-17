@@ -349,24 +349,53 @@ async function savePostedLog(idsSet) {
 // fetches `link` itself and builds the preview card from ITS og:* tags —
 // the same static page + materialized image this script already
 // generates — so there's nothing extra to attach here beyond the link.
+// A System User token proves WHO is making the request, but Facebook's
+// /feed endpoint wants the Page's OWN access token to actually post AS
+// the Page — related but distinct, even when the System User has full
+// access to the Page. This exchanges the configured token for the real
+// Page token once per run and reuses it for every post that follows.
+let cachedPageToken = null;
+async function derivePageAccessToken() {
+  if (cachedPageToken) return cachedPageToken;
+  const url = `https://graph.facebook.com/${FB_API_VERSION}/${FB_PAGE_ID}?fields=access_token&access_token=${encodeURIComponent(FB_PAGE_ACCESS_TOKEN)}`;
+  const res = await fetch(url);
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || data.error || !data.access_token) {
+    throw new Error(data.error?.message || 'Could not derive a Page Access Token from FB_PAGE_ACCESS_TOKEN.');
+  }
+  cachedPageToken = data.access_token;
+  return cachedPageToken;
+}
+
 async function postArticleToFacebook(article, canonicalUrl) {
   const message = article.title || 'New article on Big Quams Media\u00ae';
   const url = `https://graph.facebook.com/${FB_API_VERSION}/${FB_PAGE_ID}/feed`;
-  const body = new URLSearchParams({
-    message,
-    link: canonicalUrl,
-    access_token: FB_PAGE_ACCESS_TOKEN,
-  });
-  // A direct fetch, not fetchWithRetry — that helper is built for the
-  // read-only Firestore GETs above and retries on 429/5xx; blindly
-  // retrying a POST that may have actually succeeded server-side risks
-  // posting the same article twice, which is worse than one failed run.
-  const postRes = await fetch(url, { method: 'POST', body });
-  const data = await postRes.json().catch(() => ({}));
-  if (!postRes.ok || data.error) {
-    throw new Error(data.error?.message || `HTTP ${postRes.status}`);
+
+  const attemptPost = async (token) => {
+    const body = new URLSearchParams({ message, link: canonicalUrl, access_token: token });
+    // A direct fetch, not fetchWithRetry — that helper is built for the
+    // read-only Firestore GETs above and retries on 429/5xx; blindly
+    // retrying a POST that may have actually succeeded server-side risks
+    // posting the same article twice, which is worse than one failed run.
+    const postRes = await fetch(url, { method: 'POST', body });
+    const data = await postRes.json().catch(() => ({}));
+    return { ok: postRes.ok && !data.error, data, status: postRes.status };
+  };
+
+  // Try the configured token as-is first — it may already be a genuine
+  // Page token in some setups. Only fall back to deriving one if that
+  // specifically fails with Facebook's #200 permission error, which is
+  // exactly what happens when a System User token is used directly
+  // instead of the Page token derived from it.
+  let result = await attemptPost(FB_PAGE_ACCESS_TOKEN);
+  if (!result.ok && result.data?.error?.code === 200) {
+    const pageToken = await derivePageAccessToken();
+    result = await attemptPost(pageToken);
   }
-  return data.id; // Facebook post ID, e.g. "{page-id}_{post-id}"
+  if (!result.ok) {
+    throw new Error(result.data.error?.message || `HTTP ${result.status}`);
+  }
+  return result.data.id; // Facebook post ID, e.g. "{page-id}_{post-id}"
 }
 
 async function main() {
