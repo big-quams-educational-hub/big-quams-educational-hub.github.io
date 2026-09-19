@@ -29,10 +29,8 @@ jobs:
           node-version: '20'
 
       - name: Generate static article pages
-        # FB_PAGE_ID / FB_PAGE_ACCESS_TOKEN are optional — Facebook
-        # auto-posting stays off until both are added as repo secrets
-        # (Settings → Secrets and variables → Actions → New repository
-        # secret). Nothing else here changes either way.
+        # FB_PAGE_ID can now be comma-separated: "1170305112838317,109930298011435"
+        # FB_PAGE_ACCESS_TOKEN is your System User token (EAA...) with Full Control on both pages
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
