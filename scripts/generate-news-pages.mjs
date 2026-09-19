@@ -42,7 +42,29 @@ import { mkdir, writeFile, rm, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const PROJECT_ID = 'big-quams-media';
-const SITE_ORIGIN = 'https://bigquamsmedia.com.ng'; // NOTE: .com.ng, not .com.ng typo'd as bigquams.com.ng
+const SITE_ORIGIN = 'https://bigquamsmedia.com.ng';
+
+// Firebase Web API key — this is the same PUBLIC client key newsroom.html
+// itself ships in browser JS (Firebase's own docs are explicit that this
+// key is not a secret; access control is entirely down to Firestore
+// security rules, which already make fs_news/fs_config public-read).
+// Attaching it moves these REST reads off the shared anonymous-IP quota
+// bucket — which is what GitHub Actions runners were hitting (HTTP 429 /
+// RESOURCE_EXHAUSTED, since runner IPs are shared across many unrelated
+// workflows worldwide) — onto this project's own, much higher quota.
+// Stored as a repo secret (FIREBASE_API_KEY) purely for easy rotation, not
+// because it needs to be hidden.
+const FIREBASE_API_KEY = process.env.FIREBASE_API_KEY || '';
+if (!FIREBASE_API_KEY) {
+  console.warn('FIREBASE_API_KEY is not set — Firestore reads will use the shared anonymous quota and may hit 429s.');
+}
+
+// Small delay between paginated Firestore pages. The 429s seen in CI came
+// from a burst of rapid, unauthenticated requests; a key alone raises the
+// ceiling but a short gap between pages avoids tripping any short-window
+// burst limit on top of that.
+const PAGE_FETCH_DELAY_MS = 300;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const OUTPUT_DIR = 'news';
 // Keep this fallback chain identical to resolvePreviewImage() in
 // newsroom.html — this script is the authoritative one (crawlers only ever
@@ -233,10 +255,13 @@ async function fetchWithRetry(url, { retries = 5, baseDelayMs = 1000 } = {}) {
 // workflow runs. Firestore REST reads on a public-read collection are
 // cheap; there's no quota reason to cap this.
 async function fetchCollection(name) {
-  const base = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${name}?pageSize=300`;
+  const base = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${name}?pageSize=300${FIREBASE_API_KEY ? `&key=${encodeURIComponent(FIREBASE_API_KEY)}` : ''}`;
   const docs = [];
   let pageToken = '';
+  let firstPage = true;
   do {
+    if (!firstPage) await sleep(PAGE_FETCH_DELAY_MS);
+    firstPage = false;
     const url = pageToken ? `${base}&pageToken=${pageToken}` : base;
     const res = await fetchWithRetry(url);
     if (!res.ok) {
@@ -253,7 +278,7 @@ async function fetchCollection(name) {
 }
 
 async function fetchDoc(name, id) {
-  const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${name}/${id}`;
+  const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/${name}/${id}${FIREBASE_API_KEY ? `?key=${encodeURIComponent(FIREBASE_API_KEY)}` : ''}`;
   const res = await fetchWithRetry(url);
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`Firestore fetch failed for ${name}/${id}: ${res.status}`);
