@@ -16,22 +16,6 @@
  * headline/excerpt/image already baked into the <head> — at:
  *
  *     /news/<slug>--<id>/index.html
- *
- * A crawler hitting that URL sees the correct preview instantly. A human
- * visitor is redirected via a JS-only `location.replace()` straight into
- * the normal interactive newsroom.html SPA, landing on the same article via
- * its existing hash-routing (#slug--id). This is deliberately JS-only, NOT
- * a <meta http-equiv="refresh"> — Facebook's crawler follows refresh
- * redirects even though it doesn't run JS, which would make it bounce
- * through to newsroom.html and steal ITS generic Open Graph tags instead
- * of this article's. Real browsers all run JS, so this is sufficient; a
- * visible "tap here" link is the only fallback needed for no-JS visitors.
- *
- * No Firebase credentials are needed — `fs_news` and `fs_config` are
- * public-read in firestore.rules, so this hits the public REST API.
- *
- * Run manually:   node scripts/generate-news-pages.mjs
- * Run in CI:       see .github/workflows/generate-news-pages.yml
  * ------------------------------------------------------------------------
  */
 
@@ -41,28 +25,21 @@ import path from 'node:path';
 const PROJECT_ID = 'big-quams-media';
 const SITE_ORIGIN = 'https://bigquamsmedia.com.ng';
 const OUTPUT_DIR = 'news';
-// Keep this fallback chain identical to resolvePreviewImage() in
-// newsroom.html — this script is the authoritative one (crawlers only ever
-// see this output), the client-side copy is a secondary/UI-tab convenience.
 const GLOBAL_NEWS_DEFAULT_IMAGE = `${SITE_ORIGIN}/newsroom-default.png`;
 const SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/bigquamsmedia.png`;
 
 // ---------------------------------------------------------------------
-// Facebook auto-posting (optional)
-//
-// Set FB_PAGE_ID and FB_PAGE_ACCESS_TOKEN as GitHub Actions secrets to
-// enable this. Entirely opt-in: if either is missing, the script just
-// skips this step silently — page generation (the critical part) runs
-// exactly as before either way.
+// Facebook auto-posting (MULTI-PAGE SUPPORT)
+// FB_PAGE_ID can now be "1170305112838317,109930298011435"
 // ---------------------------------------------------------------------
-const FB_PAGE_ID = process.env.FB_PAGE_ID || '';
+const FB_PAGE_IDS = (process.env.FB_PAGE_ID || '').split(',').map(s => s.trim()).filter(Boolean);
 const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN || '';
-const FB_ENABLED = Boolean(FB_PAGE_ID && FB_PAGE_ACCESS_TOKEN);
+const FB_ENABLED = Boolean(FB_PAGE_IDS.length && FB_PAGE_ACCESS_TOKEN);
 const FB_POSTED_LOG = 'fb-posted-articles.json';
 const FB_API_VERSION = 'v21.0';
 
 // ---------------------------------------------------------------------
-// Small helpers (deliberately dependency-free — one file, `node` and go)
+// Small helpers
 // ---------------------------------------------------------------------
 
 function makeSlug(title) {
@@ -75,9 +52,6 @@ function makeSlug(title) {
     .slice(0, 80) || 'untitled';
 }
 
-// Mirrors plainPreview()/preprocessPastedHtml() in newsroom.html closely
-// enough for a clean plain-text excerpt (strips WhatsApp-style markdown and
-// any raw HTML that slipped into the body).
 function plainPreview(text) {
   return (text || '')
     .replace(/<a\s+[^>]*?href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, '$2')
@@ -100,23 +74,12 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
-// Standard news-site practice for an auto-generated meta description: use
-// the article's lead sentence (journalists write it to stand alone as a
-// summary) rather than an arbitrary character slice, which can chop off
-// mid-word/mid-sentence and look broken in a link preview. Falls back to a
-// word-boundary trim only if no usable sentence break is found.
 function firstSentenceExcerpt(text, hardCap = 320) {
   const clean = plainPreview(text);
   if (!clean) return '';
   const m = /[.!?](?:\s|$)/.exec(clean);
   if (m) {
     const end = m.index + 1;
-    // Guard against matching something like "Mr." or "U.S." near the very
-    // start — require a minimally complete-looking sentence before we
-    // trust the match as a real sentence boundary. hardCap is generous
-    // (320 chars) since real news lead sentences commonly run 200-300
-    // characters — it's a safety net for pathological cases (no
-    // punctuation at all), not a normal-case truncation point.
     if (end >= 20 && end <= hardCap) return clean.slice(0, end).trim();
   }
   if (clean.length <= hardCap) return clean;
@@ -124,20 +87,6 @@ function firstSentenceExcerpt(text, hardCap = 320) {
   const lastSpace = truncated.lastIndexOf(' ');
   return (lastSpace > 40 ? truncated.slice(0, lastSpace) : truncated).trim();
 }
-
-// ---------------------------------------------------------------------
-// Base64 image materialization
-//
-// Every image in the admin panel (Featured Image, Link Preview Image,
-// category defaults) is stored as an inline base64 data: URI in Firestore
-// — fine for a normal <img> tag in a browser, but WhatsApp/Facebook/X
-// crawlers treat og:image strictly as a URL they fetch themselves; a
-// data: URI isn't fetchable and gets silently ignored (Facebook's own
-// Sharing Debugger reports this as "og:image not yet available"). So any
-// base64 image gets decoded here and written out as a real file next to
-// the generated page, and og:image/twitter:image point at THAT file's
-// real https:// URL instead of the raw base64 string.
-// ---------------------------------------------------------------------
 
 const DATA_URI_RE = /^data:(image\/[a-zA-Z0-9.+-]+);base64,(.+)$/s;
 const MIME_EXT = {
@@ -151,23 +100,19 @@ const MIME_EXT = {
 async function materializeImage(src, outDir) {
   if (!src) return null;
   const match = DATA_URI_RE.exec(src);
-  if (!match) return src; // already a normal fetchable URL — use as-is
+  if (!match) return src;
   const [, mime, b64] = match;
   const ext = MIME_EXT[mime.toLowerCase()] || 'jpg';
   let buffer;
   try {
     buffer = Buffer.from(b64, 'base64');
   } catch {
-    return null; // malformed base64 — fall through to the next fallback tier
+    return null;
   }
   const filename = `preview.${ext}`;
   await writeFile(path.join(outDir, filename), buffer);
-  return filename; // caller resolves this against the page's own public URL
+  return filename;
 }
-
-// ---------------------------------------------------------------------
-// Minimal Firestore REST decoder — only the value types this app uses
-// ---------------------------------------------------------------------
 
 function decodeValue(v) {
   if (v == null) return null;
@@ -188,11 +133,6 @@ function decodeFields(fields) {
   return out;
 }
 
-// Retries transient failures (429 rate-limits, 5xx server errors, and
-// network hiccups) with exponential backoff + jitter. GitHub Actions'
-// shared runner IPs sometimes get rate-limited by Google's APIs even under
-// very light real usage — this is what actually failed the first few runs
-// of this workflow, not a config or permissions problem.
 async function fetchWithRetry(url, { retries = 5, baseDelayMs = 1000 } = {}) {
   let lastErr;
   for (let attempt = 0; attempt <= retries; attempt++) {
@@ -202,7 +142,7 @@ async function fetchWithRetry(url, { retries = 5, baseDelayMs = 1000 } = {}) {
         lastErr = new Error(`HTTP ${res.status}: ${await res.text()}`);
         throw lastErr;
       }
-      return res; // includes 2xx, 404, and other non-retryable statuses
+      return res;
     } catch (err) {
       lastErr = err;
       if (attempt === retries) break;
@@ -242,15 +182,6 @@ async function fetchDoc(name, id) {
   const data = await res.json();
   return decodeFields(data.fields || {});
 }
-
-// ---------------------------------------------------------------------
-// Fallback hierarchy for the link-preview image (must match newsroom.html)
-//   1. Manually selected Link Preview Image
-//   2. Featured Image, if "use featured as preview" is on (default on)
-//   3. Category-specific default image
-//   4. Global Newsroom default image
-//   5. Main website/site default image
-// ---------------------------------------------------------------------
 
 function resolvePreviewImage(article, categoryDefaults) {
   if (article.previewImage) return article.previewImage;
@@ -293,19 +224,6 @@ ${publishedTime ? `<meta property="article:published_time" content="${escapeHtml
 <meta name="twitter:description" content="${desc}">
 <meta name="twitter:image" content="${image}">
 
-<!-- Human visitors: redirect straight into the interactive newsroom app,
-     which opens this same article via its existing hash router. This is a
-     JS-only redirect on purpose — WhatsApp/Facebook/X/Telegram crawlers do
-     not execute JavaScript, so they stop right here and read the <meta>
-     tags above.
-     IMPORTANT: do NOT add a <meta http-equiv="refresh"> fallback here.
-     Facebook's crawler (unlike the others) DOES follow refresh redirects
-     even though it doesn't run JS — it will bounce straight through to
-     newsroom.html and pick up THAT page's generic Open Graph tags instead
-     of this article's, silently breaking every link preview. Real humans'
-     browsers all run JS, so location.replace() alone is sufficient; the
-     visible link below is the only fallback needed for the rare no-JS
-     visitor. -->
 <script>location.replace(${JSON.stringify(spaTarget)});</script>
 <link rel="icon" type="image/png" href="${SITE_ORIGIN}/logo.png">
 </head>
@@ -320,24 +238,16 @@ ${publishedTime ? `<meta property="article:published_time" content="${escapeHtml
 }
 
 // ---------------------------------------------------------------------
-// Facebook posting helpers
+// Facebook posting helpers (MULTI-PAGE)
 // ---------------------------------------------------------------------
 
-// Tracks which article IDs have already been posted to Facebook, in a
-// plain JSON file committed alongside the generated pages. Deliberately
-// NOT stored in Firestore: this script only ever does public, anonymous
-// reads (fs_news/fs_config are public-read) — giving it Firestore WRITE
-// credentials just to track a "posted" flag would mean handing a CI
-// script standing write access to the database, a much bigger security
-// surface than it needs. A committed file is enough, and keeps this
-// script's permission model exactly as narrow as it's always been.
 async function loadPostedLog() {
   try {
     const raw = await readFile(FB_POSTED_LOG, 'utf8');
     const ids = JSON.parse(raw);
     return new Set(Array.isArray(ids) ? ids : []);
   } catch {
-    return null; // file doesn't exist yet — caller treats this as "first run"
+    return null;
   }
 }
 
@@ -345,61 +255,48 @@ async function savePostedLog(idsSet) {
   await writeFile(FB_POSTED_LOG, JSON.stringify([...idsSet].sort(), null, 2) + '\n', 'utf8');
 }
 
-// Posts one article to the Facebook Page's feed. Facebook's own crawler
-// fetches `link` itself and builds the preview card from ITS og:* tags —
-// the same static page + materialized image this script already
-// generates — so there's nothing extra to attach here beyond the link.
-// A System User token proves WHO is making the request, but Facebook's
-// /feed endpoint wants the Page's OWN access token to actually post AS
-// the Page — related but distinct, even when the System User has full
-// access to the Page. This exchanges the configured token for the real
-// Page token once per run and reuses it for every post that follows.
-let cachedPageToken = null;
-async function derivePageAccessToken() {
-  if (cachedPageToken) return cachedPageToken;
-  const url = `https://graph.facebook.com/${FB_API_VERSION}/${FB_PAGE_ID}?fields=access_token&access_token=${encodeURIComponent(FB_PAGE_ACCESS_TOKEN)}`;
+let cachedPageTokens = {};
+async function derivePageAccessToken(pageId) {
+  if (cachedPageTokens[pageId]) return cachedPageTokens[pageId];
+  const url = `https://graph.facebook.com/${FB_API_VERSION}/${pageId}?fields=access_token&access_token=${encodeURIComponent(FB_PAGE_ACCESS_TOKEN)}`;
   const res = await fetch(url);
   const data = await res.json().catch(() => ({}));
   if (!res.ok || data.error || !data.access_token) {
-    throw new Error(data.error?.message || 'Could not derive a Page Access Token from FB_PAGE_ACCESS_TOKEN.');
+    throw new Error(data.error?.message || `Could not derive a Page Access Token for ${pageId}`);
   }
-  cachedPageToken = data.access_token;
-  return cachedPageToken;
+  cachedPageTokens[pageId] = data.access_token;
+  return cachedPageTokens[pageId];
 }
 
 async function postArticleToFacebook(article, canonicalUrl) {
-  const message = article.title || 'New article on Big Quams Media\u00ae';
-  const url = `https://graph.facebook.com/${FB_API_VERSION}/${FB_PAGE_ID}/feed`;
+  const message = article.title || 'New article on Big Quams Media®';
 
-  const attemptPost = async (token) => {
-    const body = new URLSearchParams({ message, link: canonicalUrl, access_token: token });
-    // A direct fetch, not fetchWithRetry — that helper is built for the
-    // read-only Firestore GETs above and retries on 429/5xx; blindly
-    // retrying a POST that may have actually succeeded server-side risks
-    // posting the same article twice, which is worse than one failed run.
-    const postRes = await fetch(url, { method: 'POST', body });
-    const data = await postRes.json().catch(() => ({}));
-    return { ok: postRes.ok && !data.error, data, status: postRes.status };
-  };
+  for (const pageId of FB_PAGE_IDS) {
+    const url = `https://graph.facebook.com/${FB_API_VERSION}/${pageId}/feed`;
 
-  // Try the configured token as-is first — it may already be a genuine
-  // Page token in some setups. Only fall back to deriving one if that
-  // specifically fails with Facebook's #200 permission error, which is
-  // exactly what happens when a System User token is used directly
-  // instead of the Page token derived from it.
-  let result = await attemptPost(FB_PAGE_ACCESS_TOKEN);
-  if (!result.ok && result.data?.error?.code === 200) {
-    const pageToken = await derivePageAccessToken();
-    result = await attemptPost(pageToken);
+    const attemptPost = async (token) => {
+      const body = new URLSearchParams({ message, link: canonicalUrl, access_token: token });
+      const postRes = await fetch(url, { method: 'POST', body });
+      const data = await postRes.json().catch(() => ({}));
+      return { ok: postRes.ok && !data.error, data, status: postRes.status };
+    };
+
+    let result = await attemptPost(FB_PAGE_ACCESS_TOKEN);
+    if (!result.ok && result.data?.error?.code === 200) {
+      const pageToken = await derivePageAccessToken(pageId);
+      result = await attemptPost(pageToken);
+    }
+    if (!result.ok) {
+      console.error(`  FB post failed for Page ${pageId}: ${result.data.error?.message || `HTTP ${result.status}`}`);
+    } else {
+      console.log(`  FB posted to ${pageId}: ${result.data.id}`);
+    }
   }
-  if (!result.ok) {
-    throw new Error(result.data.error?.message || `HTTP ${result.status}`);
-  }
-  return result.data.id; // Facebook post ID, e.g. "{page-id}_{post-id}"
+  return true;
 }
 
 async function main() {
-  console.log('Fetching articles from Firestore\u2026');
+  console.log('Fetching articles from Firestore…');
   const [articles, categoryDefaults] = await Promise.all([
     fetchCollection('fs_news'),
     fetchDoc('fs_config', 'category_defaults').then((d) => d || {}),
@@ -411,17 +308,24 @@ async function main() {
 
   const sitemapUrls = [];
   let written = 0;
+
+  let postedLog = null;
+  if (FB_ENABLED) {
+    postedLog = await loadPostedLog();
+    if (postedLog === null) {
+      console.log('fb-posted-articles.json not found — first run, will not auto-post existing articles.');
+      postedLog = new Set(articles.map(a => a._id));
+    }
+  }
+
   for (const article of articles) {
-    if (!article.title || !article._id) continue; // skip malformed/partial docs
+    if (!article.title || !article._id) continue;
     const slug = article.slug || makeSlug(article.title);
     const seg = `${slug}--${article._id}`;
     const dir = path.join(OUTPUT_DIR, seg);
     await mkdir(dir, { recursive: true });
     const rawImage = resolvePreviewImage(article, categoryDefaults);
     const materialized = await materializeImage(rawImage, dir);
-    // materializeImage returns either the original URL unchanged (already
-    // fetchable), a bare filename (base64 was decoded to a file in `dir`),
-    // or null (malformed data) — resolve each case to a final public URL.
     const resolvedImage =
       materialized && materialized !== rawImage
         ? `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/${materialized}`
@@ -429,6 +333,18 @@ async function main() {
     await writeFile(path.join(dir, 'index.html'), renderPage(article, categoryDefaults, resolvedImage), 'utf8');
     sitemapUrls.push(`${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`);
     written++;
+
+    if (FB_ENABLED && postedLog && !postedLog.has(article._id)) {
+      const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
+      console.log(`New article detected: ${article._id} — posting to ${FB_PAGE_IDS.length} page(s)...`);
+      try {
+        await postArticleToFacebook(article, canonical);
+        postedLog.add(article._id);
+        await savePostedLog(postedLog);
+      } catch (err) {
+        console.error(`  FB auto-post error for ${article._id}: ${err.message}`);
+      }
+    }
   }
 
   const sitemap =
@@ -441,52 +357,12 @@ async function main() {
   console.log(`Generated ${written} static article page(s) in ./${OUTPUT_DIR}/`);
   console.log(`Wrote sitemap-news.xml with ${sitemapUrls.length} URL(s).`);
 
-  // ---------------------------------------------------------------------
-  // Facebook auto-posting — runs after page generation so every article
-  // already has its real (non-base64) image and canonical URL ready,
-  // which is what Facebook's own crawler will fetch for the post's
-  // preview card.
-  // ---------------------------------------------------------------------
-  if (!FB_ENABLED) {
-    console.log('Facebook posting skipped (FB_PAGE_ID / FB_PAGE_ACCESS_TOKEN not set).');
-  } else {
-    let postedLog = await loadPostedLog();
-    const isFirstRun = postedLog === null;
-    if (isFirstRun) {
-      // No tracking file yet — this is the very first run with Facebook
-      // posting enabled. Mark every CURRENTLY existing article as already
-      // posted rather than flooding the Page with the entire backlog at
-      // once; only articles published from this point forward get posted.
-      postedLog = new Set(articles.map((a) => a._id).filter(Boolean));
-      await savePostedLog(postedLog);
-      console.log(`First run with Facebook posting enabled — marked ${postedLog.size} existing article(s) as already posted (not re-posting the backlog). New articles from here on will post automatically.`);
-    } else {
-      const newArticles = articles.filter((a) => a.title && a._id && !postedLog.has(a._id));
-      if (!newArticles.length) {
-        console.log('Facebook: no new articles to post.');
-      }
-      for (const article of newArticles) {
-        const slug = article.slug || makeSlug(article.title);
-        const seg = `${slug}--${article._id}`;
-        const canonicalUrl = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
-        try {
-          const postId = await postArticleToFacebook(article, canonicalUrl);
-          postedLog.add(article._id);
-          await savePostedLog(postedLog); // save after each post — a later failure in this loop won't lose earlier successes
-          console.log(`Posted to Facebook: "${article.title}" (post ${postId})`);
-        } catch (err) {
-          // A Facebook failure (expired token, rate limit, etc.) should
-          // never fail the whole run — page generation above already
-          // succeeded and is the more important part. Log it and move on;
-          // this article stays unposted and will be retried next run.
-          console.error(`Facebook post failed for "${article.title}": ${err.message}`);
-        }
-      }
-    }
+  if (FB_ENABLED && postedLog) {
+    await savePostedLog(postedLog);
   }
 }
 
 main().catch((err) => {
-  console.error('generate-news-pages failed:', err);
+  console.error(err);
   process.exit(1);
 });
