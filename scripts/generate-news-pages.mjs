@@ -227,11 +227,11 @@ function decodeFields(fields) {
 // network hiccups) with exponential backoff + jitter. GitHub Actions'
 // shared runner IPs sometimes get rate-limited by Google's APIs even under
 // very light real usage.
-async function fetchWithRetry(url, { retries = 5, baseDelayMs = 1000 } = {}) {
+async function fetchWithRetry(url, { retries = 5, baseDelayMs = 1000, ...fetchInit } = {}) {
   let lastErr;
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const res = await fetch(url);
+      const res = await fetch(url, fetchInit);
       if (res.status === 429 || res.status >= 500) {
         lastErr = new Error(`HTTP ${res.status}: ${await res.text()}`);
         throw lastErr;
@@ -284,6 +284,53 @@ async function fetchDoc(name, id) {
   if (!res.ok) throw new Error(`Firestore fetch failed for ${name}/${id}: ${res.status}`);
   const data = await res.json();
   return decodeFields(data.fields || {});
+}
+
+// Fetches only documents whose `updatedAt` is strictly after `sinceISO`, via
+// Firestore's :runQuery endpoint (the plain "list documents" REST endpoint
+// used by fetchCollection has no filtering — a structured query is the only
+// way to ask Firestore server-side for "just what changed"). This is what
+// lets the workflow run every 20 minutes without re-reading the entire
+// collection each time: on a quiet day this returns zero documents, using
+// one read-quota unit for the query itself rather than one per article.
+//
+// IMPORTANT ASSUMPTION: this requires every fs_news document to carry an
+// `updatedAt` timestamp set on BOTH creation and edit (not just
+// `createdAt`). If the admin panel only stamps `updatedAt` on edits, a
+// brand-new never-edited article would never match this filter and would
+// silently never get a page. Confirm this before relying on it — if it
+// turns out only `createdAt` is reliably set, swap the fieldPath below to
+// `createdAt` (this will miss edits-with-no-new-article instead, which is
+// the lesser problem since content edits are rarer than net-new posts).
+async function fetchChangedArticles(sinceISO) {
+  const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents:runQuery${FIREBASE_API_KEY ? `?key=${encodeURIComponent(FIREBASE_API_KEY)}` : ''}`;
+  const body = {
+    structuredQuery: {
+      from: [{ collectionId: 'fs_news' }],
+      where: {
+        fieldFilter: {
+          field: { fieldPath: 'updatedAt' },
+          op: 'GREATER_THAN',
+          value: { timestampValue: sinceISO },
+        },
+      },
+      // Firestore requires the first orderBy to match the inequality's
+      // field — this isn't just a nicety, the query is rejected without it.
+      orderBy: [{ field: { fieldPath: 'updatedAt' }, direction: 'ASCENDING' }],
+    },
+  };
+  const res = await fetchWithRetry(url, { method: 'POST', body: JSON.stringify(body), headers: { 'Content-Type': 'application/json' } });
+  if (!res.ok) {
+    throw new Error(`Firestore runQuery failed: ${res.status} ${await res.text()}`);
+  }
+  const rows = await res.json();
+  const docs = [];
+  for (const row of rows) {
+    if (!row.document) continue; // trailing progress-only rows carry no document
+    const id = row.document.name.split('/').pop();
+    docs.push({ _id: id, ...decodeFields(row.document.fields || {}) });
+  }
+  return docs;
 }
 
 // ---------------------------------------------------------------------
@@ -360,6 +407,32 @@ ${publishedTime ? `<meta property="article:published_time" content="${escapeHtml
 </body>
 </html>
 `;
+}
+
+// ---------------------------------------------------------------------
+// Persisted news state: the incremental-fetch checkpoint, plus a running
+// index of every article ever generated (needed because with incremental
+// fetching, most runs only see a handful of changed articles — the
+// sitemap still has to list ALL of them, so we can't just rebuild it from
+// "this run's articles" the way the old full-fetch version did).
+// ---------------------------------------------------------------------
+const NEWS_STATE_FILE = 'news-state.json';
+
+async function loadNewsState() {
+  try {
+    const raw = await readFile(NEWS_STATE_FILE, 'utf8');
+    const parsed = JSON.parse(raw);
+    return {
+      lastRunReadTime: parsed.lastRunReadTime || null,
+      articles: parsed.articles && typeof parsed.articles === 'object' ? parsed.articles : {},
+    };
+  } catch {
+    return { lastRunReadTime: null, articles: {} }; // no state yet — first run does a full fetch
+  }
+}
+
+async function saveNewsState(state) {
+  await writeFile(NEWS_STATE_FILE, JSON.stringify(state, null, 2) + '\n', 'utf8');
 }
 
 // ---------------------------------------------------------------------
@@ -464,9 +537,22 @@ async function postArticleToFacebook(article, canonicalUrl, destination) {
 // ---------------------------------------------------------------------
 
 async function main() {
-  console.log('Fetching articles from Firestore...');
-  const articles = await fetchCollection('fs_news');
-  console.log(`  ${articles.length} article(s) found.`);
+  const newsState = await loadNewsState();
+  // Captured BEFORE the fetch fires, not after — so any article written
+  // mid-run lands after this checkpoint and simply gets picked up on the
+  // *next* run rather than being missed. A 20-minute delay on a brand-new
+  // article is fine; silently never generating its page is not.
+  const requestTime = new Date().toISOString();
+
+  let articles;
+  if (!newsState.lastRunReadTime) {
+    console.log('No previous checkpoint found — doing a full fetch (first run).');
+    articles = await fetchCollection('fs_news');
+  } else {
+    console.log(`Fetching articles changed since ${newsState.lastRunReadTime}...`);
+    articles = await fetchChangedArticles(newsState.lastRunReadTime);
+  }
+  console.log(`  ${articles.length} article(s) to (re)generate.`);
 
   // Category-specific default preview images, if configured in the admin
   // panel under fs_config. Missing/absent doc just means no category
@@ -482,7 +568,6 @@ async function main() {
   await mkdir(OUTPUT_DIR, { recursive: true });
 
   const postedLog = FB_ENABLED ? await loadPostedLog() : {};
-  const sitemapEntries = [];
 
   for (const article of articles) {
     const slug = article.slug || makeSlug(article.title || '');
@@ -501,8 +586,12 @@ async function main() {
     await writeFile(path.join(pageDir, 'index.html'), html, 'utf8');
 
     const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
-    const lastmod = typeof article.updatedAt === 'string' ? article.updatedAt : new Date().toISOString();
-    sitemapEntries.push(`  <url><loc>${escapeHtml(canonical)}</loc><lastmod>${lastmod}</lastmod></url>`);
+    const lastmod = typeof article.updatedAt === 'string' ? article.updatedAt : requestTime;
+    // Record this article in the persisted index regardless of whether it
+    // was new or already known — this index (not "articles from this run")
+    // is what the sitemap gets built from below, since most runs now only
+    // touch a handful of documents.
+    newsState.articles[article._id] = { seg, lastmod };
 
     if (FB_ENABLED) {
       const alreadyPosted = postedLog[article._id] || [];
@@ -524,10 +613,20 @@ async function main() {
 
   if (FB_ENABLED) await savePostedLog(postedLog);
 
+  // Sitemap is built from the FULL persisted index, not just this run's
+  // (usually much smaller) batch — otherwise an incremental run with zero
+  // or one changed article would wipe out every other article's sitemap
+  // entry.
+  const sitemapEntries = Object.values(newsState.articles).map(
+    ({ seg, lastmod }) => `  <url><loc>${escapeHtml(`${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`)}</loc><lastmod>${lastmod}</lastmod></url>`
+  );
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join('\n')}\n</urlset>\n`;
   await writeFile('sitemap-news.xml', sitemap, 'utf8');
 
-  console.log(`Done — generated ${articles.length} page(s).`);
+  newsState.lastRunReadTime = requestTime;
+  await saveNewsState(newsState);
+
+  console.log(`Done — (re)generated ${articles.length} page(s); ${Object.keys(newsState.articles).length} total in sitemap.`);
 }
 
 main().catch((err) => {
