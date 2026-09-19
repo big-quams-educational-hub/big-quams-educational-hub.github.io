@@ -1,26 +1,18 @@
 name: Generate News Preview Pages
 
-# Firestore changes (new/edited articles from the admin panel) don't trigger
-# a git push, so this can't be a simple "on: push" workflow. It runs on a
-# schedule to pick up new/edited articles automatically, and can also be
-# triggered manually right after publishing something important.
 on:
   schedule:
-    - cron: '*/20 * * * *'   # every 20 minutes
-  workflow_dispatch: {}       # "Run workflow" button in the Actions tab
+    - cron: '*/20 * * * *'   # every 20 minutes - now safe with 30 limit
+  workflow_dispatch: {}      # keep manual button for breaking news
 
 permissions:
   contents: write
-
-concurrency:
-  group: generate-news-pages
-  cancel-in-progress: false
 
 jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -28,21 +20,24 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Generate static article pages
-        # FB_PAGE_ID can now be comma-separated: "1170305112838317,109930298011435"
-        # FB_PAGE_ACCESS_TOKEN is your System User token (EAA...) with Full Control on both pages
+      - name: Install dependencies
+        run: npm install firebase
+
+      - name: Generate pages & post to Facebook
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+          FB_PAGE_ACCESS_TOKEN_2: ${{ secrets.FB_PAGE_ACCESS_TOKEN_2 }}
         run: node scripts/generate-news-pages.mjs
 
-      - name: Commit and push if anything changed
+      - name: Commit and push if changed
         run: |
           git config user.name "news-page-bot"
           git config user.email "actions@users.noreply.github.com"
           git add news/ sitemap-news.xml fb-posted-articles.json
           if git diff --staged --quiet; then
-            echo "No article changes — nothing to commit."
+            echo "No changes to commit"
           else
             git commit -m "Auto-generate news preview pages [skip ci]"
             git push
