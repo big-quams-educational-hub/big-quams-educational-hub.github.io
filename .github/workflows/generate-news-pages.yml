@@ -41,6 +41,7 @@ jobs:
         # — set one or the other, not both. FB_PAGE_ID_2 is optional and
         # safe to leave unset.
         env:
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
