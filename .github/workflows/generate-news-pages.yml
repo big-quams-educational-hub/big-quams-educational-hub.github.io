@@ -34,6 +34,13 @@ jobs:
         # (Settings → Secrets and variables → Actions → New repository
         # secret). Nothing else here changes either way.
         #
+        # news-state.json holds the incremental-fetch checkpoint (so each
+        # 20-minute run only reads articles changed since the last run,
+        # instead of the whole Firestore collection) plus the full sitemap
+        # index. It MUST be committed every run — if it's lost/reset, the
+        # next run silently falls back to a full re-fetch, which is safe
+        # but defeats the point of the checkpoint.
+        #
         # One shared System User token posts to both Pages. FB_PAGE_ID can
         # hold either a single Page ID or a comma-separated list
         # ("1170305112838317,109930298011435"); FB_PAGE_ID_2 is an
@@ -51,7 +58,7 @@ jobs:
         run: |
           git config user.name "news-page-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add news/ sitemap-news.xml fb-posted-articles.json
+          git add news/ sitemap-news.xml fb-posted-articles.json news-state.json
           if git diff --staged --quiet; then
             echo "No article changes — nothing to commit."
           else
