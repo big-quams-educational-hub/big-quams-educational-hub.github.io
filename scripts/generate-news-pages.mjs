@@ -350,6 +350,223 @@ function resolvePreviewImage(article, categoryDefaults) {
   return GLOBAL_NEWS_DEFAULT_IMAGE || SITE_DEFAULT_IMAGE;
 }
 
+// ---------------------------------------------------------------------
+// Article body formatter — DIRECT PORT of formatArticleBody() /
+// preprocessPastedHtml() from newsroom.html. Logic is unchanged; this is
+// pure string/regex processing with no DOM dependency in the original, so
+// it runs identically here in Node. Keeping this a byte-for-byte port
+// (rather than writing a fresh formatter) means the static page and the
+// live SPA render the exact same HTML for the exact same article body —
+// if you ever update the formatting rules, update BOTH copies, or the two
+// will silently drift apart.
+// ---------------------------------------------------------------------
+
+function preprocessPastedHtml(raw) {
+  let t = raw.replace(/<a\s+[^>]*?href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (m, url, txt) => {
+    const clean = txt.replace(/<[^>]+>/g, '').trim();
+    return `[${clean || url}](${url})`;
+  });
+  t = t.replace(/<\/?[a-z][^>]*>/gi, '');
+  return t;
+}
+
+function formatArticleBody(raw) {
+  if (!raw) return '';
+  raw = preprocessPastedHtml(raw);
+  const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const isValidUrl = (u) => {
+    try {
+      const p = new URL(u);
+      return p.protocol === 'http:' || p.protocol === 'https:';
+    } catch {
+      return false;
+    }
+  };
+  const inline = (line) => {
+    let t = esc(line);
+    t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (m, txt, url) => (isValidUrl(url) ? `<a href="${url}" target="_blank" rel="noopener">${txt}</a>` : m));
+    t = t.replace(/(https?:\/\/[^\s<>"']+)/g, (u) => (u.match(/^<a /) || !isValidUrl(u) ? u : `<a href="${u}" target="_blank" rel="noopener">${u}</a>`));
+    t = t.replace(/`([^`\n]+)`/g, '<code>$1</code>');
+    t = t.replace(/\*([^\*\n]+)\*/g, '<strong>$1</strong>');
+    t = t.replace(/_([^_\n]+)_/g, '<em>$1</em>');
+    t = t.replace(/~([^~\n]+)~/g, '<s>$1</s>');
+    return t;
+  };
+  const isTableRow = (l) => /^\|.*\|$/.test(l.trim());
+  const isTableSep = (l) => /^\|?[\s:|-]+\|?$/.test(l.trim()) && l.includes('-');
+  const parseRow = (l) => l.trim().replace(/^\||\|$/g, '').split('|').map((c) => c.trim());
+  const lines = raw.replace(/\r\n/g, '\n').split('\n');
+  let html = '', buf = [], mode = null;
+  const flush = () => {
+    if (!buf.length) { mode = null; return; }
+    if (mode === 'ul') html += '<ul>' + buf.map((l) => `<li>${inline(l)}</li>`).join('') + '</ul>';
+    else if (mode === 'ol') html += '<ol>' + buf.map((l) => `<li>${inline(l)}</li>`).join('') + '</ol>';
+    else if (mode === 'bq') html += '<blockquote>' + buf.map(inline).join('<br>') + '</blockquote>';
+    else html += `<p>${buf.map(inline).join('<br>')}</p>`;
+    buf = []; mode = null;
+  };
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i], t = line.trim();
+    if (!t) { flush(); continue; }
+    if (isTableRow(t) && lines[i + 1] && isTableSep(lines[i + 1])) {
+      flush();
+      const header = parseRow(t);
+      let j = i + 2, rows = [];
+      while (j < lines.length && isTableRow(lines[j].trim())) { rows.push(parseRow(lines[j])); j++; }
+      html += '<div class="art-table-wrap"><table class="art-table"><thead><tr>' +
+        header.map((h) => `<th>${inline(h)}</th>`).join('') + '</tr></thead><tbody>' +
+        rows.map((r) => '<tr>' + r.map((c) => `<td>${inline(c || '')}</td>`).join('') + '</tr>').join('') +
+        '</tbody></table></div>';
+      i = j - 1; continue;
+    }
+    const heading = /^#{2,3}\s+(.*)/.exec(t);
+    const bullet = /^[-•]\s+(.*)/.exec(t);
+    const numbered = /^\d+[.)]\s+(.*)/.exec(t);
+    const quote = /^>\s?(.*)/.exec(t);
+    if (heading) { flush(); html += `<h3 class="art-h">${inline(heading[1])}</h3>`; }
+    else if (bullet) { if (mode && mode !== 'ul') flush(); mode = 'ul'; buf.push(bullet[1]); }
+    else if (numbered) { if (mode && mode !== 'ol') flush(); mode = 'ol'; buf.push(numbered[1]); }
+    else if (quote) { if (mode && mode !== 'bq') flush(); mode = 'bq'; buf.push(quote[1]); }
+    else { if (mode && mode !== 'p') flush(); mode = 'p'; buf.push(t); }
+  }
+  flush();
+  return html;
+}
+
+function readingTime(txt) {
+  return Math.max(1, Math.round((txt || '').split(/\s+/).filter(Boolean).length / 200));
+}
+
+// Shared site chrome — copied verbatim from newsroom.html so generated
+// pages match the live site exactly. If the site's header/footer ever
+// changes, this needs updating too (see the port comment above).
+const SITE_HEADER_CSS = `
+:root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:12px;--shadow:0 8px 28px rgba(26,63,168,.11)}
+body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;background:var(--surface2);color:var(--text);line-height:1.6;overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.35)}
+.hbar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.logo-sub{font-size:.52rem;color:rgba(255,255,255,.42);display:block}
+.back-link{color:rgba(255,255,255,.85);font-size:.8rem;font-weight:600;padding:7px 12px;border-radius:7px;background:rgba(255,255,255,.1);white-space:nowrap}
+.back-link:hover{background:rgba(255,255,255,.18)}
+.art-wrap{max-width:760px;margin:0 auto;padding:20px 16px 40px}
+.art-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px 18px;margin-top:4px}
+.art-cat{display:inline-block;font-size:.62rem;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:10px;background:var(--blue-lt);color:var(--blue)}
+.art-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.1rem,3vw,1.45rem);font-weight:800;color:var(--text);line-height:1.3;margin-bottom:10px}
+.art-meta{font-size:.72rem;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.art-image{width:100%;border-radius:10px;margin-bottom:16px;object-fit:cover;max-height:420px}
+.art-content{font-size:.95rem;color:var(--text);line-height:1.9}
+.art-content p{margin:0 0 16px}
+.art-content p:last-child{margin-bottom:0}
+.art-content strong{font-weight:800;color:var(--text)}
+.art-content em{font-style:italic}
+.art-content ul,.art-content ol{margin:4px 0 16px;padding-left:22px}
+.art-content li{margin-bottom:7px}
+.art-content s{opacity:.6}
+.art-content code{background:var(--surface2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:.88em}
+.art-content blockquote{margin:0 0 16px;padding:10px 18px;border-left:3px solid var(--blue);background:var(--surface2);border-radius:0 8px 8px 0;font-style:italic;color:var(--muted)}
+.art-content h3.art-h{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;margin:20px 0 10px;color:var(--text)}
+.art-table-wrap{overflow-x:auto;margin:0 0 16px;-webkit-overflow-scrolling:touch}
+.art-table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:420px}
+.art-table th,.art-table td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+.art-table th{background:var(--surface2);font-weight:800}
+.art-table tr:nth-child(even) td{background:var(--surface2)}
+.art-content a{color:var(--blue);text-decoration:underline;word-break:break-word}
+.open-app-cta{display:block;text-align:center;margin-top:20px;padding:13px;background:var(--orange);color:#fff;font-weight:700;border-radius:10px;font-size:.85rem}
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.footer-brand img{width:36px;height:36px;border-radius:50%;border:2px solid #f97316}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-direction:column;gap:5px}
+.footer-links a{font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)}
+`;
+
+function renderHeader() {
+  return `<header>
+  <div class="hbar">
+    <a class="logo-link" href="${SITE_ORIGIN}/index.html">
+      <img class="logo-img" src="${SITE_ORIGIN}/logo.png" alt="Big Quams Media">
+      <div><div class="logo-name">Big Quams Media\u00ae</div><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
+    </a>
+    <a class="back-link" href="${SITE_ORIGIN}/newsroom.html">\u2190 Newsroom</a>
+  </div>
+</header>`;
+}
+
+// Footer copied verbatim from newsroom.html (see the port comment above
+// SITE_HEADER_CSS) — keep both in sync if the live footer ever changes.
+function renderFooter() {
+  return `<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="${SITE_ORIGIN}/logo.png" alt="BQM">
+      <div>
+        <div class="footer-brand-name">Big Quams Media\u00ae</div>
+        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Nigeria's Trusted Student Platform</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="${SITE_ORIGIN}/index.html">\ud83c\udfe0 Home</a>
+          <a href="${SITE_ORIGIN}/newsroom.html">\ud83d\udcf0 Newsroom</a>
+          <a href="${SITE_ORIGIN}/explore.html">\ud83d\uddc2 Explore Tools</a>
+          <a href="${SITE_ORIGIN}/campus-life.html">\ud83c\udfae Campus Life</a>
+          <a href="${SITE_ORIGIN}/community.html">\ud83e\udd1d Community</a>
+          <a href="${SITE_ORIGIN}/profile.html">\ud83d\udc64 My Profile</a>
+          <a href="${SITE_ORIGIN}/daily.html">\ud83d\udcc5 Daily Hub</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="${SITE_ORIGIN}/cbt.html">\ud83d\udc68\ud83c\udffd\u200d\ud83d\udcbb JAMB CBT Practice</a>
+          <a href="${SITE_ORIGIN}/postutme-prep.html">\ud83d\udcd6 Post-UTME Prep</a>
+          <a href="${SITE_ORIGIN}/postutme-calculator.html">\ud83e\uddee Aggregate Calc</a>
+          <a href="${SITE_ORIGIN}/gpa-calculator.html">\ud83c\udf93 GPA Calculator</a>
+          <a href="${SITE_ORIGIN}/results.html">\ud83d\udcca Results Checker</a>
+          <a href="${SITE_ORIGIN}/Jamb_Profile_Code.html">\ud83d\udd11 JAMB Profile Code</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="${SITE_ORIGIN}/elibrary.html">\ud83d\udcda eLibrary</a>
+          <a href="${SITE_ORIGIN}/scholarship.html">\ud83d\udcb0 Scholarships</a>
+          <a href="${SITE_ORIGIN}/student-loan.html">\ud83d\udcb3 Student Loan</a>
+          <a href="${SITE_ORIGIN}/spotlight.html">\ud83c\udf1f Student Spotlight</a>
+          <a href="${SITE_ORIGIN}/dyk.html">\ud83d\udca1 Did You Know</a>
+          <a href="${SITE_ORIGIN}/subject-combo.html">\ud83d\udccb Subject Combo</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener">\ud83d\udcac WhatsApp Us</a>
+          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener">\ud83d\udc65 Join Group</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener">\ud83d\udcf8 Instagram</a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener">\ud83c\udfb5 TikTok</a>
+          <a href="${SITE_ORIGIN}/index.html#install-app">\ud83d\udcf2 Install App</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">\u00a9 ${new Date().getFullYear()} Big Quams Media\u00ae \u00b7 All rights reserved \u00b7 Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
+  </div>
+</footer>`;
+}
+
 function renderPage(article, resolvedImage) {
   const slug = article.slug || makeSlug(article.title || '');
   const seg = `${slug}--${article._id}`;
@@ -360,6 +577,13 @@ function renderPage(article, resolvedImage) {
   const image = escapeHtml(resolvedImage || GLOBAL_NEWS_DEFAULT_IMAGE || SITE_DEFAULT_IMAGE);
   const spaTarget = `${SITE_ORIGIN}/newsroom.html#${seg}`;
   const publishedTime = typeof article.createdAt === 'string' ? article.createdAt : '';
+  const bodyHtml = formatArticleBody(article.fullContent || '');
+  const mins = readingTime(article.fullContent || '');
+  const category = escapeHtml(article.category || 'News');
+  const headline = escapeHtml(article.title || 'News');
+  const dateLabel = publishedTime
+    ? new Date(publishedTime).toLocaleDateString('en-NG', { year: 'numeric', month: 'long', day: 'numeric' })
+    : '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -383,27 +607,36 @@ ${publishedTime ? `<meta property="article:published_time" content="${escapeHtml
 <meta name="twitter:description" content="${desc}">
 <meta name="twitter:image" content="${image}">
 
-<!-- Human visitors: redirect straight into the interactive newsroom app,
-     which opens this same article via its existing hash router. This is a
-     JS-only redirect on purpose — WhatsApp/Facebook/X/Telegram crawlers do
-     not execute JavaScript, so they stop right here and read the <meta>
-     tags above.
-     IMPORTANT: do NOT add a <meta http-equiv="refresh"> fallback here.
-     Facebook's crawler (unlike the others) DOES follow refresh redirects
-     even though it doesn't run JS — it will bounce straight through to
-     newsroom.html and pick up THAT page's generic Open Graph tags instead
-     of this article's, silently breaking every link preview. Real humans'
-     browsers all run JS, so location.replace() alone is sufficient; the
-     visible link below is the only fallback needed for the rare no-JS
-     visitor. -->
-<script>location.replace(${JSON.stringify(spaTarget)});</script>
+<!-- This page now carries the FULL article body server-rendered in raw
+     HTML (not just meta tags + a redirect) — that's what lets Google
+     actually index the article's real text, not just a preview snippet.
+     Because of that, there is deliberately NO auto-redirect into the SPA
+     here anymore: a real visitor reading this page already has the
+     complete, correctly-formatted article. The header above links back to
+     the interactive Newsroom app for anyone who wants to browse/search
+     other articles from there. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="icon" type="image/png" href="${SITE_ORIGIN}/logo.png">
+<style>${SITE_HEADER_CSS}</style>
 </head>
 <body>
-<p style="font-family:sans-serif;padding:24px;text-align:center;color:#475569">
-  Loading article&hellip; If you are not redirected automatically,
-  <a href="${spaTarget}">tap here to continue</a>.
-</p>
+${renderHeader()}
+<div class="art-wrap">
+  <div class="art-card">
+    <span class="art-cat">${category}</span>
+    <h1 class="art-title">${headline}</h1>
+    <div class="art-meta">
+      ${dateLabel ? `<span>${dateLabel}</span><span>\u00b7</span>` : ''}
+      <span>${mins} min read</span>
+    </div>
+    ${image ? `<img class="art-image" src="${image}" alt="${headline}">` : ''}
+    <div class="art-content">${bodyHtml}</div>
+    <a class="open-app-cta" href="${spaTarget}">Open in Newsroom app for related stories &amp; comments \u2192</a>
+  </div>
+</div>
+${renderFooter()}
 </body>
 </html>
 `;
