@@ -285,10 +285,36 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     const _db=firebase.firestore();
     window._fsDb=_db;
     window._fsLoadNews=async function(){
+      // Client-side cache: this is what actually stops a fresh Firestore
+      // read on EVERY page load/reload. Without it, each visit re-pulls
+      // the entire fs_news collection (28 reads at current size, no
+      // .limit() on the query) — that adds up fast across real traffic
+      // and was very likely the actual cause of the Spark-plan daily
+      // quota (50,000 reads/day) getting exhausted some days before the
+      // automation's own turn. This cache is per-browser (localStorage),
+      // so it doesn't need any coordination with the backend automation —
+      // it just means repeat loads from the SAME visitor within the TTL
+      // window reuse what's already on their device instead of asking
+      // Firestore again.
+      const CACHE_KEY='bqm_news_cache_v1';
+      const CACHE_TTL_MS=10*60*1000; // 10 minutes — adjust if you want fresher/cheaper
+      try{
+        const cachedRaw=localStorage.getItem(CACHE_KEY);
+        if(cachedRaw){
+          const cached=JSON.parse(cachedRaw);
+          if(cached&&Array.isArray(cached.data)&&(Date.now()-cached.ts)<CACHE_TTL_MS){
+            return cached.data;
+          }
+        }
+      }catch(e){ /* corrupt cache entry or storage unavailable/full — fall through to a fresh fetch */ }
       try{
         const s=await _db.collection('fs_news').orderBy('createdAt','desc').get();
         const d=s.docs.map(doc=>({_id:doc.id,...doc.data()}));
-        if(d.length) return d;
+        if(d.length){
+          try{ localStorage.setItem(CACHE_KEY, JSON.stringify({data:d, ts:Date.now()})); }
+          catch(e){ /* storage full/unavailable — not fatal, just means no caching this time */ }
+          return d;
+        }
       }catch(e){console.warn('Firebase fetch failed:',e.message);}
       try{const r=await fetch('news.json?v='+Date.now());const d=await r.json();return d||[];}
       catch(e){return [];}
