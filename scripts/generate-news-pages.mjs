@@ -286,42 +286,44 @@ async function fetchDoc(name, id) {
   return decodeFields(data.fields || {});
 }
 
-// Fetches only documents whose `updatedAt` is strictly after `sinceISO`, via
-// Firestore's :runQuery endpoint (the plain "list documents" REST endpoint
-// used by fetchCollection has no filtering — a structured query is the only
-// way to ask Firestore server-side for "just what changed"). This is what
-// lets the workflow run every 20 minutes without re-reading the entire
-// collection each time: on a quiet day this returns zero documents, using
-// one read-quota unit for the query itself rather than one per article.
+// Fetches only documents that changed since `sinceISO`, via Firestore's
+// :runQuery endpoint (the plain "list documents" REST endpoint used by
+// fetchCollection has no filtering — a structured query is the only way to
+// ask Firestore server-side for "just what changed"). This is what lets
+// the workflow run every 20 minutes without re-reading the entire
+// collection each time.
 //
-// IMPORTANT ASSUMPTION: this requires every fs_news document to carry an
-// `updatedAt` timestamp set on BOTH creation and edit (not just
-// `createdAt`). If the admin panel only stamps `updatedAt` on edits, a
-// brand-new never-edited article would never match this filter and would
-// silently never get a page. Confirm this before relying on it — if it
-// turns out only `createdAt` is reliably set, swap the fieldPath below to
-// `createdAt` (this will miss edits-with-no-new-article instead, which is
-// the lesser problem since content edits are rarer than net-new posts).
-async function fetchChangedArticles(sinceISO) {
+// Runs TWO queries — one on `createdAt`, one on `updatedAt` — and merges
+// the results by document id, rather than trusting a single field. This
+// was originally `updatedAt`-only, on the assumption the admin panel
+// stamps it on both creation and edit; in practice a brand-new article
+// with no `updatedAt` at all silently never matched that filter and never
+// got a page (confirmed in production: 0 documents matched for an article
+// that definitely existed). Querying both fields catches new articles via
+// `createdAt` and edited older articles via `updatedAt`, regardless of
+// which field the admin panel actually sets reliably. This doubles the
+// query count per run (2 instead of 1) — still trivial against the daily
+// quota, since each is one query regardless of how many documents match.
+async function runFirestoreQuery(fieldPath, sinceISO) {
   const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents:runQuery${FIREBASE_API_KEY ? `?key=${encodeURIComponent(FIREBASE_API_KEY)}` : ''}`;
   const body = {
     structuredQuery: {
       from: [{ collectionId: 'fs_news' }],
       where: {
         fieldFilter: {
-          field: { fieldPath: 'updatedAt' },
+          field: { fieldPath },
           op: 'GREATER_THAN',
           value: { timestampValue: sinceISO },
         },
       },
       // Firestore requires the first orderBy to match the inequality's
       // field — this isn't just a nicety, the query is rejected without it.
-      orderBy: [{ field: { fieldPath: 'updatedAt' }, direction: 'ASCENDING' }],
+      orderBy: [{ field: { fieldPath }, direction: 'ASCENDING' }],
     },
   };
   const res = await fetchWithRetry(url, { method: 'POST', body: JSON.stringify(body), headers: { 'Content-Type': 'application/json' } });
   if (!res.ok) {
-    throw new Error(`Firestore runQuery failed: ${res.status} ${await res.text()}`);
+    throw new Error(`Firestore runQuery(${fieldPath}) failed: ${res.status} ${await res.text()}`);
   }
   const rows = await res.json();
   const docs = [];
@@ -331,6 +333,17 @@ async function fetchChangedArticles(sinceISO) {
     docs.push({ _id: id, ...decodeFields(row.document.fields || {}) });
   }
   return docs;
+}
+
+async function fetchChangedArticles(sinceISO) {
+  const [byCreated, byUpdated] = await Promise.all([
+    runFirestoreQuery('createdAt', sinceISO),
+    runFirestoreQuery('updatedAt', sinceISO),
+  ]);
+  const merged = new Map();
+  for (const doc of byCreated) merged.set(doc._id, doc);
+  for (const doc of byUpdated) merged.set(doc._id, doc); // overwrite is fine — same doc either way
+  return [...merged.values()];
 }
 
 // ---------------------------------------------------------------------
