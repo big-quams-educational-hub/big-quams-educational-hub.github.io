@@ -696,7 +696,39 @@ async function postArticleToFacebook(article, canonicalUrl, destination) {
 // sourced from article data rather than run time).
 // ---------------------------------------------------------------------
 
-async function main() {
+// Local-only handoff file between the two script phases (generate, then
+// post-facebook) — deliberately NOT committed to git. Both phases run in
+// the same GitHub Actions job on the same runner filesystem, so a plain
+// file here is enough to pass "which articles still need posting" from
+// one Node invocation to the next, without needing Firestore again.
+const FB_PENDING_FILE = '.fb-pending.json';
+
+// Polls a URL until it returns 200 (page is actually live) or the timeout
+// elapses. This is THE fix for posts going out with a broken preview: a
+// freshly generated page isn't live the instant `git push` returns — the
+// static host still has to actually deploy it, which can take anywhere
+// from a few seconds to a couple of minutes. Posting to Facebook before
+// that finishes means its crawler hits a 404 and the post is stuck with a
+// broken preview forever (re-scraping later does NOT fix an already-live
+// post — confirmed in production). This check runs in the SEPARATE
+// post-facebook phase, after the generate phase's `git push` has already
+// happened, so "not live yet" here means genuinely still deploying, not
+// "not pushed yet".
+async function waitForUrlLive(url, { timeoutMs = 150000, intervalMs = 10000 } = {}) {
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    try {
+      const res = await fetch(url, { method: 'GET' });
+      if (res.ok) return true;
+    } catch {
+      // network hiccup / DNS still propagating — treat like a non-200 and keep polling
+    }
+    await sleep(intervalMs);
+  }
+  return false;
+}
+
+async function runGenerate() {
   const requestTime = new Date().toISOString();
 
   // Full fetch every run, deliberately — NOT incremental.
@@ -734,6 +766,7 @@ async function main() {
   await mkdir(OUTPUT_DIR, { recursive: true });
 
   const postedLog = FB_ENABLED ? await loadPostedLog() : {};
+  const pending = [];
 
   for (const article of articles) {
     const slug = article.slug || makeSlug(article.title || '');
@@ -755,23 +788,14 @@ async function main() {
 
     if (FB_ENABLED) {
       const alreadyPosted = postedLog[article._id] || [];
-      for (const destination of FB_DESTINATIONS) {
-        if (alreadyPosted.includes(destination.id)) continue;
-        try {
-          console.log(`  Posting "${article.title}" to Page ${destination.id}...`);
-          const postId = await postArticleToFacebook(article, canonical, destination);
-          console.log(`    -> posted: ${postId}`);
-          postedLog[article._id] = [...alreadyPosted, destination.id];
-        } catch (err) {
-          console.error(`    -> FB post failed for Page ${destination.id}: ${err.message}`);
-          // Leave this destination absent from postedLog so the next run
-          // retries it, rather than silently giving up forever.
-        }
+      const stillNeeded = FB_DESTINATIONS.map((d) => d.id).filter((id) => !alreadyPosted.includes(id));
+      if (stillNeeded.length) {
+        // NOT posted here — just recorded for the post-facebook phase to
+        // pick up AFTER this run's git push has actually landed.
+        pending.push({ _id: article._id, title: article.title || '', canonical });
       }
     }
   }
-
-  if (FB_ENABLED) await savePostedLog(postedLog);
 
   // Sitemap built directly from this run's full article list — no
   // persisted state file needed, since every run already has the complete
@@ -789,10 +813,64 @@ async function main() {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join('\n')}\n</urlset>\n`;
   await writeFile('sitemap-news.xml', sitemap, 'utf8');
 
+  if (FB_ENABLED) {
+    await writeFile(FB_PENDING_FILE, JSON.stringify(pending, null, 2) + '\n', 'utf8');
+    console.log(`  ${pending.length} article(s) pending a Facebook post (deferred until after this run's push).`);
+  }
+
   console.log(`Done — (re)generated ${articles.length} page(s); ${articles.length} total in sitemap.`);
 }
 
-main().catch((err) => {
+async function runPostFacebook() {
+  if (!FB_ENABLED) {
+    console.log('Facebook posting not configured — nothing to do.');
+    return;
+  }
+  let pending;
+  try {
+    pending = JSON.parse(await readFile(FB_PENDING_FILE, 'utf8'));
+  } catch {
+    console.log('No pending Facebook posts found.');
+    return;
+  }
+  if (!pending.length) {
+    console.log('Pending list is empty — nothing to post.');
+    return;
+  }
+
+  const postedLog = await loadPostedLog();
+
+  for (const { _id, title, canonical } of pending) {
+    console.log(`Checking if live yet: ${canonical}`);
+    const isLive = await waitForUrlLive(canonical);
+    if (!isLive) {
+      console.warn(`  Still not live after waiting — skipping this run, will retry next run: ${canonical}`);
+      continue; // leave un-posted in postedLog — next run's generate phase will re-queue it
+    }
+    const alreadyPosted = postedLog[_id] || [];
+    for (const destination of FB_DESTINATIONS) {
+      if (alreadyPosted.includes(destination.id)) continue;
+      try {
+        console.log(`  Posting "${title}" to Page ${destination.id}...`);
+        const postId = await postArticleToFacebook({ title }, canonical, destination);
+        console.log(`    -> posted: ${postId}`);
+        postedLog[_id] = [...(postedLog[_id] || alreadyPosted), destination.id];
+      } catch (err) {
+        console.error(`    -> FB post failed for Page ${destination.id}: ${err.message}`);
+      }
+    }
+  }
+
+  await savePostedLog(postedLog);
+  await rm(FB_PENDING_FILE, { force: true });
+}
+
+const mode = process.argv[2];
+const run = mode === 'post-facebook' ? runPostFacebook
+  : mode === 'generate' ? runGenerate
+  : async () => { await runGenerate(); await runPostFacebook(); }; // no arg: convenience for local/manual runs
+
+run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
