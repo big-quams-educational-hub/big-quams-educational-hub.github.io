@@ -622,6 +622,16 @@ function renderPage(article, resolvedImage, { authorProfile, prevArticle, nextAr
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) — same property as index.html/newsroom.html, so
+     article-page traffic rolls into one unified view rather than a
+     separate, disconnected dataset. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RCLYVCZY2K');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title}</title>
@@ -753,12 +763,20 @@ async function derivePageAccessToken(pageId, systemUserToken) {
   return cachedPageTokens.get(pageId);
 }
 
-// Posts one article to one Facebook Page's feed. Facebook's own crawler
-// fetches `link` itself and builds the preview card from ITS og:* tags —
-// the same static page + materialized image this script already
-// generates — so there's nothing extra to attach here beyond the link.
+// Posts one article to one Facebook Page's feed. `link` is still passed
+// separately (below) — Facebook's own crawler fetches it and builds the
+// preview card from the static page's og:* tags, same as before. What's
+// new is the message body itself: headline, then a short excerpt, then
+// the link again as plain visible text ("Read more: ..."). Previously the
+// message was just the bare headline and the post relied entirely on
+// Facebook's auto-generated card below it for everything else — this adds
+// real body text above that card, matching how most news Pages post.
 async function postArticleToFacebook(article, canonicalUrl, destination) {
-  const message = article.title || 'New article on Big Quams Media\u00ae';
+  const headline = article.title || 'New article on Big Quams Media\u00ae';
+  const excerpt = article.excerpt ? String(article.excerpt).trim() : '';
+  const message = excerpt
+    ? `${headline}\n\n${excerpt}\n\nRead more: ${canonicalUrl}`
+    : `${headline}\n\nRead more: ${canonicalUrl}`;
   const url = `https://graph.facebook.com/${FB_API_VERSION}/${destination.id}/feed`;
 
   const attemptPost = async (token) => {
@@ -929,7 +947,12 @@ async function runGenerate() {
       if (stillNeeded.length) {
         // NOT posted here — just recorded for the post-facebook phase to
         // pick up AFTER this run's git push has actually landed.
-        pending.push({ _id: article._id, title: article.title || '', canonical });
+        pending.push({
+          _id: article._id,
+          title: article.title || '',
+          excerpt: firstSentenceExcerpt(article.fullContent || '', 200),
+          canonical,
+        });
       }
     }
   }
@@ -977,7 +1000,7 @@ async function runPostFacebook() {
 
   const postedLog = await loadPostedLog();
 
-  for (const { _id, title, canonical } of pending) {
+  for (const { _id, title, excerpt, canonical } of pending) {
     console.log(`Checking if live yet: ${canonical}`);
     const isLive = await waitForUrlLive(canonical);
     if (!isLive) {
@@ -989,7 +1012,7 @@ async function runPostFacebook() {
       if (alreadyPosted.includes(destination.id)) continue;
       try {
         console.log(`  Posting "${title}" to Page ${destination.id}...`);
-        const postId = await postArticleToFacebook({ title }, canonical, destination);
+        const postId = await postArticleToFacebook({ title, excerpt }, canonical, destination);
         console.log(`    -> posted: ${postId}`);
         postedLog[_id] = [...(postedLog[_id] || alreadyPosted), destination.id];
       } catch (err) {
