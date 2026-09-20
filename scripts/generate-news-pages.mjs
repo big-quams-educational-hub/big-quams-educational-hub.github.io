@@ -286,66 +286,6 @@ async function fetchDoc(name, id) {
   return decodeFields(data.fields || {});
 }
 
-// Fetches only documents that changed since `sinceISO`, via Firestore's
-// :runQuery endpoint (the plain "list documents" REST endpoint used by
-// fetchCollection has no filtering — a structured query is the only way to
-// ask Firestore server-side for "just what changed"). This is what lets
-// the workflow run every 20 minutes without re-reading the entire
-// collection each time.
-//
-// Runs TWO queries — one on `createdAt`, one on `updatedAt` — and merges
-// the results by document id, rather than trusting a single field. This
-// was originally `updatedAt`-only, on the assumption the admin panel
-// stamps it on both creation and edit; in practice a brand-new article
-// with no `updatedAt` at all silently never matched that filter and never
-// got a page (confirmed in production: 0 documents matched for an article
-// that definitely existed). Querying both fields catches new articles via
-// `createdAt` and edited older articles via `updatedAt`, regardless of
-// which field the admin panel actually sets reliably. This doubles the
-// query count per run (2 instead of 1) — still trivial against the daily
-// quota, since each is one query regardless of how many documents match.
-async function runFirestoreQuery(fieldPath, sinceISO) {
-  const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents:runQuery${FIREBASE_API_KEY ? `?key=${encodeURIComponent(FIREBASE_API_KEY)}` : ''}`;
-  const body = {
-    structuredQuery: {
-      from: [{ collectionId: 'fs_news' }],
-      where: {
-        fieldFilter: {
-          field: { fieldPath },
-          op: 'GREATER_THAN',
-          value: { timestampValue: sinceISO },
-        },
-      },
-      // Firestore requires the first orderBy to match the inequality's
-      // field — this isn't just a nicety, the query is rejected without it.
-      orderBy: [{ field: { fieldPath }, direction: 'ASCENDING' }],
-    },
-  };
-  const res = await fetchWithRetry(url, { method: 'POST', body: JSON.stringify(body), headers: { 'Content-Type': 'application/json' } });
-  if (!res.ok) {
-    throw new Error(`Firestore runQuery(${fieldPath}) failed: ${res.status} ${await res.text()}`);
-  }
-  const rows = await res.json();
-  const docs = [];
-  for (const row of rows) {
-    if (!row.document) continue; // trailing progress-only rows carry no document
-    const id = row.document.name.split('/').pop();
-    docs.push({ _id: id, ...decodeFields(row.document.fields || {}) });
-  }
-  return docs;
-}
-
-async function fetchChangedArticles(sinceISO) {
-  const [byCreated, byUpdated] = await Promise.all([
-    runFirestoreQuery('createdAt', sinceISO),
-    runFirestoreQuery('updatedAt', sinceISO),
-  ]);
-  const merged = new Map();
-  for (const doc of byCreated) merged.set(doc._id, doc);
-  for (const doc of byUpdated) merged.set(doc._id, doc); // overwrite is fine — same doc either way
-  return [...merged.values()];
-}
-
 // ---------------------------------------------------------------------
 // Fallback hierarchy for the link-preview image (must match newsroom.html)
 //   1. Manually selected Link Preview Image
@@ -656,32 +596,6 @@ ${renderFooter()}
 }
 
 // ---------------------------------------------------------------------
-// Persisted news state: the incremental-fetch checkpoint, plus a running
-// index of every article ever generated (needed because with incremental
-// fetching, most runs only see a handful of changed articles — the
-// sitemap still has to list ALL of them, so we can't just rebuild it from
-// "this run's articles" the way the old full-fetch version did).
-// ---------------------------------------------------------------------
-const NEWS_STATE_FILE = 'news-state.json';
-
-async function loadNewsState() {
-  try {
-    const raw = await readFile(NEWS_STATE_FILE, 'utf8');
-    const parsed = JSON.parse(raw);
-    return {
-      lastRunReadTime: parsed.lastRunReadTime || null,
-      articles: parsed.articles && typeof parsed.articles === 'object' ? parsed.articles : {},
-    };
-  } catch {
-    return { lastRunReadTime: null, articles: {} }; // no state yet — first run does a full fetch
-  }
-}
-
-async function saveNewsState(state) {
-  await writeFile(NEWS_STATE_FILE, JSON.stringify(state, null, 2) + '\n', 'utf8');
-}
-
-// ---------------------------------------------------------------------
 // Facebook posting helpers (generalized for multiple destination Pages)
 // ---------------------------------------------------------------------
 
@@ -783,22 +697,28 @@ async function postArticleToFacebook(article, canonicalUrl, destination) {
 // ---------------------------------------------------------------------
 
 async function main() {
-  const newsState = await loadNewsState();
-  // Captured BEFORE the fetch fires, not after — so any article written
-  // mid-run lands after this checkpoint and simply gets picked up on the
-  // *next* run rather than being missed. A 20-minute delay on a brand-new
-  // article is fine; silently never generating its page is not.
   const requestTime = new Date().toISOString();
 
-  let articles;
-  if (!newsState.lastRunReadTime) {
-    console.log('No previous checkpoint found — doing a full fetch (first run).');
-    articles = await fetchCollection('fs_news');
-  } else {
-    console.log(`Fetching articles changed since ${newsState.lastRunReadTime}...`);
-    articles = await fetchChangedArticles(newsState.lastRunReadTime);
-  }
-  console.log(`  ${articles.length} article(s) to (re)generate.`);
+  // Full fetch every run, deliberately — NOT incremental.
+  //
+  // This was previously an incremental fetch keyed on createdAt/updatedAt
+  // timestamps, to avoid re-reading the whole collection every 20 minutes.
+  // In production that silently skipped at least one real article forever
+  // — it turned out to have NEITHER createdAt NOR updatedAt set, so no
+  // timestamp filter could ever match it, regardless of which field was
+  // queried. That's a data-completeness bug no query can work around.
+  //
+  // Reverted to a full fetch because, at this collection's actual size
+  // (~26 articles), the cost difference is negligible: a full fetch every
+  // 20 minutes is roughly 26 * 72 = ~1,872 Firestore reads/day, nowhere
+  // near the 50,000/day Spark-plan limit. The earlier 429 quota crisis was
+  // caused by something else entirely (see FIREBASE_API_KEY comment above)
+  // — this script's own read volume was never the bottleneck. A full fetch
+  // is simpler and CANNOT miss an article, regardless of what timestamp
+  // fields it does or doesn't have.
+  console.log('Fetching all articles from Firestore...');
+  const articles = await fetchCollection('fs_news');
+  console.log(`  ${articles.length} article(s) found.`);
 
   // Category-specific default preview images, if configured in the admin
   // panel under fs_config. Missing/absent doc just means no category
@@ -832,12 +752,6 @@ async function main() {
     await writeFile(path.join(pageDir, 'index.html'), html, 'utf8');
 
     const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
-    const lastmod = typeof article.updatedAt === 'string' ? article.updatedAt : requestTime;
-    // Record this article in the persisted index regardless of whether it
-    // was new or already known — this index (not "articles from this run")
-    // is what the sitemap gets built from below, since most runs now only
-    // touch a handful of documents.
-    newsState.articles[article._id] = { seg, lastmod };
 
     if (FB_ENABLED) {
       const alreadyPosted = postedLog[article._id] || [];
@@ -859,20 +773,23 @@ async function main() {
 
   if (FB_ENABLED) await savePostedLog(postedLog);
 
-  // Sitemap is built from the FULL persisted index, not just this run's
-  // (usually much smaller) batch — otherwise an incremental run with zero
-  // or one changed article would wipe out every other article's sitemap
-  // entry.
-  const sitemapEntries = Object.values(newsState.articles).map(
-    ({ seg, lastmod }) => `  <url><loc>${escapeHtml(`${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`)}</loc><lastmod>${lastmod}</lastmod></url>`
-  );
+  // Sitemap built directly from this run's full article list — no
+  // persisted state file needed, since every run already has the complete
+  // set. This also removes a whole class of git merge conflicts: two runs
+  // can no longer fight over a shared generated-state file, because there
+  // isn't one anymore.
+  const sitemapEntries = articles.map((article) => {
+    const slug = article.slug || makeSlug(article.title || '');
+    const seg = `${slug}--${article._id}`;
+    const lastmod = typeof article.updatedAt === 'string' ? article.updatedAt
+      : typeof article.createdAt === 'string' ? article.createdAt
+      : requestTime;
+    return `  <url><loc>${escapeHtml(`${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`)}</loc><lastmod>${lastmod}</lastmod></url>`;
+  });
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join('\n')}\n</urlset>\n`;
   await writeFile('sitemap-news.xml', sitemap, 'utf8');
 
-  newsState.lastRunReadTime = requestTime;
-  await saveNewsState(newsState);
-
-  console.log(`Done — (re)generated ${articles.length} page(s); ${Object.keys(newsState.articles).length} total in sitemap.`);
+  console.log(`Done — (re)generated ${articles.length} page(s); ${articles.length} total in sitemap.`);
 }
 
 main().catch((err) => {
