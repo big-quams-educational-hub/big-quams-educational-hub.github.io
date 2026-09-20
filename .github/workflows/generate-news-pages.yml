@@ -34,13 +34,6 @@ jobs:
         # (Settings → Secrets and variables → Actions → New repository
         # secret). Nothing else here changes either way.
         #
-        # news-state.json holds the incremental-fetch checkpoint (so each
-        # 20-minute run only reads articles changed since the last run,
-        # instead of the whole Firestore collection) plus the full sitemap
-        # index. It MUST be committed every run — if it's lost/reset, the
-        # next run silently falls back to a full re-fetch, which is safe
-        # but defeats the point of the checkpoint.
-        #
         # One shared System User token posts to both Pages. FB_PAGE_ID can
         # hold either a single Page ID or a comma-separated list
         # ("1170305112838317,109930298011435"); FB_PAGE_ID_2 is an
@@ -58,20 +51,52 @@ jobs:
         run: |
           git config user.name "news-page-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add news/ sitemap-news.xml fb-posted-articles.json news-state.json
+          # news-state.json is no longer generated/tracked — the script now
+          # does a full fetch every run instead of an incremental one, so
+          # there's no checkpoint file to commit. (It caused real problems:
+          # a missed article, when the incremental filter's field wasn't
+          # set on that document, and a merge conflict between two
+          # overlapping runs that then silently "succeeded" without
+          # actually pushing — see the retry loop fix below.)
+          git add news/ sitemap-news.xml fb-posted-articles.json
           if git diff --staged --quiet; then
             echo "No article changes — nothing to commit."
-          else
-            git commit -m "Auto-generate news preview pages [skip ci]"
-            # Another run (scheduled + a manual click overlapping, or a
-            # commit landing from elsewhere) can push to main between this
-            # job's checkout and this push. Rebase onto whatever's there
-            # now instead of failing outright. Retry a few times since a
-            # second race during the rebase/push itself is possible too,
-            # if runs happen to overlap repeatedly.
-            for attempt in 1 2 3 4 5; do
-              git pull --rebase origin main && git push && break
-              echo "Push attempt $attempt failed — retrying after rebase..."
-              sleep $((attempt * 5))
-            done
+            exit 0
+          fi
+          git commit -m "Auto-generate news preview pages [skip ci]"
+
+          # Another run (scheduled + a manual click overlapping, or a
+          # commit landing from elsewhere) can push to main between this
+          # job's checkout and this push. Rebase onto whatever's there now
+          # instead of failing outright.
+          #
+          # -X theirs resolves any conflict by keeping THIS run's version
+          # of the conflicting file (in `git rebase`, confusingly, "theirs"
+          # means the commit being replayed — i.e. local — not the
+          # upstream one). That's safe here specifically because every
+          # committed file (news/*, sitemap-news.xml,
+          # fb-posted-articles.json) is fully regenerated from Firestore
+          # each run; there's no hand-authored content that could be lost.
+          # Do NOT reuse this flag if a non-generated file is ever added to
+          # this commit.
+          success=false
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase -X theirs origin main && git push; then
+              success=true
+              break
+            fi
+            echo "Push attempt $attempt failed — aborting any stuck rebase and retrying..."
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 5))
+          done
+
+          # CRITICAL: fail the job loudly if every attempt failed, instead
+          # of letting the step exit 0 with nothing actually pushed. That
+          # exact silent failure happened once already — the script's
+          # local output (including a real Facebook post) went out, but
+          # the page itself never reached the live site, and the run still
+          # showed a green checkmark.
+          if [ "$success" != "true" ]; then
+            echo "::error::Failed to push after 5 attempts — generated pages were NOT saved to the repo."
+            exit 1
           fi
