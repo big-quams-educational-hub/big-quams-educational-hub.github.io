@@ -63,5 +63,15 @@ jobs:
             echo "No article changes — nothing to commit."
           else
             git commit -m "Auto-generate news preview pages [skip ci]"
-            git push
+            # Another run (scheduled + a manual click overlapping, or a
+            # commit landing from elsewhere) can push to main between this
+            # job's checkout and this push. Rebase onto whatever's there
+            # now instead of failing outright. Retry a few times since a
+            # second race during the rebase/push itself is possible too,
+            # if runs happen to overlap repeatedly.
+            for attempt in 1 2 3 4 5; do
+              git pull --rebase origin main && git push && break
+              echo "Push attempt $attempt failed — retrying after rebase..."
+              sleep $((attempt * 5))
+            done
           fi
