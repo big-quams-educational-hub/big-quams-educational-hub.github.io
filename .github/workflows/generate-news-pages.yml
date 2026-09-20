@@ -28,57 +28,62 @@ jobs:
         with:
           node-version: '20'
 
+      # ---------------------------------------------------------------
+      # Three-step flow, deliberately in this order: generate -> push ->
+      # post to Facebook. This used to be one step that generated pages
+      # AND posted to Facebook together, before the push ever happened —
+      # which meant Facebook's crawler always hit a 404, since the page
+      # genuinely wasn't live yet at that moment (git push hadn't run,
+      # and even after it does, the static host takes time to actually
+      # deploy). Every automated post had a broken preview because of
+      # this, regardless of anything else being fixed. Splitting into
+      # three steps, with the push in between, is the actual fix — not
+      # just re-scraping the URL afterward, which does NOT fix a post
+      # that's already been published.
+      # ---------------------------------------------------------------
+
       - name: Generate static article pages
-        # FB_PAGE_ID / FB_PAGE_ACCESS_TOKEN are optional — Facebook
-        # auto-posting stays off until both are added as repo secrets
-        # (Settings → Secrets and variables → Actions → New repository
-        # secret). Nothing else here changes either way.
+        # FIREBASE_API_KEY is the public Firebase Web API key (safe to
+        # expose — see the comment in the script), used only to move
+        # Firestore reads off the stricter anonymous-project quota.
         #
-        # One shared System User token posts to both Pages. FB_PAGE_ID can
-        # hold either a single Page ID or a comma-separated list
-        # ("1170305112838317,109930298011435"); FB_PAGE_ID_2 is an
-        # alternate way to add the second Page ID as its own secret instead
-        # — set one or the other, not both. FB_PAGE_ID_2 is optional and
-        # safe to leave unset.
+        # FB_PAGE_ID / FB_PAGE_ACCESS_TOKEN are optional — Facebook
+        # auto-posting stays off until both are set as repo secrets. One
+        # shared System User token posts to both Pages; FB_PAGE_ID can
+        # hold either a single Page ID or a comma-separated list, or use
+        # FB_PAGE_ID_2 as a second secret instead — set one form or the
+        # other, not both. FB_PAGE_ID_2 is optional and safe to leave
+        # unset. This step only WRITES which posts are pending
+        # (.fb-pending.json, not committed) — it does not post anything.
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
           FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
-        run: node scripts/generate-news-pages.mjs
+        run: node scripts/generate-news-pages.mjs generate
 
       - name: Commit and push if anything changed
         run: |
           git config user.name "news-page-bot"
           git config user.email "actions@users.noreply.github.com"
-          # news-state.json is no longer generated/tracked — the script now
+          # news-state.json is no longer generated/tracked — the script
           # does a full fetch every run instead of an incremental one, so
-          # there's no checkpoint file to commit. (It caused real problems:
-          # a missed article, when the incremental filter's field wasn't
-          # set on that document, and a merge conflict between two
-          # overlapping runs that then silently "succeeded" without
-          # actually pushing — see the retry loop fix below.)
-          git add news/ sitemap-news.xml fb-posted-articles.json
+          # there's no checkpoint file to commit.
+          git add news/ sitemap-news.xml
           if git diff --staged --quiet; then
             echo "No article changes — nothing to commit."
             exit 0
           fi
           git commit -m "Auto-generate news preview pages [skip ci]"
 
-          # Another run (scheduled + a manual click overlapping, or a
-          # commit landing from elsewhere) can push to main between this
-          # job's checkout and this push. Rebase onto whatever's there now
-          # instead of failing outright.
-          #
-          # -X theirs resolves any conflict by keeping THIS run's version
-          # of the conflicting file (in `git rebase`, confusingly, "theirs"
-          # means the commit being replayed — i.e. local — not the
-          # upstream one). That's safe here specifically because every
-          # committed file (news/*, sitemap-news.xml,
-          # fb-posted-articles.json) is fully regenerated from Firestore
-          # each run; there's no hand-authored content that could be lost.
-          # Do NOT reuse this flag if a non-generated file is ever added to
-          # this commit.
+          # Another run can push to main between this job's checkout and
+          # this push. Rebase onto whatever's there now instead of failing
+          # outright. -X theirs resolves any conflict by keeping THIS
+          # run's version — safe here because every committed file is
+          # fully regenerated from Firestore each run, so there's no
+          # hand-authored content that could be lost. (In `git rebase`,
+          # confusingly, "theirs" means the commit being replayed, i.e.
+          # local — the opposite of `git merge`'s meaning.)
           success=false
           for attempt in 1 2 3 4 5; do
             if git pull --rebase -X theirs origin main && git push; then
@@ -90,13 +95,47 @@ jobs:
             sleep $((attempt * 5))
           done
 
-          # CRITICAL: fail the job loudly if every attempt failed, instead
-          # of letting the step exit 0 with nothing actually pushed. That
-          # exact silent failure happened once already — the script's
-          # local output (including a real Facebook post) went out, but
-          # the page itself never reached the live site, and the run still
-          # showed a green checkmark.
+          # Fail the job loudly if every attempt failed, instead of a step
+          # that quietly exits 0 with nothing actually pushed — that exact
+          # silent failure happened once already.
           if [ "$success" != "true" ]; then
             echo "::error::Failed to push after 5 attempts — generated pages were NOT saved to the repo."
+            exit 1
+          fi
+
+      - name: Post to Facebook (only after pages are actually live)
+        # Runs even if the step above found nothing new to push — a page
+        # from an earlier run's failed push, or an earlier Facebook
+        # attempt that timed out waiting for deployment, may still be
+        # sitting in .fb-pending.json. If nothing is pending, the script
+        # exits immediately.
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_ID_2: ${{ secrets.FB_PAGE_ID_2 }}
+          FB_PAGE_ACCESS_TOKEN: ${{ secrets.FB_PAGE_ACCESS_TOKEN }}
+        run: node scripts/generate-news-pages.mjs post-facebook
+
+      - name: Commit Facebook-posted log if changed
+        run: |
+          git config user.name "news-page-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add fb-posted-articles.json
+          if git diff --staged --quiet; then
+            echo "No Facebook-posting changes — nothing to commit."
+            exit 0
+          fi
+          git commit -m "Record Facebook posts [skip ci]"
+          success=false
+          for attempt in 1 2 3 4 5; do
+            if git pull --rebase -X theirs origin main && git push; then
+              success=true
+              break
+            fi
+            echo "Push attempt $attempt failed — aborting any stuck rebase and retrying..."
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 5))
+          done
+          if [ "$success" != "true" ]; then
+            echo "::error::Failed to push fb-posted-articles.json after 5 attempts — a duplicate Facebook post is possible next run."
             exit 1
           fi
