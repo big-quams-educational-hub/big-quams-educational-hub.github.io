@@ -1067,6 +1067,17 @@ function goPage(p){
 // ── Open article ──
 function openArticle(idx){
   const n=allNews[idx]; if(!n) return;
+  // Every article read now goes to its real, standalone page
+  // (/news/<slug>--<id>/) instead of the old in-app reader below.
+  // That page already has the full formatted body, byline, share buttons,
+  // prev/next nav, and a working view counter — building/maintaining a
+  // second, separate reading experience here would just mean the two
+  // drift out of sync over time. The code below this point (the in-app
+  // reader) is now dead/unreachable; left in place only in case there's a
+  // reason to revert.
+  location.href=articleUrl(n);
+  return;
+  // eslint-disable-next-line no-unreachable
   currentIdx=idx;
   const mins=readingTime(n.fullContent||'');
   const preview=firstSentenceExcerpt(n.fullContent||'',260); // capped a bit tighter here — leaves room for " — By {author}" appended below without risking Facebook's own truncation cutting that off mid-word
