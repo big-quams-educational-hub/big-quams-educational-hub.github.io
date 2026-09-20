@@ -443,6 +443,25 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .footer-links a{font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s}
 .footer-links a:hover{color:#fff}
 .footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)}
+.footer-support{font-size:.68rem;color:rgba(255,255,255,.4);padding-top:13px;border-top:1px solid rgba(255,255,255,.08);margin-bottom:8px}
+.art-byline{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:10px 12px;background:var(--surface2);border-radius:10px}
+.art-byline img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.art-byline-fallback{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
+.art-byline-name{font-size:.78rem;font-weight:800;color:var(--text)}
+.art-byline-bio{font-size:.74rem;color:var(--muted);line-height:1.6;padding:10px 12px;margin:-6px 0 6px;background:var(--surface2);border-radius:0 0 10px 10px}
+.art-views{font-size:.72rem;color:var(--muted)}
+.share-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+.share-label{font-size:.72rem;font-weight:800;color:var(--muted);margin-right:2px}
+.share-btn{font-size:.72rem;font-weight:700;padding:7px 13px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--text);cursor:pointer;text-decoration:none;display:inline-block}
+.share-wa:hover{background:#25D366;border-color:#25D366;color:#fff}
+.share-fb:hover{background:#1877F2;border-color:#1877F2;color:#fff}
+.share-x:hover{background:#000;border-color:#000;color:#fff}
+.share-ig:hover{background:#E4405F;border-color:#E4405F;color:#fff}
+.prevnext-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.prevnext-link{display:block;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--surface2)}
+.prevnext-label{display:block;font-size:.62rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.prevnext-title{display:block;font-size:.78rem;font-weight:700;color:var(--text);line-height:1.4}
+.prevnext-next{text-align:right}
 `;
 
 function renderHeader() {
@@ -507,7 +526,7 @@ function renderFooter() {
       <div>
         <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
         <div class="footer-links" style="flex-direction:column;gap:5px">
-          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener">\ud83d\udcac WhatsApp Us</a>
+          <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener">\ud83d\udcac WhatsApp Us</a>
           <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener">\ud83d\udc65 Join Group</a>
           <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener">\ud83d\udcf8 Instagram</a>
           <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener">\ud83c\udfb5 TikTok</a>
@@ -515,12 +534,73 @@ function renderFooter() {
         </div>
       </div>
     </div>
+    <div class="footer-support"><strong>Big Quams Media</strong> +2349049871643 \u00b7 <strong>Big Quams Campus Support</strong> +2348069821664</div>
     <div class="footer-copy">\u00a9 ${new Date().getFullYear()} Big Quams Media\u00ae \u00b7 All rights reserved \u00b7 Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
   </div>
 </footer>`;
 }
 
-function renderPage(article, resolvedImage) {
+// Author byline — rendered fully server-side (unlike the SPA, which
+// fetches the author profile async after the page is already showing),
+// since a static page benefits from the complete author info being in the
+// raw HTML for both crawlers and no-JS visitors.
+function renderByline(authorName, profile) {
+  if (!authorName) return '';
+  const hasBio = profile && profile.bio && String(profile.bio).trim();
+  const avatar = profile && profile.photo
+    ? `<img src="${escapeHtml(profile.photo)}" alt="${escapeHtml(authorName)}">`
+    : `<div class="art-byline-fallback">${escapeHtml(authorName.charAt(0).toUpperCase())}</div>`;
+  return `<div class="art-byline">
+    ${avatar}
+    <div class="art-byline-name">By ${escapeHtml(authorName)}</div>
+  </div>
+  ${hasBio ? `<div class="art-byline-bio">${escapeHtml(profile.bio)}</div>` : ''}`;
+}
+
+// Share bar — same URL formats and share-text convention (headline + short
+// excerpt + link) as shareTo()/shareText() in newsroom.html, so a share
+// from either the static page or the live app looks identical. Instagram
+// has no web share-intent URL for posting a link (unlike WhatsApp/
+// Facebook/X) — the button copies the link instead and tells the visitor
+// to paste it themselves, which is the standard workaround every site
+// uses for Instagram link-sharing.
+function renderShareBar(canonical, title, fullContent) {
+  const excerpt = firstSentenceExcerpt(fullContent || '', 140);
+  const shareText = `${title} \u2014 ${excerpt}`;
+  const wa = 'https://wa.me/?text=' + encodeURIComponent(shareText + ' ' + canonical);
+  const fb = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(canonical);
+  const x = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(canonical);
+  const canonicalJs = JSON.stringify(canonical);
+  return `<div class="share-bar">
+    <span class="share-label">Share:</span>
+    <a class="share-btn share-wa" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="share-btn share-fb" href="${fb}" target="_blank" rel="noopener">Facebook</a>
+    <a class="share-btn share-x" href="${x}" target="_blank" rel="noopener">X</a>
+    <button type="button" class="share-btn share-copy" onclick="navigator.clipboard.writeText(${canonicalJs}).then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Link',1500)})">Copy Link</button>
+    <button type="button" class="share-btn share-ig" onclick="navigator.clipboard.writeText(${canonicalJs}).then(()=>{this.textContent='Link copied \u2014 paste in Instagram';setTimeout(()=>this.textContent='Instagram',2500)})">Instagram</button>
+  </div>`;
+}
+
+function renderPrevNext(prevArticle, nextArticle) {
+  if (!prevArticle && !nextArticle) return '';
+  const side = (article, label, dir) => {
+    if (!article) return '<div></div>';
+    const slug = article.slug || makeSlug(article.title || '');
+    const seg = `${slug}--${article._id}`;
+    const href = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
+    return `<a class="prevnext-link prevnext-${dir}" href="${href}">
+      <span class="prevnext-label">${label}</span>
+      <span class="prevnext-title">${escapeHtml(article.title || '')}</span>
+    </a>`;
+  };
+  return `<nav class="prevnext-nav">
+    ${side(prevArticle, '\u2190 Previous', 'prev')}
+    ${side(nextArticle, 'Next \u2192', 'next')}
+  </nav>`;
+}
+
+
+function renderPage(article, resolvedImage, { authorProfile, prevArticle, nextArticle } = {}) {
   const slug = article.slug || makeSlug(article.title || '');
   const seg = `${slug}--${article._id}`;
   const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
@@ -537,6 +617,7 @@ function renderPage(article, resolvedImage) {
   const dateLabel = publishedTime
     ? new Date(publishedTime).toLocaleDateString('en-NG', { year: 'numeric', month: 'long', day: 'numeric' })
     : '';
+  const viewCount = typeof article.views === 'number' ? article.views : 0;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -583,13 +664,38 @@ ${renderHeader()}
     <div class="art-meta">
       ${dateLabel ? `<span>${dateLabel}</span><span>\u00b7</span>` : ''}
       <span>${mins} min read</span>
+      <span>\u00b7</span>
+      <span class="art-views" id="viewCount">${viewCount} view${viewCount === 1 ? '' : 's'}</span>
     </div>
+    ${renderByline(article.author, authorProfile)}
     ${image ? `<img class="art-image" src="${image}" alt="${headline}">` : ''}
     <div class="art-content">${bodyHtml}</div>
+    ${renderShareBar(canonical, article.title || 'News', article.fullContent || '')}
+    ${renderPrevNext(prevArticle, nextArticle)}
     <a class="open-app-cta" href="${spaTarget}">Open in Newsroom app for related stories &amp; comments \u2192</a>
   </div>
 </div>
 ${renderFooter()}
+<!-- View counter: increments the same fs_news/{id}.views field the live
+     app's own recordView() writes to (mirrored intentionally, same
+     Firestore write pattern already working there). This exists because
+     the static page is now a real, standalone article — readers who
+     never click through into the SPA app (i.e., most people arriving from
+     a shared link or Google) were not being counted at all before this.
+     Client-side write, fire-and-forget; failures are silently ignored
+     since a missed view increment isn't worth showing an error for. -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(!firebase.apps.length){
+      firebase.initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
+    }
+    firebase.firestore().collection('fs_news').doc(${JSON.stringify(article._id)}).update({views:firebase.firestore.FieldValue.increment(1)}).catch(function(){});
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
 `;
@@ -752,6 +858,16 @@ async function runGenerate() {
   const articles = await fetchCollection('fs_news');
   console.log(`  ${articles.length} article(s) found.`);
 
+  // Sort newest-first — fetchCollection has no guaranteed order (the
+  // Firestore REST "list documents" endpoint doesn't sort), and prev/next
+  // navigation below only makes sense against a stable, meaningful order
+  // (matching the SPA's own `.orderBy('createdAt','desc')`).
+  articles.sort((a, b) => {
+    const ta = typeof a.createdAt === 'string' ? Date.parse(a.createdAt) : 0;
+    const tb = typeof b.createdAt === 'string' ? Date.parse(b.createdAt) : 0;
+    return tb - ta;
+  });
+
   // Category-specific default preview images, if configured in the admin
   // panel under fs_config. Missing/absent doc just means no category
   // overrides — resolvePreviewImage() already falls through cleanly.
@@ -763,12 +879,29 @@ async function runGenerate() {
     console.warn(`  Could not load category default images (continuing without them): ${err.message}`);
   }
 
+  // Author profiles (photo + bio), for the byline — same fs_author_profiles
+  // collection newsroom.html's getAuthorProfile() reads, keyed by
+  // `nickname`. Fetched once here and rendered fully server-side (the SPA
+  // fetches this async, after the page already shows a plain-text byline —
+  // a static page benefits from having it complete in the raw HTML for
+  // crawlers and no-JS visitors alike).
+  let authorProfiles = {};
+  try {
+    const profiles = await fetchCollection('fs_author_profiles');
+    for (const p of profiles) {
+      if (p.nickname) authorProfiles[p.nickname] = p;
+    }
+  } catch (err) {
+    console.warn(`  Could not load author profiles (bylines will show name only): ${err.message}`);
+  }
+
   await mkdir(OUTPUT_DIR, { recursive: true });
 
   const postedLog = FB_ENABLED ? await loadPostedLog() : {};
   const pending = [];
 
-  for (const article of articles) {
+  for (let i = 0; i < articles.length; i++) {
+    const article = articles[i];
     const slug = article.slug || makeSlug(article.title || '');
     const seg = `${slug}--${article._id}`;
     const pageDir = path.join(OUTPUT_DIR, seg);
@@ -781,7 +914,11 @@ async function runGenerate() {
         ? `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/${materialized}`
         : materialized || rawImage;
 
-    const html = renderPage(article, resolvedImageUrl);
+    const html = renderPage(article, resolvedImageUrl, {
+      authorProfile: article.author ? authorProfiles[article.author] : null,
+      prevArticle: articles[i + 1] || null, // next in the (newest-first) array = chronologically OLDER
+      nextArticle: articles[i - 1] || null, // previous in the array = chronologically NEWER
+    });
     await writeFile(path.join(pageDir, 'index.html'), html, 'utf8');
 
     const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
