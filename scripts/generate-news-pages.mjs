@@ -608,7 +608,6 @@ function renderPage(article, resolvedImage, { authorProfile, prevArticle, nextAr
   const rawDesc = article.seoDesc || firstSentenceExcerpt(article.fullContent || '');
   const desc = escapeHtml(rawDesc);
   const image = escapeHtml(resolvedImage || GLOBAL_NEWS_DEFAULT_IMAGE || SITE_DEFAULT_IMAGE);
-  const spaTarget = `${SITE_ORIGIN}/newsroom.html#${seg}`;
   const publishedTime = typeof article.createdAt === 'string' ? article.createdAt : '';
   const bodyHtml = formatArticleBody(article.fullContent || '');
   const mins = readingTime(article.fullContent || '');
@@ -682,7 +681,7 @@ ${renderHeader()}
     <div class="art-content">${bodyHtml}</div>
     ${renderShareBar(canonical, article.title || 'News', article.fullContent || '')}
     ${renderPrevNext(prevArticle, nextArticle)}
-    <a class="open-app-cta" href="${spaTarget}">Open in Newsroom app for related stories &amp; comments \u2192</a>
+    <a class="open-app-cta" href="${SITE_ORIGIN}/newsroom.html">Browse more Newsroom stories \u2192</a>
   </div>
 </div>
 ${renderFooter()}
