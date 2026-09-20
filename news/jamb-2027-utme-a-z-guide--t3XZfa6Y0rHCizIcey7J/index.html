@@ -21,26 +21,150 @@
 <meta name="twitter:description" content="As preparations begin for the next JAMB registration exercise, prospective candidates are advised to put their documents, personal information, course choices and other important details in order before generating their JAMB Profile Code.">
 <meta name="twitter:image" content="https://bigquamsmedia.com.ng/newsroom-default.png">
 
-<!-- Human visitors: redirect straight into the interactive newsroom app,
-     which opens this same article via its existing hash router. This is a
-     JS-only redirect on purpose — WhatsApp/Facebook/X/Telegram crawlers do
-     not execute JavaScript, so they stop right here and read the <meta>
-     tags above.
-     IMPORTANT: do NOT add a <meta http-equiv="refresh"> fallback here.
-     Facebook's crawler (unlike the others) DOES follow refresh redirects
-     even though it doesn't run JS — it will bounce straight through to
-     newsroom.html and pick up THAT page's generic Open Graph tags instead
-     of this article's, silently breaking every link preview. Real humans'
-     browsers all run JS, so location.replace() alone is sufficient; the
-     visible link below is the only fallback needed for the rare no-JS
-     visitor. -->
-<script>location.replace("https://bigquamsmedia.com.ng/newsroom.html#jamb-2027-utme-a-z-guide--t3XZfa6Y0rHCizIcey7J");</script>
+<!-- This page now carries the FULL article body server-rendered in raw
+     HTML (not just meta tags + a redirect) — that's what lets Google
+     actually index the article's real text, not just a preview snippet.
+     Because of that, there is deliberately NO auto-redirect into the SPA
+     here anymore: a real visitor reading this page already has the
+     complete, correctly-formatted article. The header above links back to
+     the interactive Newsroom app for anyone who wants to browse/search
+     other articles from there. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="icon" type="image/png" href="https://bigquamsmedia.com.ng/logo.png">
+<style>
+:root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:12px;--shadow:0 8px 28px rgba(26,63,168,.11)}
+body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;background:var(--surface2);color:var(--text);line-height:1.6;overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.35)}
+.hbar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.logo-sub{font-size:.52rem;color:rgba(255,255,255,.42);display:block}
+.back-link{color:rgba(255,255,255,.85);font-size:.8rem;font-weight:600;padding:7px 12px;border-radius:7px;background:rgba(255,255,255,.1);white-space:nowrap}
+.back-link:hover{background:rgba(255,255,255,.18)}
+.art-wrap{max-width:760px;margin:0 auto;padding:20px 16px 40px}
+.art-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px 18px;margin-top:4px}
+.art-cat{display:inline-block;font-size:.62rem;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:10px;background:var(--blue-lt);color:var(--blue)}
+.art-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.1rem,3vw,1.45rem);font-weight:800;color:var(--text);line-height:1.3;margin-bottom:10px}
+.art-meta{font-size:.72rem;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.art-image{width:100%;border-radius:10px;margin-bottom:16px;object-fit:cover;max-height:420px}
+.art-content{font-size:.95rem;color:var(--text);line-height:1.9}
+.art-content p{margin:0 0 16px}
+.art-content p:last-child{margin-bottom:0}
+.art-content strong{font-weight:800;color:var(--text)}
+.art-content em{font-style:italic}
+.art-content ul,.art-content ol{margin:4px 0 16px;padding-left:22px}
+.art-content li{margin-bottom:7px}
+.art-content s{opacity:.6}
+.art-content code{background:var(--surface2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:.88em}
+.art-content blockquote{margin:0 0 16px;padding:10px 18px;border-left:3px solid var(--blue);background:var(--surface2);border-radius:0 8px 8px 0;font-style:italic;color:var(--muted)}
+.art-content h3.art-h{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;margin:20px 0 10px;color:var(--text)}
+.art-table-wrap{overflow-x:auto;margin:0 0 16px;-webkit-overflow-scrolling:touch}
+.art-table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:420px}
+.art-table th,.art-table td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+.art-table th{background:var(--surface2);font-weight:800}
+.art-table tr:nth-child(even) td{background:var(--surface2)}
+.art-content a{color:var(--blue);text-decoration:underline;word-break:break-word}
+.open-app-cta{display:block;text-align:center;margin-top:20px;padding:13px;background:var(--orange);color:#fff;font-weight:700;border-radius:10px;font-size:.85rem}
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.footer-brand img{width:36px;height:36px;border-radius:50%;border:2px solid #f97316}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-direction:column;gap:5px}
+.footer-links a{font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)}
+</style>
 </head>
 <body>
-<p style="font-family:sans-serif;padding:24px;text-align:center;color:#475569">
-  Loading article&hellip; If you are not redirected automatically,
-  <a href="https://bigquamsmedia.com.ng/newsroom.html#jamb-2027-utme-a-z-guide--t3XZfa6Y0rHCizIcey7J">tap here to continue</a>.
-</p>
+<header>
+  <div class="hbar">
+    <a class="logo-link" href="https://bigquamsmedia.com.ng/index.html">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media">
+      <div><div class="logo-name">Big Quams Media®</div><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
+    </a>
+    <a class="back-link" href="https://bigquamsmedia.com.ng/newsroom.html">← Newsroom</a>
+  </div>
+</header>
+<div class="art-wrap">
+  <div class="art-card">
+    <span class="art-cat">JAMB Update</span>
+    <h1 class="art-title">JAMB 2027 UTME: A–Z GUIDE</h1>
+    <div class="art-meta">
+      <span>17 August 2026</span><span>·</span>
+      <span>7 min read</span>
+    </div>
+    <img class="art-image" src="https://bigquamsmedia.com.ng/newsroom-default.png" alt="JAMB 2027 UTME: A–Z GUIDE">
+    <div class="art-content"><p>As preparations begin for the next JAMB registration exercise, prospective candidates are advised to put their documents, personal information, course choices and other important details in order before generating their JAMB Profile Code.</p><p>This is important because some information supplied during the profile creation and registration process is linked to the candidate’s official records and may not be freely editable later. JAMB also advises candidates to ensure that their personal details correspond with their official documents before registration.</p><p><strong>BEFORE YOU GENERATE YOUR JAMB PROFILE CODE, CHECK THESE:</strong></p><p><strong>A — AGE</strong><br>Confirm that you meet JAMB’s age requirement for the admission year. Do not wait until registration before checking whether you are eligible.</p><p><strong>B — BIO-DATA</strong><br>Check your:</p><ul><li>Full name</li><li>Date of birth</li><li>Gender</li><li>State of origin</li><li>Local Government Area</li><li>Nationality</li></ul><p>Your information should be consistent with your official records, particularly your NIN.</p><p><strong>C — CHOOSE YOUR COURSE CAREFULLY</strong><br>Do not select a course simply because it is popular.<br>Research the course, career opportunities, O'Level requirements, UTME subject combination and admission requirements before making your final decision.</p><p><strong>D — DOCUMENTS</strong><br>Have your relevant documents and academic records available before visiting a CBT centre.<br>Candidates should know their O'Level results and grades where available. Candidates awaiting results should also understand the requirements for supplying the results when they become available.</p><p><strong>E — EMAIL ADDRESS</strong><br>Create and maintain access to a valid, functional email address that you personally control.<br>Do not use an email address you cannot access.</p><p><strong>F — PHONE NUMBER / SIM</strong><br>Your JAMB registration requires a unique mobile number.<br>JAMB states that the number used for registration becomes the candidate's unique identifier for transactions with the Board. No two candidates should use the same number. Keep the SIM active and accessible.</p><p><strong>G — GENDER</strong><br>Confirm that the gender on your official records is correct before registration.</p><p><strong>H — HOME ADDRESS &amp; OTHER PERSONAL DETAILS</strong><br>Have your correct personal information ready. Avoid giving a CBT operator guessed or incorrect information.</p><p><strong>I — INSTITUTION OF CHOICE</strong><br>Research your preferred institutions before registration.<br>Know:</p><ul><li>First choice</li><li>Second choice</li><li>Other choices, where applicable</li><li>Admission requirements</li><li>Whether the institution offers your preferred course</li></ul><p>JAMB allows candidates to select different categories of tertiary institutions as choices.</p><p><strong>J — JAMB PROFILE CODE</strong><br>The Profile Code is generated using your NIN and unique phone number.<br>JAMB's official FAQ states that candidates generate the code by sending:<br>NIN [space] 11-digit NIN<br>to 55019 or 66019</p><blockquote>NIN 01234567890</blockquote><p><strong>K — KNOW YOUR O'LEVEL REQUIREMENTS</strong><br>Before selecting a course, confirm the required O'Level subjects and grades.<br>Do not assume that having five credits automatically makes you eligible for every course.</p><p><strong>L — LOCAL GOVERNMENT &amp; STATE OF ORIGIN</strong><br>Confirm these details against your official records before proceeding.</p><p><strong>M — NIN</strong><br>Your NIN must be available and your personal information should be accurate.</p><blockquote>Very important: Check your NIN details before generating your JAMB Profile Code. If there is an error in your NIN information, resolve it through the appropriate NIMC process before registration where necessary.</blockquote><p><strong>N — NAME</strong><br>Check the spelling and order of your name carefully.<br>Do not generate your Profile Code casually if you already know that your official personal details contain an error.<br>JAMB's registration guidance stresses that candidates should ensure their NIN particulars agree with their supporting documents.</p><p><strong>O — O'LEVEL RESULT</strong><br>Know exactly what you have in WAEC, NECO or NABTEB and whether your result is available.<br>If your result is awaiting release, understand JAMB's requirements for awaiting-result candidates and ensure the result is uploaded when available.</p><p><strong>P — PROFILE CODE</strong><br>Keep your Profile Code safe once generated.<br>Do not share it carelessly with agents, friends or strangers.<br>JAMB advises candidates to keep security details confidential.</p><p><strong>Q — QUALIFICATION</strong><br>Candidates should understand the qualification required for their intended course and institution.<br>For Direct Entry candidates, additional information such as the previous institution, qualification, course and year of graduation may be required.</p><p><strong>R — REGISTRATION CENTRE</strong><br>JAMB registration is to be completed at JAMB-approved CBT centres.<br>Avoid registering through unapproved operators or allowing someone to conduct the entire process without your supervision.</p><p><strong>S — SUBJECT COMBINATION</strong><br>This is one of the most important things to determine before registration.<br>Check the correct UTME subject combination for your intended course.<br>A wrong subject combination can affect your eligibility for admission.</p><p><strong>T — UTME/DE TYPE</strong><br>Know whether you are registering for UTME or Direct Entry (DE).<br>DE candidates should have their relevant qualification details and supporting information ready before registration.</p><p><strong>U — UNDERSTAND THE REGISTRATION PROCESS</strong><br>Do not wait until you arrive at the CBT centre before learning how the process works.<br>Prepare your:</p><ul><li>NIN</li><li>Unique phone number</li><li>Email address</li><li>Course choice</li><li>Institution choices</li><li>O'Level details</li><li>UTME subjects</li><li>Other required information</li></ul><p>JAMB's official guidance requires candidates to provide their institution/course choices, email address, qualifications and UTME subjects during registration.</p><p><strong>V — VERIFY EVERYTHING</strong><br>Before you confirm your registration, carefully check every detail displayed on the screen.<br>Pay particular attention to:</p><ul><li>Name</li><li>Date of birth</li><li>Gender</li><li>State/LGA</li><li>Course</li><li>Institution</li><li>UTME subjects</li><li>O'Level information</li><li>Email and phone details</li></ul><p>JAMB specifically instructs candidates to cross-check their details before confirming registration with their biometric authentication.</p><p><strong>W — WRONG INFORMATION</strong><br>Do not allow anyone to enter information on your behalf without checking it.<br>A simple typing error can create serious problems later.<br>JAMB does provide procedures for certain corrections of data, but candidates should not register with the assumption that every detail can simply be changed later.</p><p><strong>X — X-FACTOR:</strong> DO NOT RUSH<br>The pressure to "generate Profile Code quickly" should not make you careless.<br>Take time to put your records in order first.</p><p><strong>Y — YOUR RESPONSIBILITY</strong><br>Even if someone is assisting you with registration, you remain responsible for the information submitted on your profile.<br>JAMB states that candidates are liable for alterations made by others where they have shared their profile or security details.</p><p><strong>Z — ZERO ASSUMPTIONS</strong><br>Do not assume that:</p><ul><li>Your course automatically accepts your UTME subjects.</li><li>Your O'Level result meets the requirements.</li><li>Your NIN details are correct.</li><li>Your institution is accepting your course.</li><li>Every piece of information can be edited later.</li></ul><p>Verify before you generate your Profile Code and before you confirm your registration.</p><p><strong>WHY YOU SHOULD PREPARE BEFORE GENERATING YOUR PROFILE CODE</strong><br>Your JAMB Profile is not something to create casually.<br>The Board links the registration process to your NIN and unique phone number, and the profile remains important for present and future transactions with JAMB.<br>JAMB's official guidance also makes it clear that candidates should ensure their particulars on the NIN match their supporting documents and should carefully cross-check their registration details before final confirmation.<br>Therefore, before generating your Profile Code, make sure your NIN, name, date of birth, gender and other personal information are in order.</p><p><strong>WHAT TO HAVE READY BEFORE GOING TO THE CBT CENTRE</strong><br>Candidates should prepare the following:</p><ol><li>NIN</li><li>Personal/unique active phone number</li><li>Accessible email address</li><li>Correct personal details</li><li>O'Level result or awaiting-result information</li><li>Preferred course</li><li>Correct UTME subject combination</li><li>Preferred institutions</li><li>Relevant documents/qualifications</li><li>Previous admission information, where applicable</li><li>Any other information required by JAMB for the registration year</li></ol><p>JAMB requires registration to be completed at approved CBT centres, and candidates are expected to personally present their Profile Code and e-PIN for registration.</p><p><strong>IMPORTANT WARNING TO CANDIDATES</strong><br>Do not generate your Profile Code using somebody else's phone number.<br>Do not use another person's NIN.<br>Do not allow an agent to choose your course or institution for you without your knowledge.<br>Do not confirm your registration without checking every detail.<br>Do not share your Profile Code, password, e-PIN or other security information unnecessarily.</p><p>JAMB advises candidates to keep their security details private and notes that registration is a personal process.</p><p>The best time to correct an error is before registration, not after.</p><p>Before generating your JAMB Profile Code, sit down with your documents and carefully verify your information. Research your preferred course and institution, confirm the required UTME subjects and O'Level requirements, and make sure your NIN details are accurate.</p><p>Once registration begins, do not rush because others are registering. Take your time, verify your details and only confirm the registration when you are satisfied that everything is correct.</p><p>For official updates, candidates should rely on JAMB's verified communication channels and official website rather than social media rumours.</p><p>JAMB Official Website — <a href="https://www.jamb.gov.ng" target="_blank" rel="noopener">https://www.jamb.gov.ng</a></p><p>Prepare first. Verify twice. Register correctly.</p><p>Your JAMB registration is the beginning of your admission journey, make sure you start it right.</p></div>
+    <a class="open-app-cta" href="https://bigquamsmedia.com.ng/newsroom.html#jamb-2027-utme-a-z-guide--t3XZfa6Y0rHCizIcey7J">Open in Newsroom app for related stories &amp; comments →</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
+      <div>
+        <div class="footer-brand-name">Big Quams Media®</div>
+        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Nigeria's Trusted Student Platform</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="https://bigquamsmedia.com.ng/index.html">🏠 Home</a>
+          <a href="https://bigquamsmedia.com.ng/newsroom.html">📰 Newsroom</a>
+          <a href="https://bigquamsmedia.com.ng/explore.html">🗂 Explore Tools</a>
+          <a href="https://bigquamsmedia.com.ng/campus-life.html">🎮 Campus Life</a>
+          <a href="https://bigquamsmedia.com.ng/community.html">🤝 Community</a>
+          <a href="https://bigquamsmedia.com.ng/profile.html">👤 My Profile</a>
+          <a href="https://bigquamsmedia.com.ng/daily.html">📅 Daily Hub</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="https://bigquamsmedia.com.ng/cbt.html">👨🏽‍💻 JAMB CBT Practice</a>
+          <a href="https://bigquamsmedia.com.ng/postutme-prep.html">📖 Post-UTME Prep</a>
+          <a href="https://bigquamsmedia.com.ng/postutme-calculator.html">🧮 Aggregate Calc</a>
+          <a href="https://bigquamsmedia.com.ng/gpa-calculator.html">🎓 GPA Calculator</a>
+          <a href="https://bigquamsmedia.com.ng/results.html">📊 Results Checker</a>
+          <a href="https://bigquamsmedia.com.ng/Jamb_Profile_Code.html">🔑 JAMB Profile Code</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="https://bigquamsmedia.com.ng/elibrary.html">📚 eLibrary</a>
+          <a href="https://bigquamsmedia.com.ng/scholarship.html">💰 Scholarships</a>
+          <a href="https://bigquamsmedia.com.ng/student-loan.html">💳 Student Loan</a>
+          <a href="https://bigquamsmedia.com.ng/spotlight.html">🌟 Student Spotlight</a>
+          <a href="https://bigquamsmedia.com.ng/dyk.html">💡 Did You Know</a>
+          <a href="https://bigquamsmedia.com.ng/subject-combo.html">📋 Subject Combo</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="https://wa.me/2349049871643" target="_blank" rel="noopener">💬 WhatsApp Us</a>
+          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener">👥 Join Group</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener">📸 Instagram</a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener">🎵 TikTok</a>
+          <a href="https://bigquamsmedia.com.ng/index.html#install-app">📲 Install App</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
+  </div>
+</footer>
 </body>
 </html>
