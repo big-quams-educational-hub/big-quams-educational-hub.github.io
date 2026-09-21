@@ -69,7 +69,7 @@ jobs:
           # news-state.json is no longer generated/tracked — the script
           # does a full fetch every run instead of an incremental one, so
           # there's no checkpoint file to commit.
-          git add news/ sitemap-news.xml
+          git add news/ authors/ sitemap-news.xml
           if git diff --staged --quiet; then
             echo "No article changes — nothing to commit."
             exit 0
