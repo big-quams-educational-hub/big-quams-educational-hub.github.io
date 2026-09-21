@@ -462,6 +462,19 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .prevnext-label{display:block;font-size:.62rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
 .prevnext-title{display:block;font-size:.78rem;font-weight:700;color:var(--text);line-height:1.4}
 .prevnext-next{text-align:right}
+.author-hero{text-align:center}
+.author-hero-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;margin:0 auto 12px}
+.author-hero-fallback{background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.8rem}
+.author-hero-bio{font-size:.82rem;color:var(--muted);line-height:1.7;max-width:480px;margin:0 auto}
+.author-article-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.author-article-row:last-child{border-bottom:none}
+.author-article-title{font-weight:700;color:var(--text)}
+.author-article-date{color:var(--muted);font-size:.72rem;white-space:nowrap}
+.authors-grid{display:flex;flex-direction:column;gap:12px}
+.author-card{display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow)}
+.author-card-avatar{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.author-card-name{font-weight:800;font-size:.9rem;color:var(--text)}
+.author-card-count{font-size:.72rem;color:var(--muted)}
 `;
 
 function renderHeader() {
@@ -544,15 +557,21 @@ function renderFooter() {
 // fetches the author profile async after the page is already showing),
 // since a static page benefits from the complete author info being in the
 // raw HTML for both crawlers and no-JS visitors.
-function renderByline(authorName, profile) {
+function renderByline(authorName, profile, authorPageUrl) {
   if (!authorName) return '';
   const hasBio = profile && profile.bio && String(profile.bio).trim();
   const avatar = profile && profile.photo
     ? `<img src="${escapeHtml(profile.photo)}" alt="${escapeHtml(authorName)}">`
     : `<div class="art-byline-fallback">${escapeHtml(authorName.charAt(0).toUpperCase())}</div>`;
+  // Only clickable when we actually have a profile to link to — an author
+  // name with no matching fs_author_profiles entry has nowhere real to
+  // send the visitor, so it stays plain text rather than a dead link.
+  const nameHtml = authorPageUrl
+    ? `<a href="${authorPageUrl}" style="color:inherit;text-decoration:none">By ${escapeHtml(authorName)}</a>`
+    : `By ${escapeHtml(authorName)}`;
   return `<div class="art-byline">
     ${avatar}
-    <div class="art-byline-name">By ${escapeHtml(authorName)}</div>
+    <div class="art-byline-name">${nameHtml}</div>
   </div>
   ${hasBio ? `<div class="art-byline-bio">${escapeHtml(profile.bio)}</div>` : ''}`;
 }
@@ -570,14 +589,22 @@ function renderShareBar(canonical, title, fullContent) {
   const wa = 'https://wa.me/?text=' + encodeURIComponent(shareText + ' ' + canonical);
   const fb = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(canonical);
   const x = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(canonical);
-  const canonicalJs = JSON.stringify(canonical);
+  // Data attributes + addEventListener (see the shared script at the
+  // bottom of renderPage), NOT inline onclick with JSON.stringify(url):
+  // JSON.stringify wraps the string in double quotes, and embedding that
+  // inside an ALSO double-quoted onclick="..." attribute breaks the
+  // attribute early — the rest of the JS then spills out as literal
+  // visible text on the page. That's exactly what happened in production
+  // (confirmed: the Copy Link / Instagram button code was showing up as
+  // raw text under the Share row). escapeHtml() on a plain data-* value
+  // has no such failure mode.
   return `<div class="share-bar">
     <span class="share-label">Share:</span>
     <a class="share-btn share-wa" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>
     <a class="share-btn share-fb" href="${fb}" target="_blank" rel="noopener">Facebook</a>
     <a class="share-btn share-x" href="${x}" target="_blank" rel="noopener">X</a>
-    <button type="button" class="share-btn share-copy" onclick="navigator.clipboard.writeText(${canonicalJs}).then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Link',1500)})">Copy Link</button>
-    <button type="button" class="share-btn share-ig" onclick="navigator.clipboard.writeText(${canonicalJs}).then(()=>{this.textContent='Link copied \u2014 paste in Instagram';setTimeout(()=>this.textContent='Instagram',2500)})">Instagram</button>
+    <button type="button" class="share-btn js-copy-link" data-url="${escapeHtml(canonical)}">Copy Link</button>
+    <button type="button" class="share-btn js-copy-ig" data-url="${escapeHtml(canonical)}">Instagram</button>
   </div>`;
 }
 
@@ -600,7 +627,117 @@ function renderPrevNext(prevArticle, nextArticle) {
 }
 
 
-function renderPage(article, resolvedImage, { authorProfile, prevArticle, nextArticle } = {}) {
+// Individual author page — bio, photo, and every article by them. This is
+// what the byline's author name now links to. Built from whatever's in
+// fs_author_profiles; there's no separate "owner" vs "author" distinction
+// in the data as far as this script can see, so every profile in that
+// collection gets a page here (site owners included, if they're profiled
+// the same way — confirm this matches your intent, since a genuinely
+// separate "team/owners" page would need its own distinct data source).
+function renderAuthorPage(profile, authorArticles) {
+  const name = escapeHtml(profile.nickname || 'Author');
+  const bio = profile.bio ? escapeHtml(profile.bio) : '';
+  const avatar = profile.photo
+    ? `<img src="${escapeHtml(profile.photo)}" alt="${name}" class="author-hero-avatar">`
+    : `<div class="author-hero-avatar author-hero-fallback">${escapeHtml((profile.nickname || 'A').charAt(0).toUpperCase())}</div>`;
+  const articlesHtml = authorArticles.map((a) => {
+    const slug = a.slug || makeSlug(a.title || '');
+    const seg = `${slug}--${a._id}`;
+    const href = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
+    const dateLabel = typeof a.createdAt === 'string'
+      ? new Date(a.createdAt).toLocaleDateString('en-NG', { year: 'numeric', month: 'long', day: 'numeric' })
+      : '';
+    return `<a class="author-article-row" href="${href}">
+      <span class="author-article-title">${escapeHtml(a.title || '')}</span>
+      ${dateLabel ? `<span class="author-article-date">${dateLabel}</span>` : ''}
+    </a>`;
+  }).join('');
+  const title = escapeHtml(`${profile.nickname || 'Author'} \u2014 Big Quams Media\u00ae`);
+  const desc = escapeHtml(bio ? bio.slice(0, 160) : `Articles by ${profile.nickname || 'this author'} on Big Quams Media\u00ae.`);
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${title}</title>
+<meta name="description" content="${desc}">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RCLYVCZY2K');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="${SITE_ORIGIN}/logo.png">
+<style>${SITE_HEADER_CSS}</style>
+</head>
+<body>
+${renderHeader()}
+<div class="art-wrap">
+  <div class="art-card author-hero">
+    ${avatar}
+    <h1 class="art-title">${name}</h1>
+    ${bio ? `<p class="author-hero-bio">${bio}</p>` : ''}
+    <a class="prevnext-link" style="display:inline-block;margin-top:14px" href="${SITE_ORIGIN}/authors/">\u2190 All authors</a>
+  </div>
+  <div class="art-card" style="margin-top:16px">
+    <h2 style="font-family:'Montserrat',sans-serif;font-size:1rem;margin-bottom:10px">Articles by ${name} (${authorArticles.length})</h2>
+    ${articlesHtml || '<p style="color:var(--muted);font-size:.85rem">No articles yet.</p>'}
+  </div>
+</div>
+${renderFooter()}
+</body>
+</html>
+`;
+}
+
+// Hub page listing every author, linking to their individual page above.
+function renderAuthorsHub(profilesWithCounts) {
+  const rows = profilesWithCounts.map((p) => {
+    const slug = makeSlug(p.nickname || 'author');
+    const seg = `${slug}--${p._id}`;
+    const href = `${SITE_ORIGIN}/authors/${seg}/`;
+    const avatar = p.photo
+      ? `<img src="${escapeHtml(p.photo)}" alt="${escapeHtml(p.nickname || '')}" class="author-card-avatar">`
+      : `<div class="author-card-avatar author-hero-fallback">${escapeHtml((p.nickname || 'A').charAt(0).toUpperCase())}</div>`;
+    return `<a class="author-card" href="${href}">
+      ${avatar}
+      <div>
+        <div class="author-card-name">${escapeHtml(p.nickname || 'Author')}</div>
+        <div class="author-card-count">${p.articleCount} article${p.articleCount === 1 ? '' : 's'}</div>
+      </div>
+    </a>`;
+  }).join('');
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Authors \u2014 Big Quams Media\u00ae</title>
+<meta name="description" content="Meet the writers and editors behind Big Quams Media\u00ae.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RCLYVCZY2K');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="${SITE_ORIGIN}/logo.png">
+<style>${SITE_HEADER_CSS}</style>
+</head>
+<body>
+${renderHeader()}
+<div class="art-wrap">
+  <div class="art-card">
+    <h1 class="art-title">Our Authors</h1>
+    <p style="color:var(--muted);font-size:.85rem;margin-top:8px">Meet the writers and editors behind Big Quams Media\u00ae.</p>
+  </div>
+  <div class="authors-grid" style="margin-top:12px">
+    ${rows || '<p style="color:var(--muted);font-size:.85rem">No author profiles yet.</p>'}
+  </div>
+</div>
+${renderFooter()}
+</body>
+</html>
+`;
+}
+
+
+function renderPage(article, resolvedImage, { authorProfile, authorPageUrl, prevArticle, nextArticle } = {}) {
   const slug = article.slug || makeSlug(article.title || '');
   const seg = `${slug}--${article._id}`;
   const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
@@ -676,7 +813,7 @@ ${renderHeader()}
       <span>\u00b7</span>
       <span class="art-views" id="viewCount">${viewCount} view${viewCount === 1 ? '' : 's'}</span>
     </div>
-    ${renderByline(article.author, authorProfile)}
+    ${renderByline(article.author, authorProfile, authorPageUrl)}
     ${image ? `<img class="art-image" src="${image}" alt="${headline}">` : ''}
     <div class="art-content">${bodyHtml}</div>
     ${renderShareBar(canonical, article.title || 'News', article.fullContent || '')}
@@ -701,9 +838,44 @@ ${renderFooter()}
     if(!firebase.apps.length){
       firebase.initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
     }
-    firebase.firestore().collection('fs_news').doc(${JSON.stringify(article._id)}).update({views:firebase.firestore.FieldValue.increment(1)}).catch(function(){});
+    firebase.firestore().collection('fs_news').doc(${JSON.stringify(article._id)}).update({views:firebase.firestore.FieldValue.increment(1)}).then(function(){
+      // The number baked into the page at build time is only as fresh as
+      // the last generation run (up to 20 minutes old) — bump it visibly
+      // right away so a visitor sees their own view reflected instantly,
+      // rather than the count looking frozen/wrong until the next run.
+      var el=document.getElementById('viewCount');
+      if(el){
+        var n=parseInt((el.textContent||'0').replace(/[^0-9]/g,''),10)||0;
+        n+=1;
+        el.textContent=n+(n===1?' view':' views');
+      }
+    }).catch(function(){});
   }catch(e){}
 })();
+// Copy-link / Instagram share buttons. Deliberately addEventListener +
+// data-url, not inline onclick with JSON.stringify(url) — that combo
+// broke in production (see the comment on renderShareBar): JSON.stringify
+// wraps the URL in double quotes, which prematurely closes an
+// ALSO-double-quoted onclick="..." attribute, dumping the rest of the
+// handler's JS onto the page as literal visible text.
+document.querySelectorAll('.js-copy-link').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    navigator.clipboard.writeText(btn.dataset.url).then(function(){
+      var original=btn.textContent;
+      btn.textContent='Copied!';
+      setTimeout(function(){btn.textContent=original;},1500);
+    });
+  });
+});
+document.querySelectorAll('.js-copy-ig').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    navigator.clipboard.writeText(btn.dataset.url).then(function(){
+      var original=btn.textContent;
+      btn.textContent='Link copied \u2014 paste in Instagram';
+      setTimeout(function(){btn.textContent=original;},2500);
+    });
+  });
+});
 </script>
 </body>
 </html>
@@ -931,8 +1103,13 @@ async function runGenerate() {
         ? `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/${materialized}`
         : materialized || rawImage;
 
+    const matchedAuthorProfile = article.author ? authorProfiles[article.author] : null;
+    const authorPageUrl = matchedAuthorProfile
+      ? `${SITE_ORIGIN}/authors/${makeSlug(matchedAuthorProfile.nickname || 'author')}--${matchedAuthorProfile._id}/`
+      : null;
     const html = renderPage(article, resolvedImageUrl, {
-      authorProfile: article.author ? authorProfiles[article.author] : null,
+      authorProfile: matchedAuthorProfile,
+      authorPageUrl,
       prevArticle: articles[i + 1] || null, // next in the (newest-first) array = chronologically OLDER
       nextArticle: articles[i - 1] || null, // previous in the array = chronologically NEWER
     });
@@ -956,6 +1133,28 @@ async function runGenerate() {
     }
   }
 
+  // Author pages — one per profile in fs_author_profiles, plus a hub page
+  // listing all of them. This is what the byline's author name links to.
+  const authorSitemapEntries = [];
+  const authorProfileList = Object.values(authorProfiles);
+  if (authorProfileList.length) {
+    await mkdir('authors', { recursive: true });
+    const profilesWithCounts = [];
+    for (const profile of authorProfileList) {
+      const authorArticles = articles.filter((a) => a.author === profile.nickname);
+      const aSlug = makeSlug(profile.nickname || 'author');
+      const aSeg = `${aSlug}--${profile._id}`;
+      const aDir = path.join('authors', aSeg);
+      await mkdir(aDir, { recursive: true });
+      await writeFile(path.join(aDir, 'index.html'), renderAuthorPage(profile, authorArticles), 'utf8');
+      profilesWithCounts.push({ ...profile, articleCount: authorArticles.length });
+      authorSitemapEntries.push(`  <url><loc>${escapeHtml(`${SITE_ORIGIN}/authors/${aSeg}/`)}</loc></url>`);
+    }
+    await writeFile(path.join('authors', 'index.html'), renderAuthorsHub(profilesWithCounts), 'utf8');
+    authorSitemapEntries.push(`  <url><loc>${escapeHtml(`${SITE_ORIGIN}/authors/`)}</loc></url>`);
+    console.log(`  ${authorProfileList.length} author page(s) generated.`);
+  }
+
   // Sitemap built directly from this run's full article list — no
   // persisted state file needed, since every run already has the complete
   // set. This also removes a whole class of git merge conflicts: two runs
@@ -969,7 +1168,7 @@ async function runGenerate() {
       : requestTime;
     return `  <url><loc>${escapeHtml(`${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`)}</loc><lastmod>${lastmod}</lastmod></url>`;
   });
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join('\n')}\n</urlset>\n`;
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join('\n')}\n${authorSitemapEntries.join('\n')}\n</urlset>\n`;
   await writeFile('sitemap-news.xml', sitemap, 'utf8');
 
   if (FB_ENABLED) {
