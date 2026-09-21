@@ -444,11 +444,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .footer-links a:hover{color:#fff}
 .footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)}
 .footer-support{font-size:.68rem;color:rgba(255,255,255,.4);padding-top:13px;border-top:1px solid rgba(255,255,255,.08);margin-bottom:8px}
-.art-byline{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:10px 12px;background:var(--surface2);border-radius:10px}
-.art-byline img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
-.art-byline-fallback{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
-.art-byline-name{font-size:.78rem;font-weight:800;color:var(--text)}
-.art-byline-bio{font-size:.74rem;color:var(--muted);line-height:1.6;padding:10px 12px;margin:-6px 0 6px;background:var(--surface2);border-radius:0 0 10px 10px}
+.art-byline-simple{font-size:.78rem;color:var(--muted);margin:14px 0 6px}
+.art-byline-simple a{color:var(--blue);font-weight:800;text-decoration:none}
+.art-byline-simple a:hover{text-decoration:underline}
 .art-views{font-size:.72rem;color:var(--muted)}
 .share-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
 .share-label{font-size:.72rem;font-weight:800;color:var(--muted);margin-right:2px}
@@ -571,23 +569,17 @@ function renderFooter() {
 // fetches the author profile async after the page is already showing),
 // since a static page benefits from the complete author info being in the
 // raw HTML for both crawlers and no-JS visitors.
-function renderByline(authorName, profile, authorPageUrl) {
+function renderByline(authorName, authorPageUrl) {
   if (!authorName) return '';
-  const hasBio = profile && profile.bio && String(profile.bio).trim();
-  const avatar = profile && profile.photo
-    ? `<img src="${escapeHtml(profile.photo)}" alt="${escapeHtml(authorName)}">`
-    : `<div class="art-byline-fallback">${escapeHtml(authorName.charAt(0).toUpperCase())}</div>`;
   // Only clickable when we actually have a profile to link to — an author
   // name with no matching fs_author_profiles entry has nowhere real to
   // send the visitor, so it stays plain text rather than a dead link.
-  const nameHtml = authorPageUrl
-    ? `<a href="${authorPageUrl}" style="color:inherit;text-decoration:none">By ${escapeHtml(authorName)}</a>`
-    : `By ${escapeHtml(authorName)}`;
-  return `<div class="art-byline">
-    ${avatar}
-    <div class="art-byline-name">${nameHtml}</div>
-  </div>
-  ${hasBio ? `<div class="art-byline-bio">${escapeHtml(profile.bio)}</div>` : ''}`;
+  // Deliberately name-only here (no avatar, no bio inline) — that content
+  // now lives on the author's own page (renderAuthorPage), so it isn't
+  // duplicated on every single article.
+  return authorPageUrl
+    ? `<div class="art-byline-simple">By <a href="${authorPageUrl}">${escapeHtml(authorName)}</a></div>`
+    : `<div class="art-byline-simple">By ${escapeHtml(authorName)}</div>`;
 }
 
 // Share bar — same URL formats and share-text convention (headline + short
@@ -797,8 +789,8 @@ function renderPagination(current, total) {
   return `<nav class="pagination">${items.join('')}</nav>`;
 }
 
-function renderArchivePage(pageArticles, currentPage, totalPages, resolvedImages) {
-  const cards = pageArticles.map((article) => {
+function renderArchiveCards(pageArticles, resolvedImages) {
+  return pageArticles.map((article) => {
     const slug = article.slug || makeSlug(article.title || '');
     const seg = `${slug}--${article._id}`;
     const href = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
@@ -819,6 +811,10 @@ function renderArchivePage(pageArticles, currentPage, totalPages, resolvedImages
       </div>
     </a>`;
   }).join('');
+}
+
+function renderArchivePage(pageArticles, currentPage, totalPages, resolvedImages) {
+  const cards = renderArchiveCards(pageArticles, resolvedImages);
   const canonical = archivePageUrl(currentPage);
   const pageTitle = currentPage > 1 ? `All News \u2014 Page ${currentPage} \u2014 Big Quams Media\u00ae` : `All News \u2014 Big Quams Media\u00ae`;
   return `<!DOCTYPE html>
@@ -855,7 +851,7 @@ ${renderFooter()}
 }
 
 
-function renderPage(article, resolvedImage, { authorProfile, authorPageUrl, prevArticle, nextArticle } = {}) {
+function renderPage(article, resolvedImage, { authorPageUrl, prevArticle, nextArticle, moreNewsArticles, resolvedImages, totalArchivePages } = {}) {
   const slug = article.slug || makeSlug(article.title || '');
   const seg = `${slug}--${article._id}`;
   const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
@@ -931,13 +927,18 @@ ${renderHeader()}
       <span>\u00b7</span>
       <span class="art-views" id="viewCount">${viewCount} view${viewCount === 1 ? '' : 's'}</span>
     </div>
-    ${renderByline(article.author, authorProfile, authorPageUrl)}
+    ${renderByline(article.author, authorPageUrl)}
     ${image ? `<img class="art-image" src="${image}" alt="${headline}">` : ''}
     <div class="art-content">${bodyHtml}</div>
     ${renderShareBar(canonical, article.title || 'News', article.fullContent || '')}
     ${renderPrevNext(prevArticle, nextArticle)}
     <a class="open-app-cta" href="${SITE_ORIGIN}/newsroom.html">Browse more Newsroom stories \u2192</a>
   </div>
+  ${moreNewsArticles && moreNewsArticles.length ? `<div class="art-card" style="margin-top:16px">
+    <h2 style="font-family:'Montserrat',sans-serif;font-size:1rem;margin-bottom:12px">More News</h2>
+    <div class="archive-grid">${renderArchiveCards(moreNewsArticles, resolvedImages || {})}</div>
+    ${renderPagination(1, totalArchivePages || 1)}
+  </div>` : ''}
 </div>
 ${renderFooter()}
 <!-- View counter: increments the same fs_news/{id}.views field the live
@@ -1175,6 +1176,12 @@ async function runGenerate() {
     return tb - ta;
   });
 
+  // Computed once, early — every individual article page's "More News"
+  // section (below) links its pagination straight into the real archive
+  // pages, so it needs to know the total page count up front rather than
+  // after the archive is actually built later in this function.
+  const totalArchivePages = Math.max(1, Math.ceil(articles.length / ARTICLES_PER_ARCHIVE_PAGE));
+
   // Category-specific default preview images, if configured in the admin
   // panel under fs_config. Missing/absent doc just means no category
   // overrides — resolvePreviewImage() already falls through cleanly.
@@ -1206,14 +1213,22 @@ async function runGenerate() {
 
   const postedLog = FB_ENABLED ? await loadPostedLog() : {};
   const pending = [];
-  const resolvedImages = {}; // articleId -> resolved image URL, reused by the archive cards below instead of re-materializing
+  const resolvedImages = {}; // articleId -> resolved image URL
 
-  for (let i = 0; i < articles.length; i++) {
-    const article = articles[i];
+  // PASS 1: create each article's directory and resolve/materialize its
+  // image ONLY. Deliberately separate from rendering (pass 2, below) —
+  // each article's page now embeds a "More News" grid that can reference
+  // ANY other article, including ones later in this list that wouldn't
+  // have been processed yet in a single combined loop. Resolving every
+  // image first guarantees resolvedImages is complete before anything
+  // reads from it.
+  const pageDirs = {};
+  for (const article of articles) {
     const slug = article.slug || makeSlug(article.title || '');
     const seg = `${slug}--${article._id}`;
     const pageDir = path.join(OUTPUT_DIR, seg);
     await mkdir(pageDir, { recursive: true });
+    pageDirs[article._id] = pageDir;
 
     const rawImage = resolvePreviewImage(article, categoryDefaults);
     const materialized = await materializeImage(rawImage, pageDir);
@@ -1222,16 +1237,27 @@ async function runGenerate() {
         ? `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/${materialized}`
         : materialized || rawImage;
     resolvedImages[article._id] = resolvedImageUrl;
+  }
+
+  // PASS 2: render every page, now that resolvedImages is complete.
+  for (let i = 0; i < articles.length; i++) {
+    const article = articles[i];
+    const slug = article.slug || makeSlug(article.title || '');
+    const seg = `${slug}--${article._id}`;
+    const pageDir = pageDirs[article._id];
 
     const matchedAuthorProfile = article.author ? authorProfiles[article.author] : null;
     const authorPageUrl = matchedAuthorProfile
       ? `${SITE_ORIGIN}/authors/${makeSlug(matchedAuthorProfile.nickname || 'author')}--${matchedAuthorProfile._id}/`
       : null;
-    const html = renderPage(article, resolvedImageUrl, {
-      authorProfile: matchedAuthorProfile,
+    const moreNewsArticles = articles.filter((a) => a._id !== article._id).slice(0, ARTICLES_PER_ARCHIVE_PAGE);
+    const html = renderPage(article, resolvedImages[article._id], {
       authorPageUrl,
       prevArticle: articles[i + 1] || null, // next in the (newest-first) array = chronologically OLDER
       nextArticle: articles[i - 1] || null, // previous in the array = chronologically NEWER
+      moreNewsArticles,
+      resolvedImages,
+      totalArchivePages,
     });
     await writeFile(path.join(pageDir, 'index.html'), html, 'utf8');
 
@@ -1280,7 +1306,6 @@ async function runGenerate() {
   // above, and reuses each article's already-materialized image (no
   // second round of image work needed).
   const archiveSitemapEntries = [];
-  const totalArchivePages = Math.max(1, Math.ceil(articles.length / ARTICLES_PER_ARCHIVE_PAGE));
   for (let p = 1; p <= totalArchivePages; p++) {
     const pageArticles = articles.slice((p - 1) * ARTICLES_PER_ARCHIVE_PAGE, p * ARTICLES_PER_ARCHIVE_PAGE);
     const html = renderArchivePage(pageArticles, p, totalArchivePages, resolvedImages);
