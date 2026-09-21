@@ -475,6 +475,20 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .author-card-avatar{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0}
 .author-card-name{font-weight:800;font-size:.9rem;color:var(--text)}
 .author-card-count{font-size:.72rem;color:var(--muted)}
+.owner-badge{display:inline-block;margin-left:6px;font-size:.55rem;font-weight:800;padding:3px 9px;border-radius:20px;background:var(--orange);color:#fff;vertical-align:middle}
+.archive-section-title{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;color:var(--text);margin-bottom:10px}
+.archive-grid{display:flex;flex-direction:column;gap:14px}
+.archive-card{display:flex;gap:0;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.archive-card-img{width:110px;height:110px;object-fit:cover;flex-shrink:0}
+.archive-card-body{padding:10px 12px;flex:1;min-width:0}
+.archive-card-cat{display:inline-block;font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);margin-bottom:5px}
+.archive-card-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:4px}
+.archive-card-excerpt{font-size:.75rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.archive-card-date{font-size:.68rem;color:var(--muted);display:block;margin-top:5px}
+.pagination{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:22px 0}
+.page-num,.page-nav{font-size:.78rem;font-weight:700;padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+.page-num.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.page-ellipsis{padding:7px 4px;color:var(--muted);font-size:.78rem}
 `;
 
 function renderHeader() {
@@ -637,6 +651,8 @@ function renderPrevNext(prevArticle, nextArticle) {
 function renderAuthorPage(profile, authorArticles) {
   const name = escapeHtml(profile.nickname || 'Author');
   const bio = profile.bio ? escapeHtml(profile.bio) : '';
+  const isOwner = profile.role === 'owner';
+  const ownerBadge = isOwner ? '<span class="owner-badge">Owner</span>' : '';
   const avatar = profile.photo
     ? `<img src="${escapeHtml(profile.photo)}" alt="${name}" class="author-hero-avatar">`
     : `<div class="author-hero-avatar author-hero-fallback">${escapeHtml((profile.nickname || 'A').charAt(0).toUpperCase())}</div>`;
@@ -673,7 +689,7 @@ ${renderHeader()}
 <div class="art-wrap">
   <div class="art-card author-hero">
     ${avatar}
-    <h1 class="art-title">${name}</h1>
+    <h1 class="art-title">${name} ${ownerBadge}</h1>
     ${bio ? `<p class="author-hero-bio">${bio}</p>` : ''}
     <a class="prevnext-link" style="display:inline-block;margin-top:14px" href="${SITE_ORIGIN}/authors/">\u2190 All authors</a>
   </div>
@@ -690,7 +706,7 @@ ${renderFooter()}
 
 // Hub page listing every author, linking to their individual page above.
 function renderAuthorsHub(profilesWithCounts) {
-  const rows = profilesWithCounts.map((p) => {
+  const cardHtml = (p) => {
     const slug = makeSlug(p.nickname || 'author');
     const seg = `${slug}--${p._id}`;
     const href = `${SITE_ORIGIN}/authors/${seg}/`;
@@ -704,7 +720,20 @@ function renderAuthorsHub(profilesWithCounts) {
         <div class="author-card-count">${p.articleCount} article${p.articleCount === 1 ? '' : 's'}</div>
       </div>
     </a>`;
-  }).join('');
+  };
+  // Owners get their own section, first — a profile is treated as an
+  // owner when its Firestore doc has role: "owner" (any other value, or
+  // no role field at all, is a regular author). Set this in the Firebase
+  // Console on fs_author_profiles/{id} until/unless the admin panel gets
+  // its own field for it.
+  const owners = profilesWithCounts.filter((p) => p.role === 'owner');
+  const authorsOnly = profilesWithCounts.filter((p) => p.role !== 'owner');
+  const ownersSection = owners.length
+    ? `<h2 class="archive-section-title">Founders &amp; Team</h2><div class="authors-grid">${owners.map(cardHtml).join('')}</div>`
+    : '';
+  const authorsSection = authorsOnly.length
+    ? `<h2 class="archive-section-title" style="margin-top:${owners.length ? '22px' : '0'}">Authors</h2><div class="authors-grid">${authorsOnly.map(cardHtml).join('')}</div>`
+    : '';
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -726,9 +755,98 @@ ${renderHeader()}
     <h1 class="art-title">Our Authors</h1>
     <p style="color:var(--muted);font-size:.85rem;margin-top:8px">Meet the writers and editors behind Big Quams Media\u00ae.</p>
   </div>
-  <div class="authors-grid" style="margin-top:12px">
-    ${rows || '<p style="color:var(--muted);font-size:.85rem">No author profiles yet.</p>'}
+  <div style="margin-top:12px">
+    ${ownersSection}
+    ${authorsSection}
+    ${owners.length === 0 && authorsOnly.length === 0 ? '<p style="color:var(--muted);font-size:.85rem">No author profiles yet.</p>' : ''}
   </div>
+</div>
+${renderFooter()}
+</body>
+</html>
+`;
+}
+
+// ---------------------------------------------------------------------
+// "All News" archive — a paginated, WordPress-style index of every
+// article, newest first: page 1 at /news/, page 2+ at /news/page/N/.
+// ---------------------------------------------------------------------
+
+const ARTICLES_PER_ARCHIVE_PAGE = 12;
+
+function archivePageUrl(n) {
+  return n <= 1 ? `${SITE_ORIGIN}/${OUTPUT_DIR}/` : `${SITE_ORIGIN}/${OUTPUT_DIR}/page/${n}/`;
+}
+
+function renderPagination(current, total) {
+  if (total <= 1) return '';
+  const items = [];
+  if (current > 1) items.push(`<a class="page-nav" href="${archivePageUrl(current - 1)}">\u2190 Prev</a>`);
+  let lastPrinted = 0;
+  for (let n = 1; n <= total; n++) {
+    // Always show first, last, and a small window around the current
+    // page — with "…" for any gap — so this stays readable even once
+    // there are many pages, rather than listing every single number.
+    if (n === 1 || n === total || (n >= current - 1 && n <= current + 1)) {
+      if (lastPrinted && n - lastPrinted > 1) items.push('<span class="page-ellipsis">\u2026</span>');
+      items.push(`<a class="page-num${n === current ? ' active' : ''}" href="${archivePageUrl(n)}">${n}</a>`);
+      lastPrinted = n;
+    }
+  }
+  if (current < total) items.push(`<a class="page-nav" href="${archivePageUrl(current + 1)}">Next \u2192</a>`);
+  return `<nav class="pagination">${items.join('')}</nav>`;
+}
+
+function renderArchivePage(pageArticles, currentPage, totalPages, resolvedImages) {
+  const cards = pageArticles.map((article) => {
+    const slug = article.slug || makeSlug(article.title || '');
+    const seg = `${slug}--${article._id}`;
+    const href = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
+    const image = escapeHtml(resolvedImages[article._id] || GLOBAL_NEWS_DEFAULT_IMAGE || SITE_DEFAULT_IMAGE);
+    const cat = escapeHtml(article.category || 'News');
+    const cardTitle = escapeHtml(article.title || '');
+    const excerpt = escapeHtml(firstSentenceExcerpt(article.fullContent || '', 130));
+    const dateLabel = typeof article.createdAt === 'string'
+      ? new Date(article.createdAt).toLocaleDateString('en-NG', { year: 'numeric', month: 'short', day: 'numeric' })
+      : '';
+    return `<a class="archive-card" href="${href}">
+      <img class="archive-card-img" src="${image}" alt="${cardTitle}">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">${cat}</span>
+        <h2 class="archive-card-title">${cardTitle}</h2>
+        <p class="archive-card-excerpt">${excerpt}</p>
+        ${dateLabel ? `<span class="archive-card-date">${dateLabel}</span>` : ''}
+      </div>
+    </a>`;
+  }).join('');
+  const canonical = archivePageUrl(currentPage);
+  const pageTitle = currentPage > 1 ? `All News \u2014 Page ${currentPage} \u2014 Big Quams Media\u00ae` : `All News \u2014 Big Quams Media\u00ae`;
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${escapeHtml(pageTitle)}</title>
+<meta name="description" content="Browse every article on Big Quams Media\u00ae, newest first.">
+<link rel="canonical" href="${canonical}">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RCLYVCZY2K');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="${SITE_ORIGIN}/logo.png">
+<style>${SITE_HEADER_CSS}</style>
+</head>
+<body>
+${renderHeader()}
+<div class="art-wrap">
+  <div class="art-card">
+    <h1 class="art-title">All News</h1>
+    <p style="color:var(--muted);font-size:.85rem;margin-top:6px">Every article, newest first.${totalPages > 1 ? ` Page ${currentPage} of ${totalPages}.` : ''}</p>
+  </div>
+  <div class="archive-grid" style="margin-top:14px">
+    ${cards || '<p style="color:var(--muted);font-size:.85rem">No articles yet.</p>'}
+  </div>
+  ${renderPagination(currentPage, totalPages)}
 </div>
 ${renderFooter()}
 </body>
@@ -1088,6 +1206,7 @@ async function runGenerate() {
 
   const postedLog = FB_ENABLED ? await loadPostedLog() : {};
   const pending = [];
+  const resolvedImages = {}; // articleId -> resolved image URL, reused by the archive cards below instead of re-materializing
 
   for (let i = 0; i < articles.length; i++) {
     const article = articles[i];
@@ -1102,6 +1221,7 @@ async function runGenerate() {
       materialized && !/^https?:\/\//i.test(materialized)
         ? `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/${materialized}`
         : materialized || rawImage;
+    resolvedImages[article._id] = resolvedImageUrl;
 
     const matchedAuthorProfile = article.author ? authorProfiles[article.author] : null;
     const authorPageUrl = matchedAuthorProfile
@@ -1155,6 +1275,22 @@ async function runGenerate() {
     console.log(`  ${authorProfileList.length} author page(s) generated.`);
   }
 
+  // "All News" paginated archive — page 1 at /news/, page 2+ at
+  // /news/page/N/. Uses the same newest-first order already established
+  // above, and reuses each article's already-materialized image (no
+  // second round of image work needed).
+  const archiveSitemapEntries = [];
+  const totalArchivePages = Math.max(1, Math.ceil(articles.length / ARTICLES_PER_ARCHIVE_PAGE));
+  for (let p = 1; p <= totalArchivePages; p++) {
+    const pageArticles = articles.slice((p - 1) * ARTICLES_PER_ARCHIVE_PAGE, p * ARTICLES_PER_ARCHIVE_PAGE);
+    const html = renderArchivePage(pageArticles, p, totalArchivePages, resolvedImages);
+    const dir = p === 1 ? OUTPUT_DIR : path.join(OUTPUT_DIR, 'page', String(p));
+    await mkdir(dir, { recursive: true });
+    await writeFile(path.join(dir, 'index.html'), html, 'utf8');
+    archiveSitemapEntries.push(`  <url><loc>${escapeHtml(archivePageUrl(p))}</loc></url>`);
+  }
+  console.log(`  Archive: ${totalArchivePages} page(s) covering ${articles.length} article(s).`);
+
   // Sitemap built directly from this run's full article list — no
   // persisted state file needed, since every run already has the complete
   // set. This also removes a whole class of git merge conflicts: two runs
@@ -1168,7 +1304,7 @@ async function runGenerate() {
       : requestTime;
     return `  <url><loc>${escapeHtml(`${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`)}</loc><lastmod>${lastmod}</lastmod></url>`;
   });
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join('\n')}\n${authorSitemapEntries.join('\n')}\n</urlset>\n`;
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapEntries.join('\n')}\n${authorSitemapEntries.join('\n')}\n${archiveSitemapEntries.join('\n')}\n</urlset>\n`;
   await writeFile('sitemap-news.xml', sitemap, 'utf8');
 
   if (FB_ENABLED) {
