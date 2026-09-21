@@ -112,6 +112,33 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .prevnext-label{display:block;font-size:.62rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
 .prevnext-title{display:block;font-size:.78rem;font-weight:700;color:var(--text);line-height:1.4}
 .prevnext-next{text-align:right}
+.author-hero{text-align:center}
+.author-hero-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;margin:0 auto 12px}
+.author-hero-fallback{background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.8rem}
+.author-hero-bio{font-size:.82rem;color:var(--muted);line-height:1.7;max-width:480px;margin:0 auto}
+.author-article-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.author-article-row:last-child{border-bottom:none}
+.author-article-title{font-weight:700;color:var(--text)}
+.author-article-date{color:var(--muted);font-size:.72rem;white-space:nowrap}
+.authors-grid{display:flex;flex-direction:column;gap:12px}
+.author-card{display:flex;align-items:center;gap:12px;padding:14px;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow)}
+.author-card-avatar{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.author-card-name{font-weight:800;font-size:.9rem;color:var(--text)}
+.author-card-count{font-size:.72rem;color:var(--muted)}
+.owner-badge{display:inline-block;margin-left:6px;font-size:.55rem;font-weight:800;padding:3px 9px;border-radius:20px;background:var(--orange);color:#fff;vertical-align:middle}
+.archive-section-title{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;color:var(--text);margin-bottom:10px}
+.archive-grid{display:flex;flex-direction:column;gap:14px}
+.archive-card{display:flex;gap:0;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.archive-card-img{width:110px;height:110px;object-fit:cover;flex-shrink:0}
+.archive-card-body{padding:10px 12px;flex:1;min-width:0}
+.archive-card-cat{display:inline-block;font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);margin-bottom:5px}
+.archive-card-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:4px}
+.archive-card-excerpt{font-size:.75rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.archive-card-date{font-size:.68rem;color:var(--muted);display:block;margin-top:5px}
+.pagination{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:22px 0}
+.page-num,.page-nav{font-size:.78rem;font-weight:700;padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+.page-num.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.page-ellipsis{padding:7px 4px;color:var(--muted);font-size:.78rem}
 </style>
 </head>
 <body>
@@ -146,8 +173,8 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     <a class="share-btn share-wa" href="https://wa.me/?text=PRESIDENT%20TINUBU%20SIGNS%20NIMC%20ACT%202026%20INTO%20LAW%20%E2%80%94%20President%20Bola%20Ahmed%20Tinubu%20has%20signed%20the%20NIMC%20Act%202026%20into%20law%2C%20introducing%20a%20new%20legal%20framework%20to%20modernize%20Nigeria's%20national%20https%3A%2F%2Fbigquamsmedia.com.ng%2Fnews%2Fpresident-tinubu-signs-nimc-act-2026-into-law--PT4MYIMWZY5KohvShj7z%2F" target="_blank" rel="noopener">WhatsApp</a>
     <a class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbigquamsmedia.com.ng%2Fnews%2Fpresident-tinubu-signs-nimc-act-2026-into-law--PT4MYIMWZY5KohvShj7z%2F" target="_blank" rel="noopener">Facebook</a>
     <a class="share-btn share-x" href="https://twitter.com/intent/tweet?text=PRESIDENT%20TINUBU%20SIGNS%20NIMC%20ACT%202026%20INTO%20LAW%20%E2%80%94%20President%20Bola%20Ahmed%20Tinubu%20has%20signed%20the%20NIMC%20Act%202026%20into%20law%2C%20introducing%20a%20new%20legal%20framework%20to%20modernize%20Nigeria's%20national&url=https%3A%2F%2Fbigquamsmedia.com.ng%2Fnews%2Fpresident-tinubu-signs-nimc-act-2026-into-law--PT4MYIMWZY5KohvShj7z%2F" target="_blank" rel="noopener">X</a>
-    <button type="button" class="share-btn share-copy" onclick="navigator.clipboard.writeText("https://bigquamsmedia.com.ng/news/president-tinubu-signs-nimc-act-2026-into-law--PT4MYIMWZY5KohvShj7z/").then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Link',1500)})">Copy Link</button>
-    <button type="button" class="share-btn share-ig" onclick="navigator.clipboard.writeText("https://bigquamsmedia.com.ng/news/president-tinubu-signs-nimc-act-2026-into-law--PT4MYIMWZY5KohvShj7z/").then(()=>{this.textContent='Link copied — paste in Instagram';setTimeout(()=>this.textContent='Instagram',2500)})">Instagram</button>
+    <button type="button" class="share-btn js-copy-link" data-url="https://bigquamsmedia.com.ng/news/president-tinubu-signs-nimc-act-2026-into-law--PT4MYIMWZY5KohvShj7z/">Copy Link</button>
+    <button type="button" class="share-btn js-copy-ig" data-url="https://bigquamsmedia.com.ng/news/president-tinubu-signs-nimc-act-2026-into-law--PT4MYIMWZY5KohvShj7z/">Instagram</button>
   </div>
     <nav class="prevnext-nav">
     <a class="prevnext-link prevnext-prev" href="https://bigquamsmedia.com.ng/news/happy-new-month--yXcWyILY2YGFaxhDW74w/">
@@ -237,9 +264,44 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     if(!firebase.apps.length){
       firebase.initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
     }
-    firebase.firestore().collection('fs_news').doc("PT4MYIMWZY5KohvShj7z").update({views:firebase.firestore.FieldValue.increment(1)}).catch(function(){});
+    firebase.firestore().collection('fs_news').doc("PT4MYIMWZY5KohvShj7z").update({views:firebase.firestore.FieldValue.increment(1)}).then(function(){
+      // The number baked into the page at build time is only as fresh as
+      // the last generation run (up to 20 minutes old) — bump it visibly
+      // right away so a visitor sees their own view reflected instantly,
+      // rather than the count looking frozen/wrong until the next run.
+      var el=document.getElementById('viewCount');
+      if(el){
+        var n=parseInt((el.textContent||'0').replace(/[^0-9]/g,''),10)||0;
+        n+=1;
+        el.textContent=n+(n===1?' view':' views');
+      }
+    }).catch(function(){});
   }catch(e){}
 })();
+// Copy-link / Instagram share buttons. Deliberately addEventListener +
+// data-url, not inline onclick with JSON.stringify(url) — that combo
+// broke in production (see the comment on renderShareBar): JSON.stringify
+// wraps the URL in double quotes, which prematurely closes an
+// ALSO-double-quoted onclick="..." attribute, dumping the rest of the
+// handler's JS onto the page as literal visible text.
+document.querySelectorAll('.js-copy-link').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    navigator.clipboard.writeText(btn.dataset.url).then(function(){
+      var original=btn.textContent;
+      btn.textContent='Copied!';
+      setTimeout(function(){btn.textContent=original;},1500);
+    });
+  });
+});
+document.querySelectorAll('.js-copy-ig').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    navigator.clipboard.writeText(btn.dataset.url).then(function(){
+      var original=btn.textContent;
+      btn.textContent='Link copied — paste in Instagram';
+      setTimeout(function(){btn.textContent=original;},2500);
+    });
+  });
+});
 </script>
 </body>
 </html>
