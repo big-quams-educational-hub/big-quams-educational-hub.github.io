@@ -485,6 +485,16 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .archive-card-date,.archive-card-author,.archive-card-views{font-size:.68rem;color:var(--muted)}
 .archive-card-author{font-weight:700;color:var(--text)}
 .archive-card-date::after,.archive-card-author::after{content:'\\00b7';margin-left:8px;color:var(--muted)}
+.recent-news-list{display:flex;flex-direction:column}
+.recent-news-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.recent-news-item:last-child{border-bottom:none}
+.recent-news-thumb{width:56px;height:56px;object-fit:cover;border-radius:6px;flex-shrink:0}
+.recent-news-body{flex:1;min-width:0}
+.recent-news-title{font-family:'Montserrat',sans-serif;font-size:.76rem;font-weight:700;color:var(--text);line-height:1.35;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.recent-news-meta{display:flex;flex-wrap:wrap;gap:0;font-size:.6rem;color:var(--muted)}
+.recent-news-meta span::after{content:'\\00b7';margin:0 5px}
+.recent-news-meta span:last-child::after{content:''}
+.view-all-news-link{display:block;text-align:center;margin-top:14px;padding:10px;font-size:.78rem;font-weight:700;color:var(--blue);border:1px solid var(--border);border-radius:8px}
 .pagination{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:22px 0}
 .page-num,.page-nav{font-size:.78rem;font-weight:700;padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
 .page-num.active{background:var(--blue);color:#fff;border-color:var(--blue)}
@@ -771,6 +781,7 @@ ${renderFooter()}
 // ---------------------------------------------------------------------
 
 const ARTICLES_PER_ARCHIVE_PAGE = 12;
+const RECENT_NEWS_COUNT = 6; // the compact widget on every article page shows far fewer than a full archive page
 
 function archivePageUrl(n) {
   return n <= 1 ? `${SITE_ORIGIN}/${OUTPUT_DIR}/` : `${SITE_ORIGIN}/${OUTPUT_DIR}/page/${n}/`;
@@ -795,7 +806,7 @@ function renderPagination(current, total) {
   return `<nav class="pagination">${items.join('')}</nav>`;
 }
 
-function renderArchiveCards(pageArticles, resolvedImages, authorProfiles = {}) {
+function renderArchiveCards(pageArticles, resolvedImages, authorProfiles = {}, compact = false) {
   return pageArticles.map((article) => {
     const slug = article.slug || makeSlug(article.title || '');
     const seg = `${slug}--${article._id}`;
@@ -811,6 +822,26 @@ function renderArchiveCards(pageArticles, resolvedImages, authorProfiles = {}) {
       matchedProfile && matchedProfile.role === 'owner' ? 'Big Quams Media' : (article.author || 'Big Quams Media')
     );
     const views = typeof article.views === 'number' ? article.views : 0;
+
+    // Compact mode: a tight, thumbnail + headline + small meta-line list
+    // (no card box/shadow, no category badge) — used for the "Recent
+    // News" widget on every article page, which needs to stay small.
+    // Regular mode (the full archive at /news/) keeps the bigger card
+    // style with a category badge.
+    if (compact) {
+      return `<a class="recent-news-item" href="${href}">
+        <img class="recent-news-thumb" src="${image}" alt="${cardTitle}">
+        <div class="recent-news-body">
+          <h3 class="recent-news-title">${cardTitle}</h3>
+          <div class="recent-news-meta">
+            ${dateLabel ? `<span>${dateLabel}</span>` : ''}
+            <span>${authorDisplay}</span>
+            <span>${views} view${views === 1 ? '' : 's'}</span>
+          </div>
+        </div>
+      </a>`;
+    }
+
     return `<a class="archive-card" href="${href}">
       <img class="archive-card-img" src="${image}" alt="${cardTitle}">
       <div class="archive-card-body">
@@ -864,7 +895,7 @@ ${renderFooter()}
 }
 
 
-function renderPage(article, resolvedImage, { authorPageUrl, isOwnerAuthor, prevArticle, nextArticle, moreNewsArticles, resolvedImages, totalArchivePages, authorProfiles } = {}) {
+function renderPage(article, resolvedImage, { authorPageUrl, isOwnerAuthor, moreNewsArticles, resolvedImages, authorProfiles } = {}) {
   const slug = article.slug || makeSlug(article.title || '');
   const seg = `${slug}--${article._id}`;
   const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
@@ -944,13 +975,12 @@ ${renderHeader()}
     ${image ? `<img class="art-image" src="${image}" alt="${headline}">` : ''}
     <div class="art-content">${bodyHtml}</div>
     ${renderShareBar(canonical, article.title || 'News', article.fullContent || '')}
-    ${renderPrevNext(prevArticle, nextArticle)}
     <a class="open-app-cta" href="${SITE_ORIGIN}/newsroom.html">Browse more Newsroom stories \u2192</a>
   </div>
   ${moreNewsArticles && moreNewsArticles.length ? `<div class="art-card" style="margin-top:16px">
-    <h2 style="font-family:'Montserrat',sans-serif;font-size:1rem;margin-bottom:12px">More News</h2>
-    <div class="archive-grid">${renderArchiveCards(moreNewsArticles, resolvedImages || {}, authorProfiles || {})}</div>
-    ${renderPagination(1, totalArchivePages || 1)}
+    <h2 style="font-family:'Montserrat',sans-serif;font-size:.92rem;margin-bottom:10px">Recent News</h2>
+    <div class="recent-news-list">${renderArchiveCards(moreNewsArticles, resolvedImages || {}, authorProfiles || {}, true)}</div>
+    <a class="view-all-news-link" href="${SITE_ORIGIN}/${OUTPUT_DIR}/">View All News \u2192</a>
   </div>` : ''}
 </div>
 ${renderFooter()}
@@ -1264,15 +1294,12 @@ async function runGenerate() {
       ? `${SITE_ORIGIN}/authors/${makeSlug(matchedAuthorProfile.nickname || 'author')}--${matchedAuthorProfile._id}/`
       : null;
     const isOwnerAuthor = matchedAuthorProfile && matchedAuthorProfile.role === 'owner';
-    const moreNewsArticles = articles.filter((a) => a._id !== article._id).slice(0, ARTICLES_PER_ARCHIVE_PAGE);
+    const moreNewsArticles = articles.filter((a) => a._id !== article._id).slice(0, RECENT_NEWS_COUNT);
     const html = renderPage(article, resolvedImages[article._id], {
       authorPageUrl,
       isOwnerAuthor,
-      prevArticle: articles[i + 1] || null, // next in the (newest-first) array = chronologically OLDER
-      nextArticle: articles[i - 1] || null, // previous in the array = chronologically NEWER
       moreNewsArticles,
       resolvedImages,
-      totalArchivePages,
       authorProfiles,
     });
     await writeFile(path.join(pageDir, 'index.html'), html, 'utf8');
