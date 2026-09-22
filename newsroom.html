@@ -297,7 +297,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       // window reuse what's already on their device instead of asking
       // Firestore again.
       const CACHE_KEY='bqm_news_cache_v1';
-      const CACHE_TTL_MS=10*60*1000; // 10 minutes — adjust if you want fresher/cheaper
+      const CACHE_TTL_MS=30*60*1000; // 30 minutes — matched to the automation's hourly generation cadence (see .github/workflows/generate-news-pages.yml); no point a visitor's browser re-checking more often than the underlying data actually updates
       try{
         const cachedRaw=localStorage.getItem(CACHE_KEY);
         if(cachedRaw){
