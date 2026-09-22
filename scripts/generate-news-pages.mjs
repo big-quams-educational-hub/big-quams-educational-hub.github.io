@@ -480,9 +480,11 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .archive-card-img{width:110px;height:110px;object-fit:cover;flex-shrink:0}
 .archive-card-body{padding:10px 12px;flex:1;min-width:0}
 .archive-card-cat{display:inline-block;font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);margin-bottom:5px}
-.archive-card-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:4px}
-.archive-card-excerpt{font-size:.75rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.archive-card-date{font-size:.68rem;color:var(--muted);display:block;margin-top:5px}
+.archive-card-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:6px}
+.archive-card-meta{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.archive-card-date,.archive-card-author,.archive-card-views{font-size:.68rem;color:var(--muted)}
+.archive-card-author{font-weight:700;color:var(--text)}
+.archive-card-date::after,.archive-card-author::after{content:'\\00b7';margin-left:8px;color:var(--muted)}
 .pagination{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:22px 0}
 .page-num,.page-nav{font-size:.78rem;font-weight:700;padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
 .page-num.active{background:var(--blue);color:#fff;border-color:var(--blue)}
@@ -569,8 +571,12 @@ function renderFooter() {
 // fetches the author profile async after the page is already showing),
 // since a static page benefits from the complete author info being in the
 // raw HTML for both crawlers and no-JS visitors.
-function renderByline(authorName, authorPageUrl) {
+function renderByline(authorName, authorPageUrl, isOwner) {
   if (!authorName) return '';
+  // Owner-authored pieces show the brand name instead of the individual's
+  // personal name — still clickable through to that person's own author
+  // page, just displayed as "Big Quams Media" rather than their name.
+  const displayName = isOwner ? 'Big Quams Media' : authorName;
   // Only clickable when we actually have a profile to link to — an author
   // name with no matching fs_author_profiles entry has nowhere real to
   // send the visitor, so it stays plain text rather than a dead link.
@@ -578,8 +584,8 @@ function renderByline(authorName, authorPageUrl) {
   // now lives on the author's own page (renderAuthorPage), so it isn't
   // duplicated on every single article.
   return authorPageUrl
-    ? `<div class="art-byline-simple">By <a href="${authorPageUrl}">${escapeHtml(authorName)}</a></div>`
-    : `<div class="art-byline-simple">By ${escapeHtml(authorName)}</div>`;
+    ? `<div class="art-byline-simple">By <a href="${authorPageUrl}">${escapeHtml(displayName)}</a></div>`
+    : `<div class="art-byline-simple">By ${escapeHtml(displayName)}</div>`;
 }
 
 // Share bar — same URL formats and share-text convention (headline + short
@@ -789,7 +795,7 @@ function renderPagination(current, total) {
   return `<nav class="pagination">${items.join('')}</nav>`;
 }
 
-function renderArchiveCards(pageArticles, resolvedImages) {
+function renderArchiveCards(pageArticles, resolvedImages, authorProfiles = {}) {
   return pageArticles.map((article) => {
     const slug = article.slug || makeSlug(article.title || '');
     const seg = `${slug}--${article._id}`;
@@ -797,24 +803,31 @@ function renderArchiveCards(pageArticles, resolvedImages) {
     const image = escapeHtml(resolvedImages[article._id] || GLOBAL_NEWS_DEFAULT_IMAGE || SITE_DEFAULT_IMAGE);
     const cat = escapeHtml(article.category || 'News');
     const cardTitle = escapeHtml(article.title || '');
-    const excerpt = escapeHtml(firstSentenceExcerpt(article.fullContent || '', 130));
     const dateLabel = typeof article.createdAt === 'string'
       ? new Date(article.createdAt).toLocaleDateString('en-NG', { year: 'numeric', month: 'short', day: 'numeric' })
       : '';
+    const matchedProfile = article.author ? authorProfiles[article.author] : null;
+    const authorDisplay = escapeHtml(
+      matchedProfile && matchedProfile.role === 'owner' ? 'Big Quams Media' : (article.author || 'Big Quams Media')
+    );
+    const views = typeof article.views === 'number' ? article.views : 0;
     return `<a class="archive-card" href="${href}">
       <img class="archive-card-img" src="${image}" alt="${cardTitle}">
       <div class="archive-card-body">
         <span class="archive-card-cat">${cat}</span>
         <h2 class="archive-card-title">${cardTitle}</h2>
-        <p class="archive-card-excerpt">${excerpt}</p>
-        ${dateLabel ? `<span class="archive-card-date">${dateLabel}</span>` : ''}
+        <div class="archive-card-meta">
+          ${dateLabel ? `<span class="archive-card-date">${dateLabel}</span>` : ''}
+          <span class="archive-card-author">${authorDisplay}</span>
+          <span class="archive-card-views">${views} view${views === 1 ? '' : 's'}</span>
+        </div>
       </div>
     </a>`;
   }).join('');
 }
 
-function renderArchivePage(pageArticles, currentPage, totalPages, resolvedImages) {
-  const cards = renderArchiveCards(pageArticles, resolvedImages);
+function renderArchivePage(pageArticles, currentPage, totalPages, resolvedImages, authorProfiles) {
+  const cards = renderArchiveCards(pageArticles, resolvedImages, authorProfiles);
   const canonical = archivePageUrl(currentPage);
   const pageTitle = currentPage > 1 ? `All News \u2014 Page ${currentPage} \u2014 Big Quams Media\u00ae` : `All News \u2014 Big Quams Media\u00ae`;
   return `<!DOCTYPE html>
@@ -851,7 +864,7 @@ ${renderFooter()}
 }
 
 
-function renderPage(article, resolvedImage, { authorPageUrl, prevArticle, nextArticle, moreNewsArticles, resolvedImages, totalArchivePages } = {}) {
+function renderPage(article, resolvedImage, { authorPageUrl, isOwnerAuthor, prevArticle, nextArticle, moreNewsArticles, resolvedImages, totalArchivePages, authorProfiles } = {}) {
   const slug = article.slug || makeSlug(article.title || '');
   const seg = `${slug}--${article._id}`;
   const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
@@ -927,7 +940,7 @@ ${renderHeader()}
       <span>\u00b7</span>
       <span class="art-views" id="viewCount">${viewCount} view${viewCount === 1 ? '' : 's'}</span>
     </div>
-    ${renderByline(article.author, authorPageUrl)}
+    ${renderByline(article.author, authorPageUrl, isOwnerAuthor)}
     ${image ? `<img class="art-image" src="${image}" alt="${headline}">` : ''}
     <div class="art-content">${bodyHtml}</div>
     ${renderShareBar(canonical, article.title || 'News', article.fullContent || '')}
@@ -936,7 +949,7 @@ ${renderHeader()}
   </div>
   ${moreNewsArticles && moreNewsArticles.length ? `<div class="art-card" style="margin-top:16px">
     <h2 style="font-family:'Montserrat',sans-serif;font-size:1rem;margin-bottom:12px">More News</h2>
-    <div class="archive-grid">${renderArchiveCards(moreNewsArticles, resolvedImages || {})}</div>
+    <div class="archive-grid">${renderArchiveCards(moreNewsArticles, resolvedImages || {}, authorProfiles || {})}</div>
     ${renderPagination(1, totalArchivePages || 1)}
   </div>` : ''}
 </div>
@@ -1250,14 +1263,17 @@ async function runGenerate() {
     const authorPageUrl = matchedAuthorProfile
       ? `${SITE_ORIGIN}/authors/${makeSlug(matchedAuthorProfile.nickname || 'author')}--${matchedAuthorProfile._id}/`
       : null;
+    const isOwnerAuthor = matchedAuthorProfile && matchedAuthorProfile.role === 'owner';
     const moreNewsArticles = articles.filter((a) => a._id !== article._id).slice(0, ARTICLES_PER_ARCHIVE_PAGE);
     const html = renderPage(article, resolvedImages[article._id], {
       authorPageUrl,
+      isOwnerAuthor,
       prevArticle: articles[i + 1] || null, // next in the (newest-first) array = chronologically OLDER
       nextArticle: articles[i - 1] || null, // previous in the array = chronologically NEWER
       moreNewsArticles,
       resolvedImages,
       totalArchivePages,
+      authorProfiles,
     });
     await writeFile(path.join(pageDir, 'index.html'), html, 'utf8');
 
@@ -1308,7 +1324,7 @@ async function runGenerate() {
   const archiveSitemapEntries = [];
   for (let p = 1; p <= totalArchivePages; p++) {
     const pageArticles = articles.slice((p - 1) * ARTICLES_PER_ARCHIVE_PAGE, p * ARTICLES_PER_ARCHIVE_PAGE);
-    const html = renderArchivePage(pageArticles, p, totalArchivePages, resolvedImages);
+    const html = renderArchivePage(pageArticles, p, totalArchivePages, resolvedImages, authorProfiles);
     const dir = p === 1 ? OUTPUT_DIR : path.join(OUTPUT_DIR, 'page', String(p));
     await mkdir(dir, { recursive: true });
     await writeFile(path.join(dir, 'index.html'), html, 'utf8');
