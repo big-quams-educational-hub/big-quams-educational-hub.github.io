@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RCLYVCZY2K');</script>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Newsroom | Big Quams Media®</title>
+<meta name="description" content="Latest campus news, school updates, scholarship alerts and student information. Stay informed with Big Quams Media® Newsroom.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Big Quams Media®">
+<meta property="og:title" content="Newsroom — Big Quams Media®">
+<meta property="og:description" content="Latest campus news, school updates, scholarship alerts and student information from Big Quams Media®.">
+<meta property="og:image" id="ogImage" content="https://bigquamsmedia.com.ng/bigquamsmedia.png">
+<meta property="og:url" content="https://bigquamsmedia.com.ng/newsroom.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://bigquamsmedia.com.ng/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:12px;--shadow:0 8px 28px rgba(26,63,168,.11)}
+body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;background:var(--surface2);color:var(--text);line-height:1.6;overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+img{max-width:100%;display:block}
+
+/* ── HEADER ── */
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.35)}
+.hbar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.logo-sub{font-size:.52rem;color:rgba(255,255,255,.42);display:block}
+.main-nav{display:flex;align-items:center;gap:2px}
+.main-nav a{color:rgba(255,255,255,.72);font-size:.8rem;font-weight:500;padding:7px 10px;border-radius:6px;white-space:nowrap;transition:.18s}
+.main-nav a:hover,.main-nav a.active{color:#fff;background:rgba(255,255,255,.12)}
+.nav-cta{background:var(--orange)!important;color:#fff!important;font-weight:700!important;padding:8px 16px!important;border-radius:7px!important}
+.hdr-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.88rem}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;width:38px;height:38px;cursor:pointer;align-items:center}
+.hamburger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.28s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:860px){.main-nav{display:none}.hamburger{display:flex}}
+.mobile-nav{visibility:hidden;position:fixed;inset:0;background:#0a1228;z-index:400;overflow-y:auto;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .3s ease,visibility 0s linear .3s}
+.mobile-nav.open{visibility:visible;transform:translateX(0);transition:transform .3s ease}
+.mnav-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:linear-gradient(135deg,#0c1f6e,#1a3fa8);min-height:60px}
+.mnav-close{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:8px;font-size:1rem;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.mnav-lbl{padding:14px 20px 6px;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.22)}
+.mobile-nav a{display:flex;align-items:center;gap:12px;padding:13px 20px;color:rgba(255,255,255,.75);font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04);transition:.18s}
+.mobile-nav a:hover{background:rgba(255,255,255,.06);color:#fff}
+.mnav-cta{background:linear-gradient(135deg,#25d366,#1db954)!important;color:#fff!important;margin:16px;border-radius:12px;justify-content:center;font-weight:800!important;padding:16px!important;border-bottom:none!important}
+.nav-overlay{position:fixed;inset:0;background:rgba(5,10,30,.65);z-index:399;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+
+/* ── HERO ── */
+.page-hero{background:linear-gradient(150deg,rgba(8,21,48,.88),rgba(15,32,96,.82),rgba(26,63,168,.76)),url('https://bigquamsmedia.com.ng/newsroom.png') center/cover no-repeat;padding:48px 16px 56px;text-align:center;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='g' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M60 0L0 0 0 60' fill='none' stroke='rgba(255,255,255,0.03)' stroke-width='1'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E");pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.35);color:#fdba74;padding:6px 18px;border-radius:20px;font-size:.72rem;font-weight:700;margin-bottom:14px}
+.page-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(1.6rem,5vw,2.5rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:10px}
+.page-hero h1 span{color:var(--orange)}
+.page-hero p{font-size:.88rem;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto 20px}
+.hero-stats{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:800;color:#fff}
+.hero-stat-lbl{font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px}
+
+/* ── FILTER BAR ── */
+.filter-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 16px;position:sticky;top:60px;z-index:200}
+body.dark .filter-wrap{background:#161b27}
+.filter-inner{max-width:1100px;margin:0 auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.cat-btn{padding:6px 14px;border-radius:20px;font-size:.74rem;font-weight:700;border:1.5px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;transition:.18s;white-space:nowrap}
+body.dark .cat-btn{background:#1a2236;border-color:var(--border)}
+.cat-btn.active,.cat-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.search-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:0 12px;height:38px;flex:1;max-width:240px;min-width:0}
+body.dark .search-wrap{background:#111624}
+.search-wrap input{flex:1;border:none;background:transparent;font-size:.82rem;color:var(--text);outline:none;min-width:0;font-family:'Roboto',sans-serif}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+.sec{padding:32px 0 48px}
+.grid-layout{display:grid;grid-template-columns:1fr 288px;gap:24px;align-items:start}
+@media(max-width:860px){.grid-layout{grid-template-columns:1fr}}
+
+/* ── PINNED CARD ── */
+.pinned-wrap{margin-bottom:20px}
+.pinned-card{background:linear-gradient(135deg,var(--blue-deep),var(--blue));border-radius:16px;overflow:hidden;cursor:pointer;transition:.22s;box-shadow:0 8px 32px rgba(26,63,168,.2)}
+.pinned-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(26,63,168,.28)}
+.pinned-img{width:100%;max-height:360px;object-fit:contain;display:block;background:#0c1f6e}
+.pinned-img-ph{width:100%;height:180px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;font-size:3.5rem}
+.pinned-body{padding:20px 22px 22px}
+.pinned-badge{display:inline-flex;align-items:center;gap:5px;background:var(--orange);color:#fff;font-size:.62rem;font-weight:800;padding:3px 12px;border-radius:20px;margin-bottom:10px}
+.pinned-title{font-family:'Montserrat',sans-serif;font-size:clamp(1rem,2.5vw,1.25rem);font-weight:800;color:#fff;line-height:1.3;margin-bottom:8px}
+.pinned-preview{font-size:.8rem;color:rgba(255,255,255,.62);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px}
+.pinned-meta{font-size:.68rem;color:rgba(255,255,255,.42);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pinned-read{margin-left:auto;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);padding:6px 14px;border-radius:7px;font-size:.74rem;font-weight:700}
+
+/* ── NEWS CARDS ── */
+.news-list{display:flex;flex-direction:column;gap:12px}
+.news-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;display:flex;cursor:pointer;transition:.2s}
+body.dark .news-card{background:#161b27;border-color:var(--border)}
+.news-card:hover{box-shadow:var(--shadow);border-color:#bfdbfe;transform:translateY(-1px)}
+.nc-img{width:108px;min-width:108px;object-fit:cover;max-height:120px;background:var(--surface2)}
+body.dark .nc-img{opacity:.88}
+.nc-img-ph{width:108px;min-width:108px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:1.8rem;min-height:100px}
+body.dark .nc-img-ph{background:#1a2236}
+.nc-body{padding:13px 14px;flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.nc-cat{display:inline-block;font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:20px;align-self:flex-start}
+.nc-title{font-family:'Montserrat',sans-serif;font-size:.86rem;font-weight:800;color:var(--text);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nc-preview{font-size:.74rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nc-meta{font-size:.66rem;color:var(--muted);margin-top:auto;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.share-btn{margin-left:auto;background:none;border:none;color:var(--muted);font-size:.7rem;font-weight:700;cursor:pointer;padding:3px 7px;border-radius:6px;transition:.18s;flex-shrink:0}
+.share-btn:hover{background:var(--blue-lt);color:var(--blue)}
+
+/* ── PAGINATION ── */
+.pagination{display:flex;justify-content:center;gap:6px;margin-top:22px;flex-wrap:wrap}
+.pg-btn{padding:8px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);font-size:.76rem;font-weight:700;cursor:pointer;transition:.18s;min-width:40px;text-align:center}
+body.dark .pg-btn{background:#161b27}
+.pg-btn.active,.pg-btn:hover:not(.active){background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* ── SIDEBAR ── */
+.sb-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:14px}
+body.dark .sb-card{background:#161b27}
+.sb-title{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text);margin-bottom:12px;padding-bottom:9px;border-bottom:2px solid var(--surface2);display:flex;align-items:center;gap:6px}
+body.dark .sb-title{border-color:var(--border)}
+.sb-item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:.18s}
+.sb-item:last-child{border-bottom:none;padding-bottom:0}
+.sb-item:hover .sb-item-title{color:var(--blue)}
+.sb-num{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:800;color:var(--muted);flex-shrink:0;min-width:16px;padding-top:2px}
+.sb-thumb{width:52px;height:40px;border-radius:5px;object-fit:cover;flex-shrink:0}
+.sb-item-title{font-size:.78rem;font-weight:600;color:var(--text);line-height:1.3}
+.sb-item-meta{font-size:.62rem;color:var(--muted);margin-top:2px}
+.cat-tag{display:flex;align-items:center;justify-content:space-between;padding:8px 11px;border-radius:8px;background:var(--surface2);cursor:pointer;transition:.18s;font-size:.76rem;font-weight:600;margin-bottom:5px}
+body.dark .cat-tag{background:#1a2236}
+.cat-tag:hover{background:var(--blue-lt);color:var(--blue)}
+.cat-count{font-size:.66rem;font-weight:700;background:var(--border);color:var(--muted);padding:2px 7px;border-radius:10px}
+
+/* ── ARTICLE MODAL (full-screen slide) ── */
+.art-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(5,10,30,.6);backdrop-filter:blur(4px);align-items:flex-end;justify-content:center}
+.art-overlay.open{display:flex}
+@media(min-width:680px){.art-overlay{align-items:center;padding:16px}}
+.art-box{background:var(--surface);width:100%;max-width:740px;max-height:94vh;overflow-y:auto;border-radius:20px 20px 0 0;animation:slideUp .28s ease both;display:flex;flex-direction:column}
+body.dark .art-box{background:#161b27}
+@media(min-width:680px){.art-box{border-radius:18px;margin:auto}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.art-header{position:sticky;top:0;z-index:10;background:var(--surface);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:10px}
+body.dark .art-header{background:#161b27;border-color:var(--border)}
+.art-close{width:34px;height:34px;border-radius:8px;border:1.5px solid var(--border);background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+body.dark .art-close{background:#1a2236}
+.art-header-title{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text);flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.art-share-btn{background:var(--blue);color:#fff;border:none;padding:7px 14px;border-radius:7px;font-size:.76rem;font-weight:700;flex-shrink:0;display:flex;align-items:center;gap:5px}
+.art-hero-img{width:100%;max-height:360px;object-fit:contain;display:block;background:#f0f4ff}
+body.dark .art-hero-img{background:#1a2236}
+.art-body{padding:20px 22px 32px;flex:1}
+.art-cat{display:inline-block;font-size:.62rem;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:10px}
+.art-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.1rem,3vw,1.45rem);font-weight:800;color:var(--text);line-height:1.3;margin-bottom:10px}
+.art-meta{font-size:.72rem;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.art-content{font-size:.95rem;color:var(--text);line-height:1.9}
+.art-content p{margin:0 0 16px}
+.art-content p:last-child{margin-bottom:0}
+.art-content strong{font-weight:800;color:var(--text)}
+.art-content em{font-style:italic}
+.art-content ul,.art-content ol{margin:4px 0 16px;padding-left:22px}
+.art-content li{margin-bottom:7px}
+.art-content s{opacity:.6}
+.art-content code{background:var(--surface2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:.88em}
+.art-content blockquote{margin:0 0 16px;padding:10px 18px;border-left:3px solid var(--blue);background:var(--surface2);border-radius:0 8px 8px 0;font-style:italic;color:var(--muted)}
+.art-content h3.art-h{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;margin:20px 0 10px;color:var(--text)}
+.art-table-wrap{overflow-x:auto;margin:0 0 16px;-webkit-overflow-scrolling:touch}
+.art-table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:420px}
+.art-table th,.art-table td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+.art-table th{background:var(--surface2);font-weight:800}
+.art-table tr:nth-child(even) td{background:var(--surface2)}
+.art-content a{color:var(--blue);text-decoration:underline;word-break:break-word}
+
+/* ── LIKE / COPY-LINK ── */
+.art-actions{display:flex;align-items:center;gap:10px;margin:2px 0 18px;padding-bottom:16px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+@media(min-width:741px){.art-actions{position:sticky;top:0;z-index:5;background:var(--card);padding-top:10px;margin-top:-10px}}
+.like-btn{display:flex;align-items:center;gap:7px;background:var(--surface2);border:1.5px solid var(--border);color:var(--text);padding:8px 16px;border-radius:24px;font-size:.8rem;font-weight:700;transition:.18s}
+body.dark .like-btn{background:#1a2236}
+.like-btn:hover{border-color:#f472b6}
+.like-btn.liked{background:#fce7f3;border-color:#f472b6;color:#be185d}
+.like-btn .heart{font-size:.9rem}
+.copylink-btn{display:flex;align-items:center;gap:6px;background:var(--surface2);border:1.5px solid var(--border);color:var(--text);padding:8px 16px;border-radius:24px;font-size:.8rem;font-weight:700;transition:.18s}
+body.dark .copylink-btn{background:#1a2236}
+.copylink-btn:hover{border-color:var(--blue);color:var(--blue)}
+.share-social-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;background:var(--surface2);border:1.5px solid var(--border);color:var(--text);border-radius:50%;font-size:1rem;transition:.18s}
+body.dark .share-social-btn{background:#1a2236}
+.share-social-btn:hover{transform:translateY(-1px)}
+.share-social-btn.wa:hover{border-color:#25d366;color:#25d366}
+.share-social-btn.fb:hover{border-color:#1877f2;color:#1877f2}
+.share-social-btn.xt:hover{border-color:#000;color:#000}
+body.dark .share-social-btn.xt:hover{border-color:#fff;color:#fff}
+.art-tags{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0 6px}
+.art-tag-chip{font-size:.7rem;font-weight:700;background:var(--surface2);border:1px solid var(--border);padding:4px 12px;border-radius:20px;color:var(--muted)}
+.art-byline{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:10px 12px;background:var(--surface2);border-radius:10px;cursor:default}
+.art-byline img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.art-byline-name{font-size:.78rem;font-weight:800;color:var(--text)}
+.art-byline-toggle{margin-left:auto;flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .18s}
+.art-byline-toggle.open{transform:rotate(180deg)}
+.art-byline-bio{font-size:.74rem;color:var(--muted);line-height:1.6;padding:0 12px;max-height:0;overflow:hidden;transition:max-height .2s ease,padding .2s ease;margin:0 0 0}
+.art-byline-bio.open{max-height:200px;padding:10px 12px;margin-bottom:6px;background:var(--surface2);border-radius:0 0 10px 10px;margin-top:-6px}
+.back-to-top{display:none;position:sticky;bottom:18px;align-self:flex-end;margin-right:18px;width:42px;height:42px;flex-shrink:0;border-radius:50%;background:var(--blue);color:#fff;font-size:1.1rem;font-weight:800;box-shadow:0 6px 18px rgba(0,0,0,.25);z-index:6;border:0}
+.back-to-top.show{display:block}
+.art-related{margin-top:28px;padding-top:18px;border-top:2px solid var(--surface2)}
+.art-cancel-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:28px;padding:13px;background:var(--surface2);border:1.5px solid var(--border);border-radius:12px;font-size:.85rem;font-weight:700;color:var(--text);transition:.18s}
+.art-cancel-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+body.dark .art-related{border-color:var(--border)}
+.art-related-title{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--text);margin-bottom:12px}
+.rel-card{display:flex;align-items:flex-start;gap:10px;padding:10px 11px;background:var(--surface2);border-radius:9px;cursor:pointer;transition:.18s;margin-bottom:7px}
+body.dark .rel-card{background:#1a2236}
+.rel-card:hover{background:var(--blue-lt)}
+.rel-thumb{width:54px;height:42px;border-radius:6px;object-fit:cover;flex-shrink:0}
+.rel-title{font-size:.8rem;font-weight:700;color:var(--text);line-height:1.3}
+.rel-meta{font-size:.65rem;color:var(--muted);margin-top:3px}
+
+/* ── SKELETON LOADER ── */
+@keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+.skeleton-list{display:flex;flex-direction:column;gap:12px}
+.sk-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;display:flex}
+body.dark .sk-card{background:#161b27}
+.sk-img-block{width:108px;min-width:108px;height:100px;flex-shrink:0}
+.sk-body{padding:13px 14px;flex:1;display:flex;flex-direction:column;gap:9px;justify-content:center}
+.sk{background:linear-gradient(90deg,var(--border) 25%,var(--surface2) 50%,var(--border) 75%);background-size:600px 100%;animation:shimmer 1.4s infinite linear;border-radius:5px}
+body.dark .sk{background:linear-gradient(90deg,#2a3550 25%,#1a2236 50%,#2a3550 75%);background-size:600px 100%}
+.sk-h{height:14px}.sk-m{height:11px}.sk-s{height:10px}
+.sk-w100{width:100%}.sk-w80{width:80%}.sk-w60{width:60%}.sk-w40{width:40%}
+/* Pinned skeleton */
+.sk-pinned{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:20px}
+body.dark .sk-pinned{background:#161b27}
+.sk-pinned-img{height:200px;width:100%}
+.sk-pinned-body{padding:20px;display:flex;flex-direction:column;gap:10px}
+/* ── EMPTY ── */
+.empty{text-align:center;padding:56px 20px;color:var(--muted)}
+.empty .ei{font-size:2.5rem;margin-bottom:10px}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1e2749;color:#fff;padding:10px 20px;border-radius:30px;font-size:.8rem;font-weight:700;z-index:600;opacity:0;pointer-events:none;transition:opacity .25s;white-space:nowrap}
+.toast.show{opacity:1}
+
+/* ── FOOTER ── */
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.footer-brand img{width:36px;height:36px;border-radius:50%;border:2px solid #f97316}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-direction:column;gap:5px}
+.footer-links a{font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-support{font-size:.68rem;color:rgba(255,255,255,.4);text-align:center;margin-top:12px;line-height:1.7}
+.footer-support strong{color:rgba(255,255,255,.65)}
+.footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)}
+
+
+
+
+
+
+
+/* ── ICON SYSTEM (inline SVG sprite, replaces Font Awesome) ── */
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.icon-fill{fill:currentColor;stroke:none}
+.icon-dot{fill:currentColor;stroke:none}
+</style>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script>
+(function(){
+  try{
+    if(typeof firebase==='undefined') throw new Error('SDK not loaded');
+    if(!firebase.apps.length){
+      firebase.initializeApp({
+        apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',
+        authDomain:'big-quams-media.firebaseapp.com',
+        projectId:'big-quams-media'
+      });
+    }
+    const _db=firebase.firestore();
+    window._fsDb=_db;
+    window._fsLoadNews=async function(){
+      // Client-side cache: this is what actually stops a fresh Firestore
+      // read on EVERY page load/reload. Without it, each visit re-pulls
+      // the entire fs_news collection (28 reads at current size, no
+      // .limit() on the query) — that adds up fast across real traffic
+      // and was very likely the actual cause of the Spark-plan daily
+      // quota (50,000 reads/day) getting exhausted some days before the
+      // automation's own turn. This cache is per-browser (localStorage),
+      // so it doesn't need any coordination with the backend automation —
+      // it just means repeat loads from the SAME visitor within the TTL
+      // window reuse what's already on their device instead of asking
+      // Firestore again.
+      const CACHE_KEY='bqm_news_cache_v1';
+      const CACHE_TTL_MS=10*60*1000; // 10 minutes — adjust if you want fresher/cheaper
+      try{
+        const cachedRaw=localStorage.getItem(CACHE_KEY);
+        if(cachedRaw){
+          const cached=JSON.parse(cachedRaw);
+          if(cached&&Array.isArray(cached.data)&&(Date.now()-cached.ts)<CACHE_TTL_MS){
+            return cached.data;
+          }
+        }
+      }catch(e){ /* corrupt cache entry or storage unavailable/full — fall through to a fresh fetch */ }
+      try{
+        const s=await _db.collection('fs_news').orderBy('createdAt','desc').get();
+        const d=s.docs.map(doc=>({_id:doc.id,...doc.data()}));
+        if(d.length){
+          try{ localStorage.setItem(CACHE_KEY, JSON.stringify({data:d, ts:Date.now()})); }
+          catch(e){ /* storage full/unavailable — not fatal, just means no caching this time */ }
+          return d;
+        }
+      }catch(e){console.warn('Firebase fetch failed:',e.message);}
+      try{const r=await fetch('news.json?v='+Date.now());const d=await r.json();return d||[];}
+      catch(e){return [];}
+    };
+    // Anonymous auth — gives every visitor a stable uid (persisted across
+    // visits on the same browser) so likes can be tracked one-per-person
+    // in a subcollection, instead of trusting localStorage alone.
+    window._fsAuthReady=new Promise(resolve=>{
+      firebase.auth().onAuthStateChanged(user=>{
+        if(user){ window._fsUid=user.uid; resolve(user.uid); }
+      });
+      firebase.auth().signInAnonymously().catch(e=>{console.warn('Anon auth failed:',e.message); resolve(null);});
+    });
+    window._firebaseReady=true;
+    if(window._onFirebaseReady) window._onFirebaseReady();
+  }catch(e){
+    console.warn('Firebase init:',e.message);
+    // Still try JSON fallback
+    window._fsLoadNews=async function(){
+      try{const r=await fetch('news.json?v='+Date.now());const d=await r.json();return d||[];}
+      catch(e){return [];}
+    };
+    window._fsAuthReady=Promise.resolve(null);
+    window._firebaseReady=true;
+    if(window._onFirebaseReady) window._onFirebaseReady();
+  }
+})();
+</script>
+<link rel="canonical" href="https://bigquamsmedia.com.ng/newsroom.html">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="icon-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9"/></symbol><symbol id="icon-newspaper" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H7"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12.5" x2="13" y2="12.5"/><line x1="7" y1="16" x2="11" y2="16"/></symbol><symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></symbol><symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></symbol><symbol id="icon-graduation-cap" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5-10-5z"/><path d="M6 11v5c0 1 3 2 6 2s6-1 6-2v-5"/><path d="M22 9v6"/></symbol><symbol id="icon-book-open" viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8 4.5 4 5v13c4-.5 6.5 0 8 1.5V6.5z"/><path d="M12 6.5C13.5 5 16 4.5 20 5v13c-4-.5-6.5 0-8 1.5V6.5z"/></symbol><symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3z"/></symbol><symbol id="icon-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></symbol><symbol id="icon-bar-chart" viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></symbol><symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5 20 3"/><path d="M17 6l3 3"/><path d="M14 9l2.5 2.5"/></symbol><symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></symbol><symbol id="icon-landmark" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><path d="M3 10 12 4l9 6"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z"/></symbol><symbol id="icon-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z"/></symbol><symbol id="icon-clipboard-list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="12" y2="19"/></symbol><symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 4 1.5 5.5 2 6.5H4c.5-1 2-2.5 2-6.5z"/><path d="M10 19a2 2 0 0 0 4 0"/></symbol><symbol id="icon-x" viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></symbol><symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol><symbol id="icon-message-circle" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.4A8.6 8.6 0 0 1 8 19l-4 1 1.3-3.9A8.4 8.4 0 1 1 21 11.5z"/><line x1="8.5" y1="12" x2="8.5" y2="12"/><line x1="12" y1="12" x2="12" y2="12"/><line x1="15.5" y1="12" x2="15.5" y2="12"/></symbol><symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></symbol><symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22"/><line x1="4.2" y1="4.2" x2="6" y2="6"/><line x1="18" y1="18" x2="19.8" y2="19.8"/><line x1="2" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22" y2="12"/><line x1="4.2" y1="19.8" x2="6" y2="18"/><line x1="18" y1="6" x2="19.8" y2="4.2"/></symbol><symbol id="icon-building" viewBox="0 0 24 24"><rect x="5" y="3" width="9" height="18" rx="1"/><rect x="15" y="9" width="4" height="12" rx="1"/><line x1="8" y1="7" x2="8" y2="7"/><line x1="11" y1="7" x2="11" y2="7"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="11" y1="11" x2="11" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="11" y1="15" x2="11" y2="15"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.5.3 4.5 2.3 4.5 5.3"/></symbol><symbol id="icon-calendar-days" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="7" y1="14" x2="7" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="17" y1="14" x2="17" y2="14"/><line x1="7" y1="17.5" x2="7" y2="17.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-smartphone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18.5" x2="13" y2="18.5"/></symbol><symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.5-5.8"/><polyline points="20 4 20 8 16 8"/></symbol><symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><line x1="15.3" y1="15.3" x2="20" y2="20"/></symbol><symbol id="icon-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol><symbol id="icon-rocket" viewBox="0 0 24 24"><path d="M12 2c3 1 5.5 4 5.5 8.5 0 2-1 3.8-2.2 5.2l-1 3.8-2.3-1.8-2.3 1.8-1-3.8C7.5 14.3 6.5 12.5 6.5 10.5 6.5 6 9 3 12 2z"/><circle cx="12" cy="10" r="1.7"/><path d="M9 17.5 7 21l3-1"/><path d="M15 17.5 17 21l-3-1"/></symbol><symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 6.5 12 13l8-6.5"/></symbol><symbol id="icon-megaphone" viewBox="0 0 24 24"><path d="M3 10v4a1 1 0 0 0 1 1h2l7 4V5L6 9H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/><path d="M19.5 6.5a8 8 0 0 1 0 11"/></symbol><symbol id="icon-alert-triangle" viewBox="0 0 24 24"><path d="M12 3.5 22 20H2L12 3.5z"/><line x1="12" y1="10" x2="12" y2="14.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12.5 11 15.5 16 9"/></symbol><symbol id="icon-robot" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="2"/><line x1="9" y1="13" x2="9" y2="13"/><line x1="15" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><line x1="12" y1="5" x2="12" y2="8"/><circle cx="12" cy="3.5" r="1"/></symbol><symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 8.7c.2-.3.6-.6 1.1-.6.4 0 .6.3.9 1 .2.5.5 1.1.4 1.4-.1.4-.4.6-.7.9-.2.2-.3.4-.1.7.4.7 1 1.3 1.7 1.7.3.2.5.1.7-.1.3-.3.5-.6.9-.7.3-.1.9.2 1.4.4.7.3 1 .5 1 .9 0 .5-.3.9-.6 1.1-.6.4-1.4.5-2.2.2-1.6-.5-3.4-2.3-4.2-3.9-.4-.7-.5-1.4-.3-2z"/></symbol><symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17" y1="7" x2="17" y2="7"/></symbol><symbol id="icon-tiktok" viewBox="0 0 24 24"><path d="M13.5 3v11.2a3.3 3.3 0 1 1-2.8-3.3"/><path d="M13.5 3.2c.4 2.4 2.2 4.2 4.5 4.5"/></symbol><symbol id="icon-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="6 11 12 5 18 11"/></symbol><symbol id="icon-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></symbol><symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 4 14 11 14 9 22 20 9 13 9 13 2"/></symbol><symbol id="icon-champagne" viewBox="0 0 24 24"><path d="M6 3h5l-1 7a2.5 2.5 0 0 1-5 0z"/><path d="M13 5h5l-.8 6a2.5 2.5 0 0 1-4.9-.6"/><line x1="8.5" y1="15" x2="8.5" y2="21"/><line x1="6" y1="21" x2="11" y2="21"/><line x1="15.5" y1="12" x2="15.5" y2="21"/></symbol><symbol id="icon-x-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></symbol><symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></symbol><symbol id="icon-hourglass" viewBox="0 0 24 24"><path d="M6 3h12"/><path d="M6 21h12"/><path d="M7 3c0 4 3 5 5 6-2 1-5 2-5 6"/><path d="M17 3c0 4-3 5-5 6 2 1 5 2 5 6"/></symbol><symbol id="icon-link" viewBox="0 0 24 24"><path d="M8.5 12.5 6 15a3.5 3.5 0 0 0 5 5l2.5-2.5"/><path d="M15.5 11.5 18 9a3.5 3.5 0 0 0-5-5l-2.5 2.5"/><line x1="9" y1="15" x2="15" y2="9"/></symbol><symbol id="icon-map-pin" viewBox="0 0 24 24"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></symbol><symbol id="icon-edit" viewBox="0 0 24 24"><path d="M6 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6"/><path d="M20.4 4.6a1.9 1.9 0 0 1 0 2.7L13 15l-3.5.8L10.3 12l7.4-7.4a1.9 1.9 0 0 1 2.7 0z"/></symbol><symbol id="icon-chevron-down" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></symbol><symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M14 8.5h2.5V4.5h-2.5c-2.5 0-4 1.6-4 4v2.5H8v4h2.5V21h4v-8h2.7l.5-4h-3.2V9c0-.4.3-.5.5-.5z"/></symbol><symbol id="icon-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="18" cy="18" r="2.3"/><line x1="8" y1="10.8" x2="16" y2="7.2"/><line x1="8" y1="13.2" x2="16" y2="16.8"/></symbol><symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-10-9.3C.5 8 2 4.5 5.5 4c2-.3 3.8.6 5 2.2C11.7 4.6 13.5 3.7 15.5 4 19 4.5 20.5 8 19 11.2c-2.5 4.7-7 9.3-7 9.3z"/></symbol><symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></symbol><symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></symbol><symbol id="icon-pin" viewBox="0 0 24 24"><path d="M9 4h6"/><path d="M10 4v5.5L7 12h10l-3-2.5V4"/><line x1="12" y1="12" x2="12" y2="21"/></symbol><symbol id="icon-flame" viewBox="0 0 24 24"><path d="M12 2c1 3-2 4-2 7a3 3 0 0 0 6 0c0-1-.5-2-.5-2 2 1 3 3 3 5.5A6.5 6.5 0 0 1 12 19a6.5 6.5 0 0 1-6.5-6.5C5.5 8 8 6 9 4c.5 2 1 2.5 1.5 2.5S12 5 12 2z"/></symbol><symbol id="icon-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v1H5.5a2 2 0 0 0-1.9 1.4L2 17V7z"/><path d="M2.3 17.3 4.3 10a2 2 0 0 1 1.9-1.4H21l-2.2 7.7A2 2 0 0 1 16.9 18H4a2 2 0 0 1-1.7-2.7z"/></symbol></defs></svg>
+<header>
+  <div class="hbar">
+    <a href="index.html" class="logo-link">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
+      <div><span class="logo-name">Big Quams Media®</span><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
+    </a>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="newsroom.html" class="active">Newsroom</a>
+      <a href="explore.html">Explore</a>
+      <a href="elibrary.html">eLibrary</a>
+      <a href="scholarship.html">Scholarships</a>
+      <a href="index.html#contact" class="nav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-message-circle"></use></svg> Contact</a>
+    </nav>
+    <button type="button" class="hdr-btn" id="darkBtn" onclick="toggleDark()" aria-label="Switch to dark mode"><svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg></button>
+    <button type="button" class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay" onclick="toggleNav()"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <div class="mnav-header">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="https://bigquamsmedia.com.ng/logo.png" style="width:34px;height:34px;border-radius:50%;border:2px solid #f97316">
+      <div style="font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff">BIG QUAMS MEDIA®</div>
+    </div>
+    <button type="button" class="mnav-close" onclick="toggleNav()" aria-label="Close menu"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
+  </div>
+  <div class="mnav-lbl">Main</div>
+  <a href="index.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a>
+  <a href="newsroom.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a>
+  <a href="explore.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore All Tools</a>
+  <div class="mnav-lbl">Resources</div>
+  <a href="elibrary.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a>
+  <a href="scholarship.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a>
+  <a href="student-loan.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan</a>
+  <a href="spotlight.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a>
+  <div class="mnav-lbl">Exam Tools</div>
+  <a href="cbt.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a>
+  <a href="practice-test.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> Big Quams Practice Test</a>
+  <a href="postutme-prep.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a>
+  <a href="postutme-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calc</a>
+  <a href="gpa-calculator.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a>
+  <a href="results.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a>
+  <div class="mnav-lbl">Community</div>
+  <a href="dyk.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a>
+  <a href="community.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community Hub</a>
+  <a href="campus-life.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a>
+  <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener" class="mnav-cta"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Stay Informed</div>
+    <h1>BQM <span>Newsroom</span></h1>
+    <p>Latest updates on JAMB, Post-UTME, scholarships, campus news and everything Nigerian students need to know.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num" id="heroTotal">—</div><div class="hero-stat-lbl">Articles</div></div>
+      <div class="hero-stat"><div class="hero-stat-num" id="heroCats">—</div><div class="hero-stat-lbl">Categories</div></div>
+      <div class="hero-stat"><div class="hero-stat-num" id="heroPinned">—</div><div class="hero-stat-lbl">Featured</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-wrap" id="filterWrap">
+  <div class="filter-inner">
+    <button type="button" class="cat-btn active" onclick="setCategory('',this)">All</button>
+    <button type="button" class="cat-btn" onclick="setCategory('JAMB Update',this)">JAMB</button>
+    <button type="button" class="cat-btn" onclick="setCategory('Scholarship',this)">Scholarship</button>
+    <button type="button" class="cat-btn" onclick="setCategory('Admission Guide',this)">Admission</button>
+    <button type="button" class="cat-btn" onclick="setCategory('Campus News',this)">Campus</button>
+    <button type="button" class="cat-btn" onclick="setCategory('Announcement',this)">BQM News</button>
+    <div class="search-wrap">
+      <span style="font-size:.8rem;color:var(--muted)"><svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg></span>
+      <input type="text" id="newsSearch" placeholder="Search articles…" oninput="render()" autocomplete="off">
+    </div>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="grid-layout">
+      <!-- MAIN FEED -->
+      <div>
+        <div id="pinnedWrap" class="pinned-wrap">
+  <div class="sk-pinned" id="skPinned"><div class="sk-img-block sk sk-pinned-img"></div><div class="sk-pinned-body"><div class="sk sk-s sk-w40" style="margin-bottom:4px"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
+</div>
+        <div id="newsList" class="news-list">
+  <div class="skeleton-list" id="skeletonLoader">
+    <div class="sk-card"><div class="sk-img-block sk"></div><div class="sk-body"><div class="sk sk-s sk-w40"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
+    <div class="sk-card"><div class="sk-img-block sk"></div><div class="sk-body"><div class="sk sk-s sk-w40"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
+    <div class="sk-card"><div class="sk-img-block sk"></div><div class="sk-body"><div class="sk sk-s sk-w40"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
+    <div class="sk-card"><div class="sk-img-block sk"></div><div class="sk-body"><div class="sk sk-s sk-w40"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
+    <div class="sk-card"><div class="sk-img-block sk"></div><div class="sk-body"><div class="sk sk-s sk-w40"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
+    <div class="sk-card"><div class="sk-img-block sk"></div><div class="sk-body"><div class="sk sk-s sk-w40"></div><div class="sk sk-h sk-w100"></div><div class="sk sk-m sk-w80"></div><div class="sk sk-s sk-w60"></div></div></div>
+  </div>
+</div>
+        <div class="pagination" id="pagination"></div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside>
+        <div class="sb-card">
+          <div class="sb-title"><svg class="icon" aria-hidden="true"><use href="#icon-flame"></use></svg> Most Recent</div>
+          <div id="recentList"></div>
+        </div>
+        <div class="sb-card">
+          <div class="sb-title"><svg class="icon" aria-hidden="true"><use href="#icon-folder"></use></svg> Browse by Category</div>
+          <div id="catList"></div>
+        </div>
+        <div class="sb-card" style="background:linear-gradient(135deg,#064e3b,#065f46);border-color:#065f46">
+          <div style="font-family:'Montserrat',sans-serif;font-size:.84rem;font-weight:800;color:#fff;margin-bottom:6px"><svg class="icon" aria-hidden="true"><use href="#icon-message-circle"></use></svg> Join Our Community</div>
+          <div style="font-size:.74rem;color:rgba(255,255,255,.62);margin-bottom:14px;line-height:1.5">Get news alerts before anyone else. 10,000+ students already in.</div>
+          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#fff;padding:10px;border-radius:8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.8rem">Join Brainy Buddies →</a>
+        </div>
+        <div class="sb-card" style="background:linear-gradient(135deg,#1e3a5f,#1a3fa8);border:none">
+          <div style="font-size:.72rem;font-weight:800;color:#fdba74;margin-bottom:6px;font-family:'Montserrat',sans-serif"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Get Notified First</div>
+          <div style="font-size:.74rem;color:rgba(255,255,255,.62);margin-bottom:12px;line-height:1.5">Install BQM on your phone for instant scholarship & JAMB alerts.</div>
+          <a href="index.html#install-app" style="display:flex;align-items:center;justify-content:center;gap:6px;background:var(--orange);color:#fff;padding:9px;border-radius:8px;font-weight:800;font-size:.76rem"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Install App</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE MODAL -->
+<div class="art-overlay" id="artOverlay" onclick="handleOverlayClick(event)">
+  <div class="art-box" id="artBox">
+    <div class="art-header">
+      <button type="button" class="art-close" onclick="closeArticle()" title="Close" aria-label="Close article"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
+      <div class="art-header-title" id="artHeaderTitle">Article</div>
+      <button type="button" class="art-share-btn" onclick="shareArticle()"><svg class="icon" aria-hidden="true"><use href="#icon-share"></use></svg> Share</button>
+    </div>
+    <div id="artContent"></div>
+    <button type="button" class="back-to-top" id="backToTopBtn" onclick="scrollArtToTop()" title="Back to top" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="#icon-arrow-up"></use></svg></button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
+      <div>
+        <div class="footer-brand-name">Big Quams Media®</div>
+        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Nigeria's Trusted Student Platform</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="index.html"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a>
+          <a href="newsroom.html"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a>
+          <a href="explore.html"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore Tools</a>
+          <a href="campus-life.html"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a>
+          <a href="community.html"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community</a>
+          <a href="profile.html" onclick="toggleNav()"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> My Profile</a>
+  <a href="daily.html"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="cbt.html"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a>
+          <a href="postutme-prep.html"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a>
+          <a href="postutme-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calc</a>
+          <a href="gpa-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a>
+          <a href="results.html"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a>
+          <a href="Jamb_Profile_Code.html"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="elibrary.html"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a>
+          <a href="scholarship.html"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a>
+          <a href="student-loan.html"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan</a>
+          <a href="spotlight.html"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a>
+          <a href="dyk.html"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a>
+          <a href="subject-combo.html"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
+        <div class="footer-links" style="flex-direction:column;gap:5px">
+          <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> WhatsApp Us</a>
+          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Join Group</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg> Instagram</a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-tiktok"></use></svg> TikTok</a>
+          <a href="index.html#install-app"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Install App</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-support"><strong>Big Quams Media</strong> +2349049871643 · <strong>Big Quams Campus Support</strong> +2348069821664</div>
+    <div class="footer-copy">© <span id="yr"></span> Big Quams Media® · All rights reserved · Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Dark mode ──
+(function(){const s=localStorage.getItem('bqm-theme');if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.body.classList.add('dark');})();
+function toggleDark(){document.body.classList.toggle('dark');const d=document.body.classList.contains('dark');localStorage.setItem('bqm-theme',d?'dark':'light');const btn=document.getElementById('darkBtn');btn.innerHTML=d?'<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>':'<svg class="icon" aria-hidden="true"><use href="#icon-moon"></use></svg>';btn.setAttribute('aria-label',d?'Switch to light mode':'Switch to dark mode');}
+document.addEventListener('DOMContentLoaded',()=>{
+  if(document.body.classList.contains('dark')){const btn=document.getElementById('darkBtn');btn.innerHTML='<svg class="icon" aria-hidden="true"><use href="#icon-sun"></use></svg>';btn.setAttribute('aria-label','Switch to light mode');}
+  document.getElementById('yr').textContent=new Date().getFullYear();
+});
+
+// ── Mobile nav ──
+function toggleNav(){
+  const n=document.getElementById('mobileNav'),o=document.getElementById('navOverlay'),h=document.getElementById('hamburger');
+  const open=n.classList.toggle('open');o.classList.toggle('show');h.classList.toggle('open');
+  h.setAttribute('aria-expanded',String(open));
+  document.body.style.overflow=open?'hidden':'';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeArticle();const nav=document.getElementById('mobileNav');if(nav.classList.contains('open'))toggleNav();}});
+
+// ── State ──
+const PER_PAGE=12;
+let allNews=[],filteredNews=[],currentCat='',currentPage=0,currentIdx=-1;
+const SITE_ORIGIN='https://bigquamsmedia.com.ng';
+const GLOBAL_NEWS_DEFAULT_IMAGE=SITE_ORIGIN+'/newsroom-default.png'; // Newsroom-wide fallback
+const SITE_DEFAULT_IMAGE=SITE_ORIGIN+'/bigquamsmedia.png'; // Final fallback (main site image)
+let categoryDefaultImages={}; // loaded from fs_config/category_defaults
+
+// Fallback hierarchy for the image used in link previews (also used by
+// scripts/generate-news-pages.mjs at build time — keep both in sync):
+// 1. Manually selected Link Preview Image (n.previewImage)
+// 2. Featured Image, if "use featured as preview" is on (n.useFeaturedAsPreview !== false, and n.image set)
+// 3. Category-specific default (categoryDefaultImages[n.category])
+// 4. Global Newsroom default image
+// 5. Main website/site default image
+function resolvePreviewImage(n){
+  if(n.previewImage) return n.previewImage;
+  if(n.useFeaturedAsPreview!==false && n.image) return n.image;
+  if(n.category && categoryDefaultImages[n.category]) return categoryDefaultImages[n.category];
+  if(categoryDefaultImages.__global__) return categoryDefaultImages.__global__;
+  return GLOBAL_NEWS_DEFAULT_IMAGE || SITE_DEFAULT_IMAGE;
+}
+window.resolvePreviewImage=resolvePreviewImage;
+
+async function loadCategoryDefaultImages(){
+  try{
+    if(!window._fsDb) return;
+    const doc=await window._fsDb.collection('fs_config').doc('category_defaults').get();
+    if(doc.exists) categoryDefaultImages=doc.data()||{};
+  }catch(e){ console.warn('Category defaults load failed:',e.message); }
+}
+
+// ── Category colours ──
+const CAT_COLORS={
+  'JAMB Update':'#dbeafe,#1d4ed8','Campus News':'#dcfce7,#15803d',
+  'Scholarship':'#fef9c3,#92400e','Admission Guide':'#ede9fe,#6d28d9',
+  'Services':'#f0fdf4,#16a34a','Lifestyle':'#fce7f3,#9d174d',
+  'Announcement':'#dbeafe,#1d4ed8','NELFUND':'#cffafe,#0e7490'
+};
+function catStyle(c){const v=CAT_COLORS[c]||'#f0f4ff,#1a3fa8';const[bg,col]=v.split(',');return`background:${bg};color:${col}`;}
+
+// ── Helpers ──
+function readingTime(txt){return Math.max(1,Math.round((txt||'').split(/\s+/).filter(Boolean).length/200));}
+function stripHtml(t){return(t||'').replace(/<[^>]*>/g,'');}
+function plainPreview(t){return stripHtml(t).replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/[*_~`]/g,'').replace(/^>\s?/gm,'').replace(/^[-•]\s+/gm,'').replace(/^\d+[.)]\s+/gm,'').replace(/\s+/g,' ').trim();}
+// Standard news-site practice: use the article's lead sentence as the
+// auto-generated share/meta description, rather than an arbitrary
+// character slice — lands on a clean sentence boundary instead of cutting
+// off mid-word. Mirrors firstSentenceExcerpt() in generate-news-pages.mjs.
+function firstSentenceExcerpt(t,hardCap){
+  hardCap=hardCap||320;
+  const clean=plainPreview(t);
+  if(!clean) return '';
+  const m=/[.!?](?:\s|$)/.exec(clean);
+  if(m){
+    const end=m.index+1;
+    if(end>=20&&end<=hardCap) return clean.slice(0,end).trim();
+  }
+  if(clean.length<=hardCap) return clean;
+  const truncated=clean.slice(0,hardCap);
+  const lastSpace=truncated.lastIndexOf(' ');
+  return (lastSpace>40?truncated.slice(0,lastSpace):truncated).trim();
+}
+function linkify(t){
+  if(!t) return '';
+  const esc=t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return esc.replace(/(https?:\/\/[^\s<>"']+)/g,u=>`<a href="${u}" target="_blank" rel="noopener">${u}</a>`);
+}
+
+// ── WhatsApp-style body → professional web typography ──
+// Supports: *bold*, _italic_, [text](url) links, bare URLs, "- "/"• " bullet
+// lists, "1. " numbered lists, and blank-line-separated paragraphs.
+function preprocessPastedHtml(raw){
+  // Convert raw pasted <a href="URL">text</a> tags (common when copying from
+  // web pages) into clean markdown links so they render correctly, instead
+  // of leaking raw HTML into the article body.
+  let t=raw.replace(/<a\s+[^>]*?href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi,(m,url,txt)=>{
+    const clean=txt.replace(/<[^>]+>/g,'').trim();
+    return `[${clean||url}](${url})`;
+  });
+  // Strip any other stray HTML tags that slipped in via paste (keep the text).
+  t=t.replace(/<\/?[a-z][^>]*>/gi,'');
+  return t;
+}
+
+// ── WhatsApp-style body → professional web typography ──
+// Supports: *bold*, _italic_, ~strike~, `mono`, [text](url) links, bare
+// URLs, "## " headings, "> " quotes, "- "/"• " bullets, "1. " numbered
+// lists, simple "| a | b |" tables, and blank-line-separated paragraphs.
+function formatArticleBody(raw){
+  if(!raw) return '';
+  raw=preprocessPastedHtml(raw);
+  const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const isValidUrl=u=>{try{const p=new URL(u);return p.protocol==='http:'||p.protocol==='https:';}catch(e){return false;}};
+  const inline=line=>{
+    let t=esc(line);
+    t=t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,(m,txt,url)=>isValidUrl(url)?`<a href="${url}" target="_blank" rel="noopener">${txt}</a>`:m);
+    t=t.replace(/(https?:\/\/[^\s<>"']+)/g,u=>u.match(/^<a /)||!isValidUrl(u)?u:`<a href="${u}" target="_blank" rel="noopener">${u}</a>`);
+    t=t.replace(/`([^`\n]+)`/g,'<code>$1</code>');
+    t=t.replace(/\*([^\*\n]+)\*/g,'<strong>$1</strong>');
+    t=t.replace(/_([^_\n]+)_/g,'<em>$1</em>');
+    t=t.replace(/~([^~\n]+)~/g,'<s>$1</s>');
+    return t;
+  };
+  const isTableRow=l=>/^\|.*\|$/.test(l.trim());
+  const isTableSep=l=>/^\|?[\s:|-]+\|?$/.test(l.trim())&&l.includes('-');
+  const parseRow=l=>l.trim().replace(/^\||\|$/g,'').split('|').map(c=>c.trim());
+  const lines=raw.replace(/\r\n/g,'\n').split('\n');
+  let html='',buf=[],mode=null; // null|'ul'|'ol'|'p'|'bq'
+  const flush=()=>{
+    if(!buf.length){mode=null;return;}
+    if(mode==='ul') html+='<ul>'+buf.map(l=>`<li>${inline(l)}</li>`).join('')+'</ul>';
+    else if(mode==='ol') html+='<ol>'+buf.map(l=>`<li>${inline(l)}</li>`).join('')+'</ol>';
+    else if(mode==='bq') html+='<blockquote>'+buf.map(inline).join('<br>')+'</blockquote>';
+    else html+=`<p>${buf.map(inline).join('<br>')}</p>`;
+    buf=[];mode=null;
+  };
+  for(let i=0;i<lines.length;i++){
+    const line=lines[i],t=line.trim();
+    if(!t){flush();continue;}
+    // Table block: a header row immediately followed by a separator row
+    if(isTableRow(t)&&lines[i+1]&&isTableSep(lines[i+1])){
+      flush();
+      const header=parseRow(t);
+      let j=i+2,rows=[];
+      while(j<lines.length&&isTableRow(lines[j].trim())){rows.push(parseRow(lines[j]));j++;}
+      html+='<div class="art-table-wrap"><table class="art-table"><thead><tr>'+
+        header.map(h=>`<th>${inline(h)}</th>`).join('')+'</tr></thead><tbody>'+
+        rows.map(r=>'<tr>'+r.map(c=>`<td>${inline(c||'')}</td>`).join('')+'</tr>').join('')+
+        '</tbody></table></div>';
+      i=j-1; continue;
+    }
+    const heading=/^#{2,3}\s+(.*)/.exec(t);
+    const bullet=/^[-•]\s+(.*)/.exec(t);
+    const numbered=/^\d+[.)]\s+(.*)/.exec(t);
+    const quote=/^>\s?(.*)/.exec(t);
+    if(heading){ flush(); html+=`<h3 class="art-h">${inline(heading[1])}</h3>`; }
+    else if(bullet){ if(mode&&mode!=='ul') flush(); mode='ul'; buf.push(bullet[1]); }
+    else if(numbered){ if(mode&&mode!=='ol') flush(); mode='ol'; buf.push(numbered[1]); }
+    else if(quote){ if(mode&&mode!=='bq') flush(); mode='bq'; buf.push(quote[1]); }
+    else { if(mode&&mode!=='p') flush(); mode='p'; buf.push(t); }
+  }
+  flush();
+  return html;
+}
+function makeSlug(title){
+  return(title||'').toLowerCase().replace(/['\u2018\u2019]/g,'').replace(/[^a-z0-9\s-]/g,' ').trim().replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'').substring(0,70);
+}
+function articleUrl(item){
+  const slug=item.slug||makeSlug(item.title||'');
+  const id=item._id||'';
+  const seg=slug+(id?'--'+id:'');
+  // Canonical, shareable, crawlable URL — a real static page generated by
+  // scripts/generate-news-pages.mjs, NOT the SPA's hash route. Social
+  // crawlers (WhatsApp/Facebook/X) never run JS, so this path must serve
+  // real <meta> tags in its raw HTML — see /news/<slug--id>/index.html.
+  return SITE_ORIGIN+'/news/'+seg+'/';
+}
+
+// ── Author profiles (for byline photo + bio) — loaded once, cached by nickname ──
+// Reads from fs_author_profiles, a public-safe subset (nickname/photo/bio
+// only) kept in sync by admin.html. Deliberately NOT reading admin_profiles
+// here — that collection also holds each admin's email and role, and must
+// stay admin-only readable.
+window._authorProfileCache=null;
+async function getAuthorProfile(authorName){
+  if(!authorName) return null;
+  try{
+    if(!window._authorProfileCache){
+      if(!window._fsDb) return null;
+      const snap=await window._fsDb.collection('fs_author_profiles').get();
+      window._authorProfileCache={};
+      snap.docs.forEach(d=>{
+        const data=d.data();
+        const name=data.nickname;
+        if(name) window._authorProfileCache[name]=data;
+      });
+    }
+    return window._authorProfileCache[authorName]||null;
+  }catch(e){ console.warn('Author profile fetch failed:',e.message); return null; }
+}
+
+// ── Toast ──
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+
+function toggleAuthorBio(bylineEl){
+  if(!bylineEl) return;
+  const btn=bylineEl.querySelector('.art-byline-toggle');
+  const bioEl=bylineEl.nextElementSibling;
+  if(!bioEl||!bioEl.classList.contains('art-byline-bio')) return;
+  const open=bioEl.classList.toggle('open');
+  if(btn) btn.classList.toggle('open',open);
+}
+window.toggleAuthorBio=toggleAuthorBio;
+
+// ── Like / unlike — one like per person, enforced server-side ──
+// Each article has a `likes/{uid}` subcollection; a visitor's like/unlike is
+// a document create/delete there, and the aggregate `likes` count on the
+// article only moves in lockstep with it (Firestore rules require both to
+// happen in the same transaction — see firestore.rules).
+async function checkLiked(id){
+  try{
+    const uid=await window._fsAuthReady;
+    if(!uid||!window._fsDb) return false;
+    const snap=await window._fsDb.collection('fs_news').doc(id).collection('likes').doc(uid).get();
+    return snap.exists;
+  }catch(e){ console.warn('Like status check failed:',e.message); return false; }
+}
+async function toggleLike(id){
+  if(!id) return;
+  const btn=document.getElementById('likeBtn'),cntEl=document.getElementById('likeCount');
+  if(!btn) return;
+  const wasLiked=btn.classList.contains('liked');
+  const delta=wasLiked?-1:1;
+  const n=allNews.find(x=>x._id===id);
+  // Optimistic UI
+  if(n){n.likes=(n.likes||0)+delta; if(n.likes<0)n.likes=0;}
+  btn.classList.toggle('liked',!wasLiked);
+  btn.querySelector('.heart').classList.toggle('icon-fill',!wasLiked);
+  if(cntEl&&n) cntEl.textContent=n.likes;
+  btn.disabled=true;
+  try{
+    const uid=await window._fsAuthReady;
+    if(!uid||!window._fsDb) throw new Error('offline or not signed in');
+    const newsRef=window._fsDb.collection('fs_news').doc(id);
+    const likeRef=newsRef.collection('likes').doc(uid);
+    await window._fsDb.runTransaction(async tx=>{
+      const likeSnap=await tx.get(likeRef);
+      if(likeSnap.exists){
+        tx.delete(likeRef);
+        tx.update(newsRef,{likes:firebase.firestore.FieldValue.increment(-1)});
+      } else {
+        tx.set(likeRef,{likedAt:firebase.firestore.FieldValue.serverTimestamp()});
+        tx.update(newsRef,{likes:firebase.firestore.FieldValue.increment(1)});
+      }
+    });
+  }catch(e){
+    console.warn('Like sync failed:',e.message);
+    // Roll back — the like didn't actually save
+    if(n){n.likes=(n.likes||0)-delta; if(n.likes<0)n.likes=0;}
+    btn.classList.toggle('liked',wasLiked);
+    btn.querySelector('.heart').classList.toggle('icon-fill',wasLiked);
+    if(cntEl&&n) cntEl.textContent=n.likes;
+    showToast('Could not save like — check your connection');
+  }finally{
+    btn.disabled=false;
+  }
+}
+window.toggleLike=toggleLike;
+
+// ── View counting (once per session per article) ──
+function viewedIds(){try{return JSON.parse(sessionStorage.getItem('bqm-viewed')||'[]');}catch(e){return [];}}
+async function recordView(id){
+  if(!id) return;
+  const ids=viewedIds();
+  if(ids.includes(id)) return; // already counted this session
+  ids.push(id);
+  sessionStorage.setItem('bqm-viewed',JSON.stringify(ids));
+  const n=allNews.find(x=>x._id===id);
+  if(n) n.views=(n.views||0)+1;
+  const vEl=document.getElementById('viewCount');
+  if(vEl&&n) vEl.textContent=n.views;
+  try{
+    if(!window._fsDb) throw new Error('offline');
+    await window._fsDb.collection('fs_news').doc(id).update({views:firebase.firestore.FieldValue.increment(1)});
+  }catch(e){console.warn('View sync failed:',e.message);}
+}
+window.recordView=recordView;
+
+function copyArticleLinkOnly(){
+  if(currentIdx<0) return;
+  const url=articleUrl(allNews[currentIdx]);
+  navigator.clipboard.writeText(url).then(()=>showToast('✓ Link copied')).catch(()=>showToast('✓ '+url));
+}
+window.copyArticleLinkOnly=copyArticleLinkOnly;
+
+// ── Social share — headline + short excerpt + link only, never the whole article ──
+function shareText(n){
+  const excerpt=firstSentenceExcerpt(n.fullContent||'',140);
+  return `${n.title} — ${excerpt}`;
+}
+function shareTo(platform){
+  if(currentIdx<0) return;
+  const n=allNews[currentIdx];
+  const url=articleUrl(n);
+  const text=shareText(n);
+  let shareUrl='';
+  if(platform==='whatsapp') shareUrl='https://wa.me/?text='+encodeURIComponent(text+' '+url);
+  else if(platform==='facebook') shareUrl='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url);
+  else if(platform==='x') shareUrl='https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent(url);
+  if(shareUrl) window.open(shareUrl,'_blank','noopener,width=600,height=520');
+}
+window.shareTo=shareTo;
+
+// ── Back to top (inside the article scroll box) ──
+function scrollArtToTop(){
+  const box=document.getElementById('artBox');
+  if(box) box.scrollTo({top:0,behavior:'smooth'});
+}
+window.scrollArtToTop=scrollArtToTop;
+(function(){
+  const box=document.getElementById('artBox');
+  if(!box) return;
+  box.addEventListener('scroll',()=>{
+    const btn=document.getElementById('backToTopBtn');
+    if(btn) btn.classList.toggle('show',box.scrollTop>500);
+  });
+})();
+
+// ── Init ──
+async function init(){
+  try{
+    allNews=await window._fsLoadNews();
+    loadCategoryDefaultImages(); // non-blocking
+    // Sort: pinned first, then newest
+    allNews.sort((a,b)=>{
+      if(a.pinned&&!b.pinned) return -1;
+      if(!a.pinned&&b.pinned) return 1;
+      return 0;
+    });
+    // Clear skeletons
+    document.getElementById('skPinned').remove();
+    document.getElementById('skeletonLoader').remove();
+    updateHeroStats();
+    buildSidebar();
+    render();
+    // Handle direct article link via hash e.g. #unilorin-bans-dress--Ab3xFire9Kp
+    // Also supports the canonical /news/<slug--id>/ path (in case this SPA
+    // is ever loaded there directly instead of via the generated static
+    // redirect page) and legacy ?id= ?slug= ?article= params.
+    let target=null;
+    let hash=location.hash.replace('#','').trim();
+    if(!hash){
+      const pathMatch=location.pathname.match(/\/news\/([^\/]+)\/?$/);
+      if(pathMatch) hash=decodeURIComponent(pathMatch[1]);
+    }
+    if(hash){
+      // Try extracting --id suffix first (most reliable)
+      const dashIdx=hash.lastIndexOf('--');
+      const hashId=dashIdx>-1?hash.substring(dashIdx+2):'';
+      const hashSlug=dashIdx>-1?hash.substring(0,dashIdx):hash;
+      if(hashId) target=allNews.find(n=>n._id===hashId);
+      if(!target&&hashSlug) target=allNews.find(n=>(n.slug||makeSlug(n.title||''))===hashSlug);
+    }
+    if(!target){
+      const p=new URLSearchParams(location.search);
+      const id=p.get('id'),slug=p.get('slug'),legacyIdx=p.get('article');
+      if(id) target=allNews.find(n=>n._id===id);
+      else if(slug) target=allNews.find(n=>(n.slug||makeSlug(n.title||''))===slug);
+      else if(legacyIdx!==null) target=allNews[parseInt(legacyIdx)];
+    }
+    if(target) openArticle(allNews.indexOf(target));
+    // Listen for hash changes (browser back/forward)
+    window.addEventListener('hashchange',()=>{
+      const h=location.hash.replace('#','').trim();
+      if(!h){closeArticle();return;}
+      const di=h.lastIndexOf('--');
+      const hId=di>-1?h.substring(di+2):'';
+      const hSlug=di>-1?h.substring(0,di):h;
+      let t=hId?allNews.find(n=>n._id===hId):null;
+      if(!t) t=allNews.find(n=>(n.slug||makeSlug(n.title||''))===hSlug);
+      if(t) openArticle(allNews.indexOf(t));
+    });
+  }catch(e){
+    document.getElementById('skPinned')&&document.getElementById('skPinned').remove();
+    document.getElementById('newsList').innerHTML='<div class="empty"><div class="ei"><svg class="icon" aria-hidden="true"><use href="#icon-alert-triangle"></use></svg></div><p>Could not load articles. Please try again.</p></div>';
+  }
+}
+
+// Wait for Firebase compat SDK to be ready before calling init
+if(window._firebaseReady){
+  init();
+} else {
+  window._onFirebaseReady=init;
+}
+
+function updateHeroStats(){
+  const cats=new Set(allNews.map(n=>n.category).filter(Boolean));
+  document.getElementById('heroTotal').textContent=allNews.length+'+';
+  document.getElementById('heroCats').textContent=cats.size;
+  document.getElementById('heroPinned').textContent=allNews.filter(n=>n.pinned).length;
+}
+
+// ── Sidebar ──
+function buildSidebar(){
+  // Recent 5
+  document.getElementById('recentList').innerHTML=allNews.slice(0,5).map((n,i)=>`
+    <div class="sb-item" onclick="openArticle(${allNews.indexOf(n)})">
+      <div class="sb-num">${i+1}</div>
+      ${n.image?`<img class="sb-thumb" src="${n.image}" alt="${n.title}" loading="lazy">`:''}
+      <div>
+        <div class="sb-item-title">${n.title}</div>
+        <div class="sb-item-meta">${n.category||''} · ${n.date||''}</div>
+      </div>
+    </div>`).join('');
+  // Categories
+  const cats={};
+  allNews.forEach(n=>{const c=n.category||'General';cats[c]=(cats[c]||0)+1;});
+  document.getElementById('catList').innerHTML=Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([c,count])=>`
+    <div class="cat-tag" onclick="setCategory('${c}',null)">
+      <span>${c}</span><span class="cat-count">${count}</span>
+    </div>`).join('');
+}
+
+// ── Category filter ──
+function setCategory(cat,btn){
+  currentCat=cat; currentPage=0;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  else document.querySelectorAll('.cat-btn')[0].classList.add('active');
+  render();
+}
+
+// ── Render ──
+function render(){
+  const q=(document.getElementById('newsSearch').value||'').toLowerCase().trim();
+  filteredNews=allNews.filter(n=>{
+    const matchCat=!currentCat||(n.category||'')===currentCat;
+    const matchQ=!q||((n.title||'')+(n.category||'')+stripHtml(n.fullContent||'').substring(0,300)).toLowerCase().includes(q);
+    return matchCat&&matchQ;
+  });
+
+  const pinned=filteredNews.filter(n=>n.pinned&&!currentCat&&!q);
+  const regular=filteredNews.filter(n=>!n.pinned||(currentCat||q));
+  const pageItems=regular.slice(currentPage*PER_PAGE,(currentPage+1)*PER_PAGE);
+
+  // Pinned hero card
+  const pw=document.getElementById('pinnedWrap');
+  if(pinned.length&&!currentCat&&!q){
+    const p=pinned[0];
+    const pidx=allNews.indexOf(p);
+    const preview=firstSentenceExcerpt(p.fullContent||'',160);
+    pw.innerHTML=`<div class="pinned-card" onclick="openArticle(${pidx})">
+      ${p.image?`<img class="pinned-img" src="${p.image}" alt="${p.title}" loading="lazy">`:`<img class="pinned-img" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media®" loading="lazy" style="object-fit:contain;background:#f0f4ff;padding:8px">`}
+      <div class="pinned-body">
+        <span class="pinned-badge"><svg class="icon" aria-hidden="true"><use href="#icon-pin"></use></svg> Featured Story</span>
+        <div class="pinned-title">${p.title}</div>
+        <div class="pinned-preview">${preview}${preview&&!/[.!?]$/.test(preview)?'…':''}</div>
+        <div class="pinned-meta">
+          <span style="${catStyle(p.category||'')};padding:2px 8px;border-radius:12px;font-size:.62rem;font-weight:800">${p.category||'News'}</span>
+          <span>${p.date||''}</span>
+          ${p.author?`<span><svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> ${p.author}</span>`:''}
+          <span><svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg> ${readingTime(p.fullContent||'')} min read</span>
+          ${p.views?`<span><svg class="icon" aria-hidden="true"><use href="#icon-eye"></use></svg> ${p.views}</span>`:''}
+          ${p.likes?`<span><svg class="icon icon-fill" aria-hidden="true"><use href="#icon-heart"></use></svg> ${p.likes}</span>`:''}
+          <span class="pinned-read">Read Article →</span>
+        </div>
+      </div></div>`;
+  } else { pw.innerHTML=''; }
+
+  // News list
+  const el=document.getElementById('newsList');
+  if(!pageItems.length&&!pinned.length){
+    el.innerHTML='<div class="empty"><div class="ei"><svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg></div><p>No articles match your search.</p></div>';
+    document.getElementById('pagination').innerHTML='';
+    return;
+  }
+  el.innerHTML=pageItems.map(n=>{
+    const idx=allNews.indexOf(n);
+    const mins=readingTime(n.fullContent||'');
+    const preview=firstSentenceExcerpt(n.fullContent||'',130);
+    return`<div class="news-card" onclick="openArticle(${idx})">
+      ${n.image?`<img class="nc-img" src="${n.image}" alt="${n.title}" loading="lazy">`:`<img class="nc-img" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media®" loading="lazy" style="object-fit:contain;background:#f0f4ff;padding:8px">`}
+      <div class="nc-body">
+        <span class="nc-cat" style="${catStyle(n.category||'')}">${n.category||'News'}</span>
+        <div class="nc-title">${n.title}</div>
+        <div class="nc-preview">${preview}${preview&&!/[.!?]$/.test(preview)?'…':''}</div>
+        <div class="nc-meta">
+          <span>${n.date||''}</span>
+          ${n.author?`<span>· <svg class="icon" aria-hidden="true"><use href="#icon-edit"></use></svg> ${n.author}</span>`:''}
+          <span>· <svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg> ${mins} min</span>
+          ${n.views?`<span>· <svg class="icon" aria-hidden="true"><use href="#icon-eye"></use></svg> ${n.views}</span>`:''}
+          ${n.likes?`<span>· <svg class="icon icon-fill" aria-hidden="true"><use href="#icon-heart"></use></svg> ${n.likes}</span>`:''}
+          <button type="button" class="share-btn" onclick="shareCard(event,${idx})"><svg class="icon" aria-hidden="true"><use href="#icon-share"></use></svg> Share</button>
+        </div>
+      </div></div>`;
+  }).join('');
+
+  // Pagination
+  const total=Math.ceil(regular.length/PER_PAGE);
+  const pg=document.getElementById('pagination');
+  if(total<=1){pg.innerHTML='';return;}
+  let btns='';
+  if(currentPage>0) btns+=`<button type="button" class="pg-btn" onclick="goPage(${currentPage-1})">← Prev</button>`;
+  for(let i=Math.max(0,currentPage-2);i<=Math.min(total-1,currentPage+2);i++){
+    btns+=`<button type="button" class="pg-btn${i===currentPage?' active':''}" onclick="goPage(${i})">${i+1}</button>`;
+  }
+  if(currentPage<total-1) btns+=`<button type="button" class="pg-btn" onclick="goPage(${currentPage+1})">Next →</button>`;
+  pg.innerHTML=btns;
+}
+
+function goPage(p){
+  currentPage=p;
+  render();
+  window.scrollTo({top:document.getElementById('filterWrap').offsetTop-70,behavior:'smooth'});
+}
+
+// ── Open article ──
+function openArticle(idx){
+  const n=allNews[idx]; if(!n) return;
+  // Every article read now goes to its real, standalone page
+  // (/news/<slug>--<id>/) instead of the old in-app reader below.
+  // That page already has the full formatted body, byline, share buttons,
+  // prev/next nav, and a working view counter — building/maintaining a
+  // second, separate reading experience here would just mean the two
+  // drift out of sync over time. The code below this point (the in-app
+  // reader) is now dead/unreachable; left in place only in case there's a
+  // reason to revert.
+  location.href=articleUrl(n);
+  return;
+  // eslint-disable-next-line no-unreachable
+  currentIdx=idx;
+  const mins=readingTime(n.fullContent||'');
+  const preview=firstSentenceExcerpt(n.fullContent||'',260); // capped a bit tighter here — leaves room for " — By {author}" appended below without risking Facebook's own truncation cutting that off mid-word
+  // Related: score by shared tags (weighted higher) + same category, best 3
+  const related=allNews
+    .map((x,i)=>({x,i,score:i===idx?-1:(x.category===n.category?1:0)+((x.tags||[]).filter(t=>(n.tags||[]).includes(t)).length*2)}))
+    .filter(o=>o.score>0)
+    .sort((a,b)=>b.score-a.score)
+    .slice(0,3)
+    .map(o=>o.x);
+
+  const likeCount=n.likes||0;
+  const viewCount=n.views||0;
+  const tags=n.tags||[];
+
+  document.getElementById('artHeaderTitle').textContent=n.title;
+  document.getElementById('artContent').innerHTML=`
+    ${n.image?`<img class="art-hero-img" src="${n.image}" alt="${n.title}" loading="lazy">`:''}
+    <div class="art-body">
+      <span class="art-cat" style="${catStyle(n.category||'')}">${n.category||'News'}</span>
+      <div class="art-title">${n.title}</div>
+      <div class="art-meta">
+        <span>Published ${n.date||''}</span>
+        ${n.updatedDate&&n.updatedDate!==n.date?`<span>· Updated ${n.updatedDate}</span>`:''}
+        <span>· <svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg> ${mins} min read</span>
+        <span>· <svg class="icon" aria-hidden="true"><use href="#icon-eye"></use></svg> <span id="viewCount">${viewCount}</span> views</span>
+      </div>
+      <div id="artByline"></div>
+      <div class="art-content">${formatArticleBody(n.fullContent||'')}</div>
+      ${tags.length?`<div class="art-tags">${tags.map(t=>`<span class="art-tag-chip">#${t}</span>`).join('')}</div>`:''}
+      <div class="art-actions">
+        <button type="button" class="like-btn" id="likeBtn" onclick="toggleLike('${n._id||''}')">
+          <svg class="icon heart" aria-hidden="true"><use href="#icon-heart"></use></svg><span id="likeCount">${likeCount}</span>
+        </button>
+        <button type="button" class="copylink-btn" onclick="copyArticleLinkOnly()"><svg class="icon" aria-hidden="true"><use href="#icon-link"></use></svg> Copy link</button>
+        <button type="button" class="share-social-btn wa" onclick="shareTo('whatsapp')" title="Share on WhatsApp" aria-label="Share on WhatsApp"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg></button>
+        <button type="button" class="share-social-btn fb" onclick="shareTo('facebook')" title="Share on Facebook" aria-label="Share on Facebook"><svg class="icon" aria-hidden="true"><use href="#icon-facebook"></use></svg></button>
+        <button type="button" class="share-social-btn xt" onclick="shareTo('x')" title="Share on X" aria-label="Share on X"><svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg></button>
+      </div>
+      ${related.length?`
+        <div class="art-related">
+          <div class="art-related-title"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Related Articles</div>
+          ${related.map(r=>{
+            const ridx=allNews.indexOf(r);
+            return`<div class="rel-card" onclick="openArticle(${ridx})">
+              ${r.image?`<img class="rel-thumb" src="${r.image}" alt="${r.title}" loading="lazy">`:`<img src="https://bigquamsmedia.com.ng/logo.png" alt="BQM" loading="lazy" style="width:54px;height:42px;border-radius:6px;object-fit:contain;background:#f0f4ff;padding:4px;flex-shrink:0">`}
+              <div>
+                <div class="rel-title">${r.title}</div>
+                <div class="rel-meta">${r.category||''} · ${r.date||''}</div>
+              </div>
+            </div>`;
+          }).join('')}
+        </div>`:''}
+      <button type="button" class="art-cancel-btn" onclick="closeArticle()">
+        <svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg> Close &amp; back to news
+      </button>
+    </div>`;
+
+  // Byline — plain text immediately, upgraded with photo + name (and a
+  // bio dropdown, if they have one) once a matching admin profile is
+  // found (async, non-blocking)
+  const bylineEl=document.getElementById('artByline');
+  if(n.author){
+    bylineEl.innerHTML=`<div class="art-meta" style="margin:-8px 0 14px;border:0;padding:0">· By ${n.author}</div>`;
+    const openAuthor=n.author, openArtId=n._id;
+    getAuthorProfile(n.author).then(prof=>{
+      if(!prof||currentIdx<0||allNews[currentIdx]._id!==openArtId) return;
+      const el=document.getElementById('artByline'); if(!el) return;
+      const hasBio=!!(prof.bio&&prof.bio.trim());
+      el.innerHTML=`<div class="art-byline"${hasBio?' onclick="toggleAuthorBio(this)"':''} style="${hasBio?'cursor:pointer':''}">
+        ${prof.photo?`<img src="${prof.photo}" alt="${openAuthor}">`:`<div style="width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0">${openAuthor.charAt(0).toUpperCase()}</div>`}
+        <div class="art-byline-name">By ${openAuthor}</div>
+        ${hasBio?'<button type="button" class="art-byline-toggle" aria-label="Show author bio" onclick="event.stopPropagation();toggleAuthorBio(this.closest(\'.art-byline\'))"><svg class="icon" aria-hidden="true"><use href="#icon-chevron-down"></use></svg></button>':''}
+      </div>
+      ${hasBio?`<div class="art-byline-bio">${prof.bio}</div>`:''}`;
+    });
+  } else {
+    bylineEl.innerHTML='';
+  }
+
+  // Stable hash URL: #slug--id
+  const slug=n.slug||makeSlug(n.title||'');
+  const hash=slug+(n._id?'--'+n._id:'');
+  history.replaceState({},'',location.pathname+'#'+hash);
+
+  // OG / SEO meta for share — kept updated for the in-app browser tab and
+  // for any crawler smart enough to run JS, but the REAL fix for
+  // WhatsApp/Facebook/X previews is the static page at articleUrl(n),
+  // generated by scripts/generate-news-pages.mjs (see canonical link below).
+  const artLink=articleUrl(n);
+  const seoTitle=n.seoTitle||n.title; // no "— Big Quams Media®" suffix — the site name is already in the URL itself
+  const baseDesc=n.seoDesc||preview;
+  const seoDesc=n.author?`${baseDesc} — By ${n.author}`:baseDesc;
+  const previewImg=resolvePreviewImage(n);
+  const setMeta=(p,v)=>{let m=document.querySelector(`meta[property="${p}"]`);if(!m){m=document.createElement('meta');m.setAttribute('property',p);document.head.appendChild(m);}m.setAttribute('content',v);};
+  const setNameMeta=(nm,v)=>{let m=document.querySelector(`meta[name="${nm}"]`);if(!m){m=document.createElement('meta');m.setAttribute('name',nm);document.head.appendChild(m);}m.setAttribute('content',v);};
+  const setCanonical=(v)=>{let l=document.querySelector('link[rel="canonical"]');if(!l){l=document.createElement('link');l.setAttribute('rel','canonical');document.head.appendChild(l);}l.setAttribute('href',v);};
+  setMeta('og:title',seoTitle);
+  setMeta('og:description',seoDesc);
+  setMeta('og:image',previewImg);
+  setMeta('og:url',artLink);
+  setMeta('og:type','article');
+  setNameMeta('twitter:card','summary_large_image');
+  setNameMeta('twitter:title',seoTitle);
+  setNameMeta('twitter:description',seoDesc);
+  setNameMeta('twitter:image',previewImg);
+  setNameMeta('description',seoDesc);
+  setCanonical(artLink);
+  document.title=seoTitle;
+
+  document.getElementById('artOverlay').classList.add('open');
+  document.getElementById('artBox').scrollTop=0;
+  document.body.style.overflow='hidden';
+  recordView(n._id);
+  const openId=n._id;
+  checkLiked(openId).then(liked=>{
+    const btn=document.getElementById('likeBtn');
+    if(!btn||btn.getAttribute('onclick')!==`toggleLike('${openId}')`) return; // article changed since
+    btn.classList.toggle('liked',liked);
+    btn.querySelector('.heart').classList.toggle('icon-fill',liked);
+  });
+}
+
+function closeArticle(){
+  document.getElementById('artOverlay').classList.remove('open');
+  document.body.style.overflow='';
+  currentIdx=-1;
+  history.replaceState({},'',location.pathname);
+  document.title='Newsroom | Big Quams Media®';
+}
+
+function handleOverlayClick(e){if(e.target===document.getElementById('artOverlay'))closeArticle();}
+
+// ── Share ──
+function shareArticle(){
+  if(currentIdx<0) return;
+  const n=allNews[currentIdx];
+  const url=articleUrl(n);
+  const preview=firstSentenceExcerpt(n.fullContent||'');
+  if(navigator.share){
+    navigator.share({title:n.title,text:preview||n.title,url}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(n.title+'\n\nRead more: '+url).then(()=>showToast('✓ Link copied')).catch(()=>showToast('✓ '+url));
+  }
+}
+
+function shareCard(e,idx){
+  e.stopPropagation();
+  const n=allNews[idx];
+  const url=articleUrl(n);
+  const preview=firstSentenceExcerpt(n.fullContent||'');
+  if(navigator.share){
+    navigator.share({title:n.title,text:preview||n.title,url}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(n.title+'\n\nRead more: '+url).then(()=>showToast('✓ Link copied')).catch(()=>showToast('✓ '+url));
+  }
+}
+window.shareCard=shareCard;
+
+</script>
+
+<script src="studybuddy.js" defer></script>
+</body>
+</html>
