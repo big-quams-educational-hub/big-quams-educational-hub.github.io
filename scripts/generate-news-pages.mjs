@@ -337,12 +337,28 @@ function formatArticleBody(raw) {
   };
   const inline = (line) => {
     let t = esc(line);
-    t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (m, txt, url) => (isValidUrl(url) ? `<a href="${url}" target="_blank" rel="noopener">${txt}</a>` : m));
-    t = t.replace(/(https?:\/\/[^\s<>"']+)/g, (u) => (u.match(/^<a /) || !isValidUrl(u) ? u : `<a href="${u}" target="_blank" rel="noopener">${u}</a>`));
+    // BUG FIX: markdown-style [text](url) links used to become <a href="url">
+    // FIRST, then a second pass auto-linking bare URLs would re-match that
+    // SAME url text sitting inside the new href="..." attribute (the regex
+    // has no way to know it's already inside a tag) and wrap it AGAIN,
+    // producing broken nested HTML like <a href="<a href="url">url</a>">
+    // text</a>. Fixed with placeholder tokens: markdown links become an
+    // opaque token first (not real URL text the second pass could match),
+    // THEN bare-URL autolinking runs safely, THEN tokens are swapped back
+    // in for their real <a> tags at the very end.
+    const linkPlaceholders = [];
+    t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (m, txt, url) => {
+      if (!isValidUrl(url)) return m;
+      const token = `\u0000LINK${linkPlaceholders.length}\u0000`;
+      linkPlaceholders.push(`<a href="${url}" target="_blank" rel="noopener">${txt}</a>`);
+      return token;
+    });
+    t = t.replace(/(https?:\/\/[^\s<>"']+)/g, (u) => (!isValidUrl(u) ? u : `<a href="${u}" target="_blank" rel="noopener">${u}</a>`));
     t = t.replace(/`([^`\n]+)`/g, '<code>$1</code>');
     t = t.replace(/\*([^\*\n]+)\*/g, '<strong>$1</strong>');
     t = t.replace(/_([^_\n]+)_/g, '<em>$1</em>');
     t = t.replace(/~([^~\n]+)~/g, '<s>$1</s>');
+    linkPlaceholders.forEach((html, i) => { t = t.replace(`\u0000LINK${i}\u0000`, html); });
     return t;
   };
   const isTableRow = (l) => /^\|.*\|$/.test(l.trim());
