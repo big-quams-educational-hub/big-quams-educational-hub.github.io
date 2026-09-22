@@ -62,11 +62,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .footer-links a:hover{color:#fff}
 .footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)}
 .footer-support{font-size:.68rem;color:rgba(255,255,255,.4);padding-top:13px;border-top:1px solid rgba(255,255,255,.08);margin-bottom:8px}
-.art-byline{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:10px 12px;background:var(--surface2);border-radius:10px}
-.art-byline img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
-.art-byline-fallback{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
-.art-byline-name{font-size:.78rem;font-weight:800;color:var(--text)}
-.art-byline-bio{font-size:.74rem;color:var(--muted);line-height:1.6;padding:10px 12px;margin:-6px 0 6px;background:var(--surface2);border-radius:0 0 10px 10px}
+.art-byline-simple{font-size:.78rem;color:var(--muted);margin:14px 0 6px}
+.art-byline-simple a{color:var(--blue);font-weight:800;text-decoration:none}
+.art-byline-simple a:hover{text-decoration:underline}
 .art-views{font-size:.72rem;color:var(--muted)}
 .share-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
 .share-label{font-size:.72rem;font-weight:800;color:var(--muted);margin-right:2px}
@@ -100,9 +98,11 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .archive-card-img{width:110px;height:110px;object-fit:cover;flex-shrink:0}
 .archive-card-body{padding:10px 12px;flex:1;min-width:0}
 .archive-card-cat{display:inline-block;font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);margin-bottom:5px}
-.archive-card-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:4px}
-.archive-card-excerpt{font-size:.75rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.archive-card-date{font-size:.68rem;color:var(--muted);display:block;margin-top:5px}
+.archive-card-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:6px}
+.archive-card-meta{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.archive-card-date,.archive-card-author,.archive-card-views{font-size:.68rem;color:var(--muted)}
+.archive-card-author{font-weight:700;color:var(--text)}
+.archive-card-date::after,.archive-card-author::after{content:'\00b7';margin-left:8px;color:var(--muted)}
 .pagination{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:22px 0}
 .page-num,.page-nav{font-size:.78rem;font-weight:700;padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
 .page-num.active{background:var(--blue);color:#fff;border-color:var(--blue)}
@@ -125,101 +125,137 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     <p style="color:var(--muted);font-size:.85rem;margin-top:6px">Every article, newest first. Page 2 of 3.</p>
   </div>
   <div class="archive-grid" style="margin-top:14px">
-    <a class="archive-card" href="https://bigquamsmedia.com.ng/news/2026-2027-admission-post-utme-de-screening-continues-as-jamb-caps-processes-more-candidates--FOswpWKmBB42J8rP7KPI/">
+    <a class="archive-card" href="https://bigquamsmedia.com.ng/news/notice-of-extension-of-post-utme-registration-and-screening-exercise--Wr6jAlmtKGEtViiTB0QI/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/notice-of-extension-of-post-utme-registration-and-screening-exercise--Wr6jAlmtKGEtViiTB0QI/preview.jpg" alt="NOTICE OF EXTENSION OF POST-UTME REGISTRATION AND SCREENING EXERCISE">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">Admission Guide</span>
+        <h2 class="archive-card-title">NOTICE OF EXTENSION OF POST-UTME REGISTRATION AND SCREENING EXERCISE</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">31 Aug 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">3 views</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/2026-2027-admission-post-utme-de-screening-continues-as-jamb-caps-processes-more-candidates--FOswpWKmBB42J8rP7KPI/">
       <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/2026-2027-admission-post-utme-de-screening-continues-as-jamb-caps-processes-more-candidates--FOswpWKmBB42J8rP7KPI/preview.jpg" alt="2026/2027 Admission: Post-UTME/DE Screening Continues as JAMB CAPS Processes More Candidates">
       <div class="archive-card-body">
         <span class="archive-card-cat">JAMB Update</span>
         <h2 class="archive-card-title">2026/2027 Admission: Post-UTME/DE Screening Continues as JAMB CAPS Processes More Candidates</h2>
-        <p class="archive-card-excerpt">2026/2027 ADMISSION: POST-UTME/DE SCREENING CONTINUES AS JAMB CAPS PROCESSES MORE CANDIDATES The 2026/2027 admission exercise</p>
-        <span class="archive-card-date">29 Aug 2026</span>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">29 Aug 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">51 views</span>
+        </div>
       </div>
     </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/jamb-2027-utme-a-z-guide--t3XZfa6Y0rHCizIcey7J/">
       <img class="archive-card-img" src="https://bigquamsmedia.com.ng/newsroom-default.png" alt="JAMB 2027 UTME: A–Z GUIDE">
       <div class="archive-card-body">
         <span class="archive-card-cat">JAMB Update</span>
         <h2 class="archive-card-title">JAMB 2027 UTME: A–Z GUIDE</h2>
-        <p class="archive-card-excerpt">As preparations begin for the next JAMB registration exercise, prospective candidates are advised to put their documents,</p>
-        <span class="archive-card-date">17 Aug 2026</span>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">17 Aug 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">3 views</span>
+        </div>
       </div>
     </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/lasu-announces-programme-of-events-for-combined-29th-and-30th-convocation-ceremonies--yh79Vsu1p9nCNo7kdvXP/">
       <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/lasu-announces-programme-of-events-for-combined-29th-and-30th-convocation-ceremonies--yh79Vsu1p9nCNo7kdvXP/preview.jpg" alt="LASU Announces Programme of Events for Combined 29th and 30th Convocation Ceremonies">
       <div class="archive-card-body">
         <span class="archive-card-cat">Campus News</span>
         <h2 class="archive-card-title">LASU Announces Programme of Events for Combined 29th and 30th Convocation Ceremonies</h2>
-        <p class="archive-card-excerpt">The management of Lagos State University (LASU) has released the programme of events for its combined 29th and 30th Convocation</p>
-        <span class="archive-card-date">2 Jul 2026</span>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">2 Jul 2026</span>
+          <span class="archive-card-author">BIG QUAMS MEDIA</span>
+          <span class="archive-card-views">9 views</span>
+        </div>
       </div>
     </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/minister-clarifies-reports-on-proposed-nysc-uniform-changes--KG8VNbIZUVn5gUMnpa6T/">
       <img class="archive-card-img" src="https://bigquamsmedia.com.ng/newsroom-default.png" alt="Minister Clarifies Reports on Proposed NYSC Uniform Changes">
       <div class="archive-card-body">
         <span class="archive-card-cat">Announcement</span>
         <h2 class="archive-card-title">Minister Clarifies Reports on Proposed NYSC Uniform Changes</h2>
-        <p class="archive-card-excerpt">The Minister of Youth Development, Ayodele Olawande, has clarified reports suggesting that the National Youth Service Corps</p>
-        <span class="archive-card-date">2 Jul 2026</span>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">2 Jul 2026</span>
+          <span class="archive-card-author">BIG QUAMS MEDIA</span>
+          <span class="archive-card-views">2 views</span>
+        </div>
       </div>
     </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/fg-to-replace-nysc-khaki-uniform-with-adire-under-new-reform-package--0j6ZY3HotGNXhlap2yZy/">
       <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/fg-to-replace-nysc-khaki-uniform-with-adire-under-new-reform-package--0j6ZY3HotGNXhlap2yZy/preview.png" alt="FG to Replace NYSC Khaki Uniform with Adire Under New Reform Package">
       <div class="archive-card-body">
         <span class="archive-card-cat">Announcement</span>
         <h2 class="archive-card-title">FG to Replace NYSC Khaki Uniform with Adire Under New Reform Package</h2>
-        <p class="archive-card-excerpt">The Federal Government has announced plans to replace the National Youth Service Corps (NYSC) traditional khaki uniform with</p>
-        <span class="archive-card-date">2 Jul 2026</span>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">2 Jul 2026</span>
+          <span class="archive-card-author">BIG QUAMS MEDIA</span>
+          <span class="archive-card-views">2 views</span>
+        </div>
       </div>
     </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/nans-launches-portal-for-students-yet-to-receive-itf-siwes-allowance--QuWEPpLMU3qqO9q9GzlO/">
       <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/nans-launches-portal-for-students-yet-to-receive-itf-siwes-allowance--QuWEPpLMU3qqO9q9GzlO/preview.jpg" alt="NANS Launches Portal for Students Yet to Receive ITF SIWES Allowance">
       <div class="archive-card-body">
         <span class="archive-card-cat">Announcement</span>
         <h2 class="archive-card-title">NANS Launches Portal for Students Yet to Receive ITF SIWES Allowance</h2>
-        <p class="archive-card-excerpt">The National Association of Nigerian Students (NANS) has launched an online verification portal for students who completed their</p>
-        <span class="archive-card-date">2 Jul 2026</span>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">2 Jul 2026</span>
+          <span class="archive-card-author">BIG QUAMS MEDIA</span>
+          <span class="archive-card-views">2 views</span>
+        </div>
       </div>
     </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/president-tinubu-signs-nimc-act-2026-into-law--PT4MYIMWZY5KohvShj7z/">
       <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/president-tinubu-signs-nimc-act-2026-into-law--PT4MYIMWZY5KohvShj7z/preview.jpg" alt="PRESIDENT TINUBU SIGNS NIMC ACT 2026 INTO LAW">
       <div class="archive-card-body">
         <span class="archive-card-cat">Announcement</span>
         <h2 class="archive-card-title">PRESIDENT TINUBU SIGNS NIMC ACT 2026 INTO LAW</h2>
-        <p class="archive-card-excerpt">President Bola Ahmed Tinubu has signed the NIMC Act 2026 into law, introducing a new legal framework to modernize Nigeria's</p>
-        <span class="archive-card-date">2 Jul 2026</span>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">2 Jul 2026</span>
+          <span class="archive-card-author">BIG QUAMS MEDIA</span>
+          <span class="archive-card-views">0 views</span>
+        </div>
       </div>
     </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/happy-new-month--yXcWyILY2YGFaxhDW74w/">
       <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/happy-new-month--yXcWyILY2YGFaxhDW74w/preview.jpg" alt="HAPPY NEW MONTH! 🌟🎉">
       <div class="archive-card-body">
         <span class="archive-card-cat">Services</span>
         <h2 class="archive-card-title">HAPPY NEW MONTH! 🌟🎉</h2>
-        <p class="archive-card-excerpt">Welcome to a brand-new month filled with fresh opportunities, greater achievements, and new possibilities.</p>
-        <span class="archive-card-date">1 Jul 2026</span>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">1 Jul 2026</span>
+          <span class="archive-card-author">BIG QUAMS MEDIA</span>
+          <span class="archive-card-views">0 views</span>
+        </div>
       </div>
     </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/rite-foods-jamb-honour-seven-outstanding-undergraduates-with-5-million-academic-excellence-awards--yaxwVK1YeGAuCB5K27hw/">
       <img class="archive-card-img" src="https://bigquamsmedia.com.ng/newsroom-default.png" alt="Rite Foods, JAMB Honour Seven Outstanding Undergraduates with ₦5 Million Academic Excellence Awards">
       <div class="archive-card-body">
         <span class="archive-card-cat">JAMB Update</span>
         <h2 class="archive-card-title">Rite Foods, JAMB Honour Seven Outstanding Undergraduates with ₦5 Million Academic Excellence Awards</h2>
-        <p class="archive-card-excerpt">The Joint Admissions and Matriculation Board (JAMB), in collaboration with Rite Foods Limited, has honoured seven exceptional</p>
-        <span class="archive-card-date">1 Jul 2026</span>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">1 Jul 2026</span>
+          <span class="archive-card-author">BIG QUAMS MEDIA</span>
+          <span class="archive-card-views">1 view</span>
+        </div>
       </div>
     </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/our-hearts-are-too-young-to-be-this-cold--8lYLOGZq0hobuhEqjtbk/">
       <img class="archive-card-img" src="https://bigquamsmedia.com.ng/newsroom-default.png" alt="Our Hearts Are Too Young to Be This Cold">
       <div class="archive-card-body">
         <span class="archive-card-cat">Lifestyle</span>
         <h2 class="archive-card-title">Our Hearts Are Too Young to Be This Cold</h2>
-        <p class="archive-card-excerpt">There is a quiet emotional shift happening among many young people today.</p>
-        <span class="archive-card-date">1 Jul 2026</span>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">1 Jul 2026</span>
+          <span class="archive-card-author">BIG QUAMS MEDIA</span>
+          <span class="archive-card-views">1 view</span>
+        </div>
       </div>
     </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/16-year-old-osasere-okundaye-becomes-nigerias-youngest-chartered-accountant--3ZvnfmIJdP3KZmWeH3ni/">
       <img class="archive-card-img" src="https://bigquamsmedia.com.ng/newsroom-default.png" alt="16-Year-Old Osasere Okundaye Becomes Nigeria's Youngest Chartered Accountant">
       <div class="archive-card-body">
         <span class="archive-card-cat">Announcement</span>
         <h2 class="archive-card-title">16-Year-Old Osasere Okundaye Becomes Nigeria's Youngest Chartered Accountant</h2>
-        <p class="archive-card-excerpt">ABUJA, Nigeria — Sixteen-year-old Osasere Okundaye has made history as the youngest person to qualify as a Chartered Accountant</p>
-        <span class="archive-card-date">1 Jul 2026</span>
-      </div>
-    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/fec-approves-major-nysc-reforms-introduces-six-week-orientation-and-civilian-leadership--ZzMcfjmmvnTQHBEu8YY0/">
-      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/newsroom-default.png" alt="FEC Approves Major NYSC Reforms, Introduces Six-Week Orientation and Civilian Leadership">
-      <div class="archive-card-body">
-        <span class="archive-card-cat">Announcement</span>
-        <h2 class="archive-card-title">FEC Approves Major NYSC Reforms, Introduces Six-Week Orientation and Civilian Leadership</h2>
-        <p class="archive-card-excerpt">The Federal Executive Council (FEC) has approved a comprehensive reform of the National Youth Service Corps (NYSC), marking the</p>
-        <span class="archive-card-date">1 Jul 2026</span>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">1 Jul 2026</span>
+          <span class="archive-card-author">BIG QUAMS MEDIA</span>
+          <span class="archive-card-views">1 view</span>
+        </div>
       </div>
     </a>
   </div>

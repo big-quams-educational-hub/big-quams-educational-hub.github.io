@@ -94,11 +94,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .footer-links a:hover{color:#fff}
 .footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)}
 .footer-support{font-size:.68rem;color:rgba(255,255,255,.4);padding-top:13px;border-top:1px solid rgba(255,255,255,.08);margin-bottom:8px}
-.art-byline{display:flex;align-items:center;gap:10px;margin:14px 0 6px;padding:10px 12px;background:var(--surface2);border-radius:10px}
-.art-byline img{width:38px;height:38px;border-radius:50%;object-fit:cover;flex-shrink:0}
-.art-byline-fallback{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
-.art-byline-name{font-size:.78rem;font-weight:800;color:var(--text)}
-.art-byline-bio{font-size:.74rem;color:var(--muted);line-height:1.6;padding:10px 12px;margin:-6px 0 6px;background:var(--surface2);border-radius:0 0 10px 10px}
+.art-byline-simple{font-size:.78rem;color:var(--muted);margin:14px 0 6px}
+.art-byline-simple a{color:var(--blue);font-weight:800;text-decoration:none}
+.art-byline-simple a:hover{text-decoration:underline}
 .art-views{font-size:.72rem;color:var(--muted)}
 .share-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
 .share-label{font-size:.72rem;font-weight:800;color:var(--muted);margin-right:2px}
@@ -132,9 +130,11 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .archive-card-img{width:110px;height:110px;object-fit:cover;flex-shrink:0}
 .archive-card-body{padding:10px 12px;flex:1;min-width:0}
 .archive-card-cat{display:inline-block;font-size:.6rem;font-weight:800;padding:2px 8px;border-radius:20px;background:var(--blue-lt);color:var(--blue);margin-bottom:5px}
-.archive-card-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:4px}
-.archive-card-excerpt{font-size:.75rem;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.archive-card-date{font-size:.68rem;color:var(--muted);display:block;margin-top:5px}
+.archive-card-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:6px}
+.archive-card-meta{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
+.archive-card-date,.archive-card-author,.archive-card-views{font-size:.68rem;color:var(--muted)}
+.archive-card-author{font-weight:700;color:var(--text)}
+.archive-card-date::after,.archive-card-author::after{content:'\00b7';margin-left:8px;color:var(--muted)}
 .pagination{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:22px 0}
 .page-num,.page-nav{font-size:.78rem;font-weight:700;padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
 .page-num.active{background:var(--blue);color:#fff;border-color:var(--blue)}
@@ -161,11 +161,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       <span>·</span>
       <span class="art-views" id="viewCount">0 views</span>
     </div>
-    <div class="art-byline">
-    <div class="art-byline-fallback">B</div>
-    <div class="art-byline-name">By BIG QUAMS MEDIA</div>
-  </div>
-  
+    <div class="art-byline-simple">By BIG QUAMS MEDIA</div>
     <img class="art-image" src="https://bigquamsmedia.com.ng/news/happy-new-month--yXcWyILY2YGFaxhDW74w/preview.jpg" alt="HAPPY NEW MONTH! 🌟🎉">
     <div class="art-content"><p>Welcome to a brand-new month filled with fresh opportunities, greater achievements, and new possibilities.</p><p>As we step into this new month, we sincerely appreciate your trust and support. At BIG QUAMS MEDIA, we remain committed to bringing you timely, accurate, and reliable updates on admissions, education, campus news, and student opportunities.</p><p>To every student, aspirant, parent, and member of our community, we wish you a month of success, favor, good health, and answered prayers. May your goals be achieved, your efforts rewarded, and your aspirations become reality.</p><p>Thank you for choosing BIG QUAMS MEDIA as your trusted source of information.<br>Happy New Month!</p><p>— BIG QUAMS MEDIA NEWSROOM</p></div>
     <div class="share-bar">
@@ -187,6 +183,143 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     </a>
   </nav>
     <a class="open-app-cta" href="https://bigquamsmedia.com.ng/newsroom.html">Browse more Newsroom stories →</a>
+  </div>
+  <div class="art-card" style="margin-top:16px">
+    <h2 style="font-family:'Montserrat',sans-serif;font-size:1rem;margin-bottom:12px">More News</h2>
+    <div class="archive-grid"><a class="archive-card" href="https://bigquamsmedia.com.ng/news/unilorin-to-convocate-12-523-graduands-at-41st-convocation-extends-degree-awarding-ceremonies-to-three-days--kiyhQtMKe8pLQzGJwGYr/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/unilorin-to-convocate-12-523-graduands-at-41st-convocation-extends-degree-awarding-ceremonies-to-three-days--kiyhQtMKe8pLQzGJwGYr/preview.jpg" alt="UNILORIN TO CONVOCATE 12,523 GRADUANDS AT 41ST CONVOCATION, EXTENDS DEGREE-AWARDING CEREMONIES TO THREE DAYS">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">Campus News</span>
+        <h2 class="archive-card-title">UNILORIN TO CONVOCATE 12,523 GRADUANDS AT 41ST CONVOCATION, EXTENDS DEGREE-AWARDING CEREMONIES TO THREE DAYS</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">22 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">0 views</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/jamb-opens-sim-swap-and-email-change-service-for-candidates-who-lost-access-to-their-details--CiN7PSL6s0EzHMgjvLji/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/jamb-opens-sim-swap-and-email-change-service-for-candidates-who-lost-access-to-their-details--CiN7PSL6s0EzHMgjvLji/preview.png" alt="JAMB OPENS SIM SWAP AND EMAIL CHANGE SERVICE FOR CANDIDATES WHO LOST ACCESS TO THEIR DETAILS">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">JAMB Update</span>
+        <h2 class="archive-card-title">JAMB OPENS SIM SWAP AND EMAIL CHANGE SERVICE FOR CANDIDATES WHO LOST ACCESS TO THEIR DETAILS</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">21 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">4 views</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/unilorin-releases-approved-2026-2027-academic-calendar--x04g1bxW6Tq256Ij6MZO/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/unilorin-releases-approved-2026-2027-academic-calendar--x04g1bxW6Tq256Ij6MZO/preview.jpg" alt="UNILORIN RELEASES APPROVED 2026/2027 ACADEMIC CALENDAR">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">Campus News</span>
+        <h2 class="archive-card-title">UNILORIN RELEASES APPROVED 2026/2027 ACADEMIC CALENDAR</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">21 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">12 views</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/uniosun-to-graduate-4-357-students-88-bag-first-class-honours--ZyNOtA4u8tjQ45OOaho5/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/uniosun-to-graduate-4-357-students-88-bag-first-class-honours--ZyNOtA4u8tjQ45OOaho5/preview.jpg" alt="UNIOSUN TO GRADUATE 4,357 STUDENTS, 88 BAG FIRST-CLASS HONOURS">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">Campus News</span>
+        <h2 class="archive-card-title">UNIOSUN TO GRADUATE 4,357 STUDENTS, 88 BAG FIRST-CLASS HONOURS</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">20 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">4 views</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/jamb-to-introduce-facial-biometric-verification-for-utme--BohPydhWegNQ45Uy36TI/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/jamb-to-introduce-facial-biometric-verification-for-utme--BohPydhWegNQ45Uy36TI/preview.jpg" alt="JAMB TO INTRODUCE FACIAL BIOMETRIC VERIFICATION FOR UTME">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">JAMB Update</span>
+        <h2 class="archive-card-title">JAMB TO INTRODUCE FACIAL BIOMETRIC VERIFICATION FOR UTME</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">20 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">5 views</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/unilesa-releases-2026-2027-school-fees-schedule-medicine-and-law-top-1-5-million--JY3KAmnBmCcbEOMJ9J2D/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/unilesa-releases-2026-2027-school-fees-schedule-medicine-and-law-top-1-5-million--JY3KAmnBmCcbEOMJ9J2D/preview.jpg" alt="UNILESA RELEASES 2026/2027 SCHOOL FEES SCHEDULE, MEDICINE AND LAW TOP ₦1.5 MILLION">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">Campus News</span>
+        <h2 class="archive-card-title">UNILESA RELEASES 2026/2027 SCHOOL FEES SCHEDULE, MEDICINE AND LAW TOP ₦1.5 MILLION</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">19 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">2 views</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/unilesa-releases-2026-2027-school-fees-schedule-medicine-and-law-top-1-5-million--nirimr5fPt9ce6CXYEzZ/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/unilesa-releases-2026-2027-school-fees-schedule-medicine-and-law-top-1-5-million--nirimr5fPt9ce6CXYEzZ/preview.jpg" alt="UNILESA RELEASES 2026/2027 SCHOOL FEES SCHEDULE, MEDICINE AND LAW TOP ₦1.5 MILLION">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">Admission Guide</span>
+        <h2 class="archive-card-title">UNILESA RELEASES 2026/2027 SCHOOL FEES SCHEDULE, MEDICINE AND LAW TOP ₦1.5 MILLION</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">19 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">4 views</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/jamb-sets-to-change-current-utme-examination-format--T07JwzZZkQ6IUihFRWC9/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/jamb-sets-to-change-current-utme-examination-format--T07JwzZZkQ6IUihFRWC9/preview.png" alt="JAMB SETS TO CHANGE CURRENT UTME EXAMINATION FORMAT">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">JAMB Update</span>
+        <h2 class="archive-card-title">JAMB SETS TO CHANGE CURRENT UTME EXAMINATION FORMAT</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">16 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">5 views</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/jamb-national-digital-pre-registration-app-2027-utme--WpsIBZTscjN9gPi1ifPH/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/newsroom-default.png" alt="JAMB INTRODUCES NATIONAL DIGITAL PRE-REGISTRATION APP FOR 2027 UTME">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">JAMB Update</span>
+        <h2 class="archive-card-title">JAMB INTRODUCES NATIONAL DIGITAL PRE-REGISTRATION APP FOR 2027 UTME</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">15 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">2 views</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/jamb-adjusts-2027-utme-first-session-time--7mAytutwOcTbtGBJGYHV/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/newsroom-default.png" alt="JAMB ADJUSTS 2027 UTME FIRST SESSION TIME">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">JAMB Update</span>
+        <h2 class="archive-card-title">JAMB ADJUSTS 2027 UTME FIRST SESSION TIME</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">14 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">7 views</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/uniabuja-extends-2026-2027-post-utme-registration-deadline--dMdw0pjaG6A5H5WdwQIc/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/uniabuja-extends-2026-2027-post-utme-registration-deadline--dMdw0pjaG6A5H5WdwQIc/preview.jpg" alt="UNIABUJA EXTENDS 2026/2027 POST-UTME REGISTRATION DEADLINE">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">Admission Guide</span>
+        <h2 class="archive-card-title">UNIABUJA EXTENDS 2026/2027 POST-UTME REGISTRATION DEADLINE</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">3 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">1 view</span>
+        </div>
+      </div>
+    </a><a class="archive-card" href="https://bigquamsmedia.com.ng/news/jamb-to-introduce-facial-biometric-verification-for-utme--PhLxUNbUXTfJp8suXoLO/">
+      <img class="archive-card-img" src="https://bigquamsmedia.com.ng/news/jamb-to-introduce-facial-biometric-verification-for-utme--PhLxUNbUXTfJp8suXoLO/preview.png" alt="JAMB TO INTRODUCE FACIAL BIOMETRIC VERIFICATION FOR UTME">
+      <div class="archive-card-body">
+        <span class="archive-card-cat">JAMB Update</span>
+        <h2 class="archive-card-title">JAMB TO INTRODUCE FACIAL BIOMETRIC VERIFICATION FOR UTME</h2>
+        <div class="archive-card-meta">
+          <span class="archive-card-date">1 Sept 2026</span>
+          <span class="archive-card-author">Quwamdeen O. A.</span>
+          <span class="archive-card-views">6 views</span>
+        </div>
+      </div>
+    </a></div>
+    <nav class="pagination"><a class="page-num active" href="https://bigquamsmedia.com.ng/news/">1</a><a class="page-num" href="https://bigquamsmedia.com.ng/news/page/2/">2</a><a class="page-num" href="https://bigquamsmedia.com.ng/news/page/3/">3</a><a class="page-nav" href="https://bigquamsmedia.com.ng/news/page/2/">Next →</a></nav>
   </div>
 </div>
 <footer>
