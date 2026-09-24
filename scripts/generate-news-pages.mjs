@@ -335,6 +335,10 @@ function formatArticleBody(raw) {
       return false;
     }
   };
+  // Images allow data: URIs too (a freshly-uploaded image, not yet a real
+  // hosted URL) — links and bare-URL autolinking deliberately do NOT, to
+  // avoid ever turning arbitrary text into a clickable data: link.
+  const isValidImageSrc = (u) => /^https?:\/\//.test(u) || /^data:image\//.test(u);
   const inline = (line) => {
     let t = esc(line);
     // BUG FIX: markdown-style [text](url) links used to become <a href="url">
@@ -342,16 +346,26 @@ function formatArticleBody(raw) {
     // SAME url text sitting inside the new href="..." attribute (the regex
     // has no way to know it's already inside a tag) and wrap it AGAIN,
     // producing broken nested HTML like <a href="<a href="url">url</a>">
-    // text</a>. Fixed with placeholder tokens: markdown links become an
-    // opaque token first (not real URL text the second pass could match),
+    // text</a>. Fixed with placeholder tokens: markdown links/images become
+    // an opaque token first (not real URL text a later pass could match),
     // THEN bare-URL autolinking runs safely, THEN tokens are swapped back
-    // in for their real <a> tags at the very end.
+    // in for their real tags at the very end.
     const linkPlaceholders = [];
+    const pushPlaceholder = (html) => {
+      const token = `\u0000LINK${linkPlaceholders.length}\u0000`;
+      linkPlaceholders.push(html);
+      return token;
+    };
+    // Images: ![alt](url) — MUST run before the plain-link regex below,
+    // since [alt](url) would otherwise also match that pattern (a plain
+    // link parser has no way to see the leading `!`).
+    t = t.replace(/!\[([^\]]*)\]\(((?:https?:\/\/|data:)[^\s)]+)\)/g, (m, alt, url) => {
+      if (!isValidImageSrc(url)) return m;
+      return pushPlaceholder(`<img src="${url}" alt="${alt}" loading="lazy">`);
+    });
     t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (m, txt, url) => {
       if (!isValidUrl(url)) return m;
-      const token = `\u0000LINK${linkPlaceholders.length}\u0000`;
-      linkPlaceholders.push(`<a href="${url}" target="_blank" rel="noopener">${txt}</a>`);
-      return token;
+      return pushPlaceholder(`<a href="${url}" target="_blank" rel="noopener">${txt}</a>`);
     });
     t = t.replace(/(https?:\/\/[^\s<>"']+)/g, (u) => (!isValidUrl(u) ? u : `<a href="${u}" target="_blank" rel="noopener">${u}</a>`));
     t = t.replace(/`([^`\n]+)`/g, '<code>$1</code>');
@@ -434,6 +448,7 @@ header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;
 .art-image{width:100%;border-radius:10px;margin-bottom:16px;object-fit:cover;max-height:420px}
 .art-content{font-size:.95rem;color:var(--text);line-height:1.9}
 .art-content p{margin:0 0 16px}
+.art-content img{max-width:100%;height:auto;border-radius:10px;margin:6px 0 16px;display:block}
 .art-content p:last-child{margin-bottom:0}
 .art-content strong{font-weight:800;color:var(--text)}
 .art-content em{font-style:italic}
