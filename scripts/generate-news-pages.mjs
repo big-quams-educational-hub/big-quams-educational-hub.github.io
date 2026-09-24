@@ -183,7 +183,7 @@ const MIME_EXT = {
   'image/gif': 'gif',
 };
 
-async function materializeImage(src, outDir) {
+async function materializeImage(src, outDir, filenameBase = 'preview') {
   if (!src) return null;
   const match = DATA_URI_RE.exec(src);
   if (!match) return src; // already a normal fetchable URL — use as-is
@@ -195,7 +195,7 @@ async function materializeImage(src, outDir) {
   } catch {
     return null; // malformed base64 — fall through to the next fallback tier
   }
-  const filename = `preview.${ext}`;
+  const filename = `${filenameBase}.${ext}`;
   await writeFile(path.join(outDir, filename), buffer);
   return filename; // caller resolves this against the page's own public URL
 }
@@ -926,14 +926,21 @@ ${renderFooter()}
 }
 
 
-function renderPage(article, resolvedImage, { authorPageUrl, isOwnerAuthor, moreNewsArticles, resolvedImages, authorProfiles } = {}) {
+function renderPage(article, resolvedImage, { authorPageUrl, isOwnerAuthor, moreNewsArticles, resolvedImages, authorProfiles, visibleImage } = {}) {
   const slug = article.slug || makeSlug(article.title || '');
   const seg = `${slug}--${article._id}`;
   const canonical = `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/`;
   const title = escapeHtml(`${article.seoTitle || article.title || 'News'} — Big Quams Media®`);
   const rawDesc = article.seoDesc || firstSentenceExcerpt(article.fullContent || '');
   const desc = escapeHtml(rawDesc);
+  // `image` below is the SHARE/META image only (og:image, twitter:image,
+  // and the archive/Recent-News card thumbnail) — it always resolves to
+  // something via resolvePreviewImage()'s fallback chain. The on-page
+  // <img> uses `visibleImage` instead, which is only set when the article
+  // actually has its own Featured Image — this is what makes "no image on
+  // the article page, but a real image when the link is shared" possible.
   const image = escapeHtml(resolvedImage || GLOBAL_NEWS_DEFAULT_IMAGE || SITE_DEFAULT_IMAGE);
+  const visibleImageEscaped = visibleImage ? escapeHtml(visibleImage) : '';
   const publishedTime = typeof article.createdAt === 'string' ? article.createdAt : '';
   const bodyHtml = formatArticleBody(article.fullContent || '');
   const mins = readingTime(article.fullContent || '');
@@ -1003,7 +1010,7 @@ ${renderHeader()}
       <span class="art-views" id="viewCount">${viewCount} view${viewCount === 1 ? '' : 's'}</span>
     </div>
     ${renderByline(article.author, authorPageUrl, isOwnerAuthor)}
-    ${image ? `<img class="art-image" src="${image}" alt="${headline}">` : ''}
+    ${visibleImageEscaped ? `<img class="art-image" src="${visibleImageEscaped}" alt="${headline}">` : ''}
     <div class="art-content">${bodyHtml}</div>
     ${renderShareBar(canonical, article.title || 'News', article.fullContent || '')}
     <a class="open-app-cta" href="${SITE_ORIGIN}/newsroom.html">Browse more Newsroom stories \u2192</a>
@@ -1297,6 +1304,7 @@ async function runGenerate() {
   // image first guarantees resolvedImages is complete before anything
   // reads from it.
   const pageDirs = {};
+  const visibleImages = {}; // articleId -> on-page <img> URL, or undefined if this article intentionally has no visible image
   for (const article of articles) {
     const slug = article.slug || makeSlug(article.title || '');
     const seg = `${slug}--${article._id}`;
@@ -1304,13 +1312,34 @@ async function runGenerate() {
     await mkdir(pageDir, { recursive: true });
     pageDirs[article._id] = pageDir;
 
-    const rawImage = resolvePreviewImage(article, categoryDefaults);
-    const materialized = await materializeImage(rawImage, pageDir);
+    const rawPreviewImage = resolvePreviewImage(article, categoryDefaults);
+    const materializedPreview = await materializeImage(rawPreviewImage, pageDir, 'preview');
     const resolvedImageUrl =
-      materialized && !/^https?:\/\//i.test(materialized)
-        ? `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/${materialized}`
-        : materialized || rawImage;
+      materializedPreview && !/^https?:\/\//i.test(materializedPreview)
+        ? `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/${materializedPreview}`
+        : materializedPreview || rawPreviewImage;
     resolvedImages[article._id] = resolvedImageUrl;
+
+    // The VISIBLE on-page image is intentionally a separate thing from the
+    // share/meta preview image above — this is what makes "no image on the
+    // article page, but a real image when the link is shared" possible.
+    // It exists only if the article actually has its own Featured Image
+    // (article.image) set; a Link Preview Image on its own does NOT put an
+    // image on the page, by design.
+    if (article.image) {
+      if (article.image === rawPreviewImage) {
+        // Same source as the preview image (the common case — "use
+        // featured image as link preview" checked) — reuse what was just
+        // materialized instead of writing the same file twice.
+        visibleImages[article._id] = resolvedImageUrl;
+      } else {
+        const materializedFeatured = await materializeImage(article.image, pageDir, 'featured');
+        visibleImages[article._id] =
+          materializedFeatured && !/^https?:\/\//i.test(materializedFeatured)
+            ? `${SITE_ORIGIN}/${OUTPUT_DIR}/${seg}/${materializedFeatured}`
+            : materializedFeatured || article.image;
+      }
+    }
   }
 
   // PASS 2: render every page, now that resolvedImages is complete.
@@ -1332,6 +1361,7 @@ async function runGenerate() {
       moreNewsArticles,
       resolvedImages,
       authorProfiles,
+      visibleImage: visibleImages[article._id],
     });
     await writeFile(path.join(pageDir, 'index.html'), html, 'utf8');
 
