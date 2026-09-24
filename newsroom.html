@@ -661,9 +661,16 @@ function formatArticleBody(raw){
   raw=preprocessPastedHtml(raw);
   const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const isValidUrl=u=>{try{const p=new URL(u);return p.protocol==='http:'||p.protocol==='https:';}catch(e){return false;}};
+  const isValidImageSrc=u=>/^https?:\/\//.test(u)||/^data:image\//.test(u);
   const inline=line=>{
     let t=esc(line);
     const linkPlaceholders=[];
+    t=t.replace(/!\[([^\]]*)\]\(((?:https?:\/\/|data:)[^\s)]+)\)/g,(m,alt,url)=>{
+      if(!isValidImageSrc(url)) return m;
+      const token='\u0000LINK'+linkPlaceholders.length+'\u0000';
+      linkPlaceholders.push(`<img src="${url}" alt="${alt}" loading="lazy">`);
+      return token;
+    });
     t=t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,(m,txt,url)=>{
       if(!isValidUrl(url)) return m;
       const token='\u0000LINK'+linkPlaceholders.length+'\u0000';

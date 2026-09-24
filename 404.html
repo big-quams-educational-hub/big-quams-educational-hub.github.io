@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Quams Media&reg;</title>
+<meta name="robots" content="noindex">
+<!--
+  WHY THIS FILE EXISTS
+  ────────────────────
+  GitHub Pages serves this file automatically for any URL that has no
+  matching real file — which is exactly what happens for a brand-new
+  article between the moment it's published in the admin panel and the
+  next successful run of the GitHub Actions workflow that generates its
+  real static page (scheduled hourly, 6am-11pm Lagos time; can be hours,
+  or all night, if the workflow is paused or fails).
+
+  Previously that gap meant a hard 404 for any human visiting the link —
+  including the article's own Facebook post, if one went out. This page
+  fixes that FOR HUMAN VISITORS ONLY: if the URL looks like a real article
+  page (/news/<slug>--<id>/), it fetches that ONE article directly from
+  Firestore (a single, cheap document read — not the whole collection) and
+  renders it client-side, using the same visual template as the real
+  generated pages.
+
+  DELIBERATE LIMITS, so this can't reintroduce the quota problems already
+  solved elsewhere in this pipeline:
+  - Read-only. This page NEVER writes to Firestore except the same
+    single-field view-count increment the real pages already do, and NEVER
+    posts to Facebook. Every Facebook post still goes out exclusively
+    through the GitHub Actions workflow, on its existing schedule and
+    duplicate-prevention logic (fb-posted-articles.json) — this file has
+    no way to interact with that at all.
+  - One document read per pageview of a not-yet-generated page. Once the
+    workflow actually runs and creates the real index.html at that same
+    URL, GitHub Pages serves THAT file instead and this one is never
+    reached again for that article.
+  - The HTTP status code for this response is still a real 404 (that's
+    inherent to how GitHub Pages' custom-404 mechanism works) — so this
+    does NOT fix Google indexing or search engines seeing the page before
+    the real static version exists; it only fixes the page loading and
+    looking right for an actual person who clicks the link.
+  - No "More/Recent News", author bio-page linking, or archive pagination
+    here — those need the full article list, which isn't worth fetching
+    just for this fallback. Just the article itself, plus a link back to
+    Newsroom to browse.
+-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RCLYVCZY2K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RCLYVCZY2K');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://bigquamsmedia.com.ng/logo.png">
+<style>
+:root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:12px;--shadow:0 8px 28px rgba(26,63,168,.11)}
+body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Roboto',sans-serif;background:var(--surface2);color:var(--text);line-height:1.6;overflow-x:hidden}
+body.dark{background:#0d1117}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.35)}
+.hbar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
+.logo-link{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:auto}
+.logo-img{width:36px;height:36px;border-radius:50%;border:2px solid var(--orange);object-fit:cover}
+.logo-name{font-family:'Montserrat',sans-serif;font-size:.8rem;font-weight:800;color:#fff;text-transform:uppercase}
+.logo-sub{font-size:.52rem;color:rgba(255,255,255,.42);display:block}
+.back-link{color:rgba(255,255,255,.85);font-size:.8rem;font-weight:600;padding:7px 12px;border-radius:7px;background:rgba(255,255,255,.1);white-space:nowrap}
+.back-link:hover{background:rgba(255,255,255,.18)}
+.art-wrap{max-width:760px;margin:0 auto;padding:20px 16px 40px}
+.art-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:20px 18px;margin-top:4px}
+.art-cat{display:inline-block;font-size:.62rem;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:10px;background:var(--blue-lt);color:var(--blue)}
+.art-title{font-family:'Montserrat',sans-serif;font-size:clamp(1.1rem,3vw,1.45rem);font-weight:800;color:var(--text);line-height:1.3;margin-bottom:10px}
+.art-meta{font-size:.72rem;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.art-image{width:100%;border-radius:10px;margin-bottom:16px;object-fit:cover;max-height:420px}
+.art-content{font-size:.95rem;color:var(--text);line-height:1.9}
+.art-content p{margin:0 0 16px}
+.art-content img{max-width:100%;height:auto;border-radius:10px;margin:6px 0 16px;display:block}
+.art-content p:last-child{margin-bottom:0}
+.art-content strong{font-weight:800;color:var(--text)}
+.art-content em{font-style:italic}
+.art-content ul,.art-content ol{margin:4px 0 16px;padding-left:22px}
+.art-content li{margin-bottom:7px}
+.art-content s{opacity:.6}
+.art-content code{background:var(--surface2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:.88em}
+.art-content blockquote{margin:0 0 16px;padding:10px 18px;border-left:3px solid var(--blue);background:var(--surface2);border-radius:0 8px 8px 0;font-style:italic;color:var(--muted)}
+.art-content h3.art-h{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;margin:20px 0 10px;color:var(--text)}
+.art-table-wrap{overflow-x:auto;margin:0 0 16px;-webkit-overflow-scrolling:touch}
+.art-table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:420px}
+.art-table th,.art-table td{border:1px solid var(--border);padding:8px 12px;text-align:left}
+.art-table th{background:var(--surface2);font-weight:800}
+.art-table tr:nth-child(even) td{background:var(--surface2)}
+.art-content a{color:var(--blue);text-decoration:underline;word-break:break-word}
+.art-byline-simple{font-size:.78rem;color:var(--muted);margin:14px 0 6px}
+.art-byline-simple a{color:var(--blue);font-weight:800;text-decoration:none}
+.share-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+.share-label{font-size:.72rem;font-weight:800;color:var(--muted);margin-right:2px}
+.share-btn{font-size:.72rem;font-weight:700;padding:7px 13px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--text);cursor:pointer;text-decoration:none;display:inline-block}
+.share-wa:hover{background:#25D366;border-color:#25D366;color:#fff}
+.share-fb:hover{background:#1877F2;border-color:#1877F2;color:#fff}
+.share-x:hover{background:#000;border-color:#000;color:#fff}
+.open-app-cta{display:block;text-align:center;margin-top:20px;padding:13px;background:var(--orange);color:#fff;font-weight:700;border-radius:10px;font-size:.85rem}
+.state-msg{text-align:center;padding:60px 20px;color:var(--muted);font-size:.9rem}
+.state-msg .spinner{width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--blue);border-radius:50%;margin:0 auto 14px;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;margin-top:40px}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.footer-brand img{width:36px;height:36px;border-radius:50%;border:2px solid #f97316}
+.footer-brand-name{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;color:#fff}
+.footer-links{display:flex;flex-direction:column;gap:5px}
+.footer-links a{font-size:.72rem;color:rgba(255,255,255,.42);transition:.18s}
+.footer-links a:hover{color:#fff}
+.footer-support{font-size:.68rem;color:rgba(255,255,255,.4);padding-top:13px;border-top:1px solid rgba(255,255,255,.08);margin-bottom:8px}
+.footer-copy{font-size:.68rem;border-top:1px solid rgba(255,255,255,.08);padding-top:13px;color:rgba(255,255,255,.3)}
+</style>
+</head>
+<body>
+<header>
+  <div class="hbar">
+    <a class="logo-link" href="https://bigquamsmedia.com.ng/index.html">
+      <img class="logo-img" src="https://bigquamsmedia.com.ng/logo.png" alt="Big Quams Media">
+      <div><div class="logo-name">Big Quams Media&reg;</div><span class="logo-sub">Nigeria's Trusted Student Platform</span></div>
+    </a>
+    <a class="back-link" href="https://bigquamsmedia.com.ng/newsroom.html">&larr; Newsroom</a>
+  </div>
+</header>
+<div class="art-wrap" id="artWrap">
+  <div class="state-msg" id="stateMsg"><div class="spinner"></div>Loading article&hellip;</div>
+</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
+      <div>
+        <div class="footer-brand-name">Big Quams Media&reg;</div>
+        <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:2px">Nigeria's Trusted Student Platform</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px 16px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
+        <div class="footer-links">
+          <a href="https://bigquamsmedia.com.ng/index.html">&#127968; Home</a>
+          <a href="https://bigquamsmedia.com.ng/newsroom.html">&#128240; Newsroom</a>
+          <a href="https://bigquamsmedia.com.ng/explore.html">&#128450; Explore Tools</a>
+          <a href="https://bigquamsmedia.com.ng/campus-life.html">&#127918; Campus Life</a>
+          <a href="https://bigquamsmedia.com.ng/community.html">&#129309; Community</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
+        <div class="footer-links">
+          <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener">&#128172; WhatsApp Us</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener">&#128248; Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-support"><strong>Big Quams Media</strong> +2349049871643 &middot; <strong>Big Quams Campus Support</strong> +2348069821664</div>
+    <div class="footer-copy">&copy; <span id="yr"></span> Big Quams Media&reg; &middot; All rights reserved &middot; Created by <a href="https://bigquams.vercel.app/#home" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,.5);font-weight:700">Abdulrasaq Quwamdeen</a>.</div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const SITE_ORIGIN = 'https://bigquamsmedia.com.ng';
+
+function escapeHtml(s){
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function firstSentenceExcerpt(text, hardCap){
+  hardCap = hardCap || 320;
+  const clean = (text||'').replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim();
+  if (!clean) return '';
+  const m = /[.!?](?:\s|$)/.exec(clean);
+  if (m) { const end = m.index + 1; if (end >= 20 && end <= hardCap) return clean.slice(0, end).trim(); }
+  if (clean.length <= hardCap) return clean;
+  const truncated = clean.slice(0, hardCap);
+  const lastSpace = truncated.lastIndexOf(' ');
+  return (lastSpace > 40 ? truncated.slice(0, lastSpace) : truncated).trim();
+}
+function readingTime(txt){ return Math.max(1, Math.round((txt||'').split(/\s+/).filter(Boolean).length/200)); }
+
+// Exact same body formatter as the real generated pages (including the
+// placeholder-token fix for the link/image-corruption bug) — kept in sync
+// by hand; if you change formatArticleBody in generate-news-pages.mjs,
+// change it here too.
+function formatArticleBody(raw){
+  if (!raw) return '';
+  raw = raw.replace(/<a\s+[^>]*?href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (m,url,txt)=>{
+    const clean = txt.replace(/<[^>]+>/g,'').trim();
+    return `[${clean||url}](${url})`;
+  }).replace(/<\/?[a-z][^>]*>/gi,'');
+  const esc = escapeHtml;
+  const isValidUrl = (u) => { try { const p = new URL(u); return p.protocol==='http:'||p.protocol==='https:'; } catch(e){ return false; } };
+  const isValidImageSrc = (u) => /^https?:\/\//.test(u) || /^data:image\//.test(u);
+  const inline = (line) => {
+    let t = esc(line);
+    const linkPlaceholders = [];
+    const push = (html) => { const tok = '\u0000LINK'+linkPlaceholders.length+'\u0000'; linkPlaceholders.push(html); return tok; };
+    t = t.replace(/!\[([^\]]*)\]\(((?:https?:\/\/|data:)[^\s)]+)\)/g, (m,alt,url) => isValidImageSrc(url) ? push(`<img src="${url}" alt="${alt}" loading="lazy">`) : m);
+    t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (m,txt,url) => isValidUrl(url) ? push(`<a href="${url}" target="_blank" rel="noopener">${txt}</a>`) : m);
+    t = t.replace(/(https?:\/\/[^\s<>"']+)/g, (u) => !isValidUrl(u) ? u : `<a href="${u}" target="_blank" rel="noopener">${u}</a>`);
+    t = t.replace(/`([^`\n]+)`/g, '<code>$1</code>');
+    t = t.replace(/\*([^\*\n]+)\*/g, '<strong>$1</strong>');
+    t = t.replace(/_([^_\n]+)_/g, '<em>$1</em>');
+    t = t.replace(/~([^~\n]+)~/g, '<s>$1</s>');
+    linkPlaceholders.forEach((html,i) => { t = t.replace('\u0000LINK'+i+'\u0000', html); });
+    return t;
+  };
+  const isTableRow = (l) => /^\|.*\|$/.test(l.trim());
+  const isTableSep = (l) => /^\|?[\s:|-]+\|?$/.test(l.trim()) && l.includes('-');
+  const parseRow = (l) => l.trim().replace(/^\||\|$/g,'').split('|').map(c=>c.trim());
+  const lines = raw.replace(/\r\n/g,'\n').split('\n');
+  let html='', buf=[], mode=null;
+  const flush = () => {
+    if (!buf.length) { mode=null; return; }
+    if (mode==='ul') html += '<ul>'+buf.map(l=>`<li>${inline(l)}</li>`).join('')+'</ul>';
+    else if (mode==='ol') html += '<ol>'+buf.map(l=>`<li>${inline(l)}</li>`).join('')+'</ol>';
+    else if (mode==='bq') html += '<blockquote>'+buf.map(inline).join('<br>')+'</blockquote>';
+    else html += `<p>${buf.map(inline).join('<br>')}</p>`;
+    buf=[]; mode=null;
+  };
+  for (let i=0;i<lines.length;i++){
+    const line=lines[i], t=line.trim();
+    if (!t){ flush(); continue; }
+    if (isTableRow(t) && lines[i+1] && isTableSep(lines[i+1])) {
+      flush();
+      const header=parseRow(t); let j=i+2, rows=[];
+      while (j<lines.length && isTableRow(lines[j].trim())) { rows.push(parseRow(lines[j])); j++; }
+      html += '<div class="art-table-wrap"><table class="art-table"><thead><tr>'+header.map(h=>`<th>${inline(h)}</th>`).join('')+'</tr></thead><tbody>'+
+        rows.map(r=>'<tr>'+r.map(c=>`<td>${inline(c||'')}</td>`).join('')+'</tr>').join('')+'</tbody></table></div>';
+      i=j-1; continue;
+    }
+    const heading=/^#{2,3}\s+(.*)/.exec(t);
+    const bullet=/^[-•]\s+(.*)/.exec(t);
+    const numbered=/^\d+[.)]\s+(.*)/.exec(t);
+    const quote=/^>\s?(.*)/.exec(t);
+    if (heading) { flush(); html += `<h3 class="art-h">${inline(heading[1])}</h3>`; }
+    else if (bullet) { if (mode && mode!=='ul') flush(); mode='ul'; buf.push(bullet[1]); }
+    else if (numbered) { if (mode && mode!=='ol') flush(); mode='ol'; buf.push(numbered[1]); }
+    else if (quote) { if (mode && mode!=='bq') flush(); mode='bq'; buf.push(quote[1]); }
+    else { if (mode && mode!=='p') flush(); mode='p'; buf.push(t); }
+  }
+  flush();
+  return html;
+}
+
+function makeSlug(title){
+  return (title||'untitled').toLowerCase().replace(/[^\w\s-]/g,'').trim().replace(/\s+/g,'-').replace(/-+/g,'-').slice(0,80) || 'untitled';
+}
+
+async function renderArticle(id){
+  const wrap = document.getElementById('artWrap');
+  try {
+    if (!firebase.apps.length) {
+      firebase.initializeApp({apiKey:'AIzaSyCRrp0cGK-hlBy8Ez8blesCsWn3FP7I-lQ',authDomain:'big-quams-media.firebaseapp.com',projectId:'big-quams-media'});
+    }
+    const db = firebase.firestore();
+    const doc = await db.collection('fs_news').doc(id).get();
+    if (!doc.exists) { showNotFound(); return; }
+    const article = { _id: doc.id, ...doc.data() };
+
+    const slug = article.slug || makeSlug(article.title||'');
+    const seg = `${slug}--${article._id}`;
+    const canonical = `${SITE_ORIGIN}/news/${seg}/`;
+    const title = escapeHtml(article.title||'News');
+    document.title = `${title} — Big Quams Media®`;
+
+    const image = escapeHtml(article.previewImage || article.image || `${SITE_ORIGIN}/newsroom-default.png`);
+    const category = escapeHtml(article.category||'News');
+    const mins = readingTime(article.fullContent||'');
+    const publishedTime = typeof article.createdAt === 'string' ? article.createdAt : '';
+    const dateLabel = publishedTime ? new Date(publishedTime).toLocaleDateString('en-NG',{year:'numeric',month:'long',day:'numeric'}) : '';
+    const viewCount = typeof article.views === 'number' ? article.views : 0;
+    const bodyHtml = formatArticleBody(article.fullContent||'');
+
+    const excerpt = escapeHtml(article.seoDesc || firstSentenceExcerpt(article.fullContent||''));
+    let m = document.createElement('meta'); m.name='description'; m.content=excerpt; document.head.appendChild(m);
+    let ogt=document.createElement('meta'); ogt.setAttribute('property','og:title'); ogt.content=title; document.head.appendChild(ogt);
+    let ogd=document.createElement('meta'); ogd.setAttribute('property','og:description'); ogd.content=excerpt; document.head.appendChild(ogd);
+    let ogi=document.createElement('meta'); ogi.setAttribute('property','og:image'); ogi.content=image; document.head.appendChild(ogi);
+
+    const shareText = `${article.title||'News'} \u2014 ${firstSentenceExcerpt(article.fullContent||'',140)}`;
+    const wa = 'https://wa.me/?text=' + encodeURIComponent(shareText + ' ' + canonical);
+    const fb = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(canonical);
+    const x = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(canonical);
+
+    wrap.innerHTML = `
+      <div class="art-card">
+        <span class="art-cat">${category}</span>
+        <h1 class="art-title">${title}</h1>
+        <div class="art-meta">
+          ${dateLabel ? `<span>${dateLabel}</span><span>&middot;</span>` : ''}
+          <span>${mins} min read</span>
+          <span>&middot;</span>
+          <span id="viewCount">${viewCount} view${viewCount===1?'':'s'}</span>
+        </div>
+        ${article.author ? `<div class="art-byline-simple">By ${escapeHtml(article.author)}</div>` : ''}
+        ${image ? `<img class="art-image" src="${image}" alt="${title}">` : ''}
+        <div class="art-content">${bodyHtml}</div>
+        <div class="share-bar">
+          <span class="share-label">Share:</span>
+          <a class="share-btn share-wa" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="share-btn share-fb" href="${fb}" target="_blank" rel="noopener">Facebook</a>
+          <a class="share-btn share-x" href="${x}" target="_blank" rel="noopener">X</a>
+        </div>
+        <a class="open-app-cta" href="${SITE_ORIGIN}/newsroom.html">Browse more Newsroom stories &rarr;</a>
+      </div>`;
+
+    // Single view-count increment — same field, same write pattern as the
+    // real generated pages. A write, not a read; doesn't touch the daily
+    // read quota this whole pipeline has been protecting.
+    db.collection('fs_news').doc(article._id).update({views: firebase.firestore.FieldValue.increment(1)}).catch(()=>{});
+  } catch (e) {
+    console.warn('Fallback article render failed:', e.message);
+    showNotFound();
+  }
+}
+
+function showNotFound(){
+  document.getElementById('artWrap').innerHTML = `
+    <div class="art-card" style="text-align:center;padding:50px 20px">
+      <h1 class="art-title" style="margin-bottom:10px">Article not found</h1>
+      <p style="color:var(--muted);font-size:.85rem;margin-bottom:20px">This page doesn't exist, or the link may be incorrect.</p>
+      <a class="open-app-cta" style="display:inline-block" href="${SITE_ORIGIN}/newsroom.html">Browse Newsroom &rarr;</a>
+    </div>`;
+}
+
+// Only handle genuine article URLs here: /news/<slug>--<id>/. Anything
+// else that 404s is a real 404 — show the not-found state rather than
+// guessing.
+const match = /\/news\/([^/]+)\/?$/.exec(location.pathname);
+if (match) {
+  const seg = decodeURIComponent(match[1]);
+  const idx = seg.lastIndexOf('--');
+  const id = idx >= 0 ? seg.slice(idx+2) : null;
+  if (id) renderArticle(id); else showNotFound();
+} else {
+  showNotFound();
+}
+</script>
+</body>
+</html>
