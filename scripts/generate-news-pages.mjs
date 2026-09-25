@@ -423,6 +423,15 @@ function readingTime(txt) {
 // Shared site chrome — copied verbatim from newsroom.html so generated
 // pages match the live site exactly. If the site's header/footer ever
 // changes, this needs updating too (see the port comment above).
+// Footer navigation icons — real SVG icons matching the live site's
+// footer (newsroom.html), NOT emoji. An earlier version of this file
+// used emoji as a placeholder shortcut and that was never corrected —
+// this sprite contains just the icons the footer actually needs,
+// extracted from newsroom.html's full icon set. Referenced via
+// <use href="#icon-x">; renderFooter() embeds this sprite once, right
+// before the <footer> element, on every page that calls it.
+const FOOTER_ICON_SPRITE = '<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="icon-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9"/></symbol><symbol id="icon-newspaper" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H7"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12.5" x2="13" y2="12.5"/><line x1="7" y1="16" x2="11" y2="16"/></symbol><symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></symbol><symbol id="icon-building" viewBox="0 0 24 24"><rect x="5" y="3" width="9" height="18" rx="1"/><rect x="15" y="9" width="4" height="12" rx="1"/><line x1="8" y1="7" x2="8" y2="7"/><line x1="11" y1="7" x2="11" y2="7"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="11" y1="11" x2="11" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="11" y1="15" x2="11" y2="15"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.5.3 4.5 2.3 4.5 5.3"/></symbol><symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol><symbol id="icon-calendar-days" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="7" y1="14" x2="7" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="17" y1="14" x2="17" y2="14"/><line x1="7" y1="17.5" x2="7" y2="17.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></symbol><symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3z"/></symbol><symbol id="icon-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></symbol><symbol id="icon-graduation-cap" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5-10-5z"/><path d="M6 11v5c0 1 3 2 6 2s6-1 6-2v-5"/><path d="M22 9v6"/></symbol><symbol id="icon-bar-chart" viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></symbol><symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5 20 3"/><path d="M17 6l3 3"/><path d="M14 9l2.5 2.5"/></symbol><symbol id="icon-book-open" viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8 4.5 4 5v13c4-.5 6.5 0 8 1.5V6.5z"/><path d="M12 6.5C13.5 5 16 4.5 20 5v13c-4-.5-6.5 0-8 1.5V6.5z"/></symbol><symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></symbol><symbol id="icon-landmark" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><path d="M3 10 12 4l9 6"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z"/></symbol><symbol id="icon-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z"/></symbol><symbol id="icon-clipboard-list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="12" y2="19"/></symbol><symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 8.7c.2-.3.6-.6 1.1-.6.4 0 .6.3.9 1 .2.5.5 1.1.4 1.4-.1.4-.4.6-.7.9-.2.2-.3.4-.1.7.4.7 1 1.3 1.7 1.7.3.2.5.1.7-.1.3-.3.5-.6.9-.7.3-.1.9.2 1.4.4.7.3 1 .5 1 .9 0 .5-.3.9-.6 1.1-.6.4-1.4.5-2.2.2-1.6-.5-3.4-2.3-4.2-3.9-.4-.7-.5-1.4-.3-2z"/></symbol><symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17" y1="7" x2="17" y2="7"/></symbol><symbol id="icon-tiktok" viewBox="0 0 24 24"><path d="M13.5 3v11.2a3.3 3.3 0 1 1-2.8-3.3"/><path d="M13.5 3.2c.4 2.4 2.2 4.2 4.5 4.5"/></symbol><symbol id="icon-smartphone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18.5" x2="13" y2="18.5"/></symbol></defs></svg>';
+
 const SITE_HEADER_CSS = `
 :root{--blue-deep:#0c1f6e;--blue:#1a3fa8;--blue-lt:#dde9ff;--orange:#f97316;--surface:#fff;--surface2:#f0f4ff;--border:#e2e8f4;--text:#1e2749;--muted:#64748b;--r:12px;--shadow:0 8px 28px rgba(26,63,168,.11)}
 body.dark{--surface:#161b27;--surface2:#111624;--border:#2a3550;--text:#e6edf3;--muted:#8b949e}
@@ -431,6 +440,7 @@ html{scroll-behavior:smooth}
 body{font-family:'Roboto',sans-serif;background:var(--surface2);color:var(--text);line-height:1.6;overflow-x:hidden}
 body.dark{background:#0d1117}
 a{color:inherit;text-decoration:none}
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 img{max-width:100%;display:block}
 header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.35)}
 .hbar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
@@ -546,8 +556,12 @@ function renderHeader() {
 
 // Footer copied verbatim from newsroom.html (see the port comment above
 // SITE_HEADER_CSS) — keep both in sync if the live footer ever changes.
+function icon(id) {
+  return `<svg class="icon" aria-hidden="true"><use href="#${id}"></use></svg>`;
+}
+
 function renderFooter() {
-  return `<footer>
+  return `${FOOTER_ICON_SPRITE}<footer>
   <div class="footer-inner">
     <div class="footer-brand">
       <img src="${SITE_ORIGIN}/logo.png" alt="BQM">
@@ -560,45 +574,45 @@ function renderFooter() {
       <div>
         <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
         <div class="footer-links" style="flex-direction:column;gap:5px">
-          <a href="${SITE_ORIGIN}/index.html">\ud83c\udfe0 Home</a>
-          <a href="${SITE_ORIGIN}/newsroom.html">\ud83d\udcf0 Newsroom</a>
-          <a href="${SITE_ORIGIN}/explore.html">\ud83d\uddc2 Explore Tools</a>
-          <a href="${SITE_ORIGIN}/campus-life.html">\ud83c\udfae Campus Life</a>
-          <a href="${SITE_ORIGIN}/community.html">\ud83e\udd1d Community</a>
-          <a href="${SITE_ORIGIN}/profile.html">\ud83d\udc64 My Profile</a>
-          <a href="${SITE_ORIGIN}/daily.html">\ud83d\udcc5 Daily Hub</a>
+          <a href="${SITE_ORIGIN}/index.html">${icon('icon-home')} Home</a>
+          <a href="${SITE_ORIGIN}/newsroom.html">${icon('icon-newspaper')} Newsroom</a>
+          <a href="${SITE_ORIGIN}/explore.html">${icon('icon-grid')} Explore Tools</a>
+          <a href="${SITE_ORIGIN}/campus-life.html">${icon('icon-building')} Campus Life</a>
+          <a href="${SITE_ORIGIN}/community.html">${icon('icon-users')} Community</a>
+          <a href="${SITE_ORIGIN}/profile.html">${icon('icon-user')} My Profile</a>
+          <a href="${SITE_ORIGIN}/daily.html">${icon('icon-calendar-days')} Daily Hub</a>
         </div>
       </div>
       <div>
         <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div>
         <div class="footer-links" style="flex-direction:column;gap:5px">
-          <a href="${SITE_ORIGIN}/cbt.html">\ud83d\udc68\ud83c\udffd\u200d\ud83d\udcbb JAMB CBT Practice</a>
-          <a href="${SITE_ORIGIN}/postutme-prep.html">\ud83d\udcd6 Post-UTME Prep</a>
-          <a href="${SITE_ORIGIN}/postutme-calculator.html">\ud83e\uddee Aggregate Calc</a>
-          <a href="${SITE_ORIGIN}/gpa-calculator.html">\ud83c\udf93 GPA Calculator</a>
-          <a href="${SITE_ORIGIN}/results.html">\ud83d\udcca Results Checker</a>
-          <a href="${SITE_ORIGIN}/Jamb_Profile_Code.html">\ud83d\udd11 JAMB Profile Code</a>
+          <a href="${SITE_ORIGIN}/cbt.html">${icon('icon-monitor')} CBT Practice</a>
+          <a href="${SITE_ORIGIN}/postutme-prep.html">${icon('icon-book')} Post-UTME Prep</a>
+          <a href="${SITE_ORIGIN}/postutme-calculator.html">${icon('icon-calculator')} Aggregate Calc</a>
+          <a href="${SITE_ORIGIN}/gpa-calculator.html">${icon('icon-graduation-cap')} GPA Calculator</a>
+          <a href="${SITE_ORIGIN}/results.html">${icon('icon-bar-chart')} Results Checker</a>
+          <a href="${SITE_ORIGIN}/Jamb_Profile_Code.html">${icon('icon-key')} JAMB Profile Code</a>
         </div>
       </div>
       <div>
         <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div>
         <div class="footer-links" style="flex-direction:column;gap:5px">
-          <a href="${SITE_ORIGIN}/elibrary.html">\ud83d\udcda eLibrary</a>
-          <a href="${SITE_ORIGIN}/scholarship.html">\ud83d\udcb0 Scholarships</a>
-          <a href="${SITE_ORIGIN}/student-loan.html">\ud83d\udcb3 Student Loan</a>
-          <a href="${SITE_ORIGIN}/spotlight.html">\ud83c\udf1f Student Spotlight</a>
-          <a href="${SITE_ORIGIN}/dyk.html">\ud83d\udca1 Did You Know</a>
-          <a href="${SITE_ORIGIN}/subject-combo.html">\ud83d\udccb Subject Combo</a>
+          <a href="${SITE_ORIGIN}/elibrary.html">${icon('icon-book-open')} eLibrary</a>
+          <a href="${SITE_ORIGIN}/scholarship.html">${icon('icon-award')} Scholarships</a>
+          <a href="${SITE_ORIGIN}/student-loan.html">${icon('icon-landmark')} Student Loan</a>
+          <a href="${SITE_ORIGIN}/spotlight.html">${icon('icon-star')} Student Spotlight</a>
+          <a href="${SITE_ORIGIN}/dyk.html">${icon('icon-lightbulb')} Did You Know</a>
+          <a href="${SITE_ORIGIN}/subject-combo.html">${icon('icon-clipboard-list')} Subject Combo</a>
         </div>
       </div>
       <div>
         <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
         <div class="footer-links" style="flex-direction:column;gap:5px">
-          <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener">\ud83d\udcac WhatsApp Us</a>
-          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener">\ud83d\udc65 Join Group</a>
-          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener">\ud83d\udcf8 Instagram</a>
-          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener">\ud83c\udfb5 TikTok</a>
-          <a href="${SITE_ORIGIN}/index.html#install-app">\ud83d\udcf2 Install App</a>
+          <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener">${icon('icon-whatsapp')} WhatsApp Us</a>
+          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener">${icon('icon-users')} Join Group</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener">${icon('icon-instagram')} Instagram</a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener">${icon('icon-tiktok')} TikTok</a>
+          <a href="${SITE_ORIGIN}/index.html#install-app">${icon('icon-smartphone')} Install App</a>
         </div>
       </div>
     </div>
