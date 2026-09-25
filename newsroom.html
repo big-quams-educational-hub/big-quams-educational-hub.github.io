@@ -999,7 +999,7 @@ function render(){
   const q=(document.getElementById('newsSearch').value||'').toLowerCase().trim();
   filteredNews=allNews.filter(n=>{
     const matchCat=!currentCat||(n.category||'')===currentCat;
-    const matchQ=!q||((n.title||'')+(n.category||'')+stripHtml(n.fullContent||'').substring(0,300)).toLowerCase().includes(q);
+    const matchQ=!q||((n.title||'')+(n.category||'')+(n.tags||[]).join(' ')+stripHtml(n.fullContent||'').substring(0,300)).toLowerCase().includes(q);
     return matchCat&&matchQ;
   });
 
