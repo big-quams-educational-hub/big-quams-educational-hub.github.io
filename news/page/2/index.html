@@ -19,6 +19,7 @@ html{scroll-behavior:smooth}
 body{font-family:'Roboto',sans-serif;background:var(--surface2);color:var(--text);line-height:1.6;overflow-x:hidden}
 body.dark{background:#0d1117}
 a{color:inherit;text-decoration:none}
+.icon{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 img{max-width:100%;display:block}
 header{background:linear-gradient(135deg,#0c1f6e,#1a3fa8);position:sticky;top:0;z-index:300;box-shadow:0 2px 20px rgba(12,31,110,.35)}
 .hbar{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;height:60px;gap:10px}
@@ -272,7 +273,7 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
   </div>
   <nav class="pagination"><a class="page-nav" href="https://bigquamsmedia.com.ng/news/">← Prev</a><a class="page-num" href="https://bigquamsmedia.com.ng/news/">1</a><a class="page-num active" href="https://bigquamsmedia.com.ng/news/page/2/">2</a><a class="page-num" href="https://bigquamsmedia.com.ng/news/page/3/">3</a><a class="page-nav" href="https://bigquamsmedia.com.ng/news/page/3/">Next →</a></nav>
 </div>
-<footer>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><defs><symbol id="icon-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9a1 1 0 0 0 1 1h3v-5h4v5h3a1 1 0 0 0 1-1v-9"/></symbol><symbol id="icon-newspaper" viewBox="0 0 24 24"><rect x="3" y="5" width="14" height="14" rx="2"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2H7"/><line x1="7" y1="9" x2="13" y2="9"/><line x1="7" y1="12.5" x2="13" y2="12.5"/><line x1="7" y1="16" x2="11" y2="16"/></symbol><symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></symbol><symbol id="icon-building" viewBox="0 0 24 24"><rect x="5" y="3" width="9" height="18" rx="1"/><rect x="15" y="9" width="4" height="12" rx="1"/><line x1="8" y1="7" x2="8" y2="7"/><line x1="11" y1="7" x2="11" y2="7"/><line x1="8" y1="11" x2="8" y2="11"/><line x1="11" y1="11" x2="11" y2="11"/><line x1="8" y1="15" x2="8" y2="15"/><line x1="11" y1="15" x2="11" y2="15"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c0-3.3 2.5-5.5 5.5-5.5s5.5 2.2 5.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.2c2.5.3 4.5 2.3 4.5 5.3"/></symbol><symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol><symbol id="icon-calendar-days" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="7" y1="14" x2="7" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="17" y1="14" x2="17" y2="14"/><line x1="7" y1="17.5" x2="7" y2="17.5"/><line x1="12" y1="17.5" x2="12" y2="17.5"/></symbol><symbol id="icon-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></symbol><symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3z"/></symbol><symbol id="icon-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="1"/><line x1="7" y1="13" x2="17" y2="13"/><line x1="7" y1="17" x2="17" y2="17"/><line x1="10.5" y1="11" x2="10.5" y2="19"/><line x1="13.5" y1="11" x2="13.5" y2="19"/></symbol><symbol id="icon-graduation-cap" viewBox="0 0 24 24"><path d="M2 9 12 4l10 5-10 5-10-5z"/><path d="M6 11v5c0 1 3 2 6 2s6-1 6-2v-5"/><path d="M22 9v6"/></symbol><symbol id="icon-bar-chart" viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="20"/><rect x="6" y="12" width="3" height="8"/><rect x="11" y="8" width="3" height="12"/><rect x="16" y="4" width="3" height="16"/></symbol><symbol id="icon-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M10.5 12.5 20 3"/><path d="M17 6l3 3"/><path d="M14 9l2.5 2.5"/></symbol><symbol id="icon-book-open" viewBox="0 0 24 24"><path d="M12 6.5C10.5 5 8 4.5 4 5v13c4-.5 6.5 0 8 1.5V6.5z"/><path d="M12 6.5C13.5 5 16 4.5 20 5v13c-4-.5-6.5 0-8 1.5V6.5z"/></symbol><symbol id="icon-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></symbol><symbol id="icon-landmark" viewBox="0 0 24 24"><line x1="3" y1="21" x2="21" y2="21"/><line x1="5" y1="21" x2="5" y2="10"/><line x1="9" y1="21" x2="9" y2="10"/><line x1="15" y1="21" x2="15" y2="10"/><line x1="19" y1="21" x2="19" y2="10"/><path d="M3 10 12 4l9 6"/></symbol><symbol id="icon-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5z"/></symbol><symbol id="icon-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.5 1 2.5h6c0-1 .4-1.9 1-2.5A6 6 0 0 0 12 2z"/></symbol><symbol id="icon-clipboard-list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><line x1="8" y1="11" x2="16" y2="11"/><line x1="8" y1="15" x2="16" y2="15"/><line x1="8" y1="19" x2="12" y2="19"/></symbol><symbol id="icon-whatsapp" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3z"/><path d="M8.5 8.7c.2-.3.6-.6 1.1-.6.4 0 .6.3.9 1 .2.5.5 1.1.4 1.4-.1.4-.4.6-.7.9-.2.2-.3.4-.1.7.4.7 1 1.3 1.7 1.7.3.2.5.1.7-.1.3-.3.5-.6.9-.7.3-.1.9.2 1.4.4.7.3 1 .5 1 .9 0 .5-.3.9-.6 1.1-.6.4-1.4.5-2.2.2-1.6-.5-3.4-2.3-4.2-3.9-.4-.7-.5-1.4-.3-2z"/></symbol><symbol id="icon-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17" y1="7" x2="17" y2="7"/></symbol><symbol id="icon-tiktok" viewBox="0 0 24 24"><path d="M13.5 3v11.2a3.3 3.3 0 1 1-2.8-3.3"/><path d="M13.5 3.2c.4 2.4 2.2 4.2 4.5 4.5"/></symbol><symbol id="icon-smartphone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18.5" x2="13" y2="18.5"/></symbol></defs></svg><footer>
   <div class="footer-inner">
     <div class="footer-brand">
       <img src="https://bigquamsmedia.com.ng/logo.png" alt="BQM">
@@ -285,45 +286,45 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
       <div>
         <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Main</div>
         <div class="footer-links" style="flex-direction:column;gap:5px">
-          <a href="https://bigquamsmedia.com.ng/index.html">🏠 Home</a>
-          <a href="https://bigquamsmedia.com.ng/newsroom.html">📰 Newsroom</a>
-          <a href="https://bigquamsmedia.com.ng/explore.html">🗂 Explore Tools</a>
-          <a href="https://bigquamsmedia.com.ng/campus-life.html">🎮 Campus Life</a>
-          <a href="https://bigquamsmedia.com.ng/community.html">🤝 Community</a>
-          <a href="https://bigquamsmedia.com.ng/profile.html">👤 My Profile</a>
-          <a href="https://bigquamsmedia.com.ng/daily.html">📅 Daily Hub</a>
+          <a href="https://bigquamsmedia.com.ng/index.html"><svg class="icon" aria-hidden="true"><use href="#icon-home"></use></svg> Home</a>
+          <a href="https://bigquamsmedia.com.ng/newsroom.html"><svg class="icon" aria-hidden="true"><use href="#icon-newspaper"></use></svg> Newsroom</a>
+          <a href="https://bigquamsmedia.com.ng/explore.html"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg> Explore Tools</a>
+          <a href="https://bigquamsmedia.com.ng/campus-life.html"><svg class="icon" aria-hidden="true"><use href="#icon-building"></use></svg> Campus Life</a>
+          <a href="https://bigquamsmedia.com.ng/community.html"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Community</a>
+          <a href="https://bigquamsmedia.com.ng/profile.html"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg> My Profile</a>
+          <a href="https://bigquamsmedia.com.ng/daily.html"><svg class="icon" aria-hidden="true"><use href="#icon-calendar-days"></use></svg> Daily Hub</a>
         </div>
       </div>
       <div>
         <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Exam Tools</div>
         <div class="footer-links" style="flex-direction:column;gap:5px">
-          <a href="https://bigquamsmedia.com.ng/cbt.html">👨🏽‍💻 JAMB CBT Practice</a>
-          <a href="https://bigquamsmedia.com.ng/postutme-prep.html">📖 Post-UTME Prep</a>
-          <a href="https://bigquamsmedia.com.ng/postutme-calculator.html">🧮 Aggregate Calc</a>
-          <a href="https://bigquamsmedia.com.ng/gpa-calculator.html">🎓 GPA Calculator</a>
-          <a href="https://bigquamsmedia.com.ng/results.html">📊 Results Checker</a>
-          <a href="https://bigquamsmedia.com.ng/Jamb_Profile_Code.html">🔑 JAMB Profile Code</a>
+          <a href="https://bigquamsmedia.com.ng/cbt.html"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"></use></svg> CBT Practice</a>
+          <a href="https://bigquamsmedia.com.ng/postutme-prep.html"><svg class="icon" aria-hidden="true"><use href="#icon-book"></use></svg> Post-UTME Prep</a>
+          <a href="https://bigquamsmedia.com.ng/postutme-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-calculator"></use></svg> Aggregate Calc</a>
+          <a href="https://bigquamsmedia.com.ng/gpa-calculator.html"><svg class="icon" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg> GPA Calculator</a>
+          <a href="https://bigquamsmedia.com.ng/results.html"><svg class="icon" aria-hidden="true"><use href="#icon-bar-chart"></use></svg> Results Checker</a>
+          <a href="https://bigquamsmedia.com.ng/Jamb_Profile_Code.html"><svg class="icon" aria-hidden="true"><use href="#icon-key"></use></svg> JAMB Profile Code</a>
         </div>
       </div>
       <div>
         <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Resources</div>
         <div class="footer-links" style="flex-direction:column;gap:5px">
-          <a href="https://bigquamsmedia.com.ng/elibrary.html">📚 eLibrary</a>
-          <a href="https://bigquamsmedia.com.ng/scholarship.html">💰 Scholarships</a>
-          <a href="https://bigquamsmedia.com.ng/student-loan.html">💳 Student Loan</a>
-          <a href="https://bigquamsmedia.com.ng/spotlight.html">🌟 Student Spotlight</a>
-          <a href="https://bigquamsmedia.com.ng/dyk.html">💡 Did You Know</a>
-          <a href="https://bigquamsmedia.com.ng/subject-combo.html">📋 Subject Combo</a>
+          <a href="https://bigquamsmedia.com.ng/elibrary.html"><svg class="icon" aria-hidden="true"><use href="#icon-book-open"></use></svg> eLibrary</a>
+          <a href="https://bigquamsmedia.com.ng/scholarship.html"><svg class="icon" aria-hidden="true"><use href="#icon-award"></use></svg> Scholarships</a>
+          <a href="https://bigquamsmedia.com.ng/student-loan.html"><svg class="icon" aria-hidden="true"><use href="#icon-landmark"></use></svg> Student Loan</a>
+          <a href="https://bigquamsmedia.com.ng/spotlight.html"><svg class="icon" aria-hidden="true"><use href="#icon-star"></use></svg> Student Spotlight</a>
+          <a href="https://bigquamsmedia.com.ng/dyk.html"><svg class="icon" aria-hidden="true"><use href="#icon-lightbulb"></use></svg> Did You Know</a>
+          <a href="https://bigquamsmedia.com.ng/subject-combo.html"><svg class="icon" aria-hidden="true"><use href="#icon-clipboard-list"></use></svg> Subject Combo</a>
         </div>
       </div>
       <div>
         <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.25);margin-bottom:8px">Connect</div>
         <div class="footer-links" style="flex-direction:column;gap:5px">
-          <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener">💬 WhatsApp Us</a>
-          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener">👥 Join Group</a>
-          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener">📸 Instagram</a>
-          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener">🎵 TikTok</a>
-          <a href="https://bigquamsmedia.com.ng/index.html#install-app">📲 Install App</a>
+          <a href="https://wa.me/2349049871643?text=Hi%20Big%20Quams%20Media!%20I%20have%20a%20question." target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg> WhatsApp Us</a>
+          <a href="https://chat.whatsapp.com/FDtwbP0d4Z87e8o8lTW0UO" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg> Join Group</a>
+          <a href="https://instagram.com/bigquamsmedia" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-instagram"></use></svg> Instagram</a>
+          <a href="https://tiktok.com/@bigquamsmedia" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#icon-tiktok"></use></svg> TikTok</a>
+          <a href="https://bigquamsmedia.com.ng/index.html#install-app"><svg class="icon" aria-hidden="true"><use href="#icon-smartphone"></use></svg> Install App</a>
         </div>
       </div>
     </div>
