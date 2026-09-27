@@ -77,6 +77,11 @@ body.dark .filter-wrap{background:#161b27}
 body.dark .cat-btn{background:#1a2236;border-color:var(--border)}
 .cat-btn.active,.cat-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
 .search-wrap{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:0 12px;height:38px;flex:1;max-width:240px;min-width:0}
+.search-suggestions{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.12);z-index:400;overflow:hidden;display:none}
+.search-suggestions.show{display:block}
+.search-suggestion-item{padding:9px 12px;font-size:.78rem;font-weight:600;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:7px}
+.search-suggestion-item:hover,.search-suggestion-item.active{background:var(--surface2)}
+.search-suggestion-item .sug-tag{font-size:.62rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-left:auto}
 body.dark .search-wrap{background:#111624}
 .search-wrap input{flex:1;border:none;background:transparent;font-size:.82rem;color:var(--text);outline:none;min-width:0;font-family:'Roboto',sans-serif}
 
@@ -421,9 +426,10 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
     <button type="button" class="cat-btn" onclick="setCategory('Admission Guide',this)">Admission</button>
     <button type="button" class="cat-btn" onclick="setCategory('Campus News',this)">Campus</button>
     <button type="button" class="cat-btn" onclick="setCategory('Announcement',this)">BQM News</button>
-    <div class="search-wrap">
+    <div class="search-wrap" style="position:relative">
       <span style="font-size:.8rem;color:var(--muted)"><svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg></span>
-      <input type="text" id="newsSearch" placeholder="Search articles…" oninput="render()" autocomplete="off">
+      <input type="text" id="newsSearch" placeholder="Search articles…" oninput="render();updateSearchSuggestions()" onfocus="updateSearchSuggestions()" onblur="setTimeout(hideSearchSuggestions,150)" autocomplete="off">
+      <div id="searchSuggestions" class="search-suggestions"></div>
     </div>
   </div>
 </div>
@@ -992,6 +998,35 @@ function setCategory(cat,btn){
   if(btn) btn.classList.add('active');
   else document.querySelectorAll('.cat-btn')[0].classList.add('active');
   render();
+}
+
+// ── Search suggestions: as the visitor types, suggest matching
+// categories actually present in the loaded articles (same source the
+// category chip buttons use — no extra Firestore read needed). Picking a
+// suggestion just fills the search box with that category name and
+// re-searches, which now also matches against tags (see render()'s matchQ
+// below) and title/body. ──
+function updateSearchSuggestions(){
+  const box=document.getElementById('searchSuggestions');
+  if(!box) return;
+  const q=(document.getElementById('newsSearch').value||'').toLowerCase().trim();
+  if(!q){ box.classList.remove('show'); box.innerHTML=''; return; }
+  const cats=[...new Set((allNews||[]).map(n=>n.category).filter(Boolean))];
+  const matches=cats.filter(c=>c.toLowerCase().includes(q) && c.toLowerCase()!==q);
+  if(!matches.length){ box.classList.remove('show'); box.innerHTML=''; return; }
+  box.innerHTML=matches.slice(0,6).map(c=>
+    `<div class="search-suggestion-item" onmousedown="selectSearchSuggestion('${c.replace(/'/g,"\\'")}')">${c}<span class="sug-tag">Category</span></div>`
+  ).join('');
+  box.classList.add('show');
+}
+function selectSearchSuggestion(cat){
+  document.getElementById('newsSearch').value=cat;
+  hideSearchSuggestions();
+  render();
+}
+function hideSearchSuggestions(){
+  const box=document.getElementById('searchSuggestions');
+  if(box){ box.classList.remove('show'); box.innerHTML=''; }
 }
 
 // ── Render ──
