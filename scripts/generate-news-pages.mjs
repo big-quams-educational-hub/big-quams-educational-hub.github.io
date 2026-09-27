@@ -911,6 +911,15 @@ function renderArchivePage(pageArticles, currentPage, totalPages, resolvedImages
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+// Force scroll-to-top on every load of a paginated page. Without this,
+// some mobile browsers restore the PREVIOUS page's scroll position onto
+// the new page when navigating via history-tracked links like pagination
+// — landing the reader mid-page or near the bottom instead of at the top
+// of the new page's content, which is what actually happened.
+if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+window.addEventListener('pageshow', function(){ window.scrollTo(0, 0); });
+</script>
 <title>${escapeHtml(pageTitle)}</title>
 <meta name="description" content="Browse every article on Big Quams Media\u00ae, newest first.">
 <link rel="canonical" href="${canonical}">
@@ -1159,9 +1168,10 @@ async function derivePageAccessToken(pageId, systemUserToken) {
 async function postArticleToFacebook(article, canonicalUrl, destination) {
   const headline = article.title || 'New article on Big Quams Media\u00ae';
   const excerpt = article.excerpt ? String(article.excerpt).trim() : '';
-  const message = excerpt
+  const signature = '\n\n\u2014 BIG QUAMS MEDIA \nSimplifying Campus Life for Every Student.';
+  const message = (excerpt
     ? `${headline}\n\n${excerpt}\n\nRead more: ${canonicalUrl}`
-    : `${headline}\n\nRead more: ${canonicalUrl}`;
+    : `${headline}\n\nRead more: ${canonicalUrl}`) + signature;
   const url = `https://graph.facebook.com/${FB_API_VERSION}/${destination.id}/feed`;
 
   const attemptPost = async (token) => {
