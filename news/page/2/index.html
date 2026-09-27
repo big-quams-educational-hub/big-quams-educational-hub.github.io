@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+// Force scroll-to-top on every load of a paginated page. Without this,
+// some mobile browsers restore the PREVIOUS page's scroll position onto
+// the new page when navigating via history-tracked links like pagination
+// — landing the reader mid-page or near the bottom instead of at the top
+// of the new page's content, which is what actually happened.
+if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+window.addEventListener('pageshow', function(){ window.scrollTo(0, 0); });
+</script>
 <title>All News — Page 2 — Big Quams Media®</title>
 <meta name="description" content="Browse every article on Big Quams Media®, newest first.">
 <link rel="canonical" href="https://bigquamsmedia.com.ng/news/page/2/">
