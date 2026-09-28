@@ -496,6 +496,9 @@ footer{background:#0a1228;color:rgba(255,255,255,.5);padding:36px 16px 24px;marg
 .share-fb:hover{background:#1877F2;border-color:#1877F2;color:#fff}
 .share-x:hover{background:#000;border-color:#000;color:#fff}
 .share-ig:hover{background:#E4405F;border-color:#E4405F;color:#fff}
+.wa-promo{display:block;margin:14px 0 18px;border-radius:12px;overflow:hidden;box-shadow:0 4px 14px rgba(22,163,74,.25);transition:transform .15s,box-shadow .15s}
+.wa-promo:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(22,163,74,.35)}
+.wa-promo img{width:100%;height:auto;display:block}
 .prevnext-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
 .prevnext-link{display:block;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--surface2)}
 .prevnext-label{display:block;font-size:.62rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
@@ -641,6 +644,24 @@ function renderByline(authorName, authorPageUrl, isOwner) {
   return authorPageUrl
     ? `<div class="art-byline-simple">By <a href="${authorPageUrl}">${escapeHtml(displayName)}</a></div>`
     : `<div class="art-byline-simple">By ${escapeHtml(displayName)}</div>`;
+}
+
+// ---------------------------------------------------------------------
+// WhatsApp channel promotional banner — shown on every article page.
+// The image is ONE shared file at the site root (whatsapp-channel-
+// banner.png, committed to the repo once), referenced by URL from every
+// page — deliberately NOT embedded as base64 into each page, which would
+// duplicate ~110KB into every single article's HTML. A shared URL is
+// downloaded once and then cached by the visitor's browser across every
+// other article they read.
+// ---------------------------------------------------------------------
+const WHATSAPP_CHANNEL_URL = 'https://whatsapp.com/channel/0029VbC665dFnSzF7HzlDh2Q';
+const WHATSAPP_BANNER_URL = `${SITE_ORIGIN}/whatsapp-channel-banner.png`;
+
+function renderWhatsAppPromo() {
+  return `<a class="wa-promo" href="${WHATSAPP_CHANNEL_URL}" target="_blank" rel="noopener" aria-label="Join our WhatsApp channel">
+    <img src="${WHATSAPP_BANNER_URL}" alt="Join Our WhatsApp Channel — Big Quams Media" loading="lazy" width="768" height="198">
+  </a>`;
 }
 
 // Share bar — same URL formats and share-text convention (headline + short
@@ -1033,6 +1054,7 @@ ${renderHeader()}
       <span class="art-views" id="viewCount">${viewCount} view${viewCount === 1 ? '' : 's'}</span>
     </div>
     ${renderByline(article.author, authorPageUrl, isOwnerAuthor)}
+    ${renderWhatsAppPromo()}
     ${visibleImageEscaped ? `<img class="art-image" src="${visibleImageEscaped}" alt="${headline}">` : ''}
     <div class="art-content">${bodyHtml}</div>
     ${renderShareBar(canonical, article.title || 'News', article.fullContent || '')}
